@@ -1,0 +1,42 @@
+extends layouts/inner
+
+block inner_content
+
+    #left-chart-nav
+        ul
+
+    #explore-container
+        .chart-list-panel
+            //- .row#chart-row
+                //- each chart, id in charts
+                //-     .col-md-3.col-sm-4
+                //-         .chart
+                //-             a.chart-link(href='/#{chart.cid}')
+                //-                 .chart-hover
+                //-                     h4.chart-title
+                //-                     .chart-subtitle
+                //-                 .chart-hover-bg
+                //-                 .chart-area(data-chart-code='#{chart.code}', data-chart-cid='#{chart.cid}', data-chart-version='#{chart.version}', data-echart-version='#{chart.echart_version}')
+                //-             .chart-info
+                //-                 .chart-icon
+                //-                     a.icon-bar(href='javascript:;')
+                //-                         span.glyphicon.glyphicon-heart(aria-hidden='true', title='获得赞数') #{chart.starCnt}
+                //-                     a.icon-bar(href='javascript:;')
+                //-                         span.glyphicon.glyphicon-eye-open(aria-hidden='true', title='关注人数') 2
+
+block extra_js
+
+    //- script(type='text/javascript', src='http://localhost:3000/vendors/echarts/echarts-all-2.2.7.js')
+    //- script(type='text/javascript', src='./vendors/echarts/echarts-all-3.0.0.js')
+    //- script(id='echarts-js', type='text/javascript', src='./vendors/echarts/map/js/china.js')
+    //- script(id='echarts-js', type='text/javascript', src='./vendors/echarts/map/js/world.js')
+
+    script(type='text/javascript', src='./vendors/waypoint.js')
+
+    script(type='text/javascript', src='./javascripts/chart-list.js')
+
+    script(type='text/javascript').
+        var navExplore = document.getElementById('nav-explore');
+        navExplore.className = 'active';
+
+    script(type='text/javascript' src='./javascripts/hm.js')

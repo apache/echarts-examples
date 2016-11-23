@@ -1,0 +1,40 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.0",
+    "canvas": "^1.6.2",
+    "gulp": "~3.9.0",
+    "gulp-autoprefixer": "~3.0.0",
+    "gulp-callback": "~0.0.3",
+    "gulp-copy": "~0.0.2",
+    "gulp-if": "~2.0.0",
+    "gulp-jade": "~1.1.0",
+    "gulp-rename": "~1.2.2",
+    "gulp-sass": "~2.0.4",
+    "gulp-uglify": "~1.4.1"
+  },
+  "dependencies": {
+    "body-parser": "~1.14.0",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "mysql": "~2.9.0",
+    "express-session": "~1.11.3",
+    "gravatar": "~1.3.0",
+    "hashids": "~1.0.2",
+    "sechash": "~0.2.0",
+    "promise": "~7.0.4",
+    "etpl": "~3.0.1",
+    "fs": "~0.0.2",
+    "glob": "~6.0.1",
+    "path": "~0.12.7"
+  }
+}

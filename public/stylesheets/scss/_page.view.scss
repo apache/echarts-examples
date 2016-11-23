@@ -1,0 +1,47 @@
+#view-main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    .control-panel {
+        position: absolute;
+        bottom: 0;
+        height: 30px;
+        padding-right: 10px;
+        width: 100%;
+        background: #F3F3F3;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        .btn {
+            float: right;
+            margin: 3px 5px;
+            padding: 3px 5px;
+            background: #337ab7;
+            border: none;
+            color: white;
+        }
+        .btn:hover {
+            // background-color: #3FA7DC;
+        }
+        z-index: 1001;
+    }
+    .chart {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 30px;
+        padding: 2px;
+    }
+}
+
+#view-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}

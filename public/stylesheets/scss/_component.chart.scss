@@ -1,0 +1,45 @@
+$control-panel-height: 50px;
+
+.dg.main * {
+    box-sizing: content-box;
+}
+.dg.main input {
+    line-height: normal;
+}
+
+.dg.main.a {
+    overflow-x: visible;
+}
+
+.right-container {
+    position: absolute;
+    right: 0;
+
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    padding-left: $handler-width;
+    border: none;
+    z-index: 30;
+
+    background: $clr-bg;
+
+    .right-panel {
+        padding: $pd-basic;
+        padding-left: $handler-width + $pd-basic;
+    }
+}
+            #fork-btn, #reset-btn {
+                display: none;
+            }
+
+    #chart-panel {
+        position: absolute;
+        // top: $control-panel-height;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }

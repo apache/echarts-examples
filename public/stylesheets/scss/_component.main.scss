@@ -1,0 +1,30 @@
+$handler-width: 5px;
+
+
+
+#main-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: $nav-height;
+
+    .handler {
+        position: absolute;
+        left: 50%;
+
+        top: 0;
+        bottom: 0;
+        width: $handler-width;
+
+        cursor: col-resize;
+        z-index: 100;
+        background-color: transparent;
+        border-left: 1px solid $clr-border;
+        // border-right: 1px solid $clr-border;
+    }
+
+    &.no-top {
+        top: 0;
+    }
+}

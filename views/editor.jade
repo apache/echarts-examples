@@ -1,0 +1,45 @@
+extends layouts/inner
+
+block nav_right
+    li
+        a(href='javascript:;', onclick='downloadExample()') 下载本示例
+
+block inner_content
+    div(id='main-container')
+        div(id='code-container')
+            div(id="control-panel")
+                div(id='code-info')
+                div(class="control-btn-panel")
+                    a(class='btn btn-default btn-sm', href='javascript:;', onclick='disposeAndRun()') 运行
+            div(id='code-panel')
+
+        div(class='handler', id='h-handler')
+
+        div(class='right-container')
+            div(class='right-panel', id='chart-panel')
+
+    script.
+        if (window !== top) {
+            var nav = document.getElementsByClassName('navbar')[0];
+            nav.parentNode.removeChild(nav);
+            document.getElementById('main-container').style.top = 0;
+        }
+block extra_js
+
+    script(type='text/javascript', src='./vendors/dat.gui.min.js')
+    script(type='text/javascript', src='./vendors/echarts/echarts-all-3.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='./vendors/echarts/map/js/china.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='./vendors/echarts/map/js/world.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='./vendors/echarts/extension/dataTool.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM')
+    script(type='text/javascript', src='./vendors/echarts/extension/bmap.js?_v_=#{buildVersion}')
+
+    script(type='text/javascript', src='./vendors/ace/src/ace.js')
+    script(type='text/javascript', src='./vendors/ace/src/ext-language_tools.js')
+    script(type='text/javascript', src='./javascripts/editor.js?_v_=#{buildVersion}')
+
+    script(type='text/javascript' src='./javascripts/hm.js')
+
+    //- script(type='text/javascript').
+    //-     var navNew = document.getElementById('nav-new');
+    //-     navNew.className = 'active';

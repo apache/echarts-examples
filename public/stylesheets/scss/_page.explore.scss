@@ -1,0 +1,10 @@
+#explore-container {
+    margin-left: $chart-nav-width;
+    padding: $nav-height $pd-lg;
+}
+
+@media (max-width: 768px) {
+    #explore-container {
+        margin-left: 0;
+    }
+}

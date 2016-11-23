@@ -1,0 +1,38 @@
+$pd-basic: 10px;
+$pd-sm: 6px;
+$pd-lg: 20px;
+
+$control-panel-height: 30px;
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    background-color: $clr-bg;
+    color: $clr-text;
+}
+
+
+
+.page {
+    padding: $pd-lg 0;
+}
+
+
+
+.btn-primary {
+    background-color: $clr-secondary;
+    border-color: $clr-secondary-dark;
+
+    &:hover {
+        background-color: $clr-secondary-dark;
+        border-color: $clr-secondary-dark;
+    }
+}

@@ -1,0 +1,24 @@
+ .nav-dropdown-panel {
+    display: none;
+    position: absolute;
+    right: 0;
+
+    z-index: 99999;
+
+    &#login-dropdown-panel {
+        width: 350px;
+
+        form {
+            padding: 20px 30px 0 30px;
+        }
+    }
+
+    &#user-dropdown-panel {
+        width: 150px;
+
+        .panel-body {
+            padding: 0;
+        }
+    }
+
+}

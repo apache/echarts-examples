@@ -1,0 +1,18 @@
+extends layouts/basic
+
+block content
+    div(id="view-main")
+        div(class="control-panel")
+        div(class="chart" id="view-chart")
+
+block extra_js
+    script(type='text/javascript', src='./vendors/dat.gui.min.js')
+    script(type='text/javascript', src='./vendors/echarts/echarts-all-3.js?_v_=#{buildVersion}')
+    script(id='echarts-js', type='text/javascript', src='./vendors/echarts/map/js/china.js?_v_=#{buildVersion}')
+    script(id='echarts-js', type='text/javascript', src='./vendors/echarts/map/js/world.js?_v_=#{buildVersion}')
+    script(id='echarts-js', type='text/javascript', src='./vendors/echarts/extension/dataTool.js?_v_=#{buildVersion}')
+    script(id='echarts-js', type='text/javascript', src='http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM')
+    script(id='echarts-js', type='text/javascript', src='./vendors/echarts/extension/bmap.js?_v_=#{buildVersion}')
+
+    script(type='text/javascript' src="./javascripts/view.js?_v_=#{buildVersion}")
+    script(type='text/javascript' src='./javascripts/hm.js')

@@ -1,0 +1,37 @@
+extends layouts/inner
+
+block inner_content
+    .container.profile.page
+        .user-info
+            img.user-info-avatar(src='#{user.avatar}')
+            .user-info-name #{user.name}
+            .user-info-data
+                ul
+                    li.icon-bar
+                        span.glyphicon.glyphicon-stats(aria-hidden='true', title='创建图表数') #{user.chartCnt}
+                    li.icon-bar
+                        span.glyphicon.glyphicon-heart(aria-hidden='true', title='获得赞数') #{user.starCnt}
+                    li.icon-bar
+                        span.glyphicon.glyphicon-eye-open(aria-hidden='true', title='关注人数') #{user.followerCnt}
+
+        .chart-list-panel
+            .row
+                each chart, id in user.charts
+                    .col-md-3.col-sm-4
+                        .chart
+                            a(href='../#{chart.cid}')
+                                .chart-area(data-chart-code='#{chart.code}', data-chart-cid='#{chart.cid}', data-chart-version='#{chart.version}')
+                            .chart-info
+                                .chart-icon
+                                    if me.isLoggedIn
+                                        a.icon-bar(href='javascript:;')
+                                            span.glyphicon.glyphicon-remove.chart-delete(aria-hidden='true', title='删除图表')
+                                    a.icon-bar(href='javascript:;')
+                                        span.glyphicon.glyphicon-heart(aria-hidden='true', title='获得赞数') #{chart.starCnt}
+                                    a.icon-bar(href='javascript:;')
+                                        span.glyphicon.glyphicon-eye-open(aria-hidden='true', title='关注人数') #{user.followerCnt}
+                                .chart-title
+
+block extra_js
+    script(type='text/javascript', src='http://localhost:3000/vendors/echarts/echarts-all-2.2.7.js')
+    script(type='text/javascript', src='http://localhost:3000/javascripts/chart-list.js')

@@ -1,0 +1,57 @@
+$user-info-image-width: 100px;
+$chart-icon-height: 20px;
+
+
+
+.icon-bar {
+    display: inline-block;
+    margin: 0 0.4rem;
+
+    color: $clr-gray;
+
+    span::before {
+        position: relative;
+        top: 0.2rem;
+
+        margin-right: 0.25rem;
+
+        color: $clr-gray;
+    }
+
+    &:hover {
+        color: $clr-gray-dark;
+
+        span::before {
+            color: $clr-gray-dark;
+        }
+    }
+}
+
+
+
+.profile {
+    .user-info {
+        text-align: center;
+
+        .user-info-avatar {
+            width: $user-info-image-width;
+            height: $user-info-image-width;
+            border-radius: $user-info-image-width / 2;
+        }
+
+        .user-info-name {
+            margin: 0.5rem 0 0.25rem 0;
+
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .user-info-data {
+            font-size: 1.5rem;
+
+            ul {
+                list-style-type: none;
+            }
+        }
+    }
+}
