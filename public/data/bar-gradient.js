@@ -54,7 +54,8 @@ option = {
             },
             barGap:'-100%',
             barCategoryGap:'40%',
-            data: dataShadow
+            data: dataShadow,
+            animation: false
         },
         {
             type: 'bar',
