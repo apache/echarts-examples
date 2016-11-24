@@ -85,7 +85,7 @@ option = {
 
 var rotation = 0;
 setInterval(function () {
-    rotation = (rotation + Math.PI / 300) % Math.PI;
+    rotation = (rotation + Math.PI / 300) % (Math.PI * 2);
     myChart.setOption({
         graphic: [{
             id: 'textGroup1',

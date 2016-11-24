@@ -122,7 +122,7 @@ setInterval(function () {
     myChart.setOption({
         graphic: {
             id: 'logo',
-            rotation: (rotation += Math.PI / 360) % Math.PI
+            rotation: (rotation += Math.PI / 360) % (Math.PI * 2)
         }
     });
 }, 30);
