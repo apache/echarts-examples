@@ -87,7 +87,9 @@ option = {
             currentIdx = (currentIdx + 1) % provinces.length;
             showProvince();
         }
-    }]
-}
+    }],
+
+    series: []
+};
 
 showProvince();

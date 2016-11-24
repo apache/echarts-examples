@@ -184,6 +184,7 @@ maps.forEach(function (name) {
 });
 // Font must be add expicity
 var font = new Canvas.Font('noto-thin', __dirname + '/noto-thin.ttf');
+
 font.addFace(__dirname + '/noto-thin.ttf', 'bolder');
 echarts.setCanvasCreator(function () {
     var canvas = new Canvas(128, 128);

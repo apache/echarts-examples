@@ -21,10 +21,6 @@ option = {
         left: 'center',
         text: '大数据量面积图',
     },
-    legend: {
-        top: 'bottom',
-        data:['意向']
-    },
     toolbox: {
         feature: {
             dataZoom: {

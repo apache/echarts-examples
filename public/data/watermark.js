@@ -57,12 +57,12 @@ var waterMarkText = 'ECHARTS';
 
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');
-canvas.width = canvas.height = 150;
+canvas.width = canvas.height = 100;
 ctx.textAlign = 'center';
 ctx.textBaseline = 'middle';
 ctx.globalAlpha = 0.08;
-ctx.font = '30px Microsoft Yahei';
-ctx.translate(75, 75);
+ctx.font = '20px Microsoft Yahei';
+ctx.translate(50, 50);
 ctx.rotate(-Math.PI / 4);
 ctx.fillText(waterMarkText, 0, 0);
 
