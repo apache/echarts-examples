@@ -3428,7 +3428,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 
-	    modelUtil.LABEL_OPTIONS = ['position', 'show', 'textStyle', 'distance', 'formatter'];
+	    modelUtil.LABEL_OPTIONS = ['position', 'offset', 'show', 'textStyle', 'distance', 'formatter'];
 
 	    /**
 	     * data could be [12, 2323, {value: 223}, [1221, 23], {value: [2, 23]}]
@@ -11564,12 +11564,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    graphic.setText = function (textStyle, labelModel, color) {
 	        var labelPosition = labelModel.getShallow('position') || 'inside';
+	        var labelOffset = labelModel.getShallow('offset');
 	        var labelColor = labelPosition.indexOf('inside') >= 0 ? 'white' : color;
 	        var textStyleModel = labelModel.getModel('textStyle');
 	        zrUtil.extend(textStyle, {
 	            textDistance: labelModel.getShallow('distance') || 5,
 	            textFont: textStyleModel.getFont(),
 	            textPosition: labelPosition,
+	            textOffset: labelOffset,
 	            textFill: textStyleModel.getTextColor() || labelColor
 	        });
 	    };
@@ -12939,6 +12941,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        textPosition: 'inside',
 
 	        /**
+	         * [x, y]
+	         * @type {Array.<number>}
+	         */
+	        textOffset: null,
+
+	        /**
 	         * @type {string}
 	         */
 	        textBaseline: null,
@@ -13167,6 +13175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var x;
 	            var y;
 	            var textPosition = style.textPosition;
+	            var textOffset = style.textOffset;
 	            var distance = style.textDistance;
 	            var align = style.textAlign;
 	            var font = style.textFont || style.font;
@@ -13220,6 +13229,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Default align and baseline when has textPosition
 	                align = align || res.textAlign;
 	                baseline = baseline || res.textBaseline;
+	            }
+
+	            if (textOffset) {
+	                x += textOffset[0];
+	                y += textOffset[1];
 	            }
 
 	            // Use canvas default left textAlign. Giving invalid value will cause state not change
@@ -18229,19 +18243,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            el.afterUpdate();
 
-	            var clipPath = el.clipPath;
-	            if (clipPath) {
-	                // clipPath 的变换是基于 group 的变换
-	                clipPath.parent = el;
-	                clipPath.updateTransform();
+	            var userSetClipPath = el.clipPath;
+	            if (userSetClipPath) {
 
 	                // FIXME 效率影响
 	                if (clipPaths) {
 	                    clipPaths = clipPaths.slice();
-	                    clipPaths.push(clipPath);
 	                }
 	                else {
-	                    clipPaths = [clipPath];
+	                    clipPaths = [];
+	                }
+
+	                var currentClipPath = userSetClipPath;
+	                var parentClipPath = el;
+	                // Recursively add clip path
+	                while (currentClipPath) {
+	                    // clipPath 的变换是基于使用这个 clipPath 的元素
+	                    currentClipPath.parent = parentClipPath;
+	                    currentClipPath.updateTransform();
+
+	                    clipPaths.push(currentClipPath);
+
+	                    parentClipPath = currentClipPath;
+	                    currentClipPath = currentClipPath.clipPath;
 	                }
 	            }
 
@@ -19301,12 +19325,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // TODO Gap
 	        animate: function (target, options) {
 	            options = options || {};
+
 	            var animator = new Animator(
 	                target,
 	                options.loop,
 	                options.getter,
 	                options.setter
 	            );
+
+	            this.addAnimator(animator);
 
 	            return animator;
 	        }
@@ -29706,6 +29733,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            );
 	            var barGap = seriesModel.get('barGap');
 	            var barCategoryGap = seriesModel.get('barCategoryGap');
+
+	            // Caution: In a single coordinate system, these barGrid attributes
+	            // will be shared by series. Consider that they have default values,
+	            // only the attributes set on the last series will work.
+	            // Do not change this fact unless there will be a break change.
+
 	            // TODO
 	            if (barWidth && !stacks[stackId].width) {
 	                barWidth = Math.min(columnsOnAxis.remainedWidth, barWidth);
@@ -49122,14 +49155,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var valueDim = opt.valueDim;
 	        var pxSign = output.pxSign;
 
-	        var symbolMargin = parsePercent(
-	            zrUtil.retrieve(itemModel.get('symbolMargin'), symbolRepeat ? '15%' : 0),
-	            symbolSize[valueDim.index]
-	        );
-
-	        var unitLength = symbolSize[valueDim.index] + valueLineWidth;
-	        var uLenWithMargin = Math.max(unitLength + symbolMargin * 2, 0);
-	        var pathLenWithMargin = uLenWithMargin;
+	        var unitLength = Math.max(symbolSize[valueDim.index] + valueLineWidth, 0);
+	        var pathLen = unitLength;
 
 	        // Note: rotation will not effect the layout of symbols, because user may
 	        // want symbols to rotate on its center, which should not be translated
@@ -49138,9 +49165,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (symbolRepeat) {
 	            var absBoundingLength = Math.abs(boundingLength);
 
+	            var symbolMargin = zrUtil.retrieve(itemModel.get('symbolMargin'), '15%') + '';
+	            var hasEndGap = false;
+	            if (symbolMargin.lastIndexOf('!') === symbolMargin.length - 1) {
+	                hasEndGap = true;
+	                symbolMargin = symbolMargin.slice(0, symbolMargin.length - 1);
+	            }
+	            symbolMargin = parsePercent(symbolMargin, symbolSize[valueDim.index]);
+
+	            var uLenWithMargin = Math.max(unitLength + symbolMargin * 2, 0);
+
 	            // When symbol margin is less than 0, margin at both ends will be subtracted
 	            // to ensure that all of the symbols will not be overflow the given area.
-	            var endFix = symbolMargin >= 0 ? 0 : symbolMargin * 2;
+	            var endFix = hasEndGap ? 0 : symbolMargin * 2;
 
 	            // Both final repeatTimes and final symbolMargin area calculated based on
 	            // boundingLength.
@@ -49152,22 +49189,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Adjust calculate margin, to ensure each symbol is displayed
 	            // entirely in the given layout area.
 	            var mDiff = absBoundingLength - repeatTimes * unitLength;
-	            symbolMargin = mDiff / 2 / (mDiff >= 0 ? repeatTimes : repeatTimes - 1);
+	            symbolMargin = mDiff / 2 / (hasEndGap ? repeatTimes : repeatTimes - 1);
 	            uLenWithMargin = unitLength + symbolMargin * 2;
-	            endFix = mDiff >= 0 ? 0 : symbolMargin * 2;
+	            endFix = hasEndGap ? 0 : symbolMargin * 2;
 
 	            // Update repeatTimes when not all symbol will be shown.
 	            if (!repeatSpecified && symbolRepeat !== 'fixed') {
-	                repeatTimes = toIntTimes((Math.abs(repeatCutLength) + endFix) / uLenWithMargin);
+	                repeatTimes = repeatCutLength
+	                    ? toIntTimes((Math.abs(repeatCutLength) + endFix) / uLenWithMargin)
+	                    : 0;
 	            }
 
-	            pathLenWithMargin = repeatTimes * uLenWithMargin - endFix;
+	            pathLen = repeatTimes * uLenWithMargin - endFix;
 	            output.repeatTimes = repeatTimes;
+	            output.symbolMargin = symbolMargin;
 	        }
 
-	        output.symbolMargin = symbolMargin;
-
-	        var sizeFix = pxSign * (pathLenWithMargin / 2);
+	        var sizeFix = pxSign * (pathLen / 2);
 	        var pathPosition = output.pathPosition = [];
 	        pathPosition[categoryDim.index] = layout[categoryDim.wh] / 2;
 	        pathPosition[valueDim.index] = symbolPosition === 'start'
