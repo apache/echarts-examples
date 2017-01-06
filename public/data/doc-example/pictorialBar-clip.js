@@ -51,8 +51,6 @@ option = {
         type: 'pictorialBar',
         name: 'background',
         symbol: path,
-        // Set '-100%' to overlap all series.
-        barGap: '-100%',
         // When a series is used as background, it is recommended
         // that assign symbolBoundingData the same value in
         // 'realValue' series and 'background' series.

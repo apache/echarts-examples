@@ -98,7 +98,6 @@ option = {
     }, {
         name: 'all',
         type: 'pictorialBar',
-        barGap: '-100%',
         symbol: 'circle',
         itemStyle: {
             normal: {
