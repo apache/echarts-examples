@@ -200,6 +200,8 @@ var series = [];
         name: item[0] + ' Top10',
         type: 'lines',
         zlevel: 2,
+        symbol: ['none', 'arrow'],
+        symbolSize: 10,
         effect: {
             show: true,
             period: 6,
@@ -211,7 +213,7 @@ var series = [];
             normal: {
                 color: color[i],
                 width: 1,
-                opacity: 0.4,
+                opacity: 0.6,
                 curveness: 0.2
             }
         },
