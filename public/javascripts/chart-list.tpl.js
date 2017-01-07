@@ -21,7 +21,8 @@ var CHART_TYPES = {
     parallel: '平行坐标',
     sankey: '桑基图',
     funnel: '漏斗图',
-    gauge: '仪表盘'
+    gauge: '仪表盘',
+    pictorialBar: '象形柱图'
 };
 
 var charts = [];

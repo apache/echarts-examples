@@ -459,7 +459,35 @@ var EXAMPLES = [
         id: 'watermark',
         title: '水印 - ECharts 下载统计',
         type: 'bar'
-    } 
+    }, {
+        id: 'pictorialBar-hill',
+        title: '圣诞愿望清单和山脉高度',
+        type: 'pictorialBar'
+    }, {
+        id: 'pictorialBar-velocity',
+        title: '驯鹿的速度',
+        type: 'pictorialBar'
+    }, {
+        id: 'pictorialBar-vehicle',
+        title: '交通工具',
+        type: 'pictorialBar'
+    }, {
+        id: 'pictorialBar-spirit',
+        title: '精灵',
+        type: 'pictorialBar'
+    }, {
+        id: 'pictorialBar-body-fill',
+        title: '人体含水量',
+        type: 'pictorialBar'
+    }, {
+        id: 'pictorialBar-dotted',
+        title: '虚线柱状图效果',
+        type: 'pictorialBar'
+    }, {
+        id: 'pictorialBar-forest',
+        title: '森林的增长',
+        type: 'pictorialBar'
+    }
 ];
 
 var CHART_TYPES = {
@@ -477,7 +505,8 @@ var CHART_TYPES = {
     parallel: '平行坐标',
     sankey: '桑基图',
     funnel: '漏斗图',
-    gauge: '仪表盘'
+    gauge: '仪表盘',
+    pictorialBar: '象形柱图'
 };
 
 var charts = [];
