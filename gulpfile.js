@@ -5,7 +5,6 @@ var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
 var jade        = require('gulp-jade');
 var clean       = require('gulp-clean');
-var fecs        = require('fecs-gulp');
 var uglify      = require('gulp-uglify');
 var copy        = require('gulp-copy');
 var rename      = require('gulp-rename');
@@ -79,17 +78,17 @@ gulp.task('watch', function() {
 /**
  * Use fecs to test code style
  */
-gulp.task('fecs', function() {
-    return gulp.src(['public/javascript/*'])
-        .pipe(fecs.check())
-        .pipe(fecs.reporter('baidu', {
-            color: true,
-            rule: true,
-            sort: true
-        }))
-        .pipe(fecs.format())
-        .pipe(gulp.dest('fecs'));;
-});
+// gulp.task('fecs', function() {
+//     return gulp.src(['public/javascript/*'])
+//         .pipe(fecs.check())
+//         .pipe(fecs.reporter('baidu', {
+//             color: true,
+//             rule: true,
+//             sort: true
+//         }))
+//         .pipe(fecs.format())
+//         .pipe(gulp.dest('fecs'));;
+// });
 
 /**
  * Build files into release directory
