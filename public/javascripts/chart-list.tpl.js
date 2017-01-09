@@ -22,7 +22,8 @@ var CHART_TYPES = {
     sankey: '桑基图',
     funnel: '漏斗图',
     gauge: '仪表盘',
-    pictorialBar: '象形柱图'
+    pictorialBar: '象形柱图',
+    themeRiver: '主题河流图'
 };
 
 var charts = [];

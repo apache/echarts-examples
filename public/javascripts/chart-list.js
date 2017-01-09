@@ -436,10 +436,6 @@ var EXAMPLES = [
         title: 'World Population (2011)',
         type: 'scatter'
     },  {
-        id: 'themeRiver-lastfm',
-        title: 'ThemeRiver Lastfm',
-        type: 'themeRiver'
-    },  {
         id: 'treemap-disk',
         title: 'Disk Usage',
         type: 'treemap'
@@ -487,6 +483,14 @@ var EXAMPLES = [
         id: 'pictorialBar-forest',
         title: '森林的增长',
         type: 'pictorialBar'
+    }, {
+        id: 'themeRiver-basic',
+        title: '主题河流图',
+        type: 'themeRiver'
+    }, {
+        id: 'themeRiver-lastfm',
+        title: 'ThemeRiver Lastfm',
+        type: 'themeRiver'
     }
 ];
 
@@ -506,7 +510,8 @@ var CHART_TYPES = {
     sankey: '桑基图',
     funnel: '漏斗图',
     gauge: '仪表盘',
-    pictorialBar: '象形柱图'
+    pictorialBar: '象形柱图',
+    themeRiver: '主题河流图'
 };
 
 var charts = [];
