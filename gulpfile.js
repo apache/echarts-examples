@@ -61,7 +61,7 @@ gulp.task('sass', function () {
  * Generate site using Jade
  */
 gulp.task('jade', function() {
-    return gulp.src(['views/view.jade', 'views/editor.jade'])
+    return gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
         .pipe(jade())
         .pipe(gulp.dest('public/'))
         .pipe(browserSync.reload({stream:true}));
