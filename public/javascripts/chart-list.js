@@ -280,6 +280,10 @@ var EXAMPLES = [
         title: 'Map Locate',
         type: 'map'
     },  {
+        id: 'geo-map-scatter',
+        title: 'map and scatter share a geo',
+        type: 'map'
+    },  {
         id: 'map-parallel-prices',
         title: 'Prices and Earnings 2012',
         type: 'scatter'
