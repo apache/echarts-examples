@@ -62,7 +62,7 @@ option = {
             symbol: 'image://./data/asset/img/hill-Qomolangma.png',
             symbolSize: ['200%', '105%'],
             symbolPosition: 'end',
-            z2: 10
+            z: 10
         }, {
             value: 5895,
             symbol: 'image://./data/asset/img/hill-Kilimanjaro.png',
