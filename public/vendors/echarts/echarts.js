@@ -1574,9 +1574,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @type {number}
 	         */
-	        version: '3.3.2',
+	        version: '3.4.0',
 	        dependencies: {
-	            zrender: '3.2.2'
+	            zrender: '3.3.0'
 	        }
 	    };
 
@@ -17341,7 +17341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @type {string}
 	     */
-	    zrender.version = '3.2.2';
+	    zrender.version = '3.3.0';
 
 	    /**
 	     * Initializing a zrender instance
@@ -20233,6 +20233,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // mainLayer.resize(width, height);
 	            layers[0] = mainLayer;
 	            zlevelList.push(0);
+
+	            this._domRoot = root;
 	        }
 
 	        this.pathToImage = this._createPathToImage();
@@ -20264,7 +20266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return {HTMLDivElement}
 	         */
 	        getViewportRoot: function () {
-	            return this._singleCanvas ? this._layers[0].dom : this._domRoot;
+	            return this._domRoot;
 	        },
 
 	        /**
@@ -55900,6 +55902,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            function eachItem(valueOrIndex, index) {
 	                dataIndex = dimension == null ? valueOrIndex : index;
+
+	                var rawDataItem = data.getRawDataItem(dataIndex);
+	                // Consider performance
+	                if (rawDataItem && rawDataItem.visualMap === false) {
+	                    return;
+	                }
+
 	                var valueState = getValueState.call(scope, valueOrIndex);
 	                var mappings = visualMappings[valueState];
 	                var visualTypes = visualTypesMap[valueState];
