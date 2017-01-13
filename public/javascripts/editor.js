@@ -4,8 +4,8 @@ var lang = ({
         chartOK: '图表已生成, '
     },
     en: {
-        errorInEditor: 'Error exists in code!',
-        chartOK: 'Chart have been generated successfully, '
+        errorInEditor: 'Errors exist in code!',
+        chartOK: 'Chart has been generated successfully, '
     }
 })[window.EC_DEMO_LANG];
 
