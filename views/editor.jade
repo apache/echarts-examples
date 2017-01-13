@@ -1,3 +1,4 @@
+
 extends layouts/inner
 
 block nav_right
@@ -5,12 +6,13 @@ block nav_right
         a(href='javascript:;', onclick='downloadExample()') Download Demo
 
 block inner_content
+
     div(id='main-container')
         div(id='code-container')
             div(id="control-panel")
                 div(id='code-info')
                 div(class="control-btn-panel")
-                    a(class='btn btn-default btn-sm', href='javascript:;', onclick='disposeAndRun()') Run
+                    a(class='btn btn-default btn-sm', href='javascript:;', onclick='disposeAndRun()') #{lang == 'cn' ? '运行' : 'RUN'}
             div(id='code-panel')
 
         div(class='handler', id='h-handler')

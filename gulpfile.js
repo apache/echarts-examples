@@ -2,14 +2,20 @@ var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
 var prefix      = require('gulp-autoprefixer');
-var cp          = require('child_process');
 var jade        = require('gulp-jade');
-var clean       = require('gulp-clean');
 var uglify      = require('gulp-uglify');
 var copy        = require('gulp-copy');
 var rename      = require('gulp-rename');
-var gcallback   = require('gulp-callback');
-var gulpif      = require('gulp-if');
+var yargs       = require('yargs');
+
+
+// Usage: gulp build --env-cn
+var lang = 'en';
+for (var envArg of Object.keys(yargs.argv)) {
+    if (envArg.indexOf('env-') === 0) {
+        lang = envArg.replace('env-', '');
+    }
+}
 
 /**
  * Launch the Server
@@ -29,14 +35,6 @@ gulp.task('browser-sync', ['sass'], function() {
 gulp.task('build', function(){
     gulp.run('jade');
     gulp.run('sass');
-});
-
-/**
- * Clean built files
- */
-gulp.task('clean', function() {
-    return gulp.src([androidRoot, iosRoot], {read: false})
-        .pipe(clean({force: true}));
 });
 
 /**
@@ -62,7 +60,11 @@ gulp.task('sass', function () {
  */
 gulp.task('jade', function() {
     return gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
-        .pipe(jade())
+        .pipe(jade({
+            data: {
+                lang: lang
+            }
+        }))
         .pipe(gulp.dest('public/'))
         .pipe(browserSync.reload({stream:true}));
 });

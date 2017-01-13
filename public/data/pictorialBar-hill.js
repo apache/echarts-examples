@@ -37,7 +37,7 @@ option = {
             normal: {
                 show: true,
                 position: 'top',
-                formatter: '{c} km',
+                formatter: '{c} m',
                 textStyle: {
                     fontSize: 16,
                     color: '#e54035'

@@ -1,4 +1,20 @@
 (function () {
+
+    var lang = ({
+        cn: {
+            editDemo: '编辑示例',
+            reset: '重置',
+            enableInteraction: '开启交互',
+            disableInteraction: '关闭交互'
+        },
+        en: {
+            editDemo: 'Edit',
+            reset: 'Reset',
+            enableInteraction: 'Enable interaction',
+            disableInteraction: 'Disable interaction'
+        }
+    })[window.EC_DEMO_LANG];
+
     var configs = {};
     _.each((location.search || '').substr(1).split('&'), function (item) {
         var kv = item.split('=');
@@ -72,28 +88,28 @@
     };
 
     if (configs.edit) {
-        var $editButton = $('<a class="btn btn-default btn-sm">编辑示例</a>').click(function () {
+        var $editButton = $('<a class="btn btn-default btn-sm">' + lang.editDemo + '</a>').click(function () {
             window.open('./editor.html?c=' + configs.c);
         });
         $('#view-main .control-panel').append($editButton);
     }
     if (configs.reset) {
-        var $resetButton = $('<a class="btn btn-default btn-sm">重置</a>').click(function () {
+        var $resetButton = $('<a class="btn btn-default btn-sm">' + lang.reset + '</a>').click(function () {
             run();
         });
         $('#view-main .control-panel').append($resetButton);
     }
     if (configs.mask) {
         var maskEnabled = true;
-        var $toggleBtn = $('<a id="view-toggle-interable" class="btn btn-default btn-sm">开启交互</a>');
+        var $toggleBtn = $('<a id="view-toggle-interable" class="btn btn-default btn-sm">' + lang.enableInteraction + '</a>');
         var $mask = $('<div id="view-mask"></div>');
         function enableMask() {
-            $toggleBtn.html('开启交互');
+            $toggleBtn.html(lang.enableInteraction);
             $(document.body).append($mask);
             maskEnabled = true;
         }
         function disableMask() {
-            $toggleBtn.html('关闭交互');
+            $toggleBtn.html(lang.disableInteraction);
             $mask.remove();
             maskEnabled = false;
         }

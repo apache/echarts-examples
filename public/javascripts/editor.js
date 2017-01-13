@@ -1,4 +1,16 @@
-var IS_STATIC = true;
+var lang = ({
+    cn: {
+        errorInEditor: '编辑器内容有误！',
+        chartOK: '图表已生成, '
+    },
+    en: {
+        errorInEditor: 'Error exists in code!',
+        chartOK: 'Chart have been generated successfully, '
+    }
+})[window.EC_DEMO_LANG];
+
+
+
 var configs = {};
 ace.require("ace/ext/language_tools");
 
@@ -36,8 +48,6 @@ $(document).ready(function() {
     initEventHandler();
 
     load();
-
-    // loadEchartsOfAllVersions();
 
 });
 
@@ -243,7 +253,7 @@ var run = function (ignoreOptionNotChange) {
 
     // check if code is valid
     if (hasEditorError()) {
-        log('编辑器内容有误！', 'error');
+        log(lang.errorInEditor, 'error');
         return;
     }
 
@@ -287,7 +297,7 @@ var run = function (ignoreOptionNotChange) {
                     break;
                 }
             }
-            log('图表已生成, ' + gb.updateTime + 'ms');
+            log(lang.chartOK + gb.updateTime + 'ms');
         }
 
         if (gui) {
@@ -342,7 +352,7 @@ var run = function (ignoreOptionNotChange) {
             }
         }
     } catch(e) {
-        log('编辑器内容有误！', 'error');
+        log(lang.errorInEditor, 'error');
         console.error(e);
     }
 };
@@ -392,73 +402,6 @@ function updateEchartsVersion() {
 
 
 
-// load echarts of different versions
-function loadEchartsOfAllVersions() {
-
-    var versions = ['2.2.7', '3.0.0'];
-    for (var vid = 0, vlen = versions.length; vid < vlen; ++vid) {
-        (function (vid) {
-            $.get('./vendors/echarts/echarts-all-' + versions[vid] + '.js',
-                function (data) {
-                    gb.echartsSource[versions[vid]] = data;
-            }, 'text').fail(function () {
-                console.error('加载 ECharts ' + versions[vid] + ' 版本失败！');
-            })
-        })(vid);
-    }
-
-}
-
-
-// save chart to database
-function save() {
-
-    if (IS_STATIC) {
-        console.warn('静态版无法使用该功能！');
-        return;
-    }
-
-    $.get('http://' + window.location.host + '/chart/add', {
-        code: gb.editor.getValue(),
-        echarts_version: $('#echarts-version-btn').val(),
-        theme: $('#theme-btn').val()
-    }, function(data) {
-        window.location = 'http://' + window.location.host + '/' + data.cid;
-    }).fail(function (err) {
-        log('无法保存到服务器，已在本地缓存，请尝试刷新页面', 'error');
-        console.error(err);
-    });
-
-}
-
-
-
-// fork the chart to a new version
-function fork() {
-
-    if (IS_STATIC) {
-        console.warn('静态版无法使用该功能！');
-        return;
-    }
-
-    var cid = getCid();
-    var version = getVersion();
-
-    $.get('http://' + window.location.host + '/chart/fork', {
-        code: gb.editor.getValue(),
-        echarts_version: $('#echarts-version-btn').val(),
-        parent_version: version,
-        root_id: cid,
-        theme: $('#theme-btn').val()
-    }, function(data) {
-        window.location = 'http://' + window.location.host + '/' + cid + '/'
-            + data.version;
-    }).fail(function (err) {
-        log('无法保存到服务器，已在本地缓存，请尝试刷新页面', 'error');
-        console.error(err);
-    });
-
-}
 
 
 
@@ -528,65 +471,18 @@ function hasEditorError() {
 
 // load a chart with chart id in url
 function load() {
-
-    if (IS_STATIC) {
-        if (configs.c) {
-            $.ajax('./data/' + configs.c + '.js', {
-                dataType: 'text',
-                success: function (data) {
-                    gb.loadedCode = data;
-                    gb.editor.setValue(data, -1);
-                }
-            }).fail(function () {
-                log('加载图表失败！', 'error');
-            });
-        }
-        return;
-    }
-
-    var url = window.location.href.split('/');
-    var cid = getCid();
-    var version = getVersion();
-
-    if (cid !== 'new') {
-        $.get('http://' + window.location.host + '/chart/find/' + cid, {
-            version: version
-        }, function(data) {
-            gb.loadedCode = data.code;
-            // render chart
-            gb.editor.setValue(data.code);
-            // set theme
-            if (data.theme) {
-                setThemeButton(data.theme);
+    if (configs.c) {
+        $.ajax('./data/' + configs.c + '.js', {
+            dataType: 'text',
+            success: function (data) {
+                gb.loadedCode = data;
+                gb.editor.setValue(data, -1);
             }
-            // set version
-            setEchartsVersionButton(data.echartsVersion);
-            run();
-
-            // enable forking only if has previously stored
-            $('#fork-btn').css('display', 'inline-block');
-
-            // show log info about chart info
-            var creater = data.creater || '匿名用户';
-            var createTime = formatTime(new Date(data.createTime));
-            log(creater + '于' + createTime + '创建了该图表');
-        }).fail(function (err) {
-            // fail to load chart, redirect to index
-            console.error(err);
-            window.location.pathname = 'new';
+        }).fail(function () {
+            log('加载图表失败！', 'error');
         });
-    } else {
-        log('欢迎使用 ECharts Playground！');
-
-        // warn if not support localStorage
-        if (!window.localStorage) {
-            log('浏览器不支持本地缓存，请及时保存图表！', 'warn');
-        } else {
-            localLoad();
-            run();
-        }
     }
-
+    return;
 }
 
 
