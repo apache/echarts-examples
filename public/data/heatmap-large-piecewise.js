@@ -13,8 +13,10 @@ function generateData(theta, min, max) {
             data.push([i, j, noise.perlin2(i / 40, j / 20) + 0.5]);
             // data.push([i, j, normalDist(theta, x) * normalDist(theta, y)]);
         }
-        yData.push(i);
         xData.push(i);
+    }
+    for (var j = 0; j < 100; j++) {
+        yData.push(j);
     }
     return data;
 }

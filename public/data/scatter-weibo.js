@@ -41,8 +41,6 @@ $.get('data/asset/data/weibo.json', function (weiboData) {
             }
         },
         geo: {
-            name: '强',
-            type: 'scatter',
             map: 'china',
             label: {
                 emphasis: {
