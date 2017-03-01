@@ -495,7 +495,33 @@ var EXAMPLES = [
         id: 'themeRiver-lastfm',
         title: 'ThemeRiver Lastfm',
         type: 'themeRiver'
+    }, {
+        id: 'calendar-graph',
+        title: 'Calendar graph',
+        type: 'graph'
+    }, {
+        id: 'calendar-effectscatter',
+        title: 'Calendar effectscatter',
+        type: 'scatter'
+    }, {
+        id: 'calendar-heatmap',
+        title: 'Calendar heatmap',
+        type: 'heatmap'
+    }, {
+        id: 'calendar-vertical',
+        title: 'Calendar heatmap vertical',
+        type: 'heatmap'
+    }, {
+        id: 'calendar-horizontal',
+        title: 'Calendar heatmap horizontal',
+        type: 'heatmap'
+    }, {
+        id: 'calendar-charts',
+        title: 'Calendar charts',
+        type: 'scatter'
     }
+
+
 ];
 
 var CHART_TYPES = {
