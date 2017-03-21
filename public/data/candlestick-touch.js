@@ -32,33 +32,52 @@ var dataMA20 = calculateMA(20, data);
 option = {
     animation: false,
     color: colorList,
+    title: {
+        left: 'center',
+        text: '移动端 K线图'
+    },
     legend: {
+        top: 30,
         data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
     },
     tooltip: {
-        trigger: 'axis',
+        triggerOn: 'none',
         transitionDuration: 0,
-        axisPointer: {
-            type: 'line'
+        confine: true,
+        bordeRadius: 4,
+        borderWidth: 1,
+        borderColor: '#333',
+        backgroundColor: 'rgba(255,255,255,0.9)',
+        textStyle: {
+            fontSize: 12,
+            color: '#333'
         },
-        confine: true
+        position: function (pos, params, el, elRect, size) {
+            var obj = {
+                top: 60
+            };
+            obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+            return obj;
+        }
     },
     axisPointer: {
         link: [{
-            xAxisIndex: [0, 1],
-            yAxisName: ['yy']
+            xAxisIndex: [0, 1]
         }]
     },
     dataZoom: [{
         type: 'slider',
-        xAxisIndex: 0,
-        start: 40,
+        xAxisIndex: [0, 1],
+        realtime: false,
+        start: 20,
         end: 70,
-        top: 30,
-        height: 20
+        top: 65,
+        height: 20,
+        handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+        handleSize: '120%'
     }, {
         type: 'inside',
-        xAxisIndex: 0,
+        xAxisIndex: [0, 1],
         start: 40,
         end: 70,
         top: 30,
@@ -69,32 +88,43 @@ option = {
         data: dates,
         boundaryGap : false,
         axisLine: { lineStyle: { color: '#777' } },
+        axisLabel: {
+            formatter: function (value) {
+                return echarts.format.formatTime('MM-dd', value);
+            }
+        },
         min: 'dataMin',
-        max: 'dataMax'
+        max: 'dataMax',
+        axisPointer: {
+            show: true
+        }
     }, {
         type: 'category',
         gridIndex: 1,
         data: dates,
         scale: true,
         boundaryGap : false,
-        axisLine: {onZero: false},
         splitLine: {show: false},
+        axisLabel: {show: false},
+        axisTick: {show: false},
+        axisLine: { lineStyle: { color: '#777' } },
         splitNumber: 20,
         min: 'dataMin',
         max: 'dataMax',
         axisPointer: {
             type: 'shadow',
-            label: {show: true}
+            label: {show: false},
+            triggerTooltip: true,
+            handle: {
+                show: true,
+                margin: 30,
+                color: '#B80C00'
+            }
         }
-    }, {
-        scale: true,
-        gridIndex: 2,
-        name: 'link between time axis and category axis\nlink between x and y\nlink using axis.name',
-        nameLocation: 'middle',
-        nameGap: 50
     }],
     yAxis: [{
         scale: true,
+        splitNumber: 2,
         axisLine: { lineStyle: { color: '#777' } },
         splitLine: { show: true },
         axisTick: { show: false },
@@ -112,16 +142,15 @@ option = {
         splitLine: {show: false}
     }],
     grid: [{
-        top: 90,
-        height: 200,
-        tooltip: {
-            axisPointer: {
-                type: 'cross'
-            }
-        }
+        left: 20,
+        right: 20,
+        top: 110,
+        height: 120
     }, {
-        height: 80,
-        top: 300
+        left: 20,
+        right: 20,
+        height: 40,
+        top: 260
     }],
     graphic: [{
         type: 'group',

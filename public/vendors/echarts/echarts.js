@@ -30572,7 +30572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                var snap = axisPointerModel.get('snap');
 	                var key = makeKey(axis.model);
-	                var involveSeries = triggerTooltip || snap;
+	                var involveSeries = triggerTooltip || snap || axis.type === 'category';
 
 	                // If result.axesInfo[key] exist, override it (tooltip has higher priority).
 	                var axisInfo = result.axesInfo[key] = {
@@ -56148,7 +56148,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                x = parsePercent(positionExpr[0], viewWidth);
 	                y = parsePercent(positionExpr[1], viewHeight);
 	            }
-	            // When positionExpr is left/top/right/bottom, align and verticalAlign will not work.
 	            else if (zrUtil.isObject(positionExpr)) {
 	                positionExpr.width = contentSize[0];
 	                positionExpr.height = contentSize[1];
@@ -56157,6 +56156,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                );
 	                x = layoutRect.x;
 	                y = layoutRect.y;
+	                align = null;
+	                // When positionExpr is left/top/right/bottom,
+	                // align and verticalAlign will not work.
+	                vAlign = null;
 	            }
 	            // Specify tooltip position by string 'top' 'bottom' 'left' 'right' around graphic element
 	            else if (typeof positionExpr === 'string' && el) {
