@@ -29923,8 +29923,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var eventTool = __webpack_require__(88);
 	    var throttle = __webpack_require__(81);
 
-	    var extend = zrUtil.extend;
 	    var clone = zrUtil.clone;
+	    var bind = zrUtil.bind;
 
 	    /**
 	     * Base axis pointer class in 2D.
@@ -29984,6 +29984,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var value = axisPointerModel.get('value');
 	            var status = axisPointerModel.get('status');
 
+	            // Bind them to `this`, not in closure, otherwise they will not
+	            // be replaced when user calling setOption in not merge mode.
+	            this._axisModel = axisModel;
+	            this._axisPointerModel = axisPointerModel;
+	            this._api = api;
+
 	            // Optimize: `render` will be called repeatly during mouse move.
 	            // So it is power consuming if performing `render` each time,
 	            // especially on mobile device.
@@ -30019,7 +30025,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            this._lastGraphicKey = graphicKey;
 
-	            var moveAnimation = this.determineAnimation(axisModel, axisPointerModel);
+	            var moveAnimation = this._moveAnimation =
+	                this.determineAnimation(axisModel, axisPointerModel);
 
 	            if (!group) {
 	                group = this._group = new graphic.Group();
@@ -30028,12 +30035,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                api.getZr().add(group);
 	            }
 	            else {
-	                this.updateEl(group, moveAnimation, elOption, axisModel, axisPointerModel);
+	                var doUpdateProps = zrUtil.curry(updateProps, axisPointerModel, moveAnimation);
+	                this.updatePointerEl(group, elOption, doUpdateProps, axisPointerModel);
+	                this.updateLabelEl(group, elOption, doUpdateProps, axisPointerModel);
 	            }
 
 	            updateMandatoryProps(group, axisPointerModel, true);
 
-	            this._renderHandle(value, moveAnimation, axisModel, axisPointerModel, api);
+	            this._renderHandle(value);
 	        },
 
 	        /**
@@ -30120,19 +30129,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @protected
 	         */
-	        updateEl: function (group, moveAnimation, elOption, axisModel, axisPointerModel) {
-	            if (!group) {
-	                return;
-	            }
-
-	            var doUpdateProps = zrUtil.curry(updateProps, axisPointerModel, moveAnimation);
-	            this.updatePointerEl(group, elOption, doUpdateProps, axisPointerModel);
-	            this.updateLabelEl(group, elOption, doUpdateProps, axisPointerModel);
-	        },
-
-	        /**
-	         * @protected
-	         */
 	        updatePointerEl: function (group, elOption, updateProps) {
 	            var pointerEl = get(group).pointerEl;
 	            if (pointerEl) {
@@ -30149,6 +30145,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (labelEl) {
 	                labelEl.setStyle(elOption.label.style);
 	                updateProps(labelEl, {
+	                    // Consider text length change in vertical axis, animation should
+	                    // be used on shape, otherwise the effect will be weird.
 	                    shape: elOption.label.shape,
 	                    position: elOption.label.position
 	                });
@@ -30160,12 +30158,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @private
 	         */
-	        _renderHandle: function (value, moveAnimation, axisModel, axisPointerModel, api) {
+	        _renderHandle: function (value) {
 	            if (this._dragging || !this.updateHandleTransform) {
 	                return;
 	            }
 
-	            var zr = api.getZr();
+	            var axisPointerModel = this._axisPointerModel;
+	            var zr = this._api.getZr();
 	            var handle = this._handle;
 	            var handleModel = axisPointerModel.getModel('handle');
 
@@ -30184,15 +30183,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        // Fot mobile devicem, prevent screen slider on the button.
 	                        eventTool.stop(e.event);
 	                    },
-	                    onmousedown: zrUtil.bind(
-	                        this._onHandleDragMove, this, axisModel, axisPointerModel, api, 0, 0
-	                    ),
-	                    drift: zrUtil.bind(
-	                        this._onHandleDragMove, this, axisModel, axisPointerModel, api
-	                    ),
-	                    ondragend: zrUtil.bind(
-	                        this._onHandleDragEnd, this, axisModel, axisPointerModel, api, moveAnimation
-	                    )
+	                    onmousedown: bind(this._onHandleDragMove, this, 0, 0),
+	                    drift: bind(this._onHandleDragMove, this),
+	                    ondragend: bind(this._onHandleDragEnd, this)
 	                });
 	                zr.add(handle);
 	            }
@@ -30220,21 +30213,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	                'fixRate'
 	            );
 
-	            this._moveHandleToValue(handle, value, moveAnimation, axisModel, axisPointerModel, isInit);
+	            this._moveHandleToValue(value, isInit);
 	        },
 
 	        /**
 	         * @private
 	         */
-	        _moveHandleToValue: function (handle, value, moveAnimation, axisModel, axisPointerModel, isInit) {
-	            var trans = this.getHandleTransform(value, axisModel, axisPointerModel);
-	            updateProps(axisPointerModel, !isInit && moveAnimation, handle, getHandleTransProps(trans));
+	        _moveHandleToValue: function (value, isInit) {
+	            updateProps(
+	                this._axisPointerModel,
+	                !isInit && this._moveAnimation,
+	                this._handle,
+	                getHandleTransProps(this.getHandleTransform(
+	                    value, this._axisModel, this._axisPointerModel
+	                ))
+	            );
 	        },
 
 	        /**
 	         * @private
 	         */
-	        _onHandleDragMove: function (axisModel, axisPointerModel, api, dx, dy) {
+	        _onHandleDragMove: function (dx, dy) {
 	            var handle = this._handle;
 	            if (!handle) {
 	                return;
@@ -30246,8 +30245,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var trans = this.updateHandleTransform(
 	                getHandleTransProps(handle),
 	                [dx, dy],
-	                axisModel,
-	                axisPointerModel
+	                this._axisModel,
+	                this._axisPointerModel
 	            );
 	            this._payloadInfo = trans;
 
@@ -30255,14 +30254,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            handle.attr(getHandleTransProps(trans));
 	            get(handle).lastProp = null;
 
-	            this._doDispatchAxisPointer(axisModel, api);
+	            this._doDispatchAxisPointer();
 	        },
 
 	        /**
 	         * Throttled method.
 	         * @private
 	         */
-	        _doDispatchAxisPointer: function (axisModel, api) {
+	        _doDispatchAxisPointer: function () {
 	            var handle = this._handle;
 	            if (!handle) {
 	                return;
@@ -30276,28 +30275,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	                tooltipOption: payloadInfo.tooltipOption,
 	                highDownKey: 'axisPointerHandle'
 	            };
-	            var axis = axisModel.axis;
-	            payload[axis.dim + 'AxisId'] = axisModel.id;
-	            api.dispatchAction(payload);
+	            var axis = this._axisModel.axis;
+	            payload[axis.dim + 'AxisId'] = this._axisModel.id;
+	            this._api.dispatchAction(payload);
 	        },
 
 	        /**
 	         * @private
 	         */
-	        _onHandleDragEnd: function (axisModel, axisPointerModel, api, moveAnimation) {
+	        _onHandleDragEnd: function (moveAnimation) {
 	            this._dragging = false;
 	            var handle = this._handle;
 	            if (!handle) {
 	                return;
 	            }
 
-	            var value = axisPointerModel.get('value');
+	            var value = this._axisPointerModel.get('value');
 	            // Consider snap or categroy axis, handle may be not consistent with
 	            // axisPointer. So move handle to align the exact value position when
 	            // drag ended.
-	            this._moveHandleToValue(handle, value, moveAnimation, axisModel, axisPointerModel);
+	            this._moveHandleToValue(value);
 
-	            api.dispatchAction({
+	            this._api.dispatchAction({
 	                type: 'hideTip'
 	            });
 	        },
@@ -31734,9 +31733,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                borderColor: null,
 	                borderWidth: 0,
 	                shadowBlur: 3,
-	                shadowColor: '#aaa',
-	                shadowOffsetX: 0,
-	                shadowOffsetY: 2
+	                shadowColor: '#aaa'
+	                // Considering applicability, common style should
+	                // better not have shadowOffset.
+	                // shadowOffsetX: 0,
+	                // shadowOffsetY: 2
 	            },
 
 	            handle: {
@@ -55664,7 +55665,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var formatUtil = __webpack_require__(6);
 	    var numberUtil = __webpack_require__(7);
 	    var findPointFromSeries = __webpack_require__(144);
-	    var parsePercent = numberUtil.parsePercent;
+	    var layoutUtil = __webpack_require__(21);
 	    var env = __webpack_require__(2);
 	    var Model = __webpack_require__(12);
 	    var globalListener = __webpack_require__(147);
@@ -55672,6 +55673,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var bind = zrUtil.bind;
 	    var each = zrUtil.each;
+	    var parsePercent = numberUtil.parsePercent;
 
 
 	    __webpack_require__(1).extendComponentView({
@@ -56128,20 +56130,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var viewHeight = this._api.getHeight();
 	            positionExpr = positionExpr || tooltipModel.get('position');
 
-	            var rect = el && el.getBoundingRect().clone();
-	            el && rect.applyTransform(el.transform);
-	            if (typeof positionExpr === 'function') {
-	                // Callback of position can be an array or a string specify the position
-	                positionExpr = positionExpr([x, y], params, content.el, rect);
-	            }
-
 	            var contentSize = content.getSize();
 	            var align = tooltipModel.get('align');
 	            var vAlign = tooltipModel.get('verticalAlign');
+	            var rect = el && el.getBoundingRect().clone();
+	            el && rect.applyTransform(el.transform);
+
+	            if (typeof positionExpr === 'function') {
+	                // Callback of position can be an array or a string specify the position
+	                positionExpr = positionExpr([x, y], params, content.el, rect, {
+	                    viewSize: [viewWidth, viewHeight],
+	                    contentSize: contentSize.slice()
+	                });
+	            }
 
 	            if (zrUtil.isArray(positionExpr)) {
 	                x = parsePercent(positionExpr[0], viewWidth);
 	                y = parsePercent(positionExpr[1], viewHeight);
+	            }
+	            // When positionExpr is left/top/right/bottom, align and verticalAlign will not work.
+	            else if (zrUtil.isObject(positionExpr)) {
+	                positionExpr.width = contentSize[0];
+	                positionExpr.height = contentSize[1];
+	                var layoutRect = layoutUtil.getLayoutRect(
+	                    positionExpr, {width: viewWidth, height: viewHeight}
+	                );
+	                x = layoutRect.x;
+	                y = layoutRect.y;
 	            }
 	            // Specify tooltip position by string 'top' 'bottom' 'left' 'right' around graphic element
 	            else if (typeof positionExpr === 'string' && el) {
@@ -56159,8 +56174,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                y = pos[1];
 	            }
 
-	            align && (x -= align === 'center' ? contentSize[0] / 2 : align === 'right' ? contentSize[0] : 0);
-	            vAlign && (y -= vAlign === 'middle' ? contentSize[1] / 2 : vAlign === 'bottom' ? contentSize[1] : 0);
+	            align && (x -= isCenterAlign(align) ? contentSize[0] / 2 : align === 'right' ? contentSize[0] : 0);
+	            vAlign && (y -= isCenterAlign(vAlign) ? contentSize[1] / 2 : vAlign === 'bottom' ? contentSize[1] : 0);
 
 	            if (tooltipModel.get('confine')) {
 	                var pos = confineTooltipPosition(
@@ -56327,6 +56342,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return [x, y];
 	    }
 
+	    function isCenterAlign(align) {
+	        return align === 'center' || align === 'middle';
+	    }
+
 
 
 /***/ },
@@ -56404,7 +56423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var textStyleModel = tooltipModel.getModel('textStyle');
 	        var padding = tooltipModel.get('padding');
 
-	        // Animation transition
+	        // Animation transition. Do not animate when transitionDuration is 0.
 	        transitionDuration &&
 	            cssText.push(assembleTransition(transitionDuration));
 
@@ -56447,7 +56466,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    function TooltipContent(container, api) {
 	        var el = document.createElement('div');
-	        var zr = api.getZr();
+	        var zr = this._zr = api.getZr();
 
 	        this.el = el;
 
@@ -56508,6 +56527,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Update when tooltip is rendered
 	         */
 	        update: function () {
+	            // FIXME
+	            // Move this logic to ec main?
 	            var container = this._container;
 	            var stl = container.currentStyle
 	                || document.defaultView.getComputedStyle(container);
@@ -56548,6 +56569,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        moveTo: function (x, y) {
+	            // xy should be based on canvas root. But tooltipContent is
+	            // the sibling of canvas root. So padding of ec container
+	            // should be considered here.
+	            var zr = this._zr;
+	            var viewportRoot;
+	            if (zr && zr.painter && (viewportRoot = zr.painter.getViewportRoot())) {
+	                x += viewportRoot.offsetLeft || 0;
+	                y += viewportRoot.offsetTop || 0;
+	            }
+
 	            var style = this.el.style;
 	            style.left = x + 'px';
 	            style.top = y + 'px';
@@ -56560,8 +56591,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.el.style.display = 'none';
 	            this._show = false;
 	        },
-
-	        // showLater: function ()
 
 	        hideLater: function (time) {
 	            if (this._show && !(this._inContent && this._enterable)) {

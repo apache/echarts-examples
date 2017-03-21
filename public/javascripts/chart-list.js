@@ -88,6 +88,10 @@ var EXAMPLES = [
         title: 'ShangHai Index',
         type: 'candlestick'
     },  {
+        id: 'candlestick-touch',
+        title: 'Axis Pointer Link and Touch',
+        type: 'candlestick'
+    },  {
         id: 'confidence-band',
         title: 'Confidence Band',
         type: 'line'
@@ -246,6 +250,10 @@ var EXAMPLES = [
     },  {
         id: 'line-y-category',
         title: 'Line Y Category',
+        type: 'line'
+    },  {
+        id: 'line-tooltip-touch',
+        title: 'Tooltip and DataZoom on Mobile',
         type: 'line'
     },  {
         id: 'lines-airline',
@@ -438,6 +446,10 @@ var EXAMPLES = [
     },  {
         id: 'scatter-world-population',
         title: 'World Population (2011)',
+        type: 'scatter'
+    },  {
+        id: 'scatter-nutrients-matrix',
+        title: 'Scatter Nutrients Matrix',
         type: 'scatter'
     },  {
         id: 'treemap-disk',
