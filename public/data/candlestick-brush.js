@@ -46,8 +46,23 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
         tooltip: {
             trigger: 'axis',
             axisPointer: {
-                type: 'line'
+                type: 'cross'
+            },
+            backgroundColor: 'rgba(245, 245, 245, 0.8)',
+            borderWidth: 1,
+            borderColor: '#ccc',
+            padding: 10,
+            textStyle: {
+                color: '#555'
+            },
+            position: function (params) {
+                return params[0] > 400
+                    ? [100, 10]
+                    : [600, 10];
             }
+        },
+        axisPointer: {
+            link: {xAxisIndex: 'all'}
         },
         toolbox: {
             feature: {
@@ -103,7 +118,10 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 axisLabel: {show: false},
                 splitNumber: 20,
                 min: 'dataMin',
-                max: 'dataMax'
+                max: 'dataMax',
+                axisPointer: {
+                    label: {show: false}
+                }
             }
         ],
         yAxis: [

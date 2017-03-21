@@ -149,7 +149,8 @@ option = {
         title: {
             subtext: '数据来自国家统计局'
         },
-        tooltip: {},
+        tooltip: {
+        },
         legend: {
             x: 'right',
             data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],
@@ -160,7 +161,19 @@ option = {
         calculable : true,
         grid: {
             top: 80,
-            bottom: 100
+            bottom: 100,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                }
+            }
         },
         xAxis: [
             {
@@ -192,7 +205,8 @@ option = {
                 name: 'GDP占比',
                 type: 'pie',
                 center: ['75%', '35%'],
-                radius: '28%'
+                radius: '28%',
+                z: 100
             }
         ]
     },

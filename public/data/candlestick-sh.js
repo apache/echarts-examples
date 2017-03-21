@@ -130,7 +130,7 @@ option = {
     tooltip: {
         trigger: 'axis',
         axisPointer: {
-            type: 'line'
+            type: 'cross'
         }
     },
     legend: {

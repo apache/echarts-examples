@@ -6,7 +6,10 @@ option = {
     color: colors,
 
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
     },
     grid: {
         right: '20%'

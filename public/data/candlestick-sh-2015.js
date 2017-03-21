@@ -39,6 +39,7 @@ var option = {
         trigger: 'axis',
         axisPointer: {
             animation: false,
+            type: 'cross',
             lineStyle: {
                 color: '#376df4',
                 width: 2,
@@ -55,6 +56,9 @@ var option = {
         scale: true,
         axisLine: { lineStyle: { color: '#8392A5' } },
         splitLine: { show: false }
+    },
+    grid: {
+        bottom: 80
     },
     dataZoom: [{
         textStyle: {

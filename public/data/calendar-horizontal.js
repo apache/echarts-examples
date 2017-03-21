@@ -39,11 +39,13 @@ option = {
 
     calendar: [
     {
-        range: '2017'
+        range: '2017',
+        cellSize: ['auto', 20]
     },
     {
         top: 260,
-        range: '2016'
+        range: '2016',
+        cellSize: ['auto', 20]
     },
     {
         top: 450,

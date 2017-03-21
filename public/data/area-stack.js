@@ -3,7 +3,13 @@ option = {
         text: '堆叠区域图'
     },
     tooltip : {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
     },
     legend: {
         data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']

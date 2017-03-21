@@ -18,17 +18,17 @@ option = {
     },
 
     singleAxis: {
-
-        // top: '8%',
-
+        top: 50,
+        bottom: 50,
         axisTick: {},
-
         axisLabel: {},
-
         type: 'time',
-
-        // position: 'top',
-
+        axisPointer: {
+            animation: true,
+            label: {
+                show: true
+            }
+        },
         splitLine: {
             show: true,
             lineStyle: {

@@ -2,7 +2,13 @@ app.title = '折柱混合';
 
 option = {
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
+        }
     },
     toolbox: {
         feature: {
@@ -18,7 +24,10 @@ option = {
     xAxis: [
         {
             type: 'category',
-            data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+            data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+            axisPointer: {
+                type: 'shadow'
+            }
         }
     ],
     yAxis: [

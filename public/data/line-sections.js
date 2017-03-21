@@ -4,7 +4,10 @@ option = {
         subtext: '纯属虚构'
     },
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
     },
     toolbox: {
         show: true,
@@ -21,6 +24,9 @@ option = {
         type: 'value',
         axisLabel: {
             formatter: '{value} W'
+        },
+        axisPointer: {
+            snap: true
         }
     },
     visualMap: {

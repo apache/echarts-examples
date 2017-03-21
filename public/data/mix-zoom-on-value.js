@@ -5,7 +5,13 @@ $.get('data/asset/data/obama_budget_proposal_2012.list.json', function (obama_bu
 
     option = {
         tooltip : {
-            trigger: 'item'
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                label: {
+                    show: true
+                }
+            }
         },
         toolbox: {
             show : true,

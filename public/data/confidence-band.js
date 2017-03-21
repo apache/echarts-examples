@@ -14,7 +14,19 @@ $.get('data/asset/data/confidence-band.json', function (data) {
         tooltip: {
             trigger: 'axis',
             axisPointer: {
-                animation: false
+                type: 'cross',
+                animation: false,
+                label: {
+                    backgroundColor: '#ccc',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    shadowBlur: 0,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    textStyle: {
+                        color: '#222'
+                    }
+                }
             },
             formatter: function (params) {
                 return params[2].name + '<br />' + params[2].value;
@@ -46,6 +58,13 @@ $.get('data/asset/data/confidence-band.json', function (data) {
             axisLabel: {
                 formatter: function (val) {
                     return (val - base) * 100 + '%';
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return ((params.value - base) * 100).toFixed(1) + '%';
+                    }
                 }
             },
             splitNumber: 3,

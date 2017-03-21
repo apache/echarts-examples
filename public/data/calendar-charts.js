@@ -67,21 +67,49 @@ option = {
         position: 'top'
     },
 
-    visualMap: {
+    visualMap: [{
         min: 0,
         max: 1000,
         calculable: true,
-        seriesIndex: [1, 2, 3],
-        orient: 'vertical',
-        left: 'left',
-        top: 240
-    },
+        seriesIndex: [2, 3, 4],
+        orient: 'horizontal',
+        left: '55%',
+        bottom: 20
+    }, {
+        min: 0,
+        max: 1000,
+        inRange: {
+            color: ['grey'],
+            opacity: [0, 0.3]
+        },
+        controller: {
+            inRange: {
+                opacity: [0.3, 0.6]
+            },
+            outOfRange: {
+                color: '#ccc'
+            }
+        },
+        calculable: true,
+        seriesIndex: [1],
+        orient: 'horizontal',
+        left: '10%',
+        bottom: 20
+    }],
 
     calendar: [
     {
         orient: 'vertical',
         yearLabel: {
             margin: 40
+        },
+        monthLabel: {
+            nameMap: 'cn',
+            margin: 20
+        },
+        dayLabel: {
+            firstDay: 1,
+            nameMap: 'cn'
         },
         cellSize: 40,
         range: '2017-02'
@@ -91,6 +119,9 @@ option = {
         yearLabel: {
             margin: 40
         },
+        monthLabel: {
+            margin: 20
+        },
         cellSize: 40,
         left: 460,
         range: '2017-01'
@@ -99,6 +130,9 @@ option = {
         orient: 'vertical',
         yearLabel: {
             margin: 40
+        },
+        monthLabel: {
+            margin: 20
         },
         cellSize: 40,
         top: 350,
@@ -111,7 +145,11 @@ option = {
         },
         dayLabel: {
             firstDay: 1,
-            nameMap: 'cn'
+            nameMap: ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+        },
+        monthLabel: {
+            nameMap: 'cn',
+            margin: 20
         },
         cellSize: 40,
         top: 350,
@@ -127,6 +165,10 @@ option = {
         symbolSize: 10,
         calendarIndex: 0,
         data: graphData
+    }, {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        data: getVirtulData(2017)
     }, {
         type: 'effectScatter',
         coordinateSystem: 'calendar',

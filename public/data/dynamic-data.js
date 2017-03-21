@@ -4,7 +4,13 @@ option = {
         subtext: '纯属虚构'
     },
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#283b56'
+            }
+        }
     },
     legend: {
         data:['最新成交价', '预购队列']

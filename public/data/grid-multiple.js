@@ -84,6 +84,9 @@ option = {
             saveAsImage: {}
         }
     },
+    axisPointer: {
+        link: {xAxisIndex: 'all'}
+    },
     dataZoom: [
         {
             show: true,

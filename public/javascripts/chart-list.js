@@ -504,10 +504,6 @@ var EXAMPLES = [
         title: 'Calendar effectscatter',
         type: 'scatter'
     }, {
-        id: 'calendar-heatmap',
-        title: 'Calendar heatmap',
-        type: 'heatmap'
-    }, {
         id: 'calendar-vertical',
         title: 'Calendar heatmap vertical',
         type: 'heatmap'
@@ -516,12 +512,26 @@ var EXAMPLES = [
         title: 'Calendar heatmap horizontal',
         type: 'heatmap'
     }, {
+        id: 'calendar-effectscatter',
+        title: 'Calendar effectscatter',
+        type: 'calendar'
+    }, {
+        id: 'calendar-vertical',
+        title: 'Calendar heatmap vertical',
+        type: 'calendar'
+    }, {
+        id: 'calendar-horizontal',
+        title: 'Calendar heatmap horizontal',
+        type: 'calendar'
+    }, {
         id: 'calendar-charts',
         title: 'Calendar charts',
-        type: 'scatter'
+        type: 'calendar'
+    }, {
+        id: 'calendar-lunar',
+        title: 'Calendar lunar',
+        type: 'calendar'
     }
-
-
 ];
 
 var CHART_TYPES = {
@@ -541,7 +551,8 @@ var CHART_TYPES = {
     funnel: 'Funnel',
     gauge: 'Gauge',
     pictorialBar: 'PictorialBar',
-    themeRiver: 'ThemeRiver'
+    themeRiver: 'ThemeRiver',
+    calendar: 'Calendar'
 };
 
 var charts = [];

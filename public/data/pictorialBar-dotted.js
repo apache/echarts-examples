@@ -5,7 +5,7 @@ var lineData = [];
 var barData = [];
 
 for (var i = 0; i < 20; i++) {
-    var date = new Date(dottedBase + 3600 * 24);
+    var date = new Date(dottedBase += 3600 * 24 * 1000);
     category.push([
         date.getFullYear(),
         date.getMonth() + 1,
@@ -22,6 +22,10 @@ for (var i = 0; i < 20; i++) {
 option = {
     backgroundColor: '#0f375f',
     tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
     },
     legend: {
         data: ['line', 'bar'],

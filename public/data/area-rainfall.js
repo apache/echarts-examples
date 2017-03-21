@@ -20,7 +20,11 @@ option = {
     tooltip : {
         trigger: 'axis',
         axisPointer: {
-            animation: false
+            type: 'cross',
+            animation: false,
+            label: {
+                backgroundColor: '#505765'
+            }
         }
     },
     legend: {

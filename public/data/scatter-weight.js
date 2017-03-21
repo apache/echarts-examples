@@ -10,18 +10,18 @@ option = {
         containLabel: true
     },
     tooltip : {
-        trigger: 'axis',
+        // trigger: 'axis',
         showDelay : 0,
         formatter : function (params) {
             if (params.value.length > 1) {
                 return params.seriesName + ' :<br/>'
-                   + params.value[0] + 'cm '
-                   + params.value[1] + 'kg ';
+                + params.value[0] + 'cm '
+                + params.value[1] + 'kg ';
             }
             else {
                 return params.seriesName + ' :<br/>'
-                   + params.name + ' : '
-                   + params.value + 'kg ';
+                + params.name + ' : '
+                + params.value + 'kg ';
             }
         },
         axisPointer:{

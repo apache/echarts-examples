@@ -45,6 +45,12 @@ option = {
             textStyle: {
                 fontSize: 14
             }
+        },
+        axisPointer: {
+            label: {
+                show: true,
+                margin: 30
+            }
         }
     },
     xAxis: {
