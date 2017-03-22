@@ -53,13 +53,14 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
             borderColor: '#ccc',
             padding: 10,
             textStyle: {
-                color: '#555'
+                color: '#000'
             },
-            position: function (params) {
-                return params[0] > 400
-                    ? [100, 10]
-                    : [600, 10];
-            }
+            position: function (pos, params, el, elRect, size) {
+                var obj = {top: 10};
+                obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+                return obj;
+            },
+            extraCssText: 'width: 170px'
         },
         axisPointer: {
             link: {xAxisIndex: 'all'}
