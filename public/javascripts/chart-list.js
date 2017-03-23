@@ -252,6 +252,10 @@ var EXAMPLES = [
         title: 'Line Y Category',
         type: 'line'
     },  {
+        id: 'multiple-x-axis',
+        title: 'Multiple X Axes',
+        type: 'line'
+    },  {
         id: 'line-tooltip-touch',
         title: 'Tooltip and DataZoom on Mobile',
         type: 'line'
@@ -509,39 +513,43 @@ var EXAMPLES = [
         type: 'themeRiver'
     }, {
         id: 'calendar-graph',
-        title: 'Calendar graph',
+        title: 'Calendar Graph',
         type: 'graph'
     }, {
+        id: 'calendar-pie',
+        title: 'Calendar Pie',
+        type: 'calendar'
+    }, {
         id: 'calendar-effectscatter',
-        title: 'Calendar effectscatter',
+        title: 'Calendar Effectscatter',
         type: 'scatter'
     }, {
         id: 'calendar-vertical',
-        title: 'Calendar heatmap vertical',
+        title: 'Calendar Heatmap Vertical',
         type: 'heatmap'
     }, {
         id: 'calendar-horizontal',
-        title: 'Calendar heatmap horizontal',
+        title: 'Calendar Heatmap Horizontal',
         type: 'heatmap'
     }, {
         id: 'calendar-effectscatter',
-        title: 'Calendar effectscatter',
+        title: 'Calendar Effectscatter',
         type: 'calendar'
     }, {
         id: 'calendar-vertical',
-        title: 'Calendar heatmap vertical',
+        title: 'Calendar Heatmap Vertical',
         type: 'calendar'
     }, {
         id: 'calendar-horizontal',
-        title: 'Calendar heatmap horizontal',
+        title: 'Calendar Heatmap Horizontal',
         type: 'calendar'
     }, {
         id: 'calendar-charts',
-        title: 'Calendar charts',
+        title: 'Calendar Charts',
         type: 'calendar'
     }, {
         id: 'calendar-lunar',
-        title: 'Calendar lunar',
+        title: 'Calendar Lunar',
         type: 'calendar'
     }
 ];

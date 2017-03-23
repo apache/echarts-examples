@@ -153,6 +153,7 @@ function initEventHandler() {
 
     $(window).resize(function() {
         gb.chart.resize();
+        appEnv.onresize && appEnv.onresize();
         checkEditorIfToShow();
     });
 
@@ -172,6 +173,7 @@ function setSplitPosition(percentage) {
 
     if (gb.chart) {
         gb.chart.resize();
+        appEnv.onresize && appEnv.onresize();
     }
 }
 

@@ -30296,6 +30296,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // drag ended.
 	            this._moveHandleToValue(value);
 
+	            // For the effect: tooltip will be shown when finger holding on handle
+	            // button, and will be hidden after finger left handle button.
 	            this._api.dispatchAction({
 	                type: 'hideTip'
 	            });
@@ -30608,7 +30610,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        each(
 	            [
-	                'type', 'precision', 'snap', 'lineStyle', 'shadowStyle', 'label',
+	                'type', 'snap', 'lineStyle', 'shadowStyle', 'label',
 	                'animation', 'animationDurationUpdate', 'animationEasingUpdate', 'z'
 	            ],
 	            function (field) {
@@ -30827,7 +30829,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elOption, axisModel, axisPointerModel, api, labelPos
 	    ) {
 	        var value = axisPointerModel.get('value');
-	        var text = helper.getValueLabel(value, axisModel, axisPointerModel);
+	        var text = helper.getValueLabel(
+	            value, axisModel.axis, axisModel.ecModel,
+	            axisPointerModel.get('seriesDataIndices'),
+	            {
+	                precision: axisPointerModel.get('label.precision'),
+	                formatter: axisPointerModel.get('label.formatter')
+	            }
+	        );
 	        var labelModel = axisPointerModel.getModel('label');
 	        var textStyleModel = labelModel.getModel('textStyle');
 	        var paddings = formatUtil.normalizeCssArray(labelModel.get('padding') || 0);
@@ -30886,21 +30895,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	        position[1] = Math.max(position[1], 0);
 	    }
 
-	    helper.getValueLabel = function (value, axisModel, axisPointerModel) {
-	        var axis = axisModel.axis;
+	    /**
+	     * @param {number} value
+	     * @param {module:echarts/coord/Axis} axis
+	     * @param {module:echarts/model/Global} ecModel
+	     * @param {Object} opt
+	     * @param {Array.<Object>} seriesDataIndices
+	     * @param {number|string} opt.precision 'auto' or a number
+	     * @param {string|Function} opt.formatter label formatter
+	     */
+	    helper.getValueLabel = function (value, axis, ecModel, seriesDataIndices, opt) {
 	        var text = axis.scale.getLabel(
 	            // Use 'pad' to try to fix width, which helps to debounce when when moving label.
-	            value, {precision: axisPointerModel.get('label.precision'), pad: true}
+	            value, {precision: opt.precision, pad: true}
 	        );
-	        var formatter = axisPointerModel.get('label.formatter');
+	        var formatter = opt.formatter;
 
 	        if (formatter) {
 	            var params = {
 	                value: axisHelper.getAxisRawValue(axis, value),
 	                seriesData: []
 	            };
-	            zrUtil.each(axisPointerModel.get('seriesDataIndices'), function (idxItem) {
-	                var series = axisModel.ecModel.getSeriesByIndex(idxItem.seriesIndex);
+	            zrUtil.each(seriesDataIndices, function (idxItem) {
+	                var series = ecModel.getSeriesByIndex(idxItem.seriesIndex);
 	                var dataIndex = idxItem.dataIndexInside;
 	                var dataParams = series && series.getDataParams(dataIndex);
 	                dataParams && params.seriesData.push(dataParams);
@@ -31237,7 +31254,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var zrUtil = __webpack_require__(4);
 	    var modelUtil = __webpack_require__(5);
-	    var viewHelper = __webpack_require__(139);
 	    var modelHelper = __webpack_require__(138);
 	    var findPointFromSeries = __webpack_require__(144);
 
@@ -31435,9 +31451,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var payloadBatch = payloadInfo.payloadBatch;
 	        var axis = axisInfo.axis;
 	        var axisModel = axis.model;
-	        var valueLabel = viewHelper.getValueLabel(
-	            value, axisInfo.axis.model, axisInfo.axisPointerModel
-	        );
+	        var axisPointerModel = axisInfo.axisPointerModel;
 
 	        // If no data, do not create anything in dataByCoordSys,
 	        // whose length will be used to judge whether dispatch action.
@@ -31465,7 +31479,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            axisType: axisModel.type,
 	            axisId: axisModel.id,
 	            value: value,
-	            valueLabel: valueLabel,
+	            // Caustion: viewHelper.getValueLabel is actually on "view stage", which
+	            // depends that all models have been updated. So it should not be performed
+	            // here. Considering axisPointerModel used here is volatile, which is hard
+	            // to be retrieve in TooltipView, we prepare parameters here.
+	            valueLabelOpt: {
+	                precision: axisPointerModel.get('label.precision'),
+	                formatter: axisPointerModel.get('label.formatter')
+	            },
 	            seriesDataIndices: payloadBatch.slice()
 	        });
 	    }
@@ -31508,6 +31529,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // dirtectly. So put the first seriesIndex and dataIndex of the first
 	        // axis on the payload.
 	        var sampleItem = ((dataByCoordSys.list[0].dataByAxis[0] || {}).seriesDataIndices || [])[0] || {};
+
 	        dispatchAction({
 	            type: 'showTip',
 	            escapeConnect: true,
@@ -31723,10 +31745,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                formatter: null, // string | Function
 	                precision: 'auto', // Or a number like 0, 1, 2 ...
 	                margin: 3,
-	                rotate: 0,    // in degree.
 	                textStyle: {
-	                    color: '#fff',
-	                    fontSize: 12
+	                    color: '#fff'
 	                },
 	                padding: [5, 7, 5, 7],
 	                backgroundColor: 'auto', // default: axis line color
@@ -55670,6 +55690,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Model = __webpack_require__(12);
 	    var globalListener = __webpack_require__(147);
 	    var axisHelper = __webpack_require__(105);
+	    var axisPointerViewHelper = __webpack_require__(139);
 
 	    var bind = zrUtil.bind;
 	    var each = zrUtil.each;
@@ -55939,6 +55960,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        return;
 	                    }
 
+	                    var valueLabel = axisPointerViewHelper.getValueLabel(
+	                        axisValue, axisModel.axis, ecModel,
+	                        item.seriesDataIndices,
+	                        item.valueLabelOpt
+	                    );
+
 	                    zrUtil.each(item.seriesDataIndices, function (idxItem) {
 	                        var series = ecModel.getSeriesByIndex(idxItem.seriesIndex);
 	                        var dataIndex = idxItem.dataIndexInside;
@@ -55948,7 +55975,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        dataParams.axisType = item.axisType;
 	                        dataParams.axisId = item.axisId;
 	                        dataParams.axisValue = axisHelper.getAxisRawValue(axisModel.axis, axisValue);
-	                        dataParams.axisValueLabel = item.valueLabel;
+	                        dataParams.axisValueLabel = valueLabel;
 
 	                        if (dataParams) {
 	                            singleParamsList.push(dataParams);
@@ -55960,7 +55987,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    // FIXME
 	                    // (1) shold be the first data which has name?
 	                    // (2) themeRiver, firstDataIndex is array, and first line is unnecessary.
-	                    var firstLine = item.valueLabel;
+	                    var firstLine = valueLabel;
 	                    singleDefaultHTML.push(
 	                        (firstLine ? formatUtil.encodeHTML(firstLine) + '<br />' : '')
 	                        + seriesDefaultHTML.join('<br />')
@@ -59986,6 +60013,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
+	         * @override
+	         * @implements
+	         * see {module:echarts/CoodinateSystem}
+	         */
+	        convertToPixel: zrUtil.curry(doConvert, 'dataToPoint'),
+
+	        /**
+	         * @override
+	         * @implements
+	         * see {module:echarts/CoodinateSystem}
+	         */
+	        convertFromPixel: zrUtil.curry(doConvert, 'pointToData'),
+
+	        /**
 	         * initRange
 	         *
 	         * @private
@@ -60104,6 +60145,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return calendarList;
 	    };
 
+	    function doConvert(methodName, ecModel, finder, value) {
+	        var calendarModel = finder.calendarModel;
+	        var seriesModel = finder.seriesModel;
+
+	        var coordSys = calendarModel
+	            ? calendarModel.coordinateSystem
+	            : seriesModel
+	            ? seriesModel.coordinateSystem
+	            : null;
+
+	        return coordSys === this ? coordSys[methodName](value) : null;
+	    }
 
 	    __webpack_require__(26).register('calendar', Calendar);
 
@@ -60170,7 +60223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                // start end
 	                position: 'start',
-	                margin: 0,
+	                margin: '50%', // 50% of cellSize
 	                nameMap: 'en',
 	                textStyle: {
 	                    color: '#000'
@@ -60275,6 +60328,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var zrUtil = __webpack_require__(4);
 	    var graphic = __webpack_require__(44);
 	    var formatUtil = __webpack_require__(6);
+	    var numberUtil = __webpack_require__(7);
 
 	    var MONTH_TEXT = {
 	        EN: [
@@ -60689,22 +60743,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        },
 
-	        _weekTextPositionControl: function (point, orient, position, margin) {
-	            var align = 'left';
+	        _weekTextPositionControl: function (point, orient, position, margin, cellSize) {
+	            var align = 'center';
 	            var vAlign = 'middle';
 	            var x = point[0];
 	            var y = point[1];
+	            var isStart = position === 'start';
 
 	            if (orient === 'horizontal') {
-	                x = x + margin;
-
-	                if (position === 'start') {
-	                    align = 'right';
-	                }
+	                x = x + margin + (isStart ? 1 : -1) * cellSize[0] / 2;
+	                align = isStart ? 'right' : 'left';
 	            }
 	            else {
-	                y = y + margin;
-	                align = 'center';
+	                y = y + margin + (isStart ? 1 : -1) * cellSize[1] / 2;
+	                vAlign = isStart ? 'bottom' : 'top';
 	            }
 
 	            return {
@@ -60738,6 +60790,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                rangeData.end.time, (7 - rangeData.lweek)
 	            ).time;
 
+	            var cellSize = [coordSys.getCellWidth(), coordSys.getCellHeight()];
+	            margin = numberUtil.parsePercent(margin, cellSize[orient === 'horizontal' ? 0 : 1]);
+
 	            if (pos === 'start') {
 	                start = coordSys.getNextNDay(
 	                    rangeData.start.time, -(7 + rangeData.fweek)
@@ -60757,7 +60812,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        text: nameMap[day],
 	                        font: dayLabelStyleModel.getFont(),
 	                        fill: dayLabelStyleModel.getTextColor()
-	                    }, this._weekTextPositionControl(point, orient, pos, margin))
+	                    }, this._weekTextPositionControl(point, orient, pos, margin, cellSize))
 	                });
 	                group.add(weekText);
 	            }

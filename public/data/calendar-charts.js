@@ -1,27 +1,20 @@
-var getVirtulData =  function(year) {
-
+function getVirtulData(year) {
     year = year || '2017';
+    var date = +echarts.number.parseDate(year + '-01-01');
+    var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+    var dayTime = 3600 * 24 * 1000;
+    var data = [];
+    for (var time = date; time < end; time += dayTime) {
+        data.push([
+            echarts.format.formatTime('yyyy-MM-dd', time),
+            Math.floor(Math.random() * 1000)
+        ]);
+    }
+    console.log(data[data.length - 1]);
+    return data;
+}
 
-    var datas = [];
-    var i, j;
 
-    var arr31 = [1, 3, 5, 7, 8, 10, 12];
-    var arr30 = [4, 6, 9, 11];
-    for (i = 1; i <= 31; i++) {
-        for (j = arr31.length - 1; j >= 0; j--) {
-            datas.push([year + '-' + arr31[j] + '-' + i, Math.floor(Math.random() * 1000)]);
-        }
-    }
-    for (i = 1; i <= 30; i++) {
-        for (j = arr30.length - 1; j >= 0; j--) {
-            datas.push([year + '-' + arr30[j] + '-' + i, Math.floor(Math.random() * 1000)]);
-        }
-    }
-    for (i = 1; i <= 29; i++) {
-        datas.push([year + '-2-' + i, Math.floor(Math.random() * 1000)]);
-    }
-    return datas;
-};
 
 var graphData = [
     [

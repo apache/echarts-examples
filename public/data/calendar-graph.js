@@ -20,11 +20,11 @@ var graphData = [
         241
     ],
     [
-        1487779200000,
+        1487779200000 + 3600 * 24 * 1000 * 15,
         411
     ],
     [
-        1488124800000,
+        1488124800000 + 3600 * 24 * 1000 * 23,
         985
     ]
 ];
@@ -37,28 +37,89 @@ var links = graphData.map(function (item, idx) {
 });
 links.pop();
 
+function getVirtulData(year) {
+    year = year || '2017';
+    var date = +echarts.number.parseDate(year + '-01-01');
+    var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+    var dayTime = 3600 * 24 * 1000;
+    var data = [];
+    for (var time = date; time < end; time += dayTime) {
+        data.push([
+            echarts.format.formatTime('yyyy-MM-dd', time),
+            Math.floor(Math.random() * 1000)
+        ]);
+    }
+    return data;
+}
+
+
 option = {
     tooltip : {},
     calendar: {
-        top: 100,
+        top: 'middle',
+        left: 'center',
         orient: 'vertical',
         cellSize: 40,
         yearLabel: {
-            margin: 40
+            margin: 50,
+            textStyle: {
+                fontSize: 30
+            }
         },
         dayLabel: {
-            firstDay: 1
+            firstDay: 1,
+            nameMap: 'cn'
         },
-        range: '2017-02'
+        monthLabel: {
+            nameMap: 'cn',
+            margin: 15,
+            textStyle: {
+                fontSize: 20,
+                color: '#999'
+            }
+        },
+        range: ['2017-02', '2017-03-31']
     },
-
-    series: {
+    visualMap: {
+        min: 0,
+        max: 1000,
+        type: 'piecewise',
+        left: 'center',
+        bottom: 20,
+        inRange: {
+            color: ['#5291FF', '#C7DBFF']
+        },
+        seriesIndex: [1],
+        orient: 'horizontal'
+    },
+    series: [{
         type: 'graph',
         edgeSymbol: ['none', 'arrow'],
         coordinateSystem: 'calendar',
         links: links,
-        symbolSize: 10,
+        symbolSize: 15,
         calendarIndex: 0,
-        data: graphData
-    }
+        itemStyle: {
+            normal: {
+                color: 'yellow',
+                shadowBlue: 9,
+                shadowOffsetX: 1.5,
+                shadowOffsetY: 3,
+                shadowColor: '#555'
+            }
+        },
+        lineStyle: {
+            normal: {
+                color: '#D10E00',
+                width: 1,
+                opacity: 1
+            }
+        },
+        data: graphData,
+        z: 20
+    }, {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        data: getVirtulData(2017)
+    }]
 };

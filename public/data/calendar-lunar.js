@@ -378,7 +378,7 @@ for (var i = 0; i < dateList.length; i++) {
         1,
         dateList[i][1],
         dateList[i][2]
-    ])
+    ]);
 }
 
 
@@ -442,7 +442,7 @@ option = {
             normal: {
                 show: true,
                 formatter: function (params) {
-                    var d = echarts.number.parseDate(params.value[0])
+                    var d = echarts.number.parseDate(params.value[0]);
                     return d.getDate() + '\n\n' + params.value[2] + '\n\n';
                 },
                 textStyle: {

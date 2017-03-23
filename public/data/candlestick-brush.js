@@ -105,7 +105,10 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 splitLine: {show: false},
                 splitNumber: 20,
                 min: 'dataMin',
-                max: 'dataMax'
+                max: 'dataMax',
+                axisPointer: {
+                    z: 100
+                }
             },
             {
                 type: 'category',
@@ -121,7 +124,16 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 min: 'dataMin',
                 max: 'dataMax',
                 axisPointer: {
-                    label: {show: false}
+                    label: {
+                        formatter: function (params) {
+                            var seriesValue = (params.seriesData[0] || {}).value;
+                            return params.value
+                            + (seriesValue != null
+                                ? '\n' + echarts.format.addCommas(seriesValue)
+                                : ''
+                            );
+                        }
+                    }
                 }
             }
         ],
@@ -171,7 +183,7 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 },
                 tooltip: {
                     formatter: function (param) {
-                        var param = param[0];
+                        param = param[0];
                         return [
                             'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
                             'Open: ' + param.data[0] + '<br/>',
