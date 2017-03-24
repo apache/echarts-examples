@@ -389,17 +389,8 @@ option = {
         }
     },
 
-    title: {
-        text: '2017 三月',
-        left: 'center',
-        top: 30,
-        textStyle: {
-            color: '#555',
-            fontSize: 30
-        }
-    },
-
     visualMap: {
+        show: false,
         min: 0,
         max: 300,
         calculable: true,

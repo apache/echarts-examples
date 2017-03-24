@@ -39,7 +39,7 @@ option = {
         }
     },
     calendar: [{
-        top: 120,
+        top: 100,
         left: 'center',
         range: ['2016-01-01', '2016-06-30'],
         splitLine: {

@@ -54,6 +54,7 @@ option = {
             snap: true,
             lineStyle: {
                 color: '#004E52',
+                opacity: 0.5,
                 width: 2
             },
             label: {

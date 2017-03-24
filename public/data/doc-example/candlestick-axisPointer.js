@@ -94,8 +94,8 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
             {
                 left: '10%',
                 right: '8%',
-                top: '63%',
-                height: '16%'
+                bottom: '20%',
+                height: '15%'
             }
         ],
         xAxis: [
@@ -180,6 +180,8 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 data: data.values,
                 itemStyle: {
                     normal: {
+                        color: '#06B800',
+                        color0: '#FA0000',
                         borderColor: null,
                         borderColor0: null
                     }
@@ -242,40 +244,4 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
             }
         ]
     }, true);
-
-    // myChart.on('brushSelected', renderBrushed);
-
-    // function renderBrushed(params) {
-    //     var sum = 0;
-    //     var min = Infinity;
-    //     var max = -Infinity;
-    //     var countBySeries = [];
-    //     var brushComponent = params.brushComponents[0];
-
-    //     var rawIndices = brushComponent.series[0].rawIndices;
-    //     for (var i = 0; i < rawIndices.length; i++) {
-    //         var val = data.values[rawIndices[i]][1];
-    //         sum += val;
-    //         min = Math.min(val, min);
-    //         max = Math.max(val, max);
-    //     }
-
-    //     panel.innerHTML = [
-    //         '<h3>STATISTICS:</h3>',
-    //         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
-    //         'MIN of open: ' + min.toFixed(4) + '<br>',
-    //         'MAX of open: ' + max.toFixed(4) + '<br>'
-    //     ].join(' ');
-    // }
-
-    myChart.dispatchAction({
-        type: 'brush',
-        areas: [
-            {
-                brushType: 'lineX',
-                coordRange: ['2016-06-02', '2016-06-20'],
-                xAxisIndex: 0
-            }
-        ]
-    });
 });
