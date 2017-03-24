@@ -45,12 +45,6 @@ myChart.getZr().configLayer(1, {
     motionBlur: 0.5
 });
 
-$.get('./data/asset/data/nutrients.json', function (originData) {
-    data = normalizeData(originData).slice(0, 1000);
-
-    myChart.setOption(option = getOption(data));
-});
-
 
 function normalizeData(originData) {
     var groupMap = {};
@@ -425,3 +419,9 @@ app.configParameters = {
         options: fieldNames
     }
 };
+
+$.get('./data/asset/data/nutrients.json', function (originData) {
+    data = normalizeData(originData).slice(0, 1000);
+
+    myChart.setOption(option = getOption(data));
+});
