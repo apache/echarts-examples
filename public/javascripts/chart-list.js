@@ -314,7 +314,7 @@ var EXAMPLES = [
     },  {
         id: 'map-world',
         title: 'Map World',
-        type: '0'
+        type: 'map'
     },  {
         id: 'mix-line-bar',
         title: 'Mixed Line and Bar',
