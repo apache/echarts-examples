@@ -17,8 +17,7 @@ option = {
     title: {
         top: 30,
         left: 'center',
-        text: '2016年某人每天的步数',
-        subtext: '数据纯属虚构'
+        text: '2016年某人每天的步数'
     },
     tooltip : {},
     visualMap: {
@@ -27,15 +26,21 @@ option = {
         type: 'piecewise',
         orient: 'horizontal',
         left: 'center',
-        top: 260,
+        top: 65,
         textStyle: {
             color: '#000'
         }
     },
     calendar: {
-        top: 100,
-        left: 60,
-        range: '2016'
+        top: 120,
+        left: 30,
+        right: 30,
+        cellSize: ['auto', 13],
+        range: '2016',
+        itemStyle: {
+            normal: {borderWidth: 0.5}
+        },
+        yearLabel: {show: false}
     },
     series: {
         type: 'heatmap',

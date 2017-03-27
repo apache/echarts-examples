@@ -1,4 +1,5 @@
-var cellSize = [100, 100];
+var cellSize = [80, 80];
+var pieRadius = 30;
 
 function getVirtulData() {
     var date = +echarts.number.parseDate('2017-02-01');
@@ -27,7 +28,7 @@ function getPieSeries(scatterData, chart) {
                     position: 'inside'
                 }
             },
-            radius: 36,
+            radius: pieRadius,
             data: [
                 {name: '工作', value: Math.round(Math.random() * 24)},
                 {name: '娱乐', value: Math.round(Math.random() * 24)},
