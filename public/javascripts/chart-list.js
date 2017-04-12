@@ -340,6 +340,10 @@ var EXAMPLES = [
         title: 'Parallel Nutrients',
         type: 'parallel'
     },  {
+        id: 'map-parallel-prices',
+        title: 'Prices and Earnings 2012',
+        type: 'parallel'
+    },  {
         id: 'pie-custom',
         title: 'Customized Pie',
         type: 'pie'
