@@ -1649,9 +1649,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @type {number}
 	         */
-	        version: '3.5.2',
+	        version: '3.5.3',
 	        dependencies: {
-	            zrender: '3.4.2'
+	            zrender: '3.4.3'
 	        }
 	    };
 
@@ -7106,9 +7106,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 
 	            if (ignoreSize[hvIdx]) {
-	                // Only one of left/height is premitted to exist.
-	                hasValue(newOption, names[2]) && (merged[names[1]] = null);
-	                hasValue(newOption, names[1]) && (merged[names[2]] = null);
+	                // Only one of left/right is premitted to exist.
+	                if (hasValue(newOption, names[1])) {
+	                    merged[names[2]] = null;
+	                }
+	                else if (hasValue(newOption, names[2])) {
+	                    merged[names[1]] = null;
+	                }
 	                return merged;
 	            }
 
@@ -17481,12 +17485,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        beforeBrush: function () {
 	            this._updatePathDirty();
-	            // var paths = this.shape.paths || [];
-	            // var scale = this.getGlobalScale();
-	            // // Update path scale
-	            // for (var i = 0; i < paths.length; i++) {
-	            //     paths[i].path.setScale(scale[0], scale[1]);
-	            // }
+	            var paths = this.shape.paths || [];
+	            var scale = this.getGlobalScale();
+	            // Update path scale
+	            for (var i = 0; i < paths.length; i++) {
+	                if (!paths[i].path) {
+	                    paths[i].createPathProxy();
+	                }
+	                paths[i].path.setScale(scale[0], scale[1]);
+	            }
 	        },
 
 	        buildPath: function (ctx, shape) {
@@ -17838,7 +17845,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @type {string}
 	     */
-	    zrender.version = '3.4.2';
+	    zrender.version = '3.4.3';
 
 	    /**
 	     * Initializing a zrender instance
@@ -24612,21 +24619,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	                || Math.abs(originalExtent[0]);
 	        }
 
+	        // Notice: When min/max is not set (that is, when there are null/undefined,
+	        // which is the most common case), these cases should be ensured:
+	        // (1) For 'ordinal', show all axis.data.
+	        // (2) For others:
+	        //      + `boundaryGap` is applied (if min/max set, boundaryGap is
+	        //      disabled).
+	        //      + If `needCrossZero`, min/max should be zero, otherwise, min/max should
+	        //      be the result that originalExtent enlarged by boundaryGap.
+	        // (3) If no data, it should be ensured that `scale.setBlank` is set.
+
+	        // FIXME
+	        // (1) When min/max is 'dataMin' or 'dataMax', should boundaryGap be able to used?
+	        // (2) When `needCrossZero` and all data is positive/negative, should it be ensured
+	        // that the results processed by boundaryGap are positive/negative?
+
 	        if (min == null) {
 	            min = scaleType === 'ordinal'
 	                ? (axisDataLen ? 0 : NaN)
-	                : (originalExtent[0] < 0
-	                    // Don't show negative gap for all-positive data
-	                    ? originalExtent[0] - boundaryGap[0] * span
-	                    : 0);
+	                : originalExtent[0] - boundaryGap[0] * span;
 	        }
 	        if (max == null) {
 	            max = scaleType === 'ordinal'
 	                ? (axisDataLen ? axisDataLen - 1 : NaN)
-	                : (originalExtent[1] > 0
-	                    // Don't show positive gap for all-negative data
-	                    ? originalExtent[1] + boundaryGap[1] * span
-	                    : 0);
+	                : originalExtent[1] + boundaryGap[1] * span;
 	        }
 
 	        if (min === 'dataMin') {
@@ -37959,7 +37975,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 
 	            var rect = new BoundingRect(0, 0, api.getWidth(), api.getHeight());
-	            controller.setPointerChecker(function (x, y) {
+	            controller.setPointerChecker(function (e, x, y) {
 	                return rect.contain(x, y);
 	            });
 	        },
@@ -52514,21 +52530,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        // Process for linked axes.
+	        var linkTriggers = {};
 	        each(axesInfo, function (tarAxisInfo, tarKey) {
 	            var linkGroup = tarAxisInfo.linkGroup;
 
 	            // If axis has been triggered in the previous stage, it should not be triggered by link.
-	            linkGroup && !showValueMap[tarKey] && each(linkGroup.axesInfo, function (srcAxisInfo, srcKey) {
-	                var srcValItem = showValueMap[srcKey];
-	                // If srcValItem exist, source axis is triggered, so link to target axis.
-	                if (srcAxisInfo !== tarAxisInfo && srcValItem) {
-	                    var val = srcValItem.value;
-	                    linkGroup.mapper && (val = tarAxisInfo.axis.scale.parse(linkGroup.mapper(
-	                        val, makeMapperParam(srcAxisInfo), makeMapperParam(tarAxisInfo)
-	                    )));
-	                    processOnAxis(tarAxisInfo, val, updaters, true, outputFinder);
-	                }
-	            });
+	            if (linkGroup && !showValueMap[tarKey]) {
+	                each(linkGroup.axesInfo, function (srcAxisInfo, srcKey) {
+	                    var srcValItem = showValueMap[srcKey];
+	                    // If srcValItem exist, source axis is triggered, so link to target axis.
+	                    if (srcAxisInfo !== tarAxisInfo && srcValItem) {
+	                        var val = srcValItem.value;
+	                        linkGroup.mapper && (val = tarAxisInfo.axis.scale.parse(linkGroup.mapper(
+	                            val, makeMapperParam(srcAxisInfo), makeMapperParam(tarAxisInfo)
+	                        )));
+	                        linkTriggers[tarAxisInfo.key] = val;
+	                    }
+	                });
+	            }
+	        });
+	        each(linkTriggers, function (val, tarKey) {
+	            processOnAxis(axesInfo[tarKey], val, updaters, true, outputFinder);
 	        });
 
 	        updateModelActually(showValueMap, axesInfo);
@@ -52957,7 +52979,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            handle: {
 	                show: false,
-	                icon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z', // jshint ignore:line
+	                icon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z', // jshint ignore:line
 	                size: 45,
 	                // handle margin is from symbol center to axis, which is stable when circular move.
 	                margin: 50,
@@ -56474,10 +56496,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._api = api;
 
 	            /**
+	             * Should be cleaned when render.
 	             * @private
 	             * @type {Array.<Array.<Object>>}
 	             */
-	            this._lastDataByCoordSys;
+	            this._lastDataByCoordSys = null;
 
 	            /**
 	             * @private
@@ -56613,6 +56636,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            else if (payload.x != null && payload.y != null) {
+	                // FIXME
+	                // should wrap dispatchAction like `axisPointer/globalListener` ?
+	                api.dispatchAction({
+	                    type: 'updateAxisPointer',
+	                    x: payload.x,
+	                    y: payload.y
+	                });
+
 	                this._tryShow({
 	                    offsetX: payload.x,
 	                    offsetY: payload.y,
@@ -56990,7 +57021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            else {
 	                var pos = refixTooltipPosition(
-	                    x, y, content.el, viewWidth, viewHeight, align ? 0 : 20, vAlign ? 0 : 20
+	                    x, y, content.el, viewWidth, viewHeight, align ? null : 20, vAlign ? null : 20
 	                );
 	                x = pos[0];
 	                y = pos[1];
@@ -57105,17 +57136,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var width = el.clientWidth;
 	        var height = el.clientHeight;
 
-	        if (x + width + gapH > viewWidth) {
-	            x -= width + gapH;
+	        if (gapH != null) {
+	            if (x + width + gapH > viewWidth) {
+	                x -= width + gapH;
+	            }
+	            else {
+	                x += gapH;
+	            }
 	        }
-	        else {
-	            x += gapH;
-	        }
-	        if (y + height + gapV > viewHeight) {
-	            y -= height + gapV;
-	        }
-	        else {
-	            y += gapV;
+	        if (gapV != null) {
+	            if (y + height + gapV > viewHeight) {
+	                y -= height + gapV;
+	            }
+	            else {
+	                y += gapV;
+	            }
 	        }
 	        return [x, y];
 	    }
@@ -63977,7 +64012,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        {
 	                            coordId: roams.generateCoordId(coordModel),
 	                            allCoordIds: allCoordIds,
-	                            containsPoint: function (x, y) {
+	                            containsPoint: function (e, x, y) {
 	                                return coordModel.coordinateSystem.containPoint([x, y]);
 	                            },
 	                            dataZoomId: dataZoomModel.id,
@@ -71759,6 +71794,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var ZImage = __webpack_require__(62);
 	    var Text = __webpack_require__(63);
 	    var Path = __webpack_require__(46);
+	    var PathProxy = __webpack_require__(50);
 
 	    var Gradient = __webpack_require__(79);
 
@@ -72228,7 +72264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            strokeEl.weight = lineWidth + 'px';
 	        }
 
-	        var path = this.path;
+	        var path = this.path || (this.path = new PathProxy());
 	        if (this.__dirtyPath) {
 	            path.beginPath();
 	            this.buildPath(path, this.shape);
@@ -72899,23 +72935,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.resize();
 
 	        // Modify storage
-	        var oldDelFromMap = storage.delFromMap;
-	        var oldAddToMap = storage.addToMap;
-	        storage.delFromMap = function (elId) {
-	            var el = storage.get(elId);
-
-	            oldDelFromMap.call(storage, elId);
+	        var oldDelFromStorage = storage.delFromStorage;
+	        var oldAddToStorage = storage.addToStorage;
+	        storage.delFromStorage = function (el) {
+	            oldDelFromStorage.call(storage, el);
 
 	            if (el) {
 	                el.onRemove && el.onRemove(vmlRoot);
 	            }
 	        };
 
-	        storage.addToMap = function (el) {
+	        storage.addToStorage = function (el) {
 	            // Displayable already has a vml node
 	            el.onAdd && el.onAdd(vmlRoot);
 
-	            oldAddToMap.call(storage, el);
+	            oldAddToStorage.call(storage, el);
 	        };
 
 	        this._firstPaint = true;
