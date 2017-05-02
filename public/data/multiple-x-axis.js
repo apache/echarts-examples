@@ -34,7 +34,8 @@ option = {
             axisPointer: {
                 label: {
                     formatter: function (params) {
-                        return '降水量  ' + params.value + '：' + params.seriesData[0].data;
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
                     }
                 }
             },
@@ -54,7 +55,8 @@ option = {
             axisPointer: {
                 label: {
                     formatter: function (params) {
-                        return '降水量  ' + params.value + '：' + params.seriesData[0].data;
+                        return '降水量  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
                     }
                 }
             },

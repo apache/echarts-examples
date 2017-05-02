@@ -35,8 +35,8 @@ option = {
                 {value:274, name:'联盟广告'},
                 {value:235, name:'视频广告'},
                 {value:400, name:'搜索引擎'}
-            ].sort(function (a, b) { return a.value - b.value}),
-            roseType: 'angle',
+            ].sort(function (a, b) { return a.value - b.value; }),
+            roseType: 'radius',
             label: {
                 normal: {
                     textStyle: {
