@@ -501,7 +501,7 @@ var EXAMPLES = [
         type: 'bar'
     },  {
         id: 'bar-histogram',
-        title: 'Girths of Black Cherry Trees',
+        title: 'Histogram',
         type: 'bar'
     }, {
         id: 'pictorialBar-hill',
