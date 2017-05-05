@@ -460,6 +460,26 @@ var EXAMPLES = [
         title: 'Scatter Nutrients Matrix',
         type: 'scatter'
     },  {
+        id: 'scatter-clustering-process',
+        title: 'Clustering Process',
+        type: 'scatter'
+    },  {
+        id: 'scatter-linear-regression',
+        title: 'Linear Regression',
+        type: 'scatter'
+    },  {
+        id: 'scatter-exponential-regression',
+        title: 'Exponential Regression',
+        type: 'scatter'
+    },  {
+        id: 'scatter-logarithmic-regression',
+        title: 'Logarithmic Regression',
+        type: 'scatter'
+    },  {
+        id: 'scatter-polynomial-regression',
+        title: 'Polynomial Regression',
+        type: 'scatter'
+    },  {
         id: 'treemap-disk',
         title: 'Disk Usage',
         type: 'treemap'
