@@ -479,6 +479,10 @@ var EXAMPLES = [
         id: 'watermark',
         title: 'Watermark - ECharts Download',
         type: 'bar'
+    },  {
+        id: 'bar-histogram',
+        title: 'Girths of Black Cherry Trees',
+        type: 'bar'
     }, {
         id: 'pictorialBar-hill',
         title: 'Wish List and Mountain Height',
