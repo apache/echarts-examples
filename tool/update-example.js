@@ -175,6 +175,7 @@ glob('../public/data/*.js', function (err, files) {
 require('../public/vendors/echarts/extension/dataTool.js');
 require('../public/vendors/echarts/theme/vintage');
 require('../public/vendors/echarts/theme/dark');
+global.ecStat = require('echarts-stat/dist/ecStat');
 // require('../public/vendors/echarts/map/js/china');
 // require('../public/vendors/echarts/map/js/world');
 var maps = ['china', 'world'];
