@@ -259,10 +259,10 @@ var EXAMPLES = [
         id: 'line-tooltip-touch',
         title: 'Tooltip and DataZoom on Mobile',
         type: 'line'
-    },  {
-        id: 'lines-airline',
-        title: '65k+ Airline',
-        type: 'map'
+    // },  {
+    //     id: 'lines-airline',
+    //     title: '65k+ Airline',
+    //     type: 'map'
     },  {
         id: 'lines-bmap-bus',
         title: 'Bus Lines of Beijing - Baidu Map',
@@ -295,10 +295,10 @@ var EXAMPLES = [
         id: 'geo-map-scatter',
         title: 'map and scatter share a geo',
         type: 'map'
-    },  {
-        id: 'map-parallel-prices',
-        title: 'Prices and Earnings 2012',
-        type: 'scatter'
+    // },  {
+    //     id: 'map-parallel-prices',
+    //     title: 'Prices and Earnings 2012',
+    //     type: 'scatter'
     },  {
         id: 'map-province',
         title: 'Switch among 34 Provinces',
@@ -307,14 +307,14 @@ var EXAMPLES = [
         id: 'map-usa',
         title: 'USA Population Estimates (2012)',
         type: 'map'
-    },  {
-        id: 'map-world-dataRange',
-        title: 'World Population (2010)',
-        type: 'map'
-    },  {
-        id: 'map-world',
-        title: 'Map World',
-        type: 'map'
+    // },  {
+    //     id: 'map-world-dataRange',
+    //     title: 'World Population (2010)',
+    //     type: 'map'
+    // },  {
+    //     id: 'map-world',
+    //     title: 'Map World',
+    //     type: 'map'
     },  {
         id: 'mix-line-bar',
         title: 'Mixed Line and Bar',
@@ -339,10 +339,10 @@ var EXAMPLES = [
         id: 'parallel-nutrients',
         title: 'Parallel Nutrients',
         type: 'parallel'
-    },  {
-        id: 'map-parallel-prices',
-        title: 'Prices and Earnings 2012',
-        type: 'parallel'
+    // },  {
+    //     id: 'map-parallel-prices',
+    //     title: 'Prices and Earnings 2012',
+    //     type: 'parallel'
     },  {
         id: 'pie-custom',
         title: 'Customized Pie',
@@ -451,10 +451,10 @@ var EXAMPLES = [
         id: 'scatter-weight',
         title: 'Distribution of Height and Weight',
         type: 'scatter'
-    },  {
-        id: 'scatter-world-population',
-        title: 'World Population (2011)',
-        type: 'scatter'
+    // },  {
+    //     id: 'scatter-world-population',
+    //     title: 'World Population (2011)',
+    //     type: 'scatter'
     },  {
         id: 'scatter-nutrients-matrix',
         title: 'Scatter Nutrients Matrix',
