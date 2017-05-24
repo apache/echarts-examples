@@ -3,6 +3,37 @@ var girth = [8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, 11.4
 // See https://github.com/ecomfe/echarts-stat
 var bins = ecStat.histogram(girth);
 
+var interval;
+var min = Infinity;
+var max = -Infinity;
+
+data = echarts.util.map(bins.data, function (item, index) {
+    var x0 = bins.bins[index].x0;
+    var x1 = bins.bins[index].x1;
+    interval = x1 - x0;
+    min = Math.min(min, x0);
+    max = Math.max(max, x1);
+    return [x0, x1, item[1]];
+});
+
+function renderItem(params, api) {
+    var yValue = api.value(2);
+    var start = api.coord([api.value(0), yValue]);
+    var size = api.size([api.value(1) - api.value(0), yValue]);
+    var style = api.style();
+
+    return {
+        type: 'rect',
+        shape: {
+            x: start[0] + 1,
+            y: start[1],
+            width: size[0] - 2,
+            height: size[1]
+        },
+        style: style
+    };
+}
+
 option = {
     title: {
         text: 'Girths of Black Cherry Trees',
@@ -13,32 +44,33 @@ option = {
     },
     color: ['rgb(25, 183, 207)'],
     grid: {
-        left: '3%',
-        right: '3%',
-        bottom: '3%',
         top: 80,
         containLabel: true
     },
     xAxis: [{
         type: 'value',
-        scale: true, //这个一定要设，不然barWidth和bins对应不上
+        min: min,
+        max: max
     }],
     yAxis: [{
         type: 'value',
     }],
     series: [{
         name: 'height',
-        type: 'bar',
-        barWidth: '99.3%',
+        type: 'custom',
+        renderItem: renderItem,
         label: {
             normal: {
                 show: true,
-                position: 'insideTop',
-                formatter: function(params) {
-                    return params.value[1];
-                }
+                position: 'insideTop'
             }
         },
-        data: bins.data
+        encode: {
+            x: [0, 1],
+            y: 2,
+            tooltip: 2,
+            label: 2
+        },
+        data: data
     }]
 };

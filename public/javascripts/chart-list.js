@@ -579,6 +579,38 @@ var EXAMPLES = [
         id: 'calendar-lunar',
         title: 'Calendar Lunar',
         type: 'calendar'
+    }, {
+        id: 'custom-profile',
+        title: 'Profile',
+        type: 'custom'
+    }, {
+        id: 'custom-error-bar',
+        title: 'Error Bar on Catesian',
+        type: 'custom'
+    }, {
+        id: 'custom-error-scatter',
+        title: 'Error Scatter on Catesian',
+        type: 'custom'
+    }, {
+        id: 'custom-bar-trend',
+        title: 'Custom Bar Trend',
+        type: 'custom'
+    }, {
+        id: 'custom-polar-heatmap',
+        title: 'Polar Heatmap',
+        type: 'custom'
+    }, {
+        id: 'custom-profit',
+        title: 'Profit',
+        type: 'custom'
+    }, {
+        id: 'custom-calendar-icon',
+        title: 'Custom Calendar Icon',
+        type: 'custom'
+    }, {
+        id: 'custom-hexbin',
+        title: 'Hexagonal Binning',
+        type: 'custom'
     }
 ];
 
@@ -600,7 +632,8 @@ var CHART_TYPES = {
     gauge: 'Gauge',
     pictorialBar: 'PictorialBar',
     themeRiver: 'ThemeRiver',
-    calendar: 'Calendar'
+    calendar: 'Calendar',
+    custom: 'Custom'
 };
 
 var charts = [];
