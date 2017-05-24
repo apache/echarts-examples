@@ -60,6 +60,10 @@ var EXAMPLES = [
         title: 'Rainfall and Evaporation',
         type: 'bar'
     },  {
+        id: 'bar-polar-stack',
+        title: 'Stacked Bar in Polar System',
+        type: 'bar'
+    },  {
         id: 'boxplot-light-velocity',
         title: 'Boxplot Light Velocity',
         type: 'boxplot'

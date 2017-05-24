@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
+    "app-module-path": "^2.2.0",
     "browser-sync": "^2.11.0",
     "canvas": "^1.6.2",
     "echarts-stat": "^1.1.0",
+    "etpl": "^3.2.0",
     "gulp": "~3.9.0",
     "gulp-autoprefixer": "~3.0.0",
     "gulp-callback": "~0.0.3",
@@ -15,6 +17,9 @@
     "gulp-rename": "~1.2.2",
     "gulp-sass": "~2.0.4",
     "gulp-uglify": "~1.4.1",
+    "node-gyp": "^3.6.1",
+    "node-sass": "^4.5.3",
+    "xmldom": "^0.1.27",
     "yargs": "^6.6.0"
   },
   "dependencies": {}
