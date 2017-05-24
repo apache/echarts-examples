@@ -64,6 +64,14 @@ var EXAMPLES = [
         title: 'Stacked Bar in Polar System',
         type: 'bar'
     },  {
+        id: 'bar-polar-stack-radial',
+        title: 'Stacked Bar in Polar System',
+        type: 'bar'
+    },  {
+        id: 'bar-polar-real-estate',
+        title: 'Real Estate',
+        type: 'bar'
+    },  {
         id: 'boxplot-light-velocity',
         title: 'Boxplot Light Velocity',
         type: 'boxplot'
