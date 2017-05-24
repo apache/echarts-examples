@@ -68,11 +68,23 @@ var $ = {
             if (callback) {
                 callback(content);
             }
+            return content;
         }
     }
 };
 
 $.getJSON = $.get;
+
+$.when = function () {
+    var args = Array.prototype.slice.call(arguments);
+    return {
+        done: function (cb) {
+            cb.apply(null, args.map(function (a) {
+                return [a];
+            }));
+        }
+    };
+};
 
 function getTmpMyChart() {
     var canvas = new Canvas(700, 560);
