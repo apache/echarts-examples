@@ -1631,9 +1631,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @type {number}
 	         */
-	        version: '3.5.4',
+	        version: '3.6.0',
 	        dependencies: {
-	            zrender: '3.4.4'
+	            zrender: '3.5.0'
 	        }
 	    };
 
@@ -1730,7 +1730,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        chart.id = 'ec_' + idBase++;
 	        instances[chart.id] = chart;
 
-	        dom.setAttribute && dom.setAttribute(DOM_ATTRIBUTE_KEY, chart.id);
+	        if (dom.setAttribute) {
+	            dom.setAttribute(DOM_ATTRIBUTE_KEY, chart.id);
+	        }
+	        else {
+	            dom[DOM_ATTRIBUTE_KEY] = chart.id;
+	        }
 
 	        enableConnect(chart);
 
@@ -1778,11 +1783,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param  {module:echarts~ECharts|HTMLDomElement|string} chart
 	     */
 	    echarts.dispose = function (chart) {
-	        if (zrUtil.isDom(chart)) {
-	            chart = echarts.getInstanceByDom(chart);
-	        }
-	        else if (typeof chart === 'string') {
+	        if (typeof chart === 'string') {
 	            chart = instances[chart];
+	        }
+	        else if (!(chart instanceof ECharts)){
+	            // Try to treat as dom
+	            chart = echarts.getInstanceByDom(chart);
 	        }
 	        if ((chart instanceof ECharts) && !chart.isDisposed()) {
 	            chart.dispose();
@@ -1794,7 +1800,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @return {echarts~ECharts}
 	     */
 	    echarts.getInstanceByDom = function (dom) {
-	        var key = dom.getAttribute(DOM_ATTRIBUTE_KEY);
+	        var key;
+	        if (dom.getAttribute) {
+	            key = dom.getAttribute(DOM_ATTRIBUTE_KEY);
+	        }
+	        else {
+	            key = dom[DOM_ATTRIBUTE_KEY];
+	        }
 	        return instances[key];
 	    };
 
@@ -18022,7 +18034,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @type {string}
 	     */
-	    zrender.version = '3.4.4';
+	    zrender.version = '3.5.0';
 
 	    /**
 	     * Initializing a zrender instance
@@ -24578,7 +24590,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        getInterval: function () {
 	            if (true) {
-	                if (!this._interval) {
+	                if (this._interval == null) {
 	                    throw new Error('`nice` should be called firstly' );
 	                }
 	            }
@@ -24600,7 +24612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        getTicks: function () {
 	            if (true) {
-	                if (!this._interval) {
+	                if (this._interval == null) {
 	                    throw new Error('`nice` should be called firstly' );
 	                }
 	            }
@@ -25667,6 +25679,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *      For example: ['asdf', {name, type}, ...].
 	     * @param {Object} [opt.encodeDef] option.series.encode {x: 2, y: [3, 1], tooltip: [1, 2], label: 3}
 	     * @param {string} [opt.extraPrefix] Prefix of name when filling the left dimensions.
+	     * @param {string} [opt.extraFromZero] If specified, extra dim names will be:
+	     *                      extraPrefix + 0, extraPrefix + extraBaseIndex + 1 ...
+	     *                      If not specified, extra dim names will be:
+	     *                      extraPrefix, extraPrefix + 0, extraPrefix + 1 ...
 	     * @param {number} [opt.dimCount] If not specified, guess by the first data item.
 	     * @return {Array.<Object>} [{
 	     *      name: string mandatory,
@@ -25789,7 +25805,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var coordDim = resultItem.coordDim;
 
 	            coordDim == null && (
-	                resultItem.coordDim = genName(extra, coordDimNameMap),
+	                resultItem.coordDim = genName(extra, coordDimNameMap, opt.extraFromZero),
 	                resultItem.coordDimIndex = 0,
 	                resultItem.isExtraCoord = true
 	            );
@@ -25824,8 +25840,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 
-	        function genName(name, map) {
-	            if (map.get(name) != null) {
+	        function genName(name, map, fromZero) {
+	            if (fromZero || map.get(name) != null) {
 	                var i = 0;
 	                while (map.get(name + i) != null) {
 	                    i++;
@@ -34003,7 +34019,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        getInitialData: function (option, ecModel) {
 	            var data = option.data || [];
 	            var dimensions = completeDimensions(
-	                [], data, {extraPrefix: 'indicator_'}
+	                [], data, {extraPrefix: 'indicator_', extraFromZero: true}
 	            );
 	            var list = new List(dimensions, this);
 	            list.initData(data);
@@ -52333,7 +52349,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var SingleAxis = __webpack_require__(293);
 	    var axisHelper = __webpack_require__(101);
 	    var layout = __webpack_require__(71);
-	    var zrUtil = __webpack_require__(4);
 
 	    /**
 	     * Create a single coordinates system.
@@ -55356,14 +55371,103 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	// shim for using process in browser
-
 	var process = module.exports = {};
+
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	} ())
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch(e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch(e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+
+
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+
+
+
+	}
 	var queue = [];
 	var draining = false;
 	var currentQueue;
 	var queueIndex = -1;
 
 	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -55379,7 +55483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = setTimeout(cleanUpNextTick);
+	    var timeout = runTimeout(cleanUpNextTick);
 	    draining = true;
 
 	    var len = queue.length;
@@ -55396,7 +55500,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    clearTimeout(timeout);
+	    runClearTimeout(timeout);
 	}
 
 	process.nextTick = function (fun) {
@@ -55408,7 +55512,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
+	        runTimeout(drainQueue);
 	    }
 	};
 
@@ -58862,7 +58966,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var RadiusAxis = __webpack_require__(333);
 	    var AngleAxis = __webpack_require__(334);
-	    var zrUtil = __webpack_require__(4);
 
 	    /**
 	     * @alias {module:echarts/coord/polar/Polar}
@@ -65567,7 +65670,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            disabled: false,   // Whether disable this inside zoom.
 	            zoomLock: false,   // Whether disable zoom but only pan.
 	            zoomOnMouseWheel: true, // Can be: true / false / 'shift' / 'ctrl' / 'alt'.
-	            moveOnMouseMove: true   // Can be: true / false / 'shift' / 'ctrl' / 'alt'.
+	            moveOnMouseMove: true,   // Can be: true / false / 'shift' / 'ctrl' / 'alt'.
+	            preventDefaultMouseMove: true
 	        }
 	    });
 
