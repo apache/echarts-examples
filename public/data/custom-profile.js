@@ -88,7 +88,8 @@ option = {
             shadowOffsetX: 1,
             shadowOffsetY: 2,
             shadowColor: '#aaa'
-        }
+        },
+        labelFormatter: ''
     }, {
         type: 'inside',
         filterMode: 'weakFilter'
@@ -98,6 +99,7 @@ option = {
     },
     xAxis: {
         min: startTime,
+        scale: true,
         axisLabel: {
             formatter: function (val) {
                 return Math.max(0, val - startTime) + ' ms';
