@@ -62,6 +62,7 @@ gulp.task('jade', function() {
     return gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
         .pipe(jade({
             data: {
+                buildVersion: +new Date(),
                 lang: lang
             }
         }))
