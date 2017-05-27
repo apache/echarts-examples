@@ -104,6 +104,10 @@ var EXAMPLES = [
         title: 'Axis Pointer Link and Touch',
         type: 'candlestick'
     },  {
+        id: 'candlestick-ohlc',
+        title: 'OHLC Chart',
+        type: 'candlestick'
+    },  {
         id: 'confidence-band',
         title: 'Confidence Band',
         type: 'line'
