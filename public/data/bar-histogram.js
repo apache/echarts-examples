@@ -50,7 +50,8 @@ option = {
     xAxis: [{
         type: 'value',
         min: min,
-        max: max
+        max: max,
+        interval: interval
     }],
     yAxis: [{
         type: 'value',
