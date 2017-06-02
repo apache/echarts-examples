@@ -104,7 +104,7 @@ var EXAMPLES = [
         title: 'Axis Pointer Link and Touch',
         type: 'candlestick'
     },  {
-        id: 'candlestick-ohlc',
+        id: 'custom-ohlc',
         title: 'OHLC Chart',
         type: 'candlestick'
     },  {
