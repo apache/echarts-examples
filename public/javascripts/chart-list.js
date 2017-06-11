@@ -512,6 +512,10 @@ var EXAMPLES = [
         title: 'Gradient Mapping',
         type: 'treemap'
     },  {
+        id: 'treemap-show-parent',
+        title: 'Show Parent Labels',
+        type: 'treemap'
+    },  {
         id: 'watermark',
         title: 'Watermark - ECharts Download',
         type: 'bar'
