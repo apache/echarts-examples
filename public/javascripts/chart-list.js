@@ -332,6 +332,14 @@ var EXAMPLES = [
         title: 'Map World',
         type: 'map'
     },  {
+        id: 'map-polygon',
+        title: 'Draw Polygon on Map',
+        type: 'map'
+    },  {
+        id: 'map-bin',
+        title: 'Binning on Map',
+        type: 'map'
+    },  {
         id: 'mix-line-bar',
         title: 'Mixed Line and Bar',
         type: 'bar'

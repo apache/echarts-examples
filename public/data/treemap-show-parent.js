@@ -19,8 +19,9 @@ $.get('data/asset/data/disk.tree.json', function (diskData) {
             {
                 itemStyle: {
                     normal: {
-                        borderColor: '#eee',
-                        gapWidth: 5
+                        borderColor: '#777',
+                        borderWidth: 0,
+                        gapWidth: 1
                     }
                 },
                 upperLabel: {
@@ -32,24 +33,12 @@ $.get('data/asset/data/disk.tree.json', function (diskData) {
             {
                 itemStyle: {
                     normal: {
-                        borderColor: '#ddd',
+                        borderColor: '#555',
                         borderWidth: 5,
                         gapWidth: 1
                     },
                     emphasis: {
                         borderColor: '#ddd'
-                    }
-                },
-                upperLabel: {
-                    normal: {
-                        textStyle: {
-                            color: '#777'
-                        }
-                    },
-                    emphasis: {
-                        textStyle: {
-                            color: '#777'
-                        }
                     }
                 }
             },
