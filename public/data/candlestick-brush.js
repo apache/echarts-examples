@@ -2,16 +2,17 @@
 function splitData(rawData) {
     var categoryData = [];
     var values = [];
-    var volumns = [];
+    var volumes = [];
     for (var i = 0; i < rawData.length; i++) {
         categoryData.push(rawData[i].splice(0, 1)[0]);
         values.push(rawData[i]);
-        volumns.push(rawData[i][4]);
+        volumes.push([i, rawData[i][4], rawData[i][0] > rawData[i][1] ? 1 : -1]);
     }
+
     return {
         categoryData: categoryData,
         values: values,
-        volumns: volumns
+        volumes: volumes
     };
 }
 
@@ -84,6 +85,17 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
             outOfBrush: {
                 colorAlpha: 0.1
             }
+        },
+        visualMap: {
+            seriesIndex: 5,
+            dimension: 2,
+            pieces: [{
+                value: 1,
+                color: '#2f4554'
+            }, {
+                value: -1,
+                color: '#c23531'
+            }]
         },
         grid: [
             {
@@ -234,11 +246,11 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 }
             },
             {
-                name: 'Volumn',
+                name: 'Volume',
                 type: 'bar',
                 xAxisIndex: 1,
                 yAxisIndex: 1,
-                data: data.volumns
+                data: data.volumes
             }
         ]
     }, true);
