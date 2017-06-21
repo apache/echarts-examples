@@ -276,6 +276,10 @@ var EXAMPLES = [
         title: 'Tooltip and DataZoom on Mobile',
         type: 'line'
     },  {
+        id: 'line-gradient',
+        title: 'Line Gradient',
+        type: 'line'
+    },  {
         id: 'lines-airline',
         title: '65k+ Airline',
         type: 'map'
