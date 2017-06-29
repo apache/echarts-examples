@@ -63,7 +63,7 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
         legend: {
             bottom: 10,
             left: 'center',
-            data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
+            data: ['Dow-Jones index']
         },
         tooltip: {
             trigger: 'axis',
