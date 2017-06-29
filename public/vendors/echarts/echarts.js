@@ -229,7 +229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        this.group;
 	        /**
-	         * @type {HTMLDomElement}
+	         * @type {HTMLElement}
 	         * @private
 	         */
 	        this._dom = dom;
@@ -343,7 +343,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    /**
-	     * @return {HTMLDomElement}
+	     * @return {HTMLElement}
 	     */
 	    echartsProto.getDom = function () {
 	        return this._dom;
@@ -1679,7 +1679,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    /**
-	     * @param {HTMLDomElement} dom
+	     * @param {HTMLElement} dom
 	     * @param {Object} [theme]
 	     * @param {Object} opts
 	     * @param {number} [opts.devicePixelRatio] Use window.devicePixelRatio by default
@@ -1796,7 +1796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * @param  {HTMLDomElement} dom
+	     * @param  {HTMLElement} dom
 	     * @return {echarts~ECharts}
 	     */
 	    echarts.getInstanceByDom = function (dom) {
@@ -4288,12 +4288,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *  [4, 3, 2] => [4, 3, 2, 3]
 	     * @param {number|Array.<number>} val
 	     */
-	    formatUtil.normalizeCssArray = function (val) {
-	        var len = val.length;
+	    formatUtil.normalizeCssArray = function (val) {        
 	        if (typeof (val) === 'number') {
 	            return [val, val, val, val];
 	        }
-	        else if (len === 2) {
+	        var len = val.length;
+	        if (len === 2) {
 	            // vertical | horizontal
 	            return [val[0], val[1], val[0], val[1]];
 	        }
@@ -23492,7 +23492,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Set layout property.
-	     * @param {string} key
+	     * @param {string|Object} key
 	     * @param {*} [val]
 	     */
 	    listProto.setLayout = function (key, val) {
@@ -24212,12 +24212,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            scale.base = model.get('logBase');
 	        }
 
+	        var scaleType = scale.type;
 	        scale.setExtent(extent[0], extent[1]);
 	        scale.niceExtent({
 	            splitNumber: splitNumber,
 	            fixMin: fixMin,
 	            fixMax: fixMax,
-	            minInterval: scale.type === 'interval' ? model.get('minInterval') : null
+	            minInterval: (scaleType === 'interval' || scaleType === 'time')
+	                ? model.get('minInterval') : null,
+	            maxInterval: (scaleType === 'interval' || scaleType === 'time')
+	                ? model.get('maxInterval') : null
 	        });
 
 	        // If some one specified the min, max. And the default calculated interval
@@ -24747,8 +24751,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @param {number} [splitNumber = 5] Desired number of ticks
 	         * @param {number} [minInterval]
+	         * @param {number} [maxInterval]
 	         */
-	        niceTicks: function (splitNumber, minInterval) {
+	        niceTicks: function (splitNumber, minInterval, maxInterval) {
 	            splitNumber = splitNumber || 5;
 	            var extent = this._extent;
 	            var span = extent[1] - extent[0];
@@ -24762,7 +24767,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                extent.reverse();
 	            }
 
-	            var result = helper.intervalScaleNiceTicks(extent, splitNumber, minInterval);
+	            var result = helper.intervalScaleNiceTicks(
+	                extent, splitNumber, minInterval, maxInterval
+	            );
 
 	            this._intervalPrecision = result.intervalPrecision;
 	            this._interval = result.interval;
@@ -24775,7 +24782,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {number} [opt.splitNumber = 5] Given approx tick number
 	         * @param {boolean} [opt.fixMin=false]
 	         * @param {boolean} [opt.fixMax=false]
-	         * @param {boolean} [opt.minInterval=false]
+	         * @param {boolean} [opt.minInterval]
+	         * @param {boolean} [opt.maxInterval]
 	         */
 	        niceExtent: function (opt) {
 	            var extent = this._extent;
@@ -24808,7 +24816,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                extent[1] = 1;
 	            }
 
-	            this.niceTicks(opt.splitNumber, opt.minInterval);
+	            this.niceTicks(opt.splitNumber, opt.minInterval, opt.maxInterval);
 
 	            // var extent = this._extent;
 	            var interval = this._interval;
@@ -24853,15 +24861,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *                                Should be extent[0] < extent[1].
 	     * @param {number} splitNumber splitNumber should be >= 1.
 	     * @param {number} [minInterval]
+	     * @param {number} [maxInterval]
 	     * @return {Object} {interval, intervalPrecision, niceTickExtent}
 	     */
-	    helper.intervalScaleNiceTicks = function (extent, splitNumber, minInterval) {
+	    helper.intervalScaleNiceTicks = function (extent, splitNumber, minInterval, maxInterval) {
 	        var result = {};
 	        var span = extent[1] - extent[0];
 
 	        var interval = result.interval = numberUtil.nice(span / splitNumber, true);
 	        if (minInterval != null && interval < minInterval) {
 	            interval = result.interval = minInterval;
+	        }
+	        if (maxInterval != null && interval > maxInterval) {
+	            interval = result.interval = maxInterval;
 	        }
 	        // Tow more digital for tick.
 	        var precision = result.intervalPrecision = helper.getIntervalPrecision(interval);
@@ -25028,7 +25040,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                extent[0] = extent[1] - ONE_DAY;
 	            }
 
-	            this.niceTicks(opt.splitNumber);
+	            this.niceTicks(opt.splitNumber, opt.minInterval, opt.maxInterval);
 
 	            // var extent = this._extent;
 	            var interval = this._interval;
@@ -25044,7 +25056,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @override
 	         */
-	        niceTicks: function (approxTickNum) {
+	        niceTicks: function (approxTickNum, minInterval, maxInterval) {
 	            var timezoneOffset = this.getSetting('useUTC')
 	                ? 0 : numberUtil.getTimezoneOffset() * 60 * 1000;
 	            approxTickNum = approxTickNum || 10;
@@ -25052,6 +25064,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var extent = this._extent;
 	            var span = extent[1] - extent[0];
 	            var approxInterval = span / approxTickNum;
+
+	            if (minInterval != null && approxInterval < minInterval) {
+	                approxInterval = minInterval;
+	            }
+	            if (maxInterval != null && approxInterval > maxInterval) {
+	                approxInterval = maxInterval;
+	            }
+
 	            var scaleLevelsLen = scaleLevels.length;
 	            var idx = bisect(scaleLevels, approxInterval, 0, scaleLevelsLen);
 
@@ -28610,7 +28630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * @param {string} axisType
-	     * @param {ndumber} [axisIndex]
+	     * @param {number} [axisIndex]
 	     */
 	    gridProto.getAxis = function (axisType, axisIndex) {
 	        var axesMapOnDim = this._axesMap[axisType];
@@ -29723,6 +29743,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        splitNumber: 5
 	        // Minimum interval
 	        // minInterval: null
+	        // maxInterval: null
 	    }, defaultOption);
 
 	    // FIXME
@@ -38126,7 +38147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * }
 	     *
 	     * @static
-	     * @param {Objec} dataRoot Root node.
+	     * @param {Object} dataRoot Root node.
 	     * @param {module:echarts/model/Model} hostModel
 	     * @param {Array.<Object>} levelOptions
 	     * @return module:echarts/data/Tree
@@ -40371,7 +40392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @public
 	     * @param {Object} obj
-	     * @return {Oject} new object containers visual values.
+	     * @return {Object} new object containers visual values.
 	     *                 If no visuals, return null.
 	     */
 	    VisualMapping.retrieveVisuals = function (obj) {
@@ -48382,7 +48403,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {module:echarts/data/Graph~Node} nodes  node of sankey view
 	     * @param {module:echarts/data/Graph~Edge} edges  edge of sankey view
 	     * @param {number} height  the whole height of the area to draw the view
-	     * @param {numbber} nodeGap  the vertical distance between two nodes
+	     * @param {number} nodeGap  the vertical distance between two nodes
 	     *     in the same column.
 	     * @param {number} iterations  the number of iterations for the algorithm
 	     */
@@ -48922,6 +48943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                zrUtil.isArray(item) && item.unshift(index);
 	            });
 
+	            var defaultValueDimensions = this.defaultValueDimensions;
 	            var dimensions = [{
 	                name: baseAxisDim,
 	                otherDims: {
@@ -48930,12 +48952,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                dimsDef: ['base']
 	            }, {
 	                name: otherAxisDim,
-	                dimsDef: this.defaultValueDimensions.slice()
+	                dimsDef: defaultValueDimensions.slice()
 	            }];
 
 	            dimensions = completeDimensions(dimensions, data, {
 	                encodeDef: this.get('encode'),
-	                dimsDef: this.get('dimensions')
+	                dimsDef: this.get('dimensions'),
+	                // Consider empty data entry.
+	                dimCount: defaultValueDimensions.length + 1
 	            });
 
 	            var list = new List(dimensions, this);
@@ -50125,7 +50149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        // Must reinitialize effect if following configuration changed
 	        var DIFFICULT_PROPS = ['symbolType', 'period', 'rippleScale'];
-	        for (var i = 0; i < DIFFICULT_PROPS; i++) {
+	        for (var i = 0; i < DIFFICULT_PROPS.length; i++) {
 	            var propName = DIFFICULT_PROPS[i];
 	            if (oldEffectCfg[propName] !== effectCfg[propName]) {
 	                this.stopEffectAnimation();
@@ -52155,7 +52179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            path.__pictorialRepeatTimes = repeatTimes;
 	            bundle.add(path);
 
-	            var target = makeTarget(index, true);
+	            var target = makeTarget(index);
 
 	            updateAttr(
 	                path,
@@ -54701,7 +54725,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (zrUtil.isObject(lastProps) && zrUtil.isObject(newProps)) {
 	            var equals = true;
 	            zrUtil.each(newProps, function (item, key) {
-	                equals &= propsEqual(lastProps[key], item);
+	                equals = equals && propsEqual(lastProps[key], item);
 	            });
 	            return !!equals;
 	        }
@@ -55921,7 +55945,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Inspired by Lee Byron's paper Stacked Graphs - Geometry & Aesthetics
 	     *
 	     * @param  {Array.<Array>} data  the points in each layer
-	     * @return {Array}
+	     * @return {Object}
 	     */
 	    function computeBaseline(data) {
 	        var layerNum = data.length;
@@ -56289,7 +56313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * @public
-	         * @param {nubmer|string} dim
+	         * @param {number|string} dim
 	         * @param {number} [dataIndexInside=currDataIndexInside]
 	         * @return {number|string} value
 	         */
@@ -58544,7 +58568,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @param  {string|Function|Array.<number>} positionExpr
+	         * @param  {string|Function|Array.<number>|Object} positionExpr
 	         * @param  {number} x Mouse x
 	         * @param  {number} y Mouse y
 	         * @param  {boolean} confine Whether confine tooltip content in view rect.
@@ -61739,7 +61763,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *
 	     * @param {Object} area
 	     * @param {Array} targetInfoList
-	     * @return {Obejct|boolean}
+	     * @return {Object|boolean}
 	     */
 	    proto.findTargetInfo = function (area, ecModel) {
 	        var targetInfoList = this._targetInfoList;
@@ -62725,7 +62749,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * Convert a (x, y) point to time date
 	         *
-	         * @param  {string} point point
+	         * @param  {Array} point point
 	         * @return {Object}       date
 	         */
 	        pointToDate: function (point) {
@@ -72903,7 +72927,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * @param {module:echarts/model/Global}
-	     * @return {string}
+	     * @return {Object}
 	     * @inner
 	     */
 	    function getContentFromModel(ecModel) {
@@ -72940,7 +72964,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var itemSplitRegex = new RegExp('[' + ITEM_SPLITER + ']+', 'g');
 	    /**
 	     * @param {string} tsv
-	     * @return {Array.<Object>}
+	     * @return {Object}
 	     */
 	    function parseTSVContents(tsv) {
 	        var tsvLines = tsv.split(/\n+/g);
