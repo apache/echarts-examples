@@ -647,6 +647,10 @@ var EXAMPLES = [
         id: 'wind-barb',
         title: 'Wind Barb',
         type: 'custom'
+    }, {
+        id: 'cycle-plot',
+        title: 'Cycle Plot',
+        type: 'custom'
     }
 ];
 
