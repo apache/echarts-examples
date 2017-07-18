@@ -7,3 +7,6 @@ cp ../dist/echarts.min.js ../../echarts-examples/public/vendors/echarts/echarts-
 cp ../dist/echarts.js ../../echarts-examples/public/vendors/echarts/echarts.js
 rm -r ../../echarts-examples/public/vendors/echarts/extension
 cp -r ../dist/extension ../../echarts-examples/public/vendors/echarts/
+rm -r ../../echarts-examples/public/vendors/echarts/map
+cp -r ../map ../../echarts-examples/public/vendors/echarts/
+
