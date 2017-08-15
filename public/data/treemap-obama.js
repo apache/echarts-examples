@@ -121,15 +121,58 @@ $.get('data/asset/data/obama_budget_proposal_2012.json', function (obama_budget_
         };
     }
 
-    function createSeriesCommon() {
+    function createSeriesCommon(mode) {
         return {
             type: 'treemap',
+            tooltip: {
+                formatter: getTooltipFormatter(mode)
+            },
             label: {
-                show: true,
-                formatter: "{b}",
                 normal: {
-                    textStyle: {
-                        ellipsis: true
+                    position: 'insideTopLeft',
+                    formatter: function (params) {
+                        var arr = [
+                            '{name|' + params.name + '}',
+                            '{hr|}',
+                            '{budget|$ ' + echarts.format.addCommas(params.value[0]) + '} {label|budget}'
+                        ];
+
+                        mode !== 1 && arr.push(
+                            '{household|$ ' + echarts.format.addCommas((+params.value[3].toFixed(4)) * 1000) + '} {label|per household}'
+                        );
+
+                        return arr.join('\n');
+                    },
+                    rich: {
+                        budget: {
+                            fontSize: 22,
+                            lineHeight: 30,
+                            color: 'yellow'
+                        },
+                        household: {
+                            fontSize: 14,
+                            color: '#fff'
+                        },
+                        label: {
+                            fontSize: 9,
+                            backgroundColor: 'rgba(0,0,0,0.3)',
+                            color: '#fff',
+                            borderRadius: 2,
+                            padding: [2, 4],
+                            lineHeight: 25,
+                            align: 'right'
+                        },
+                        name: {
+                            fontSize: 12,
+                            color: '#fff'
+                        },
+                        hr: {
+                            width: '100%',
+                            borderColor: 'rgba(255,255,255,0.2)',
+                            borderWidth: 0.5,
+                            height: 0,
+                            lineHeight: 10
+                        }
                     }
                 }
             },
@@ -160,11 +203,10 @@ $.get('data/asset/data/obama_budget_proposal_2012.json', function (obama_budget_
         },
 
         tooltip: {
-            formatter: getTooltipFormatter(0)
         },
 
         series: modes.map(function (mode, idx) {
-            var seriesOpt = createSeriesCommon();
+            var seriesOpt = createSeriesCommon(idx);
             seriesOpt.name = mode;
             seriesOpt.top = 80;
             seriesOpt.visualDimension = idx === 2 ? 2 : null;

@@ -72,6 +72,10 @@ var EXAMPLES = [
         title: 'Real Estate',
         type: 'bar'
     },  {
+        id: 'bar-rich-text',
+        title: 'Rich Text',
+        type: 'bar'
+    },  {
         id: 'boxplot-light-velocity',
         title: 'Boxplot Light Velocity',
         type: 'boxplot'
@@ -394,6 +398,10 @@ var EXAMPLES = [
     },  {
         id: 'pie-simple',
         title: 'Referer of a website',
+        type: 'pie'
+    },  {
+        id: 'pie-rich-text',
+        title: 'Pie Special Label',
         type: 'pie'
     },  {
         id: 'radar-aqi',

@@ -81,7 +81,8 @@ $.getJSON('data/asset/data/wind-barb-hobart.json', function (rawData) {
                 style: {
                     text: api.value(dims.minTemp) + ' - ' + api.value(dims.maxTemp) + '°',
                     textFont: api.font({fontSize: 14}),
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    textVerticalAlign: 'bottom'
                 },
                 position: [point[0], 80]
             }]
