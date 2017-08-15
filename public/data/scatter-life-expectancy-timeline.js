@@ -1,4 +1,3 @@
-app.title = '各国人均寿命与GDP关系演变';
 
 myChart.showLoading();
 
@@ -78,13 +77,22 @@ $.get('data/asset/data/life-expectancy.json', function (data) {
             },
             backgroundColor: '#404a59',
             title: [{
-                'text': data.timeline[0],
+                text: data.timeline[0],
                 textAlign: 'center',
                 left: '63%',
                 top: '55%',
                 textStyle: {
                     fontSize: 100,
                     color: 'rgba(255, 255, 255, 0.7)'
+                }
+            }, {
+                text: '各国人均寿命与GDP关系演变',
+                left: 'center',
+                top: 10,
+                textStyle: {
+                    color: '#aaa',
+                    fontWeight: 'normal',
+                    fontSize: 20
                 }
             }],
             tooltip: {
@@ -101,7 +109,9 @@ $.get('data/asset/data/life-expectancy.json', function (data) {
                 }
             },
             grid: {
-                left: '12%',
+                top: 100,
+                containLabel: true,
+                left: 30,
                 right: '110'
             },
             xAxis: {

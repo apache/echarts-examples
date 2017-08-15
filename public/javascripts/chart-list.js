@@ -404,6 +404,10 @@ var EXAMPLES = [
         title: 'Pie Special Label',
         type: 'pie'
     },  {
+        id: 'pie-legend',
+        title: 'Pie with Scrollable Legend',
+        type: 'pie'
+    },  {
         id: 'radar-aqi',
         title: 'AQI - Radar Chart',
         type: 'radar'
