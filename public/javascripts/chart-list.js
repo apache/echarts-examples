@@ -348,6 +348,10 @@ var EXAMPLES = [
         title: 'Binning on Map',
         type: 'map'
     },  {
+        id: 'map-labels',
+        title: 'Rich Text Labels on Map',
+        type: 'map'
+    },  {
         id: 'mix-line-bar',
         title: 'Mixed Line and Bar',
         type: 'bar'

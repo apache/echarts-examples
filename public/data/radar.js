@@ -8,6 +8,14 @@ option = {
     },
     radar: {
         // shape: 'circle',
+        name: {
+            textStyle: {
+                color: '#fff',
+                backgroundColor: '#999',
+                borderRadius: 3,
+                padding: [3, 5]
+           }
+        },
         indicator: [
            { name: '销售（sales）', max: 6500},
            { name: '管理（Administration）', max: 16000},

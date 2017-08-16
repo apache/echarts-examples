@@ -23805,6 +23805,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            compatTextStyle(calendarOpt, 'yearLabel');
 	        });
 
+	        each(toArr(option.geo), function (geoOpt) {
+	            isObject(geoOpt) && compatLabelTextStyle(geoOpt.label);
+	        });
+
 	        compatLabelTextStyle(toObj(option.timeline).label);
 	        compatTextStyle(toObj(option.axisPointer), 'label');
 	        compatTextStyle(toObj(option.tooltip).axisPointer, 'label');
@@ -37590,6 +37594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // var zrUtil = require('zrender/lib/core/util');
 	    var graphic = __webpack_require__(20);
+	    var zrUtil = __webpack_require__(4);
 
 	    var MapDraw = __webpack_require__(185);
 
@@ -37686,14 +37691,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        r: 3
 	                    },
 	                    silent: true,
-	                    z2: 10
+	                    // Do not overlap the first series, on which labels are displayed.
+	                    z2: !offset ? 10 : 8
 	                });
 
 	                // First data on the same region
 	                if (!offset) {
 	                    var fullData = mapModel.mainSeries.getData();
 	                    var name = originalData.getName(idx);
-	                    var labelText = name;
+
 	                    var fullIndex = fullData.indexOfName(name);
 
 	                    var itemModel = originalData.getItemModel(idx);
@@ -37701,20 +37707,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var hoverLabelModel = itemModel.getModel('label.emphasis');
 
 	                    var polygonGroups = fullData.getItemGraphicEl(fullIndex);
-	                    circle.setStyle({
-	                        textPosition: 'bottom'
-	                    });
 
 	                    var onEmphasis = function () {
-	                        graphic.setTextStyle(circle.style, hoverLabelModel, {
-	                            text: hoverLabelModel.get('show') ? labelText : null
+	                        var hoverStyle = graphic.setTextStyle({}, hoverLabelModel, {
+	                            text: hoverLabelModel.get('show')
+	                                ? mapModel.getFormattedLabel(idx, 'emphasis')
+	                                : null
 	                        }, {isRectText: true, forMerge: true});
+	                        circle.style.extendFrom(hoverStyle);
+	                        // Make label upper than others if overlaps.
+	                        circle.__mapOriginalZ2 = circle.z2;
+	                        circle.z2 += 1;
 	                    };
 
 	                    var onNormal = function () {
 	                        graphic.setTextStyle(circle.style, labelModel, {
-	                            text: labelModel.get('show') ? labelText : null
+	                            text: labelModel.get('show')
+	                                ? zrUtil.retrieve2(
+	                                    mapModel.getFormattedLabel(idx, 'normal'),
+	                                    name
+	                                )
+	                                : null,
+	                            textPosition: labelModel.getShallow('position') || 'bottom'
 	                        }, {isRectText: true});
+
+	                        if (circle.__mapOriginalZ2 != null) {
+	                            circle.z2 = circle.__mapOriginalZ2;
+	                            circle.__mapOriginalZ2 = null;
+	                        }
 	                    };
 
 	                    polygonGroups.on('mouseover', onEmphasis)
@@ -37973,8 +37993,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                 || (itemLayout && itemLayout.showLabel)
 	                 ) {
 	                    var query = data ? dataIdx : region.name;
-	                    var formattedStr = mapOrGeoModel.getFormattedLabel(query, 'normal');
-	                    var hoverFormattedStr = mapOrGeoModel.getFormattedLabel(query, 'emphasis');
+	                    var formattedStr;
+	                    var hoverFormattedStr;
+	                    // Consider dataIdx not found.
+	                    if (!data || dataIdx >= 0) {
+	                        formattedStr = mapOrGeoModel.getFormattedLabel(query, 'normal');
+	                        hoverFormattedStr = mapOrGeoModel.getFormattedLabel(query, 'emphasis');
+	                    }
 	                    var textEl = new graphic.Text({
 	                        position: region.center.slice(),
 	                        scale: [1 / scale[0], 1 / scale[1]],
@@ -37989,7 +38014,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    });
 
 	                    graphic.setTextStyle(textEl.hoverStyle = {}, hoverLabelModel, {
-	                        text: hoverShowLabel ? (hoverFormattedStr || region.name) : null
+	                        text: hoverShowLabel ? hoverFormattedStr : null
 	                    }, {forMerge: true});
 
 	                    regionGroup.add(textEl);
@@ -59745,7 +59770,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            scrollDataIndex != null && api.dispatchAction({
 	                type: 'legendScroll',
-	                scrollDataIndex: scrollDataIndex
+	                scrollDataIndex: scrollDataIndex,
+	                legendId: legendModel.id
 	            });
 	        },
 
@@ -59769,12 +59795,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var pageText = controllerGroup.childOfName('pageText');
 	            var pageFormatter = legendModel.get('pageFormatter');
 	            var pageIndex = pageInfo.pageIndex;
+	            var current = pageIndex != null ? pageIndex + 1 : 0;
+	            var total = pageIndex.pageCount;
 
 	            pageText && pageFormatter && pageText.setStyle(
 	                'text',
-	                pageFormatter
-	                    .replace('{current}', pageIndex != null ? pageIndex + 1 : 0)
-	                    .replace('{total}', pageInfo.pageCount)
+	                zrUtil.isString(pageFormatter)
+	                    ? pageFormatter.replace('{current}', current).replace('{total}', total)
+	                    : pageFormatter({current: current, total: total})
 	            );
 	        },
 
@@ -59908,14 +59936,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @property {string} scrollDataIndex
 	     */
 	    __webpack_require__(1).registerAction(
-	        'legendScroll', 'legendscrolled',
+	        'legendScroll', 'legendscroll',
 	        function (payload, ecModel) {
 	            var scrollDataIndex = payload.scrollDataIndex;
-	            var legendModel = ecModel.findComponents({mainType: 'legend', subType: 'scroll'})[0];
 
-	            if (scrollDataIndex != null && legendModel) {
-	                legendModel.setScrollDataIndex(scrollDataIndex);
-	            }
+	            scrollDataIndex != null && ecModel.eachComponent(
+	                {mainType: 'legend', subType: 'scroll', query: payload},
+	                function (legendModel) {
+	                    legendModel.setScrollDataIndex(scrollDataIndex);
+	                }
+	            );
 	        }
 	    );
 
