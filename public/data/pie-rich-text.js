@@ -5,6 +5,11 @@ var weatherIcons = {
 };
 
 option = {
+    title: {
+        text: '天气情况统计',
+        subtext: '虚构数据',
+        left: 'center'
+    },
     tooltip : {
         trigger: 'item',
         formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -14,19 +19,18 @@ option = {
         // top: 'middle',
         bottom: 10,
         left: 'center',
-        data: ['乌鲁木齐', '武汉','成都','上海','北京']
+        data: ['西凉', '益州','兖州','荆州','幽州']
     },
     series : [
         {
-            name: '访问来源',
             type: 'pie',
-            radius : '55%',
+            radius : '65%',
             center: ['50%', '50%'],
             selectedMode: 'single',
             data:[
                 {
                     value:1548,
-                    name: '北京',
+                    name: '幽州',
                     label: {
                         normal: {
                             formatter: [
@@ -111,10 +115,10 @@ option = {
                         }
                     }
                 },
-                {value:535, name: '上海'},
-                {value:510, name: '成都'},
-                {value:634, name: '武汉'},
-                {value:735, name: '乌鲁木齐'}
+                {value:535, name: '荆州'},
+                {value:510, name: '兖州'},
+                {value:634, name: '益州'},
+                {value:735, name: '西凉'}
             ],
             itemStyle: {
                 emphasis: {
