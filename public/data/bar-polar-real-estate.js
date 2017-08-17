@@ -44,7 +44,7 @@ option = {
         show: true,
         formatter: function (params) {
             var id = params.dataIndex;
-            return cities[id] + '<br>最高：' + data[id][0] + '<br>最低：' + data[id][1] + '<br>平均：' + data[id][2];
+            return cities[id] + '<br>最低：' + data[id][0] + '<br>最高：' + data[id][1] + '<br>平均：' + data[id][2];
         }
     },
     radiusAxis: {
