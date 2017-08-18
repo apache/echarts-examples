@@ -190,16 +190,19 @@ $.get('data/asset/data/obama_budget_proposal_2012.json', function (obama_budget_
 
     myChart.setOption(option = {
         title: {
+            top: 5,
             left: 'center',
             text: 'How $3.7 Trillion is Spent',
-            subtext: 'Obama’s 2012 Budget Proposal'
+            subtext: 'Obama’s 2012 Budget Proposal',
+            backgroundColor: 'rgb(243,243,243)'
         },
 
         legend: {
             data: modes,
             selectedMode: 'single',
-            top: 50,
-            itemGap: 5
+            top: 55,
+            itemGap: 5,
+            backgroundColor: 'rgb(243,243,243)'
         },
 
         tooltip: {
