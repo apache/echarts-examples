@@ -9682,7 +9682,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            // Compatible with textBaseline.
 	            var textVerticalAlign = style.textVerticalAlign || style.textBaseline;
-	            textAlign === 'center' && (textAlign = 'middle');
+	            textVerticalAlign === 'center' && (textVerticalAlign = 'middle');
 	            style.textVerticalAlign = (
 	                textVerticalAlign == null || VALID_TEXT_VERTICAL_ALIGN[textVerticalAlign]
 	            ) ? textVerticalAlign : 'top';
@@ -23805,6 +23805,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            compatTextStyle(calendarOpt, 'yearLabel');
 	        });
 
+	        // radar.name.textStyle
+	        each(toArr(option.radar), function (radarOpt) {
+	            compatTextStyle(radarOpt, 'name');
+	        });
+
 	        each(toArr(option.geo), function (geoOpt) {
 	            isObject(geoOpt) && compatLabelTextStyle(geoOpt.label);
 	        });
@@ -31716,12 +31721,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                     return;
 	                }
 
+	                var itemLabelModel = labelModel;
 	                if (categoryData && categoryData[tickVal] && categoryData[tickVal].textStyle) {
-	                    labelModel = new Model(
+	                    itemLabelModel = new Model(
 	                        categoryData[tickVal].textStyle, labelModel, axisModel.ecModel
 	                    );
 	                }
-	                var textColor = labelModel.getTextColor()
+
+	                var textColor = itemLabelModel.getTextColor()
 	                    || axisModel.get('axisLine.lineStyle.color');
 
 	                var tickCoord = axis.dataToCoord(tickVal);
@@ -31740,12 +31747,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    z2: 10
 	                });
 
-	                graphic.setTextStyle(textEl.style, labelModel, {
+	                graphic.setTextStyle(textEl.style, itemLabelModel, {
 	                    text: labels[index],
-	                    textAlign: labelModel.getShallow('align', true)
+	                    textAlign: itemLabelModel.getShallow('align', true)
 	                        || labelLayout.textAlign,
-	                    textVerticalAlign: labelModel.getShallow('verticalAlign', true)
-	                        || labelModel.getShallow('baseline', true)
+	                    textVerticalAlign: itemLabelModel.getShallow('verticalAlign', true)
+	                        || itemLabelModel.getShallow('baseline', true)
 	                        || labelLayout.textVerticalAlign,
 	                    textFill: typeof textColor === 'function'
 	                        ? textColor(
@@ -35276,7 +35283,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var axisLine = this.get('axisLine');
 	            var axisTick = this.get('axisTick');
 	            var axisLabel = this.get('axisLabel');
-	            var nameTextStyle = this.get('name.textStyle');
+	            var nameTextStyle = this.get('name');
 	            var showName = this.get('name.show');
 	            var nameFormatter = this.get('name.formatter');
 	            var nameGap = this.get('nameGap');
@@ -65828,7 +65835,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    x: groupRect.x - padding[3],
 	                    y: groupRect.y - padding[0],
 	                    width: groupRect.width + padding[1] + padding[3],
-	                    height: groupRect.height + padding[0] + padding[2]
+	                    height: groupRect.height + padding[0] + padding[2],
+	                    r: titleModel.get('borderRadius')
 	                },
 	                style: style,
 	                silent: true
