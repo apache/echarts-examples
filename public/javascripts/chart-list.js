@@ -72,6 +72,10 @@ var EXAMPLES = [
         title: 'Real Estate',
         type: 'bar'
     },  {
+        id: 'bar-label-rotation',
+        title: 'Label Rotation',
+        type: 'bar'
+    },  {
         id: 'bar-rich-text',
         title: 'Rich Text',
         type: 'bar'

@@ -1636,9 +1636,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @type {number}
 	         */
-	        version: '3.6.2',
+	        version: '3.7.0',
 	        dependencies: {
-	            zrender: '3.5.2'
+	            zrender: '3.6.0'
 	        }
 	    };
 
@@ -7223,7 +7223,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        getTextColor: function (noDefault) {
 	            var ecModel = this.ecModel;
 	            return this.getShallow('color')
-	                || (!noDefault && ecModel && ecModel.get(PATH_COLOR));
+	                || (
+	                    (!noDefault && ecModel) ? ecModel.get(PATH_COLOR) : null
+	                );
 	        },
 
 	        /**
@@ -7701,17 +7703,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            opt.forMerge = true;
 	        }
 	        else {
-	            opt.defaultTextColor = defaultColor;
-	            opt.getDefaultTextColor = getDefaultTextColorForSetText;
+	            // Support setting color as 'auto' to get visual color.
+	            opt.defaultTextColor = opt.autoColor = defaultColor;
+	            opt.checkInside = checkInsideForSetText;
 	        }
 	        setTextStyleCommon(textStyle, labelModel, opt);
 	        textStyle.host && textStyle.host.dirty && textStyle.host.dirty(false);
 	    };
 
-	    function getDefaultTextColorForSetText(labelModel, opt, textPosition) {
-	        return (textPosition && textPosition.indexOf('inside') >= 0)
-	            ? '#fff'
-	            : opt.defaultTextColor;
+	    function checkInsideForSetText(labelModel, textPosition) {
+	        return textPosition && textPosition.indexOf('inside') >= 0;
 	    }
 
 	    /**
@@ -7721,7 +7722,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *      autoColor: string, specify a color when color is 'auto',
 	     *                 for textFill, textStroke, textBackgroundColor, and textBorderColor,
 	     *      defaultTextColor: string,
-	     *      getDefaultTextColor: function, higher priority than `defaultTextColor`.
+	     *      checkInside: function, higher priority than `defaultTextColor`.
 	     *      forceRich: boolean,
 	     *      forMerge: boolean
 	     * }
@@ -7731,7 +7732,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        opt = opt || EMPTY_OBJ;
 
 	        if (opt.isRectText) {
-	            textStyle.textPosition = textStyleModel.getShallow('position') || (opt.forMerge ? null : 'inside');
+	            var textPosition = textStyleModel.getShallow('position')
+	                || (opt.forMerge ? null : 'inside');
+	            // 'outside' is not a valid zr textPostion value, but used
+	            // in bar series, and magric type should be considered.
+	            textPosition === 'outside' && (textPosition = 'top');
+	            textStyle.textPosition = textPosition;
 	            textStyle.textOffset = textStyleModel.getShallow('offset');
 	            var labelRotate = textStyleModel.getShallow('rotate');
 	            labelRotate != null && (labelRotate *= Math.PI / 180);
@@ -7744,12 +7750,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var ecModel = textStyleModel.ecModel;
 	        var globalTextStyle = ecModel && ecModel.option.textStyle;
 
-	        var rich = textStyleModel.getShallow('rich');
+	        // Consider case:
+	        // {
+	        //     data: [{
+	        //         value: 12,
+	        //         label: {
+	        //             normal: {
+	        //                 rich: {
+	        //                     // no 'a' here but using parent 'a'.
+	        //                 }
+	        //             }
+	        //         }
+	        //     }],
+	        //     rich: {
+	        //         a: { ... }
+	        //     }
+	        // }
+	        var richItemNames = getRichItemNames(textStyleModel);
 	        var richResult;
-	        if (rich) {
+	        if (richItemNames) {
 	            richResult = {};
-	            for (var name in rich) {
-	                if (rich.hasOwnProperty(name)) {
+	            for (var name in richItemNames) {
+	                if (richItemNames.hasOwnProperty(name)) {
 	                    // Cascade is supported in rich.
 	                    var richTextStyle = textStyleModel.getModel(['rich', name]);
 	                    // In rich, never `disableBox`.
@@ -7768,31 +7790,81 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return textStyle;
 	    }
 
-	    function setTokenTextStyle(textStyle, textStyleModel, defaultTextStyle, opt, isBlock) {
-	        var textPosition = textStyle.textPosition;
+	    // Consider case:
+	    // {
+	    //     data: [{
+	    //         value: 12,
+	    //         label: {
+	    //             normal: {
+	    //                 rich: {
+	    //                     // no 'a' here but using parent 'a'.
+	    //                 }
+	    //             }
+	    //         }
+	    //     }],
+	    //     rich: {
+	    //         a: { ... }
+	    //     }
+	    // }
+	    function getRichItemNames(textStyleModel) {
+	        // Use object to remove duplicated names.
+	        var richItemNameMap;
+	        while (textStyleModel && textStyleModel !== textStyleModel.ecModel) {
+	            var rich = (textStyleModel.option || EMPTY_OBJ).rich;
+	            if (rich) {
+	                richItemNameMap = richItemNameMap || {};
+	                for (var name in rich) {
+	                    if (rich.hasOwnProperty(name)) {
+	                        richItemNameMap[name] = 1;
+	                    }
+	                }
+	            }
+	            textStyleModel = textStyleModel.parentModel;
+	        }
+	        return richItemNameMap;
+	    }
+
+	    function setTokenTextStyle(textStyle, textStyleModel, globalTextStyle, opt, isBlock) {
+	        var forMerge = opt.forMerge;
+
 	        // In merge mode, default value should not be given.
-	        defaultTextStyle = !opt.forMerge && defaultTextStyle || EMPTY_OBJ;
+	        globalTextStyle = !forMerge && globalTextStyle || EMPTY_OBJ;
 
-	        textStyle.textFill = getAutoColor(textStyleModel.getTextColor(opt.forMerge), opt) || (
-	            opt.forMerge
-	                ? null
-	                : opt.getDefaultTextColor
-	                ? opt.getDefaultTextColor(textStyleModel, opt, textPosition)
-	                : opt.defaultTextColor
-	        );
+	        var textFill = getAutoColor(textStyleModel.getShallow('color'));
+	        var textStroke = getAutoColor(textStyleModel.getShallow('textBorderColor'));
+	        var textLineWidth = textStyleModel.getShallow('textBorderWidth');
 
-	        textStyle.textStroke = getAutoColor(
-	            textStyleModel.getShallow('textBorderColor') || defaultTextStyle.textBorderColor
-	        );
-	        textStyle.textLineWidth = textStyleModel.getShallow('textBorderWidth');
+	        if (!forMerge) {
+	            textFill == null && (textFill = globalTextStyle.color);
+	            textStroke == null && (textStroke = globalTextStyle.textBorderColor);
+	            textLineWidth == null && (textLineWidth = globalTextStyle.textBorderWidth);
+
+	            if (textFill == null
+	                && opt.checkInside
+	                && opt.checkInside(textStyleModel, textStyle.textPosition)
+	            ) {
+	                textFill = '#fff';
+	                // Consider text with #fff overflow its container.
+	                if (textStroke == null) {
+	                    textStroke = opt.defaultTextColor;
+	                    textLineWidth == null && (textLineWidth = 2);
+	                }
+	            }
+
+	            textFill == null && (textFill = opt.defaultTextColor);
+	        }
+
+	        textStyle.textFill = textFill;
+	        textStyle.textStroke = textStroke;
+	        textStyle.textLineWidth = textLineWidth;
 
 	        // Do not use `getFont` here, because merge should be supported, where
 	        // part of these properties may be changed in emphasis style, and the
 	        // others should remain their original value got from normal style.
-	        textStyle.fontStyle = textStyleModel.getShallow('fontStyle') || defaultTextStyle.fontStyle;
-	        textStyle.fontWeight = textStyleModel.getShallow('fontWeight') || defaultTextStyle.fontWeight;
-	        textStyle.fontSize = textStyleModel.getShallow('fontSize') || defaultTextStyle.fontSize;
-	        textStyle.fontFamily = textStyleModel.getShallow('fontFamily') || defaultTextStyle.fontFamily;
+	        textStyle.fontStyle = textStyleModel.getShallow('fontStyle') || globalTextStyle.fontStyle;
+	        textStyle.fontWeight = textStyleModel.getShallow('fontWeight') || globalTextStyle.fontWeight;
+	        textStyle.fontSize = textStyleModel.getShallow('fontSize') || globalTextStyle.fontSize;
+	        textStyle.fontFamily = textStyleModel.getShallow('fontFamily') || globalTextStyle.fontFamily;
 
 	        textStyle.textAlign = textStyleModel.getShallow('align');
 	        textStyle.textVerticalAlign = textStyleModel.getShallow('verticalAlign')
@@ -7817,13 +7889,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        textStyle.textShadowColor = textStyleModel.getShallow('textShadowColor')
-	            || defaultTextStyle.textShadowColor;
+	            || globalTextStyle.textShadowColor;
 	        textStyle.textShadowBlur = textStyleModel.getShallow('textShadowBlur')
-	            || defaultTextStyle.textShadowBlur;
+	            || globalTextStyle.textShadowBlur;
 	        textStyle.textShadowOffsetX = textStyleModel.getShallow('textShadowOffsetX')
-	            || defaultTextStyle.textShadowOffsetX;
+	            || globalTextStyle.textShadowOffsetX;
 	        textStyle.textShadowOffsetY = textStyleModel.getShallow('textShadowOffsetY')
-	            || defaultTextStyle.textShadowOffsetY;
+	            || globalTextStyle.textShadowOffsetY;
 	    }
 
 	    function getAutoColor(color, opt) {
@@ -9357,9 +9429,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        textHeight: null,
 
 	        /**
+	         * textStroke may be set as some color as a default
+	         * value in upper applicaion, where the default value
+	         * of textLineWidth should be 0 to make sure that
+	         * user can choose to do not use text stroke.
 	         * @type {number}
 	         */
-	        textLineWidth: 1,
+	        textLineWidth: 0,
 
 	        /**
 	         * @type {number}
@@ -10071,7 +10147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {number} style
 	     */
 	    var getStroke = helper.getStroke = function (stroke, lineWidth) {
-	        return (stroke == null || stroke === 'none' || lineWidth < 0)
+	        return (stroke == null || lineWidth <= 0 || stroke === 'transparent' || stroke === 'none')
 	            ? null
 	            // TODO pattern and gradient?
 	            : (stroke.image || stroke.colorStops)
@@ -19406,7 +19482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @type {string}
 	     */
-	    zrender.version = '3.5.2';
+	    zrender.version = '3.6.0';
 
 	    /**
 	     * Initializing a zrender instance
@@ -19591,7 +19667,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Repaint the canvas immediately
 	         */
 	        refreshImmediately: function () {
-	            var start = new Date();
+	            // var start = new Date();
 	            // Clear needsRefresh ahead to avoid something wrong happens in refresh
 	            // Or it will cause zrender refreshes again and again.
 	            this._needsRefresh = false;
@@ -19600,12 +19676,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	             * Avoid trigger zr.refresh in Element#beforeUpdate hook
 	             */
 	            this._needsRefresh = false;
-	            var end = new Date();
+	            // var end = new Date();
 
-	            var log = document.getElementById('log');
-	            if (log) {
-	                log.innerHTML = log.innerHTML + '<br>' + (end - start);
-	            }
+	            // var log = document.getElementById('log');
+	            // if (log) {
+	            //     log.innerHTML = log.innerHTML + '<br>' + (end - start);
+	            // }
 	        },
 
 	        /**
@@ -23716,6 +23792,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        compatLabelTextStyle(seriesOpt.label);
 	        // treemap
 	        compatLabelTextStyle(seriesOpt.upperLabel);
+	        // graph
+	        compatLabelTextStyle(seriesOpt.edgeLabel);
 
 	        var markPoint = seriesOpt.markPoint;
 	        compatItemStyle(markPoint);
@@ -29070,16 +29148,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        if (valueDim != null) {
 	            graphic.setText(elStyle, labelModel, color);
+	            var normalText = seriesModel.getFormattedLabel(idx, 'normal');
+	            var value = data.get(valueDim, idx);
 	            elStyle.text = labelModel.getShallow('show')
 	                ? zrUtil.retrieve2(
-	                    seriesModel.getFormattedLabel(idx, 'normal'),
-	                    data.get(valueDim, idx)
+	                    normalText,
+	                    value
 	                )
 	                : null;
 
 	            graphic.setText(hoverItemStyle, hoverLabelModel, false);
 	            hoverItemStyle.text = hoverLabelModel.getShallow('show')
-	                ? seriesModel.getFormattedLabel(idx, 'emphasis')
+	                ? zrUtil.retrieve3(
+	                    seriesModel.getFormattedLabel(idx, 'emphasis'),
+	                    normalText,
+	                    value
+	                )
 	                : null;
 	        }
 
@@ -33961,6 +34045,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var labelHoverModel = itemModel.getModel('label.emphasis');
 	        var labelLineModel = itemModel.getModel('labelLine.normal');
 	        var labelLineHoverModel = itemModel.getModel('labelLine.emphasis');
+	        var visualColor = data.getItemVisual(idx, 'color');
 
 	        graphic.setTextStyle(labelText.style, labelModel, {
 	            textVerticalAlign: labelLayout.verticalAlign,
@@ -33968,9 +34053,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            opacity: data.getItemVisual(idx, 'opacity'),
 	            text: zrUtil.retrieve(data.hostModel.getFormattedLabel(idx, 'normal'), data.getName(idx))
 	        }, {
-	            defaultTextColor: data.getItemVisual(idx, 'color'),
-	            getDefaultTextColor: function (model, opt) {
-	                return labelLayout.inside ? '#fff' : opt.defaultTextColor;
+	            defaultTextColor: visualColor,
+	            autoColor: visualColor,
+	            checkInside: function (model, opt) {
+	                return labelLayout.inside;
 	            }
 	        });
 
@@ -37718,7 +37804,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var onEmphasis = function () {
 	                        var hoverStyle = graphic.setTextStyle({}, hoverLabelModel, {
 	                            text: hoverLabelModel.get('show')
-	                                ? mapModel.getFormattedLabel(idx, 'emphasis')
+	                                ? zrUtil.retrieve3(
+	                                    mapModel.getFormattedLabel(idx, 'emphasis'),
+	                                    mapModel.getFormattedLabel(idx, 'normal'),
+	                                    name
+	                                )
 	                                : null
 	                        }, {isRectText: true, forMerge: true});
 	                        circle.style.extendFrom(hoverStyle);
@@ -38021,7 +38111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    });
 
 	                    graphic.setTextStyle(textEl.hoverStyle = {}, hoverLabelModel, {
-	                        text: hoverShowLabel ? hoverFormattedStr : null
+	                        text: hoverShowLabel ? (hoverFormattedStr || formattedStr || region.name) : null
 	                    }, {forMerge: true});
 
 	                    regionGroup.add(textEl);
@@ -44238,11 +44328,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    seriesModel.getFormattedLabel(idx, 'normal', lineData.dataType),
 	                    defaultText
 	                )
-	            }, {defaultTextColor: defaultLabelColor});
+	            }, {
+	                defaultTextColor: defaultLabelColor,
+	                autoColor: defaultLabelColor
+	            });
 
 	            label.__textAlign = labelStyle.textAlign;
 	            label.__verticalAlign = labelStyle.textVerticalAlign;
-	            label.__position = labelStyle.position;
+	            // 'start', 'middle', 'end'
+	            label.__position = labelModel.get('position') || 'middle';
 	        }
 	        else {
 	            label.setStyle('text', null);
@@ -46125,15 +46219,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var labelHoverModel = itemModel.getModel('label.emphasis');
 	        var labelLineModel = itemModel.getModel('labelLine.normal');
 	        var labelLineHoverModel = itemModel.getModel('labelLine.emphasis');
+	        var visualColor = data.getItemVisual(idx, 'color');
 
 	        graphic.setTextStyle(labelText.style, labelModel, {
 	            textAlign: labelLayout.textAlign,
 	            textVerticalAlign: labelLayout.verticalAlign,
 	            text: zrUtil.retrieve(data.hostModel.getFormattedLabel(idx, 'normal'), data.getName(idx))
 	        }, {
-	            defaultTextColor: data.getItemVisual(idx, 'color'),
-	            getDefaultTextColor: function (model, opt) {
-	                return labelLayout.inside ? '#fff' : opt.defaultTextColor;
+	            defaultTextColor: visualColor,
+	            autoColor: visualColor,
+	            checkInside: function (model, opt) {
+	                return labelLayout.inside;
 	            }
 	        });
 
@@ -57762,7 +57858,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (currLabelValueDim != null) {
 	                graphicUtil.setText(itemStyle, currLabelEmphasisModel, false);
 	                itemStyle.text = currLabelEmphasisModel.getShallow('show')
-	                    ? customSeries.getFormattedLabel(dataIndexInside, 'emphasis')
+	                    ? zrUtil.retrieve3(
+	                        customSeries.getFormattedLabel(dataIndexInside, 'emphasis'),
+	                        customSeries.getFormattedLabel(dataIndexInside, 'normal'),
+	                        data.get(currLabelValueDim, dataIndexInside)
+	                    )
 	                    : null;
 	            }
 
@@ -59803,7 +59903,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var pageFormatter = legendModel.get('pageFormatter');
 	            var pageIndex = pageInfo.pageIndex;
 	            var current = pageIndex != null ? pageIndex + 1 : 0;
-	            var total = pageIndex.pageCount;
+	            var total = pageInfo.pageCount;
 
 	            pageText && pageFormatter && pageText.setStyle(
 	                'text',
@@ -60858,7 +60958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        // Consider browser compatibility.
 	        // IE8 does not support getComputedStyle.
-	        if (document.defaultView.getComputedStyle) {
+	        if (document.defaultView && document.defaultView.getComputedStyle) {
 	            var stl = document.defaultView.getComputedStyle(el);
 	            if (stl) {
 	                width += parseInt(stl.paddingLeft, 10) + parseInt(stl.paddingRight, 10)
@@ -77064,6 +77164,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	        getViewportRoot: function () {
 	            return this._vmlViewport;
+	        },
+
+	        getViewportRootOffset: function () {
+	            var viewportRoot = this.getViewportRoot();
+	            if (viewportRoot) {
+	                return {
+	                    offsetLeft: viewportRoot.offsetLeft || 0,
+	                    offsetTop: viewportRoot.offsetTop || 0
+	                };
+	            }
 	        },
 
 	        /**
