@@ -1,3 +1,9 @@
+var upColor = '#ec0000';
+var upBorderColor = '#8A0000';
+var downColor = '#00da3c';
+var downBorderColor = '#008F28';
+
+
 // 数据意义：开盘(open)，收盘(close)，最低(lowest)，最高(highest)
 var data0 = splitData([
     ['2013/1/24', 2320.26,2320.26,2287.3,2362.94],
@@ -177,6 +183,14 @@ option = {
             name: '日K',
             type: 'candlestick',
             data: data0.values,
+            itemStyle: {
+                normal: {
+                    color: upColor,
+                    color0: downColor,
+                    borderColor: upBorderColor,
+                    borderColor0: downBorderColor
+                }
+            },
             markPoint: {
                 label: {
                     normal: {

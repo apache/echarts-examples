@@ -1,3 +1,6 @@
+var upColor = '#00da3c';
+var downColor = '#ec0000';
+
 
 function splitData(rawData) {
     var categoryData = [];
@@ -37,7 +40,7 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
     var data = splitData(rawData);
 
     myChart.setOption(option = {
-        backgroundColor: '#eee',
+        backgroundColor: '#fff',
         animation: false,
         legend: {
             bottom: 10,
@@ -87,14 +90,15 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
             }
         },
         visualMap: {
+            show: false,
             seriesIndex: 5,
             dimension: 2,
             pieces: [{
                 value: 1,
-                color: '#2f4554'
+                color: downColor
             }, {
                 value: -1,
-                color: '#c23531'
+                color: upColor
             }]
         },
         grid: [
@@ -192,6 +196,8 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 data: data.values,
                 itemStyle: {
                     normal: {
+                        color: upColor,
+                        color0: downColor,
                         borderColor: null,
                         borderColor0: null
                     }
