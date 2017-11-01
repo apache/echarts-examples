@@ -63,8 +63,8 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 var obj = {top: 10};
                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
                 return obj;
-            },
-            extraCssText: 'width: 170px'
+            }
+            // extraCssText: 'width: 170px'
         },
         axisPointer: {
             link: {xAxisIndex: 'all'},
@@ -141,19 +141,19 @@ $.get('data/asset/data/stock-DJI.json', function (rawData) {
                 axisLabel: {show: false},
                 splitNumber: 20,
                 min: 'dataMin',
-                max: 'dataMax',
-                axisPointer: {
-                    label: {
-                        formatter: function (params) {
-                            var seriesValue = (params.seriesData[0] || {}).value;
-                            return params.value
-                            + (seriesValue != null
-                                ? '\n' + echarts.format.addCommas(seriesValue)
-                                : ''
-                            );
-                        }
-                    }
-                }
+                max: 'dataMax'
+                // axisPointer: {
+                //     label: {
+                //         formatter: function (params) {
+                //             var seriesValue = (params.seriesData[0] || {}).value;
+                //             return params.value
+                //             + (seriesValue != null
+                //                 ? '\n' + echarts.format.addCommas(seriesValue)
+                //                 : ''
+                //             );
+                //         }
+                //     }
+                // }
             }
         ],
         yAxis: [
