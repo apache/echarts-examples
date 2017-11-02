@@ -204,6 +204,10 @@ var EXAMPLES = [
         title: 'Les Miserables',
         type: 'graph'
     },  {
+        id: 'graph-force-dynamic',
+        title: 'Graph Dynamic',
+        type: 'graph'
+    },  {
         id: 'grid-multiple',
         title: 'Rainfall and Water Flow',
         type: 'line'
