@@ -29,7 +29,8 @@ $.get('data/asset/data/flare.json', function (data) {
                         position: 'top',
                         rotate: -90,
                         verticalAlign: 'middle',
-                        align: 'right'
+                        align: 'right',
+                        fontSize: 9
                     }
                 },
 

@@ -531,6 +531,22 @@ var EXAMPLES = [
         id: 'scatter-polynomial-regression',
         title: 'Polynomial Regression',
         type: 'scatter'
+    }, {
+        id: 'tree-basic',
+        title: 'Basic Tree',
+        type: 'tree'
+    }, {
+        id: 'tree-vertical',
+        title: 'Vertical Tree',
+        type: 'tree'
+    }, {
+        id: 'tree-legend',
+        title: 'Multiple Trees',
+        type: 'tree'
+    }, {
+        id: 'tree-radial',
+        title: 'Radial Tree',
+        type: 'tree'
     },  {
         id: 'treemap-disk',
         title: 'Disk Usage',
@@ -689,6 +705,7 @@ var CHART_TYPES = {
     boxplot: 'Boxplot',
     heatmap: 'Heatmap',
     graph: 'Graph',
+    tree: 'Tree',
     treemap: 'Treemap',
     parallel: 'Parallel',
     sankey: 'Sankey',

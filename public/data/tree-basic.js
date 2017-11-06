@@ -2,6 +2,10 @@ myChart.showLoading();
 $.get('data/asset/data/flare.json', function (data) {
     myChart.hideLoading();
 
+    echarts.util.each(data.children, function (datum, index) {
+        index % 2 === 0 && (datum.collapsed = true);
+    });
+
     myChart.setOption(option = {
         tooltip: {
             trigger: 'item',
@@ -24,7 +28,8 @@ $.get('data/asset/data/flare.json', function (data) {
                     normal: {
                         position: 'left',
                         verticalAlign: 'middle',
-                        align: 'right'
+                        align: 'right',
+                        fontSize: 9
                     }
                 },
 
