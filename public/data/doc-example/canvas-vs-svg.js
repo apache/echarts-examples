@@ -10,18 +10,15 @@ option = {
     color: ['transparent', themeColor],
     legend: {
         data: [{
-            name: 'Canvas',
+            name: 'Canvas 渲染器',
             icon: 'path://M0,0 L58,0 L58,38 L0,38 L0,0 Z M6,6 L6,32 L53,32 L53,6 L6,6 Z'
         }, {
-            name: 'SVG',
+            name: 'SVG 渲染器',
             icon: 'rect'
         }],
         top: 25
     },
     title: [{
-        text: 'ECharts Canvas vs SVG 渲染性能',
-        left: 'center'
-    }, {
         subtext: 'PC端',
         subtextStyle: {
             color: '#666',
@@ -39,10 +36,16 @@ option = {
         top: 50
     }],
     xAxis: [{
-        data: ['折线图\n1000数据点', '柱状图\n1000数据点', '饼图\n100系列'],
+        data: ['折线图\n1000数据', '柱状图\n1000数据', '饼图\n100系列'],
+        axisLabel: {
+            interval: 0
+        },
         axisLine: axisLine
     }, {
-        data: ['折线图\n100数据点', '柱状图\n100数据点', '饼图\n10系列'],
+        data: ['折线图\n100数据', '柱状图\n100数据', '饼图\n10系列'],
+        axisLabel: {
+            interval: 0
+        },
         gridIndex: 1,
         axisLine: axisLine
     }],
@@ -68,7 +71,7 @@ option = {
         top: 100
     }],
     series: [{
-        name: 'Canvas',
+        name: 'Canvas 渲染器',
         type: 'scatter',
         data: [],
         itemStyle: {
@@ -77,7 +80,7 @@ option = {
             }
         }
     }, {
-        name: 'Canvas',
+        name: 'Canvas 渲染器',
         type: 'bar',
         data: [30, 58, 19],
         itemStyle: {
@@ -89,11 +92,11 @@ option = {
         barGap: '30%',
         barCategoryGap: '40%'
     }, {
-        name: 'SVG',
+        name: 'SVG 渲染器',
         type: 'bar',
         data: [60, 32, 38]
     }, {
-        name: 'Canvas',
+        name: 'Canvas 渲染器',
         type: 'bar',
         data: [5, 5, 5],
         xAxisIndex: 1,
@@ -107,7 +110,7 @@ option = {
         barGap: '30%',
         barCategoryGap: '40%'
     }, {
-        name: 'SVG',
+        name: 'SVG 渲染器',
         type: 'bar',
         data: [17, 11, 9],
         xAxisIndex: 1,
