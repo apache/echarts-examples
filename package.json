@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
+    "glob": "^7.1.2",
+    "lodash": "^4.17.4",
     "app-module-path": "^2.2.0",
     "browser-sync": "^2.11.0",
-    "canvas": "^1.6.2",
+    "canvas": "^1.6.7",
     "echarts-stat": "^1.1.0",
     "etpl": "^3.2.0",
     "gulp": "~3.9.0",
@@ -21,6 +23,5 @@
     "node-sass": "^4.5.3",
     "xmldom": "^0.1.27",
     "yargs": "^6.6.0"
-  },
-  "dependencies": {}
+  }
 }
