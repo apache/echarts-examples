@@ -4,14 +4,28 @@
 	(factory((global.echarts = {})));
 }(this, (function (exports) { 'use strict';
 
-if (typeof __DEV__ === "undefined") {
-    if (typeof window !== "undefined") {
-        window.__DEV__ = true;
-    }
-    else if (typeof global !== "undefined") {
-        global.__DEV__ = true;
-    }
+// (1) The code `if (__DEV__) ...` can be removed by build tool.
+// (2) If intend to use `__DEV__`, this module should be imported. Use a global
+// variable `__DEV__` may cause that miss the declaration (see #6535), or the
+// declaration is behind of the using position (for example in `Model.extent`,
+// And tools like rollup can not analysis the dependency if not import).
+
+var dev;
+
+// In browser
+if (typeof window !== 'undefined') {
+    dev = window.__DEV__;
 }
+// In node
+else if (typeof global !== 'undefined') {
+    dev = global.__DEV__;
+}
+
+if (typeof dev === 'undefined') {
+    dev = true;
+}
+
+var __DEV__ = dev;
 
 /**
  * zrender: 生成唯一id
@@ -195,6 +209,13 @@ var nativeSlice = arrayProto.slice;
 var nativeMap = arrayProto.map;
 var nativeReduce = arrayProto.reduce;
 
+// Avoid assign to an exported variable, for transforming to cjs.
+var methods = {};
+
+function $override(name, fn) {
+    methods[name] = fn;
+}
+
 /**
  * Those data types can be cloned:
  *     Plain object, Array, TypedArray, number, string, null, undefined.
@@ -337,6 +358,10 @@ function defaults(target, source, overlay) {
 }
 
 var createCanvas = function () {
+    return methods.createCanvas();
+};
+
+methods.createCanvas = function () {
     return document.createElement('canvas');
 };
 
@@ -766,14 +791,9 @@ function createHashMap(obj) {
 
 function noop() {}
 
-var $inject$1 = {
-    createCanvas: function (f) {
-        createCanvas = f;
-    }
-};
-
 
 var zrUtil = (Object.freeze || Object)({
+	$override: $override,
 	clone: clone,
 	merge: merge,
 	mergeAll: mergeAll,
@@ -808,8 +828,7 @@ var zrUtil = (Object.freeze || Object)({
 	setAsPrimitive: setAsPrimitive,
 	isPrimitive: isPrimitive,
 	createHashMap: createHashMap,
-	noop: noop,
-	$inject: $inject$1
+	noop: noop
 });
 
 var ArrayCtor = typeof Float32Array === 'undefined'
@@ -6794,6 +6813,13 @@ var STYLE_REG = /\{([a-zA-Z0-9_]+)\|([^}]*)\}/g;
 
 var DEFAULT_FONT = '12px sans-serif';
 
+// Avoid assign to an exported variable, for transforming to cjs.
+var methods$1 = {};
+
+function $override$1(name, fn) {
+    methods$1[name] = fn;
+}
+
 /**
  * @public
  * @param {string} text
@@ -7146,7 +7172,12 @@ function getLineHeight(font) {
  * @param {string} font
  * @return {Object} width
  */
-var measureText = function (text, font) {
+function measureText(text, font) {
+    return methods$1.measureText(text, font);
+}
+
+// Avoid assign to an exported variable, for transforming to cjs.
+methods$1.measureText = function (text, font) {
     var ctx = getContext();
     ctx.font = font || DEFAULT_FONT;
     return ctx.measureText(text);
@@ -7445,12 +7476,6 @@ function makeFont(style) {
         style.fontFamily || 'sans-serif'
     ].join(' ') || style.textFont || style.font;
 }
-
-var $inject$2 = {
-    measureText: function (f) {
-        measureText = f;
-    }
-};
 
 function buildPath(ctx, shape) {
     var x = shape.x;
@@ -10431,7 +10456,7 @@ var instances$1 = {};    // ZRender实例map索引
 /**
  * @type {string}
  */
-var version$1 = '3.7.0';
+var version$1 = '3.7.3';
 
 /**
  * Initializing a zrender instance
@@ -13552,6 +13577,7 @@ function windingLine(x0, y0, x1, y1, x, y) {
     return x_ > x ? dir : 0;
 }
 
+var CMD$1 = PathProxy.CMD;
 var PI2$1 = Math.PI * 2;
 
 var EPSILON$2 = 1e-4;
@@ -13754,7 +13780,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
     for (var i = 0; i < data.length;) {
         var cmd = data[i++];
         // Begin a new subpath
-        if (cmd === CMD.M && i > 1) {
+        if (cmd === CMD$1.M && i > 1) {
             // Close previous subpath
             if (!isStroke) {
                 w += windingLine(xi, yi, x0, y0, x, y);
@@ -13778,7 +13804,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
         }
 
         switch (cmd) {
-            case CMD.M:
+            case CMD$1.M:
                 // moveTo 命令重新创建一个新的 subpath, 并且更新新的起点
                 // 在 closePath 的时候使用
                 x0 = data[i++];
@@ -13786,7 +13812,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
                 xi = x0;
                 yi = y0;
                 break;
-            case CMD.L:
+            case CMD$1.L:
                 if (isStroke) {
                     if (containStroke$1(xi, yi, data[i], data[i + 1], lineWidth, x, y)) {
                         return true;
@@ -13799,7 +13825,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
                 xi = data[i++];
                 yi = data[i++];
                 break;
-            case CMD.C:
+            case CMD$1.C:
                 if (isStroke) {
                     if (containStroke$2(xi, yi,
                         data[i++], data[i++], data[i++], data[i++], data[i], data[i + 1],
@@ -13818,7 +13844,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
                 xi = data[i++];
                 yi = data[i++];
                 break;
-            case CMD.Q:
+            case CMD$1.Q:
                 if (isStroke) {
                     if (containStroke$3(xi, yi,
                         data[i++], data[i++], data[i], data[i + 1],
@@ -13837,7 +13863,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
                 xi = data[i++];
                 yi = data[i++];
                 break;
-            case CMD.A:
+            case CMD$1.A:
                 // TODO Arc 判断的开销比较大
                 var cx = data[i++];
                 var cy = data[i++];
@@ -13878,7 +13904,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
                 xi = Math.cos(theta + dTheta) * rx + cx;
                 yi = Math.sin(theta + dTheta) * ry + cy;
                 break;
-            case CMD.R:
+            case CMD$1.R:
                 x0 = xi = data[i++];
                 y0 = yi = data[i++];
                 var width = data[i++];
@@ -13900,7 +13926,7 @@ function containPath(data, lineWidth, isStroke, x, y) {
                     w += windingLine(x0, y1, x0, y0, x, y);
                 }
                 break;
-            case CMD.Z:
+            case CMD$1.Z:
                 if (isStroke) {
                     if (containStroke$1(
                         xi, yi, x0, y0, lineWidth, x, y
@@ -14292,6 +14318,8 @@ Path.extend = function (defaults$$1) {
 
 inherits(Path, Displayable);
 
+var CMD$2 = PathProxy.CMD;
+
 var points = [[], [], []];
 var mathSqrt$3 = Math.sqrt;
 var mathAtan2 = Math.atan2;
@@ -14305,12 +14333,12 @@ var transformPath = function (path, m) {
     var k;
     var p;
 
-    var M = CMD.M;
-    var C = CMD.C;
-    var L = CMD.L;
-    var R = CMD.R;
-    var A = CMD.A;
-    var Q = CMD.Q;
+    var M = CMD$2.M;
+    var C = CMD$2.C;
+    var L = CMD$2.L;
+    var R = CMD$2.R;
+    var A = CMD$2.A;
+    var Q = CMD$2.Q;
 
     for (i = 0, j = 0; i < data.length;) {
         cmd = data[i++];
@@ -14481,7 +14509,7 @@ function createPathProxyFromString(data) {
     var cpy = 0;
 
     var path = new PathProxy();
-    var CMD$$1 = PathProxy.CMD;
+    var CMD = PathProxy.CMD;
 
     var prevCmd;
     for (n = 1; n < arr.length; n++) {
@@ -14519,51 +14547,51 @@ function createPathProxyFromString(data) {
                 case 'l':
                     cpx += p[off++];
                     cpy += p[off++];
-                    cmd = CMD$$1.L;
+                    cmd = CMD.L;
                     path.addData(cmd, cpx, cpy);
                     break;
                 case 'L':
                     cpx = p[off++];
                     cpy = p[off++];
-                    cmd = CMD$$1.L;
+                    cmd = CMD.L;
                     path.addData(cmd, cpx, cpy);
                     break;
                 case 'm':
                     cpx += p[off++];
                     cpy += p[off++];
-                    cmd = CMD$$1.M;
+                    cmd = CMD.M;
                     path.addData(cmd, cpx, cpy);
                     c = 'l';
                     break;
                 case 'M':
                     cpx = p[off++];
                     cpy = p[off++];
-                    cmd = CMD$$1.M;
+                    cmd = CMD.M;
                     path.addData(cmd, cpx, cpy);
                     c = 'L';
                     break;
                 case 'h':
                     cpx += p[off++];
-                    cmd = CMD$$1.L;
+                    cmd = CMD.L;
                     path.addData(cmd, cpx, cpy);
                     break;
                 case 'H':
                     cpx = p[off++];
-                    cmd = CMD$$1.L;
+                    cmd = CMD.L;
                     path.addData(cmd, cpx, cpy);
                     break;
                 case 'v':
                     cpy += p[off++];
-                    cmd = CMD$$1.L;
+                    cmd = CMD.L;
                     path.addData(cmd, cpx, cpy);
                     break;
                 case 'V':
                     cpy = p[off++];
-                    cmd = CMD$$1.L;
+                    cmd = CMD.L;
                     path.addData(cmd, cpx, cpy);
                     break;
                 case 'C':
-                    cmd = CMD$$1.C;
+                    cmd = CMD.C;
                     path.addData(
                         cmd, p[off++], p[off++], p[off++], p[off++], p[off++], p[off++]
                     );
@@ -14571,7 +14599,7 @@ function createPathProxyFromString(data) {
                     cpy = p[off - 1];
                     break;
                 case 'c':
-                    cmd = CMD$$1.C;
+                    cmd = CMD.C;
                     path.addData(
                         cmd,
                         p[off++] + cpx, p[off++] + cpy,
@@ -14586,11 +14614,11 @@ function createPathProxyFromString(data) {
                     ctlPty = cpy;
                     var len = path.len();
                     var pathData = path.data;
-                    if (prevCmd === CMD$$1.C) {
+                    if (prevCmd === CMD.C) {
                         ctlPtx += cpx - pathData[len - 4];
                         ctlPty += cpy - pathData[len - 3];
                     }
-                    cmd = CMD$$1.C;
+                    cmd = CMD.C;
                     x1 = p[off++];
                     y1 = p[off++];
                     cpx = p[off++];
@@ -14602,11 +14630,11 @@ function createPathProxyFromString(data) {
                     ctlPty = cpy;
                     var len = path.len();
                     var pathData = path.data;
-                    if (prevCmd === CMD$$1.C) {
+                    if (prevCmd === CMD.C) {
                         ctlPtx += cpx - pathData[len - 4];
                         ctlPty += cpy - pathData[len - 3];
                     }
-                    cmd = CMD$$1.C;
+                    cmd = CMD.C;
                     x1 = cpx + p[off++];
                     y1 = cpy + p[off++];
                     cpx += p[off++];
@@ -14618,7 +14646,7 @@ function createPathProxyFromString(data) {
                     y1 = p[off++];
                     cpx = p[off++];
                     cpy = p[off++];
-                    cmd = CMD$$1.Q;
+                    cmd = CMD.Q;
                     path.addData(cmd, x1, y1, cpx, cpy);
                     break;
                 case 'q':
@@ -14626,7 +14654,7 @@ function createPathProxyFromString(data) {
                     y1 = p[off++] + cpy;
                     cpx += p[off++];
                     cpy += p[off++];
-                    cmd = CMD$$1.Q;
+                    cmd = CMD.Q;
                     path.addData(cmd, x1, y1, cpx, cpy);
                     break;
                 case 'T':
@@ -14634,13 +14662,13 @@ function createPathProxyFromString(data) {
                     ctlPty = cpy;
                     var len = path.len();
                     var pathData = path.data;
-                    if (prevCmd === CMD$$1.Q) {
+                    if (prevCmd === CMD.Q) {
                         ctlPtx += cpx - pathData[len - 4];
                         ctlPty += cpy - pathData[len - 3];
                     }
                     cpx = p[off++];
                     cpy = p[off++];
-                    cmd = CMD$$1.Q;
+                    cmd = CMD.Q;
                     path.addData(cmd, ctlPtx, ctlPty, cpx, cpy);
                     break;
                 case 't':
@@ -14648,13 +14676,13 @@ function createPathProxyFromString(data) {
                     ctlPty = cpy;
                     var len = path.len();
                     var pathData = path.data;
-                    if (prevCmd === CMD$$1.Q) {
+                    if (prevCmd === CMD.Q) {
                         ctlPtx += cpx - pathData[len - 4];
                         ctlPty += cpy - pathData[len - 3];
                     }
                     cpx += p[off++];
                     cpy += p[off++];
-                    cmd = CMD$$1.Q;
+                    cmd = CMD.Q;
                     path.addData(cmd, ctlPtx, ctlPty, cpx, cpy);
                     break;
                 case 'A':
@@ -14667,7 +14695,7 @@ function createPathProxyFromString(data) {
                     x1 = cpx, y1 = cpy;
                     cpx = p[off++];
                     cpy = p[off++];
-                    cmd = CMD$$1.A;
+                    cmd = CMD.A;
                     processArc(
                         x1, y1, cpx, cpy, fa, fs, rx, ry, psi, cmd, path
                     );
@@ -14682,7 +14710,7 @@ function createPathProxyFromString(data) {
                     x1 = cpx, y1 = cpy;
                     cpx += p[off++];
                     cpy += p[off++];
-                    cmd = CMD$$1.A;
+                    cmd = CMD.A;
                     processArc(
                         x1, y1, cpx, cpy, fa, fs, rx, ry, psi, cmd, path
                     );
@@ -14691,7 +14719,7 @@ function createPathProxyFromString(data) {
         }
 
         if (c === 'z' || c === 'Z') {
-            cmd = CMD$$1.Z;
+            cmd = CMD.Z;
             path.addData(cmd);
         }
 
@@ -20918,10 +20946,10 @@ var loadingDefault = function (api, opts) {
 var each = each$1;
 var parseClassType = ComponentModel.parseClassType;
 
-var version = '3.8.0';
+var version = '3.8.4';
 
 var dependencies = {
-    zrender: '3.7.0'
+    zrender: '3.7.3'
 };
 
 var PRIORITY_PROCESSOR_FILTER = 1000;
@@ -22428,13 +22456,14 @@ var themeStorage = {};
  */
 var loadingEffects = {};
 
-
 var instances = {};
 var connectedGroups = {};
 
 var idBase = new Date() - 0;
 var groupIdBase = new Date() - 0;
 var DOM_ATTRIBUTE_KEY = '_echarts_instance_';
+
+var mapDataStores = {};
 
 function enableConnect(chart) {
     var STATUS_PENDING = 0;
@@ -22845,7 +22874,45 @@ function extendChartView(opts/*, superClass*/) {
  *     });
  */
 function setCanvasCreator(creator) {
-    $inject$1.createCanvas(creator);
+    $override('createCanvas', creator);
+}
+
+/**
+ * @param {string} mapName
+ * @param {Object|string} geoJson
+ * @param {Object} [specialAreas]
+ *
+ * @example
+ *     $.get('USA.json', function (geoJson) {
+ *         echarts.registerMap('USA', geoJson);
+ *         // Or
+ *         echarts.registerMap('USA', {
+ *             geoJson: geoJson,
+ *             specialAreas: {}
+ *         })
+ *     });
+ */
+function registerMap(mapName, geoJson, specialAreas) {
+    if (geoJson.geoJson && !geoJson.features) {
+        specialAreas = geoJson.specialAreas;
+        geoJson = geoJson.geoJson;
+    }
+    if (typeof geoJson === 'string') {
+        geoJson = (typeof JSON !== 'undefined' && JSON.parse)
+            ? JSON.parse(geoJson) : (new Function('return (' + geoJson + ');'))();
+    }
+    mapDataStores[mapName] = {
+        geoJson: geoJson,
+        specialAreas: specialAreas
+    };
+}
+
+/**
+ * @param {string} mapName
+ * @return {Object}
+ */
+function getMap(mapName) {
+    return mapDataStores[mapName];
 }
 
 registerVisual(PRIORITY_VISUAL_GLOBAL, seriesColor);
@@ -22867,25 +22934,9 @@ registerAction({
 }, noop);
 
 
-// --------
-// Exports
-// --------
-
-
-
-
-
-var $inject = {
-    registerMap: function (f) {
-        exports.registerMap = f;
-    },
-    getMap: function (f) {
-        exports.getMap = f;
-    },
-    parseGeoJSON: function (f) {
-        exports.parseGeoJSON = f;
-    }
-};
+// For backward compatibility, where the namespace `dataTool` will
+// be mounted on `echarts` is the extension `dataTool` is imported.
+var dataTool = {};
 
 function defaultKeyGetter(item) {
     return item;
@@ -24748,14 +24799,12 @@ function Scale(setting) {
     this.init && this.init.apply(this, arguments);
 }
 
-var scaleProto$1 = Scale.prototype;
-
 /**
  * Parse input val to valid inner number.
  * @param {*} val
  * @return {number}
  */
-scaleProto$1.parse = function (val) {
+Scale.prototype.parse = function (val) {
     // Notice: This would be a trap here, If the implementation
     // of this method depends on extent, and this method is used
     // before extent set (like in dataZoom), it would be wrong.
@@ -24763,11 +24812,11 @@ scaleProto$1.parse = function (val) {
     return val;
 };
 
-scaleProto$1.getSetting = function (name) {
+Scale.prototype.getSetting = function (name) {
     return this._setting[name];
 };
 
-scaleProto$1.contain = function (val) {
+Scale.prototype.contain = function (val) {
     var extent = this._extent;
     return val >= extent[0] && val <= extent[1];
 };
@@ -24777,7 +24826,7 @@ scaleProto$1.contain = function (val) {
  * @param {number} val
  * @return {number}
  */
-scaleProto$1.normalize = function (val) {
+Scale.prototype.normalize = function (val) {
     var extent = this._extent;
     if (extent[1] === extent[0]) {
         return 0.5;
@@ -24790,7 +24839,7 @@ scaleProto$1.normalize = function (val) {
  * @param {number} val
  * @return {number}
  */
-scaleProto$1.scale = function (val) {
+Scale.prototype.scale = function (val) {
     var extent = this._extent;
     return val * (extent[1] - extent[0]) + extent[0];
 };
@@ -24799,7 +24848,7 @@ scaleProto$1.scale = function (val) {
  * Set extent from data
  * @param {Array.<number>} other
  */
-scaleProto$1.unionExtent = function (other) {
+Scale.prototype.unionExtent = function (other) {
     var extent = this._extent;
     other[0] < extent[0] && (extent[0] = other[0]);
     other[1] > extent[1] && (extent[1] = other[1]);
@@ -24812,7 +24861,7 @@ scaleProto$1.unionExtent = function (other) {
  * @param {module:echarts/data/List} data
  * @param {string} dim
  */
-scaleProto$1.unionExtentFromData = function (data, dim) {
+Scale.prototype.unionExtentFromData = function (data, dim) {
     this.unionExtent(data.getDataExtent(dim, true));
 };
 
@@ -24820,7 +24869,7 @@ scaleProto$1.unionExtentFromData = function (data, dim) {
  * Get extent
  * @return {Array.<number>}
  */
-scaleProto$1.getExtent = function () {
+Scale.prototype.getExtent = function () {
     return this._extent.slice();
 };
 
@@ -24829,7 +24878,7 @@ scaleProto$1.getExtent = function () {
  * @param {number} start
  * @param {number} end
  */
-scaleProto$1.setExtent = function (start, end) {
+Scale.prototype.setExtent = function (start, end) {
     var thisExtent = this._extent;
     if (!isNaN(start)) {
         thisExtent[0] = start;
@@ -24842,7 +24891,7 @@ scaleProto$1.setExtent = function (start, end) {
 /**
  * @return {Array.<string>}
  */
-scaleProto$1.getTicksLabels = function () {
+Scale.prototype.getTicksLabels = function () {
     var labels = [];
     var ticks = this.getTicks();
     for (var i = 0; i < ticks.length; i++) {
@@ -24855,7 +24904,7 @@ scaleProto$1.getTicksLabels = function () {
  * When axis extent depends on data and no data exists,
  * axis ticks should not be drawn, which is named 'blank'.
  */
-scaleProto$1.isBlank = function () {
+Scale.prototype.isBlank = function () {
     return this._isBlank;
 },
 
@@ -24863,7 +24912,7 @@ scaleProto$1.isBlank = function () {
  * When axis extent depends on data and no data exists,
  * axis ticks should not be drawn, which is named 'blank'.
  */
-scaleProto$1.setBlank = function (isBlank) {
+Scale.prototype.setBlank = function (isBlank) {
     this._isBlank = isBlank;
 };
 
@@ -25464,7 +25513,7 @@ TimeScale.create = function (model) {
  */
 
 // Use some method of IntervalScale
-var scaleProto$2 = Scale.prototype;
+var scaleProto$1 = Scale.prototype;
 var intervalScaleProto$1 = IntervalScale.prototype;
 
 var getPrecisionSafe$1 = getPrecisionSafe;
@@ -25521,7 +25570,7 @@ var LogScale = Scale.extend({
      * @return {number}
      */
     scale: function (val) {
-        val = scaleProto$2.scale.call(this, val);
+        val = scaleProto$1.scale.call(this, val);
         return mathPow$1(this.base, val);
     },
 
@@ -25541,7 +25590,7 @@ var LogScale = Scale.extend({
      */
     getExtent: function () {
         var base = this.base;
-        var extent = scaleProto$2.getExtent.call(this);
+        var extent = scaleProto$1.getExtent.call(this);
         extent[0] = mathPow$1(base, extent[0]);
         extent[1] = mathPow$1(base, extent[1]);
 
@@ -25563,7 +25612,7 @@ var LogScale = Scale.extend({
         var base = this.base;
         extent[0] = mathLog(extent[0]) / mathLog(base);
         extent[1] = mathLog(extent[1]) / mathLog(base);
-        scaleProto$2.unionExtent.call(this, extent);
+        scaleProto$1.unionExtent.call(this, extent);
     },
 
     /**
@@ -25626,7 +25675,7 @@ var LogScale = Scale.extend({
 each$1(['contain', 'normalize'], function (methodName) {
     LogScale.prototype[methodName] = function (val) {
         val = mathLog(val) / mathLog(this.base);
-        return scaleProto$2[methodName].call(this, val);
+        return scaleProto$1[methodName].call(this, val);
     };
 });
 
@@ -26688,6 +26737,309 @@ Axis.prototype = {
 
 };
 
+var EPSILON$3 = 1e-8;
+
+function isAroundEqual$1(a, b) {
+    return Math.abs(a - b) < EPSILON$3;
+}
+
+function contain$1(points, x, y) {
+    var w = 0;
+    var p = points[0];
+
+    if (!p) {
+        return false;
+    }
+
+    for (var i = 1; i < points.length; i++) {
+        var p2 = points[i];
+        w += windingLine(p[0], p[1], p2[0], p2[1], x, y);
+        p = p2;
+    }
+
+    // Close polygon
+    var p0 = points[0];
+    if (!isAroundEqual$1(p[0], p0[0]) || !isAroundEqual$1(p[1], p0[1])) {
+        w += windingLine(p[0], p[1], p0[0], p0[1], x, y);
+    }
+
+    return w !== 0;
+}
+
+/**
+ * @module echarts/coord/geo/Region
+ */
+
+/**
+ * @param {string} name
+ * @param {Array} geometries
+ * @param {Array.<number>} cp
+ */
+function Region(name, geometries, cp) {
+
+    /**
+     * @type {string}
+     * @readOnly
+     */
+    this.name = name;
+
+    /**
+     * @type {Array.<Array>}
+     * @readOnly
+     */
+    this.geometries = geometries;
+
+    if (!cp) {
+        var rect = this.getBoundingRect();
+        cp = [
+            rect.x + rect.width / 2,
+            rect.y + rect.height / 2
+        ];
+    }
+    else {
+        cp = [cp[0], cp[1]];
+    }
+    /**
+     * @type {Array.<number>}
+     */
+    this.center = cp;
+}
+
+Region.prototype = {
+
+    constructor: Region,
+
+    properties: null,
+
+    /**
+     * @return {module:zrender/core/BoundingRect}
+     */
+    getBoundingRect: function () {
+        var rect = this._rect;
+        if (rect) {
+            return rect;
+        }
+
+        var MAX_NUMBER = Number.MAX_VALUE;
+        var min$$1 = [MAX_NUMBER, MAX_NUMBER];
+        var max$$1 = [-MAX_NUMBER, -MAX_NUMBER];
+        var min2 = [];
+        var max2 = [];
+        var geometries = this.geometries;
+        for (var i = 0; i < geometries.length; i++) {
+            // Only support polygon
+            if (geometries[i].type !== 'polygon') {
+                continue;
+            }
+            // Doesn't consider hole
+            var exterior = geometries[i].exterior;
+            fromPoints(exterior, min2, max2);
+            min(min$$1, min$$1, min2);
+            max(max$$1, max$$1, max2);
+        }
+        // No data
+        if (i === 0) {
+            min$$1[0] = min$$1[1] = max$$1[0] = max$$1[1] = 0;
+        }
+
+        return (this._rect = new BoundingRect(
+            min$$1[0], min$$1[1], max$$1[0] - min$$1[0], max$$1[1] - min$$1[1]
+        ));
+    },
+
+    /**
+     * @param {<Array.<number>} coord
+     * @return {boolean}
+     */
+    contain: function (coord) {
+        var rect = this.getBoundingRect();
+        var geometries = this.geometries;
+        if (!rect.contain(coord[0], coord[1])) {
+            return false;
+        }
+        loopGeo: for (var i = 0, len$$1 = geometries.length; i < len$$1; i++) {
+            // Only support polygon.
+            if (geometries[i].type !== 'polygon') {
+                continue;
+            }
+            var exterior = geometries[i].exterior;
+            var interiors = geometries[i].interiors;
+            if (contain$1(exterior, coord[0], coord[1])) {
+                // Not in the region if point is in the hole.
+                for (var k = 0; k < (interiors ? interiors.length : 0); k++) {
+                    if (contain$1(interiors[k])) {
+                        continue loopGeo;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    },
+
+    transformTo: function (x, y, width, height) {
+        var rect = this.getBoundingRect();
+        var aspect = rect.width / rect.height;
+        if (!width) {
+            width = aspect * height;
+        }
+        else if (!height) {
+            height = width / aspect ;
+        }
+        var target = new BoundingRect(x, y, width, height);
+        var transform = rect.calculateTransform(target);
+        var geometries = this.geometries;
+        for (var i = 0; i < geometries.length; i++) {
+            // Only support polygon.
+            if (geometries[i].type !== 'polygon') {
+                continue;
+            }
+            var exterior = geometries[i].exterior;
+            var interiors = geometries[i].interiors;
+            for (var p = 0; p < exterior.length; p++) {
+                applyTransform(exterior[p], exterior[p], transform);
+            }
+            for (var h = 0; h < (interiors ? interiors.length : 0); h++) {
+                for (var p = 0; p < interiors[h].length; p++) {
+                    applyTransform(interiors[h][p], interiors[h][p], transform);
+                }
+            }
+        }
+        rect = this._rect;
+        rect.copy(target);
+        // Update center
+        this.center = [
+            rect.x + rect.width / 2,
+            rect.y + rect.height / 2
+        ];
+    }
+};
+
+/**
+ * Parse and decode geo json
+ * @module echarts/coord/geo/parseGeoJson
+ */
+
+function decode(json) {
+    if (!json.UTF8Encoding) {
+        return json;
+    }
+    var encodeScale = json.UTF8Scale;
+    if (encodeScale == null) {
+        encodeScale = 1024;
+    }
+
+    var features = json.features;
+
+    for (var f = 0; f < features.length; f++) {
+        var feature = features[f];
+        var geometry = feature.geometry;
+        var coordinates = geometry.coordinates;
+        var encodeOffsets = geometry.encodeOffsets;
+
+        for (var c = 0; c < coordinates.length; c++) {
+            var coordinate = coordinates[c];
+
+            if (geometry.type === 'Polygon') {
+                coordinates[c] = decodePolygon(
+                    coordinate,
+                    encodeOffsets[c],
+                    encodeScale
+                );
+            }
+            else if (geometry.type === 'MultiPolygon') {
+                for (var c2 = 0; c2 < coordinate.length; c2++) {
+                    var polygon = coordinate[c2];
+                    coordinate[c2] = decodePolygon(
+                        polygon,
+                        encodeOffsets[c][c2],
+                        encodeScale
+                    );
+                }
+            }
+        }
+    }
+    // Has been decoded
+    json.UTF8Encoding = false;
+    return json;
+}
+
+function decodePolygon(coordinate, encodeOffsets, encodeScale) {
+    var result = [];
+    var prevX = encodeOffsets[0];
+    var prevY = encodeOffsets[1];
+
+    for (var i = 0; i < coordinate.length; i += 2) {
+        var x = coordinate.charCodeAt(i) - 64;
+        var y = coordinate.charCodeAt(i + 1) - 64;
+        // ZigZag decoding
+        x = (x >> 1) ^ (-(x & 1));
+        y = (y >> 1) ^ (-(y & 1));
+        // Delta deocding
+        x += prevX;
+        y += prevY;
+
+        prevX = x;
+        prevY = y;
+        // Dequantize
+        result.push([x / encodeScale, y / encodeScale]);
+    }
+
+    return result;
+}
+
+/**
+ * @alias module:echarts/coord/geo/parseGeoJson
+ * @param {Object} geoJson
+ * @return {module:zrender/container/Group}
+ */
+var parseGeoJson = function (geoJson) {
+
+    decode(geoJson);
+
+    return map(filter(geoJson.features, function (featureObj) {
+        // Output of mapshaper may have geometry null
+        return featureObj.geometry
+            && featureObj.properties
+            && featureObj.geometry.coordinates.length > 0;
+    }), function (featureObj) {
+        var properties = featureObj.properties;
+        var geo = featureObj.geometry;
+
+        var coordinates = geo.coordinates;
+
+        var geometries = [];
+        if (geo.type === 'Polygon') {
+            geometries.push({
+                type: 'polygon',
+                // According to the GeoJSON specification.
+                // First must be exterior, and the rest are all interior(holes).
+                exterior: coordinates[0],
+                interiors: coordinates.slice(1)
+            });
+        }
+        if (geo.type === 'MultiPolygon') {
+            each$1(coordinates, function (item) {
+                if (item[0]) {
+                    geometries.push({
+                        type: 'polygon',
+                        exterior: item[0],
+                        interiors: item.slice(1)
+                    });
+                }
+            });
+        }
+
+        var region = new Region(
+            properties.name,
+            geometries,
+            properties.cp
+        );
+        region.properties = properties;
+        return region;
+    });
+};
+
 /**
  * Do not mount those modules on 'src/echarts' for better tree shaking.
  */
@@ -26702,331 +27054,6 @@ each$1([
         ecUtil[name] = zrUtil[name];
     }
 );
-
-// GEXF File Parser
-// http://gexf.net/1.2draft/gexf-12draft-primer.pdf
-
-function parse$1(xml) {
-    var doc;
-    if (typeof xml === 'string') {
-        var parser = new DOMParser();
-        doc = parser.parseFromString(xml, 'text/xml');
-    }
-    else {
-        doc = xml;
-    }
-    if (!doc || doc.getElementsByTagName('parsererror').length) {
-        return null;
-    }
-
-    var gexfRoot = getChildByTagName(doc, 'gexf');
-
-    if (!gexfRoot) {
-        return null;
-    }
-
-    var graphRoot = getChildByTagName(gexfRoot, 'graph');
-
-    var attributes = parseAttributes(getChildByTagName(graphRoot, 'attributes'));
-    var attributesMap = {};
-    for (var i = 0; i < attributes.length; i++) {
-        attributesMap[attributes[i].id] = attributes[i];
-    }
-
-    return {
-        nodes: parseNodes(getChildByTagName(graphRoot, 'nodes'), attributesMap),
-        links: parseEdges(getChildByTagName(graphRoot, 'edges'))
-    };
-}
-
-function parseAttributes(parent) {
-    return parent ? map(getChildrenByTagName(parent, 'attribute'), function (attribDom) {
-        return {
-            id: getAttr(attribDom, 'id'),
-            title: getAttr(attribDom, 'title'),
-            type: getAttr(attribDom, 'type')
-        };
-    }) : [];
-}
-
-function parseNodes(parent, attributesMap) {
-    return parent ? map(getChildrenByTagName(parent, 'node'), function (nodeDom) {
-
-        var id = getAttr(nodeDom, 'id');
-        var label = getAttr(nodeDom, 'label');
-
-        var node = {
-            id: id,
-            name: label,
-            itemStyle: {
-                normal: {}
-            }
-        };
-
-        var vizSizeDom = getChildByTagName(nodeDom, 'viz:size');
-        var vizPosDom = getChildByTagName(nodeDom, 'viz:position');
-        var vizColorDom = getChildByTagName(nodeDom, 'viz:color');
-        // var vizShapeDom = getChildByTagName(nodeDom, 'viz:shape');
-
-        var attvaluesDom = getChildByTagName(nodeDom, 'attvalues');
-
-        if (vizSizeDom) {
-            node.symbolSize = parseFloat(getAttr(vizSizeDom, 'value'));
-        }
-        if (vizPosDom) {
-            node.x = parseFloat(getAttr(vizPosDom, 'x'));
-            node.y = parseFloat(getAttr(vizPosDom, 'y'));
-            // z
-        }
-        if (vizColorDom) {
-            node.itemStyle.normal.color = 'rgb(' +[
-                getAttr(vizColorDom, 'r') | 0,
-                getAttr(vizColorDom, 'g') | 0,
-                getAttr(vizColorDom, 'b') | 0
-            ].join(',') + ')';
-        }
-        // if (vizShapeDom) {
-            // node.shape = getAttr(vizShapeDom, 'shape');
-        // }
-        if (attvaluesDom) {
-            var attvalueDomList = getChildrenByTagName(attvaluesDom, 'attvalue');
-
-            node.attributes = {};
-
-            for (var j = 0; j < attvalueDomList.length; j++) {
-                var attvalueDom = attvalueDomList[j];
-                var attId = getAttr(attvalueDom, 'for');
-                var attValue = getAttr(attvalueDom, 'value');
-                var attribute = attributesMap[attId];
-
-                if (attribute) {
-                    switch (attribute.type) {
-                        case 'integer':
-                        case 'long':
-                            attValue = parseInt(attValue, 10);
-                            break;
-                        case 'float':
-                        case 'double':
-                            attValue = parseFloat(attValue);
-                            break;
-                        case 'boolean':
-                            attValue = attValue.toLowerCase() == 'true';
-                            break;
-                        default:
-                    }
-                    node.attributes[attId] = attValue;
-                }
-            }
-        }
-
-        return node;
-    }) : [];
-}
-
-function parseEdges(parent) {
-    return parent ? map(getChildrenByTagName(parent, 'edge'), function (edgeDom) {
-        var id = getAttr(edgeDom, 'id');
-        var label = getAttr(edgeDom, 'label');
-
-        var sourceId = getAttr(edgeDom, 'source');
-        var targetId = getAttr(edgeDom, 'target');
-
-        var edge = {
-            id: id,
-            name: label,
-            source: sourceId,
-            target: targetId,
-            lineStyle: {
-                normal: {}
-            }
-        };
-
-        var lineStyle = edge.lineStyle.normal;
-
-        var vizThicknessDom = getChildByTagName(edgeDom, 'viz:thickness');
-        var vizColorDom = getChildByTagName(edgeDom, 'viz:color');
-        // var vizShapeDom = getChildByTagName(edgeDom, 'viz:shape');
-
-        if (vizThicknessDom) {
-            lineStyle.width = parseFloat(vizThicknessDom.getAttribute('value'));
-        }
-        if (vizColorDom) {
-            lineStyle.color = 'rgb(' + [
-                getAttr(vizColorDom, 'r') | 0,
-                getAttr(vizColorDom, 'g') | 0,
-                getAttr(vizColorDom, 'b') | 0
-            ].join(',') + ')';
-        }
-        // if (vizShapeDom) {
-        //     edge.shape = vizShapeDom.getAttribute('shape');
-        // }
-
-        return edge;
-    }) : [];
-}
-
-function getAttr(el, attrName) {
-    return el.getAttribute(attrName);
-}
-
-function getChildByTagName (parent, tagName) {
-    var node = parent.firstChild;
-
-    while (node) {
-        if (
-            node.nodeType != 1 ||
-            node.nodeName.toLowerCase() != tagName.toLowerCase()
-        ) {
-            node = node.nextSibling;
-        } else {
-            return node;
-        }
-    }
-
-    return null;
-}
-
-function getChildrenByTagName (parent, tagName) {
-    var node = parent.firstChild;
-    var children = [];
-    while (node) {
-        if (node.nodeName.toLowerCase() == tagName.toLowerCase()) {
-            children.push(node);
-        }
-        node = node.nextSibling;
-    }
-
-    return children;
-}
-
-
-var gexf = (Object.freeze || Object)({
-	parse: parse$1
-});
-
-/**
- * Copyright (c) 2010-2015, Michael Bostock
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * * The name Michael Bostock may not be used to endorse or promote products
- *   derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL MICHAEL BOSTOCK BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
- * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-/**
- * @see <https://github.com/mbostock/d3/blob/master/src/arrays/quantile.js>
- * @see <http://en.wikipedia.org/wiki/Quantile>
- * @param {Array.<number>} ascArr
- */
-var quantile = function(ascArr, p) {
-    var H = (ascArr.length - 1) * p + 1,
-        h = Math.floor(H),
-        v = +ascArr[h - 1],
-        e = H - h;
-    return e ? v + e * (ascArr[h] - v) : v;
-};
-
-/**
- * See:
- *  <https://en.wikipedia.org/wiki/Box_plot#cite_note-frigge_hoaglin_iglewicz-2>
- *  <http://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html>
- *
- * Helper method for preparing data.
- *
- * @param {Array.<number>} rawData like
- *        [
- *            [12,232,443], (raw data set for the first box)
- *            [3843,5545,1232], (raw datat set for the second box)
- *            ...
- *        ]
- * @param {Object} [opt]
- *
- * @param {(number|string)} [opt.boundIQR=1.5] Data less than min bound is outlier.
- *      default 1.5, means Q1 - 1.5 * (Q3 - Q1).
- *      If 'none'/0 passed, min bound will not be used.
- * @param {(number|string)} [opt.layout='horizontal']
- *      Box plot layout, can be 'horizontal' or 'vertical'
- * @return {Object} {
- *      boxData: Array.<Array.<number>>
- *      outliers: Array.<Array.<number>>
- *      axisData: Array.<string>
- * }
- */
-var prepareBoxplotData = function (rawData, opt) {
-    opt = opt || [];
-    var boxData = [];
-    var outliers = [];
-    var axisData = [];
-    var boundIQR = opt.boundIQR;
-    var useExtreme = boundIQR === 'none' || boundIQR === 0;
-
-    for (var i = 0; i < rawData.length; i++) {
-        axisData.push(i + '');
-        var ascList = asc(rawData[i].slice());
-
-        var Q1 = quantile(ascList, 0.25);
-        var Q2 = quantile(ascList, 0.5);
-        var Q3 = quantile(ascList, 0.75);
-        var min = ascList[0];
-        var max = ascList[ascList.length - 1];
-
-        var bound = (boundIQR == null ? 1.5 : boundIQR) * (Q3 - Q1);
-
-        var low = useExtreme
-            ? min
-            : Math.max(min, Q1 - bound);
-        var high = useExtreme
-            ? max
-            : Math.min(max, Q3 + bound);
-
-        boxData.push([low, Q1, Q2, Q3, high]);
-
-        for (var j = 0; j < ascList.length; j++) {
-            var dataItem = ascList[j];
-            if (dataItem < low || dataItem > high) {
-                var outlier = [i, dataItem];
-                opt.layout === 'vertical' && outlier.reverse();
-                outliers.push(outlier);
-            }
-        }
-    }
-    return {
-        boxData: boxData,
-        outliers: outliers,
-        axisData: axisData
-    };
-};
-
-var version$2 = '1.0.0';
-
-
-
-
-var index = (Object.freeze || Object)({
-	version: version$2,
-	gexf: gexf,
-	prepareBoxplotData: prepareBoxplotData
-});
 
 SeriesModel.extend({
 
@@ -34615,309 +34642,6 @@ registerLayout(radarLayout);
 registerProcessor(curry(dataFilter, 'radar'));
 registerPreprocessor(backwardCompat$1);
 
-var EPSILON$3 = 1e-8;
-
-function isAroundEqual$1(a, b) {
-    return Math.abs(a - b) < EPSILON$3;
-}
-
-function contain$1(points, x, y) {
-    var w = 0;
-    var p = points[0];
-
-    if (!p) {
-        return false;
-    }
-
-    for (var i = 1; i < points.length; i++) {
-        var p2 = points[i];
-        w += windingLine(p[0], p[1], p2[0], p2[1], x, y);
-        p = p2;
-    }
-
-    // Close polygon
-    var p0 = points[0];
-    if (!isAroundEqual$1(p[0], p0[0]) || !isAroundEqual$1(p[1], p0[1])) {
-        w += windingLine(p[0], p[1], p0[0], p0[1], x, y);
-    }
-
-    return w !== 0;
-}
-
-/**
- * @module echarts/coord/geo/Region
- */
-
-/**
- * @param {string} name
- * @param {Array} geometries
- * @param {Array.<number>} cp
- */
-function Region(name, geometries, cp) {
-
-    /**
-     * @type {string}
-     * @readOnly
-     */
-    this.name = name;
-
-    /**
-     * @type {Array.<Array>}
-     * @readOnly
-     */
-    this.geometries = geometries;
-
-    if (!cp) {
-        var rect = this.getBoundingRect();
-        cp = [
-            rect.x + rect.width / 2,
-            rect.y + rect.height / 2
-        ];
-    }
-    else {
-        cp = [cp[0], cp[1]];
-    }
-    /**
-     * @type {Array.<number>}
-     */
-    this.center = cp;
-}
-
-Region.prototype = {
-
-    constructor: Region,
-
-    properties: null,
-
-    /**
-     * @return {module:zrender/core/BoundingRect}
-     */
-    getBoundingRect: function () {
-        var rect = this._rect;
-        if (rect) {
-            return rect;
-        }
-
-        var MAX_NUMBER = Number.MAX_VALUE;
-        var min$$1 = [MAX_NUMBER, MAX_NUMBER];
-        var max$$1 = [-MAX_NUMBER, -MAX_NUMBER];
-        var min2 = [];
-        var max2 = [];
-        var geometries = this.geometries;
-        for (var i = 0; i < geometries.length; i++) {
-            // Only support polygon
-            if (geometries[i].type !== 'polygon') {
-                continue;
-            }
-            // Doesn't consider hole
-            var exterior = geometries[i].exterior;
-            fromPoints(exterior, min2, max2);
-            min(min$$1, min$$1, min2);
-            max(max$$1, max$$1, max2);
-        }
-        // No data
-        if (i === 0) {
-            min$$1[0] = min$$1[1] = max$$1[0] = max$$1[1] = 0;
-        }
-
-        return (this._rect = new BoundingRect(
-            min$$1[0], min$$1[1], max$$1[0] - min$$1[0], max$$1[1] - min$$1[1]
-        ));
-    },
-
-    /**
-     * @param {<Array.<number>} coord
-     * @return {boolean}
-     */
-    contain: function (coord) {
-        var rect = this.getBoundingRect();
-        var geometries = this.geometries;
-        if (!rect.contain(coord[0], coord[1])) {
-            return false;
-        }
-        loopGeo: for (var i = 0, len$$1 = geometries.length; i < len$$1; i++) {
-            // Only support polygon.
-            if (geometries[i].type !== 'polygon') {
-                continue;
-            }
-            var exterior = geometries[i].exterior;
-            var interiors = geometries[i].interiors;
-            if (contain$1(exterior, coord[0], coord[1])) {
-                // Not in the region if point is in the hole.
-                for (var k = 0; k < (interiors ? interiors.length : 0); k++) {
-                    if (contain$1(interiors[k])) {
-                        continue loopGeo;
-                    }
-                }
-                return true;
-            }
-        }
-        return false;
-    },
-
-    transformTo: function (x, y, width, height) {
-        var rect = this.getBoundingRect();
-        var aspect = rect.width / rect.height;
-        if (!width) {
-            width = aspect * height;
-        }
-        else if (!height) {
-            height = width / aspect ;
-        }
-        var target = new BoundingRect(x, y, width, height);
-        var transform = rect.calculateTransform(target);
-        var geometries = this.geometries;
-        for (var i = 0; i < geometries.length; i++) {
-            // Only support polygon.
-            if (geometries[i].type !== 'polygon') {
-                continue;
-            }
-            var exterior = geometries[i].exterior;
-            var interiors = geometries[i].interiors;
-            for (var p = 0; p < exterior.length; p++) {
-                applyTransform(exterior[p], exterior[p], transform);
-            }
-            for (var h = 0; h < (interiors ? interiors.length : 0); h++) {
-                for (var p = 0; p < interiors[h].length; p++) {
-                    applyTransform(interiors[h][p], interiors[h][p], transform);
-                }
-            }
-        }
-        rect = this._rect;
-        rect.copy(target);
-        // Update center
-        this.center = [
-            rect.x + rect.width / 2,
-            rect.y + rect.height / 2
-        ];
-    }
-};
-
-/**
- * Parse and decode geo json
- * @module echarts/coord/geo/parseGeoJson
- */
-
-function decode(json) {
-    if (!json.UTF8Encoding) {
-        return json;
-    }
-    var encodeScale = json.UTF8Scale;
-    if (encodeScale == null) {
-        encodeScale = 1024;
-    }
-
-    var features = json.features;
-
-    for (var f = 0; f < features.length; f++) {
-        var feature = features[f];
-        var geometry = feature.geometry;
-        var coordinates = geometry.coordinates;
-        var encodeOffsets = geometry.encodeOffsets;
-
-        for (var c = 0; c < coordinates.length; c++) {
-            var coordinate = coordinates[c];
-
-            if (geometry.type === 'Polygon') {
-                coordinates[c] = decodePolygon(
-                    coordinate,
-                    encodeOffsets[c],
-                    encodeScale
-                );
-            }
-            else if (geometry.type === 'MultiPolygon') {
-                for (var c2 = 0; c2 < coordinate.length; c2++) {
-                    var polygon = coordinate[c2];
-                    coordinate[c2] = decodePolygon(
-                        polygon,
-                        encodeOffsets[c][c2],
-                        encodeScale
-                    );
-                }
-            }
-        }
-    }
-    // Has been decoded
-    json.UTF8Encoding = false;
-    return json;
-}
-
-function decodePolygon(coordinate, encodeOffsets, encodeScale) {
-    var result = [];
-    var prevX = encodeOffsets[0];
-    var prevY = encodeOffsets[1];
-
-    for (var i = 0; i < coordinate.length; i += 2) {
-        var x = coordinate.charCodeAt(i) - 64;
-        var y = coordinate.charCodeAt(i + 1) - 64;
-        // ZigZag decoding
-        x = (x >> 1) ^ (-(x & 1));
-        y = (y >> 1) ^ (-(y & 1));
-        // Delta deocding
-        x += prevX;
-        y += prevY;
-
-        prevX = x;
-        prevY = y;
-        // Dequantize
-        result.push([x / encodeScale, y / encodeScale]);
-    }
-
-    return result;
-}
-
-/**
- * @alias module:echarts/coord/geo/parseGeoJson
- * @param {Object} geoJson
- * @return {module:zrender/container/Group}
- */
-var parseGeoJson = function (geoJson) {
-
-    decode(geoJson);
-
-    return map(filter(geoJson.features, function (featureObj) {
-        // Output of mapshaper may have geometry null
-        return featureObj.geometry
-            && featureObj.properties
-            && featureObj.geometry.coordinates.length > 0;
-    }), function (featureObj) {
-        var properties = featureObj.properties;
-        var geo = featureObj.geometry;
-
-        var coordinates = geo.coordinates;
-
-        var geometries = [];
-        if (geo.type === 'Polygon') {
-            geometries.push({
-                type: 'polygon',
-                // According to the GeoJSON specification.
-                // First must be exterior, and the rest are all interior(holes).
-                exterior: coordinates[0],
-                interiors: coordinates.slice(1)
-            });
-        }
-        if (geo.type === 'MultiPolygon') {
-            each$1(coordinates, function (item) {
-                if (item[0]) {
-                    geometries.push({
-                        type: 'polygon',
-                        exterior: item[0],
-                        interiors: item.slice(1)
-                    });
-                }
-            });
-        }
-
-        var region = new Region(
-            properties.name,
-            geometries,
-            properties.cp
-        );
-        region.properties = properties;
-        return region;
-    });
-};
-
 /**
  * Simple view coordinate system
  * Mapping given x, y to transformd view x, y
@@ -35543,14 +35267,12 @@ function doConvert(methodName, ecModel, finder, value) {
     return coordSys === this ? coordSys[methodName](value) : null;
 }
 
-var mapDataStores = {};
-
 /**
  * Resize method bound to the geo
  * @param {module:echarts/coord/geo/GeoModel|module:echarts/chart/map/MapModel} geoModel
  * @param {module:echarts/ExtensionAPI} api
  */
-function resizeGeo (geoModel, api) {
+function resizeGeo(geoModel, api) {
 
     var boundingCoords = geoModel.get('boundingCoords');
     if (boundingCoords != null) {
@@ -35660,7 +35382,7 @@ var geoCreator = {
         // FIXME Create each time may be slow
         ecModel.eachComponent('geo', function (geoModel, idx) {
             var name = geoModel.get('map');
-            var mapData = mapDataStores[name];
+            var mapData = getMap(name);
             if (__DEV__) {
                 if (!mapData) {
                     mapNotExistsError(name);
@@ -35705,7 +35427,7 @@ var geoCreator = {
         });
 
         each$1(mapModelGroupBySeries, function (mapSeries, mapType) {
-            var mapData = mapDataStores[mapType];
+            var mapData = getMap(mapType);
             if (__DEV__) {
                 if (!mapData) {
                     mapNotExistsError(mapSeries[0].get('map'));
@@ -35741,44 +35463,6 @@ var geoCreator = {
     },
 
     /**
-     * @param {string} mapName
-     * @param {Object|string} geoJson
-     * @param {Object} [specialAreas]
-     *
-     * @example
-     *     $.get('USA.json', function (geoJson) {
-     *         echarts.registerMap('USA', geoJson);
-     *         // Or
-     *         echarts.registerMap('USA', {
-     *             geoJson: geoJson,
-     *             specialAreas: {}
-     *         })
-     *     });
-     */
-    registerMap: function (mapName, geoJson, specialAreas) {
-        if (geoJson.geoJson && !geoJson.features) {
-            specialAreas = geoJson.specialAreas;
-            geoJson = geoJson.geoJson;
-        }
-        if (typeof geoJson === 'string') {
-            geoJson = (typeof JSON !== 'undefined' && JSON.parse)
-                ? JSON.parse(geoJson) : (new Function('return (' + geoJson + ');'))();
-        }
-        mapDataStores[mapName] = {
-            geoJson: geoJson,
-            specialAreas: specialAreas
-        };
-    },
-
-    /**
-     * @param {string} mapName
-     * @return {Object}
-     */
-    getMap: function (mapName) {
-        return mapDataStores[mapName];
-    },
-
-    /**
      * Fill given regions array
      * @param  {Array.<Object>} originRegionArr
      * @param  {string} mapName
@@ -35790,7 +35474,7 @@ var geoCreator = {
         var regionsArr = (originRegionArr || []).slice();
         nameMap = nameMap || {};
 
-        var map$$1 = geoCreator.getMap(mapName);
+        var map$$1 = getMap(mapName);
         var geoJson = map$$1 && map$$1.geoJson;
         if (!geoJson) {
             if (__DEV__) {
@@ -35819,11 +35503,6 @@ var geoCreator = {
         return regionsArr;
     }
 };
-
-// Inject methods into echarts
-$inject.registerMap(geoCreator.registerMap);
-$inject.getMap(geoCreator.getMap);
-$inject.parseGeoJSON(parseGeoJson);
 
 registerCoordinateSystem('geo', geoCreator);
 
@@ -72105,23 +71784,28 @@ registerAction(
 );
 
 var urn = 'urn:schemas-microsoft-com:vml';
-var win = window;
+var win = typeof window === 'undefined' ? null : window;
 
 var vmlInited = false;
 
 var doc = win && win.document;
 
-var createNode;
+function createNode(tagName) {
+    return doCreateNode(tagName);
+}
+
+// Avoid assign to an exported variable, for transforming to cjs.
+var doCreateNode;
 
 if (doc && !env$1.canvasSupported) {
     try {
         !doc.namespaces.zrvml && doc.namespaces.add('zrvml', urn);
-        createNode = function (tagName) {
+        doCreateNode = function (tagName) {
             return doc.createElement('<zrvml:' + tagName + ' class="zrvml">');
         };
     }
     catch (e) {
-        createNode = function (tagName) {
+        doCreateNode = function (tagName) {
             return doc.createElement('<' + tagName + ' xmlns="' + urn + '" class="zrvml">');
         };
     }
@@ -72147,6 +71831,7 @@ function initVML() {
 // http://www.w3.org/TR/NOTE-VML
 // TODO Use proxy like svg instead of overwrite brush methods
 
+var CMD$3 = PathProxy.CMD;
 var round$3 = Math.round;
 var sqrt = Math.sqrt;
 var abs$1 = Math.abs;
@@ -72385,11 +72070,11 @@ if (!env$1.canvasSupported) {
 
     var points$3 = [[], [], []];
     var pathDataToString = function (path, m) {
-        var M = CMD.M;
-        var C = CMD.C;
-        var L = CMD.L;
-        var A = CMD.A;
-        var Q = CMD.Q;
+        var M = CMD$3.M;
+        var C = CMD$3.C;
+        var L = CMD$3.L;
+        var A = CMD$3.A;
+        var Q = CMD$3.Q;
 
         var str = [];
         var nPoint;
@@ -72529,7 +72214,7 @@ if (!env$1.canvasSupported) {
                     xi = x1;
                     yi = y1;
                     break;
-                case CMD.R:
+                case CMD$3.R:
                     var p0 = points$3[0];
                     var p1 = points$3[1];
                     // x0, y0
@@ -72559,7 +72244,7 @@ if (!env$1.canvasSupported) {
                         ' l ', p0[0], comma, p1[1]
                     );
                     break;
-                case CMD.Z:
+                case CMD$3.Z:
                     // FIXME Update xi, yi
                     str.push(' x ');
             }
@@ -72924,7 +72609,7 @@ if (!env$1.canvasSupported) {
 
     var textMeasureEl;
     // Overwrite measure text method
-    $inject$2.measureText(function (text, textFont) {
+    $override$1('measureText', function (text, textFont) {
         var doc$$1 = doc;
         if (!textMeasureEl) {
             textMeasureEl = doc$$1.createElement('div');
@@ -73405,6 +73090,7 @@ function createElement(name) {
 // 1. shadow
 // 2. Image: sx, sy, sw, sh
 
+var CMD$4 = PathProxy.CMD;
 var arrayJoin = Array.prototype.join;
 
 var NONE = 'none';
@@ -73527,23 +73213,23 @@ function pathDataToString$1(path) {
         var cmdStr = '';
         var nData = 0;
         switch (cmd) {
-            case CMD.M:
+            case CMD$4.M:
                 cmdStr = 'M';
                 nData = 2;
                 break;
-            case CMD.L:
+            case CMD$4.L:
                 cmdStr = 'L';
                 nData = 2;
                 break;
-            case CMD.Q:
+            case CMD$4.Q:
                 cmdStr = 'Q';
                 nData = 4;
                 break;
-            case CMD.C:
+            case CMD$4.C:
                 cmdStr = 'C';
                 nData = 6;
                 break;
-            case CMD.A:
+            case CMD$4.A:
                 var cx = data[i++];
                 var cy = data[i++];
                 var rx = data[i++];
@@ -73602,10 +73288,10 @@ function pathDataToString$1(path) {
                 str.push('A', round4(rx), round4(ry),
                     mathRound(psi * degree), +large, +clockwise, x, y);
                 break;
-            case CMD.Z:
+            case CMD$4.Z:
                 cmdStr = 'Z';
                 break;
-            case CMD.R:
+            case CMD$4.R:
                 var x = round4(data[i++]);
                 var y = round4(data[i++]);
                 var w = round4(data[i++]);
@@ -73648,7 +73334,12 @@ svgPath.brush = function (el) {
         el.buildPath(path, el.shape);
         el.__dirtyPath = false;
 
-        attr(svgEl, 'd', pathDataToString$1(path));
+        var pathStr = pathDataToString$1(path);
+        if (pathStr.indexOf('NaN') < 0) {
+            // Ignore illegal path, which may happen such in out-of-range
+            // data in Calendar series.
+            attr(svgEl, 'd', pathStr);
+        }
     }
 
     bindStyle(svgEl, style);
@@ -73719,9 +73410,12 @@ var svgTextDrawRectText = function (el, rect, textRect) {
 
     var text = style.text;
     // Convert to string
-    text != null && (text += '');
-    if (!text) {
+    if (text == null) {
+        // Draw no text only when text is set to null, but not ''
         return;
+    }
+    else {
+        text += '';
     }
 
     var textSvgEl = el.__textSvgEl;
@@ -74542,10 +74236,12 @@ inherits(ClippathManager, Definable);
  * Update clipPath.
  *
  * @param {Displayable} displayable displayable element
- * @param {SVGElement}  svgElement  SVG element of displayable
  */
-ClippathManager.prototype.update = function (displayable, svgElement) {
-    this.updateDom(svgElement, displayable.__clipPaths, false);
+ClippathManager.prototype.update = function (displayable) {
+    var svgEl = this.getSvgElement(displayable);
+    if (svgEl) {
+        this.updateDom(svgEl, displayable.__clipPaths, false);
+    }
 
     var textEl = this.getTextSvgElement(displayable);
     if (textEl) {
@@ -74637,7 +74333,13 @@ ClippathManager.prototype.updateDom = function (
         }
 
         var pathEl = this.getSvgElement(clipPath);
-        clipPathEl.appendChild(pathEl);
+        /**
+         * Use `cloneNode()` here to appendChild to multiple parents,
+         * which may happend when Text and other shapes are using the same
+         * clipPath. Since Text will create an extra clipPath DOM due to
+         * different transform rules.
+         */
+        clipPathEl.appendChild(pathEl.cloneNode());
 
         parentEl.setAttribute('clip-path', 'url(#' + id + ')');
 
@@ -74808,11 +74510,9 @@ SVGPainter.prototype = {
             if (!displayable.invisible) {
                 if (displayable.__dirty) {
                     svgProxy && svgProxy.brush(displayable);
-                    var el = getSvgElement(displayable)
-                        || getTextSvgElement(displayable);
 
                     // Update clipPath
-                    this.clipPathManager.update(displayable, el);
+                    this.clipPathManager.update(displayable);
 
                     // Update gradient
                     if (displayable.style) {
@@ -75023,7 +74723,6 @@ registerPainter('svg', SVGPainter);
 
 // Import all charts and components
 
-exports.dataTool = index;
 exports.version = version;
 exports.dependencies = dependencies;
 exports.PRIORITY = PRIORITY;
@@ -75049,7 +74748,9 @@ exports.extendComponentView = extendComponentView;
 exports.extendSeriesModel = extendSeriesModel;
 exports.extendChartView = extendChartView;
 exports.setCanvasCreator = setCanvasCreator;
-exports.$inject = $inject;
+exports.registerMap = registerMap;
+exports.getMap = getMap;
+exports.dataTool = dataTool;
 exports.zrender = zrender;
 exports.graphic = graphic;
 exports.number = number;
@@ -75064,6 +74765,7 @@ exports.List = List;
 exports.Model = Model;
 exports.Axis = Axis;
 exports.env = env$1;
+exports.parseGeoJson = parseGeoJson;
 
 })));
 //# sourceMappingURL=echarts.js.map
