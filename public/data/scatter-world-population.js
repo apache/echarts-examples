@@ -289,7 +289,7 @@ var mapData = [
 {'code':'EC' , 'name':'Ecuador', 'value':14666055, 'color':'#86a965'},
 {'code':'EG' , 'name':'Egypt', 'value':82536770, 'color':'#de4c4f'},
 {'code':'SV' , 'name':'El Salvador', 'value':6227491, 'color':'#a7a737'},
-{'code':'GQ' , 'name':'Equatorial Guinea', 'value':720213, 'color':'#de4c4f'},
+{'code':'GQ' , 'name':'Eq. Guinea', 'value':720213, 'color':'#de4c4f'},
 {'code':'ER' , 'name':'Eritrea', 'value':5415280, 'color':'#de4c4f'},
 {'code':'EE' , 'name':'Estonia', 'value':1340537, 'color':'#d8854f'},
 {'code':'ET' , 'name':'Ethiopia', 'value':84734262, 'color':'#de4c4f'},
