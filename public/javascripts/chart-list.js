@@ -53,7 +53,7 @@ var EXAMPLES = [
         type: 'bar'
     },  {
         id: 'bar-y-category',
-        title: 'World Totle Population',
+        title: 'World Total Population',
         type: 'bar'
     },  {
         id: 'bar1',
@@ -437,7 +437,7 @@ var EXAMPLES = [
         type: 'radar'
     },  {
         id: 'radar2',
-        title: 'Propotion of Browsers',
+        title: 'Proportion of Browsers',
         type: 'radar'
     },  {
         id: 'sankey-energy',
