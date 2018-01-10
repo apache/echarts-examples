@@ -65,11 +65,11 @@ option = {
                 formatter: function (param) {
                     return [
                         'Experiment ' + param.name + ': ',
-                        'upper: ' + param.data[4],
-                        'Q3: ' + param.data[3],
-                        'median: ' + param.data[2],
-                        'Q1: ' + param.data[1],
-                        'lower: ' + param.data[0]
+                        'upper: ' + param.data[5],
+                        'Q3: ' + param.data[4],
+                        'median: ' + param.data[3],
+                        'Q1: ' + param.data[2],
+                        'lower: ' + param.data[1]
                     ].join('<br/>')
                 }
             }

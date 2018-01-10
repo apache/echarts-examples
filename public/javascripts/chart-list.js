@@ -1,5 +1,45 @@
 var EXAMPLES = [
     {
+        id: 'line-simple',
+        title: 'Basic Line Chart',
+        type: 'line'
+    },
+    {
+        id: 'line-in-cartesian-coordinate-system',
+        title: 'Line Chart in Cartesian Coordinate System',
+        type: 'line'
+    },
+    {
+        id: 'line-smooth',
+        title: 'Smoothed Line Chart',
+        type: 'line'
+    },
+    {
+        id: 'line-style',
+        title: 'Line Style and Item Style',
+        type: 'line'
+    },
+    {
+        id: 'bar-simple',
+        title: 'Basic Bar Chart',
+        type: 'bar'
+    },
+    {
+        id: 'scatter-simple',
+        title: 'Basic Scatter Chart',
+        type: 'scatter'
+    },
+    {
+        id: 'scatter-effect',
+        title: 'Effect Scatter Chart',
+        type: 'scatter'
+    },
+    {
+        id: 'treemap-simple',
+        title: 'Basic Treemap',
+        type: 'treemap'
+    },
+    {
         id: 'area-rainfall',
         title: 'Rainfall and Water Flow',
         type: 'line'
@@ -96,6 +136,10 @@ var EXAMPLES = [
         title: 'Bubble Chart',
         type: 'scatter'
     },  {
+        id: 'candlestick-simple',
+        title: 'Basic Candlestick',
+        type: 'candlestick'
+    },  {
         id: 'candlestick-brush',
         title: 'Candlestick Brush',
         type: 'candlestick'
@@ -168,6 +212,10 @@ var EXAMPLES = [
         title: 'Migration',
         type: 'map'
     },  {
+        id: 'graph-simple',
+        title: 'Simple Graph',
+        type: 'graph'
+    },  {
         id: 'graph-circular-layout',
         title: 'Les Miserables',
         type: 'graph'
@@ -192,10 +240,6 @@ var EXAMPLES = [
         title: 'NPM Dependencies',
         type: 'graph'
     },  {
-        id: 'graph-simple',
-        title: 'Simple Graph',
-        type: 'graph'
-    },  {
         id: 'graph-webkit-dep',
         title: 'Graph Webkit Dep',
         type: 'graph'
@@ -212,12 +256,12 @@ var EXAMPLES = [
         title: 'Rainfall and Water Flow',
         type: 'line'
     },  {
-        id: 'heatmap-bmap',
-        title: 'Heatmap on Baidu Map Extension',
-        type: 'heatmap'
-    },  {
         id: 'heatmap-cartesian',
         title: 'Heatmap on Cartesian',
+        type: 'heatmap'
+    },  {
+        id: 'heatmap-bmap',
+        title: 'Heatmap on Baidu Map Extension',
         type: 'heatmap'
     },  {
         id: 'heatmap-large-piecewise',
@@ -376,6 +420,10 @@ var EXAMPLES = [
         title: 'Multiple Y Axes',
         type: 'bar'
     },  {
+        id: 'parallel-simple',
+        title: 'Basic Parallel',
+        type: 'parallel'
+    },  {
         id: 'parallel-aqi',
         title: 'Parallel Aqi',
         type: 'parallel'
@@ -439,6 +487,10 @@ var EXAMPLES = [
         id: 'radar2',
         title: 'Proportion of Browsers',
         type: 'radar'
+    },  {
+        id: 'sankey-simple',
+        title: 'Basic Sankey',
+        type: 'sankey'
     },  {
         id: 'sankey-energy',
         title: 'Sankey Diagram',
