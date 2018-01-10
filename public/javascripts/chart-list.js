@@ -743,6 +743,26 @@ var EXAMPLES = [
         id: 'cycle-plot',
         title: 'Cycle Plot',
         type: 'custom'
+    }, {
+        id: 'sunburst-simple',
+        title: 'Basic Sunburst',
+        type: 'sunburst'
+    }, {
+        id: 'sunburst-monochrome',
+        title: 'Monochrome Sunburst',
+        type: 'sunburst'
+    }, {
+        id: 'sunburst-visualMap',
+        title: 'Sunburst VisualMap',
+        type: 'sunburst'
+    }, {
+        id: 'sunburst-book',
+        title: 'Book Records',
+        type: 'sunburst'
+    }, {
+        id: 'sunburst-drink',
+        title: 'Drink Flavors',
+        type: 'sunburst'
     }
 ];
 
@@ -759,6 +779,7 @@ var CHART_TYPES = {
     graph: 'Graph',
     tree: 'Tree',
     treemap: 'Treemap',
+    sunburst: 'Sunburst',
     parallel: 'Parallel',
     sankey: 'Sankey',
     funnel: 'Funnel',
