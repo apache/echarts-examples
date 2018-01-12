@@ -71,11 +71,14 @@ var gb = {
 $('#theme .' + (configs.theme || 'default')).addClass('selected');
 
 $('#theme a').click(function () {
-    var theme = $(this).attr('class').trim();
+    if ($(this).hasClass('selected')) {
+        return;
+    }
+    var theme = $(this).attr('class').replace('default', '').trim();
 
     window.location.href = './editor.html?' + makeSearch({
         c: configs.c,
-        theme: theme
+        theme: theme || null
     });
 });
 
