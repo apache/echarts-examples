@@ -9,8 +9,11 @@ $chart-list-title-height: 90px;
 
 #toolbar {
     height: 30px;
-    position: relative;
+    position: fixed;
     margin-top: 20px;
+    width: 500px;
+    right: 0px;
+    z-index: 200;
 }
 
 #theme {
@@ -76,14 +79,24 @@ $chart-list-title-height: 90px;
     }
 }
 
+#toolbar #theme {
+    padding: 4px 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border: 1px solid #aaa;
+}
+
+#toolbar #theme.dark {
+    background: #222;
+    color: #fff;
+}
+
 .chart-list-panel {
-    margin: 0px 15px 30px 15px;
+    margin: 30px 15px 30px 15px;
 
     h3 {
 
-        &:first-child {
-            margin-top: 0;
-        }
         margin-bottom: 20px;
     }
 

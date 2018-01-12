@@ -78,6 +78,7 @@ $('#theme a').click(function () {
 
     window.location.href = './editor.html?' + makeSearch({
         c: configs.c,
+        gl: configs.gl || null,
         theme: theme || null
     });
 });

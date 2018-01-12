@@ -45,6 +45,10 @@ var params = {};
 
 $('#theme .' + (params.theme || 'default')).addClass('selected');
 
+if (params.theme === 'dark') {
+    $('#theme').addClass('dark');
+}
+
 var charts = [];
 
 $(document).ready(function() {
