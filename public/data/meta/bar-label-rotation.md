@@ -1,4 +1,4 @@
 ---
-title: Bar Label Rotation
+title: Label Rotation
 category: bar
 ---

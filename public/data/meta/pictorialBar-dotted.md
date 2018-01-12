@@ -1,4 +1,4 @@
 ---
-title: PictorialBar Dotted
-category: line
+title: Dotted bar
+category: pictorialBar
 ---

@@ -1,4 +1,4 @@
 ---
-title: 柱状图框选
+title: Brush on Bar Chart
 category: bar
 ---

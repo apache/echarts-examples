@@ -1,4 +1,4 @@
 ---
-title: Candlestick Simple
-category: k
+title: Basic Candlestick
+category: candlestick
 ---

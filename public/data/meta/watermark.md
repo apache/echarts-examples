@@ -1,4 +1,4 @@
 ---
-title: 水印 - ECharts 下载统计
+title: Watermark - ECharts Download
 category: bar
 ---

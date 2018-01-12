@@ -1,4 +1,4 @@
 ---
-title: Disk Usage
+title: Show Parent Labels
 category: treemap
 ---

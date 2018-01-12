@@ -1,4 +1,4 @@
 ---
 title: Calendar Pie
-category: scatter
+category: calendar
 ---

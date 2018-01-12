@@ -1,4 +1,4 @@
 ---
-title: 多 X 轴示例
+title: Multiple X Axes
 category: line
 ---

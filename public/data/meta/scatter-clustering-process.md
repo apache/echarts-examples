@@ -1,4 +1,4 @@
 ---
-title: Process of Clustering
+title: Clustering Process
 category: scatter
 ---

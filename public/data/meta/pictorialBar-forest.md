@@ -1,4 +1,4 @@
 ---
-title: PictorialBar Forest
+title: Expansion of forest
 category: pictorialBar
 ---

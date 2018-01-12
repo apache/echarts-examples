@@ -1,4 +1,4 @@
 ---
-title: ThemeRiver Basic
+title: ThemeRiver
 category: themeRiver
 ---

@@ -1,4 +1,4 @@
 ---
-title: 热力图与百度地图扩展
+title: Heatmap on Baidu Map Extension
 category: heatmap
 ---

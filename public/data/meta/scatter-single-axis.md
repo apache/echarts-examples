@@ -1,4 +1,4 @@
 ---
-title: 单轴散点图
+title: Scatter on Single Axis
 category: scatter
 ---

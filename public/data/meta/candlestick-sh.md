@@ -1,4 +1,4 @@
 ---
-title: 上证指数
+title: ShangHai Index
 category: candlestick
 ---

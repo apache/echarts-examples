@@ -1,4 +1,4 @@
 ---
-title: 18 companies net profit and main business income (million)
+title: Polynomial Regression
 category: scatter
 ---

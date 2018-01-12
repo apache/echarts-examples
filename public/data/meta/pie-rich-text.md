@@ -1,4 +1,4 @@
 ---
-title: 天气情况统计
+title: Pie Special Label
 category: pie
 ---

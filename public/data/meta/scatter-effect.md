@@ -1,4 +1,4 @@
 ---
-title: Scatter Effect
-category: map
+title: Effect Scatter Chart
+category: scatter
 ---

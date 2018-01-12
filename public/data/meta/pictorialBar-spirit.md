@@ -1,4 +1,4 @@
 ---
-title: PictorialBar Spirit
+title: Spirits
 category: pictorialBar
 ---

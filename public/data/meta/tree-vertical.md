@@ -1,4 +1,4 @@
 ---
-title: Tree Vertical
+title: Vertical Tree
 category: tree
 ---

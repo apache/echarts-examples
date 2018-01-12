@@ -1,4 +1,4 @@
 ---
-title: 2015 年上证指数
+title: ShangHai Index, 2015
 category: candlestick
 ---

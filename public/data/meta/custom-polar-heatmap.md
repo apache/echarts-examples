@@ -1,4 +1,4 @@
 ---
-title: Custom Polar Heatmap
+title: Polar Heatmap
 category: custom
 ---

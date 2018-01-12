@@ -1,4 +1,4 @@
 ---
-title: 柱状图动画延迟
+title: Animation Delay on Bar Chart
 category: bar
 ---

@@ -1,4 +1,4 @@
 ---
-title: Sales Trends by Year within Each Month
+title: Cycle Plot
 category: custom
 ---

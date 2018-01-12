@@ -1,4 +1,4 @@
 ---
-title: 多雷达图
+title: Multiple Radar
 category: radar
 ---

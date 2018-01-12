@@ -1,4 +1,4 @@
 ---
 title: Calendar Charts
-category: graph
+category: calendar
 ---

@@ -1,4 +1,4 @@
 ---
-title: Calendar Vertical
-category: heatmap
+title: Calendar Heatmap Vertical
+category: calendar
 ---

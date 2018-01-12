@@ -1,4 +1,4 @@
 ---
-title: 漏斗图(对比)
+title: Funnel (align)
 category: funnel
 ---

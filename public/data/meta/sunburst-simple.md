@@ -1,4 +1,4 @@
 ---
-title: Sunburst Simple
+title: Basic Sunburst
 category: sunburst
 ---

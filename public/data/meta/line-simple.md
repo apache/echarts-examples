@@ -1,4 +1,4 @@
 ---
-title: Line Simple
+title: Basic Line Chart
 category: line
 ---

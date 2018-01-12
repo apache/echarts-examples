@@ -1,4 +1,4 @@
 ---
-title: 折线图堆叠
+title: Stacked Line Chart
 category: line
 ---

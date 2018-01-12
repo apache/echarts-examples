@@ -1,4 +1,4 @@
 ---
-title: 嵌套环形图
+title: Nested Pies
 category: pie
 ---

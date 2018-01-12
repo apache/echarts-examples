@@ -1,4 +1,4 @@
 ---
-title: 同名数量统计
+title: Pie with Scrollable Legend
 category: pie
 ---

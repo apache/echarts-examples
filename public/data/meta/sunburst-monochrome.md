@@ -1,4 +1,4 @@
 ---
-title: Sunburst Monochrome
+title: Monochrome Sunburst
 category: sunburst
 ---

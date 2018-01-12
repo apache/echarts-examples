@@ -1,4 +1,4 @@
 ---
-title: 对数轴示例
+title: Log Axis
 category: line
 ---

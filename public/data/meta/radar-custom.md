@@ -1,4 +1,4 @@
 ---
-title: 自定义雷达图
+title: Customized Radar Chart
 category: radar
 ---

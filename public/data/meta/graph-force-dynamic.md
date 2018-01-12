@@ -1,4 +1,4 @@
 ---
-title: Graph Force Dynamic
+title: Graph Dynamic
 category: graph
 ---

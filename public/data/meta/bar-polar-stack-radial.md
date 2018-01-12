@@ -1,4 +1,4 @@
 ---
-title: 极坐标系下的堆叠柱状图
+title: Stacked Bar in Polar System
 category: bar
 ---

@@ -1,4 +1,4 @@
 ---
-title: Error bar chart
-category: bar
+title: Error Bar on Catesian
+category: custom
 ---

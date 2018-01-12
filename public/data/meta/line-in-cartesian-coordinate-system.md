@@ -1,4 +1,4 @@
 ---
-title: Line In Cartesian Coordinate System
+title: Line Chart in Cartesian Coordinate System
 category: line
 ---

@@ -1,4 +1,4 @@
 ---
-title: 1981 - 1998 gross domestic product GDP (trillion yuan)
+title: Exponential Regression
 category: scatter
 ---

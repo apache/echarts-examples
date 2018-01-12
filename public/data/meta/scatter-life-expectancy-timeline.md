@@ -1,4 +1,4 @@
 ---
-title: Scatter Life Expectancy Timeline
+title: Life Expectancy and GDP
 category: scatter
 ---

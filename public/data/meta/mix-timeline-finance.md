@@ -1,4 +1,4 @@
 ---
-title: 2002全国宏观经济指标
+title: Finance Indices 2002
 category: bar
 ---

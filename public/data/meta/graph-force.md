@@ -1,4 +1,4 @@
 ---
-title: 力引导布局
+title: Force Layout
 category: graph
 ---

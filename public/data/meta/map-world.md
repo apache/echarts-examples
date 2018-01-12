@@ -1,4 +1,4 @@
 ---
 title: Map World
-category: 0
+category: map
 ---

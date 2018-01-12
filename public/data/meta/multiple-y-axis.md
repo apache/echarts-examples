@@ -1,4 +1,4 @@
 ---
-title: 多 Y 轴示例
+title: Multiple Y Axes
 category: bar
 ---

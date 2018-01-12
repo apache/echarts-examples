@@ -1,4 +1,4 @@
 ---
-title: Treemap Simple
+title: Basic Treemap
 category: treemap
 ---

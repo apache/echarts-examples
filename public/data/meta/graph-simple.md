@@ -1,4 +1,4 @@
 ---
-title: Graph 简单示例
+title: Simple Graph
 category: graph
 ---

@@ -1,4 +1,4 @@
 ---
-title: 气泡图
+title: Bubble Chart
 category: scatter
 ---

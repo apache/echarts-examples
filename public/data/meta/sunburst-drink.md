@@ -1,4 +1,4 @@
 ---
-title: WORLD COFFEE RESEARCH SENSORY LEXICON
+title: Drink Flavors
 category: sunburst
 ---

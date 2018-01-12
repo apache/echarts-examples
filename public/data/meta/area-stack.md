@@ -1,4 +1,4 @@
 ---
-title: 堆叠区域图
+title: Stacked Area
 category: line
 ---

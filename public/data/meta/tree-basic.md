@@ -1,4 +1,4 @@
 ---
-title: Tree Basic
+title: Basic Tree
 category: tree
 ---

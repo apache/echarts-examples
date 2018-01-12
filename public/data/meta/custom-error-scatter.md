@@ -1,4 +1,4 @@
 ---
-title: Custom Error Scatter
-category: scatter
+title: Error Scatter on Catesian
+category: custom
 ---

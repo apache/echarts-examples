@@ -1,4 +1,4 @@
 ---
-title: 漏斗图
+title: Multiple Funnels
 category: funnel
 ---

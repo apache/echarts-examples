@@ -1,4 +1,4 @@
 ---
-title: 折柱混合
+title: Mixed Line and Bar
 category: bar
 ---

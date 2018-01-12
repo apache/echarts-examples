@@ -1,4 +1,4 @@
 ---
-title: Map Bin
-category: custom
+title: Binning on Map
+category: map
 ---

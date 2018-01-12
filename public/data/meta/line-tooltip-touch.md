@@ -1,4 +1,4 @@
 ---
-title: 触屏 tooltip 和 dataZoom 示例
+title: Tooltip and DataZoom on Mobile
 category: line
 ---

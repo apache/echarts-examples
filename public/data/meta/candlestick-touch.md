@@ -1,4 +1,4 @@
 ---
-title: 移动端 K线图
-category: bar
+title: Axis Pointer Link and Touch
+category: candlestick
 ---

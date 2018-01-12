@@ -1,4 +1,4 @@
 ---
-title: 极坐标双数值轴
+title: Two Value-Axes in Polar
 category: line
 ---

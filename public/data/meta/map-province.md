@@ -1,4 +1,4 @@
 ---
-title: 34 省切换查看
+title: Switch among 34 Provinces
 category: map
 ---

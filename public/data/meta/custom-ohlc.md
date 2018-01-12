@@ -1,4 +1,4 @@
 ---
-title: Custom Ohlc
-category: custom
+title: OHLC Chart
+category: candlestick
 ---

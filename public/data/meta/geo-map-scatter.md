@@ -1,4 +1,4 @@
 ---
-title: Geo Map Scatter
-category: scatter
+title: map and scatter share a geo
+category: map
 ---

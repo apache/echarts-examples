@@ -1,4 +1,4 @@
 ---
-title: Girths of Black Cherry Trees
-category: custom
+title: Histogram
+category: bar
 ---

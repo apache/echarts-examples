@@ -1,4 +1,4 @@
 ---
-title: Line Smooth
+title: Smoothed Line Chart
 category: line
 ---

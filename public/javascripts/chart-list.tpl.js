@@ -17,14 +17,19 @@ var CHART_TYPES = {
     boxplot: 'Boxplot',
     heatmap: 'Heatmap',
     graph: 'Graph',
+    tree: 'Tree',
     treemap: 'Treemap',
+    sunburst: 'Sunburst',
     parallel: 'Parallel',
     sankey: 'Sankey',
     funnel: 'Funnel',
     gauge: 'Gauge',
     pictorialBar: 'PictorialBar',
-    themeRiver: 'ThemeRiver'
+    themeRiver: 'ThemeRiver',
+    calendar: 'Calendar',
+    custom: 'Custom'
 };
+
 
 var charts = [];
 

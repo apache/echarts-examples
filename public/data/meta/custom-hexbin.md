@@ -1,4 +1,4 @@
 ---
-title: Kawhi Leonard
+title: Hexagonal Binning
 category: custom
 ---

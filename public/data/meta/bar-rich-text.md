@@ -1,4 +1,4 @@
 ---
-title: Wheater Statistics
+title: Rich Text
 category: bar
 ---

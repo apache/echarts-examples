@@ -1,4 +1,4 @@
 ---
-title: 一天用电量分布
+title: Distribution of Electricity
 category: line
 ---

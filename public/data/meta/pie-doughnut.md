@@ -1,4 +1,4 @@
 ---
-title: 环形图
+title: Doughnut Chart
 category: pie
 ---

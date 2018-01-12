@@ -1,4 +1,4 @@
 ---
-title: Tree Legend
+title: Multiple Trees
 category: tree
 ---

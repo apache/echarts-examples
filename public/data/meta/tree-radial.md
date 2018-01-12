@@ -1,4 +1,4 @@
 ---
-title: Tree Radial
+title: Radial Tree
 category: tree
 ---

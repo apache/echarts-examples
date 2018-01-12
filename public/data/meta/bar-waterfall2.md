@@ -1,4 +1,4 @@
 ---
-title: 阶梯瀑布图
+title: Waterfall Chart
 category: bar
 ---

@@ -1,4 +1,4 @@
 ---
-title: Bar Simple
+title: Basic Bar Chart
 category: bar
 ---

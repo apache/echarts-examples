@@ -1,4 +1,4 @@
 ---
-title: Vehicles in X City
+title: Vehicles
 category: pictorialBar
 ---

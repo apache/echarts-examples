@@ -1,4 +1,4 @@
 ---
-title: 大规模散点图
+title: Large Scatter
 category: scatter
 ---

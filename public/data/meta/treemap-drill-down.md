@@ -1,4 +1,4 @@
 ---
-title: ECharts 配置项查询分布
+title: ECharts Option Query
 category: treemap
 ---

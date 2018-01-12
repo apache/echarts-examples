@@ -1,4 +1,4 @@
 ---
-title: 降水量
+title: Rich Text Labels on Map
 category: map
 ---

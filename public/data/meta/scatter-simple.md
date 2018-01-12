@@ -1,4 +1,4 @@
 ---
-title: Scatter Simple
+title: Basic Scatter Chart
 category: scatter
 ---

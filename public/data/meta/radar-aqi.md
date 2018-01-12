@@ -1,4 +1,4 @@
 ---
-title: AQI - 雷达图
+title: AQI - Radar Chart
 category: radar
 ---

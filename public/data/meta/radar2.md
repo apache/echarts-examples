@@ -1,4 +1,4 @@
 ---
-title: 浏览器占比变化
+title: Proportion of Browsers
 category: radar
 ---

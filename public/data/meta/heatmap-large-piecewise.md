@@ -1,4 +1,4 @@
 ---
-title: 热力图 - 颜色的离散映射
+title: Heatmap - Discrete Mapping of Color
 category: heatmap
 ---

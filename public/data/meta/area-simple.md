@@ -1,4 +1,4 @@
 ---
-title: 大数据量面积图
+title: Area Chart
 category: line
 ---

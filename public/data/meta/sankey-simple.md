@@ -1,4 +1,4 @@
 ---
-title: Sankey Simple
+title: Basic Sankey
 category: sankey
 ---

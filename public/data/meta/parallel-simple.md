@@ -1,4 +1,4 @@
 ---
-title: Parallel Simple
+title: Basic Parallel
 category: parallel
 ---

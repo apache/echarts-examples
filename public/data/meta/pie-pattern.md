@@ -1,4 +1,4 @@
 ---
-title: 饼图纹理
+title: Texture on Pie Chart
 category: pie
 ---
