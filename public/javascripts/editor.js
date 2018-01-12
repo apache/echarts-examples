@@ -496,7 +496,7 @@ function hasEditorError() {
 
 // load a chart with chart id in url
 function load() {
-    var dataRoot = configs.gl ? 'data-gl' : '';
+    var dataRoot = configs.gl ? 'data-gl' : 'data';
 
     if (configs.gl) {
         $.when.apply($, [
