@@ -65,6 +65,16 @@ var thumbFolder = theme ? ('thumb-' + theme) : 'thumb';
 
             var jsCode = fs.readFileSync(fileName, 'utf-8');
 
+            // Remove mapbox temporary
+            if (basename.indexOf('mapbox') >= 0
+                || basename.indexOf('shanghai') >= 0
+                || basename === 'lines3d-taxi-routes-of-cape-town'
+                || basename === 'lines3d-taxi-chengdu'
+                || basename === 'map3d-colorful-cities'
+            ) {
+                continue;
+            }
+
             try {
                 var mdText = fs.readFileSync(`${rootDir}public/${sourceFolder}/meta/${basename}.md`, 'utf-8');
                 var fmResult = fm(mdText);
@@ -74,6 +84,7 @@ var thumbFolder = theme ? ('thumb-' + theme) : 'thumb';
                     attributes: {}
                 };
             }
+
             // var descHTML = marked(fmResult.body);
 
             // Do screenshot

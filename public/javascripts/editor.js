@@ -496,16 +496,32 @@ function hasEditorError() {
 
 // load a chart with chart id in url
 function load() {
-    if (configs.c) {
-        $.ajax('./data/' + configs.c + '.js', {
-            dataType: 'text',
-            success: function (data) {
-                gb.loadedCode = data;
-                gb.editor.setValue(data, -1);
-            }
-        }).fail(function () {
-            log('加载图表失败！', 'error');
-        });
+    var dataRoot = configs.gl ? 'data-gl' : '';
+
+    if (configs.gl) {
+        $.when.apply($, [
+            './vendors/echarts-gl/echarts-gl.min.js'
+            // './vendors/mapbox-gl.js'
+        ].map(function (url) {
+            return $.getScript(url);
+        })).done(loadChart);
+    }
+    else {
+        loadChart();
+    }
+
+    function loadChart() {
+        if (configs.c) {
+            $.ajax('./' + dataRoot + '/' + configs.c + '.js', {
+                dataType: 'text',
+                success: function (data) {
+                    gb.loadedCode = data;
+                    gb.editor.setValue(data, -1);
+                }
+            }).fail(function () {
+                log('加载图表失败！', 'error');
+            });
+        }
     }
     return;
 }

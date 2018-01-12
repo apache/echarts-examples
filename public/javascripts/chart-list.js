@@ -77,14 +77,14 @@ $(document).ready(function() {
             $('#chart-row-' + examples[eid].category).append($row.append($chart));
 
             $link = $('<a class="chart-link" href="./editor.html?c='
-                + examples[eid].id + '"></a>');
+                + examples[eid].id + (isGL ? '&gl=1' : '')  + '"></a>');
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
             var theme = (isGL || !params.theme) ? '' : ('-' + params.theme);
 
             // load chart image
-            $chartArea = $('<img class="chart-area" src="' + (isGL ? 'data-gl' : 'data') + '/thumb' + theme + '/'
+            $chartArea = $('<img class="chart-area" src="images/placeholder.png" data-original="' + (isGL ? 'data-gl' : 'data') + '/thumb' + theme + '/'
                 + examples[eid].id + '.png" />');
             $link.append($chartArea);
         }
@@ -120,4 +120,5 @@ $(document).ready(function() {
     // highlight the first chart in chart navbar
     $('#left-chart-nav li').first().addClass('active');
 
+    $container.find('img.chart-area').lazyload();
 });
