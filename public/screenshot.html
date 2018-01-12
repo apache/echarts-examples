@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./vendors/jquery/jquery.js"></script>
+    <script type="text/javascript" src="./vendors/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="./vendors/lodash.js"></script>
+    <script type="text/javascript" src="./vendors/dat.gui.min.js"></script>
+    <script type="text/javascript" src="./vendors/echarts/echarts.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="./vendors/echarts-stat/ecStat.min.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="./vendors/echarts/map/js/china.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="./vendors/echarts/map/js/world.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="./vendors/echarts/extension/dataTool.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="./vendors/echarts/extension/bmap.js?_v_=1510583857922"></script>
+    <style>
+        html, body, #viewport {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="viewport"></div>
+<script>
+    var myChart = echarts.init(document.getElementById('viewport'));
+    var app = {};
+</script>
+<script>
+    // Params parser
+    var params = {};
+    (location.search || '').substr(1).split('&').forEach(function (item) {
+        var kv = item.split('=');
+        params[kv[0]] = kv[1];
+    });
+
+    if (params.c) {
+        var scriptTag = document.createElement('script');
+        scriptTag.async = false;
+        scriptTag.src = `./data/${params.c}.js`
+        document.body.appendChild(scriptTag);
+
+        scriptTag.onload = function () {
+            if (typeof option !== 'undefined' && option) {
+                if (option.series) {
+                    if (!(option.series instanceof Array)) {
+                        option.series = [option.series];
+                    }
+                    option.series.forEach(function (seriesOpt) {
+                        if (seriesOpt.type === 'graph') {
+                            seriesOpt.force = seriesOpt.force || {};
+                            seriesOpt.force.layoutAnimation = false;
+                        }
+                        seriesOpt.progressive = 0;
+                        seriesOpt.animation = false;
+                    });
+                }
+
+                option.animation = false;
+                option.textStyle = {
+                    fontFamily: 'noto-thin',
+                    fontSize: 14
+                };
+
+                myChart.setOption(option);
+            }
+        }
+    }
+</script>
+</body>
+</html>

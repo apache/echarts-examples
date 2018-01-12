@@ -5,6 +5,7 @@ option = {
     yAxis: {},
     series: [{
         type: 'effectScatter',
+        symbolSize: 20,
         data: [220, '-', '-', '-', '-', '-', 310]
     }, {
         type: 'scatter',

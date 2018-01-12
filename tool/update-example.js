@@ -169,11 +169,18 @@ glob('../public/data/*.js', function (err, files) {
             if (type === 'lines' || type === 'effectScatter') {
                 type = 'map';
             }
-            return {
+
+            var ret = {
                 id: id,
                 title: app.title || (optionNeedFix.title && optionNeedFix.title.text) || defaultName,
                 type: app.category || type
             };
+            fs.writeFileSync('../public/data/meta/' + id + '.md',
+`---
+title: ${ret.title}
+category: ${ret.type}
+---`, 'utf-8');
+            return ret;
         })
     });
 
@@ -188,8 +195,7 @@ require('../public/vendors/echarts/extension/dataTool.js');
 require('../public/vendors/echarts/theme/vintage');
 require('../public/vendors/echarts/theme/dark');
 global.ecStat = require('echarts-stat/dist/ecStat');
-// require('../public/vendors/echarts/map/js/china');
-// require('../public/vendors/echarts/map/js/world');
+
 var maps = ['china', 'world'];
 maps.forEach(function (name) {
     var json = fs.readFileSync('../public/vendors/echarts/map/json/' + name + '.json', 'utf-8');

@@ -1,0 +1,95 @@
+var fs = require('fs');
+var etpl = require('etpl');
+var glob = require('glob');
+var path = require('path');
+var marked = require('marked');
+var fm = require('front-matter');
+var puppeteer = require('puppeteer');
+
+
+var tpl = fs.readFileSync('../public/javascripts/chart-list.tpl.js', 'utf-8');
+
+etpl.config({
+    commandOpen: '/**',
+    commandClose: '*/'
+});
+
+function waitTime(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+var BUILD_THUMBS = true;
+var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
+
+(async () => {
+    // https://github.com/GoogleChrome/puppeteer/issues/1260
+    if (BUILD_THUMBS) {
+        var browser = await puppeteer.launch({
+            headless: false,
+            args: [
+              '--headless',
+              '--hide-scrollbars',
+              '--mute-audio'
+            ]
+        });
+    }
+
+    // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
+    var screenshotBlackList = [];
+
+    var rootDir = __dirname + '/../';
+
+    glob(rootDir + 'public/data/*.js', async function (err, files) {
+
+        var exampleList = [];
+
+        for (var fileName of files) {
+            var baseDir = path.dirname(fileName);
+            var basename = path.basename(fileName, '.js');
+
+            var jsCode = fs.readFileSync(fileName, 'utf-8');
+
+            var mdText = fs.readFileSync(rootDir + 'public/data/meta/' + basename + '.md', 'utf-8');
+            var fmResult = fm(mdText);
+            // var descHTML = marked(fmResult.body);
+
+            // Do screenshot
+            if (BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0) {
+                var page = await browser.newPage();
+                var url = `${BASE_URL}/screenshot.html?c=${basename}`;
+                page.on('pageerror', function (err) {
+                    console.log(err.toString());
+                });
+                // page.on('console', function (msg) {
+                //     console.log(msg.text);
+                // });
+                console.log('Generating thumbs.....' + basename);
+                // https://stackoverflow.com/questions/46160929/puppeteer-wait-for-all-images-to-load-then-take-screenshot
+                try {
+                    await page.goto(url, {'waitUntil' : 'networkidle0'});
+                    await waitTime(200);
+                    await page.screenshot({path: rootDir + 'public/data/thumb/' + basename + '.png' });
+                }
+                catch (e) {
+                    console.error(e.toString());
+                }
+                await page.close();
+            }
+
+            exampleList.push({
+                category: fmResult.attributes.category,
+                id: basename,
+                title: fmResult.attributes.title
+            });
+        }
+
+        if (BUILD_THUMBS) {
+            await browser.close();
+        }
+
+        var code = etpl.compile(tpl)({
+            examples: exampleList
+        });
+        fs.writeFileSync('../public/javascripts/chart-list.js', code, 'utf-8');
+    });
+})()

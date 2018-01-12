@@ -2,7 +2,7 @@ var EXAMPLES = [
     /** for: ${examples} as ${example}, ${idx} */{
         id: '${example.id}',
         title: '${example.title}',
-        type: '${example.type}'
+        category: '${example.category}'
     }/** if: ${idx} < ${examples}.length-1 */, /** /if */ /** /for */
 ];
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
         // append dom element
         var $row = $('<div class="col-lg-3 col-md-4 col-sm-6"></div>');
         var $chart = $('<div class="chart"></div>');
-        $('#chart-row-' + EXAMPLES[eid].type).append($row.append($chart));
+        $('#chart-row-' + EXAMPLES[eid].category).append($row.append($chart));
 
         $link = $('<a class="chart-link" href="./editor.html?c='
             + EXAMPLES[eid].id + '"></a>');
