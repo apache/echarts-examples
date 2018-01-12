@@ -1,11 +1,92 @@
 $chart-list-title-height: 90px;
 
+@mixin themeGradientColor($start, $end) {
+    background: $start; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, lighten($start, 20%) 0%, $start 50%, $end 51%, lighten($end, 20%) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, lighten($start, 20%) 0%,$start 50%, $end 51%, lighten($end, 20%) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, lighten($start, 20%) 0%,$start 50%, $end 51%, lighten($end, 20%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
 
+#toolbar {
+    height: 30px;
+    position: relative;
+    margin-top: 10px;
+}
+
+#theme {
+    float: right;
+    margin-right: 30px;
+
+    &>span {
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    a {
+        display: inline-block;
+        vertical-align: middle;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        margin: 0px 5px;
+        border-radius: 2px;
+
+        box-sizing: content-box;
+
+        background: #fff;
+
+        span {
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            margin-left: 2px;
+            margin-top: 2px;
+        }
+
+        &:hover {
+            box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+        }
+
+        &.selected {
+            border: 1px solid #000;
+        }
+    }
+
+    a.default {
+        span {
+            @include themeGradientColor(#c23531, #2f4554)
+        }
+    }
+
+    a.light {
+        span {
+            @include themeGradientColor(#37A2DA, #ffd85c)
+        }
+    }
+
+    a.dark {
+        background: #000;
+        span {
+            @include themeGradientColor(#dd6b66, #759aa0)
+        }
+
+        &.selected {
+            border: 1px solid #fff;
+        }
+    }
+}
 
 .chart-list-panel {
-    margin: 30px 15px;
+    margin: 0px 15px 30px 15px;
 
     h3 {
+
+        &:first-child {
+            margin-top: 0;
+        }
         margin-bottom: 20px;
     }
 

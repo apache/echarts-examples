@@ -36,6 +36,14 @@ var CHART_TYPES = {
     geo3D: '3D Geo'
 };
 
+// Params parser
+var params = {};
+(location.search || '').substr(1).split('&').forEach(function (item) {
+    var kv = item.split('=');
+    params[kv[0]] = kv[1];
+});
+
+$('#theme .' + (params.theme || 'default')).addClass('selected');
 
 var charts = [];
 
@@ -73,8 +81,10 @@ $(document).ready(function() {
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
+            var theme = (isGL || !params.theme) ? '' : ('-' + params.theme);
+
             // load chart image
-            $chartArea = $('<img class="chart-area" src="' + (isGL ? 'data-gl' : 'data') + '/thumb/'
+            $chartArea = $('<img class="chart-area" src="' + (isGL ? 'data-gl' : 'data') + '/thumb' + theme + '/'
                 + examples[eid].id + '.png" />');
             $link.append($chartArea);
         }

@@ -6,23 +6,18 @@ block inner_content
         ul
 
     #explore-container
+        #toolbar
+            #theme
+                span 选择主题:
+
+                a(href="./index.html" class="default")
+                    span
+                a(href="./index.html?theme=light" class="light")
+                    span
+                a(href="./index.html?theme=dark" class="dark")
+                    span
+
         .chart-list-panel
-            //- .row#chart-row
-                //- each chart, id in charts
-                //-     .col-md-3.col-sm-4
-                //-         .chart
-                //-             a.chart-link(href='/#{chart.cid}')
-                //-                 .chart-hover
-                //-                     h4.chart-title
-                //-                     .chart-subtitle
-                //-                 .chart-hover-bg
-                //-                 .chart-area(data-chart-code='#{chart.code}', data-chart-cid='#{chart.cid}', data-chart-version='#{chart.version}', data-echart-version='#{chart.echart_version}')
-                //-             .chart-info
-                //-                 .chart-icon
-                //-                     a.icon-bar(href='javascript:;')
-                //-                         span.glyphicon.glyphicon-heart(aria-hidden='true', title='获得赞数') #{chart.starCnt}
-                //-                     a.icon-bar(href='javascript:;')
-                //-                         span.glyphicon.glyphicon-eye-open(aria-hidden='true', title='关注人数') 2
 
 block extra_js
 

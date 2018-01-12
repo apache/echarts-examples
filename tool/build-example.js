@@ -13,9 +13,13 @@ var parser = new argparse.ArgumentParser({
 parser.addArgument(['-s', '--source'], {
     help: 'Source folder'
 });
+parser.addArgument(['-t', '--theme'], {
+    help: 'Theme'
+});
 
 var args = parser.parseArgs();
 var sourceFolder = args.source || 'data';
+var theme = args.theme || '';
 
 var tpl = fs.readFileSync('../public/javascripts/chart-list.tpl.js', 'utf-8');
 
@@ -30,6 +34,8 @@ function waitTime(time) {
 
 var BUILD_THUMBS = sourceFolder === 'data' && true;
 var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
+
+var thumbFolder = theme ? ('thumb-' + theme) : 'thumb';
 
 (async () => {
     // https://github.com/GoogleChrome/puppeteer/issues/1260
@@ -73,7 +79,13 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
             // Do screenshot
             if (BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0) {
                 var page = await browser.newPage();
-                var url = `${BASE_URL}/screenshot.html?c=${basename}&s=${sourceFolder}`;
+                await page.setViewport({
+                    // width: 600,
+                    // height: 450
+                    width: 700,
+                    height: 560
+                });
+                var url = `${BASE_URL}/screenshot.html?c=${basename}&s=${sourceFolder}&t=${theme}`;
                 page.on('pageerror', function (err) {
                     console.log(err.toString());
                 });
@@ -85,7 +97,7 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
                 try {
                     await page.goto(url, {'waitUntil' : 'networkidle0'});
                     await waitTime(200);
-                    await page.screenshot({path: `${rootDir}public/${sourceFolder}/thumb/${basename}.png` });
+                    await page.screenshot({path: `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.png` });
                 }
                 catch (e) {
                     console.error(e.toString());

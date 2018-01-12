@@ -26,16 +26,18 @@
 <body>
 <div id="viewport"></div>
 <script>
-    var myChart = echarts.init(document.getElementById('viewport'));
-    var app = {};
-</script>
-<script>
     // Params parser
     var params = {};
     (location.search || '').substr(1).split('&').forEach(function (item) {
         var kv = item.split('=');
         params[kv[0]] = kv[1];
     });
+
+
+    var myChart = echarts.init(document.getElementById('viewport'), params.t || null);
+    var app = {};
+</script>
+<script>
 
     if (params.c) {
         var sourceFolder = params.s || 'data';
