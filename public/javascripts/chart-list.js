@@ -752,6 +752,14 @@ var EXAMPLES = [
         title: 'Monochrome Sunburst',
         type: 'sunburst'
     }, {
+        id: 'sunburst-label-rotate',
+        title: 'Sunburst Label Rotate',
+        type: 'sunburst'
+    }, {
+        id: 'sunburst-label-position',
+        title: 'Sunburst Label Position',
+        type: 'sunburst'
+    }, {
         id: 'sunburst-visualMap',
         title: 'Sunburst VisualMap',
         type: 'sunburst'

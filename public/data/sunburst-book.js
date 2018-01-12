@@ -290,7 +290,7 @@ option = {
             r0: 0,
             r: 40,
             label: {
-                rotate: 'none'
+                rotate: 0
             }
         }, {
             r0: 40,
