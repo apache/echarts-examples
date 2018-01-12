@@ -23,7 +23,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
                     intensity: 0
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                    texture: 'data-gl/asset/canyon.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5
                 }

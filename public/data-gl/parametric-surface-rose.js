@@ -111,7 +111,7 @@ option = {
                 intensity: 0
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                texture: 'data-gl/asset/canyon.hdr',
                 exposure: 0,
                 diffuseIntensity: 1,
                 specularIntensity: 0.5

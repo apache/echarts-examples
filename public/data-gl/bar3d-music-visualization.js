@@ -47,13 +47,13 @@ function initVisualizer(audioBuffer) {
         var item = [];
         var size = 50;
         var dataProvider = [];
-        
+
         for (var i = 0; i < size * size; i++) {
             var x = i % size;
             var y = Math.floor(i / size);
             var dx = x - size / 2;
             var dy = y - size / 2;
-    
+
             var angle = Math.atan2(dy, dx);
             if (angle < 0) {
                 angle = Math.PI * 2 + angle;
@@ -62,11 +62,11 @@ function initVisualizer(audioBuffer) {
             var idx = Math.min(
                 frequencyBinCount - 1, Math.round(angle / Math.PI / 2 * 60 + dist * 60) + 100
             );
-    
+
             var val = Math.pow(dataArray[idx] / 100, 3);
             dataProvider.push([x, y, Math.max(val, 0.1)]);
         }
-        
+
         myChart.setOption({
             grid3D: {
                 viewControl: {
@@ -129,7 +129,7 @@ option = {
                 quality: 'high'
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                texture: 'data-gl/asset/canyon.hdr',
                 exposure: 0,
                 diffuseIntensity: 0.2
             }

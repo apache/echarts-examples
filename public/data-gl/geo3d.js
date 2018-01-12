@@ -22,7 +22,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr'
+                texture: 'data-gl/asset/canyon.hdr'
             }
         },
         viewControl: {
@@ -33,12 +33,12 @@ option = {
             borderColor: '#000',
             borderWidth: 0.5
         },
-        
+
 
         boxHeight: 1.0
     }
 }
 
 myChart.on('click', function () {
-    alert('click') 
+    alert('click')
 });

@@ -46,7 +46,7 @@ option = {
                 intensity: 3
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                texture: 'data-gl/asset/pisa.hdr',
                 exposure: 1,
                 diffuseIntensity: 0.5,
                 specularIntensity: 2
@@ -56,16 +56,16 @@ option = {
     series: [{
         type: 'bar3D',
         data: data,
-        
+
         barSize: 4,
-        
+
         bevelSize: 0.4,
         bevelSmoothness: 4,
-        
+
         shading: 'realistic',
         realisticMaterial: {
             roughness: 0.3,
-            metalness: 1  
+            metalness: 1
         },
 
         label: {
@@ -74,11 +74,11 @@ option = {
                 borderWidth: 1
             }
         },
-        
+
         itemStyle: {
             color: '#ccc'
         },
-        
+
         emphasis: {
             label: {
                 show: false

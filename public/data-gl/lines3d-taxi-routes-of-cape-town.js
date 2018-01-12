@@ -96,7 +96,7 @@ Promise.all([$.getJSON('/asset/get/s/data-1498751206824-HkkgZsfEW.json'), readSh
                         intensity: 0.
                     },
                     ambientCubemap: {
-                        texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                        texture: 'data-gl/asset/pisa.hdr',
                         exposure: 1,
                         diffuseIntensity: 0.5,
                         specularIntensity: 2
@@ -154,7 +154,7 @@ Promise.all([$.getJSON('/asset/get/s/data-1498751206824-HkkgZsfEW.json'), readSh
             }]
         });
     });
-    
+
 window.addEventListener('keydown', function () {
     myChart.dispatchAction({
         type: 'lines3DToggleEffect',

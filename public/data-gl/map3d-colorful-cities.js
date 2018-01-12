@@ -2,12 +2,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4N
 
 myChart.showLoading();
 
-$.getJSON('/asset/get/s/data-1491900403342-rkjxOfqTl.json', function (buildingsGeoJSON) {
+$.getJSON('data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
 
     echarts.registerMap('buildings', buildingsGeoJSON);
-    
+
     myChart.hideLoading();
-    
+
     var regionsData = buildingsGeoJSON.features.map(function (feature) {
         return {
             name: feature.properties.name,
@@ -58,7 +58,7 @@ $.getJSON('/asset/get/s/data-1491900403342-rkjxOfqTl.json', function (buildingsG
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                    texture: 'data-gl/asset/pisa.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5,
                     specularIntensity: 1

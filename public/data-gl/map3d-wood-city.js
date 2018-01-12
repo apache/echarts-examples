@@ -1,5 +1,5 @@
 
-$.getJSON('/asset/get/s/data-1491900403342-rkjxOfqTl.json', function (buildingsGeoJSON) {
+$.getJSON('data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
 
     echarts.registerMap('buildings', buildingsGeoJSON);
 
@@ -10,8 +10,8 @@ $.getJSON('/asset/get/s/data-1491900403342-rkjxOfqTl.json', function (buildingsG
             height: Math.max(Math.sqrt(feature.properties.height), 0.1)
         };
     });
-    
-    
+
+
     myChart.setOption({
         series: [{
             type: 'map3D',
@@ -55,7 +55,7 @@ $.getJSON('/asset/get/s/data-1491900403342-rkjxOfqTl.json', function (buildingsG
                     intensity: 0
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                    texture: 'data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 1,
                     specularIntensity: 1

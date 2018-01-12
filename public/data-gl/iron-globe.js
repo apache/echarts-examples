@@ -16,7 +16,7 @@ option = {
             enable: true
         },
         viewControl: {
-            autoRotate: false  
+            autoRotate: false
         },
         light: {
             main: {
@@ -24,7 +24,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                texture: 'data-gl/asset/pisa.hdr',
                 exposure: 2,
                 diffuseIntensity: 2,
                 specularIntensity: 2

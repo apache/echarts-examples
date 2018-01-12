@@ -4,9 +4,9 @@ mapboxgl.accessToken = mapboxglToken;
 myChart.showLoading();
 
 $.getJSON(uploadedDataURL, function(linedata) {
-    
+
     myChart.hideLoading();
-    
+
     myChart.setOption({
 
         visualMap: {
@@ -47,11 +47,11 @@ $.getJSON(uploadedDataURL, function(linedata) {
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                    texture: 'data-gl/asset/canyon.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5
                 }
-            }  
+            }
         },
         series: [{
             type: 'bar3D',

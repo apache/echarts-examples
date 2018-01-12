@@ -1,6 +1,6 @@
 mapboxgl.accessToken = mapboxglToken;
 
-$.getJSON('/asset/get/s/data-1491899618649-rysySf5ae.json', function (data) {
+$.getJSON('data-gl/asset/data/alcohol.json', function (data) {
     var regionData = data.map(function (item) {
         return {
             name: item[0],
@@ -35,7 +35,7 @@ $.getJSON('/asset/get/s/data-1491899618649-rysySf5ae.json', function (data) {
                     diffuseIntensity: 1,
                     specularIntensity: 1,
                     exposure: 2,
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr'
+                    texture: 'data-gl/asset/canyon.hdr'
                 }
             }
         },
@@ -46,7 +46,7 @@ $.getJSON('/asset/get/s/data-1491899618649-rysySf5ae.json', function (data) {
             shading: 'realistic',
             silent: true,
             itemStyle: {
-                areaColor: '#fff'  
+                areaColor: '#fff'
             },
             realisticMaterial: {
                 roughness: "/asset/get/s/data-1497191796671-B16_H05G-.png",
@@ -57,6 +57,6 @@ $.getJSON('/asset/get/s/data-1491899618649-rysySf5ae.json', function (data) {
             data: regionData
         }]
     };
-    
+
     myChart.setOption(option);
 });

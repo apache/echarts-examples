@@ -7,21 +7,21 @@ img.onload = function () {
     var height = canvas.height = img.height;
     ctx.drawImage(img, 0, 0, width, height);
     var imgData = ctx.getImageData(0, 0, width, height);
-    
+
     // StackBlur.imageDataRGBA(imgData, 5);
-    
+
     var data = [];
     for (var i = 0; i < imgData.data.length / 4; i++) {
         var r = imgData.data[i * 4];
         var g = imgData.data[i * 4 + 1];
         var b = imgData.data[i * 4 + 2];
-        
+
         var lum = (0.2125 * r + 0.7154 * g + 0.0721 * b);
         lum = (lum - 125) / 4 + 50;
         data.push([i % width, height - Math.floor(i / width), lum]);
     }
-    
-    
+
+
     myChart.setOption(option = {
         tooltip: {},
         backgroundColor: '#fff',
@@ -62,7 +62,7 @@ img.onload = function () {
                     intensity: 2
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                    texture: 'data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.2
                 }
@@ -84,7 +84,7 @@ img.onload = function () {
                     g *= lum * 2;
                     b *= lum * 2;
                     return [r, g, b, 1];
-                }  
+                }
             },
             data: data
         }]

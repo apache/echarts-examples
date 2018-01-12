@@ -22,7 +22,7 @@ var config = {
     lightPitch: 40,
     AO: 1.5,
     showEnvironment: false,
-    
+
     barNumber: 80,
     barBevel: 0.18,
     barSize: 1.2
@@ -83,7 +83,7 @@ option = {
                 intensity: 2
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                texture: 'data-gl/asset/pisa.hdr',
                 exposure: 2,
                 diffuseIntensity: 0.2,
                 specularIntensity: 1.5
@@ -205,7 +205,7 @@ function updateControlAndLight() {
                     beta: config.lightRotate
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr'
+                    texture: 'data-gl/asset/pisa.hdr'
                 }
             },
             postEffect: {
@@ -256,7 +256,7 @@ gui.add(config, 'depthOfField', 0., 10).onFinishChange(function () {
                 }
             },
         }
-    }) 
+    })
 });
 
 

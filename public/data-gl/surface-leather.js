@@ -2,7 +2,7 @@ var TILING = [4, 2];
 
 var heightImg = new Image();
 heightImg.onload = update;
-heightImg.src = '/asset/get/s/data-1499412414326-rJU6w22EW.jpg';
+heightImg.src = './data-gl/asset/leather/leather_height.jpg';
 
 function update() {
     var canvas = document.createElement('canvas');
@@ -56,7 +56,7 @@ function update() {
                     quality: 'high'
                 },
                 screenSpaceReflection: {
-                    enable: false  
+                    enable: false
                 },
                 depthOfField: {
                     enable: false,
@@ -76,7 +76,7 @@ function update() {
                     intensity: 0
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                    texture: './data-gl/asset/pisa.hdr',
                     exposure: 1,
                     diffuseIntensity: 1,
                     specularIntensity: 2
@@ -97,8 +97,8 @@ function update() {
             },
             realisticMaterial: {
                 // detailTexture: 'asset/leather/leather_albedo.jpg',
-                roughness: '/asset/get/s/data-1499412420721-ryaTw3nNZ.jpg',
-                normalTexture: '/asset/get/s/data-1499412417253-HytpD3n4b.jpg',
+                roughness: './data-gl/asset/leather/leather_roughness.jpg',
+                normalTexture: './data-gl/asset/leather/leather_normal.jpg',
                 textureTiling: TILING
             },
             itemStyle: {

@@ -5,7 +5,7 @@ option = {
 
         displacementScale: 0.05,
         displacementQuality: 'medium',
-        
+
         environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
 
         shading: 'realistic',
@@ -35,7 +35,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                texture: 'data-gl/asset/pisa.hdr',
                 exposure: 0,
                 diffuseIntensity: 0.02
             }

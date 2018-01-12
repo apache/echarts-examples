@@ -32,7 +32,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491838644249-ry33I7YTe.hdr',
+                texture: 'data-gl/asset/pisa.hdr',
                 exposure: 1,
                 diffuseIntensity: 0.2
             }

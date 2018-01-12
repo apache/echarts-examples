@@ -1,4 +1,4 @@
-$.getJSON('/asset/get/s/data-1491899618649-rysySf5ae.json', function (data) {
+$.getJSON('data-gl/asset/data/alcohol.json', function (data) {
     var regionData = data.map(function (item) {
         return {
             name: item[0],
@@ -48,7 +48,7 @@ $.getJSON('/asset/get/s/data-1491899618649-rysySf5ae.json', function (data) {
                     intensity: 0
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                    texture: 'data-gl/asset/canyon.hdr',
                     exposure: 1,
                     diffuseIntensity: 1
                 }

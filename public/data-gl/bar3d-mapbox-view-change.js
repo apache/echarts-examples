@@ -8,7 +8,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
     }).map(function (dataItem) {
         return [dataItem[0], dataItem[1], dataItem[2]];
     });
-    
+
     myChart.setOption({
         title: {
             text: '空格键切换视角',
@@ -51,7 +51,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491896094618-H1DmP-5px.hdr',
+                    texture: 'data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.5
                 }
@@ -67,7 +67,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
             silent: true
         }]
     });
-    
+
     function top() {
         myChart.setOption({
             mapbox: {
@@ -77,7 +77,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
             }
         });
     }
-    
+
     function perspective() {
         myChart.setOption({
             mapbox: {
@@ -87,7 +87,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
             }
         });
     }
-    
+
     var isPerspective = true;
     window.addEventListener('keydown', function (e) {
         if (e.keyCode === 32) {

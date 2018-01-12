@@ -60,7 +60,7 @@ var config = app.config = {
     zAxis3D: 'sodium',
     color: 'fiber',
     symbolSize: 'vitaminc',
-    
+
     onChange: function () {
         var max = getMaxOnExtent(data);
         if (data) {
@@ -109,7 +109,7 @@ app.configParameters = {};
     };
 });
 
-$.getJSON('/asset/get/s/data-1473170724065-rynmprns.json', function (_data) {
+$.getJSON('data/asset/data/nutrients.json', function (_data) {
     data = _data;
 
     var max = getMaxOnExtent(data);
