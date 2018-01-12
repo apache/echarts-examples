@@ -76,15 +76,22 @@ $(document).ready(function() {
             var $chart = $('<div class="chart"></div>');
             $('#chart-row-' + examples[eid].category).append($row.append($chart));
 
-            $link = $('<a class="chart-link" href="./editor.html?c='
-                + examples[eid].id + (isGL ? '&gl=1' : '')  + '"></a>');
+            var hash = ['c=' + examples[eid].id];
+            if (isGL) {
+                hash.push('&gl=1');
+            }
+            if (params.theme) {
+                hash.push('&theme=' + params.theme);
+            }
+
+            $link = $('<a class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
-            var theme = (isGL || !params.theme) ? '' : ('-' + params.theme);
+            var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
 
             // load chart image
-            $chartArea = $('<img class="chart-area" src="images/placeholder.png" data-original="' + (isGL ? 'data-gl' : 'data') + '/thumb' + theme + '/'
+            $chartArea = $('<img class="chart-area" src="images/placeholder.png" data-original="' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
                 + examples[eid].id + '.png" />');
             $link.append($chartArea);
         }

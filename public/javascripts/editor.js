@@ -42,6 +42,16 @@ _.each((location.search || '').substr(1).split('&'), function (item) {
     configs[kv[0]] = kv[1];
 });
 
+function makeSearch(obj) {
+    var search = [];
+    for (var key in obj) {
+        if (obj[key] != null) {
+            search.push(key + '=' + obj[key]);
+        }
+    }
+    return search.join('&');
+}
+
 var gb = {
     handler: {
         isDown: false
@@ -58,6 +68,17 @@ var gb = {
 };
 
 
+$('#theme .' + (configs.theme || 'default')).addClass('selected');
+
+$('#theme a').click(function () {
+    var theme = $(this).attr('class').trim();
+
+    window.location.href = './editor.html?' + makeSearch({
+        c: configs.c,
+        theme: theme
+    });
+});
+
 
 $(document).ready(function() {
 
@@ -71,7 +92,6 @@ $(document).ready(function() {
     initEventHandler();
 
     load();
-
 });
 
 
@@ -92,7 +112,7 @@ function initEditor() {
 
 function initEcharts() {
 
-    gb.chart = echarts.init($('#chart-panel')[0]);
+    gb.chart = echarts.init($('#chart-panel')[0], configs.theme);
 
     gb.editor.setValue('var option = {\n    \n};\n');
 
@@ -395,7 +415,7 @@ function disposeAndRun() {
 
     // init with theme
     var theme = $('#theme-btn').val() || 'default';
-    gb.chart = echarts.init($('#chart-panel')[0]);
+    gb.chart = echarts.init($('#chart-panel')[0], configs.theme);
     _wrapOnMethods(gb.chart);
 
     // run with option in code panel

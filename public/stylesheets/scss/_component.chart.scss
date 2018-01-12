@@ -38,11 +38,27 @@ $control-panel-height: 50px;
         // top: $control-panel-height;
         top: 0;
         right: 0;
-        bottom: 0;
+        bottom: 50px;
         left: 0;
         padding: 10px;
         box-sizing: border-box;
     }
+
+#tool-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    #theme {
+        margin-bottom: 10px;
+        float: right;
+
+        a {
+            cursor: pointer;
+        }
+    }
+}
 
 .dg.main .c {
     select {

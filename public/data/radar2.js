@@ -42,14 +42,12 @@ option = {
                 name:'浏览器（数据纯属虚构）',
                 type: 'radar',
                 symbol: 'none',
-                itemStyle: {
-                    normal: {
-                        lineStyle: {
-                          width:1
-                        }
-                    },
-                    emphasis : {
-                        areaStyle: {color:'rgba(0,250,0,0.3)'}
+                lineStyle: {
+                    width: 1
+                },
+                emphasis: {
+                    areaStyle: {
+                        color: 'rgba(0,250,0,0.3)'
                     }
                 },
                 data:[
