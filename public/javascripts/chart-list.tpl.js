@@ -7,13 +7,13 @@ var EXAMPLES = [
 ];
 
 var CHART_TYPES = {
-    scatter: 'Scatter',
     line: 'Line',
     bar: 'Bar',
-    map: 'Map',
     pie: 'Pie',
-    radar: 'Radar',
+    scatter: 'Scatter',
+    map: 'Map',
     candlestick: 'Candlestick',
+    radar: 'Radar',
     boxplot: 'Boxplot',
     heatmap: 'Heatmap',
     graph: 'Graph',
