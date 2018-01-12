@@ -51,7 +51,7 @@ $chart-list-title-height: 90px;
         }
 
         &.selected {
-            border: 1px solid #000;
+            border: 1px solid #e43c59;
         }
     }
 
@@ -71,10 +71,6 @@ $chart-list-title-height: 90px;
         background: #000;
         span {
             @include themeGradientColor(#dd6b66, #759aa0)
-        }
-
-        &.selected {
-            border: 1px solid #fff;
         }
     }
 }

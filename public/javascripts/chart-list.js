@@ -72,7 +72,7 @@ $(document).ready(function() {
             var title = examples[eid].title || '未命名图表';
 
             // append dom element
-            var $row = $('<div class="col-lg-3 col-md-4 col-sm-6"></div>');
+            var $row = $('<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6"></div>');
             var $chart = $('<div class="chart"></div>');
             $('#chart-row-' + examples[eid].category).append($row.append($chart));
 
