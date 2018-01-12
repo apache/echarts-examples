@@ -7,6 +7,7 @@
     <script type="text/javascript" src="./vendors/lodash.js"></script>
     <script type="text/javascript" src="./vendors/dat.gui.min.js"></script>
     <script type="text/javascript" src="./vendors/echarts/echarts.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="./vendors/echarts-gl/echarts-gl.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="./vendors/echarts-stat/ecStat.min.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="./vendors/echarts/map/js/china.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="./vendors/echarts/map/js/world.js?_v_=1510583857922"></script>
@@ -37,9 +38,10 @@
     });
 
     if (params.c) {
+        var sourceFolder = params.s || 'data';
         var scriptTag = document.createElement('script');
         scriptTag.async = false;
-        scriptTag.src = `./data/${params.c}.js`
+        scriptTag.src = `./${sourceFolder}/${params.c}.js`
         document.body.appendChild(scriptTag);
 
         scriptTag.onload = function () {

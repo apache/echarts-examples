@@ -12,6 +12,9 @@ option = {
     ],
     series: {
         type: 'parallel',
+        lineStyle: {
+            width: 4
+        },
         data: [
             [12.99, 100, 82, 'Good'],
             [9.99, 80, 77, 'OK'],

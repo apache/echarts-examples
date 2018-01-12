@@ -1,11 +1,3 @@
-var EXAMPLES = [
-    /** for: ${examples} as ${example}, ${idx} */{
-        id: '${example.id}',
-        title: '${example.title}',
-        category: '${example.category}'
-    }/** if: ${idx} < ${examples}.length-1 */, /** /if */ /** /for */
-];
-
 var CHART_TYPES = {
     line: 'Line',
     bar: 'Bar',

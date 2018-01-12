@@ -5,7 +5,17 @@ var path = require('path');
 var marked = require('marked');
 var fm = require('front-matter');
 var puppeteer = require('puppeteer');
+var argparse = require('argparse');
 
+var parser = new argparse.ArgumentParser({
+    addHelp: true
+});
+parser.addArgument(['-s', '--source'], {
+    help: 'Source folder'
+});
+
+var args = parser.parseArgs();
+var sourceFolder = args.source || 'data';
 
 var tpl = fs.readFileSync('../public/javascripts/chart-list.tpl.js', 'utf-8');
 
@@ -18,7 +28,7 @@ function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-var BUILD_THUMBS = true;
+var BUILD_THUMBS = sourceFolder === 'data' && true;
 var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
 
 (async () => {
@@ -39,7 +49,7 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
 
     var rootDir = __dirname + '/../';
 
-    glob(rootDir + 'public/data/*.js', async function (err, files) {
+    glob(`${rootDir}public/${sourceFolder}/*.js`, async function (err, files) {
 
         var exampleList = [];
 
@@ -49,14 +59,21 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
 
             var jsCode = fs.readFileSync(fileName, 'utf-8');
 
-            var mdText = fs.readFileSync(rootDir + 'public/data/meta/' + basename + '.md', 'utf-8');
-            var fmResult = fm(mdText);
+            try {
+                var mdText = fs.readFileSync(`${rootDir}public/${sourceFolder}/meta/${basename}.md`, 'utf-8');
+                var fmResult = fm(mdText);
+            }
+            catch (e) {
+                var fmResult = {
+                    attributes: {}
+                };
+            }
             // var descHTML = marked(fmResult.body);
 
             // Do screenshot
             if (BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0) {
                 var page = await browser.newPage();
-                var url = `${BASE_URL}/screenshot.html?c=${basename}`;
+                var url = `${BASE_URL}/screenshot.html?c=${basename}&s=${sourceFolder}`;
                 page.on('pageerror', function (err) {
                     console.log(err.toString());
                 });
@@ -68,7 +85,7 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
                 try {
                     await page.goto(url, {'waitUntil' : 'networkidle0'});
                     await waitTime(200);
-                    await page.screenshot({path: rootDir + 'public/data/thumb/' + basename + '.png' });
+                    await page.screenshot({path: `${rootDir}public/${sourceFolder}/thumb/${basename}.png` });
                 }
                 catch (e) {
                     console.error(e.toString());
@@ -76,20 +93,23 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
                 await page.close();
             }
 
-            exampleList.push({
-                category: fmResult.attributes.category,
-                id: basename,
-                title: fmResult.attributes.title
-            });
+            try {
+                exampleList.push({
+                    category: fmResult.attributes.category,
+                    id: basename,
+                    title: fmResult.attributes.title
+                });
+            }
+            catch (e) {
+                throw new Error(e.toString());
+            }
         }
 
         if (BUILD_THUMBS) {
             await browser.close();
         }
 
-        var code = etpl.compile(tpl)({
-            examples: exampleList
-        });
-        fs.writeFileSync('../public/javascripts/chart-list.js', code, 'utf-8');
+        var code = 'var EXAMPLES' + (sourceFolder === 'data' ? ' = ' : '_GL = ') + JSON.stringify(exampleList, null, 2);
+        fs.writeFileSync(`../public/javascripts/chart-list-${sourceFolder}.js`, code, 'utf-8');
     });
 })()
