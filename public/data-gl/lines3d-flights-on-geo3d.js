@@ -1,4 +1,4 @@
-$.getJSON('/asset/get/s/data-1483975567865-BJOcimZIg.json', function(data) {
+$.getJSON('data-gl/asset/data/flights.json', function(data) {
     function getAirportCoord(idx) {
         return [data.airports[idx][3], data.airports[idx][4]];
     }
@@ -14,8 +14,8 @@ $.getJSON('/asset/get/s/data-1483975567865-BJOcimZIg.json', function(data) {
             map: 'world',
             shading: 'color',
 
-            environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
-            
+            environment: 'data-gl/asset/starfield.jpg',
+
             silent: true,
 
             groundPlane: {

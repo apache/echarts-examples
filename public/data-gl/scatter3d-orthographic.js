@@ -1,3 +1,5 @@
+$.getScript('vendors/simplex.js').done(function () {
+
 
 var noise = new SimplexNoise(Math.random);
 function generateData(theta, min, max) {
@@ -19,7 +21,7 @@ var valMax = -Infinity;
 var data = generateData(2, -5, 5);
 console.log(valMin, valMax);
 
-option = {
+myChart.setOption(option = {
     visualMap: {
         show: false,
         min: 2,
@@ -54,4 +56,6 @@ option = {
         type: 'scatter3D',
         data: data
     }]
-};
+});
+
+});

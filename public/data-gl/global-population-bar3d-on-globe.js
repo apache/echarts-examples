@@ -1,18 +1,18 @@
-$.getJSON("/asset/get/s/data-1491887968120-rJODPy9ae.json", function (data) {
-    
+$.getJSON("data-gl/asset/data/population.json", function (data) {
+
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
     }).map(function (dataItem) {
         return [dataItem[0], dataItem[1], Math.sqrt(dataItem[2])];
     });
-    
+
     option = {
         backgroundColor: '#000',
         globe: {
-            baseTexture: "/asset/get/s/data-1491837049070-rJZtl7Y6x.jpg",
-            heightTexture: "/asset/get/s/data-1491837049070-rJZtl7Y6x.jpg",
+            baseTexture: "data-gl/asset/world.topo.bathy.200401.jpg",
+            heightTexture: "data-gl/asset/world.topo.bathy.200401.jpg",
             shading: 'lambert',
-            environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
+            environment: 'data-gl/asset/starfield.jpg',
             light: {
                 main: {
                     intensity: 2
@@ -34,7 +34,7 @@ $.getJSON("/asset/get/s/data-1491887968120-rJODPy9ae.json", function (data) {
             },
             controller: {
                 inRange: {
-                    color: 'orange'  
+                    color: 'orange'
                 }
             },
             outOfRange: {
@@ -53,6 +53,6 @@ $.getJSON("/asset/get/s/data-1491887968120-rJODPy9ae.json", function (data) {
             }
         }]
     };
-    
+
     myChart.setOption(option);
 })

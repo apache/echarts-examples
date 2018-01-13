@@ -1,4 +1,4 @@
-$.getJSON('/asset/get/s/data-1483975567865-BJOcimZIg.json', function(data) {
+$.getJSON('data-gl/asset/data/flights.json', function(data) {
 
     function getAirportCoord(idx) {
         return [data.airports[idx][3], data.airports[idx][4]];
@@ -13,8 +13,8 @@ $.getJSON('/asset/get/s/data-1483975567865-BJOcimZIg.json', function(data) {
     myChart.setOption({
         backgroundColor: '#000',
         globe: {
-            baseTexture: '/asset/get/s/data-1491837049070-rJZtl7Y6x.jpg',
-            heightTexture: '/asset/get/s/data-1491889019097-rJQYikcpl.jpg',
+            baseTexture: 'data-gl/asset/world.topo.bathy.200401.jpg',
+            heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
             shading: 'lambert',
 

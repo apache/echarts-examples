@@ -1,11 +1,11 @@
 option = {
     backgroundColor: '#000',
     globe: {
-        baseTexture: "/asset/get/s/data-1491837049070-rJZtl7Y6x.jpg",
-        heightTexture: "/asset/get/s/data-1491837049070-rJZtl7Y6x.jpg",
+        baseTexture: "data-gl/asset/world.topo.bathy.200401.jpg",
+        heightTexture: "data-gl/asset/world.topo.bathy.200401.jpg",
         displacementScale: 0.04,
         shading: 'realistic',
-        environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
+        environment: 'data-gl/asset/starfield.jpg',
         realisticMaterial: {
             roughness: 0.9
         },

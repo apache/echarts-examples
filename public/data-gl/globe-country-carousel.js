@@ -33,16 +33,16 @@ mapChart.setOption({
 option = {
     globe: {
         baseTexture: mapChart,
-        heightTexture: '/asset/get/s/data-1491889019097-rJQYikcpl.jpg',
-    
+        heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+
         displacementScale: 0.1,
-    
+
         shading: 'realistic',
         realisticMaterial: {
             roughness: 0.8,
             metalness: 0
         },
-    
+
         postEffect: {
             enable: true
         },
@@ -58,7 +58,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: '/asset/get/s/data-1491837984109-r1u7NmY6e.hdr',
+                texture: 'data-gl/asset/lake.hdr',
                 exposure: 1,
                 diffuseIntensity: 0.2
             }

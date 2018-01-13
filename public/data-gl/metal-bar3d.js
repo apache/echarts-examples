@@ -1,3 +1,6 @@
+$.getScript('vendors/simplex.js').done(function () {
+
+
 var noise = new SimplexNoise(Math.random);
 function generateData(theta, min, max) {
     var data = [];
@@ -16,7 +19,7 @@ var valMax = -Infinity;
 var data = generateData(2, -5, 5);
 
 
-option = {
+myChart.setOption(option = {
     tooltip: {},
     xAxis3D: {
         type: 'value'
@@ -85,4 +88,6 @@ option = {
             }
         }
     }]
-}
+});
+
+});

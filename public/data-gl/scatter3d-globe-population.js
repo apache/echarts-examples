@@ -1,5 +1,5 @@
 
-$.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
+$.getJSON('data-gl/asset/data/population.json', function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
@@ -18,13 +18,13 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
         },
         globe: {
 
-            environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
+            environment: 'data-gl/asset/starfield.jpg',
 
-            heightTexture: '/asset/get/s/data-1491837512042-rJlLfXYax.jpg',
+            heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
             displacementScale: 0.05,
             displacementQuality: 'high',
-            
+
             globeOuterRadius: 100,
 
             baseColor: '#000',
@@ -55,7 +55,7 @@ $.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
                     shadow: false
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491837984109-r1u7NmY6e.hdr',
+                    texture: 'data-gl/asset/lake.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5,
                     specularIntensity: 2

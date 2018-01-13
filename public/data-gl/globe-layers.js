@@ -1,15 +1,15 @@
 option = {
     backgroundColor: '#000',
     globe: {
-        baseTexture: '/asset/get/s/data-1491890179041-Hkj-elqpe.jpg',
-        heightTexture: '/asset/get/s/data-1491889019097-rJQYikcpl.jpg',
+        baseTexture: 'data-gl/asset/earth.jpg',
+        heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
         displacementScale: 0.1,
 
         shading: 'lambert',
-        
-        environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
-        
+
+        environment: 'data-gl/asset/starfield.jpg',
+
         light: {
             ambient: {
                 intensity: 0.1
@@ -22,10 +22,10 @@ option = {
         layers: [{
             type: 'blend',
             blendTo: 'emission',
-            texture: '/asset/get/s/data-1491890291849-rJ2uee5ag.jpg'
+            texture: 'data-gl/asset/night.jpg'
         }, {
             type: 'overlay',
-            texture: '/asset/get/s/data-1491890092270-BJEhJg96l.png',
+            texture: 'data-gl/asset/clouds.png',
             shading: 'lambert',
             distance: 5
         }]

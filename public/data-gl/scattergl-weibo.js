@@ -1,5 +1,5 @@
 
-$.getJSON('/asset/get/s/data-1491917776060-Sku0i8qpx.json', function (weiboData) {
+$.getJSON('data/asset/data/weibo.json', function (weiboData) {
 
     weiboData = weiboData.map(function (serieData, idx) {
         var px = serieData[0] / 1000;

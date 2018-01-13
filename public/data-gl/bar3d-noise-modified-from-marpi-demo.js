@@ -1,3 +1,6 @@
+$.getScript('vendors/simplex.js').done(function () {
+
+
 var simplex = new SimplexNoise();
 
 window.onresize = myChart.resize;
@@ -6,7 +9,7 @@ var UPDATE_DURATION = 1000;
 
 function initVisualizer() {
 
-    var config = {
+    config = {
         numWaves: 2,
         randomize: randomize,
         color1: '#000',
@@ -17,25 +20,13 @@ function initVisualizer() {
         metalness: 0.
     };
 
-    gui = new dat.GUI();
     //gui.add(config, "numWaves", 1, 3).name("Waves number").onChange(update).listen();
     for (var i = 0; i < 2; i++) {
         config["wave" + i + "axis" + "x"] = Math.random();
         config["wave" + i + "axis" + "y"] = Math.random();
         config["wave" + i + "rounding"] = Math.random();
         config["wave" + i + "square"] = Math.random();
-        gui.add(config, "wave" + i + "axis" + "x", 0, 1).name("Wave " + (i + 1) + " width").onChange(update);
-        gui.add(config, "wave" + i + "axis" + "y", 0, 1).name("Wave " + (i + 1) + " depth").onChange(update);
-        gui.add(config, "wave" + i + "rounding", 0, 1).name("Wave " + (i + 1) + " grow").onChange(update);
-        gui.add(config, "wave" + i + "square", 0, 1).name("Wave " + (i + 1) + " square").onChange(update);
     }
-    gui.addColor(config, 'color1').onChange(update);
-    gui.addColor(config, 'color2').onChange(update);
-    gui.addColor(config, 'color3').onChange(update);
-    gui.add(config, 'roughness', 0, 1).onChange(update);
-    gui.add(config, 'metalness', 0, 1).onChange(update);
-
-    gui.add(config, "randomize").name("Randomize")
 
     function randomize() {
         //config.numWaves = Math.floor(Math.random() * 3) + 1;
@@ -75,12 +66,12 @@ function initVisualizer() {
                 var n = simplex.noise2D(i * 213 + (-50 + x) * mod * (1 - config["wave" + i + "axis" + "x"]) * .5, i * 3124 + (-50 + y) * mod * (1 - config["wave" + i + "axis" + "y"]) * .5)
                 n = Math.pow(n, 1.95 - 1.9 * config["wave" + i + "rounding"])
                 var square = Math.floor((1.1 - config["wave" + i + "square"]) * 100)
-                n = Math.round(n * square) / square
+                n = Math.round(n * square) / square;
                     //output*=n
                 if (output < n)
                     output = n;
             }
-            dataProvider.push([x, y, (output + .1) * 2]);
+            dataProvider.push([x, y, (output + 0.1) * 2]);
         }
 
 
@@ -107,25 +98,12 @@ function initVisualizer() {
 var focalRange = 40
 var blurRadius = 4
 
-option = {
+myChart.setOption(option = {
     toolbox: {
         left: 20,
         iconStyle: {
             normal: {
                 borderColor: '#fff'
-            }
-        },
-        feature: {
-            myExportObj: {
-                title: 'Export OBJ',
-                icon: 'M4.7,22.9L29.3,45.5L54.7,23.4M4.6,43.6L4.6,58L53.8,58L53.8,43.6M29.2,45.1L29.2,0',
-                onclick: function () {
-                    var res = echarts.exportGL2PLY(myChart, {
-                        mainType: 'grid3D',
-                        index: 0
-                    });
-                    download(res, 'bar3D.ply', 'text/plain');
-                }
             }
         }
     },
@@ -169,7 +147,7 @@ option = {
                 radius: 5
             },
             screenSpaceReflection: {
-                enable: true
+                enable: false
             },
             depthOfField: {
                 enable: true,
@@ -216,8 +194,11 @@ option = {
         animation: false,
         animationDurationUpdate: UPDATE_DURATION
     }]
-};
+});
 
 setTimeout(function() {
     initVisualizer();
-})
+});
+
+
+});

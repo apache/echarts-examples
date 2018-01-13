@@ -8,9 +8,8 @@ img.onload = function () {
     ctx.drawImage(img, 0, 0, width, height);
     var imgData = ctx.getImageData(0, 0, width, height);
 
-    // StackBlur.imageDataRGBA(imgData, 5);
-
-    var data = [];
+    var data = new Float32Array(imgData.data.length / 4 * 3);
+    var off = 0;
     for (var i = 0; i < imgData.data.length / 4; i++) {
         var r = imgData.data[i * 4];
         var g = imgData.data[i * 4 + 1];
@@ -18,7 +17,10 @@ img.onload = function () {
 
         var lum = (0.2125 * r + 0.7154 * g + 0.0721 * b);
         lum = (lum - 125) / 4 + 50;
-        data.push([i % width, height - Math.floor(i / width), lum]);
+
+        data[off++] = i % width;
+        data[off++] = height - Math.floor(i / width);
+        data[off++] = lum;
     }
 
 
@@ -55,7 +57,7 @@ img.onload = function () {
             },
             boxDepth: 100,
             boxHeight: 20,
-            environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
+            environment: 'data-gl/asset/starfield.jpg',
             light: {
                 main: {
                     shadow: true,
@@ -91,4 +93,4 @@ img.onload = function () {
     });
 }
 
-img.src = '/asset/get/s/data-1492698053060-By6aXrIAl.jpeg';
+img.src = 'data-gl/asset/sample.jpg';

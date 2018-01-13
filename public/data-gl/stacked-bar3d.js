@@ -1,3 +1,6 @@
+$.getScript('vendors/simplex.js').done(function () {
+
+
 function generateData() {
     var data = [];
     var noise = new SimplexNoise(Math.random);
@@ -25,7 +28,7 @@ for (var i = 0; i < 10; i++) {
     });
 }
 
-option = {
+myChart.setOption({
     xAxis3D: {
         type: 'value'
     },
@@ -48,4 +51,6 @@ option = {
         }
     },
     series: series
-}
+});
+
+});

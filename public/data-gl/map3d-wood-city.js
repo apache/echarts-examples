@@ -20,7 +20,7 @@ $.getJSON('data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
             realisticMaterial: {
                 roughness: 0.6,
                 textureTiling: 20,
-                detailTexture: '/asset/get/s/data-1491896059428-B1QbPbq6e.jpg'
+                detailTexture: 'data-gl/asset/woods.jpg'
             },
             postEffect: {
                 enable: true,

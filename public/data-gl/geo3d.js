@@ -2,7 +2,7 @@ option = {
     geo3D: {
         map: 'world',
         lambertMaterial: {
-            baseTexture: '/asset/get/s/data-1491896059428-B1QbPbq6e.jpg',
+            baseTexture: 'data-gl/asset/woods.jpg',
             textureTiling: 10
         },
 

@@ -1,5 +1,5 @@
 
-$.getJSON('/asset/get/s/data-1491909692146-S1NH24cTe.json', function (data) {
+$.getJSON('./data-gl/asset/data/flights.json', function (data) {
     var airports = data.airports.map(function (item) {
         return {
             coord: [item[3], item[4]]
@@ -84,9 +84,9 @@ $.getJSON('/asset/get/s/data-1491909692146-S1NH24cTe.json', function (data) {
         },
         globe: {
 
-            environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
+            environment: 'data-gl/asset/starfield.jpg',
 
-            heightTexture: '/asset/get/s/data-1491837512042-rJlLfXYax.jpg',
+            heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
             displacementScale: 0.1,
             displacementQuality: 'high',
@@ -118,7 +118,7 @@ $.getJSON('/asset/get/s/data-1491909692146-S1NH24cTe.json', function (data) {
                     shadow: false
                 },
                 ambientCubemap: {
-                    texture: '/asset/get/s/data-1491837984109-r1u7NmY6e.hdr',
+                    texture: 'data-gl/asset/lake.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5,
                     specularIntensity: 2

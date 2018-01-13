@@ -1,4 +1,4 @@
-$.getJSON('/asset/get/s/data-1505455520728-HkKia1tqW.json', function(windData) {
+$.getJSON('data-gl/asset/data/gfs.json', function(windData) {
     buildGrid(windData, function(header, grid) {
         var data = [];
         var p = 0;
@@ -156,9 +156,10 @@ $.getJSON('/asset/get/s/data-1505455520728-HkKia1tqW.json', function(windData) {
                 type: 'flowGL',
                 coordinateSystem: 'bmap',
                 data: data,
-                particleDensity: 256,
-                particleSpeed: 2,
-                particleSize: 1,
+                supersampling: 4,
+                particleType: 'line',
+                particleDensity: 128,
+                particleSpeed: 1,
                 // gridWidth: windData.nx,
                 // gridHeight: windData.ny,
                 itemStyle: {

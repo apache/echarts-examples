@@ -1,14 +1,14 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 
-$.getJSON('/asset/get/s/data-1491887968120-rJODPy9ae.json', function (data) {
+$.getJSON('data-gl/asset/data/population.json', function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
     }).map(function (dataItem) {
         return [dataItem[0], dataItem[1], dataItem[2]];
     });
-    
+
     myChart.setOption({
         visualMap: {
             show: false,

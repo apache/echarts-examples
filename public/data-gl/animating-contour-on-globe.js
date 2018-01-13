@@ -16,148 +16,154 @@ context.strokeStyle = config.color;
 context.fillStyle = config.color;
 context.shadowColor = config.color;
 
-image('/asset/get/s/data-1491837512042-rJlLfXYax.jpg').then(function(image) {
-  var m = image.height,
-      n = image.width,
-      values = new Array(n * m),
-      contours = d3.contours().size([n, m]).smooth(true),
-      projection = d3.geoIdentity().scale(canvas.width / n),
-      path = d3.geoPath(projection, context);
+$.when(
+    $.getScript('./vendors/d3/d3-contour.js'),
+    $.getScript('./vendors/d3/d3-geo.js'),
+    $.getScript('./vendors/d3/d3-timer.js')
+).done(function () {
 
-//   StackBlur.R(image, 5);
+    image('data-gl/asset/bathymetry_bw_composite_4k.jpg').then(function(image) {
+        var m = image.height,
+            n = image.width,
+            values = new Array(n * m),
+            contours = d3.contours().size([n, m]).smooth(true),
+            projection = d3.geoIdentity().scale(canvas.width / n),
+            path = d3.geoPath(projection, context);
 
-  for (var j = 0, k = 0; j < m; ++j) {
-    for (var i = 0; i < n; ++i, ++k) {
-      values[k] = image.data[(k << 2)] / 255;
-    }
-  }
+        //   StackBlur.R(image, 5);
 
-  var opt = {
-    image: canvas
-  }
-
-  var results = [];
-  function update(threshold, levels) {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    var thresholds = [];
-    for (var i = 0; i < levels; i++) {
-        thresholds.push((threshold + 1 / levels * i) % 1);
-    }
-    results = contours.thresholds(thresholds)(values);
-    redraw();
-  }
-
-  function redraw() {
-    results.forEach(function (d, idx) {
-        context.beginPath();
-        path(d);
-        context.globalAlpha = 1;
-        context.stroke();
-        if (idx > config.levels / 5 * 3) {
-            context.globalAlpha = 0.01;
-            context.fill();
+        for (var j = 0, k = 0; j < m; ++j) {
+            for (var i = 0; i < n; ++i, ++k) {
+            values[k] = image.data[(k << 2)] / 255;
+            }
         }
+
+        var opt = {
+            image: canvas
+        }
+
+        var results = [];
+        function update(threshold, levels) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            var thresholds = [];
+            for (var i = 0; i < levels; i++) {
+                thresholds.push((threshold + 1 / levels * i) % 1);
+            }
+            results = contours.thresholds(thresholds)(values);
+            redraw();
+        }
+
+        function redraw() {
+            results.forEach(function (d, idx) {
+                context.beginPath();
+                path(d);
+                context.globalAlpha = 1;
+                context.stroke();
+                if (idx > config.levels / 5 * 3) {
+                    context.globalAlpha = 0.01;
+                    context.fill();
+                }
+            });
+            opt.onupdate();
+        }
+        d3.timer(function(t) {
+            var threshold = (t % 10000) / 10000;
+            update(threshold, 1);
+        });
+
+        initCharts(opt);
+
+        update(config.threshold, config.levels);
+
     });
-    opt.onupdate();
-  }
-  d3.timer(function(t) {
-    var threshold = (t % 10000) / 10000;
-    update(threshold, 1);
-  });
 
-  initCharts(opt);
+    function image(url) {
+        return new Promise(function(resolve) {
+            var image = new Image();
+            image.src = url;
+            image.onload = function() {
+            var canvas = document.createElement("canvas");
+            canvas.width = image.width / 8;
+            canvas.height = image.height / 8;
+            var context = canvas.getContext("2d");
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            resolve(context.getImageData(0, 0, canvas.width, canvas.height));
+            };
+        });
+    }
 
-  update(config.threshold, config.levels);
+    function initCharts(opt) {
+        var contourChart = echarts.init(document.createElement('canvas'), null, {
+            width: 4096,
+            height: 2048
+        });
 
+        var img = new echarts.graphic.Image({
+            style: {
+                image: opt.image,
+                x: -1,
+                y: -1,
+                width: opt.image.width + 2,
+                height: opt.image.height + 2
+            }
+        });
+        contourChart.getZr().add(img);
+
+        opt.onupdate = function () {
+            img.dirty();
+        };
+
+        myChart.setOption({
+            backgroundColor: '#000',
+            globe: {
+
+                environment: 'data-gl/asset/starfield.jpg',
+
+                heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+
+                displacementScale: 0.05,
+                displacementQuality: 'high',
+
+                baseColor: '#000',
+
+                shading: 'realistic',
+                realisticMaterial: {
+                    roughness: 0.2,
+                    metalness: 0
+                },
+
+                postEffect: {
+                    enable: true,
+                    depthOfField: {
+                        // enable: true
+                    }
+                },
+                light: {
+                    ambient: {
+                        intensity: 0
+                    },
+                    main: {
+                        intensity: 0.1,
+                        shadow: false
+                    },
+                    ambientCubemap: {
+                        texture: 'data-gl/asset/lake.hdr',
+                        exposure: 1,
+                        diffuseIntensity: 0.5,
+                        specularIntensity: 2
+                    }
+                },
+                viewControl: {
+                    autoRotate: false
+                },
+
+                layers: [{
+                    type: 'blend',
+                    blendTo: 'emission',
+                    texture: contourChart,
+                    intensity: config.intensity
+                }]
+            }
+        });
+    }
 });
-
-function image(url) {
-  return new Promise(function(resolve) {
-    var image = new Image;
-    image.src = url;
-    image.onload = function() {
-      var canvas = document.createElement("canvas");
-      canvas.width = image.width / 8;
-      canvas.height = image.height / 8;
-      var context = canvas.getContext("2d");
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
-      resolve(context.getImageData(0, 0, canvas.width, canvas.height));
-    };
-  });
-}
-
-function initCharts(opt) {
-    var contourChart = echarts.init(document.createElement('canvas'), null, {
-        width: 4096,
-        height: 2048
-    });
-
-    var img = new echarts.graphic.Image({
-        style: {
-            image: opt.image,
-            x: -1,
-            y: -1,
-            width: opt.image.width + 2,
-            height: opt.image.height + 2
-        }
-    });
-    contourChart.getZr().add(img);
-
-    opt.onupdate = function () {
-        img.dirty();
-    }
-
-    myChart.setOption({
-        backgroundColor: '#000',
-        globe: {
-    
-            environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
-    
-            heightTexture: '/asset/get/s/data-1491837512042-rJlLfXYax.jpg',
-    
-            displacementScale: 0.05,
-            displacementQuality: 'high',
-    
-            baseColor: '#000',
-    
-            shading: 'realistic',
-            realisticMaterial: {
-                roughness: 0.2,
-                metalness: 0
-            },
-    
-            postEffect: {
-                enable: true,
-                depthOfField: {
-                    // enable: true
-                }
-            },
-            light: {
-                ambient: {
-                    intensity: 0
-                },
-                main: {
-                    intensity: 0.1,
-                    shadow: false
-                },
-                ambientCubemap: {
-                    texture: '/asset/get/s/data-1491837984109-r1u7NmY6e.hdr',
-                    exposure: 1,
-                    diffuseIntensity: 0.5,
-                    specularIntensity: 2
-                }
-            },
-            viewControl: {
-                autoRotate: false
-            },
-    
-            layers: [{
-                type: 'blend',
-                blendTo: 'emission',
-                texture: contourChart,
-                intensity: config.intensity
-            }]
-        }
-    });
-}
-

@@ -1,6 +1,6 @@
 option = {
     globe: {
-        displacementTexture: '/asset/get/s/data-1491837512042-rJlLfXYax.jpg',
+        displacementTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
         displacementScale: 0.1,
         displacementQuality: 'ultra',

@@ -210,7 +210,7 @@ mapChart.setOption({
 option = {
     globe: {
         baseTexture: mapChart,
-        heightTexture: "/asset/get/s/data-1491889019097-rJQYikcpl.jpg",
+        heightTexture: "data-gl/asset/bathymetry_bw_composite_4k.jpg",
 
         displacementScale: 0.1,
 

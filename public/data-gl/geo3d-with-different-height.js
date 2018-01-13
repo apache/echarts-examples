@@ -1,5 +1,5 @@
 
-$.getJSON('/asset/get/s/data-1491897030366-r1Ap5Wcag.json', function (populationData) {
+$.getJSON('data-gl/asset/data/world-population.json', function (populationData) {
 
     var max = -Infinity;
     var min = Infinity;
@@ -22,7 +22,7 @@ $.getJSON('/asset/get/s/data-1491897030366-r1Ap5Wcag.json', function (population
             shading: 'lambert',
 
             lambertMaterial: {
-                detailTexture: '/asset/get/s/data-1491896059428-B1QbPbq6e.jpg',
+                detailTexture: 'data-gl/asset/woods.jpg',
                 textureTiling: 20
             },
 

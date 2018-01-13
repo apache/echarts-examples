@@ -1,4 +1,4 @@
-var uploadedDataURL = "/asset/get/s/data-1469162638978-rJDcVXku.json";
+var uploadedDataURL = "data-gl/asset/data/flights.json";
 
 app.title = '65k+ 飞机航线';
 
@@ -46,7 +46,7 @@ $.getJSON(uploadedDataURL, function(data) {
             viewControl: {
                 distance: 70,
                 alpha: 89,
-                
+
                 panMouseButton: 'left',
                 rotateMouseButton: 'right'
             },
@@ -80,7 +80,7 @@ $.getJSON(uploadedDataURL, function(data) {
             data: routes
         }]
     });
-    
+
     window.addEventListener('keydown', function () {
         myChart.dispatchAction({
             type: 'lines3DToggleEffect',

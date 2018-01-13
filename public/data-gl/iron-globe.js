@@ -2,11 +2,11 @@
 option = {
     backgroundColor: '#000',
     globe: {
-        baseTexture: "/asset/get/s/data-1491837049070-rJZtl7Y6x.jpg",
-        heightTexture: "/asset/get/s/data-1491837512042-rJlLfXYax.jpg",
+        baseTexture: "data-gl/asset/world.topo.bathy.200401.jpg",
+        heightTexture: "data-gl/asset/bathymetry_bw_composite_4k.jpg",
         displacementScale: 0.2,
         shading: 'realistic',
-        environment: '/asset/get/s/data-1491837999815-H1_44Qtal.jpg',
+        environment: 'data-gl/asset/starfield.jpg',
         realisticMaterial: {
             roughness: '/asset/get/s/data-1497599804873-H1SHkG-mZ.jpg',
             metalness: '/asset/get/s/data-1497599800643-BJbHyGWQW.jpg',

@@ -1,10 +1,13 @@
-$.getJSON('/asset/get/s/data-1505118307697-S1nD_67qb.json', function (windData) {
+$.getJSON('data-gl/asset/data/winds.json', function (windData) {
+
     var data = [];
     var p = 0;
     var maxMag = 0;
     var minMag = Infinity;
     for (var j = 0; j < windData.ny; j++) {
-        for (var i = 0; i < windData.nx; i++, p++) {
+        for (var i = 0; i <= windData.nx; i++) {
+            // Continuous data.
+            var p = (i % windData.nx) + j * windData.nx;
             var vx = windData.data[p][0];
             var vy = windData.data[p][1];
             var mag = Math.sqrt(vx * vx + vy * vy);
@@ -169,9 +172,10 @@ $.getJSON('/asset/get/s/data-1505118307697-S1nD_67qb.json', function (windData) 
             type: 'flowGL',
             coordinateSystem: 'bmap',
             data: data,
-            particleDensity: 512,
-            particleSpeed: 2,
-            particleSize: 1,
+            supersampling: 4,
+            particleType: 'line',
+            particleDensity: 128,
+            particleSpeed: 1,
             // gridWidth: windData.nx,
             // gridHeight: windData.ny,
             itemStyle: {
