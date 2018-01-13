@@ -65,6 +65,8 @@ var gb = {
     lastOption: null,
     updateTime: 0,
     debounceTime: 500,
+
+    enableLive: !configs.gl && !configs.nolive
 };
 
 var COLORS = {
@@ -193,9 +195,12 @@ function initEventHandler() {
     // reset typing state
     var typingHandler = null;
 
-    gb.editor.on('change', function() {
-        runDebounce();
-    });
+
+    if (gb.enableLive) {  // Not using live when it's GL
+        gb.editor.on('change', function() {
+            runDebounce();
+        });
+    }
 
     $('#h-handler').mousedown(function() {
 
@@ -499,6 +504,11 @@ function localLoad() {
         var code = window.localStorage.getItem('code');
         if (code) {
             gb.editor.setValue(code, -1);
+
+            if (!gb.enableLive) {
+                runDebounce();
+            }
+
             log('读取本地缓存成功');
         }
     } catch (e) {
@@ -514,6 +524,11 @@ function localReset() {
 
     if (gb.loadedCode) {
         gb.editor.setValue(gb.loadedCode);
+
+        if (!gb.enableLive) {
+            runDebounce();
+        }
+
         localSave();
         $('#reset-btn').hide();
         run();
@@ -560,6 +575,9 @@ function load() {
                 success: function (data) {
                     gb.loadedCode = data;
                     gb.editor.setValue(data, -1);
+                    if (!gb.enableLive) {
+                        runDebounce();
+                    }
                 }
             }).fail(function () {
                 log('加载图表失败！', 'error');
