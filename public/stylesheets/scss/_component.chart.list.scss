@@ -92,6 +92,23 @@ $chart-list-title-height: 90px;
     color: #fff;
 }
 
+.popover-title {
+    color: #000
+}
+
+.theme-palette {
+    color: #000;
+
+    font-size: 18px;
+
+    span {
+        width: 20px;
+        height: 20px;
+        margin-left: 3px;
+        display: inline-block;
+    }
+}
+
 .chart-list-panel {
     margin: 30px 15px 30px 15px;
 
