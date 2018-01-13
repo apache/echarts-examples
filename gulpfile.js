@@ -7,6 +7,7 @@ var uglify      = require('gulp-uglify');
 var copy        = require('gulp-copy');
 var rename      = require('gulp-rename');
 var yargs       = require('yargs');
+var config      = require('./config/env');
 
 
 // Usage: gulp build --env-cn
@@ -63,7 +64,8 @@ gulp.task('jade', function() {
         .pipe(jade({
             data: {
                 buildVersion: +new Date(),
-                lang: lang
+                lang: lang,
+                host: config.host
             }
         }))
         .pipe(gulp.dest('public/'))

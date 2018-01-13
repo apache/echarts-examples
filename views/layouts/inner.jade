@@ -1,32 +1,8 @@
 extends basic
 
 block content
+
     nav(class='navbar navbar-default navbar-fixed-top')
-        //- div(id='nav-avatar')
-        //-     a(href='javascript:;', onclick='showLogin()')
-                //- img(id='nav-avatar-img', src='#{me.avatar}')
-        div(class='container-fluid')
-            div(class='navbar-header')
-                button(type='button', class='navbar-toggle collapsed', data-toggle='collapse', data-target='#navbar-collapsed', aria-expanded='false')
-                    span.sr-only toggle
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a(class='navbar-brand') ECharts Demo
+        include ../components/nav
 
-            #navbar-collapsed(class='collapse navbar-collapse')
-                ul(class='nav navbar-nav navbar-left')
-                    li(id='nav-explore')
-                        a(href='./index.html') All Demos
-                    //- li(id='nav-new')
-                    //-     a(href='./editor.html') 创建示例
-
-                ul(class='nav navbar-nav navbar-right')
-                    block nav_right
-                    //- li
-                    //-     a(href='#') 登录
-                    //- li
-                    //-     a(href='#') 注册
-                    li(class='highlight')
-                        a(href='https://ecomfe.github.io/echarts-doc/public/index.html') ECharts Docs
     block inner_content

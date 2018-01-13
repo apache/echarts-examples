@@ -88,7 +88,7 @@ $(document).ready(function() {
                 hash.push('&theme=' + params.theme);
             }
 
-            $link = $('<a class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
+            $link = $('<a target="_blank" class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
