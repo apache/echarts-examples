@@ -81,18 +81,19 @@ $(document).ready(function() {
             $('#chart-row-' + examples[eid].category).append($row.append($chart));
 
             var hash = ['c=' + examples[eid].id];
+            var exampleTheme = examples[eid].theme || params.theme;
             if (isGL) {
                 hash.push('&gl=1');
             }
-            if (params.theme) {
-                hash.push('&theme=' + params.theme);
+            if (exampleTheme) {
+                hash.push('&theme=' + exampleTheme);
             }
 
             $link = $('<a target="_blank" class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
-            var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
+            var themePostfix = (isGL || !exampleTheme) ? '' : ('-' + params.theme);
 
             // load chart image
             $chartArea = $('<img class="chart-area" src="images/placeholder.png" data-original="' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'

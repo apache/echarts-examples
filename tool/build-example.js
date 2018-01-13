@@ -120,6 +120,7 @@ var thumbFolder = theme ? ('thumb-' + theme) : 'thumb';
                 exampleList.push({
                     category: fmResult.attributes.category,
                     id: basename,
+                    theme: fmResult.attributes.theme,
                     title: fmResult.attributes.title
                 });
             }
