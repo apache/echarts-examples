@@ -58,6 +58,11 @@ $control-panel-height: 50px;
             cursor: pointer;
         }
     }
+
+    #download {
+        float: right;
+        margin-right: 10px;
+    }
 }
 
 .dg.main .c {

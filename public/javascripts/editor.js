@@ -664,12 +664,14 @@ function downloadExample() {
 '       <div id="container" style="height: 100%"></div>\n' +
 
 '       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echart.min.js"></script>\n' +
+'       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echart-gl.min.js"></script>\n' +
 '       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>\n' +
 '       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>\n' +
 '       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>\n' +
 '       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>\n' +
 '       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>\n' +
 '       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>\n' +
+'       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>\n' +
 
 '       <script type="text/javascript">\n' +
 'var dom = document.getElementById("container");\n' +
@@ -696,4 +698,4 @@ gb.editor.getValue() + ';\n' +
 
 }
 
-
+$('#download').click(downloadExample);
