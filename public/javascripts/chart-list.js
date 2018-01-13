@@ -83,10 +83,10 @@ $(document).ready(function() {
             var hash = ['c=' + examples[eid].id];
             var exampleTheme = examples[eid].theme || params.theme;
             if (isGL) {
-                hash.push('&gl=1');
+                hash.push('gl=1');
             }
             if (exampleTheme) {
-                hash.push('&theme=' + exampleTheme);
+                hash.push('theme=' + exampleTheme);
             }
 
             $link = $('<a target="_blank" class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
