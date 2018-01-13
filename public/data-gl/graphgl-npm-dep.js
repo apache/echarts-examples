@@ -1,4 +1,8 @@
-$.getJSON("/asset/get/s/data-1499158774602-BJ1ZYC_4W.json", function (data) {
+$.when(
+    $.getJSON("data-gl/asset/data/npmdep.json"),
+    $.getScript("vendors/echarts/extension/graph-modularity.js")
+).done(function (res) {
+    var data = res[0];
     var nodes = data.nodes.map(function (nodeName, idx) {
         return {
             name: nodeName,
@@ -29,7 +33,7 @@ $.getJSON("/asset/get/s/data-1499158774602-BJ1ZYC_4W.json", function (data) {
             }
         }
     });
-    
+
     myChart.setOption({
         backgroundColor: '#000',
         series: [{

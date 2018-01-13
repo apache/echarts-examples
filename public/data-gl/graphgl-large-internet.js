@@ -1,5 +1,5 @@
 
-$.getJSON('/asset/get/s/data-1491916702551-rJDoP856x.json', function (graph) {
+$.getJSON('data-gl/asset/data/internet.graph.json', function (graph) {
     var edges = graph.edges.map(function (edge) {
         return {
             source: edge[0],
