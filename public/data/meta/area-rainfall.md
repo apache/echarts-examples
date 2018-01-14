@@ -1,5 +1,4 @@
 ---
-title: Rainfall and Water Flow
+title: 雨量流量关系图
 category: line
-titleCN: 雨量流量关系图
 ---

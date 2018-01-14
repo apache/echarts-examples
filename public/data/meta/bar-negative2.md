@@ -1,5 +1,4 @@
 ---
-title: Negative and Positive
+title: 交错正负轴标签
 category: bar
-titleCN: 交错正负轴标签
 ---

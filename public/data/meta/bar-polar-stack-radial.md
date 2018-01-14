@@ -1,5 +1,4 @@
 ---
-title: Stacked Bar in Polar System
+title: 极坐标系下的堆叠柱状图
 category: bar
-titleCN: Stacked Bar in Polar System
 ---

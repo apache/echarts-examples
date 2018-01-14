@@ -1,5 +1,4 @@
 ---
-title: Stacked Bar Chart
+title: 堆叠条形图
 category: bar
-titleCN: 堆叠条形图
 ---

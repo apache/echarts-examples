@@ -1,5 +1,4 @@
 ---
-title: Negative Bar Chart
+title: 正负条形图
 category: bar
-titleCN: 正负条形图
 ---

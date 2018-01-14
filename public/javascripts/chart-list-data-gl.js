@@ -11,11 +11,6 @@ var EXAMPLES_GL = [
   },
   {
     "category": "bar3D",
-    "id": "bar3d-mapbox-view-change",
-    "title": "Mapbox 视角切换"
-  },
-  {
-    "category": "bar3D",
     "id": "bar3d-music-visualization",
     "title": "Music Visualization"
   },
@@ -26,13 +21,8 @@ var EXAMPLES_GL = [
   },
   {
     "category": "bar3D",
-    "id": "bar3d-noise-modified-from-marpi's-demo",
+    "id": "bar3d-noise-modified-from-marpi-demo",
     "title": "Noise modified from marpi's demo"
-  },
-  {
-    "category": "bar3D",
-    "id": "bar3d-on-mapbox",
-    "title": "Bar3D on Mapbox"
   },
   {
     "category": "bar3D",
@@ -41,12 +31,8 @@ var EXAMPLES_GL = [
   },
   {
     "category": "bar3D",
-    "id": "bar3d-shanghai",
-    "title": "上海房价可视化 GL 版"
-  },
-  {
-    "category": "bar3D",
     "id": "bar3d-simplex-noise",
+    "theme": "dark",
     "title": "Bar3D - Simplex Noise"
   },
   {
@@ -117,16 +103,19 @@ var EXAMPLES_GL = [
   {
     "category": "graphGL",
     "id": "graphgl-gpu-layout",
+    "theme": "dark",
     "title": "GraphGL GPU Layout"
   },
   {
     "category": "graphGL",
     "id": "graphgl-large-internet",
+    "theme": "dark",
     "title": "GraphGL - Large Internet"
   },
   {
     "category": "graphGL",
     "id": "graphgl-npm-dep",
+    "theme": "dark",
     "title": "1w 节点 2w7 边的NPM 依赖图"
   },
   {
@@ -156,11 +145,6 @@ var EXAMPLES_GL = [
   },
   {
     "category": "lines3D",
-    "id": "lines3d-flight-path-on-mapbox",
-    "title": "Flight path on Mapbox"
-  },
-  {
-    "category": "lines3D",
     "id": "lines3d-flights-gl",
     "title": "Flights GL"
   },
@@ -175,24 +159,9 @@ var EXAMPLES_GL = [
     "title": "Flights"
   },
   {
-    "category": "lines3D",
-    "id": "lines3d-taxi-chengdu",
-    "title": "成都市出租车运行轨迹图 - GL 版"
-  },
-  {
-    "category": "lines3D",
-    "id": "lines3d-taxi-routes-of-cape-town",
-    "title": "Taxi routes of Cape Town"
-  },
-  {
     "category": "map3D",
     "id": "map3d-alcohol-consumption",
     "title": "Map3D - Alcohol Consumption"
-  },
-  {
-    "category": "map3D",
-    "id": "map3d-buildings-on-mapbox",
-    "title": "Buildings on Mapbox"
   },
   {
     "category": "map3D",
@@ -201,23 +170,8 @@ var EXAMPLES_GL = [
   },
   {
     "category": "map3D",
-    "id": "map3d-colorful-cities",
-    "title": "五彩的城市建筑"
-  },
-  {
-    "category": "map3D",
-    "id": "map3d-plastic-material-style-buildings-on-mapbox",
-    "title": "Plastic material style buildings on Mapbox"
-  },
-  {
-    "category": "map3D",
     "id": "map3d-wood-city",
     "title": "Wood City"
-  },
-  {
-    "category": "map3D",
-    "id": "map3d-wood-map-on-mapbox",
-    "title": "木质地图 on mapbox"
   },
   {
     "category": "map3D",
@@ -247,31 +201,25 @@ var EXAMPLES_GL = [
   {
     "category": "scatter3D",
     "id": "scatter3d-orthographic",
+    "theme": "dark",
     "title": "三维散点图正交投影"
   },
   {
     "category": "scatter3D",
-    "id": "scatter3d-shanghai",
-    "title": "上海房价可视化三维散点图"
-  },
-  {
-    "category": "scatter3D",
     "id": "scatter3d-simplex-noise",
+    "theme": "dark",
     "title": "Scatter3D - Simplex Noise"
   },
   {
     "category": "scatter3D",
-    "id": "scatter3d-weibo-checkin-on-mapbox",
-    "title": "Weibo checkin on Mapbox"
-  },
-  {
-    "category": "scatter3D",
     "id": "scatter3d",
+    "theme": "dark",
     "title": "Scatter3D"
   },
   {
     "category": "scatterGL",
     "id": "scattergl-weibo",
+    "theme": "dark",
     "title": "微博签到数据点亮中国"
   },
   {

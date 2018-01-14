@@ -1,5 +1,4 @@
 ---
-title: Basic Bar Chart
+title: Bar Simple
 category: bar
-titleCN: Basic Bar Chart
 ---

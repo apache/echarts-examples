@@ -6,6 +6,7 @@ var marked = require('marked');
 var fm = require('front-matter');
 var puppeteer = require('puppeteer');
 var argparse = require('argparse');
+var minimatch = require("minimatch");
 
 var parser = new argparse.ArgumentParser({
     addHelp: true
@@ -16,10 +17,17 @@ parser.addArgument(['-s', '--source'], {
 parser.addArgument(['-t', '--theme'], {
     help: 'Theme'
 });
+parser.addArgument(['-p', '--pattern'], {
+    help: 'Glob match patterns for generating thumb. https://github.com/isaacs/minimatch Mutiple match pattens can be splitted with ,'
+});
 
 var args = parser.parseArgs();
 var sourceFolder = args.source || 'data';
 var theme = args.theme || '';
+var matchPattern = args.pattern;
+if (matchPattern) {
+    matchPattern = matchPattern.split(',');
+}
 
 var tpl = fs.readFileSync('../public/javascripts/chart-list.tpl.js', 'utf-8');
 
@@ -88,7 +96,12 @@ var thumbFolder = theme ? ('thumb-' + theme) : 'thumb';
             // var descHTML = marked(fmResult.body);
 
             // Do screenshot
-            if (BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0) {
+            if (BUILD_THUMBS
+                && screenshotBlackList.indexOf(basename) < 0
+                && (!matchPattern || matchPattern.some(function (pattern) {
+                    return minimatch(basename, pattern);
+                }))
+            ) {
                 var page = await browser.newPage();
                 await page.setViewport({
                     // width: 600,

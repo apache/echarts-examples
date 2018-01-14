@@ -1,5 +1,4 @@
 ---
-title: Rich Text
+title: Wheater Statistics
 category: bar
-titleCN: 富文本标签
 ---

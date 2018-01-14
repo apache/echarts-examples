@@ -16,7 +16,9 @@ option = {
         right: 10,
         top: 20,
         bottom: 20,
-        data: data.legendData
+        data: data.legendData,
+
+        selected: data.selected
     },
     series : [
         {
@@ -45,6 +47,7 @@ function genData(count) {
     ];
     var legendData = [];
     var seriesData = [];
+    var selected = {};
     for (var i = 0; i < 50; i++) {
         name = Math.random() > 0.65
             ? makeWord(4, 1) + '·' + makeWord(3, 0)
@@ -54,11 +57,13 @@ function genData(count) {
             name: name,
             value: Math.round(Math.random() * 100000)
         });
+        selected[name] = i < 6;
     }
 
     return {
         legendData: legendData,
-        seriesData: seriesData
+        seriesData: seriesData,
+        selected: selected
     };
 
     function makeWord(max, min) {

@@ -1,5 +1,4 @@
 ---
-title: Label Rotation
+title: Bar Label Rotation
 category: bar
-titleCN: 标签旋转
 ---

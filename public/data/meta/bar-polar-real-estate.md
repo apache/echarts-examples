@@ -1,5 +1,4 @@
 ---
-title: Real Estate
+title: 极坐标系下的堆叠柱状图
 category: bar
-titleCN: 在中国租个房子有多贵
 ---

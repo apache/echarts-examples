@@ -1,5 +1,4 @@
 ---
-title: Stacked Bar
+title: 堆叠柱状图
 category: bar
-titleCN: 堆叠柱状图
 ---

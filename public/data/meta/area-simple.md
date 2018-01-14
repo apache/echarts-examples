@@ -1,5 +1,4 @@
 ---
-title: Area Chart
+title: 大数据量面积图
 category: line
-titleCN: 大数据量面积图
 ---
