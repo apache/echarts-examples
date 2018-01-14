@@ -1,4 +1,6 @@
 ---
-title: 堆叠区域图
+title: Stacked area chart
+titleCN: 堆叠面积图
 category: line
+difficulty: 2
 ---
