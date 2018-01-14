@@ -36,7 +36,9 @@
         if (myChart) {
             myChart.dispose();
         }
-        myChart = echarts.init(document.getElementById('view-chart'));
+        myChart = echarts.init(document.getElementById('view-chart'), configs.theme, {
+            renderer: configs.renderer || 'canvas'
+        });
 
         eval(code);
         if (typeof option === 'object') {

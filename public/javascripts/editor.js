@@ -137,7 +137,9 @@ function initEditor() {
 
 function initEcharts() {
 
-    gb.chart = echarts.init($('#chart-panel')[0], configs.theme);
+    gb.chart = echarts.init($('#chart-panel')[0], configs.theme, {
+        renderer: configs.renderer || 'canvas'
+    });
 
     gb.editor.setValue('var option = {\n    \n};\n');
 
@@ -443,7 +445,9 @@ function disposeAndRun() {
 
     // init with theme
     var theme = $('#theme-btn').val() || 'default';
-    gb.chart = echarts.init($('#chart-panel')[0], configs.theme);
+    gb.chart = echarts.init($('#chart-panel')[0], configs.theme, {
+        renderer: configs.renderer || 'canvas'
+    });
     _wrapOnMethods(gb.chart);
 
     // run with option in code panel
