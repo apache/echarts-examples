@@ -14,7 +14,7 @@ var EXAMPLES = [
   {
     "category": "line",
     "id": "area-basic",
-    "title": "基础面积图",
+    "title": "Basic area chart",
     "difficulty": 1
   },
   {
@@ -38,7 +38,7 @@ var EXAMPLES = [
   {
     "category": "line",
     "id": "area-rainfall",
-    "title": "雨量流量关系图",
+    "title": "Rainfall",
     "difficulty": 10
   },
   {
@@ -321,6 +321,12 @@ var EXAMPLES = [
     "category": "custom",
     "id": "custom-profit",
     "title": "Profit",
+    "difficulty": 10
+  },
+  {
+    "category": "custom",
+    "id": "custom-wind",
+    "title": "Use custom series to draw wind vectors",
     "difficulty": 10
   },
   {
@@ -619,6 +625,12 @@ var EXAMPLES = [
     "category": "map",
     "id": "lines-bmap-effect",
     "title": "Bus Lines of Beijing - Line Effect",
+    "difficulty": 10
+  },
+  {
+    "category": "map",
+    "id": "lines-ny",
+    "title": "Use lines to draw 1 million ny streets.",
     "difficulty": 10
   },
   {

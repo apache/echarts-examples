@@ -47,6 +47,7 @@ $.getJSON('data-gl/asset/data/winds.json', function (windData) {
             top: 0,
             zoom: 1,
             silent: true,
+            roam: true,
             itemStyle: {
                 normal: {
                     areaColor: '#323c48',
