@@ -273,6 +273,12 @@ var EXAMPLES_GL = [
   },
   {
     "category": "scatterGL",
+    "id": "scatterGL-gps",
+    "title": "10 million Bulk GPS points",
+    "difficulty": 10
+  },
+  {
+    "category": "scatterGL",
     "id": "scattergl-weibo",
     "theme": "dark",
     "title": "微博签到数据点亮中国",
