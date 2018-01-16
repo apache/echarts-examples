@@ -42,6 +42,7 @@ $.get('data/asset/data/weibo.json', function (weiboData) {
         },
         geo: {
             map: 'china',
+            roam: true,
             label: {
                 emphasis: {
                     show: false
