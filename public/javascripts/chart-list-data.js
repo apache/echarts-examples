@@ -18,6 +18,12 @@ var EXAMPLES = [
     "difficulty": 1
   },
   {
+    "category": "dataset",
+    "id": "dataset-simple0",
+    "title": "Simple Example of Dataset",
+    "difficulty": 1
+  },
+  {
     "category": "line",
     "id": "line-smooth",
     "title": "Smoothed Line Chart",
@@ -30,15 +36,54 @@ var EXAMPLES = [
     "difficulty": 2
   },
   {
+    "category": "dataset",
+    "id": "dataset-default",
+    "title": "默认 encode 安排",
+    "difficulty": 2
+  },
+  {
+    "category": "dataset",
+    "id": "dataset-encode0",
+    "theme": "lite",
+    "title": "Simple Encode",
+    "difficulty": 2
+  },
+  {
+    "category": "dataset",
+    "id": "dataset-series-layout-by",
+    "theme": "lite",
+    "title": "Series Layout By Column or Row",
+    "difficulty": 2
+  },
+  {
     "category": "line",
     "id": "line-stack",
     "title": "Stacked Line Chart",
     "difficulty": 2
   },
   {
+    "category": "dataset",
+    "id": "dataset-encode1",
+    "theme": "lite",
+    "title": "Encode and Matrix",
+    "difficulty": 3
+  },
+  {
+    "category": "dataset",
+    "id": "dataset-link",
+    "title": "Share Dataset",
+    "difficulty": 4
+  },
+  {
     "category": "line",
     "id": "area-rainfall",
     "title": "Rainfall",
+    "difficulty": 10
+  },
+  {
+    "category": "line",
+    "id": "area-simple",
+    "title": "Large scale area chart",
     "difficulty": 10
   },
   {

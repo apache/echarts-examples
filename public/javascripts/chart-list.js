@@ -20,6 +20,7 @@ var CHART_TYPES = {
     themeRiver: 'ThemeRiver',
     calendar: 'Calendar',
     custom: 'Custom',
+    dataset: 'Dataset',
 
     globe: '3D Globe',
     bar3D: '3D Bar',
@@ -114,7 +115,7 @@ $(document).ready(function() {
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
-            var themePostfix = (isGL || !exampleTheme) ? '' : ('-' + params.theme);
+            var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
 
             // load chart image
             $chartArea = $('<img class="chart-area" src="images/placeholder.png" data-original="' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
