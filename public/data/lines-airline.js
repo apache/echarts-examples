@@ -36,6 +36,7 @@ $.get('data/asset/data/flights.json', function(data) {
             left: 0,
             right: 0,
             silent: true,
+            roam: true,
             itemStyle: {
                 normal: {
                     borderColor: '#003',
