@@ -41,14 +41,20 @@ option = {
         levels: [],
         itemStyle: {
             color: 'yellow',
-            borderWidth: 2,
-            emphasis: {
+            borderWidth: 2
+        },
+        emphasis: {
+            itemStyle: {
                 color: 'red'
-            },
-            highlight: {
+            }
+        },
+        highlight: {
+            itemStyle: {
                 color: 'orange'
-            },
-            downplay: {
+            }
+        },
+        downplay: {
+            itemStyle: {
                 color: '#ccc'
             }
         }

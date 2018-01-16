@@ -319,7 +319,9 @@ option = {
                 position: 'outside',
                 textShadowBlur: 5,
                 textShadowColor: '#333',
-                downplay: {
+            },
+            downplay: {
+                label: {
                     opacity: 0.5
                 }
             }

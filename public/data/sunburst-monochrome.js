@@ -155,16 +155,12 @@ option = {
         highlightPolicy: 'ancestor',
         data: data,
         label: {
-            normal: {
-                rotate: 'radial'
-            }
+            rotate: 'radial'
         },
         levels: [],
         itemStyle: {
-            normal: {
-                color: '#ddd',
-                borderWidth: 2
-            }
+            color: '#ddd',
+            borderWidth: 2
         }
     }
 };
