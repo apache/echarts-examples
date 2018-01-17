@@ -64,7 +64,7 @@ option = {
         type: 'scatterGL',
         progressive: 1e6,
         coordinateSystem: 'geo',
-        symbolSize: 0.5,
+        symbolSize: 1,
         zoomScale: 0.002,
         blendMode: 'lighter',
         large: true,
