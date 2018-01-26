@@ -9013,6 +9013,11 @@ Painter.prototype = {
                 finished = false;
             }
 
+            if (scope.prevElClipPaths) {
+                // Needs restore the state. If last drawn element is in the clipping area.
+                ctx.restore();
+            }
+
             ctx.restore();
         }
 
@@ -9048,13 +9053,13 @@ Painter.prototype = {
             var clipPaths = el.__clipPaths;
 
             // Optimize when clipping on group with several elements
-            if (scope.prevClipLayer !== currentLayer
+            if (!scope.prevElClipPaths
                 || isClipPathChanged(clipPaths, scope.prevElClipPaths)
             ) {
                 // If has previous clipping state, restore from it
                 if (scope.prevElClipPaths) {
-                    scope.prevClipLayer.ctx.restore();
-                    scope.prevClipLayer = scope.prevElClipPaths = null;
+                    currentLayer.ctx.restore();
+                    scope.prevElClipPaths = null;
 
                     // Reset prevEl since context has been restored
                     scope.prevEl = null;
@@ -9063,7 +9068,6 @@ Painter.prototype = {
                 if (clipPaths) {
                     ctx.save();
                     doClip(clipPaths, ctx);
-                    scope.prevClipLayer = currentLayer;
                     scope.prevElClipPaths = clipPaths;
                 }
             }
@@ -10479,7 +10483,7 @@ var instances$1 = {};    // ZRender实例map索引
 /**
  * @type {string}
  */
-var version$1 = '4.0.0';
+var version$1 = '4.0.1';
 
 /**
  * Initializing a zrender instance
@@ -14582,7 +14586,6 @@ function createPathOptions(str, opts) {
 
     opts.applyTransform = function (m) {
         transformPath(pathProxy, m);
-
         this.dirty(true);
     };
 
@@ -16730,7 +16733,10 @@ function createIcon(iconStr, opt, rect) {
     if (iconStr) {
         return iconStr.indexOf('image://') === 0
             ? (
-                style.image = iconStr.slice(8), zrUtil.defaults(style, rect), new ZImage(opt))
+                style.image = iconStr.slice(8),
+                defaults(style, rect),
+                new ZImage(opt)
+            )
             : (
                 makePath(
                     iconStr.replace('path://', ''),
@@ -20800,13 +20806,20 @@ function compatEC2ItemStyle(opt) {
     }
 }
 
-function convertNormalEmphasis(opt, optType) {
+function convertNormalEmphasis(opt, optType, useExtend) {
     if (opt && opt[optType] && (opt[optType].normal || opt[optType].emphasis)) {
         var normalOpt = opt[optType].normal;
         var emphasisOpt = opt[optType].emphasis;
 
         if (normalOpt) {
-            opt[optType] = normalOpt;
+            // Timeline controlStyle has other properties besides normal and emphasis
+            if (useExtend) {
+                opt[optType].normal = opt[optType].emphasis = null;
+                defaults(opt[optType], normalOpt);
+            }
+            else {
+                opt[optType] = normalOpt;
+            }
         }
         if (emphasisOpt) {
             opt.emphasis = opt.emphasis || {};
@@ -21005,7 +21018,7 @@ var compatStyle = function (option, isTheme) {
         compatEC3CommonStyles(timelineOpt);
         convertNormalEmphasis(timelineOpt, 'label');
         convertNormalEmphasis(timelineOpt, 'itemStyle');
-        convertNormalEmphasis(timelineOpt, 'controlStyle');
+        convertNormalEmphasis(timelineOpt, 'controlStyle', true);
         convertNormalEmphasis(timelineOpt, 'checkpointStyle');
 
         var data = timelineOpt.data;
@@ -21435,6 +21448,40 @@ function retrieveRawValue(data, dataIndex, dim) {
     }
 
     return rawValueGetters[sourceFormat](dataItem, dataIndex, dimIndex, dimName);
+}
+
+/**
+ * Compatible with some cases (in pie, map) like:
+ * data: [{name: 'xx', value: 5, selected: true}, ...]
+ * where only sourceFormat is 'original' and 'objectRows' supported.
+ *
+ * ??? TODO
+ * Supported detail options in data item when using 'arrayRows'.
+ *
+ * @param {module:echarts/data/List} data
+ * @param {number} dataIndex
+ * @param {string} attr like 'selected'
+ */
+function retrieveRawAttr(data, dataIndex, attr) {
+    if (!data) {
+        return;
+    }
+
+    var sourceFormat = data.getProvider().getSource().sourceFormat;
+
+    if (sourceFormat !== SOURCE_FORMAT_ORIGINAL
+        && sourceFormat !== SOURCE_FORMAT_OBJECT_ROWS
+    ) {
+        return;
+    }
+
+    var dataItem = data.getRawDataItem(dataIndex);
+    if (sourceFormat === SOURCE_FORMAT_ORIGINAL && !isObject$1(dataItem)) {
+        dataItem = null;
+    }
+    if (dataItem) {
+        return dataItem[attr];
+    }
 }
 
 var DIMENSION_LABEL_REG = /\{@(.+?)\}/g;
@@ -23671,10 +23718,10 @@ var isFunction = isFunction$1;
 var isObject = isObject$1;
 var parseClassType = ComponentModel.parseClassType;
 
-var version = '4.0.0';
+var version = '4.0.2';
 
 var dependencies = {
-    zrender: '4.0.0'
+    zrender: '4.0.1'
 };
 
 var TEST_FRAME_REMAIN_TIME = 1;
@@ -27889,7 +27936,10 @@ function completeDimensions(sysDims, source, opt) {
         coordDim == null && (
             resultItem.coordDim = genName(
                 extra, coordDimNameMap, opt.extraFromZero
-            ), resultItem.coordDimIndex = 0, resultItem.isExtraCoord = true);
+            ),
+            resultItem.coordDimIndex = 0,
+            resultItem.isExtraCoord = true
+        );
 
         resultItem.name == null && (resultItem.name = genName(
             resultItem.coordDim,
@@ -28199,7 +28249,13 @@ Scale.prototype.getTicksLabels = function () {
  */
 Scale.prototype.isBlank = function () {
     return this._isBlank;
-}, Scale.prototype.setBlank = function (isBlank) {
+},
+
+/**
+ * When axis extent depends on data and no data exists,
+ * axis ticks should not be drawn, which is named 'blank'.
+ */
+Scale.prototype.setBlank = function (isBlank) {
     this._isBlank = isBlank;
 };
 
@@ -34666,7 +34722,9 @@ var ifIgnoreOnTick$1 = AxisBuilder.ifIgnoreOnTick = function (
         && (
             typeof interval === 'function'
                 ? (
-                    rawTick = scale.getTicks()[i], !interval(rawTick, scale.getLabel(rawTick)))
+                    rawTick = scale$$1.getTicks()[i],
+                    !interval(rawTick, scale$$1.getLabel(rawTick))
+                )
                 : i % (interval + 1)
         );
 };
@@ -36069,7 +36127,11 @@ var selectableMixin = {
             var valueDim = ecList.mapDimension('value');
             var targetList = this._targetList = [];
             for (var i = 0, len = ecList.count(); i < len; i++) {
-                targetList.push({name: ecList.getName(i), value: ecList.get(valueDim, i)});
+                targetList.push({
+                    name: ecList.getName(i),
+                    value: ecList.get(valueDim, i),
+                    selected: retrieveRawAttr(ecList, i, 'selected')
+                });
             }
         }
         this._selectTargetMap = reduce(targetList || [], function (targetMap, target) {
@@ -50092,7 +50154,9 @@ BrushController.prototype = {
             else {
                 var cover = newCovers[newIndex] = oldIndex != null
                     ? (
-                        oldCovers[oldIndex].__brushOption = newBrushOption, oldCovers[oldIndex])
+                        oldCovers[oldIndex].__brushOption = newBrushOption,
+                        oldCovers[oldIndex]
+                    )
                     : endCreating(controller, createCover(controller, newBrushOption));
                 updateCoverAfterCreation(controller, cover);
             }
@@ -52808,7 +52872,8 @@ function calculateBase(groupItem) {
         each$14(seriesModels, function (seriesModel) {
             maxDataCount = Math.max(maxDataCount, seriesModel.getData().count());
         });
-        extent = baseAxis.getExtent(), Math.abs(extent[1] - extent[0]) / maxDataCount;
+        extent = baseAxis.getExtent(),
+        Math.abs(extent[1] - extent[0]) / maxDataCount;
     }
 
     each$14(seriesModels, function (seriesModel) {
@@ -53254,7 +53319,9 @@ function calculateCandleWidth(seriesModel, data) {
     var bandWidth = baseAxis.type === 'category'
         ? baseAxis.getBandWidth()
         : (
-            extent = baseAxis.getExtent(), Math.abs(extent[1] - extent[0]) / data.count());
+            extent = baseAxis.getExtent(),
+            Math.abs(extent[1] - extent[0]) / data.count()
+        );
 
     var barMaxWidth = parsePercent$1(
         retrieve2$1(seriesModel.get('barMaxWidth'), bandWidth),
@@ -59274,16 +59341,16 @@ SunburstPieceProto.updateData = function (
     var sectorShape = extend({}, layout);
     sectorShape.label = null;
 
-    var itemStyleModel = itemModel.getModel('itemStyle');
     var visualColor = getNodeColor(node, seriesModel, ecModel);
 
-    var normalStyle = itemStyleModel.getItemStyle();
+    var normalStyle = itemModel.getModel('itemStyle').getItemStyle();
     var style;
     if (state === 'normal') {
         style = normalStyle;
     }
     else {
-        var stateStyle = itemStyleModel.getModel(state).getItemStyle();
+        var stateStyle = itemModel.getModel(state + '.itemStyle')
+            .getItemStyle();
         style = merge(stateStyle, normalStyle);
     }
     style = defaults(
@@ -59317,7 +59384,8 @@ SunburstPieceProto.updateData = function (
     }
 
     if (state === 'normal') {
-        sector.hoverStyle = itemStyleModel.getModel('emphasis').getItemStyle();
+        sector.hoverStyle = itemModel.getModel('emphasis.itemStyle')
+            .getItemStyle();
         setHoverStyle(this);
     }
 
@@ -67600,7 +67668,8 @@ extendComponentView({
         var content = this._formatterLabel(formatter, params);
 
         var yearText = new Text({z2: 30});
-        graphic.setTextStyle(yearText.style, yearLabel, {text: content}), yearText.attr(this._yearTextPositionControl(yearText, posPoints[pos], orient, pos, margin));
+        setTextStyle(yearText.style, yearLabel, {text: content}),
+        yearText.attr(this._yearTextPositionControl(yearText, posPoints[pos], orient, pos, margin));
 
         group.add(yearText);
     },
@@ -75275,7 +75344,7 @@ TimelineView.extend({
         var mainLength = orient === 'vertical' ? viewRect.height : viewRect.width;
 
         var controlModel = timelineModel.getModel('controlStyle');
-        var showControl = controlModel.get('show');
+        var showControl = controlModel.get('show', true);
         var controlSize = showControl ? controlModel.get('itemSize') : 0;
         var controlGap = showControl ? controlModel.get('itemGap') : 0;
         var sizePlusGap = controlSize + controlGap;
@@ -75289,7 +75358,6 @@ TimelineView.extend({
         var nextBtnPosition;
         var axisExtent;
         var controlPosition = controlModel.get('position', true);
-        var showControl = controlModel.get('show', true);
         var showPlayBtn = showControl && controlModel.get('showPlayBtn', true);
         var showPrevBtn = showControl && controlModel.get('showPrevBtn', true);
         var showNextBtn = showControl && controlModel.get('showNextBtn', true);
