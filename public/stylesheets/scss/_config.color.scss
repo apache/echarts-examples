@@ -7,7 +7,7 @@ $clr-primary-home:   #333743;
 $clr-text-home:      #9297A3;
 
 $clr-secondary:      #a9334c;
-// $clr-secondary-dark: #3095c6;
+$clr-secondary-dark: darken($clr-secondary, 10%);
 
 $clr-contrast:       #e43c59;
 $clr-contrast-dark:  #bf465b;
