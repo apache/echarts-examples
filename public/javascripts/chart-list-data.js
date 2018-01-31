@@ -24,6 +24,12 @@ var EXAMPLES = [
     "difficulty": 1
   },
   {
+    "category": "dataset",
+    "id": "dataset-simple1",
+    "title": "Dataset in Object Array",
+    "difficulty": 1
+  },
+  {
     "category": "line",
     "id": "line-smooth",
     "title": "Smoothed Line Chart",
@@ -44,14 +50,14 @@ var EXAMPLES = [
   {
     "category": "dataset",
     "id": "dataset-encode0",
-    "theme": "lite",
+    "theme": "light",
     "title": "Simple Encode",
     "difficulty": 2
   },
   {
     "category": "dataset",
     "id": "dataset-series-layout-by",
-    "theme": "lite",
+    "theme": "light",
     "title": "Series Layout By Column or Row",
     "difficulty": 2
   },
@@ -64,7 +70,7 @@ var EXAMPLES = [
   {
     "category": "dataset",
     "id": "dataset-encode1",
-    "theme": "lite",
+    "theme": "light",
     "title": "Encode and Matrix",
     "difficulty": 3
   },
@@ -969,6 +975,7 @@ var EXAMPLES = [
   {
     "category": "scatter",
     "id": "scatter-large",
+    "theme": "light",
     "title": "Large Scatter",
     "difficulty": 10
   },
@@ -1048,6 +1055,12 @@ var EXAMPLES = [
     "category": "scatter",
     "id": "scatter-single-axis",
     "title": "Scatter on Single Axis",
+    "difficulty": 10
+  },
+  {
+    "category": "scatter",
+    "id": "scatter-stream-visual",
+    "title": "Visual interaction with stream",
     "difficulty": 10
   },
   {

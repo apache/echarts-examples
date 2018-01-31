@@ -109,7 +109,7 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
                         // width: 600,
                         // height: 450
                         width: 700,
-                        height: 560
+                        height: 525
                     });
                     var url = `${BASE_URL}/screenshot.html?c=${basename}&s=${sourceFolder}&t=${theme}`;
                     page.on('pageerror', function (err) {
