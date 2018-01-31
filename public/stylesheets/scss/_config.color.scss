@@ -3,16 +3,27 @@ $clr-primary-light:  #849dbe;
 $clr-primary-dark:   #162436;
 $clr-primary-darker: #0e151f;
 
-$clr-secondary:      #3ba7dc;
-$clr-secondary-dark: #3095c6;
+$clr-primary-home:   #333743;
+$clr-text-home:      #9297A3;
+
+$clr-secondary:      #a9334c;
+// $clr-secondary-dark: #3095c6;
 
 $clr-contrast:       #e43c59;
 $clr-contrast-dark:  #bf465b;
 
-$clr-light:          #efefef;
+$clr-darkest:        #000;
+$clr-darker:         #333;
+$clr-dark:           #666;
+$clr-light:          #999;
 $clr-lighter:        #eee;
-$clr-lightest:       #fff;
-$clr-dark:           #333;
+$clr-lightest:       #f9f9f9;
+
+$clr-thirdary:       #40A7DC;
+$clr-thirdary-light: lighten($clr-thirdary, 10%);
+
+$clr-border: rgba(78, 97, 118, 0.45);
+$clr-border-light: rgba(78, 97, 118, 0.25);
 
 $clr-gray:           #ccc;
 $clr-gray-dark:      #999;
