@@ -9,7 +9,7 @@ var pathSymbols = {
 var labelSetting = {
     normal: {
         show: true,
-        position: 'outside',
+        position: 'right',
         offset: [10, 0],
         textStyle: {
             fontSize: 16

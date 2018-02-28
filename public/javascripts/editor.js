@@ -137,9 +137,7 @@ function initEditor() {
 
 function initEcharts() {
 
-    gb.chart = echarts.init($('#chart-panel')[0], configs.theme, {
-        renderer: configs.renderer || 'canvas'
-    });
+    // gb.chart
 
     gb.editor.setValue('var option = {\n    \n};\n');
 
@@ -325,7 +323,12 @@ function _clearChartEvents() {
 
 // run to get echarts locally
 var run = function (ignoreOptionNotChange) {
-
+    if (!gb.chart) {
+        gb.chart = echarts.init($('#chart-panel')[0], configs.theme, {
+            renderer: configs.renderer || 'canvas'
+        });
+        _wrapOnMethods(gb.chart);
+    }
     // check if code is valid
     if (hasEditorError()) {
         log(lang.errorInEditor, 'error');
@@ -445,10 +448,7 @@ function disposeAndRun() {
 
     // init with theme
     var theme = $('#theme-btn').val() || 'default';
-    gb.chart = echarts.init($('#chart-panel')[0], configs.theme, {
-        renderer: configs.renderer || 'canvas'
-    });
-    _wrapOnMethods(gb.chart);
+    gb.chart = null;
 
     // run with option in code panel
     run(true);
@@ -561,12 +561,12 @@ function load() {
     var dataRoot = configs.gl ? 'data-gl' : 'data';
 
     if (configs.gl) {
-        $.when.apply($, [
-            './vendors/echarts-gl/echarts-gl.min.js'
-            // './vendors/mapbox-gl.js'
-        ].map(function (url) {
-            return $.getScript(url);
-        })).done(loadChart);
+        var script = document.createElement('script');
+        script.onload = function () {
+            loadChart();
+        };
+        script.src = './vendors/echarts-gl/echarts-gl.js';
+        document.body.appendChild(script);
     }
     else {
         loadChart();

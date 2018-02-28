@@ -82,7 +82,7 @@ option = {
                 formatter: function (params) {
                     return (params.value / maxData * 100).toFixed(1) + ' %';
                 },
-                position: 'outside',
+                position: 'right',
                 offset: [10, 0],
                 textStyle: {
                     color: 'green',
