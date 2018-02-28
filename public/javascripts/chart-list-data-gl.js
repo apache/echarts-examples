@@ -7,6 +7,12 @@ var EXAMPLES_GL = [
   },
   {
     "category": "bar3D",
+    "id": "bar3d-dataset",
+    "title": "3D Bar with Dataset",
+    "difficulty": 10
+  },
+  {
+    "category": "bar3D",
     "id": "bar3d-global-population",
     "title": "Bar3D - Global Population",
     "difficulty": 10
@@ -253,6 +259,12 @@ var EXAMPLES_GL = [
   },
   {
     "category": "scatter3D",
+    "id": "scatter3D-dataset",
+    "title": "3D Scatter with Dataset",
+    "difficulty": 10
+  },
+  {
+    "category": "scatter3D",
     "id": "scatter3d-globe-population",
     "title": "Scatter3D - Globe Population",
     "difficulty": 10
@@ -262,6 +274,12 @@ var EXAMPLES_GL = [
     "id": "scatter3d-orthographic",
     "theme": "dark",
     "title": "三维散点图正交投影",
+    "difficulty": 10
+  },
+  {
+    "category": "scatter3D",
+    "id": "scatter3d-scatter",
+    "title": "3D Scatter with Scatter Matrix",
     "difficulty": 10
   },
   {
