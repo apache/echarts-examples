@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 87);
+/******/ 	return __webpack_require__(__webpack_require__.s = 99);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,7 +83,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
+/* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
  * @author Colin MacKenzie IV
@@ -156,18 +156,19 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-var GLMAT_EPSILON = window.GLMAT_EPSILON;
+var g = typeof window === 'undefined' ? global : window;
+var GLMAT_EPSILON = g.GLMAT_EPSILON;
 if(GLMAT_EPSILON == null) {
     GLMAT_EPSILON = 0.000001;
 }
 
 // Use Array instead of Float32Array. It seems to be much faster and higher precision.
-var GLMAT_ARRAY_TYPE = window.GLMAT_ARRAY_TYPE || Array;
+var GLMAT_ARRAY_TYPE = g.GLMAT_ARRAY_TYPE || Array;
 // if(!GLMAT_ARRAY_TYPE) {
 //     GLMAT_ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 // }
 
-var GLMAT_RANDOM = window.GLMAT_RANDOM;
+var GLMAT_RANDOM = g.GLMAT_RANDOM;
 if(!GLMAT_RANDOM) {
     GLMAT_RANDOM = Math.random;
 }
@@ -4447,61 +4448,62 @@ if(typeof(exports) !== 'undefined') {
 
   })(shim.exports);
 })(this);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(63)))
 
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Mesh__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Mesh__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Renderer__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_Node__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_Node__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_Geometry__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_claygl_src_Scene__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_claygl_src_Scene__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_zrender_lib_core_LRU__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_zrender_lib_core_LRU___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_zrender_lib_core_LRU__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_claygl_src_util_texture__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__EChartsSurface__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_claygl_src_light_AmbientCubemap__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_claygl_src_light_AmbientSH__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_claygl_src_util_sh__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__EChartsSurface__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_claygl_src_light_AmbientCubemap__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_claygl_src_light_AmbientSH__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_claygl_src_util_sh__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__retrieve__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_claygl_src_geometry_Sphere__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_claygl_src_geometry_Sphere__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_claygl_src_geometry_Plane__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_claygl_src_geometry_Cube__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_claygl_src_light_Ambient__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_claygl_src_light_Directional__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_claygl_src_light_Point__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_claygl_src_light_Spot__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_claygl_src_geometry_Cube__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_claygl_src_light_Ambient__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_claygl_src_light_Directional__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_claygl_src_light_Point__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_claygl_src_light_Spot__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_claygl_src_camera_Perspective__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_claygl_src_camera_Orthographic__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_claygl_src_camera_Orthographic__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_claygl_src_math_Vector2__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_claygl_src_math_Vector3__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_claygl_src_math_Vector4__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_claygl_src_math_Vector4__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_claygl_src_math_Quaternion__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_claygl_src_math_Matrix2__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_claygl_src_math_Matrix2d__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_claygl_src_math_Matrix3__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_claygl_src_math_Matrix4__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_claygl_src_math_Plane__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_claygl_src_math_Matrix2__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_claygl_src_math_Matrix2d__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_claygl_src_math_Matrix3__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_claygl_src_math_Matrix4__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_claygl_src_math_Plane__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_claygl_src_math_Ray__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_claygl_src_math_BoundingBox__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37_claygl_src_math_Frustum__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__animatableMixin__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_claygl_src_shader_source_util_glsl_js__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_claygl_src_shader_source_prez_glsl_js__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__shader_common_glsl_js__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__shader_color_glsl_js__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__shader_lambert_glsl_js__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shader_realistic_glsl_js__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__shader_hatching_glsl_js__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__shader_shadow_glsl_js__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__animatableMixin__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_claygl_src_shader_source_util_glsl_js__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_claygl_src_shader_source_prez_glsl_js__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__shader_common_glsl_js__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__shader_color_glsl_js__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__shader_lambert_glsl_js__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shader_realistic_glsl_js__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__shader_hatching_glsl_js__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__shader_shadow_glsl_js__ = __webpack_require__(144);
 
 
 
@@ -4878,7 +4880,14 @@ graphicGL.createAmbientCubemap = function (opt, renderer, api, cb) {
     }, function () {
         // TODO Performance when multiple view
         ambientCubemap.cubemap.flipY = false;
+        if (true) {
+            var time = Date.now();
+        }
         ambientCubemap.prefilter(renderer, 32);
+        if (true) {
+            var dTime = Date.now() - time;
+            console.log('Prefilter environment map: ' + dTime + 'ms');
+        }
         ambientSH.coefficients = __WEBPACK_IMPORTED_MODULE_15_claygl_src_util_sh__["a" /* default */].projectEnvironmentMap(renderer, ambientCubemap.cubemap, {
             lod: 1
         });
@@ -5232,7 +5241,7 @@ var vec3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.vec3;
 
 /**
  * @constructor
- * @alias clay.math.Vector3
+ * @alias clay.Vector3
  * @param {number} x
  * @param {number} y
  * @param {number} z
@@ -5248,7 +5257,7 @@ var Vector3 = function(x, y, z) {
      * All methods also operate on the array instead of x, y, z components
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Vector3#
+     * @memberOf clay.Vector3#
      */
     this.array = vec3.fromValues(x, y, z);
 
@@ -5257,19 +5266,19 @@ var Vector3 = function(x, y, z) {
      * if the matrix is updated to latest
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Vector3#
+     * @memberOf clay.Vector3#
      */
     this._dirty = true;
 };
 
 Vector3.prototype = {
 
-    constructor : Vector3,
+    constructor: Vector3,
 
     /**
      * Add b to self
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     add: function (b) {
         vec3.add(this.array, this.array, b.array);
@@ -5282,7 +5291,7 @@ Vector3.prototype = {
      * @param  {number}  x
      * @param  {number}  y
      * @param  {number}  z
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     set: function (x, y, z) {
         this.array[0] = x;
@@ -5295,7 +5304,7 @@ Vector3.prototype = {
     /**
      * Set x, y and z components from array
      * @param  {Float32Array|number[]} arr
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     setArray: function (arr) {
         this.array[0] = arr[0];
@@ -5308,7 +5317,7 @@ Vector3.prototype = {
 
     /**
      * Clone a new Vector3
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     clone: function () {
         return new Vector3(this.x, this.y, this.z);
@@ -5316,8 +5325,8 @@ Vector3.prototype = {
 
     /**
      * Copy from b
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     copy: function (b) {
         vec3.copy(this.array, b.array);
@@ -5327,9 +5336,9 @@ Vector3.prototype = {
 
     /**
      * Cross product of self and b, written to a Vector3 out
-     * @param  {clay.math.Vector3} a
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} a
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     cross: function (a, b) {
         vec3.cross(this.array, a.array, b.array);
@@ -5339,7 +5348,7 @@ Vector3.prototype = {
 
     /**
      * Alias for distance
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} b
      * @return {number}
      */
     dist: function (b) {
@@ -5348,7 +5357,7 @@ Vector3.prototype = {
 
     /**
      * Distance between self and b
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} b
      * @return {number}
      */
     distance: function (b) {
@@ -5357,8 +5366,8 @@ Vector3.prototype = {
 
     /**
      * Alias for divide
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     div: function (b) {
         vec3.div(this.array, this.array, b.array);
@@ -5368,8 +5377,8 @@ Vector3.prototype = {
 
     /**
      * Divide self by b
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     divide: function (b) {
         vec3.divide(this.array, this.array, b.array);
@@ -5379,7 +5388,7 @@ Vector3.prototype = {
 
     /**
      * Dot product of self and b
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} b
      * @return {number}
      */
     dot: function (b) {
@@ -5403,10 +5412,10 @@ Vector3.prototype = {
     },
     /**
      * Linear interpolation between a and b
-     * @param  {clay.math.Vector3} a
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} a
+     * @param  {clay.Vector3} b
      * @param  {number}  t
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     lerp: function (a, b, t) {
         vec3.lerp(this.array, a.array, b.array, t);
@@ -5416,8 +5425,8 @@ Vector3.prototype = {
 
     /**
      * Minimum of self and b
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     min: function (b) {
         vec3.min(this.array, this.array, b.array);
@@ -5427,8 +5436,8 @@ Vector3.prototype = {
 
     /**
      * Maximum of self and b
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     max: function (b) {
         vec3.max(this.array, this.array, b.array);
@@ -5438,8 +5447,8 @@ Vector3.prototype = {
 
     /**
      * Alias for multiply
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     mul: function (b) {
         vec3.mul(this.array, this.array, b.array);
@@ -5449,8 +5458,8 @@ Vector3.prototype = {
 
     /**
      * Mutiply self and b
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     multiply: function (b) {
         vec3.multiply(this.array, this.array, b.array);
@@ -5460,7 +5469,7 @@ Vector3.prototype = {
 
     /**
      * Negate self
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     negate: function () {
         vec3.negate(this.array, this.array);
@@ -5470,7 +5479,7 @@ Vector3.prototype = {
 
     /**
      * Normalize self
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     normalize: function () {
         vec3.normalize(this.array, this.array);
@@ -5481,7 +5490,7 @@ Vector3.prototype = {
     /**
      * Generate random x, y, z components with a given scale
      * @param  {number} scale
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     random: function (scale) {
         vec3.random(this.array, scale);
@@ -5492,7 +5501,7 @@ Vector3.prototype = {
     /**
      * Scale self
      * @param  {number}  scale
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     scale: function (s) {
         vec3.scale(this.array, this.array, s);
@@ -5502,9 +5511,9 @@ Vector3.prototype = {
 
     /**
      * Scale b and add to self
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} b
      * @param  {number}  scale
-     * @return {clay.math.Vector3}
+     * @return {clay.Vector3}
      */
     scaleAndAdd: function (b, s) {
         vec3.scaleAndAdd(this.array, this.array, b.array, s);
@@ -5514,7 +5523,7 @@ Vector3.prototype = {
 
     /**
      * Alias for squaredDistance
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} b
      * @return {number}
      */
     sqrDist: function (b) {
@@ -5523,7 +5532,7 @@ Vector3.prototype = {
 
     /**
      * Squared distance between self and b
-     * @param  {clay.math.Vector3} b
+     * @param  {clay.Vector3} b
      * @return {number}
      */
     squaredDistance: function (b) {
@@ -5548,8 +5557,8 @@ Vector3.prototype = {
 
     /**
      * Alias for subtract
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     sub: function (b) {
         vec3.sub(this.array, this.array, b.array);
@@ -5559,8 +5568,8 @@ Vector3.prototype = {
 
     /**
      * Subtract b from self
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} b
+     * @return {clay.Vector3}
      */
     subtract: function (b) {
         vec3.subtract(this.array, this.array, b.array);
@@ -5570,8 +5579,8 @@ Vector3.prototype = {
 
     /**
      * Transform self with a Matrix3 m
-     * @param  {clay.math.Matrix3} m
-     * @return {clay.math.Vector3}
+     * @param  {clay.Matrix3} m
+     * @return {clay.Vector3}
      */
     transformMat3: function (m) {
         vec3.transformMat3(this.array, this.array, m.array);
@@ -5581,8 +5590,8 @@ Vector3.prototype = {
 
     /**
      * Transform self with a Matrix4 m
-     * @param  {clay.math.Matrix4} m
-     * @return {clay.math.Vector3}
+     * @param  {clay.Matrix4} m
+     * @return {clay.Vector3}
      */
     transformMat4: function (m) {
         vec3.transformMat4(this.array, this.array, m.array);
@@ -5591,8 +5600,8 @@ Vector3.prototype = {
     },
     /**
      * Transform self with a Quaternion q
-     * @param  {clay.math.Quaternion} q
-     * @return {clay.math.Vector3}
+     * @param  {clay.Quaternion} q
+     * @return {clay.Vector3}
      */
     transformQuat: function (q) {
         vec3.transformQuat(this.array, this.array, q.array);
@@ -5602,8 +5611,8 @@ Vector3.prototype = {
 
     /**
      * Trasnform self into projection space with m
-     * @param  {clay.math.Matrix4} m
-     * @return {clay.math.Vector3}
+     * @param  {clay.Matrix4} m
+     * @return {clay.Vector3}
      */
     applyProjection: function (m) {
         var v = this.array;
@@ -5651,7 +5660,7 @@ if (defineProperty) {
     /**
      * @name x
      * @type {number}
-     * @memberOf clay.math.Vector3
+     * @memberOf clay.Vector3
      * @instance
      */
     defineProperty(proto, 'x', {
@@ -5667,7 +5676,7 @@ if (defineProperty) {
     /**
      * @name y
      * @type {number}
-     * @memberOf clay.math.Vector3
+     * @memberOf clay.Vector3
      * @instance
      */
     defineProperty(proto, 'y', {
@@ -5683,7 +5692,7 @@ if (defineProperty) {
     /**
      * @name z
      * @type {number}
-     * @memberOf clay.math.Vector3
+     * @memberOf clay.Vector3
      * @instance
      */
     defineProperty(proto, 'z', {
@@ -5701,10 +5710,10 @@ if (defineProperty) {
 // Supply methods that are not in place
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.add = function(out, a, b) {
     vec3.add(out.array, a.array, b.array);
@@ -5713,11 +5722,11 @@ Vector3.add = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector3} out
+ * @param  {clay.Vector3} out
  * @param  {number}  x
  * @param  {number}  y
  * @param  {number}  z
- * @return {clay.math.Vector3}
+ * @return {clay.Vector3}
  */
 Vector3.set = function(out, x, y, z) {
     vec3.set(out.array, x, y, z);
@@ -5725,9 +5734,9 @@ Vector3.set = function(out, x, y, z) {
 };
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.copy = function(out, b) {
     vec3.copy(out.array, b.array);
@@ -5736,10 +5745,10 @@ Vector3.copy = function(out, b) {
 };
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.cross = function(out, a, b) {
     vec3.cross(out.array, a.array, b.array);
@@ -5748,8 +5757,8 @@ Vector3.cross = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @return {number}
  */
 Vector3.dist = function(a, b) {
@@ -5758,17 +5767,17 @@ Vector3.dist = function(a, b) {
 
 /**
  * @function
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @return {number}
  */
 Vector3.distance = Vector3.dist;
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.div = function(out, a, b) {
     vec3.divide(out.array, a.array, b.array);
@@ -5778,16 +5787,16 @@ Vector3.div = function(out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.divide = Vector3.div;
 
 /**
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @return {number}
  */
 Vector3.dot = function(a, b) {
@@ -5795,7 +5804,7 @@ Vector3.dot = function(a, b) {
 };
 
 /**
- * @param  {clay.math.Vector3} a
+ * @param  {clay.Vector3} a
  * @return {number}
  */
 Vector3.len = function(b) {
@@ -5805,11 +5814,11 @@ Vector3.len = function(b) {
 // Vector3.length = Vector3.len;
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @param  {number}  t
- * @return {clay.math.Vector3}
+ * @return {clay.Vector3}
  */
 Vector3.lerp = function(out, a, b, t) {
     vec3.lerp(out.array, a.array, b.array, t);
@@ -5817,10 +5826,10 @@ Vector3.lerp = function(out, a, b, t) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.min = function(out, a, b) {
     vec3.min(out.array, a.array, b.array);
@@ -5829,10 +5838,10 @@ Vector3.min = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.max = function(out, a, b) {
     vec3.max(out.array, a.array, b.array);
@@ -5840,10 +5849,10 @@ Vector3.max = function(out, a, b) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.mul = function(out, a, b) {
     vec3.multiply(out.array, a.array, b.array);
@@ -5852,16 +5861,16 @@ Vector3.mul = function(out, a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.multiply = Vector3.mul;
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @return {clay.Vector3}
  */
 Vector3.negate = function(out, a) {
     vec3.negate(out.array, a.array);
@@ -5869,9 +5878,9 @@ Vector3.negate = function(out, a) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @return {clay.Vector3}
  */
 Vector3.normalize = function(out, a) {
     vec3.normalize(out.array, a.array);
@@ -5879,9 +5888,9 @@ Vector3.normalize = function(out, a) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
+ * @param  {clay.Vector3} out
  * @param  {number}  scale
- * @return {clay.math.Vector3}
+ * @return {clay.Vector3}
  */
 Vector3.random = function(out, scale) {
     vec3.random(out.array, scale);
@@ -5889,10 +5898,10 @@ Vector3.random = function(out, scale) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
  * @param  {number}  scale
- * @return {clay.math.Vector3}
+ * @return {clay.Vector3}
  */
 Vector3.scale = function(out, a, scale) {
     vec3.scale(out.array, a.array, scale);
@@ -5900,11 +5909,11 @@ Vector3.scale = function(out, a, scale) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @param  {number}  scale
- * @return {clay.math.Vector3}
+ * @return {clay.Vector3}
  */
 Vector3.scaleAndAdd = function(out, a, b, scale) {
     vec3.scaleAndAdd(out.array, a.array, b.array, scale);
@@ -5912,8 +5921,8 @@ Vector3.scaleAndAdd = function(out, a, b, scale) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @return {number}
  */
 Vector3.sqrDist = function(a, b) {
@@ -5921,13 +5930,13 @@ Vector3.sqrDist = function(a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
  * @return {number}
  */
 Vector3.squaredDistance = Vector3.sqrDist;
 /**
- * @param  {clay.math.Vector3} a
+ * @param  {clay.Vector3} a
  * @return {number}
  */
 Vector3.sqrLen = function(a) {
@@ -5935,16 +5944,16 @@ Vector3.sqrLen = function(a) {
 };
 /**
  * @function
- * @param  {clay.math.Vector3} a
+ * @param  {clay.Vector3} a
  * @return {number}
  */
 Vector3.squaredLength = Vector3.sqrLen;
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.sub = function(out, a, b) {
     vec3.subtract(out.array, a.array, b.array);
@@ -5953,18 +5962,18 @@ Vector3.sub = function(out, a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Vector3} b
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Vector3} b
+ * @return {clay.Vector3}
  */
 Vector3.subtract = Vector3.sub;
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
  * @param  {Matrix3} m
- * @return {clay.math.Vector3}
+ * @return {clay.Vector3}
  */
 Vector3.transformMat3 = function(out, a, m) {
     vec3.transformMat3(out.array, a.array, m.array);
@@ -5973,10 +5982,10 @@ Vector3.transformMat3 = function(out, a, m) {
 };
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Matrix4} m
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Matrix4} m
+ * @return {clay.Vector3}
  */
 Vector3.transformMat4 = function(out, a, m) {
     vec3.transformMat4(out.array, a.array, m.array);
@@ -5984,10 +5993,10 @@ Vector3.transformMat4 = function(out, a, m) {
     return out;
 };
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector3} a
- * @param  {clay.math.Quaternion} q
- * @return {clay.math.Vector3}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector3} a
+ * @param  {clay.Quaternion} q
+ * @return {clay.Vector3}
  */
 Vector3.transformQuat = function(out, a, q) {
     vec3.transformQuat(out.array, a.array, q.array);
@@ -6147,35 +6156,35 @@ Vector3.eulerFromMat3 = function (out, m, order) {
 
 // TODO return new.
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.POSITIVE_X = new Vector3(1, 0, 0);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.NEGATIVE_X = new Vector3(-1, 0, 0);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.POSITIVE_Y = new Vector3(0, 1, 0);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.NEGATIVE_Y = new Vector3(0, -1, 0);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.POSITIVE_Z = new Vector3(0, 0, 1);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.NEGATIVE_Z = new Vector3(0, 0, -1);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.UP = new Vector3(0, 1, 0);
 /**
- * @type {clay.math.Vector3}
+ * @type {clay.Vector3}
  */
 Vector3.ZERO = new Vector3(0, 0, 0);
 
@@ -6189,11 +6198,27 @@ Vector3.ZERO = new Vector3(0, 0, 0);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_util__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_util__ = __webpack_require__(67);
 
 
 
 var isPowerOfTwo = __WEBPACK_IMPORTED_MODULE_2__math_util__["a" /* default */].isPowerOfTwo;
+
+function nearestPowerOfTwo(val) {
+    return Math.pow(2, Math.round(Math.log(val) / Math.LN2));
+}
+function convertTextureToPowerOfTwo(texture, canvas) {
+    // var canvas = document.createElement('canvas');
+    var width = nearestPowerOfTwo(texture.width);
+    var height = nearestPowerOfTwo(texture.height);
+    canvas = canvas || document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(texture.image, 0, 0, width, height);
+
+    return canvas;
+}
 
 /**
  * @constructor clay.Texture2D
@@ -6237,7 +6262,13 @@ var Texture2D = __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].extend
          *         pixels: null
          *     }, ....]
          */
-        mipmaps: []
+        mipmaps: [],
+
+        /**
+         * If convert texture to power-of-two
+         * @type {boolean}
+         */
+        convertToPOT: false
     };
 }, {
 
@@ -6253,11 +6284,18 @@ var Texture2D = __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].extend
         var glFormat = this.format;
         var glType = this.type;
 
-        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_WRAP_S, this.getAvailableWrapS());
-        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_WRAP_T, this.getAvailableWrapT());
+        // Convert to pot is only available when using image/canvas/video element.
+        var convertToPOT = !!(this.convertToPOT
+            && !this.mipmaps.length && this.image
+            && (this.wrapS === __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].REPEAT || this.wrapT === __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].REPEAT)
+            && this.NPOT
+        );
 
-        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_MAG_FILTER, this.getAvailableMagFilter());
-        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_MIN_FILTER, this.getAvailableMinFilter());
+        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_WRAP_S, convertToPOT ? this.wrapS : this.getAvailableWrapS());
+        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_WRAP_T, convertToPOT ? this.wrapT : this.getAvailableWrapT());
+
+        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_MAG_FILTER, convertToPOT ? this.magFilter : this.getAvailableMagFilter());
+        _gl.texParameteri(_gl.TEXTURE_2D, _gl.TEXTURE_MIN_FILTER, convertToPOT ? this.minFilter : this.getAvailableMinFilter());
 
         var anisotropicExt = renderer.getGLExtension('EXT_texture_filter_anisotropic');
         if (anisotropicExt && this.anisotropic > 1) {
@@ -6277,15 +6315,15 @@ var Texture2D = __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].extend
             var height = this.height;
             for (var i = 0; i < this.mipmaps.length; i++) {
                 var mipmap = this.mipmaps[i];
-                this._updateTextureData(_gl, mipmap, i, width, height, glFormat, glType);
+                this._updateTextureData(_gl, mipmap, i, width, height, glFormat, glType, false);
                 width /= 2;
                 height /= 2;
             }
         }
         else {
-            this._updateTextureData(_gl, this, 0, this.width, this.height, glFormat, glType);
+            this._updateTextureData(_gl, this, 0, this.width, this.height, glFormat, glType, convertToPOT);
 
-            if (this.useMipmap && !this.NPOT) {
+            if (this.useMipmap && (!this.NPOT || convertToPOT)) {
                 _gl.generateMipmap(_gl.TEXTURE_2D);
             }
         }
@@ -6293,9 +6331,14 @@ var Texture2D = __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].extend
         _gl.bindTexture(_gl.TEXTURE_2D, null);
     },
 
-    _updateTextureData: function (_gl, data, level, width, height, glFormat, glType) {
+    _updateTextureData: function (_gl, data, level, width, height, glFormat, glType, convertToPOT) {
         if (data.image) {
-            _gl.texImage2D(_gl.TEXTURE_2D, level, glFormat, glFormat, glType, data.image);
+            var imgData = data.image;
+            if (convertToPOT) {
+                this._potCanvas = convertTextureToPowerOfTwo(this, this._potCanvas);
+                imgData = this._potCanvas;
+            }
+            _gl.texImage2D(_gl.TEXTURE_2D, level, glFormat, glFormat, glType, imgData);
         }
         else {
             // Can be used as a blank texture when writing render to texture(RTT)
@@ -6325,17 +6368,7 @@ var Texture2D = __WEBPACK_IMPORTED_MODULE_0__Texture__["a" /* default */].extend
     },
 
     isPowerOfTwo: function () {
-        var width;
-        var height;
-        if (this.image) {
-            width = this.image.width;
-            height = this.image.height;
-        }
-        else {
-            width = this.width;
-            height = this.height;
-        }
-        return isPowerOfTwo(width) && isPowerOfTwo(height);
+        return isPowerOfTwo(this.width) && isPowerOfTwo(this.height);
     },
 
     isRenderable: function () {
@@ -6427,7 +6460,7 @@ Object.defineProperty(Texture2D.prototype, 'height', {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_Cache__ = __webpack_require__(48);
 /**
@@ -6443,9 +6476,7 @@ Object.defineProperty(Texture2D.prototype, 'height', {
  * @alias clay.Texture
  * @extends clay.core.Base
  */
-var Texture = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(
-/** @lends clay.Texture# */
-{
+var Texture = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend( /** @lends clay.Texture# */ {
     /**
      * Texture width, readonly when the texture source is image
      * @type {number}
@@ -6554,7 +6585,12 @@ var Texture = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend
      */
     dynamic: false,
 
-    NPOT: false
+    NPOT: false,
+
+    // PENDING
+    // Init it here to avoid deoptimization when it's assigned in application dynamically
+    __used: 0
+
 }, function () {
     this._cache = new __WEBPACK_IMPORTED_MODULE_2__core_Cache__["a" /* default */]();
 },
@@ -6635,13 +6671,13 @@ var Texture = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend
     getAvailableMinFilter: function () {
         var minFilter = this.minFilter;
         if (this.NPOT || !this.useMipmap) {
-            if (minFilter == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST_MIPMAP_NEAREST ||
-                minFilter == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST_MIPMAP_LINEAR
+            if (minFilter === __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST_MIPMAP_NEAREST ||
+                minFilter === __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST_MIPMAP_LINEAR
             ) {
                 return __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST;
             }
-            else if (minFilter == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINEAR_MIPMAP_LINEAR ||
-                minFilter == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINEAR_MIPMAP_NEAREST
+            else if (minFilter === __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINEAR_MIPMAP_LINEAR ||
+                minFilter === __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINEAR_MIPMAP_NEAREST
             ) {
                 return __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINEAR;
             }
@@ -6849,7 +6885,737 @@ Texture.MIRRORED_REPEAT = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* defa
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_util__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dep_glmatrix__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Vector3__ = __webpack_require__(4);
+
+
+var mat4 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat4;
+var vec3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.vec3;
+var mat3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat3;
+var quat = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.quat;
+
+/**
+ * @constructor
+ * @alias clay.Matrix4
+ */
+var Matrix4 = function() {
+
+    this._axisX = new __WEBPACK_IMPORTED_MODULE_1__Vector3__["a" /* default */]();
+    this._axisY = new __WEBPACK_IMPORTED_MODULE_1__Vector3__["a" /* default */]();
+    this._axisZ = new __WEBPACK_IMPORTED_MODULE_1__Vector3__["a" /* default */]();
+
+    /**
+     * Storage of Matrix4
+     * @name array
+     * @type {Float32Array}
+     * @memberOf clay.Matrix4#
+     */
+    this.array = mat4.create();
+
+    /**
+     * @name _dirty
+     * @type {boolean}
+     * @memberOf clay.Matrix4#
+     */
+    this._dirty = true;
+};
+
+Matrix4.prototype = {
+
+    constructor: Matrix4,
+
+    /**
+     * Set components from array
+     * @param  {Float32Array|number[]} arr
+     */
+    setArray: function (arr) {
+        for (var i = 0; i < this.array.length; i++) {
+            this.array[i] = arr[i];
+        }
+        this._dirty = true;
+        return this;
+    },
+    /**
+     * Calculate the adjugate of self, in-place
+     * @return {clay.Matrix4}
+     */
+    adjoint: function() {
+        mat4.adjoint(this.array, this.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Clone a new Matrix4
+     * @return {clay.Matrix4}
+     */
+    clone: function() {
+        return (new Matrix4()).copy(this);
+    },
+
+    /**
+     * Copy from b
+     * @param  {clay.Matrix4} b
+     * @return {clay.Matrix4}
+     */
+    copy: function(a) {
+        mat4.copy(this.array, a.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Calculate matrix determinant
+     * @return {number}
+     */
+    determinant: function() {
+        return mat4.determinant(this.array);
+    },
+
+    /**
+     * Set upper 3x3 part from quaternion
+     * @param  {clay.Quaternion} q
+     * @return {clay.Matrix4}
+     */
+    fromQuat: function(q) {
+        mat4.fromQuat(this.array, q.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Set from a quaternion rotation and a vector translation
+     * @param  {clay.Quaternion} q
+     * @param  {clay.Vector3} v
+     * @return {clay.Matrix4}
+     */
+    fromRotationTranslation: function(q, v) {
+        mat4.fromRotationTranslation(this.array, q.array, v.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Set from Matrix2d, it is used when converting a 2d shape to 3d space.
+     * In 3d space it is equivalent to ranslate on xy plane and rotate about z axis
+     * @param  {clay.Matrix2d} m2d
+     * @return {clay.Matrix4}
+     */
+    fromMat2d: function(m2d) {
+        Matrix4.fromMat2d(this, m2d);
+        return this;
+    },
+
+    /**
+     * Set from frustum bounds
+     * @param  {number} left
+     * @param  {number} right
+     * @param  {number} bottom
+     * @param  {number} top
+     * @param  {number} near
+     * @param  {number} far
+     * @return {clay.Matrix4}
+     */
+    frustum: function (left, right, bottom, top, near, far) {
+        mat4.frustum(this.array, left, right, bottom, top, near, far);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Set to a identity matrix
+     * @return {clay.Matrix4}
+     */
+    identity: function() {
+        mat4.identity(this.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Invert self
+     * @return {clay.Matrix4}
+     */
+    invert: function() {
+        mat4.invert(this.array, this.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Set as a matrix with the given eye position, focal point, and up axis
+     * @param  {clay.Vector3} eye
+     * @param  {clay.Vector3} center
+     * @param  {clay.Vector3} up
+     * @return {clay.Matrix4}
+     */
+    lookAt: function(eye, center, up) {
+        mat4.lookAt(this.array, eye.array, center.array, up.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Alias for mutiply
+     * @param  {clay.Matrix4} b
+     * @return {clay.Matrix4}
+     */
+    mul: function(b) {
+        mat4.mul(this.array, this.array, b.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Alias for multiplyLeft
+     * @param  {clay.Matrix4} a
+     * @return {clay.Matrix4}
+     */
+    mulLeft: function(a) {
+        mat4.mul(this.array, a.array, this.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Multiply self and b
+     * @param  {clay.Matrix4} b
+     * @return {clay.Matrix4}
+     */
+    multiply: function(b) {
+        mat4.multiply(this.array, this.array, b.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Multiply a and self, a is on the left
+     * @param  {clay.Matrix3} a
+     * @return {clay.Matrix3}
+     */
+    multiplyLeft: function(a) {
+        mat4.multiply(this.array, a.array, this.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Set as a orthographic projection matrix
+     * @param  {number} left
+     * @param  {number} right
+     * @param  {number} bottom
+     * @param  {number} top
+     * @param  {number} near
+     * @param  {number} far
+     * @return {clay.Matrix4}
+     */
+    ortho: function(left, right, bottom, top, near, far) {
+        mat4.ortho(this.array, left, right, bottom, top, near, far);
+        this._dirty = true;
+        return this;
+    },
+    /**
+     * Set as a perspective projection matrix
+     * @param  {number} fovy
+     * @param  {number} aspect
+     * @param  {number} near
+     * @param  {number} far
+     * @return {clay.Matrix4}
+     */
+    perspective: function(fovy, aspect, near, far) {
+        mat4.perspective(this.array, fovy, aspect, near, far);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Rotate self by rad about axis.
+     * Equal to right-multiply a rotaion matrix
+     * @param  {number}   rad
+     * @param  {clay.Vector3} axis
+     * @return {clay.Matrix4}
+     */
+    rotate: function(rad, axis) {
+        mat4.rotate(this.array, this.array, rad, axis.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Rotate self by a given radian about X axis.
+     * Equal to right-multiply a rotaion matrix
+     * @param {number} rad
+     * @return {clay.Matrix4}
+     */
+    rotateX: function(rad) {
+        mat4.rotateX(this.array, this.array, rad);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Rotate self by a given radian about Y axis.
+     * Equal to right-multiply a rotaion matrix
+     * @param {number} rad
+     * @return {clay.Matrix4}
+     */
+    rotateY: function(rad) {
+        mat4.rotateY(this.array, this.array, rad);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Rotate self by a given radian about Z axis.
+     * Equal to right-multiply a rotaion matrix
+     * @param {number} rad
+     * @return {clay.Matrix4}
+     */
+    rotateZ: function(rad) {
+        mat4.rotateZ(this.array, this.array, rad);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Scale self by s
+     * Equal to right-multiply a scale matrix
+     * @param  {clay.Vector3}  s
+     * @return {clay.Matrix4}
+     */
+    scale: function(v) {
+        mat4.scale(this.array, this.array, v.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Translate self by v.
+     * Equal to right-multiply a translate matrix
+     * @param  {clay.Vector3}  v
+     * @return {clay.Matrix4}
+     */
+    translate: function(v) {
+        mat4.translate(this.array, this.array, v.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Transpose self, in-place.
+     * @return {clay.Matrix2}
+     */
+    transpose: function() {
+        mat4.transpose(this.array, this.array);
+        this._dirty = true;
+        return this;
+    },
+
+    /**
+     * Decompose a matrix to SRT
+     * @param {clay.Vector3} [scale]
+     * @param {clay.Quaternion} rotation
+     * @param {clay.Vector} position
+     * @see http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.matrix.decompose.aspx
+     */
+    decomposeMatrix: (function() {
+
+        var x = vec3.create();
+        var y = vec3.create();
+        var z = vec3.create();
+
+        var m3 = mat3.create();
+
+        return function(scale, rotation, position) {
+
+            var el = this.array;
+            vec3.set(x, el[0], el[1], el[2]);
+            vec3.set(y, el[4], el[5], el[6]);
+            vec3.set(z, el[8], el[9], el[10]);
+
+            var sx = vec3.length(x);
+            var sy = vec3.length(y);
+            var sz = vec3.length(z);
+
+            // if determine is negative, we need to invert one scale
+            var det = this.determinant();
+            if (det < 0) {
+                sx = -sx;
+            }
+
+            if (scale) {
+                scale.set(sx, sy, sz);
+            }
+
+            position.set(el[12], el[13], el[14]);
+
+            mat3.fromMat4(m3, el);
+            // Not like mat4, mat3 in glmatrix seems to be row-based
+            // Seems fixed in gl-matrix 2.2.2
+            // https://github.com/toji/gl-matrix/issues/114
+            // mat3.transpose(m3, m3);
+
+            m3[0] /= sx;
+            m3[1] /= sx;
+            m3[2] /= sx;
+
+            m3[3] /= sy;
+            m3[4] /= sy;
+            m3[5] /= sy;
+
+            m3[6] /= sz;
+            m3[7] /= sz;
+            m3[8] /= sz;
+
+            quat.fromMat3(rotation.array, m3);
+            quat.normalize(rotation.array, rotation.array);
+
+            rotation._dirty = true;
+            position._dirty = true;
+        };
+    })(),
+
+    toString: function() {
+        return '[' + Array.prototype.join.call(this.array, ',') + ']';
+    },
+
+    toArray: function () {
+        return Array.prototype.slice.call(this.array);
+    }
+};
+
+var defineProperty = Object.defineProperty;
+
+if (defineProperty) {
+    var proto = Matrix4.prototype;
+    /**
+     * Z Axis of local transform
+     * @name z
+     * @type {clay.Vector3}
+     * @memberOf clay.Matrix4
+     * @instance
+     */
+    defineProperty(proto, 'z', {
+        get: function () {
+            var el = this.array;
+            this._axisZ.set(el[8], el[9], el[10]);
+            return this._axisZ;
+        },
+        set: function (v) {
+            // TODO Here has a problem
+            // If only set an item of vector will not work
+            var el = this.array;
+            v = v.array;
+            el[8] = v[0];
+            el[9] = v[1];
+            el[10] = v[2];
+
+            this._dirty = true;
+        }
+    });
+
+    /**
+     * Y Axis of local transform
+     * @name y
+     * @type {clay.Vector3}
+     * @memberOf clay.Matrix4
+     * @instance
+     */
+    defineProperty(proto, 'y', {
+        get: function () {
+            var el = this.array;
+            this._axisY.set(el[4], el[5], el[6]);
+            return this._axisY;
+        },
+        set: function (v) {
+            var el = this.array;
+            v = v.array;
+            el[4] = v[0];
+            el[5] = v[1];
+            el[6] = v[2];
+
+            this._dirty = true;
+        }
+    });
+
+    /**
+     * X Axis of local transform
+     * @name x
+     * @type {clay.Vector3}
+     * @memberOf clay.Matrix4
+     * @instance
+     */
+    defineProperty(proto, 'x', {
+        get: function () {
+            var el = this.array;
+            this._axisX.set(el[0], el[1], el[2]);
+            return this._axisX;
+        },
+        set: function (v) {
+            var el = this.array;
+            v = v.array;
+            el[0] = v[0];
+            el[1] = v[1];
+            el[2] = v[2];
+
+            this._dirty = true;
+        }
+    })
+}
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @return {clay.Matrix4}
+ */
+Matrix4.adjoint = function(out, a) {
+    mat4.adjoint(out.array, a.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @return {clay.Matrix4}
+ */
+Matrix4.copy = function(out, a) {
+    mat4.copy(out.array, a.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} a
+ * @return {number}
+ */
+Matrix4.determinant = function(a) {
+    return mat4.determinant(a.array);
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @return {clay.Matrix4}
+ */
+Matrix4.identity = function(out) {
+    mat4.identity(out.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {number}  left
+ * @param  {number}  right
+ * @param  {number}  bottom
+ * @param  {number}  top
+ * @param  {number}  near
+ * @param  {number}  far
+ * @return {clay.Matrix4}
+ */
+Matrix4.ortho = function(out, left, right, bottom, top, near, far) {
+    mat4.ortho(out.array, left, right, bottom, top, near, far);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {number}  fovy
+ * @param  {number}  aspect
+ * @param  {number}  near
+ * @param  {number}  far
+ * @return {clay.Matrix4}
+ */
+Matrix4.perspective = function(out, fovy, aspect, near, far) {
+    mat4.perspective(out.array, fovy, aspect, near, far);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Vector3} eye
+ * @param  {clay.Vector3} center
+ * @param  {clay.Vector3} up
+ * @return {clay.Matrix4}
+ */
+Matrix4.lookAt = function(out, eye, center, up) {
+    mat4.lookAt(out.array, eye.array, center.array, up.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @return {clay.Matrix4}
+ */
+Matrix4.invert = function(out, a) {
+    mat4.invert(out.array, a.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {clay.Matrix4} b
+ * @return {clay.Matrix4}
+ */
+Matrix4.mul = function(out, a, b) {
+    mat4.mul(out.array, a.array, b.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @function
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {clay.Matrix4} b
+ * @return {clay.Matrix4}
+ */
+Matrix4.multiply = Matrix4.mul;
+
+/**
+ * @param  {clay.Matrix4}    out
+ * @param  {clay.Quaternion} q
+ * @return {clay.Matrix4}
+ */
+Matrix4.fromQuat = function(out, q) {
+    mat4.fromQuat(out.array, q.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4}    out
+ * @param  {clay.Quaternion} q
+ * @param  {clay.Vector3}    v
+ * @return {clay.Matrix4}
+ */
+Matrix4.fromRotationTranslation = function(out, q, v) {
+    mat4.fromRotationTranslation(out.array, q.array, v.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} m4
+ * @param  {clay.Matrix2d} m2d
+ * @return {clay.Matrix4}
+ */
+Matrix4.fromMat2d = function(m4, m2d) {
+    m4._dirty = true;
+    var m2d = m2d.array;
+    var m4 = m4.array;
+
+    m4[0] = m2d[0];
+    m4[4] = m2d[2];
+    m4[12] = m2d[4];
+
+    m4[1] = m2d[1];
+    m4[5] = m2d[3];
+    m4[13] = m2d[5];
+
+    return m4;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {number}  rad
+ * @param  {clay.Vector3} axis
+ * @return {clay.Matrix4}
+ */
+Matrix4.rotate = function(out, a, rad, axis) {
+    mat4.rotate(out.array, a.array, rad, axis.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {number}  rad
+ * @return {clay.Matrix4}
+ */
+Matrix4.rotateX = function(out, a, rad) {
+    mat4.rotateX(out.array, a.array, rad);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {number}  rad
+ * @return {clay.Matrix4}
+ */
+Matrix4.rotateY = function(out, a, rad) {
+    mat4.rotateY(out.array, a.array, rad);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {number}  rad
+ * @return {clay.Matrix4}
+ */
+Matrix4.rotateZ = function(out, a, rad) {
+    mat4.rotateZ(out.array, a.array, rad);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {clay.Vector3} v
+ * @return {clay.Matrix4}
+ */
+Matrix4.scale = function(out, a, v) {
+    mat4.scale(out.array, a.array, v.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @return {clay.Matrix4}
+ */
+Matrix4.transpose = function(out, a) {
+    mat4.transpose(out.array, a.array);
+    out._dirty = true;
+    return out;
+};
+
+/**
+ * @param  {clay.Matrix4} out
+ * @param  {clay.Matrix4} a
+ * @param  {clay.Vector3} v
+ * @return {clay.Matrix4}
+ */
+Matrix4.translate = function(out, a, v) {
+    mat4.translate(out.array, a.array, v.array);
+    out._dirty = true;
+    return out;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Matrix4);
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_util__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_vendor__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__dep_glmatrix__);
@@ -6869,8 +7635,8 @@ var mat2 = __WEBPACK_IMPORTED_MODULE_2__dep_glmatrix___default.a.mat2;
 var mat3 = __WEBPACK_IMPORTED_MODULE_2__dep_glmatrix___default.a.mat3;
 var mat4 = __WEBPACK_IMPORTED_MODULE_2__dep_glmatrix___default.a.mat4;
 
-var uniformRegex = /uniform\s+(bool|float|int|vec2|vec3|vec4|ivec2|ivec3|ivec4|mat2|mat3|mat4|sampler2D|samplerCube)\s+([\w\,]+)?(\[.*?\])?\s*(:\s*([\S\s]+?))?;/g;
-var attributeRegex = /attribute\s+(float|int|vec2|vec3|vec4)\s+(\w*)\s*(:\s*(\w+))?;/g;
+var uniformRegex = /uniform\s+(bool|float|int|vec2|vec3|vec4|ivec2|ivec3|ivec4|mat2|mat3|mat4|sampler2D|samplerCube)\s+([\s\S]*?);/g;
+var attributeRegex = /attribute\s+(float|int|vec2|vec3|vec4)\s+([\s\S]*?);/g;
 var defineRegex = /#define\s+(\w+)?(\s+[\w-.]+)?\s*;?\s*\n/g;
 
 var uniformTypeMap = {
@@ -6891,25 +7657,25 @@ var uniformTypeMap = {
 };
 
 var uniformValueConstructor = {
-    'bool': function () {return true;},
-    'int': function () {return 0;},
-    'float': function () {return 0;},
-    'sampler2D': function () {return null;},
-    'samplerCube': function () {return null;},
+    'bool': function () { return true; },
+    'int': function () { return 0; },
+    'float': function () { return 0; },
+    'sampler2D': function () { return null; },
+    'samplerCube': function () { return null; },
 
-    'vec2': function () {return [0, 0];},
-    'vec3': function () {return [0, 0, 0];},
-    'vec4': function () {return [0, 0, 0, 0];},
+    'vec2': function () { return [0, 0]; },
+    'vec3': function () { return [0, 0, 0]; },
+    'vec4': function () { return [0, 0, 0, 0]; },
 
-    'ivec2': function () {return [0, 0];},
-    'ivec3': function () {return [0, 0, 0];},
-    'ivec4': function () {return [0, 0, 0, 0];},
+    'ivec2': function () { return [0, 0]; },
+    'ivec3': function () { return [0, 0, 0]; },
+    'ivec4': function () { return [0, 0, 0, 0]; },
 
-    'mat2': function () {return mat2.create();},
-    'mat3': function () {return mat3.create();},
-    'mat4': function () {return mat4.create();},
+    'mat2': function () { return mat2.create(); },
+    'mat3': function () { return mat3.create(); },
+    'mat4': function () { return mat4.create(); },
 
-    'array': function () {return [];}
+    'array': function () { return []; }
 };
 
 var attributeSemantics = [
@@ -6968,6 +7734,14 @@ var matrixSemantics = [
     'WORLDVIEWPROJECTIONINVERSETRANSPOSE'
 ];
 
+var attributeSizeMap = {
+    // WebGL does not support integer attributes
+    'vec4': 4,
+    'vec3': 3,
+    'vec2': 2,
+    'float': 1
+};
+
 
 var shaderIDCache = {};
 var shaderCodeCache = {};
@@ -6988,10 +7762,175 @@ function getShaderID(vertex, fragment) {
     return id;
 }
 
+function removeComment(code) {
+    return code.replace(/[ \t]*\/\/.*\n/g, '' )   // remove //
+        .replace(/[ \t]*\/\*[\s\S]*?\*\//g, '' ); // remove /* */
+}
+
+function logSyntaxError() {
+    console.error('Wrong uniform/attributes syntax');
+}
+
+function parseDeclarations(type, line) {
+    var speratorsRegexp = /[,=\(\):]/;
+    var tokens = line
+        // Convert `symbol: [1,2,3]` to `symbol: vec3(1,2,3)`
+        .replace(/:\s*\[\s*(.*)\s*\]/g, '=' + type + '($1)')
+        .replace(/\s+/g, '')
+        .split(/(?=[,=\(\):])/g);
+
+    var newTokens = [];
+    for (var i = 0; i < tokens.length; i++) {
+        if (tokens[i].match(speratorsRegexp)) {
+            newTokens.push(
+                tokens[i].charAt(0),
+                tokens[i].slice(1)
+            );
+        }
+        else {
+            newTokens.push(tokens[i]);
+        }
+    }
+    tokens = newTokens;
+
+    var TYPE_SYMBOL = 0;
+    var TYPE_ASSIGN = 1;
+    var TYPE_VEC = 2;
+    var TYPE_ARR = 3;
+    var TYPE_SEMANTIC = 4;
+    var TYPE_NORMAL = 5;
+
+    var opType = TYPE_SYMBOL;
+    var declarations = {};
+    var declarationValue = null;
+    var currentDeclaration;
+
+    addSymbol(tokens[0]);
+
+    function addSymbol(symbol) {
+        if (!symbol) {
+            logSyntaxError();
+        }
+        var arrResult = symbol.match(/\[(.*?)\]/);
+        currentDeclaration = symbol.replace(/\[(.*?)\]/, '');
+        declarations[currentDeclaration] = {};
+        if (arrResult) {
+            declarations[currentDeclaration].isArray = true;
+            declarations[currentDeclaration].arraySize = arrResult[1];
+        }
+    }
+
+    for (var i = 1; i < tokens.length; i++) {
+        var token = tokens[i];
+        if (!token) {   // Empty token;
+            continue;
+        }
+        if (token === '=') {
+            if (opType !== TYPE_SYMBOL
+            && opType !== TYPE_ARR) {
+                logSyntaxError();
+                break;
+            }
+            opType = TYPE_ASSIGN;
+
+            continue;
+        }
+        else if (token === ':') {
+            opType = TYPE_SEMANTIC;
+
+            continue;
+        }
+        else if (token === ',') {
+            if (opType === TYPE_VEC) {
+                if (!(declarationValue instanceof Array)) {
+                    logSyntaxError();
+                    break;
+                }
+                declarationValue.push(+tokens[++i]);
+            }
+            else {
+                opType = TYPE_NORMAL;
+            }
+
+            continue;
+        }
+        else if (token === ')') {
+            declarations[currentDeclaration].value = new __WEBPACK_IMPORTED_MODULE_1__core_vendor__["a" /* default */].Float32Array(declarationValue);
+            declarationValue = null;
+            opType = TYPE_NORMAL;
+            continue;
+        }
+        else if (token === '(') {
+            if (opType !== TYPE_VEC) {
+                logSyntaxError();
+                break;
+            }
+            if (!(declarationValue instanceof Array)) {
+                logSyntaxError();
+                break;
+            }
+            declarationValue.push(+tokens[++i]);
+            continue;
+        }
+        else if (token.indexOf('vec') >= 0) {
+            if (opType !== TYPE_ASSIGN
+            // Compatitable with old syntax `symbol: [1,2,3]`
+            && opType !== TYPE_SEMANTIC) {
+                logSyntaxError();
+                break;
+            }
+            opType = TYPE_VEC;
+            declarationValue = [];
+            continue;
+        }
+        else if (opType === TYPE_ASSIGN) {
+            if (type === 'bool') {
+                declarations[currentDeclaration].value = token === 'true';
+            }
+            else {
+                declarations[currentDeclaration].value = parseFloat(token);
+            }
+            declarationValue = null;
+            continue;
+        }
+        else if (opType === TYPE_SEMANTIC) {
+            var semantic = token;
+            if (attributeSemantics.indexOf(semantic) >= 0
+                || uniformSemantics.indexOf(semantic) >= 0
+                || matrixSemantics.indexOf(semantic) >= 0
+            ) {
+                declarations[currentDeclaration].semantic = semantic;
+            }
+            else if (semantic === 'ignore' || semantic === 'unconfigurable') {
+                declarations[currentDeclaration].ignore = true;
+            }
+            else {
+                // Try to parse as a default tvalue.
+                if (type === 'bool') {
+                    declarations[currentDeclaration].value = semantic === 'true';
+                }
+                else {
+                    declarations[currentDeclaration].value = parseFloat(semantic);
+                }
+            }
+            continue;
+        }
+
+        // treat as symbol.
+        addSymbol(token);
+        opType = TYPE_SYMBOL;
+    }
+
+    return declarations;
+}
+
+
 /**
  * @constructor
  * @extends clay.core.Base
  * @alias clay.Shader
+ * @param {string} vertex
+ * @param {string} fragment
  * @example
  * // Create a phong shader
  * var shader = new clay.Shader(
@@ -7005,6 +7944,9 @@ function Shader(vertex, fragment) {
         fragment = vertex.fragment;
         vertex = vertex.vertex;
     }
+
+    vertex = removeComment(vertex);
+    fragment = removeComment(fragment);
 
     this._shaderID = getShaderID(vertex, fragment);
 
@@ -7077,6 +8019,45 @@ Shader.prototype = {
         this._fragmentCode = Shader.parseImport(this.fragment);
     },
 
+    _addSemanticUniform: function (symbol, uniformType, semantic) {
+        // This case is only for SKIN_MATRIX
+        // TODO
+        if (attributeSemantics.indexOf(semantic) >= 0) {
+            this.attributeSemantics[semantic] = {
+                symbol: symbol,
+                type: uniformType
+            };
+        }
+        else if (matrixSemantics.indexOf(semantic) >= 0) {
+            var isTranspose = false;
+            var semanticNoTranspose = semantic;
+            if (semantic.match(/TRANSPOSE$/)) {
+                isTranspose = true;
+                semanticNoTranspose = semantic.slice(0, -9);
+            }
+            this.matrixSemantics[semantic] = {
+                symbol: symbol,
+                type: uniformType,
+                isTranspose: isTranspose,
+                semanticNoTranspose: semanticNoTranspose
+            };
+        }
+        else if (uniformSemantics.indexOf(semantic) >= 0) {
+            this.uniformSemantics[semantic] = {
+                symbol: symbol,
+                type: uniformType
+            };
+        }
+    },
+
+    _addMaterialUniform: function (symbol, type, uniformType, defaultValueFunc, isArray, materialUniforms) {
+        materialUniforms[symbol] = {
+            type: uniformType,
+            value: isArray ? uniformValueConstructor['array'] : (defaultValueFunc || uniformValueConstructor[type]),
+            semantic: null
+        };
+    },
+
     _parseUniforms: function () {
         var uniforms = {};
         var self = this;
@@ -7089,13 +8070,30 @@ Shader.prototype = {
 
         self.matrixSemanticKeys = Object.keys(this.matrixSemantics);
 
-        function _uniformParser(str, type, symbol, isArray, semanticWrapper, semantic) {
-            if (type && symbol) {
+        function makeDefaultValueFunc(value) {
+            return value != null ? function () { return value; } : null;
+        }
+
+        function _uniformParser(str, type, content) {
+            var declaredUniforms = parseDeclarations(type, content);
+            var uniformMainStr = [];
+            for (var symbol in declaredUniforms) {
+
+                var uniformInfo = declaredUniforms[symbol];
+                var semantic = uniformInfo.semantic;
+                var tmpStr = symbol;
                 var uniformType = uniformTypeMap[type];
-                var isConfigurable = true;
-                var defaultValueFunc;
-                if (uniformType) {
-                    self._uniformList.push(symbol);
+                var defaultValueFunc = makeDefaultValueFunc(declaredUniforms[symbol].value);
+                if (declaredUniforms[symbol].isArray) {
+                    tmpStr += '[' + declaredUniforms[symbol].arraySize + ']';
+                    uniformType += 'v';
+                }
+
+                uniformMainStr.push(tmpStr);
+
+                self._uniformList.push(symbol);
+
+                if (!uniformInfo.ignore) {
                     if (type === 'sampler2D' || type === 'samplerCube') {
                         // Texture is default disabled
                         self.textures[symbol] = {
@@ -7103,106 +8101,24 @@ Shader.prototype = {
                             type: type
                         };
                     }
-                    if (isArray) {
-                        uniformType += 'v';
-                    }
-                    if (semantic) {
-                        // This case is only for SKIN_MATRIX
-                        // TODO
-                        if (attributeSemantics.indexOf(semantic) >= 0) {
-                            self.attributeSemantics[semantic] = {
-                                symbol: symbol,
-                                type: uniformType
-                            };
-                            isConfigurable = false;
-                        }
-                        else if (matrixSemantics.indexOf(semantic) >= 0) {
-                            var isTranspose = false;
-                            var semanticNoTranspose = semantic;
-                            if (semantic.match(/TRANSPOSE$/)) {
-                                isTranspose = true;
-                                semanticNoTranspose = semantic.slice(0, -9);
-                            }
-                            self.matrixSemantics[semantic] = {
-                                symbol: symbol,
-                                type: uniformType,
-                                isTranspose: isTranspose,
-                                semanticNoTranspose: semanticNoTranspose
-                            };
-                            isConfigurable = false;
-                        }
-                        else if (uniformSemantics.indexOf(semantic) >= 0) {
-                            self.uniformSemantics[semantic] = {
-                                symbol: symbol,
-                                type: uniformType
-                            };
-                            isConfigurable = false;
-                        }
-                        else {
-                            // The uniform is not configurable, which means it will not appear
-                            // in the material uniform properties
-                            if (semantic === 'unconfigurable') {
-                                isConfigurable = false;
-                            }
-                            else {
-                                // Uniform have a defalut value, like
-                                // uniform vec3 color: [1, 1, 1];
-                                defaultValueFunc = self._parseDefaultValue(type, semantic);
-                                if (!defaultValueFunc) {
-                                    throw new Error('Unkown semantic "' + semantic + '"');
-                                }
-                                else {
-                                    semantic = '';
-                                }
-                            }
-                        }
-                    }
 
-                    if (isConfigurable) {
-                        uniforms[symbol] = {
-                            type: uniformType,
-                            value: isArray ? uniformValueConstructor['array'] : (defaultValueFunc || uniformValueConstructor[type]),
-                            semantic: semantic || null
-                        };
+                    if (semantic) {
+                        // TODO Should not declare multiple symbols if have semantic.
+                        self._addSemanticUniform(symbol, uniformType, semantic);
+                    }
+                    else {
+                        self._addMaterialUniform(
+                            symbol, type, uniformType, defaultValueFunc,
+                            declaredUniforms[symbol].isArray, uniforms
+                        );
                     }
                 }
-                return ['uniform', type, symbol, isArray].join(' ') + ';\n';
             }
+            return uniformMainStr.length > 0
+                ? 'uniform ' + type + ' ' + uniformMainStr.join(',') + ';\n' : '';
         }
 
         this.uniformTemplates = uniforms;
-    },
-
-    _parseDefaultValue: function (type, str) {
-        var arrayRegex = /\[\s*(.*)\s*\]/;
-        if (type === 'vec2' || type === 'vec3' || type === 'vec4') {
-            var arrayStr = arrayRegex.exec(str)[1];
-            if (arrayStr) {
-                var arr = arrayStr.split(/\s*,\s*/);
-                return function () {
-                    return new __WEBPACK_IMPORTED_MODULE_1__core_vendor__["a" /* default */].Float32Array(arr);
-                };
-            }
-            else {
-                // Invalid value
-                return;
-            }
-        }
-        else if (type === 'bool') {
-            return function () {
-                return str.toLowerCase() === 'true' ? true : false;
-            };
-        }
-        else if (type === 'float') {
-            return function () {
-                return parseFloat(str);
-            };
-        }
-        else if (type === 'int') {
-            return function () {
-                return parseInt(str);
-            };
-        }
     },
 
     _parseAttributes: function () {
@@ -7210,31 +8126,20 @@ Shader.prototype = {
         var self = this;
         this._vertexCode = this._vertexCode.replace(attributeRegex, _attributeParser);
 
-        function _attributeParser(str, type, symbol, semanticWrapper, semantic) {
-            if (type && symbol) {
-                var size = 1;
-                switch (type) {
-                    case 'vec4':
-                        size = 4;
-                        break;
-                    case 'vec3':
-                        size = 3;
-                        break;
-                    case 'vec2':
-                        size = 2;
-                        break;
-                    case 'float':
-                        size = 1;
-                        break;
-                }
+        function _attributeParser(str, type, content) {
+            var declaredAttributes = parseDeclarations(type, content);
 
+            var size = attributeSizeMap[type] || 1;
+            var attributeMainStr = [];
+            for (var symbol in declaredAttributes) {
+                var semantic = declaredAttributes[symbol].semantic;
                 attributes[symbol] = {
-                    // Can only be float
+                    // TODO Can only be float
                     type: 'float',
                     size: size,
                     semantic: semantic || null
                 };
-
+                // TODO Should not declare multiple symbols if have semantic.
                 if (semantic) {
                     if (attributeSemantics.indexOf(semantic) < 0) {
                         throw new Error('Unkown semantic "' + semantic + '"');
@@ -7246,9 +8151,10 @@ Shader.prototype = {
                         };
                     }
                 }
+                attributeMainStr.push(symbol);
             }
 
-            return ['attribute', type, symbol].join(' ') + ';\n';
+            return 'attribute ' + type + ' ' + attributeMainStr.join(',') + ';\n';
         }
 
         this.attributes = attributes;
@@ -7264,10 +8170,10 @@ Shader.prototype = {
         function _defineParser(str, symbol, value) {
             var defines = shaderType === 'vertex' ? self.vertexDefines : self.fragmentDefines;
             if (!defines[symbol]) { // Haven't been defined by user
-                if (value == 'false') {
+                if (value === 'false') {
                     defines[symbol] = false;
                 }
-                else if (value == 'true') {
+                else if (value === 'true') {
                     defines[symbol] = true;
                 }
                 else {
@@ -7393,13 +8299,13 @@ Shader.source = function (name) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixin_extend__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixin_extend__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixin_notifier__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util__ = __webpack_require__(20);
 
 
 
@@ -7430,743 +8336,13 @@ __WEBPACK_IMPORTED_MODULE_2__util__["a" /* default */].extend(Base.prototype, __
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Vector3__ = __webpack_require__(4);
-
-
-var mat4 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat4;
-var vec3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.vec3;
-var mat3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat3;
-var quat = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.quat;
-
-/**
- * @constructor
- * @alias clay.math.Matrix4
- */
-var Matrix4 = function() {
-
-    this._axisX = new __WEBPACK_IMPORTED_MODULE_1__Vector3__["a" /* default */]();
-    this._axisY = new __WEBPACK_IMPORTED_MODULE_1__Vector3__["a" /* default */]();
-    this._axisZ = new __WEBPACK_IMPORTED_MODULE_1__Vector3__["a" /* default */]();
-
-    /**
-     * Storage of Matrix4
-     * @name array
-     * @type {Float32Array}
-     * @memberOf clay.math.Matrix4#
-     */
-    this.array = mat4.create();
-
-    /**
-     * @name _dirty
-     * @type {boolean}
-     * @memberOf clay.math.Matrix4#
-     */
-    this._dirty = true;
-};
-
-Matrix4.prototype = {
-
-    constructor: Matrix4,
-
-    /**
-     * Set components from array
-     * @param  {Float32Array|number[]} arr
-     */
-    setArray: function (arr) {
-        for (var i = 0; i < this.array.length; i++) {
-            this.array[i] = arr[i];
-        }
-        this._dirty = true;
-        return this;
-    },
-    /**
-     * Calculate the adjugate of self, in-place
-     * @return {clay.math.Matrix4}
-     */
-    adjoint: function() {
-        mat4.adjoint(this.array, this.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Clone a new Matrix4
-     * @return {clay.math.Matrix4}
-     */
-    clone: function() {
-        return (new Matrix4()).copy(this);
-    },
-
-    /**
-     * Copy from b
-     * @param  {clay.math.Matrix4} b
-     * @return {clay.math.Matrix4}
-     */
-    copy: function(a) {
-        mat4.copy(this.array, a.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Calculate matrix determinant
-     * @return {number}
-     */
-    determinant: function() {
-        return mat4.determinant(this.array);
-    },
-
-    /**
-     * Set upper 3x3 part from quaternion
-     * @param  {clay.math.Quaternion} q
-     * @return {clay.math.Matrix4}
-     */
-    fromQuat: function(q) {
-        mat4.fromQuat(this.array, q.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Set from a quaternion rotation and a vector translation
-     * @param  {clay.math.Quaternion} q
-     * @param  {clay.math.Vector3} v
-     * @return {clay.math.Matrix4}
-     */
-    fromRotationTranslation: function(q, v) {
-        mat4.fromRotationTranslation(this.array, q.array, v.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Set from Matrix2d, it is used when converting a 2d shape to 3d space.
-     * In 3d space it is equivalent to ranslate on xy plane and rotate about z axis
-     * @param  {clay.math.Matrix2d} m2d
-     * @return {clay.math.Matrix4}
-     */
-    fromMat2d: function(m2d) {
-        Matrix4.fromMat2d(this, m2d);
-        return this;
-    },
-
-    /**
-     * Set from frustum bounds
-     * @param  {number} left
-     * @param  {number} right
-     * @param  {number} bottom
-     * @param  {number} top
-     * @param  {number} near
-     * @param  {number} far
-     * @return {clay.math.Matrix4}
-     */
-    frustum: function (left, right, bottom, top, near, far) {
-        mat4.frustum(this.array, left, right, bottom, top, near, far);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Set to a identity matrix
-     * @return {clay.math.Matrix4}
-     */
-    identity: function() {
-        mat4.identity(this.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Invert self
-     * @return {clay.math.Matrix4}
-     */
-    invert: function() {
-        mat4.invert(this.array, this.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Set as a matrix with the given eye position, focal point, and up axis
-     * @param  {clay.math.Vector3} eye
-     * @param  {clay.math.Vector3} center
-     * @param  {clay.math.Vector3} up
-     * @return {clay.math.Matrix4}
-     */
-    lookAt: function(eye, center, up) {
-        mat4.lookAt(this.array, eye.array, center.array, up.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Alias for mutiply
-     * @param  {clay.math.Matrix4} b
-     * @return {clay.math.Matrix4}
-     */
-    mul: function(b) {
-        mat4.mul(this.array, this.array, b.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Alias for multiplyLeft
-     * @param  {clay.math.Matrix4} a
-     * @return {clay.math.Matrix4}
-     */
-    mulLeft: function(a) {
-        mat4.mul(this.array, a.array, this.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Multiply self and b
-     * @param  {clay.math.Matrix4} b
-     * @return {clay.math.Matrix4}
-     */
-    multiply: function(b) {
-        mat4.multiply(this.array, this.array, b.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Multiply a and self, a is on the left
-     * @param  {clay.math.Matrix3} a
-     * @return {clay.math.Matrix3}
-     */
-    multiplyLeft: function(a) {
-        mat4.multiply(this.array, a.array, this.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Set as a orthographic projection matrix
-     * @param  {number} left
-     * @param  {number} right
-     * @param  {number} bottom
-     * @param  {number} top
-     * @param  {number} near
-     * @param  {number} far
-     * @return {clay.math.Matrix4}
-     */
-    ortho: function(left, right, bottom, top, near, far) {
-        mat4.ortho(this.array, left, right, bottom, top, near, far);
-        this._dirty = true;
-        return this;
-    },
-    /**
-     * Set as a perspective projection matrix
-     * @param  {number} fovy
-     * @param  {number} aspect
-     * @param  {number} near
-     * @param  {number} far
-     * @return {clay.math.Matrix4}
-     */
-    perspective: function(fovy, aspect, near, far) {
-        mat4.perspective(this.array, fovy, aspect, near, far);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Rotate self by rad about axis.
-     * Equal to right-multiply a rotaion matrix
-     * @param  {number}   rad
-     * @param  {clay.math.Vector3} axis
-     * @return {clay.math.Matrix4}
-     */
-    rotate: function(rad, axis) {
-        mat4.rotate(this.array, this.array, rad, axis.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Rotate self by a given radian about X axis.
-     * Equal to right-multiply a rotaion matrix
-     * @param {number} rad
-     * @return {clay.math.Matrix4}
-     */
-    rotateX: function(rad) {
-        mat4.rotateX(this.array, this.array, rad);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Rotate self by a given radian about Y axis.
-     * Equal to right-multiply a rotaion matrix
-     * @param {number} rad
-     * @return {clay.math.Matrix4}
-     */
-    rotateY: function(rad) {
-        mat4.rotateY(this.array, this.array, rad);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Rotate self by a given radian about Z axis.
-     * Equal to right-multiply a rotaion matrix
-     * @param {number} rad
-     * @return {clay.math.Matrix4}
-     */
-    rotateZ: function(rad) {
-        mat4.rotateZ(this.array, this.array, rad);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Scale self by s
-     * Equal to right-multiply a scale matrix
-     * @param  {clay.math.Vector3}  s
-     * @return {clay.math.Matrix4}
-     */
-    scale: function(v) {
-        mat4.scale(this.array, this.array, v.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Translate self by v.
-     * Equal to right-multiply a translate matrix
-     * @param  {clay.math.Vector3}  v
-     * @return {clay.math.Matrix4}
-     */
-    translate: function(v) {
-        mat4.translate(this.array, this.array, v.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Transpose self, in-place.
-     * @return {clay.math.Matrix2}
-     */
-    transpose: function() {
-        mat4.transpose(this.array, this.array);
-        this._dirty = true;
-        return this;
-    },
-
-    /**
-     * Decompose a matrix to SRT
-     * @param {clay.math.Vector3} [scale]
-     * @param {clay.math.Quaternion} rotation
-     * @param {clay.math.Vector} position
-     * @see http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.matrix.decompose.aspx
-     */
-    decomposeMatrix: (function() {
-
-        var x = vec3.create();
-        var y = vec3.create();
-        var z = vec3.create();
-
-        var m3 = mat3.create();
-
-        return function(scale, rotation, position) {
-
-            var el = this.array;
-            vec3.set(x, el[0], el[1], el[2]);
-            vec3.set(y, el[4], el[5], el[6]);
-            vec3.set(z, el[8], el[9], el[10]);
-
-            var sx = vec3.length(x);
-            var sy = vec3.length(y);
-            var sz = vec3.length(z);
-
-            // if determine is negative, we need to invert one scale
-            var det = this.determinant();
-            if (det < 0) {
-                sx = -sx;
-            }
-
-            if (scale) {
-                scale.set(sx, sy, sz);
-            }
-
-            position.set(el[12], el[13], el[14]);
-
-            mat3.fromMat4(m3, el);
-            // Not like mat4, mat3 in glmatrix seems to be row-based
-            // Seems fixed in gl-matrix 2.2.2
-            // https://github.com/toji/gl-matrix/issues/114
-            // mat3.transpose(m3, m3);
-
-            m3[0] /= sx;
-            m3[1] /= sx;
-            m3[2] /= sx;
-
-            m3[3] /= sy;
-            m3[4] /= sy;
-            m3[5] /= sy;
-
-            m3[6] /= sz;
-            m3[7] /= sz;
-            m3[8] /= sz;
-
-            quat.fromMat3(rotation.array, m3);
-            quat.normalize(rotation.array, rotation.array);
-
-            rotation._dirty = true;
-            position._dirty = true;
-        };
-    })(),
-
-    toString: function() {
-        return '[' + Array.prototype.join.call(this.array, ',') + ']';
-    },
-
-    toArray: function () {
-        return Array.prototype.slice.call(this.array);
-    }
-};
-
-var defineProperty = Object.defineProperty;
-
-if (defineProperty) {
-    var proto = Matrix4.prototype;
-    /**
-     * Z Axis of local transform
-     * @name z
-     * @type {clay.math.Vector3}
-     * @memberOf clay.math.Matrix4
-     * @instance
-     */
-    defineProperty(proto, 'z', {
-        get: function () {
-            var el = this.array;
-            this._axisZ.set(el[8], el[9], el[10]);
-            return this._axisZ;
-        },
-        set: function (v) {
-            // TODO Here has a problem
-            // If only set an item of vector will not work
-            var el = this.array;
-            v = v.array;
-            el[8] = v[0];
-            el[9] = v[1];
-            el[10] = v[2];
-
-            this._dirty = true;
-        }
-    });
-
-    /**
-     * Y Axis of local transform
-     * @name y
-     * @type {clay.math.Vector3}
-     * @memberOf clay.math.Matrix4
-     * @instance
-     */
-    defineProperty(proto, 'y', {
-        get: function () {
-            var el = this.array;
-            this._axisY.set(el[4], el[5], el[6]);
-            return this._axisY;
-        },
-        set: function (v) {
-            var el = this.array;
-            v = v.array;
-            el[4] = v[0];
-            el[5] = v[1];
-            el[6] = v[2];
-
-            this._dirty = true;
-        }
-    });
-
-    /**
-     * X Axis of local transform
-     * @name x
-     * @type {clay.math.Vector3}
-     * @memberOf clay.math.Matrix4
-     * @instance
-     */
-    defineProperty(proto, 'x', {
-        get: function () {
-            var el = this.array;
-            this._axisX.set(el[0], el[1], el[2]);
-            return this._axisX;
-        },
-        set: function (v) {
-            var el = this.array;
-            v = v.array;
-            el[0] = v[0];
-            el[1] = v[1];
-            el[2] = v[2];
-
-            this._dirty = true;
-        }
-    })
-}
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @return {clay.math.Matrix4}
- */
-Matrix4.adjoint = function(out, a) {
-    mat4.adjoint(out.array, a.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @return {clay.math.Matrix4}
- */
-Matrix4.copy = function(out, a) {
-    mat4.copy(out.array, a.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} a
- * @return {number}
- */
-Matrix4.determinant = function(a) {
-    return mat4.determinant(a.array);
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @return {clay.math.Matrix4}
- */
-Matrix4.identity = function(out) {
-    mat4.identity(out.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {number}  left
- * @param  {number}  right
- * @param  {number}  bottom
- * @param  {number}  top
- * @param  {number}  near
- * @param  {number}  far
- * @return {clay.math.Matrix4}
- */
-Matrix4.ortho = function(out, left, right, bottom, top, near, far) {
-    mat4.ortho(out.array, left, right, bottom, top, near, far);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {number}  fovy
- * @param  {number}  aspect
- * @param  {number}  near
- * @param  {number}  far
- * @return {clay.math.Matrix4}
- */
-Matrix4.perspective = function(out, fovy, aspect, near, far) {
-    mat4.perspective(out.array, fovy, aspect, near, far);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Vector3} eye
- * @param  {clay.math.Vector3} center
- * @param  {clay.math.Vector3} up
- * @return {clay.math.Matrix4}
- */
-Matrix4.lookAt = function(out, eye, center, up) {
-    mat4.lookAt(out.array, eye.array, center.array, up.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @return {clay.math.Matrix4}
- */
-Matrix4.invert = function(out, a) {
-    mat4.invert(out.array, a.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {clay.math.Matrix4} b
- * @return {clay.math.Matrix4}
- */
-Matrix4.mul = function(out, a, b) {
-    mat4.mul(out.array, a.array, b.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @function
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {clay.math.Matrix4} b
- * @return {clay.math.Matrix4}
- */
-Matrix4.multiply = Matrix4.mul;
-
-/**
- * @param  {clay.math.Matrix4}    out
- * @param  {clay.math.Quaternion} q
- * @return {clay.math.Matrix4}
- */
-Matrix4.fromQuat = function(out, q) {
-    mat4.fromQuat(out.array, q.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4}    out
- * @param  {clay.math.Quaternion} q
- * @param  {clay.math.Vector3}    v
- * @return {clay.math.Matrix4}
- */
-Matrix4.fromRotationTranslation = function(out, q, v) {
-    mat4.fromRotationTranslation(out.array, q.array, v.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} m4
- * @param  {clay.math.Matrix2d} m2d
- * @return {clay.math.Matrix4}
- */
-Matrix4.fromMat2d = function(m4, m2d) {
-    m4._dirty = true;
-    var m2d = m2d.array;
-    var m4 = m4.array;
-
-    m4[0] = m2d[0];
-    m4[4] = m2d[2];
-    m4[12] = m2d[4];
-
-    m4[1] = m2d[1];
-    m4[5] = m2d[3];
-    m4[13] = m2d[5];
-
-    return m4;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {number}  rad
- * @param  {clay.math.Vector3} axis
- * @return {clay.math.Matrix4}
- */
-Matrix4.rotate = function(out, a, rad, axis) {
-    mat4.rotate(out.array, a.array, rad, axis.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {number}  rad
- * @return {clay.math.Matrix4}
- */
-Matrix4.rotateX = function(out, a, rad) {
-    mat4.rotateX(out.array, a.array, rad);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {number}  rad
- * @return {clay.math.Matrix4}
- */
-Matrix4.rotateY = function(out, a, rad) {
-    mat4.rotateY(out.array, a.array, rad);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {number}  rad
- * @return {clay.math.Matrix4}
- */
-Matrix4.rotateZ = function(out, a, rad) {
-    mat4.rotateZ(out.array, a.array, rad);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {clay.math.Vector3} v
- * @return {clay.math.Matrix4}
- */
-Matrix4.scale = function(out, a, v) {
-    mat4.scale(out.array, a.array, v.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @return {clay.math.Matrix4}
- */
-Matrix4.transpose = function(out, a) {
-    mat4.transpose(out.array, a.array);
-    out._dirty = true;
-    return out;
-};
-
-/**
- * @param  {clay.math.Matrix4} out
- * @param  {clay.math.Matrix4} a
- * @param  {clay.math.Vector3} v
- * @return {clay.math.Matrix4}
- */
-Matrix4.translate = function(out, a, v) {
-    mat4.translate(out.array, a.array, v.array);
-    out._dirty = true;
-    return out;
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Matrix4);
-
-
-/***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TextureCube__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TextureCube__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_Cache__ = __webpack_require__(48);
 
@@ -9732,7 +9908,7 @@ exports.noop = noop;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_Cache__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_vendor__ = __webpack_require__(18);
@@ -10003,6 +10179,71 @@ function IndicesBuffer(buffer) {
 }
 
 /**
+ * Geometry in ClayGL contains vertex attributes of mesh. These vertex attributes will be finally provided to the {@link clay.Shader}.
+ * Different {@link clay.Shader} needs different attributes. Here is a list of attributes used in the builtin shaders.
+ *
+ * + position: `clay.basic`, `clay.lambert`, `clay.standard`
+ * + texcoord0: `clay.basic`, `clay.lambert`, `clay.standard`
+ * + color: `clay.basic`, `clay.lambert`, `clay.standard`
+ * + weight: `clay.basic`, `clay.lambert`, `clay.standard`
+ * + joint: `clay.basic`, `clay.lambert`, `clay.standard`
+ * + normal: `clay.lambert`, `clay.standard`
+ * + tangent: `clay.standard`
+ *
+ * #### Create a procedural geometry
+ *
+ * ClayGL provides a couple of builtin procedural geometries. Inlcuding:
+ *
+ *  + {@link clay.geometry.Cube}
+ *  + {@link clay.geometry.Sphere}
+ *  + {@link clay.geometry.Plane}
+ *  + {@link clay.geometry.Cylinder}
+ *  + {@link clay.geometry.Cone}
+ *  + {@link clay.geometry.ParametricSurface}
+ *
+ * It's simple to create a basic geometry with these classes.
+ *
+```js
+var sphere = new clay.geometry.Sphere({
+    radius: 2
+});
+```
+ *
+ * #### Create the geometry data by yourself
+ *
+ * Usually the vertex attributes data are created by the {@link clay.loader.GLTF} or procedural geometries like {@link clay.geometry.Sphere}.
+ * Besides these, you can create the data manually. Here is a simple example to create a triangle.
+```js
+var TRIANGLE_POSITIONS = [
+    [-0.5, -0.5, 0],
+    [0.5, -0.5, 0],
+    [0, 0.5, 0]
+];
+var geometry = new clay.StaticGeometry();
+// Add triangle vertices to position attribute.
+geometry.attributes.position.fromArray(TRIANGLE_POSITIONS);
+```
+ * Then you can use the utility methods like `generateVertexNormals`, `generateTangents` to create the remaining necessary attributes.
+ *
+ *
+ * #### Use with custom shaders
+ *
+ * If you wan't to write custom shaders. Don't forget to add SEMANTICS to these attributes. For example
+ *
+ ```glsl
+uniform mat4 worldViewProjection : WORLDVIEWPROJECTION;
+uniform mat4 worldInverseTranspose : WORLDINVERSETRANSPOSE;
+uniform mat4 world : WORLD;
+
+attribute vec3 position : POSITION;
+attribute vec2 texcoord : TEXCOORD_0;
+attribute vec3 normal : NORMAL;
+```
+ * These `POSITION`, `TEXCOORD_0`, `NORMAL` are SEMANTICS which will map the attributes in shader to the attributes in the Geometry
+ *
+ * Available attributes SEMANTICS includes `POSITION`, `TEXCOORD_0`, `TEXCOORD_1` `NORMAL`, `TANGENT`, `COLOR`, `WEIGHT`, `JOINT`.
+ *
+ *
  * @constructor clay.Geometry
  * @extends clay.core.Base
  */
@@ -10019,7 +10260,8 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
          *  + `weight`
          *  + `joint`
          *  + `barycentric`
-         * @type {Object}
+         *
+         * @type {Object.<string, clay.Geometry.Attribute>}
          */
         attributes: {
             position: new Attribute('position', 'float', 3, 'POSITION'),
@@ -10040,7 +10282,7 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
         },
         /**
          * Calculated bounding box of geometry.
-         * @type {clay.math.BoundingBox}
+         * @type {clay.BoundingBox}
          */
         boundingBox: null,
 
@@ -10057,13 +10299,19 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
          */
         dynamic: true,
 
-        _enabledAttributes: null
+        _enabledAttributes: null,
+
+        // PENDING
+        // Init it here to avoid deoptimization when it's assigned in application dynamically
+        __used: 0
     };
 }, function() {
     // Use cache
     this._cache = new __WEBPACK_IMPORTED_MODULE_2__core_Cache__["a" /* default */]();
 
     this._attributeList = Object.keys(this.attributes);
+
+    this.__vaoCache = {};
 },
 /** @lends clay.Geometry.prototype */
 {
@@ -10087,7 +10335,7 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
      * User defined ray picking algorithm instead of default
      * triangle ray intersection
      * ```typescript
-     * (ray: clay.math.Ray, renderable: clay.Renderable, out: Array) => boolean
+     * (ray: clay.Ray, renderable: clay.Renderable, out: Array) => boolean
      * ```
      * @type {?Function}
      */
@@ -10127,6 +10375,7 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
     },
     /**
      * Mark attributes and indices in geometry needs to update.
+     * Usually called after you change the data in attributes.
      */
     dirty: function () {
         var enabledAttributes = this.getEnabledAttributes();
@@ -10711,7 +10960,7 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
 
     /**
      * Apply transform to geometry attributes.
-     * @param {clay.math.Matrix4} matrix
+     * @param {clay.Matrix4} matrix
      */
     applyTransform: function (matrix) {
 
@@ -10764,6 +11013,16 @@ var Geometry = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
                 }
             }
         }
+        if (this.__vaoCache) {
+            var vaoExt = renderer.getGLExtension('OES_vertex_array_object');
+            for (var id in this.__vaoCache) {
+                var vao = this.__vaoCache[id].vao;
+                if (vao) {
+                    vaoExt.deleteVertexArrayOES(vao);
+                }
+            }
+        }
+        this.__vaoCache = {};
         cache.deleteContext(renderer.__uid__);
     }
 
@@ -10825,14 +11084,14 @@ Geometry.Attribute = Attribute;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__camera_Orthographic__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__camera_Orthographic__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__geometry_Plane__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Mesh__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Mesh__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_glenum__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shader_source_compositor_vertex_glsl_js__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shader_source_compositor_vertex_glsl_js__ = __webpack_require__(118);
 
 
 
@@ -11057,23 +11316,25 @@ var vec3Set = vec3.set;
 /**
  * Axis aligned bounding box
  * @constructor
- * @alias clay.math.BoundingBox
- * @param {clay.math.Vector3} [min]
- * @param {clay.math.Vector3} [max]
+ * @alias clay.BoundingBox
+ * @param {clay.Vector3} [min]
+ * @param {clay.Vector3} [max]
  */
 var BoundingBox = function (min, max) {
 
     /**
      * Minimum coords of bounding box
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.min = min || new __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */](Infinity, Infinity, Infinity);
 
     /**
      * Maximum coords of bounding box
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.max = max || new __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */](-Infinity, -Infinity, -Infinity);
+
+    this.vertices = null;
 };
 
 BoundingBox.prototype = {
@@ -11109,7 +11370,7 @@ BoundingBox.prototype = {
 
     /**
      * Union operation with another bounding box
-     * @param  {clay.math.BoundingBox} bbox
+     * @param  {clay.BoundingBox} bbox
      */
     union: function (bbox) {
         var min = this.min;
@@ -11123,7 +11384,7 @@ BoundingBox.prototype = {
 
     /**
      * Intersection operation with another bounding box
-     * @param  {clay.math.BoundingBox} bbox
+     * @param  {clay.BoundingBox} bbox
      */
     intersection: function (bbox) {
         var min = this.min;
@@ -11137,7 +11398,7 @@ BoundingBox.prototype = {
 
     /**
      * If intersect with another bounding box
-     * @param  {clay.math.BoundingBox} bbox
+     * @param  {clay.BoundingBox} bbox
      * @return {boolean}
      */
     intersectBoundingBox: function (bbox) {
@@ -11153,7 +11414,7 @@ BoundingBox.prototype = {
 
     /**
      * If contain another bounding box entirely
-     * @param  {clay.math.BoundingBox} bbox
+     * @param  {clay.BoundingBox} bbox
      * @return {boolean}
      */
     containBoundingBox: function (bbox) {
@@ -11170,7 +11431,7 @@ BoundingBox.prototype = {
 
     /**
      * If contain point entirely
-     * @param  {clay.math.Vector3} point
+     * @param  {clay.Vector3} point
      * @return {boolean}
      */
     containPoint: function (p) {
@@ -11195,9 +11456,18 @@ BoundingBox.prototype = {
 
     /**
      * Apply an affine transform matrix to the bounding box
-     * @param  {clay.math.Matrix4} matrix
+     * @param  {clay.Matrix4} matrix
      */
-    applyTransform: (function () {
+    applyTransform: function (matrix) {
+        this.transformFrom(this, matrix);
+    },
+
+    /**
+     * Get from another bounding box and an affine transform matrix.
+     * @param {clay.BoundingBox} source
+     * @param {clay.Matrix4} matrix
+     */
+    transformFrom: (function () {
         // http://dev.theomader.com/transform-bounding-boxes/
         var xa = vec3.create();
         var xb = vec3.create();
@@ -11206,9 +11476,9 @@ BoundingBox.prototype = {
         var za = vec3.create();
         var zb = vec3.create();
 
-        return function (matrix) {
-            var min = this.min.array;
-            var max = this.max.array;
+        return function (source, matrix) {
+            var min = source.min.array;
+            var max = source.max.array;
 
             var m = matrix.array;
 
@@ -11221,6 +11491,8 @@ BoundingBox.prototype = {
             za[0] = m[8] * min[2]; za[1] = m[9] * min[2]; za[2] = m[10] * min[2];
             zb[0] = m[8] * max[2]; zb[1] = m[9] * max[2]; zb[2] = m[10] * max[2];
 
+            min = this.min.array;
+            max = this.max.array;
             min[0] = Math.min(xa[0], xb[0]) + Math.min(ya[0], yb[0]) + Math.min(za[0], zb[0]) + m[12];
             min[1] = Math.min(xa[1], xb[1]) + Math.min(ya[1], yb[1]) + Math.min(za[1], zb[1]) + m[13];
             min[2] = Math.min(xa[2], xb[2]) + Math.min(ya[2], yb[2]) + Math.min(za[2], zb[2]) + m[14];
@@ -11238,7 +11510,7 @@ BoundingBox.prototype = {
 
     /**
      * Apply a projection matrix to the bounding box
-     * @param  {clay.math.Matrix4} matrix
+     * @param  {clay.Matrix4} matrix
      */
     applyProjection: function (matrix) {
         var min = this.min.array;
@@ -11290,7 +11562,7 @@ BoundingBox.prototype = {
         var vertices = this.vertices;
         if (!vertices) {
             // Cube vertices
-            var vertices = [];
+            vertices = [];
             for (var i = 0; i < 8; i++) {
                 vertices[i] = vec3.fromValues(0, 0, 0);
             }
@@ -11321,7 +11593,7 @@ BoundingBox.prototype = {
     },
     /**
      * Copy values from another bounding box
-     * @param  {clay.math.BoundingBox} bbox
+     * @param  {clay.BoundingBox} bbox
      */
     copy: function (bbox) {
         var min = this.min;
@@ -11335,7 +11607,7 @@ BoundingBox.prototype = {
 
     /**
      * Clone a new bounding box
-     * @return {clay.math.BoundingBox}
+     * @return {clay.BoundingBox}
      */
     clone: function () {
         var boundingBox = new BoundingBox();
@@ -11364,9 +11636,9 @@ BoundingBox.prototype = {
 
             data.setVisual('opacity', opacity == null ? 1 : opacity);
 
-            function dataEach(idx) {
+            function dataEach(data, idx) {
                 var itemModel = data.getItemModel(idx);
-                var opacity = itemModel.get(opacityAccessPath);
+                var opacity = itemModel.get(opacityAccessPath, true);
                 if (opacity != null) {
                     data.setItemVisual(idx, 'opacity', opacity);
                 }
@@ -11384,10 +11656,10 @@ BoundingBox.prototype = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_color__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_color__ = __webpack_require__(105);
 
 
 
@@ -11396,7 +11668,7 @@ var parseColor = __WEBPACK_IMPORTED_MODULE_3__core_color__["a" /* default */].pa
 
 var programKeyCache = {};
 
-function getDefineCode(defines, lightsNumbers, enabledTextures) {
+function getDefineCode(defines) {
     var defineKeys = Object.keys(defines);
     defineKeys.sort();
     var defineStr = [];
@@ -11435,6 +11707,18 @@ function getProgramKey(vertexDefines, fragmentDefines, enabledTextures) {
 }
 
 /**
+ * Material defines the appearance of mesh surface, like `color`, `roughness`, `metalness`, etc.
+ * It contains a {@link clay.Shader} and corresponding uniforms.
+ *
+ * Here is a basic example to create a standard material
+```js
+var material = new clay.Material({
+    shader: new clay.Shader(
+        clay.Shader.source('clay.vertex'),
+        clay.Shader.source('clay.fragment')
+    )
+});
+```
  * @constructor clay.Material
  * @extends clay.core.Base
  */
@@ -11514,119 +11798,6 @@ var Material = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
 {
     precision: 'highp',
 
-    bind: function(renderer, program, prevMaterial, prevProgram) {
-        var _gl = renderer.gl;
-        // PENDING Same texture in different material take different slot?
-
-        // May use shader of other material if shader code are same
-
-        // var sameProgram = prevProgram === program;
-
-        var currentTextureSlot = program.currentTextureSlot();
-
-        for (var u = 0; u < this._enabledUniforms.length; u++) {
-            var symbol = this._enabledUniforms[u];
-            var uniformValue = this.uniforms[symbol].value;
-            var uniformType = this.uniforms[symbol].type;
-            // Not use `instanceof` to determine if a value is texture in Material#bind.
-            // Use type instead, in some case texture may be in different namespaces.
-            // TODO Duck type validate.
-            if (uniformType === 't' && uniformValue) {
-                // Reset slot
-                uniformValue.__slot = -1;
-            }
-            else if (uniformType === 'tv') {
-                for (var i = 0; i < uniformValue.length; i++) {
-                    if (uniformValue[i] instanceof __WEBPACK_IMPORTED_MODULE_1__Texture__["a" /* default */]) {
-                        uniformValue[i].__slot = -1;
-                    }
-                }
-            }
-        }
-        // Set uniforms
-        for (var u = 0; u < this._enabledUniforms.length; u++) {
-            var symbol = this._enabledUniforms[u];
-            var uniform = this.uniforms[symbol];
-            var uniformValue = uniform.value;
-            var uniformType = uniform.type;
-            // PENDING
-            // When binding two materials with the same shader
-            // Many uniforms will be be set twice even if they have the same value
-            // So add a evaluation to see if the uniform is really needed to be set
-            // if (prevMaterial && sameShader) {
-            //     if (prevMaterial.uniforms[symbol].value === uniformValue) {
-            //         continue;
-            //     }
-            // }
-
-            if (uniformValue === null) {
-                // FIXME Assume material with same shader have same order uniforms
-                // Or if different material use same textures,
-                // the slot will be different and still skipped because optimization
-                if (uniform.type === 't') {
-                    var slot = program.currentTextureSlot();
-                    var res = program.setUniform(_gl, '1i', symbol, slot);
-                    if (res) { // Texture is enabled
-                        // Still occupy the slot to make sure same texture in different materials have same slot.
-                        program.takeCurrentTextureSlot(renderer, null);
-                    }
-                }
-                continue;
-            }
-            else if (uniformType === 't') {
-                if (uniformValue.__slot < 0) {
-                    var slot = program.currentTextureSlot();
-                    var res = program.setUniform(_gl, '1i', symbol, slot);
-                    if (!res) { // Texture uniform is not enabled
-                        continue;
-                    }
-                    program.takeCurrentTextureSlot(renderer, uniformValue);
-                    uniformValue.__slot = slot;
-                }
-                // Multiple uniform use same texture..
-                else {
-                    program.setUniform(_gl, '1i', symbol, uniformValue.__slot);
-                }
-            }
-            else if (Array.isArray(uniformValue)) {
-                if (uniformValue.length === 0) {
-                    continue;
-                }
-                // Texture Array
-                if (uniformType === 'tv') {
-                    if (!program.hasUniform(symbol)) {
-                        continue;
-                    }
-
-                    var arr = [];
-                    for (var i = 0; i < uniformValue.length; i++) {
-                        var texture = uniformValue[i];
-
-                        if (texture.__slot < 0) {
-                            var slot = program.currentTextureSlot();
-                            arr.push(slot);
-                            program.takeCurrentTextureSlot(renderer, texture);
-                            texture.__slot = slot;
-                        }
-                        else {
-                            arr.push(texture.__slot);
-                        }
-                    }
-
-                    program.setUniform(_gl, '1iv', symbol, arr);
-                }
-                else {
-                    program.setUniform(_gl, uniform.type, symbol, uniformValue);
-                }
-            }
-            else{
-                program.setUniform(_gl, uniform.type, symbol, uniformValue);
-            }
-        }
-        // Texture slot maybe used out of material.
-        program.resetTextureSlot(currentTextureSlot);
-    },
-
     /**
      * Set material uniform
      * @example
@@ -11668,29 +11839,6 @@ var Material = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
             this.setUniform(key, val);
         }
     },
-
-    // /**
-    //  * Enable a uniform
-    //  * It only have effect on the uniform exists in shader.
-    //  * @param  {string} symbol
-    //  */
-    // enableUniform: function (symbol) {
-    //     if (this.uniforms[symbol] && !this.isUniformEnabled(symbol)) {
-    //         this._enabledUniforms.push(symbol);
-    //     }
-    // },
-
-    // /**
-    //  * Disable a uniform
-    //  * It will not affect the uniform state in the shader. Because the shader uniforms is parsed from shader code with naive regex. When using micro to disable some uniforms in the shader. It will still try to set these uniforms in each rendering pass. We can disable these uniforms manually if we need this bit performance improvement. Mostly we can simply ignore it.
-    //  * @param  {string} symbol
-    //  */
-    // disableUniform: function (symbol) {
-    //     var idx = this._enabledUniforms.indexOf(symbol);
-    //     if (idx >= 0) {
-    //         this._enabledUniforms.splice(idx, 1);
-    //     }
-    // },
 
     /**
      * @param  {string}  symbol
@@ -11999,33 +12147,17 @@ var Material = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
      */
     dirtyDefines: function () {
         this._programKey = '';
+    },
+
+    getProgramKey: function () {
+        if (!this._programKey) {
+            this._programKey = getProgramKey(
+                this.vertexDefines, this.fragmentDefines, this.getEnabledTextures()
+            );
+        }
+        return this._programKey;
     }
 });
-
-if (Object.defineProperty) {
-    Object.defineProperty(Material.prototype, 'shader', {
-        get: function () {
-            return this._shader || null;
-        },
-
-        set: function (val) {
-            // TODO
-            // console.warn('You need to use attachShader to set the shader.');
-            this._shader = val;
-        }
-    });
-
-    Object.defineProperty(Material.prototype, 'programKey', {
-        get: function () {
-            if (!this._programKey) {
-                this._programKey = getProgramKey(
-                    this.vertexDefines, this.fragmentDefines, this.getEnabledTextures()
-                );
-            }
-            return this._programKey;
-        }
-    });
-}
 
 /* harmony default export */ __webpack_exports__["a"] = (Material);
 
@@ -12079,93 +12211,18 @@ vendor.Float64Array = typeof Float64Array == 'undefined' ? Array : Float64Array;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(28);
-
-
-/**
- * @constructor clay.Light
- * @extends clay.Node
- */
-var Light = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(function(){
-    return /** @lends clay.Light# */ {
-        /**
-         * Light RGB color
-         * @type {number[]}
-         */
-        color: [1, 1, 1],
-
-        /**
-         * Light intensity
-         * @type {number}
-         */
-        intensity: 1.0,
-
-        // Config for shadow map
-        /**
-         * If light cast shadow
-         * @type {boolean}
-         */
-        castShadow: true,
-
-        /**
-         * Shadow map size
-         * @type {number}
-         */
-        shadowResolution: 512,
-
-        /**
-         * Light group, shader with same `lightGroup` will be affected
-         *
-         * Only useful in forward rendering
-         * @type {number}
-         */
-        group: 0
-    };
-},
-/** @lends clay.Light.prototype. */
-{
-    /**
-     * Light type
-     * @type {string}
-     * @memberOf clay.Light#
-     */
-    type: '',
-
-    /**
-     * @return {clay.Light}
-     * @memberOf clay.Light.prototype
-     */
-    clone: function() {
-        var light = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].prototype.clone.call(this);
-        light.color = Array.prototype.slice.call(this.color);
-        light.intensity = this.intensity;
-        light.castShadow = this.castShadow;
-        light.shadowResolution = this.shadowResolution;
-
-        return light;
-    }
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (Light);
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Scene__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_prePass_ShadowMap__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Scene__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_prePass_ShadowMap__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_camera_Perspective__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_camera_Orthographic__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_camera_Orthographic__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_math_Vector2__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_claygl_src_core_mixin_notifier__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__effect_EffectCompositor__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__effect_TemporalSuperSampling__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__effect_EffectCompositor__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__effect_TemporalSuperSampling__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__effect_halton__ = __webpack_require__(43);
 /*
  * @module echarts-gl/core/ViewGL
@@ -12338,11 +12395,13 @@ ViewGL.prototype.castRay = function (x, y, out) {
 ViewGL.prototype.prepareRender = function () {
     this.scene.update();
     this.camera.update();
+    this.scene.updateLights();
+    var renderList = this.scene.updateRenderList(this.camera);
 
     this._needsSortProgressively = false;
     // If has any transparent mesh needs sort triangles progressively.
-    for (var i = 0; i < this.scene.transparentList.length; i++) {
-        var renderable = this.scene.transparentList[i];
+    for (var i = 0; i < renderList.transparent.length; i++) {
+        var renderable = renderList.transparent[i];
         var geometry = renderable.geometry;
         if (geometry.needsSortVerticesProgressively && geometry.needsSortVerticesProgressively()) {
             this._needsSortProgressively = true;
@@ -12354,6 +12413,18 @@ ViewGL.prototype.prepareRender = function () {
 
     this._frame = 0;
     this._temporalSS.resetFrame();
+
+    // var lights = this.scene.getLights();
+    // for (var i = 0; i < lights.length; i++) {
+    //     if (lights[i].cubemap) {
+    //         if (this._compositor && this._compositor.isSSREnabled()) {
+    //             lights[i].invisible = true;
+    //         }
+    //         else {
+    //             lights[i].invisible = false;
+    //         }
+    //     }
+    // }
 };
 
 ViewGL.prototype.render = function (renderer, accumulating) {
@@ -12367,7 +12438,7 @@ ViewGL.prototype.needsAccumulate = function () {
 
 ViewGL.prototype.needsTemporalSS = function () {
     var enableTemporalSS = this._enableTemporalSS;
-    if (enableTemporalSS == 'auto') {
+    if (enableTemporalSS === 'auto') {
         enableTemporalSS = this._enablePostEffect;
     }
     return enableTemporalSS;
@@ -12399,8 +12470,9 @@ ViewGL.prototype._doRender = function (renderer, accumulating, accumFrame) {
 
     this._updateShadowPCFKernel(accumFrame);
 
-    // Shadowmap will set clearColor.
-    renderer.gl.clearColor(0.0, 0.0, 0.0, 0.0);
+    // Shadowmap will set clear color.
+    var bgColor = renderer.clearColor;
+    renderer.gl.clearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
 
     if (this._enablePostEffect) {
         // normal render also needs to be jittered when have edge pass.
@@ -12422,13 +12494,13 @@ ViewGL.prototype._doRender = function (renderer, accumulating, accumFrame) {
         frameBuffer.unbind(renderer);
 
         if (this.needsTemporalSS() && accumulating) {
-            this._compositor.composite(renderer, camera, this._temporalSS.getSourceFrameBuffer(), this._temporalSS.getFrame());
+            this._compositor.composite(renderer, scene, camera, this._temporalSS.getSourceFrameBuffer(), this._temporalSS.getFrame());
             renderer.setViewport(this.viewport);
             this._temporalSS.render(renderer);
         }
         else {
             renderer.setViewport(this.viewport);
-            this._compositor.composite(renderer, camera, null, 0);
+            this._compositor.composite(renderer, scene, camera, null, 0);
         }
     }
     else {
@@ -12459,10 +12531,11 @@ ViewGL.prototype._updateTransparent = function (renderer, scene, camera, frame) 
     var v3 = new __WEBPACK_IMPORTED_MODULE_6_claygl_src_math_Vector3__["a" /* default */]();
     var invWorldTransform = new __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__["a" /* default */]();
     var cameraWorldPosition = camera.getWorldPosition();
+    var transparentList = scene.getRenderList(camera).transparent;
 
     // Sort transparent object.
-    for (var i = 0; i < scene.transparentList.length; i++) {
-        var renderable = scene.transparentList[i];
+    for (var i = 0; i < transparentList.length; i++) {
+        var renderable = transparentList[i];
         var geometry = renderable.geometry;
         __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__["a" /* default */].invert(invWorldTransform, renderable.worldTransform);
         __WEBPACK_IMPORTED_MODULE_6_claygl_src_math_Vector3__["a" /* default */].transformMat4(v3, cameraWorldPosition, invWorldTransform);
@@ -12475,14 +12548,15 @@ ViewGL.prototype._updateTransparent = function (renderer, scene, camera, frame) 
     }
 };
 
-ViewGL.prototype._updateSSAO = function (renderer, scene, camera, frame) {
+ViewGL.prototype._updateSSAO = function (renderer, scene, camera) {
     var ifEnableSSAO = this._enableSSAO && this._enablePostEffect;
     if (ifEnableSSAO) {
         this._compositor.updateSSAO(renderer, scene, camera, this._temporalSS.getFrame());
     }
+    var renderList = scene.getRenderList(camera);
 
-    for (var i = 0; i < scene.opaqueList.length; i++) {
-        var renderable = scene.opaqueList[i];
+    for (var i = 0; i < renderList.opaque.length; i++) {
+        var renderable = renderList.opaque[i];
         // PENDING
         if (renderable.renderNormal) {
             renderable.material[ifEnableSSAO ? 'enableTexture' : 'disableTexture']('ssaoMap');
@@ -12495,7 +12569,8 @@ ViewGL.prototype._updateSSAO = function (renderer, scene, camera, frame) {
 
 ViewGL.prototype._updateShadowPCFKernel = function (frame) {
     var pcfKernel = this._pcfKernels[frame % this._pcfKernels.length];
-    var opaqueList = this.scene.opaqueList;
+    var renderList = this.scene.getRenderList(this.camera);
+    var opaqueList = renderList.opaque;
     for (var i = 0; i < opaqueList.length; i++) {
         if (opaqueList[i].receiveShadow) {
             opaqueList[i].material.set('pcfKernel', pcfKernel);
@@ -12542,7 +12617,7 @@ ViewGL.prototype.setPostEffect = function (postEffectModel, api) {
     ['radius', 'quality', 'intensity'].forEach(function (name) {
         compositor.setSSAOParameter(name, ssaoModel.get(name));
     });
-    ['quality', 'maxRoughness'].forEach(function (name) {
+    ['quality', 'maxRoughness', 'physical'].forEach(function (name) {
         compositor.setSSRParameter(name, ssrModel.get(name));
     });
     ['quality', 'focalDistance', 'focalRange', 'blurRadius', 'fstop'].forEach(function (name) {
@@ -12604,7 +12679,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.extend(ViewGL.p
 /* harmony default export */ __webpack_exports__["a"] = (ViewGL);
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12814,6 +12889,81 @@ var util = {
 
 
 /***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(30);
+
+
+/**
+ * @constructor clay.Light
+ * @extends clay.Node
+ */
+var Light = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(function(){
+    return /** @lends clay.Light# */ {
+        /**
+         * Light RGB color
+         * @type {number[]}
+         */
+        color: [1, 1, 1],
+
+        /**
+         * Light intensity
+         * @type {number}
+         */
+        intensity: 1.0,
+
+        // Config for shadow map
+        /**
+         * If light cast shadow
+         * @type {boolean}
+         */
+        castShadow: true,
+
+        /**
+         * Shadow map size
+         * @type {number}
+         */
+        shadowResolution: 512,
+
+        /**
+         * Light group, shader with same `lightGroup` will be affected
+         *
+         * Only useful in forward rendering
+         * @type {number}
+         */
+        group: 0
+    };
+},
+/** @lends clay.Light.prototype. */
+{
+    /**
+     * Light type
+     * @type {string}
+     * @memberOf clay.Light#
+     */
+    type: '',
+
+    /**
+     * @return {clay.Light}
+     * @memberOf clay.Light.prototype
+     */
+    clone: function() {
+        var light = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].prototype.clone.call(this);
+        light.color = Array.prototype.slice.call(this.color);
+        light.intensity = this.intensity;
+        light.castShadow = this.castShadow;
+        light.shadowResolution = this.shadowResolution;
+
+        return light;
+    }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (Light);
+
+
+/***/ }),
 /* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12821,7 +12971,7 @@ var util = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__);
 /**
@@ -13301,7 +13451,7 @@ var vec2 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.vec2;
 
 /**
  * @constructor
- * @alias clay.math.Vector2
+ * @alias clay.Vector2
  * @param {number} x
  * @param {number} y
  */
@@ -13315,7 +13465,7 @@ var Vector2 = function(x, y) {
      * All methods also operate on the array instead of x, y components
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Vector2#
+     * @memberOf clay.Vector2#
      */
     this.array = vec2.fromValues(x, y);
 
@@ -13324,7 +13474,7 @@ var Vector2 = function(x, y) {
      * if the matrix is updated to latest
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Vector2#
+     * @memberOf clay.Vector2#
      */
     this._dirty = true;
 };
@@ -13335,8 +13485,8 @@ Vector2.prototype = {
 
     /**
      * Add b to self
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     add: function(b) {
         vec2.add(this.array, this.array, b.array);
@@ -13348,7 +13498,7 @@ Vector2.prototype = {
      * Set x and y components
      * @param  {number}  x
      * @param  {number}  y
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     set: function(x, y) {
         this.array[0] = x;
@@ -13360,7 +13510,7 @@ Vector2.prototype = {
     /**
      * Set x and y components from array
      * @param  {Float32Array|number[]} arr
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     setArray: function(arr) {
         this.array[0] = arr[0];
@@ -13372,7 +13522,7 @@ Vector2.prototype = {
 
     /**
      * Clone a new Vector2
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     clone: function() {
         return new Vector2(this.x, this.y);
@@ -13380,8 +13530,8 @@ Vector2.prototype = {
 
     /**
      * Copy x, y from b
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     copy: function(b) {
         vec2.copy(this.array, b.array);
@@ -13391,9 +13541,9 @@ Vector2.prototype = {
 
     /**
      * Cross product of self and b, written to a Vector3 out
-     * @param  {clay.math.Vector3} out
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector3} out
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     cross: function(out, b) {
         vec2.cross(out.array, this.array, b.array);
@@ -13403,7 +13553,7 @@ Vector2.prototype = {
 
     /**
      * Alias for distance
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} b
      * @return {number}
      */
     dist: function(b) {
@@ -13412,7 +13562,7 @@ Vector2.prototype = {
 
     /**
      * Distance between self and b
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} b
      * @return {number}
      */
     distance: function(b) {
@@ -13421,8 +13571,8 @@ Vector2.prototype = {
 
     /**
      * Alias for divide
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     div: function(b) {
         vec2.div(this.array, this.array, b.array);
@@ -13432,8 +13582,8 @@ Vector2.prototype = {
 
     /**
      * Divide self by b
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     divide: function(b) {
         vec2.divide(this.array, this.array, b.array);
@@ -13443,7 +13593,7 @@ Vector2.prototype = {
 
     /**
      * Dot product of self and b
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} b
      * @return {number}
      */
     dot: function(b) {
@@ -13468,10 +13618,10 @@ Vector2.prototype = {
 
     /**
      * Linear interpolation between a and b
-     * @param  {clay.math.Vector2} a
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} a
+     * @param  {clay.Vector2} b
      * @param  {number}  t
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     lerp: function(a, b, t) {
         vec2.lerp(this.array, a.array, b.array, t);
@@ -13481,8 +13631,8 @@ Vector2.prototype = {
 
     /**
      * Minimum of self and b
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     min: function(b) {
         vec2.min(this.array, this.array, b.array);
@@ -13492,8 +13642,8 @@ Vector2.prototype = {
 
     /**
      * Maximum of self and b
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     max: function(b) {
         vec2.max(this.array, this.array, b.array);
@@ -13503,8 +13653,8 @@ Vector2.prototype = {
 
     /**
      * Alias for multiply
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     mul: function(b) {
         vec2.mul(this.array, this.array, b.array);
@@ -13514,8 +13664,8 @@ Vector2.prototype = {
 
     /**
      * Mutiply self and b
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     multiply: function(b) {
         vec2.multiply(this.array, this.array, b.array);
@@ -13525,7 +13675,7 @@ Vector2.prototype = {
 
     /**
      * Negate self
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     negate: function() {
         vec2.negate(this.array, this.array);
@@ -13535,7 +13685,7 @@ Vector2.prototype = {
 
     /**
      * Normalize self
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     normalize: function() {
         vec2.normalize(this.array, this.array);
@@ -13546,7 +13696,7 @@ Vector2.prototype = {
     /**
      * Generate random x, y components with a given scale
      * @param  {number} scale
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     random: function(scale) {
         vec2.random(this.array, scale);
@@ -13557,7 +13707,7 @@ Vector2.prototype = {
     /**
      * Scale self
      * @param  {number}  scale
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     scale: function(s) {
         vec2.scale(this.array, this.array, s);
@@ -13567,9 +13717,9 @@ Vector2.prototype = {
 
     /**
      * Scale b and add to self
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} b
      * @param  {number}  scale
-     * @return {clay.math.Vector2}
+     * @return {clay.Vector2}
      */
     scaleAndAdd: function(b, s) {
         vec2.scaleAndAdd(this.array, this.array, b.array, s);
@@ -13579,7 +13729,7 @@ Vector2.prototype = {
 
     /**
      * Alias for squaredDistance
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} b
      * @return {number}
      */
     sqrDist: function(b) {
@@ -13588,7 +13738,7 @@ Vector2.prototype = {
 
     /**
      * Squared distance between self and b
-     * @param  {clay.math.Vector2} b
+     * @param  {clay.Vector2} b
      * @return {number}
      */
     squaredDistance: function(b) {
@@ -13613,8 +13763,8 @@ Vector2.prototype = {
 
     /**
      * Alias for subtract
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     sub: function(b) {
         vec2.sub(this.array, this.array, b.array);
@@ -13624,8 +13774,8 @@ Vector2.prototype = {
 
     /**
      * Subtract b from self
-     * @param  {clay.math.Vector2} b
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} b
+     * @return {clay.Vector2}
      */
     subtract: function(b) {
         vec2.subtract(this.array, this.array, b.array);
@@ -13635,8 +13785,8 @@ Vector2.prototype = {
 
     /**
      * Transform self with a Matrix2 m
-     * @param  {clay.math.Matrix2} m
-     * @return {clay.math.Vector2}
+     * @param  {clay.Matrix2} m
+     * @return {clay.Vector2}
      */
     transformMat2: function(m) {
         vec2.transformMat2(this.array, this.array, m.array);
@@ -13646,8 +13796,8 @@ Vector2.prototype = {
 
     /**
      * Transform self with a Matrix2d m
-     * @param  {clay.math.Matrix2d} m
-     * @return {clay.math.Vector2}
+     * @param  {clay.Matrix2d} m
+     * @return {clay.Vector2}
      */
     transformMat2d: function(m) {
         vec2.transformMat2d(this.array, this.array, m.array);
@@ -13657,8 +13807,8 @@ Vector2.prototype = {
 
     /**
      * Transform self with a Matrix3 m
-     * @param  {clay.math.Matrix3} m
-     * @return {clay.math.Vector2}
+     * @param  {clay.Matrix3} m
+     * @return {clay.Vector2}
      */
     transformMat3: function(m) {
         vec2.transformMat3(this.array, this.array, m.array);
@@ -13668,8 +13818,8 @@ Vector2.prototype = {
 
     /**
      * Transform self with a Matrix4 m
-     * @param  {clay.math.Matrix4} m
-     * @return {clay.math.Vector2}
+     * @param  {clay.Matrix4} m
+     * @return {clay.Vector2}
      */
     transformMat4: function(m) {
         vec2.transformMat4(this.array, this.array, m.array);
@@ -13693,7 +13843,7 @@ if (Object.defineProperty) {
     /**
      * @name x
      * @type {number}
-     * @memberOf clay.math.Vector2
+     * @memberOf clay.Vector2
      * @instance
      */
     Object.defineProperty(proto, 'x', {
@@ -13709,7 +13859,7 @@ if (Object.defineProperty) {
     /**
      * @name y
      * @type {number}
-     * @memberOf clay.math.Vector2
+     * @memberOf clay.Vector2
      * @instance
      */
     Object.defineProperty(proto, 'y', {
@@ -13726,10 +13876,10 @@ if (Object.defineProperty) {
 // Supply methods that are not in place
 
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.add = function(out, a, b) {
     vec2.add(out.array, a.array, b.array);
@@ -13738,10 +13888,10 @@ Vector2.add = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector2} out
+ * @param  {clay.Vector2} out
  * @param  {number}  x
  * @param  {number}  y
- * @return {clay.math.Vector2}
+ * @return {clay.Vector2}
  */
 Vector2.set = function(out, x, y) {
     vec2.set(out.array, x, y);
@@ -13750,9 +13900,9 @@ Vector2.set = function(out, x, y) {
 };
 
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.copy = function(out, b) {
     vec2.copy(out.array, b.array);
@@ -13761,10 +13911,10 @@ Vector2.copy = function(out, b) {
 };
 
 /**
- * @param  {clay.math.Vector3} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector3} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.cross = function(out, a, b) {
     vec2.cross(out.array, a.array, b.array);
@@ -13772,8 +13922,8 @@ Vector2.cross = function(out, a, b) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @return {number}
  */
 Vector2.dist = function(a, b) {
@@ -13781,16 +13931,16 @@ Vector2.dist = function(a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @return {number}
  */
 Vector2.distance = Vector2.dist;
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.div = function(out, a, b) {
     vec2.divide(out.array, a.array, b.array);
@@ -13799,15 +13949,15 @@ Vector2.div = function(out, a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.divide = Vector2.div;
 /**
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @return {number}
  */
 Vector2.dot = function(a, b) {
@@ -13815,7 +13965,7 @@ Vector2.dot = function(a, b) {
 };
 
 /**
- * @param  {clay.math.Vector2} a
+ * @param  {clay.Vector2} a
  * @return {number}
  */
 Vector2.len = function(b) {
@@ -13825,11 +13975,11 @@ Vector2.len = function(b) {
 // Vector2.length = Vector2.len;
 
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @param  {number}  t
- * @return {clay.math.Vector2}
+ * @return {clay.Vector2}
  */
 Vector2.lerp = function(out, a, b, t) {
     vec2.lerp(out.array, a.array, b.array, t);
@@ -13837,10 +13987,10 @@ Vector2.lerp = function(out, a, b, t) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.min = function(out, a, b) {
     vec2.min(out.array, a.array, b.array);
@@ -13849,10 +13999,10 @@ Vector2.min = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.max = function(out, a, b) {
     vec2.max(out.array, a.array, b.array);
@@ -13860,10 +14010,10 @@ Vector2.max = function(out, a, b) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.mul = function(out, a, b) {
     vec2.multiply(out.array, a.array, b.array);
@@ -13872,16 +14022,16 @@ Vector2.mul = function(out, a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.multiply = Vector2.mul;
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @return {clay.Vector2}
  */
 Vector2.negate = function(out, a) {
     vec2.negate(out.array, a.array);
@@ -13889,9 +14039,9 @@ Vector2.negate = function(out, a) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @return {clay.Vector2}
  */
 Vector2.normalize = function(out, a) {
     vec2.normalize(out.array, a.array);
@@ -13899,9 +14049,9 @@ Vector2.normalize = function(out, a) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
+ * @param  {clay.Vector2} out
  * @param  {number}  scale
- * @return {clay.math.Vector2}
+ * @return {clay.Vector2}
  */
 Vector2.random = function(out, scale) {
     vec2.random(out.array, scale);
@@ -13909,10 +14059,10 @@ Vector2.random = function(out, scale) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
  * @param  {number}  scale
- * @return {clay.math.Vector2}
+ * @return {clay.Vector2}
  */
 Vector2.scale = function(out, a, scale) {
     vec2.scale(out.array, a.array, scale);
@@ -13920,11 +14070,11 @@ Vector2.scale = function(out, a, scale) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @param  {number}  scale
- * @return {clay.math.Vector2}
+ * @return {clay.Vector2}
  */
 Vector2.scaleAndAdd = function(out, a, b, scale) {
     vec2.scaleAndAdd(out.array, a.array, b.array, scale);
@@ -13932,8 +14082,8 @@ Vector2.scaleAndAdd = function(out, a, b, scale) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @return {number}
  */
 Vector2.sqrDist = function(a, b) {
@@ -13941,14 +14091,14 @@ Vector2.sqrDist = function(a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
  * @return {number}
  */
 Vector2.squaredDistance = Vector2.sqrDist;
 
 /**
- * @param  {clay.math.Vector2} a
+ * @param  {clay.Vector2} a
  * @return {number}
  */
 Vector2.sqrLen = function(a) {
@@ -13956,16 +14106,16 @@ Vector2.sqrLen = function(a) {
 };
 /**
  * @function
- * @param  {clay.math.Vector2} a
+ * @param  {clay.Vector2} a
  * @return {number}
  */
 Vector2.squaredLength = Vector2.sqrLen;
 
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.sub = function(out, a, b) {
     vec2.subtract(out.array, a.array, b.array);
@@ -13974,17 +14124,17 @@ Vector2.sub = function(out, a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Vector2} b
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Vector2} b
+ * @return {clay.Vector2}
  */
 Vector2.subtract = Vector2.sub;
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Matrix2} m
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Matrix2} m
+ * @return {clay.Vector2}
  */
 Vector2.transformMat2 = function(out, a, m) {
     vec2.transformMat2(out.array, a.array, m.array);
@@ -13992,10 +14142,10 @@ Vector2.transformMat2 = function(out, a, m) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2}  out
- * @param  {clay.math.Vector2}  a
- * @param  {clay.math.Matrix2d} m
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2}  out
+ * @param  {clay.Vector2}  a
+ * @param  {clay.Matrix2d} m
+ * @return {clay.Vector2}
  */
 Vector2.transformMat2d = function(out, a, m) {
     vec2.transformMat2d(out.array, a.array, m.array);
@@ -14003,10 +14153,10 @@ Vector2.transformMat2d = function(out, a, m) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
  * @param  {Matrix3} m
- * @return {clay.math.Vector2}
+ * @return {clay.Vector2}
  */
 Vector2.transformMat3 = function(out, a, m) {
     vec2.transformMat3(out.array, a.array, m.array);
@@ -14014,10 +14164,10 @@ Vector2.transformMat3 = function(out, a, m) {
     return out;
 };
 /**
- * @param  {clay.math.Vector2} out
- * @param  {clay.math.Vector2} a
- * @param  {clay.math.Matrix4} m
- * @return {clay.math.Vector2}
+ * @param  {clay.Vector2} out
+ * @param  {clay.Vector2} a
+ * @param  {clay.Matrix4} m
+ * @return {clay.Vector2}
  */
 Vector2.transformMat4 = function(out, a, m) {
     vec2.transformMat4(out.array, a.array, m.array);
@@ -14033,132 +14183,10 @@ Vector2.transformMat4 = function(out, a, m) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Renderable__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Texture2D__ = __webpack_require__(5);
-
-
-
-
-/**
- * @constructor clay.Mesh
- * @extends clay.Renderable
- */
-var Mesh = __WEBPACK_IMPORTED_MODULE_0__Renderable__["a" /* default */].extend(
-/** @lends clay.Mesh# */
-{
-    /**
-     * Used when it is a skinned mesh
-     * @type {clay.Skeleton}
-     */
-    skeleton: null,
-    /**
-     * Joints indices Meshes can share the one skeleton instance and each mesh can use one part of joints. Joints indices indicate the index of joint in the skeleton instance
-     * @type {number[]}
-     */
-    joints: null,
-
-    /**
-     * If store the skin matrices in vertex texture
-     * @type {bool}
-     */
-    useSkinMatricesTexture: false
-
-}, function () {
-    if (!this.joints) {
-        this.joints = [];
-    }
-}, {
-
-    isSkinnedMesh: function () {
-        return !!(this.skeleton && this.joints && this.joints.length > 0);
-    },
-
-    render: function (renderer, shader, program) {
-        var _gl = renderer.gl;
-        // Set pose matrices of skinned mesh
-        if (this.skeleton) {
-            // TODO Multiple mesh share same skeleton
-            this.skeleton.update();
-
-            var skinMatricesArray = this.skeleton.getSubSkinMatrices(this.__uid__, this.joints);
-
-            // if (this.useSkinMatricesTexture) {
-            //     var size;
-            //     var numJoints = this.joints.length;
-            //     if (numJoints > 256) {
-            //         size = 64;
-            //     }
-            //     else if (numJoints > 64) {
-            //         size = 32;
-            //     }
-            //     else if (numJoints > 16) {
-            //         size = 16;
-            //     }
-            //     else {
-            //         size = 8;
-            //     }
-
-            //     var texture = this.getSkinMatricesTexture();
-            //     texture.width = size;
-            //     texture.height = size;
-
-            //     if (!texture.pixels || texture.pixels.length !== size * size * 4) {
-            //         texture.pixels = new Float32Array(size * size * 4);
-            //     }
-            //     texture.pixels.set(skinMatricesArray);
-            //     texture.dirty();
-
-            //     shader.setUniform(_gl, '1f', 'skinMatricesTextureSize', size);
-            // }
-            // else {
-            program.setUniformOfSemantic(_gl, 'SKIN_MATRIX', skinMatricesArray);
-            // }
-        }
-
-        return __WEBPACK_IMPORTED_MODULE_0__Renderable__["a" /* default */].prototype.render.call(this, renderer, shader, program);
-    },
-
-    getSkinMatricesTexture: function () {
-        this._skinMatricesTexture = this._skinMatricesTexture || new __WEBPACK_IMPORTED_MODULE_2__Texture2D__["a" /* default */]({
-            type: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].FLOAT,
-            minFilter: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST,
-            magFilter: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST,
-            useMipmap: false,
-            flipY: false
-        });
-
-        return this._skinMatricesTexture;
-    }
-});
-
-// Enums
-Mesh.POINTS = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].POINTS;
-Mesh.LINES = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINES;
-Mesh.LINE_LOOP = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINE_LOOP;
-Mesh.LINE_STRIP = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINE_STRIP;
-Mesh.TRIANGLES = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLES;
-Mesh.TRIANGLE_STRIP = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLE_STRIP;
-Mesh.TRIANGLE_FAN = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLE_FAN;
-
-Mesh.BACK = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].BACK;
-Mesh.FRONT = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].FRONT;
-Mesh.FRONT_AND_BACK = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].FRONT_AND_BACK;
-Mesh.CW = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].CW;
-Mesh.CCW = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].CCW;
-
-/* harmony default export */ __webpack_exports__["a"] = (Mesh);
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_util__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_util__ = __webpack_require__(67);
 
 
 
@@ -14435,1307 +14463,7 @@ function isImageRenderable(image) {
 
 
 /***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    defaultOption: {
-        shading: null,
-
-        realisticMaterial: {
-            textureTiling: 1,
-            textureOffset: 0,
-
-            detailTexture: null
-        },
-
-        lambertMaterial: {
-            textureTiling: 1,
-            textureOffset: 0,
-
-            detailTexture: null
-        },
-
-        colorMaterial: {
-            textureTiling: 1,
-            textureOffset: 0,
-
-            detailTexture: null
-        },
-
-        hatchingMaterial: {
-            textureTiling: 1,
-            textureOffset: 0,
-
-            paperColor: '#fff'
-        }
-    }
-});
-
-/***/ }),
-/* 27 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-
-
-var formatUtil = {};
-formatUtil.getFormattedLabel = function (seriesModel, dataIndex, status, dataType, dimIndex) {
-    status = status || 'normal';
-    var data = seriesModel.getData(dataType);
-    var itemModel = data.getItemModel(dataIndex);
-
-    var params = seriesModel.getDataParams(dataIndex, dataType);
-    if (dimIndex != null && (params.value instanceof Array)) {
-        params.value = params.value[dimIndex];
-    }
-
-    var formatter = itemModel.get(status === 'normal' ? ['label', 'formatter'] : ['emphasis', 'label', 'formatter']);
-    if (formatter == null) {
-        formatter = itemModel.get(['label', 'formatter']);
-    }
-    var text;
-    if (typeof formatter === 'function') {
-        params.status = status;
-        text = formatter(params);
-    }
-    else if (typeof formatter === 'string') {
-        text = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.format.formatTpl(formatter, params);
-    }
-    return text;
-};
-
-/**
- * If value is not array, then convert it to array.
- * @param  {*} value
- * @return {Array} [value] or value
- */
-formatUtil.normalizeToArray = function (value) {
-    return value instanceof Array
-        ? value
-        : value == null
-        ? []
-        : [value];
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (formatUtil);
-
-/***/ }),
-/* 28 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Quaternion__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_BoundingBox__ = __webpack_require__(15);
-
-
-
-
-
-
-var mat4 = __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix___default.a.mat4;
-
-var nameId = 0;
-
-/**
- * @constructor clay.Node
- * @extends clay.core.Base
- */
-var Node = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(
-/** @lends clay.Node# */
-{
-    /**
-     * Scene node name
-     * @type {string}
-     */
-    name: '',
-
-    /**
-     * Position relative to its parent node. aka translation.
-     * @type {clay.math.Vector3}
-     */
-    position: null,
-
-    /**
-     * Rotation relative to its parent node. Represented by a quaternion
-     * @type {clay.math.Quaternion}
-     */
-    rotation: null,
-
-    /**
-     * Scale relative to its parent node
-     * @type {clay.math.Vector3}
-     */
-    scale: null,
-
-    /**
-     * Affine transform matrix relative to its root scene.
-     * @type {clay.math.Matrix4}
-     */
-    worldTransform: null,
-
-    /**
-     * Affine transform matrix relative to its parent node.
-     * Composited with position, rotation and scale.
-     * @type {clay.math.Matrix4}
-     */
-    localTransform: null,
-
-    /**
-     * If the local transform is update from SRT(scale, rotation, translation, which is position here) each frame
-     * @type {boolean}
-     */
-    autoUpdateLocalTransform: true,
-
-    /**
-     * Parent of current scene node
-     * @type {?clay.Node}
-     * @private
-     */
-    _parent: null,
-    /**
-     * The root scene mounted. Null if it is a isolated node
-     * @type {?clay.Scene}
-     * @private
-     */
-    _scene: null,
-    /**
-     * @type {boolean}
-     * @private
-     */
-    _needsUpdateWorldTransform: true,
-    /**
-     * @type {boolean}
-     * @private
-     */
-    _inIterating: false,
-
-    // Depth for transparent list sorting
-    __depth: 0
-
-}, function () {
-
-    if (!this.name) {
-        this.name = (this.type || 'NODE') + '_' + (nameId++);
-    }
-
-    if (!this.position) {
-        this.position = new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
-    }
-    if (!this.rotation) {
-        this.rotation = new __WEBPACK_IMPORTED_MODULE_2__math_Quaternion__["a" /* default */]();
-    }
-    if (!this.scale) {
-        this.scale = new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */](1, 1, 1);
-    }
-
-    this.worldTransform = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
-    this.localTransform = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
-
-    this._children = [];
-
-},
-/**@lends clay.Node.prototype. */
-{
-
-    /**
-     * @type {?clay.math.Vector3}
-     * @instance
-     */
-    target: null,
-    /**
-     * If node and its chilren invisible
-     * @type {boolean}
-     * @instance
-     */
-    invisible: false,
-
-    /**
-     * If Node is a skinned mesh
-     * @return {boolean}
-     */
-    isSkinnedMesh: function () {
-        return false;
-    },
-    /**
-     * Return true if it is a renderable scene node, like Mesh and ParticleSystem
-     * @return {boolean}
-     */
-    isRenderable: function () {
-        return false;
-    },
-
-    /**
-     * Set the name of the scene node
-     * @param {string} name
-     */
-    setName: function (name) {
-        var scene = this._scene;
-        if (scene) {
-            var nodeRepository = scene._nodeRepository;
-            delete nodeRepository[this.name];
-            nodeRepository[name] = this;
-        }
-        this.name = name;
-    },
-
-    /**
-     * Add a child node
-     * @param {clay.Node} node
-     */
-    add: function (node) {
-        if (this._inIterating) {
-            console.warn('Add operation can cause unpredictable error when in iterating');
-        }
-        var originalParent = node._parent;
-        if (originalParent === this) {
-            return;
-        }
-        if (originalParent) {
-            originalParent.remove(node);
-        }
-        node._parent = this;
-        this._children.push(node);
-
-        var scene = this._scene;
-        if (scene && scene !== node.scene) {
-            node.traverse(this._addSelfToScene, this);
-        }
-        // Mark children needs update transform
-        // In case child are remove and added again after parent moved
-        node._needsUpdateWorldTransform = true;
-    },
-
-    /**
-     * Remove the given child scene node
-     * @param {clay.Node} node
-     */
-    remove: function (node) {
-        if (this._inIterating) {
-            console.warn('Remove operation can cause unpredictable error when in iterating');
-        }
-        var children = this._children;
-        var idx = children.indexOf(node);
-        if (idx < 0) {
-            return;
-        }
-
-        children.splice(idx, 1);
-        node._parent = null;
-
-        if (this._scene) {
-            node.traverse(this._removeSelfFromScene, this);
-        }
-    },
-
-    /**
-     * Remove all children
-     */
-    removeAll: function () {
-        var children = this._children;
-
-        for (var idx = 0; idx < children.length; idx++) {
-            children[idx]._parent = null;
-
-            if (this._scene) {
-                children[idx].traverse(this._removeSelfFromScene, this);
-            }
-        }
-
-        this._children = [];
-    },
-
-    /**
-     * Get the scene mounted
-     * @return {clay.Scene}
-     */
-    getScene: function () {
-        return this._scene;
-    },
-
-    /**
-     * Get parent node
-     * @return {clay.Scene}
-     */
-    getParent: function () {
-        return this._parent;
-    },
-
-    _removeSelfFromScene: function (descendant) {
-        descendant._scene.removeFromScene(descendant);
-        descendant._scene = null;
-    },
-
-    _addSelfToScene: function (descendant) {
-        this._scene.addToScene(descendant);
-        descendant._scene = this._scene;
-    },
-
-    /**
-     * Return true if it is ancestor of the given scene node
-     * @param {clay.Node} node
-     */
-    isAncestor: function (node) {
-        var parent = node._parent;
-        while(parent) {
-            if (parent === this) {
-                return true;
-            }
-            parent = parent._parent;
-        }
-        return false;
-    },
-
-    /**
-     * Get a new created array of all children nodes
-     * @return {clay.Node[]}
-     */
-    children: function () {
-        return this._children.slice();
-    },
-
-    /**
-     * Get child scene node at given index.
-     * @param {number} idx
-     * @return {clay.Node}
-     */
-    childAt: function (idx) {
-        return this._children[idx];
-    },
-
-    /**
-     * Get first child with the given name
-     * @param {string} name
-     * @return {clay.Node}
-     */
-    getChildByName: function (name) {
-        var children = this._children;
-        for (var i = 0; i < children.length; i++) {
-            if (children[i].name === name) {
-                return children[i];
-            }
-        }
-    },
-
-    /**
-     * Get first descendant have the given name
-     * @param {string} name
-     * @return {clay.Node}
-     */
-    getDescendantByName: function (name) {
-        var children = this._children;
-        for (var i = 0; i < children.length; i++) {
-            var child = children[i];
-            if (child.name === name) {
-                return child;
-            } else {
-                var res = child.getDescendantByName(name);
-                if (res) {
-                    return res;
-                }
-            }
-        }
-    },
-
-    /**
-     * Query descendant node by path
-     * @param {string} path
-     * @return {clay.Node}
-     * @example
-     *  node.queryNode('root/parent/child');
-     */
-    queryNode: function (path) {
-        if (!path) {
-            return;
-        }
-        // TODO Name have slash ?
-        var pathArr = path.split('/');
-        var current = this;
-        for (var i = 0; i < pathArr.length; i++) {
-            var name = pathArr[i];
-            // Skip empty
-            if (!name) {
-                continue;
-            }
-            var found = false;
-            var children = current._children;
-            for (var j = 0; j < children.length; j++) {
-                var child = children[j];
-                if (child.name === name) {
-                    current = child;
-                    found = true;
-                    break;
-                }
-            }
-            // Early return if not found
-            if (!found) {
-                return;
-            }
-        }
-
-        return current;
-    },
-
-    /**
-     * Get query path, relative to rootNode(default is scene)
-     * @param {clay.Node} [rootNode]
-     * @return {string}
-     */
-    getPath: function (rootNode) {
-        if (!this._parent) {
-            return '/';
-        }
-
-        var current = this._parent;
-        var path = this.name;
-        while (current._parent) {
-            path = current.name + '/' + path;
-            if (current._parent == rootNode) {
-                break;
-            }
-            current = current._parent;
-        }
-        if (!current._parent && rootNode) {
-            return null;
-        }
-        return path;
-    },
-
-    /**
-     * Depth first traverse all its descendant scene nodes and
-     * @param {Function} callback
-     * @param {Node} [context]
-     * @param {Function} [filter]
-     */
-    traverse: function (callback, context, filter) {
-
-        this._inIterating = true;
-
-        if (!filter || filter.call(context, this)) {
-            callback.call(context, this);
-        }
-        var _children = this._children;
-        for(var i = 0, len = _children.length; i < len; i++) {
-            _children[i].traverse(callback, context, filter);
-        }
-
-        this._inIterating = false;
-    },
-
-    eachChild: function (callback, context, ctor) {
-        this._inIterating = true;
-
-        var _children = this._children;
-        var noCtor = ctor == null;
-        for(var i = 0, len = _children.length; i < len; i++) {
-            var child = _children[i];
-            if (noCtor || child.constructor === ctor) {
-                callback.call(context, child, i);
-            }
-        }
-
-        this._inIterating = false;
-    },
-
-    /**
-     * Set the local transform and decompose to SRT
-     * @param {clay.math.Matrix4} matrix
-     */
-    setLocalTransform: function (matrix) {
-        mat4.copy(this.localTransform.array, matrix.array);
-        this.decomposeLocalTransform();
-    },
-
-    /**
-     * Decompose the local transform to SRT
-     */
-    decomposeLocalTransform: function (keepScale) {
-        var scale = !keepScale ? this.scale: null;
-        this.localTransform.decomposeMatrix(scale, this.rotation, this.position);
-    },
-
-    /**
-     * Set the world transform and decompose to SRT
-     * @param {clay.math.Matrix4} matrix
-     */
-    setWorldTransform: function (matrix) {
-        mat4.copy(this.worldTransform.array, matrix.array);
-        this.decomposeWorldTransform();
-    },
-
-    /**
-     * Decompose the world transform to SRT
-     * @function
-     */
-    decomposeWorldTransform: (function () {
-
-        var tmp = mat4.create();
-
-        return function (keepScale) {
-            var localTransform = this.localTransform;
-            var worldTransform = this.worldTransform;
-            // Assume world transform is updated
-            if (this._parent) {
-                mat4.invert(tmp, this._parent.worldTransform.array);
-                mat4.multiply(localTransform.array, tmp, worldTransform.array);
-            } else {
-                mat4.copy(localTransform.array, worldTransform.array);
-            }
-            var scale = !keepScale ? this.scale: null;
-            localTransform.decomposeMatrix(scale, this.rotation, this.position);
-        };
-    })(),
-
-    transformNeedsUpdate: function () {
-        return this.position._dirty
-            || this.rotation._dirty
-            || this.scale._dirty;
-    },
-
-    /**
-     * Update local transform from SRT
-     * Notice that local transform will not be updated if _dirty mark of position, rotation, scale is all false
-     */
-    updateLocalTransform: function () {
-        var position = this.position;
-        var rotation = this.rotation;
-        var scale = this.scale;
-
-        if (this.transformNeedsUpdate()) {
-            var m = this.localTransform.array;
-
-            // Transform order, scale->rotation->position
-            mat4.fromRotationTranslation(m, rotation.array, position.array);
-
-            mat4.scale(m, m, scale.array);
-
-            rotation._dirty = false;
-            scale._dirty = false;
-            position._dirty = false;
-
-            this._needsUpdateWorldTransform = true;
-        }
-    },
-
-    /**
-     * Update world transform, assume its parent world transform have been updated
-     * @private
-     */
-    _updateWorldTransformTopDown: function () {
-        var localTransform = this.localTransform.array;
-        var worldTransform = this.worldTransform.array;
-        if (this._parent) {
-            mat4.multiplyAffine(
-                worldTransform,
-                this._parent.worldTransform.array,
-                localTransform
-            );
-        }
-        else {
-            mat4.copy(worldTransform, localTransform);
-        }
-    },
-
-    /**
-     * Update world transform before whole scene is updated.
-     */
-    updateWorldTransform: function () {
-        // Find the root node which transform needs update;
-        var rootNodeIsDirty = this;
-        while (rootNodeIsDirty && rootNodeIsDirty.getParent()
-            && rootNodeIsDirty.getParent().transformNeedsUpdate()
-        ) {
-            rootNodeIsDirty = rootNodeIsDirty.getParent();
-        }2
-        rootNodeIsDirty.update();
-    },
-
-    /**
-     * Update local transform and world transform recursively
-     * @param {boolean} forceUpdateWorld
-     */
-    update: function (forceUpdateWorld) {
-        if (this.autoUpdateLocalTransform) {
-            this.updateLocalTransform();
-        }
-        else {
-            // Transform is manually setted
-            forceUpdateWorld = true;
-        }
-
-        if (forceUpdateWorld || this._needsUpdateWorldTransform) {
-            this._updateWorldTransformTopDown();
-            forceUpdateWorld = true;
-            this._needsUpdateWorldTransform = false;
-        }
-
-        var children = this._children;
-        for(var i = 0, len = children.length; i < len; i++) {
-            children[i].update(forceUpdateWorld);
-        }
-    },
-
-    /**
-     * Get bounding box of node
-     * @param  {Function} [filter]
-     * @param  {clay.math.BoundingBox} [out]
-     * @return {clay.math.BoundingBox}
-     */
-    // TODO Skinning
-    getBoundingBox: (function () {
-        function defaultFilter (el) {
-            return !el.invisible && el.geometry;
-        }
-        var tmpBBox = new __WEBPACK_IMPORTED_MODULE_5__math_BoundingBox__["a" /* default */]();
-        var tmpMat4 = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
-        var invWorldTransform = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
-        return function (filter, out) {
-            out = out || new __WEBPACK_IMPORTED_MODULE_5__math_BoundingBox__["a" /* default */]();
-            filter = filter || defaultFilter;
-
-            if (this._parent) {
-                __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */].invert(invWorldTransform, this._parent.worldTransform);
-            }
-            else {
-                __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */].identity(invWorldTransform);
-            }
-
-            this.traverse(function (mesh) {
-                if (mesh.geometry && mesh.geometry.boundingBox) {
-                    tmpBBox.copy(mesh.geometry.boundingBox);
-                    __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */].multiply(tmpMat4, invWorldTransform, mesh.worldTransform);
-                    tmpBBox.applyTransform(tmpMat4);
-                    out.union(tmpBBox);
-                }
-            }, this, defaultFilter);
-
-            return out;
-        };
-    })(),
-
-    /**
-     * Get world position, extracted from world transform
-     * @param  {clay.math.Vector3} [out]
-     * @return {clay.math.Vector3}
-     */
-    getWorldPosition: function (out) {
-        // PENDING
-        if (this.transformNeedsUpdate()) {
-            this.updateWorldTransform();
-        }
-        var m = this.worldTransform.array;
-        if (out) {
-            var arr = out.array;
-            arr[0] = m[12];
-            arr[1] = m[13];
-            arr[2] = m[14];
-            return out;
-        }
-        else {
-            return new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */](m[12], m[13], m[14]);
-        }
-    },
-
-    /**
-     * Clone a new node
-     * @return {Node}
-     */
-    clone: function () {
-        var node = new this.constructor();
-        var children = this._children;
-
-        node.setName(this.name);
-        node.position.copy(this.position);
-        node.rotation.copy(this.rotation);
-        node.scale.copy(this.scale);
-
-        for (var i = 0; i < children.length; i++) {
-            node.add(children[i].clone());
-        }
-        return node;
-    },
-
-    /**
-     * Rotate the node around a axis by angle degrees, axis passes through point
-     * @param {clay.math.Vector3} point Center point
-     * @param {clay.math.Vector3} axis  Center axis
-     * @param {number}       angle Rotation angle
-     * @see http://docs.unity3d.com/Documentation/ScriptReference/Transform.RotateAround.html
-     * @function
-     */
-    rotateAround: (function () {
-        var v = new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
-        var RTMatrix = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
-
-        // TODO improve performance
-        return function (point, axis, angle) {
-
-            v.copy(this.position).subtract(point);
-
-            var localTransform = this.localTransform;
-            localTransform.identity();
-            // parent node
-            localTransform.translate(point);
-            localTransform.rotate(angle, axis);
-
-            RTMatrix.fromRotationTranslation(this.rotation, v);
-            localTransform.multiply(RTMatrix);
-            localTransform.scale(this.scale);
-
-            this.decomposeLocalTransform();
-            this._needsUpdateWorldTransform = true;
-        };
-    })(),
-
-    /**
-     * @param {clay.math.Vector3} target
-     * @param {clay.math.Vector3} [up]
-     * @see http://www.opengl.org/sdk/docs/man2/xhtml/gluLookAt.xml
-     * @function
-     */
-    lookAt: (function () {
-        var m = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
-        return function (target, up) {
-            m.lookAt(this.position, target, up || this.localTransform.y).invert();
-            this.setLocalTransform(m);
-
-            this.target = target;
-        };
-    })()
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (Node);
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Light__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Camera__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_util__ = __webpack_require__(21);
-
-
-
-
-
-
-var programKeyCache = {};
-
-function getProgramKey(lightNumbers) {
-    var defineStr = [];
-    var lightTypes = Object.keys(lightNumbers);
-    lightTypes.sort();
-    for (var i = 0; i < lightTypes.length; i++) {
-        var lightType = lightNumbers[i];
-        defineStr.push(lightType + ' ' + lightNumbers[lightType]);
-    }
-    var key = defineStr.join('\n');
-
-    if (programKeyCache[key]) {
-        return programKeyCache[key];
-    }
-
-    var id = __WEBPACK_IMPORTED_MODULE_4__core_util__["a" /* default */].genGUID();
-    programKeyCache[key] = id;
-    return id;
-}
-
-/**
- * @constructor clay.Scene
- * @extends clay.Node
- */
-var Scene = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(function () {
-    return /** @lends clay.Scene# */ {
-        /**
-         * Global material of scene
-         * @type {clay.Material}
-         */
-        material: null,
-
-        /**
-         * @type {boolean}
-         */
-        autoUpdate: true,
-
-        /**
-         * Opaque renderable list, it will be updated automatically
-         * @type {clay.Renderable[]}
-         * @readonly
-         */
-        opaqueList: [],
-
-        /**
-         * Opaque renderable list, it will be updated automatically
-         * @type {clay.Renderable[]}
-         * @readonly
-         */
-        transparentList: [],
-
-        lights: [],
-
-
-        /**
-         * Scene bounding box in view space.
-         * Used when camera needs to adujst the near and far plane automatically
-         * so that the view frustum contains the visible objects as tightly as possible.
-         * Notice:
-         *  It is updated after rendering (in the step of frustum culling passingly). So may be not so accurate, but saves a lot of calculation
-         *
-         * @type {clay.math.BoundingBox}
-         */
-        viewBoundingBoxLastFrame: new __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__["a" /* default */](),
-
-        // Uniforms for shadow map.
-        shadowUniforms: {},
-
-        _cameraList: [],
-
-        // Properties to save the light information in the scene
-        // Will be set in the render function
-        _lightUniforms: {},
-
-        _previousLightNumber: {},
-
-        _lightNumber: {
-            // groupId: {
-                // POINT_LIGHT: 0,
-                // DIRECTIONAL_LIGHT: 0,
-                // SPOT_LIGHT: 0,
-                // AMBIENT_LIGHT: 0,
-                // AMBIENT_SH_LIGHT: 0
-            // }
-        },
-
-        _lightProgramKeys: {},
-
-        _opaqueObjectCount: 0,
-        _transparentObjectCount: 0,
-
-        _nodeRepository: {},
-
-    };
-}, function () {
-    this._scene = this;
-},
-/** @lends clay.Scene.prototype. */
-{
-
-    // Add node to scene
-    addToScene: function (node) {
-        if (node instanceof __WEBPACK_IMPORTED_MODULE_2__Camera__["a" /* default */]) {
-            if (this._cameraList.length > 0) {
-                console.warn('Found multiple camera in one scene. Use the fist one.');
-            }
-            this._cameraList.push(node);
-        }
-        if (node.name) {
-            this._nodeRepository[node.name] = node;
-        }
-    },
-
-    // Remove node from scene
-    removeFromScene: function (node) {
-        if (node instanceof __WEBPACK_IMPORTED_MODULE_2__Camera__["a" /* default */]) {
-            var idx = this._cameraList.indexOf(node);
-            if (idx >= 0) {
-                this._cameraList.splice(idx, 1);
-            }
-        }
-        if (node.name) {
-            delete this._nodeRepository[node.name];
-        }
-    },
-
-    /**
-     * Get node by name
-     * @param  {string} name
-     * @return {Node}
-     * @DEPRECATED
-     */
-    getNode: function (name) {
-        return this._nodeRepository[name];
-    },
-
-    /**
-     * Clone a new scene node recursively, including material, skeleton.
-     * Shader and geometry instances will not been cloned
-     * @param  {clay.Node} node
-     * @return {clay.Node}
-     */
-    cloneNode: function (node) {
-        var newNode = node.clone();
-        var materialsMap = {};
-
-        var cloneSkeleton = function (current, currentNew) {
-            if (current.skeleton) {
-                currentNew.skeleton = current.skeleton.clone(node, newNode);
-                currentNew.joints = current.joints.slice();
-            }
-            if (current.material) {
-                materialsMap[current.material.__uid__] = {
-                    oldMat: current.material
-                };
-            }
-            for (var i = 0; i < current._children.length; i++) {
-                cloneSkeleton(current._children[i], currentNew._children[i]);
-            }
-        };
-
-        cloneSkeleton(node, newNode);
-
-        for (var guid in materialsMap) {
-            materialsMap[guid].newMat = materialsMap[guid].oldMat.clone();
-        }
-
-        // Replace material
-        newNode.traverse(function (current) {
-            if (current.material) {
-                current.material = materialsMap[current.material.__uid__].newMat;
-            }
-        });
-
-        return newNode;
-    },
-
-
-    /**
-     * Scene update
-     * @param  {boolean} force
-     * @param  {boolean} notUpdateLights
-     *         Useful in deferred pipeline
-     */
-    update: function (force, notUpdateLights) {
-        if (!(this.autoUpdate || force)) {
-            return;
-        }
-        __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].prototype.update.call(this, force);
-
-        var lights = this.lights;
-        var sceneMaterialTransparent = this.material && this.material.transparent;
-
-        this._opaqueObjectCount = 0;
-        this._transparentObjectCount = 0;
-
-        lights.length = 0;
-
-        this._updateRenderList(this, sceneMaterialTransparent);
-
-        this.opaqueList.length = this._opaqueObjectCount;
-        this.transparentList.length = this._transparentObjectCount;
-
-        // reset
-        if (!notUpdateLights) {
-            this._previousLightNumber = this._lightNumber;
-
-            var lightNumber = {};
-            for (var i = 0; i < lights.length; i++) {
-                var light = lights[i];
-                var group = light.group;
-                if (!lightNumber[group]) {
-                    lightNumber[group] = {};
-                }
-                // User can use any type of light
-                lightNumber[group][light.type] = lightNumber[group][light.type] || 0;
-                lightNumber[group][light.type]++;
-            }
-            this._lightNumber = lightNumber;
-
-            for (var groupId in lightNumber) {
-                this._lightProgramKeys[groupId] = getProgramKey(lightNumber[groupId]);
-            }
-
-            this._updateLightUniforms();
-        }
-    },
-
-    getMainCamera: function () {
-        return this._cameraList[0];
-    },
-
-    // Traverse the scene and add the renderable
-    // object to the render list
-    _updateRenderList: function (parent, sceneMaterialTransparent) {
-        if (parent.invisible) {
-            return;
-        }
-
-        for (var i = 0; i < parent._children.length; i++) {
-            var child = parent._children[i];
-
-            if (child instanceof __WEBPACK_IMPORTED_MODULE_1__Light__["a" /* default */]) {
-                this.lights.push(child);
-            }
-            else if (child.isRenderable()) {
-                if (child.material.transparent || sceneMaterialTransparent) {
-                    this.transparentList[this._transparentObjectCount++] = child;
-                }
-                else {
-                    this.opaqueList[this._opaqueObjectCount++] = child;
-                }
-            }
-            if (child._children.length > 0) {
-                this._updateRenderList(child);
-            }
-        }
-    },
-
-    _updateLightUniforms: function () {
-        var lights = this.lights;
-        // Put the light cast shadow before the light not cast shadow
-        lights.sort(lightSortFunc);
-
-        var lightUniforms = this._lightUniforms;
-        for (var group in lightUniforms) {
-            for (var symbol in lightUniforms[group]) {
-                lightUniforms[group][symbol].value.length = 0;
-            }
-        }
-        for (var i = 0; i < lights.length; i++) {
-
-            var light = lights[i];
-            var group = light.group;
-
-            for (var symbol in light.uniformTemplates) {
-                var uniformTpl = light.uniformTemplates[symbol];
-                var value = uniformTpl.value(light);
-                if (value == null) {
-                    continue;
-                }
-                if (!lightUniforms[group]) {
-                    lightUniforms[group] = {};
-                }
-                if (!lightUniforms[group][symbol]) {
-                    lightUniforms[group][symbol] = {
-                        type: '',
-                        value: []
-                    };
-                }
-                var lu = lightUniforms[group][symbol];
-                lu.type = uniformTpl.type + 'v';
-                switch (uniformTpl.type) {
-                    case '1i':
-                    case '1f':
-                    case 't':
-                        lu.value.push(value);
-                        break;
-                    case '2f':
-                    case '3f':
-                    case '4f':
-                        for (var j = 0; j < value.length; j++) {
-                            lu.value.push(value[j]);
-                        }
-                        break;
-                    default:
-                        console.error('Unkown light uniform type ' + uniformTpl.type);
-                }
-            }
-        }
-    },
-
-    getLightGroups: function () {
-        var lightGroups = [];
-        for (var groupId in this._lightNumber) {
-            lightGroups.push(groupId);
-        }
-        return lightGroups;
-    },
-
-    getNumberChangedLightGroups: function () {
-        var lightGroups = [];
-        for (var groupId in this._lightNumber) {
-            if (this.isLightNumberChanged(groupId)) {
-                lightGroups.push(groupId);
-            }
-        }
-        return lightGroups;
-    },
-
-    /**
-     * Determine if light group is different with since last frame
-     * Used to determine whether to update shader and scene's uniforms in Renderer.render
-     * @param {Shader} shader
-     * @returns {Boolean}
-     */
-    isLightNumberChanged: function (lightGroup) {
-        var prevLightNumber = this._previousLightNumber;
-        var currentLightNumber = this._lightNumber;
-        // PENDING Performance
-        for (var type in currentLightNumber[lightGroup]) {
-            if (!prevLightNumber[lightGroup]) {
-                return true;
-            }
-            if (currentLightNumber[lightGroup][type] !== prevLightNumber[lightGroup][type]) {
-                return true;
-            }
-        }
-        for (var type in prevLightNumber[lightGroup]) {
-            if (!currentLightNumber[lightGroup]) {
-                return true;
-            }
-            if (currentLightNumber[lightGroup][type] !== prevLightNumber[lightGroup][type]) {
-                return true;
-            }
-        }
-        return false;
-    },
-
-    /**
-     * Set shader's light group with scene's
-     * @param {Shader} shader
-     */
-    getLightsNumbers: function (lightGroup) {
-        return this._lightNumber[lightGroup];
-    },
-
-    getProgramKey: function (lightGroup) {
-        return this._lightProgramKeys[lightGroup];
-    },
-
-    setLightUniforms: (function () {
-        function setUniforms(uniforms, program, renderer) {
-            for (var symbol in uniforms) {
-                var lu = uniforms[symbol];
-                if (lu.type === 'tv') {
-                    if (!program.hasUniform(symbol)) {
-                        continue;
-                    }
-                    var texSlots = [];
-                    for (var i = 0; i < lu.value.length; i++) {
-                        var texture = lu.value[i];
-                        var slot = program.takeCurrentTextureSlot(renderer, texture);
-                        texSlots.push(slot);
-                    }
-                    program.setUniform(renderer.gl, '1iv', symbol, texSlots);
-                }
-                else {
-                    program.setUniform(renderer.gl, lu.type, symbol, lu.value);
-                }
-            }
-        }
-
-        return function (program, lightGroup, renderer) {
-            setUniforms(this._lightUniforms[lightGroup], program, renderer);
-            // Set shadows
-            setUniforms(this.shadowUniforms, program, renderer);
-        };
-    })(),
-
-    /**
-     * Dispose self, clear all the scene objects
-     * But resources of gl like texuture, shader will not be disposed.
-     * Mostly you should use disposeScene method in Renderer to do dispose.
-     */
-    dispose: function () {
-        this.material = null;
-        this.opaqueList = [];
-        this.transparentList = [];
-
-        this.lights = [];
-
-        this._lightUniforms = {};
-
-        this._lightNumber = {};
-        this._nodeRepository = {};
-    }
-});
-
-function lightSortFunc(a, b) {
-    if (b.castShadow && !a.castShadow) {
-        return true;
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Scene);
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Camera__ = __webpack_require__(51);
-
-/**
- * @constructor clay.camera.Orthographic
- * @extends clay.Camera
- */
-var Orthographic = __WEBPACK_IMPORTED_MODULE_0__Camera__["a" /* default */].extend(
-/** @lends clay.camera.Orthographic# */
-{
-    /**
-     * @type {number}
-     */
-    left: -1,
-    /**
-     * @type {number}
-     */
-    right: 1,
-    /**
-     * @type {number}
-     */
-    near: -1,
-    /**
-     * @type {number}
-     */
-    far: 1,
-    /**
-     * @type {number}
-     */
-    top: 1,
-    /**
-     * @type {number}
-     */
-    bottom: -1
-},
-/** @lends clay.camera.Orthographic.prototype */
-{
-
-    updateProjectionMatrix: function() {
-        this.projectionMatrix.ortho(this.left, this.right, this.bottom, this.top, this.near, this.far);
-    },
-
-    decomposeProjectionMatrix: function () {
-        var m = this.projectionMatrix.array;
-        this.left = (-1 - m[12]) / m[0];
-        this.right = (1 - m[12]) / m[0];
-        this.top = (1 - m[13]) / m[5];
-        this.bottom = (-1 - m[13]) / m[5];
-        this.near = -(-1 - m[14]) / m[10];
-        this.far = -(1 - m[14]) / m[10];
-    },
-    /**
-     * @return {clay.camera.Orthographic}
-     */
-    clone: function() {
-        var camera = __WEBPACK_IMPORTED_MODULE_0__Camera__["a" /* default */].prototype.clone.call(this);
-        camera.left = this.left;
-        camera.right = this.right;
-        camera.near = this.near;
-        camera.far = this.far;
-        camera.top = this.top;
-        camera.bottom = this.bottom;
-
-        return camera;
-    }
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (Orthographic);
-
-
-/***/ }),
-/* 31 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15804,7 +14532,7 @@ var Orthographic = __WEBPACK_IMPORTED_MODULE_0__Camera__["a" /* default */].exte
 });
 
 /***/ }),
-/* 32 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15844,52 +14572,7 @@ var Orthographic = __WEBPACK_IMPORTED_MODULE_0__Camera__["a" /* default */].exte
 });
 
 /***/ }),
-/* 33 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    convertToDynamicArray: function (clear) {
-        if (clear) {
-            this.resetOffset();
-        }
-        var attributes = this.attributes;
-        for (var name in attributes) {
-            if (clear || !attributes[name].value) {
-                attributes[name].value = [];
-            }
-            else {
-                attributes[name].value = Array.prototype.slice.call(attributes[name].value);
-            }
-        }
-        if (clear || !this.indices) {
-            this.indices = [];
-        }
-        else {
-            this.indices = Array.prototype.slice.call(this.indices);
-        }
-    },
-
-    convertToTypedArray: function () {
-        var attributes = this.attributes;
-        for (var name in attributes) {
-            if (attributes[name].value && attributes[name].value.length > 0) {
-                attributes[name].value = new Float32Array(attributes[name].value);
-            }
-            else {
-                attributes[name].value = null;
-            }
-        }
-        if (this.indices && this.indices.length > 0) {
-            this.indices = this.vertexCount > 0xffff ? new Uint32Array(this.indices) : new Uint16Array(this.indices);
-        }
-
-        this.dirty();
-    }
-});
-
-/***/ }),
-/* 34 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16095,6 +14778,1537 @@ SceneHelper.prototype = {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (SceneHelper);
+
+/***/ }),
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    defaultOption: {
+        shading: null,
+
+        realisticMaterial: {
+            textureTiling: 1,
+            textureOffset: 0,
+
+            detailTexture: null
+        },
+
+        lambertMaterial: {
+            textureTiling: 1,
+            textureOffset: 0,
+
+            detailTexture: null
+        },
+
+        colorMaterial: {
+            textureTiling: 1,
+            textureOffset: 0,
+
+            detailTexture: null
+        },
+
+        hatchingMaterial: {
+            textureTiling: 1,
+            textureOffset: 0,
+
+            paperColor: '#fff'
+        }
+    }
+});
+
+/***/ }),
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
+
+
+var formatUtil = {};
+formatUtil.getFormattedLabel = function (seriesModel, dataIndex, status, dataType, dimIndex) {
+    status = status || 'normal';
+    var data = seriesModel.getData(dataType);
+    var itemModel = data.getItemModel(dataIndex);
+
+    var params = seriesModel.getDataParams(dataIndex, dataType);
+    if (dimIndex != null && (params.value instanceof Array)) {
+        params.value = params.value[dimIndex];
+    }
+
+    var formatter = itemModel.get(status === 'normal' ? ['label', 'formatter'] : ['emphasis', 'label', 'formatter']);
+    if (formatter == null) {
+        formatter = itemModel.get(['label', 'formatter']);
+    }
+    var text;
+    if (typeof formatter === 'function') {
+        params.status = status;
+        text = formatter(params);
+    }
+    else if (typeof formatter === 'string') {
+        text = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.format.formatTpl(formatter, params);
+    }
+    return text;
+};
+
+/**
+ * If value is not array, then convert it to array.
+ * @param  {*} value
+ * @return {Array} [value] or value
+ */
+formatUtil.normalizeToArray = function (value) {
+    return value instanceof Array
+        ? value
+        : value == null
+        ? []
+        : [value];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (formatUtil);
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Quaternion__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dep_glmatrix__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_BoundingBox__ = __webpack_require__(15);
+
+
+
+
+
+
+var mat4 = __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix___default.a.mat4;
+
+var nameId = 0;
+
+/**
+ * @constructor clay.Node
+ * @extends clay.core.Base
+ */
+var Node = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(/** @lends clay.Node# */{
+    /**
+     * Scene node name
+     * @type {string}
+     */
+    name: '',
+
+    /**
+     * Position relative to its parent node. aka translation.
+     * @type {clay.Vector3}
+     */
+    position: null,
+
+    /**
+     * Rotation relative to its parent node. Represented by a quaternion
+     * @type {clay.Quaternion}
+     */
+    rotation: null,
+
+    /**
+     * Scale relative to its parent node
+     * @type {clay.Vector3}
+     */
+    scale: null,
+
+    /**
+     * Affine transform matrix relative to its root scene.
+     * @type {clay.Matrix4}
+     */
+    worldTransform: null,
+
+    /**
+     * Affine transform matrix relative to its parent node.
+     * Composited with position, rotation and scale.
+     * @type {clay.Matrix4}
+     */
+    localTransform: null,
+
+    /**
+     * If the local transform is update from SRT(scale, rotation, translation, which is position here) each frame
+     * @type {boolean}
+     */
+    autoUpdateLocalTransform: true,
+
+    /**
+     * Parent of current scene node
+     * @type {?clay.Node}
+     * @private
+     */
+    _parent: null,
+    /**
+     * The root scene mounted. Null if it is a isolated node
+     * @type {?clay.Scene}
+     * @private
+     */
+    _scene: null,
+    /**
+     * @type {boolean}
+     * @private
+     */
+    _needsUpdateWorldTransform: true,
+    /**
+     * @type {boolean}
+     * @private
+     */
+    _inIterating: false,
+
+    // Depth for transparent list sorting
+    __depth: 0
+
+}, function () {
+
+    if (!this.name) {
+        this.name = (this.type || 'NODE') + '_' + (nameId++);
+    }
+
+    if (!this.position) {
+        this.position = new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
+    }
+    if (!this.rotation) {
+        this.rotation = new __WEBPACK_IMPORTED_MODULE_2__math_Quaternion__["a" /* default */]();
+    }
+    if (!this.scale) {
+        this.scale = new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */](1, 1, 1);
+    }
+
+    this.worldTransform = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
+    this.localTransform = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
+
+    this._children = [];
+
+},
+/**@lends clay.Node.prototype. */
+{
+
+    /**
+     * @type {?clay.Vector3}
+     * @instance
+     */
+    target: null,
+    /**
+     * If node and its chilren invisible
+     * @type {boolean}
+     * @instance
+     */
+    invisible: false,
+
+    /**
+     * If Node is a skinned mesh
+     * @return {boolean}
+     */
+    isSkinnedMesh: function () {
+        return false;
+    },
+    /**
+     * Return true if it is a renderable scene node, like Mesh and ParticleSystem
+     * @return {boolean}
+     */
+    isRenderable: function () {
+        return false;
+    },
+
+    /**
+     * Set the name of the scene node
+     * @param {string} name
+     */
+    setName: function (name) {
+        var scene = this._scene;
+        if (scene) {
+            var nodeRepository = scene._nodeRepository;
+            delete nodeRepository[this.name];
+            nodeRepository[name] = this;
+        }
+        this.name = name;
+    },
+
+    /**
+     * Add a child node
+     * @param {clay.Node} node
+     */
+    add: function (node) {
+        var originalParent = node._parent;
+        if (originalParent === this) {
+            return;
+        }
+        if (originalParent) {
+            originalParent.remove(node);
+        }
+        node._parent = this;
+        this._children.push(node);
+
+        var scene = this._scene;
+        if (scene && scene !== node.scene) {
+            node.traverse(this._addSelfToScene, this);
+        }
+        // Mark children needs update transform
+        // In case child are remove and added again after parent moved
+        node._needsUpdateWorldTransform = true;
+    },
+
+    /**
+     * Remove the given child scene node
+     * @param {clay.Node} node
+     */
+    remove: function (node) {
+        var children = this._children;
+        var idx = children.indexOf(node);
+        if (idx < 0) {
+            return;
+        }
+
+        children.splice(idx, 1);
+        node._parent = null;
+
+        if (this._scene) {
+            node.traverse(this._removeSelfFromScene, this);
+        }
+    },
+
+    /**
+     * Remove all children
+     */
+    removeAll: function () {
+        var children = this._children;
+
+        for (var idx = 0; idx < children.length; idx++) {
+            children[idx]._parent = null;
+
+            if (this._scene) {
+                children[idx].traverse(this._removeSelfFromScene, this);
+            }
+        }
+
+        this._children = [];
+    },
+
+    /**
+     * Get the scene mounted
+     * @return {clay.Scene}
+     */
+    getScene: function () {
+        return this._scene;
+    },
+
+    /**
+     * Get parent node
+     * @return {clay.Scene}
+     */
+    getParent: function () {
+        return this._parent;
+    },
+
+    _removeSelfFromScene: function (descendant) {
+        descendant._scene.removeFromScene(descendant);
+        descendant._scene = null;
+    },
+
+    _addSelfToScene: function (descendant) {
+        this._scene.addToScene(descendant);
+        descendant._scene = this._scene;
+    },
+
+    /**
+     * Return true if it is ancestor of the given scene node
+     * @param {clay.Node} node
+     */
+    isAncestor: function (node) {
+        var parent = node._parent;
+        while(parent) {
+            if (parent === this) {
+                return true;
+            }
+            parent = parent._parent;
+        }
+        return false;
+    },
+
+    /**
+     * Get a new created array of all children nodes
+     * @return {clay.Node[]}
+     */
+    children: function () {
+        return this._children.slice();
+    },
+
+    /**
+     * Get child scene node at given index.
+     * @param {number} idx
+     * @return {clay.Node}
+     */
+    childAt: function (idx) {
+        return this._children[idx];
+    },
+
+    /**
+     * Get first child with the given name
+     * @param {string} name
+     * @return {clay.Node}
+     */
+    getChildByName: function (name) {
+        var children = this._children;
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].name === name) {
+                return children[i];
+            }
+        }
+    },
+
+    /**
+     * Get first descendant have the given name
+     * @param {string} name
+     * @return {clay.Node}
+     */
+    getDescendantByName: function (name) {
+        var children = this._children;
+        for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+            if (child.name === name) {
+                return child;
+            } else {
+                var res = child.getDescendantByName(name);
+                if (res) {
+                    return res;
+                }
+            }
+        }
+    },
+
+    /**
+     * Query descendant node by path
+     * @param {string} path
+     * @return {clay.Node}
+     * @example
+     *  node.queryNode('root/parent/child');
+     */
+    queryNode: function (path) {
+        if (!path) {
+            return;
+        }
+        // TODO Name have slash ?
+        var pathArr = path.split('/');
+        var current = this;
+        for (var i = 0; i < pathArr.length; i++) {
+            var name = pathArr[i];
+            // Skip empty
+            if (!name) {
+                continue;
+            }
+            var found = false;
+            var children = current._children;
+            for (var j = 0; j < children.length; j++) {
+                var child = children[j];
+                if (child.name === name) {
+                    current = child;
+                    found = true;
+                    break;
+                }
+            }
+            // Early return if not found
+            if (!found) {
+                return;
+            }
+        }
+
+        return current;
+    },
+
+    /**
+     * Get query path, relative to rootNode(default is scene)
+     * @param {clay.Node} [rootNode]
+     * @return {string}
+     */
+    getPath: function (rootNode) {
+        if (!this._parent) {
+            return '/';
+        }
+
+        var current = this._parent;
+        var path = this.name;
+        while (current._parent) {
+            path = current.name + '/' + path;
+            if (current._parent == rootNode) {
+                break;
+            }
+            current = current._parent;
+        }
+        if (!current._parent && rootNode) {
+            return null;
+        }
+        return path;
+    },
+
+    /**
+     * Depth first traverse all its descendant scene nodes.
+     *
+     * **WARN** Don't do `add`, `remove` operation in the callback during traverse.
+     * @param {Function} callback
+     * @param {Node} [context]
+     */
+    traverse: function (callback, context) {
+        callback.call(context, this);
+        var _children = this._children;
+        for(var i = 0, len = _children.length; i < len; i++) {
+            _children[i].traverse(callback, context);
+        }
+    },
+
+    /**
+     * Traverse all children nodes.
+     *
+     * **WARN** DON'T do `add`, `remove` operation in the callback during iteration.
+     *
+     * @param {Function} callback
+     * @param {Node} [context]
+     */
+    eachChild: function (callback, context) {
+        var _children = this._children;
+        for(var i = 0, len = _children.length; i < len; i++) {
+            var child = _children[i];
+            callback.call(context, child, i);
+        }
+    },
+
+    /**
+     * Set the local transform and decompose to SRT
+     * @param {clay.Matrix4} matrix
+     */
+    setLocalTransform: function (matrix) {
+        mat4.copy(this.localTransform.array, matrix.array);
+        this.decomposeLocalTransform();
+    },
+
+    /**
+     * Decompose the local transform to SRT
+     */
+    decomposeLocalTransform: function (keepScale) {
+        var scale = !keepScale ? this.scale: null;
+        this.localTransform.decomposeMatrix(scale, this.rotation, this.position);
+    },
+
+    /**
+     * Set the world transform and decompose to SRT
+     * @param {clay.Matrix4} matrix
+     */
+    setWorldTransform: function (matrix) {
+        mat4.copy(this.worldTransform.array, matrix.array);
+        this.decomposeWorldTransform();
+    },
+
+    /**
+     * Decompose the world transform to SRT
+     * @function
+     */
+    decomposeWorldTransform: (function () {
+
+        var tmp = mat4.create();
+
+        return function (keepScale) {
+            var localTransform = this.localTransform;
+            var worldTransform = this.worldTransform;
+            // Assume world transform is updated
+            if (this._parent) {
+                mat4.invert(tmp, this._parent.worldTransform.array);
+                mat4.multiply(localTransform.array, tmp, worldTransform.array);
+            } else {
+                mat4.copy(localTransform.array, worldTransform.array);
+            }
+            var scale = !keepScale ? this.scale: null;
+            localTransform.decomposeMatrix(scale, this.rotation, this.position);
+        };
+    })(),
+
+    transformNeedsUpdate: function () {
+        return this.position._dirty
+            || this.rotation._dirty
+            || this.scale._dirty;
+    },
+
+    /**
+     * Update local transform from SRT
+     * Notice that local transform will not be updated if _dirty mark of position, rotation, scale is all false
+     */
+    updateLocalTransform: function () {
+        var position = this.position;
+        var rotation = this.rotation;
+        var scale = this.scale;
+
+        if (this.transformNeedsUpdate()) {
+            var m = this.localTransform.array;
+
+            // Transform order, scale->rotation->position
+            mat4.fromRotationTranslation(m, rotation.array, position.array);
+
+            mat4.scale(m, m, scale.array);
+
+            rotation._dirty = false;
+            scale._dirty = false;
+            position._dirty = false;
+
+            this._needsUpdateWorldTransform = true;
+        }
+    },
+
+    /**
+     * Update world transform, assume its parent world transform have been updated
+     * @private
+     */
+    _updateWorldTransformTopDown: function () {
+        var localTransform = this.localTransform.array;
+        var worldTransform = this.worldTransform.array;
+        if (this._parent) {
+            mat4.multiplyAffine(
+                worldTransform,
+                this._parent.worldTransform.array,
+                localTransform
+            );
+        }
+        else {
+            mat4.copy(worldTransform, localTransform);
+        }
+    },
+
+    /**
+     * Update world transform before whole scene is updated.
+     */
+    updateWorldTransform: function () {
+        // Find the root node which transform needs update;
+        var rootNodeIsDirty = this;
+        while (rootNodeIsDirty && rootNodeIsDirty.getParent()
+            && rootNodeIsDirty.getParent().transformNeedsUpdate()
+        ) {
+            rootNodeIsDirty = rootNodeIsDirty.getParent();
+        }
+        rootNodeIsDirty.update();
+    },
+
+    /**
+     * Update local transform and world transform recursively
+     * @param {boolean} forceUpdateWorld
+     */
+    update: function (forceUpdateWorld) {
+        if (this.autoUpdateLocalTransform) {
+            this.updateLocalTransform();
+        }
+        else {
+            // Transform is manually setted
+            forceUpdateWorld = true;
+        }
+
+        if (forceUpdateWorld || this._needsUpdateWorldTransform) {
+            this._updateWorldTransformTopDown();
+            forceUpdateWorld = true;
+            this._needsUpdateWorldTransform = false;
+        }
+
+        var children = this._children;
+        for(var i = 0, len = children.length; i < len; i++) {
+            children[i].update(forceUpdateWorld);
+        }
+    },
+
+    /**
+     * Get bounding box of node
+     * @param  {Function} [filter]
+     * @param  {clay.BoundingBox} [out]
+     * @return {clay.BoundingBox}
+     */
+    // TODO Skinning
+    getBoundingBox: (function () {
+        function defaultFilter (el) {
+            return !el.invisible && el.geometry;
+        }
+        var tmpBBox = new __WEBPACK_IMPORTED_MODULE_5__math_BoundingBox__["a" /* default */]();
+        var tmpMat4 = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
+        var invWorldTransform = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
+        return function (filter, out) {
+            out = out || new __WEBPACK_IMPORTED_MODULE_5__math_BoundingBox__["a" /* default */]();
+            filter = filter || defaultFilter;
+
+            if (this._parent) {
+                __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */].invert(invWorldTransform, this._parent.worldTransform);
+            }
+            else {
+                __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */].identity(invWorldTransform);
+            }
+
+            this.traverse(function (mesh) {
+                if (mesh.geometry && mesh.geometry.boundingBox) {
+                    tmpBBox.copy(mesh.geometry.boundingBox);
+                    __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */].multiply(tmpMat4, invWorldTransform, mesh.worldTransform);
+                    tmpBBox.applyTransform(tmpMat4);
+                    out.union(tmpBBox);
+                }
+            }, this, defaultFilter);
+
+            return out;
+        };
+    })(),
+
+    /**
+     * Get world position, extracted from world transform
+     * @param  {clay.Vector3} [out]
+     * @return {clay.Vector3}
+     */
+    getWorldPosition: function (out) {
+        // PENDING
+        if (this.transformNeedsUpdate()) {
+            this.updateWorldTransform();
+        }
+        var m = this.worldTransform.array;
+        if (out) {
+            var arr = out.array;
+            arr[0] = m[12];
+            arr[1] = m[13];
+            arr[2] = m[14];
+            return out;
+        }
+        else {
+            return new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */](m[12], m[13], m[14]);
+        }
+    },
+
+    /**
+     * Clone a new node
+     * @return {Node}
+     */
+    clone: function () {
+        var node = new this.constructor();
+
+        var children = this._children;
+
+        node.setName(this.name);
+        node.position.copy(this.position);
+        node.rotation.copy(this.rotation);
+        node.scale.copy(this.scale);
+
+        for (var i = 0; i < children.length; i++) {
+            node.add(children[i].clone());
+        }
+
+        return node;
+    },
+
+    /**
+     * Rotate the node around a axis by angle degrees, axis passes through point
+     * @param {clay.Vector3} point Center point
+     * @param {clay.Vector3} axis  Center axis
+     * @param {number}       angle Rotation angle
+     * @see http://docs.unity3d.com/Documentation/ScriptReference/Transform.RotateAround.html
+     * @function
+     */
+    rotateAround: (function () {
+        var v = new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
+        var RTMatrix = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
+
+        // TODO improve performance
+        return function (point, axis, angle) {
+
+            v.copy(this.position).subtract(point);
+
+            var localTransform = this.localTransform;
+            localTransform.identity();
+            // parent node
+            localTransform.translate(point);
+            localTransform.rotate(angle, axis);
+
+            RTMatrix.fromRotationTranslation(this.rotation, v);
+            localTransform.multiply(RTMatrix);
+            localTransform.scale(this.scale);
+
+            this.decomposeLocalTransform();
+            this._needsUpdateWorldTransform = true;
+        };
+    })(),
+
+    /**
+     * @param {clay.Vector3} target
+     * @param {clay.Vector3} [up]
+     * @see http://www.opengl.org/sdk/docs/man2/xhtml/gluLookAt.xml
+     * @function
+     */
+    lookAt: (function () {
+        var m = new __WEBPACK_IMPORTED_MODULE_3__math_Matrix4__["a" /* default */]();
+        return function (target, up) {
+            m.lookAt(this.position, target, up || this.localTransform.y).invert();
+            this.setLocalTransform(m);
+
+            this.target = target;
+        };
+    })()
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (Node);
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Renderable__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Texture2D__ = __webpack_require__(5);
+
+
+
+
+/**
+ * @constructor clay.Mesh
+ * @extends clay.Renderable
+ */
+var Mesh = __WEBPACK_IMPORTED_MODULE_0__Renderable__["a" /* default */].extend(/** @lends clay.Mesh# */ {
+    /**
+     * Used when it is a skinned mesh
+     * @type {clay.Skeleton}
+     */
+    skeleton: null,
+    /**
+     * Joints indices Meshes can share the one skeleton instance and each mesh can use one part of joints. Joints indices indicate the index of joint in the skeleton instance
+     * @type {number[]}
+     */
+    joints: null,
+
+    /**
+     * If store the skin matrices in vertex texture
+     * @type {bool}
+     */
+    useSkinMatricesTexture: false
+
+}, function () {
+    if (!this.joints) {
+        this.joints = [];
+    }
+}, {
+
+    isSkinnedMesh: function () {
+        return !!(this.skeleton && this.joints && this.joints.length > 0);
+    },
+
+    getSkinMatricesTexture: function () {
+        this._skinMatricesTexture = this._skinMatricesTexture || new __WEBPACK_IMPORTED_MODULE_2__Texture2D__["a" /* default */]({
+            type: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].FLOAT,
+            minFilter: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST,
+            magFilter: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].NEAREST,
+            useMipmap: false,
+            flipY: false
+        });
+
+        return this._skinMatricesTexture;
+    },
+
+    clone: function () {
+        var mesh = __WEBPACK_IMPORTED_MODULE_0__Renderable__["a" /* default */].prototype.clone.call(this);
+        mesh.skeleton = this.skeleton;
+        if (this.joints) {
+            mesh.joints = this.joints.slice();
+        }
+        return mesh;
+    }
+});
+
+// Enums
+Mesh.POINTS = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].POINTS;
+Mesh.LINES = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINES;
+Mesh.LINE_LOOP = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINE_LOOP;
+Mesh.LINE_STRIP = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINE_STRIP;
+Mesh.TRIANGLES = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLES;
+Mesh.TRIANGLE_STRIP = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLE_STRIP;
+Mesh.TRIANGLE_FAN = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLE_FAN;
+
+Mesh.BACK = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].BACK;
+Mesh.FRONT = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].FRONT;
+Mesh.FRONT_AND_BACK = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].FRONT_AND_BACK;
+Mesh.CW = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].CW;
+Mesh.CCW = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].CCW;
+
+/* harmony default export */ __webpack_exports__["a"] = (Mesh);
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Light__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Camera__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dep_glmatrix__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dep_glmatrix__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_LRU__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__math_Matrix4__ = __webpack_require__(7);
+
+
+
+
+
+
+
+
+var mat4 = __WEBPACK_IMPORTED_MODULE_5__dep_glmatrix___default.a.mat4;
+
+var IDENTITY = mat4.create();
+var WORLDVIEW = mat4.create();
+
+var programKeyCache = {};
+
+function getProgramKey(lightNumbers) {
+    var defineStr = [];
+    var lightTypes = Object.keys(lightNumbers);
+    lightTypes.sort();
+    for (var i = 0; i < lightTypes.length; i++) {
+        var lightType = lightTypes[i];
+        defineStr.push(lightType + ' ' + lightNumbers[lightType]);
+    }
+    var key = defineStr.join('\n');
+
+    if (programKeyCache[key]) {
+        return programKeyCache[key];
+    }
+
+    var id = __WEBPACK_IMPORTED_MODULE_4__core_util__["a" /* default */].genGUID();
+    programKeyCache[key] = id;
+    return id;
+}
+
+function RenderList() {
+
+    this.opaque = [];
+    this.transparent = [];
+
+    this._opaqueCount = 0;
+    this._transparentCount = 0;
+}
+
+RenderList.prototype.startCount = function () {
+    this._opaqueCount = 0;
+    this._transparentCount = 0;
+};
+
+RenderList.prototype.add = function (object, isTransparent) {
+    if (isTransparent) {
+        this.transparent[this._transparentCount++] = object;
+    }
+    else {
+        this.opaque[this._opaqueCount++] = object;
+    }
+};
+
+RenderList.prototype.endCount = function () {
+    this.transparent.length = this._transparentCount;
+    this.opaque.length = this._opaqueCount;
+};
+
+/**
+ * @typedef {Object} clay.Scene.RenderList
+ * @property {Array.<clay.Renderable>} opaque
+ * @property {Array.<clay.Renderable>} transparent
+ */
+
+/**
+ * @constructor clay.Scene
+ * @extends clay.Node
+ */
+var Scene = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(function () {
+    return /** @lends clay.Scene# */ {
+        /**
+         * Global material of scene
+         * @type {clay.Material}
+         */
+        material: null,
+
+        lights: [],
+
+        /**
+         * Scene bounding box in view space.
+         * Used when camera needs to adujst the near and far plane automatically
+         * so that the view frustum contains the visible objects as tightly as possible.
+         * Notice:
+         *  It is updated after rendering (in the step of frustum culling passingly). So may be not so accurate, but saves a lot of calculation
+         *
+         * @type {clay.BoundingBox}
+         */
+        viewBoundingBoxLastFrame: new __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__["a" /* default */](),
+
+        // Uniforms for shadow map.
+        shadowUniforms: {},
+
+        _cameraList: [],
+
+        // Properties to save the light information in the scene
+        // Will be set in the render function
+        _lightUniforms: {},
+
+        _previousLightNumber: {},
+
+        _lightNumber: {
+            // groupId: {
+                // POINT_LIGHT: 0,
+                // DIRECTIONAL_LIGHT: 0,
+                // SPOT_LIGHT: 0,
+                // AMBIENT_LIGHT: 0,
+                // AMBIENT_SH_LIGHT: 0
+            // }
+        },
+
+        _lightProgramKeys: {},
+
+        _nodeRepository: {},
+
+        _renderLists: new __WEBPACK_IMPORTED_MODULE_6__core_LRU__["a" /* default */](20)
+
+    };
+}, function () {
+    this._scene = this;
+},
+/** @lends clay.Scene.prototype. */
+{
+
+    // Add node to scene
+    addToScene: function (node) {
+        if (node instanceof __WEBPACK_IMPORTED_MODULE_2__Camera__["a" /* default */]) {
+            if (this._cameraList.length > 0) {
+                console.warn('Found multiple camera in one scene. Use the fist one.');
+            }
+            this._cameraList.push(node);
+        }
+        else if (node instanceof __WEBPACK_IMPORTED_MODULE_1__Light__["a" /* default */]) {
+            this.lights.push(node);
+        }
+        if (node.name) {
+            this._nodeRepository[node.name] = node;
+        }
+    },
+
+    // Remove node from scene
+    removeFromScene: function (node) {
+        var idx;
+        if (node instanceof __WEBPACK_IMPORTED_MODULE_2__Camera__["a" /* default */]) {
+            idx = this._cameraList.indexOf(node);
+            if (idx >= 0) {
+                this._cameraList.splice(idx, 1);
+            }
+        }
+        else if (node instanceof __WEBPACK_IMPORTED_MODULE_1__Light__["a" /* default */]) {
+            idx = this.lights.indexOf(node);
+            if (idx >= 0) {
+                this.lights.splice(idx, 1);
+            }
+        }
+        if (node.name) {
+            delete this._nodeRepository[node.name];
+        }
+    },
+
+    /**
+     * Get node by name
+     * @param  {string} name
+     * @return {Node}
+     * @DEPRECATED
+     */
+    getNode: function (name) {
+        return this._nodeRepository[name];
+    },
+
+    /**
+     * Set main camera of the scene.
+     * @param {claygl.Camera} camera
+     */
+    setMainCamera: function (camera) {
+        var idx = this._cameraList.indexOf(camera);
+        if (idx >= 0) {
+            this._cameraList.splice(idx, 1);
+        }
+        this._cameraList.unshift(camera);
+    },
+    /**
+     * Get main camera of the scene.
+     */
+    getMainCamera: function () {
+        return this._cameraList[0];
+    },
+
+    getLights: function () {
+        return this.lights;
+    },
+
+    updateLights: function () {
+        var lights = this.lights;
+        this._previousLightNumber = this._lightNumber;
+
+        var lightNumber = {};
+        for (var i = 0; i < lights.length; i++) {
+            var light = lights[i];
+            if (light.invisible) {
+                continue;
+            }
+            var group = light.group;
+            if (!lightNumber[group]) {
+                lightNumber[group] = {};
+            }
+            // User can use any type of light
+            lightNumber[group][light.type] = lightNumber[group][light.type] || 0;
+            lightNumber[group][light.type]++;
+        }
+        this._lightNumber = lightNumber;
+
+        for (var groupId in lightNumber) {
+            this._lightProgramKeys[groupId] = getProgramKey(lightNumber[groupId]);
+        }
+
+        this._updateLightUniforms();
+    },
+
+    /**
+     * Clone a node and it's children, including mesh, camera, light, etc.
+     * Unlike using `Node#clone`. It will clone skeleton and remap the joints. Material will also be cloned.
+     *
+     * @param {clay.Node} node
+     * @return {clay.Node}
+     */
+    cloneNode: function (node) {
+        var newNode = node.clone();
+        var clonedNodesMap = {};
+        function buildNodesMap(sNode, tNode) {
+            clonedNodesMap[sNode.__uid__] = tNode;
+
+            for (var i = 0; i < sNode._children.length; i++) {
+                var sChild = sNode._children[i];
+                var tChild = tNode._children[i];
+                buildNodesMap(sChild, tChild);
+            }
+        }
+        buildNodesMap(node, newNode);
+
+        newNode.traverse(function (newChild) {
+            if (newChild.skeleton) {
+                newChild.skeleton = newChild.skeleton.clone(clonedNodesMap);
+            }
+            if (newChild.material) {
+                newChild.material = newChild.material.clone();
+            }
+        });
+
+        return newNode;
+    },
+
+    /**
+     * Traverse the scene and add the renderable object to the render list.
+     * It needs camera for the frustum culling.
+     *
+     * @param {clay.Camera} camera
+     * @return {clay.Scene.RenderList}
+     */
+    updateRenderList: function (camera) {
+        var id = camera.__uid__;
+        var renderList = this._renderLists.get(id);
+        if (!renderList) {
+            renderList = new RenderList();
+            this._renderLists.put(id, renderList);
+        }
+        renderList.startCount();
+
+        this.viewBoundingBoxLastFrame.min.set(Infinity, Infinity, Infinity);
+        this.viewBoundingBoxLastFrame.max.set(-Infinity, -Infinity, -Infinity);
+
+        var sceneMaterialTransparent = this.material && this.material.transparent || false;
+        this._doUpdateRenderList(this, camera, sceneMaterialTransparent, renderList);
+
+        renderList.endCount();
+
+        return renderList;
+    },
+
+    /**
+     * Get render list. Used after {@link clay.Scene#updateRenderList}
+     * @param {clay.Camera} camera
+     * @return {clay.Scene.RenderList}
+     */
+    getRenderList: function (camera) {
+        return this._renderLists.get(camera.__uid__);
+    },
+
+    _doUpdateRenderList: function (parent, camera, sceneMaterialTransparent, renderList) {
+        if (parent.invisible) {
+            return;
+        }
+        // TODO Optimize
+        for (var i = 0; i < parent._children.length; i++) {
+            var child = parent._children[i];
+
+            if (child.isRenderable()) {
+                // Frustum culling
+                var worldM = child.isSkinnedMesh() ? IDENTITY : child.worldTransform.array;
+                var geometry = child.geometry;
+
+                mat4.multiplyAffine(WORLDVIEW, camera.viewMatrix.array, worldM);
+                if (!geometry.boundingBox || !this.isFrustumCulled(child, camera, WORLDVIEW)) {
+                    renderList.add(child, child.material.transparent || sceneMaterialTransparent);
+                }
+            }
+            if (child._children.length > 0) {
+                this._doUpdateRenderList(child, camera, sceneMaterialTransparent, renderList);
+            }
+        }
+    },
+
+    /**
+     * If an scene object is culled by camera frustum
+     *
+     * Object can be a renderable or a light
+     *
+     * @param {clay.Node} object
+     * @param {clay.Camera} camera
+     * @param {Array.<number>} worldViewMat represented with array
+     * @param {Array.<number>} projectionMat represented with array
+     */
+    isFrustumCulled: (function () {
+        // Frustum culling
+        // http://www.cse.chalmers.se/~uffe/vfc_bbox.pdf
+        var cullingBoundingBox = new __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__["a" /* default */]();
+        var cullingMatrix = new __WEBPACK_IMPORTED_MODULE_7__math_Matrix4__["a" /* default */]();
+        return function(object, camera, worldViewMat) {
+            // Bounding box can be a property of object(like light) or renderable.geometry
+            // PENDING
+            var geoBBox = object.boundingBox || object.geometry.boundingBox;
+            cullingMatrix.array = worldViewMat;
+            cullingBoundingBox.transformFrom(geoBBox, cullingMatrix);
+
+            // Passingly update the scene bounding box
+            // FIXME exclude very large mesh like ground plane or terrain ?
+            // FIXME Only rendererable which cast shadow ?
+
+            // FIXME boundingBox becomes much larger after transformd.
+            if (object.castShadow) {
+                this.viewBoundingBoxLastFrame.union(cullingBoundingBox);
+            }
+            // Ignore frustum culling if object is skinned mesh.
+            if (object.frustumCulling && !object.isSkinnedMesh())  {
+                if (!cullingBoundingBox.intersectBoundingBox(camera.frustum.boundingBox)) {
+                    return true;
+                }
+
+                cullingMatrix.array = camera.projectionMatrix.array;
+                if (
+                    cullingBoundingBox.max.array[2] > 0 &&
+                    cullingBoundingBox.min.array[2] < 0
+                ) {
+                    // Clip in the near plane
+                    cullingBoundingBox.max.array[2] = -1e-20;
+                }
+
+                cullingBoundingBox.applyProjection(cullingMatrix);
+
+                var min = cullingBoundingBox.min.array;
+                var max = cullingBoundingBox.max.array;
+
+                if (
+                    max[0] < -1 || min[0] > 1
+                    || max[1] < -1 || min[1] > 1
+                    || max[2] < -1 || min[2] > 1
+                ) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+    })(),
+
+    _updateLightUniforms: function () {
+        var lights = this.lights;
+        // Put the light cast shadow before the light not cast shadow
+        lights.sort(lightSortFunc);
+
+        var lightUniforms = this._lightUniforms;
+        for (var group in lightUniforms) {
+            for (var symbol in lightUniforms[group]) {
+                lightUniforms[group][symbol].value.length = 0;
+            }
+        }
+        for (var i = 0; i < lights.length; i++) {
+
+            var light = lights[i];
+
+            if (light.invisible) {
+                continue;
+            }
+
+            var group = light.group;
+
+            for (var symbol in light.uniformTemplates) {
+                var uniformTpl = light.uniformTemplates[symbol];
+                var value = uniformTpl.value(light);
+                if (value == null) {
+                    continue;
+                }
+                if (!lightUniforms[group]) {
+                    lightUniforms[group] = {};
+                }
+                if (!lightUniforms[group][symbol]) {
+                    lightUniforms[group][symbol] = {
+                        type: '',
+                        value: []
+                    };
+                }
+                var lu = lightUniforms[group][symbol];
+                lu.type = uniformTpl.type + 'v';
+                switch (uniformTpl.type) {
+                    case '1i':
+                    case '1f':
+                    case 't':
+                        lu.value.push(value);
+                        break;
+                    case '2f':
+                    case '3f':
+                    case '4f':
+                        for (var j = 0; j < value.length; j++) {
+                            lu.value.push(value[j]);
+                        }
+                        break;
+                    default:
+                        console.error('Unkown light uniform type ' + uniformTpl.type);
+                }
+            }
+        }
+    },
+
+    getLightGroups: function () {
+        var lightGroups = [];
+        for (var groupId in this._lightNumber) {
+            lightGroups.push(groupId);
+        }
+        return lightGroups;
+    },
+
+    getNumberChangedLightGroups: function () {
+        var lightGroups = [];
+        for (var groupId in this._lightNumber) {
+            if (this.isLightNumberChanged(groupId)) {
+                lightGroups.push(groupId);
+            }
+        }
+        return lightGroups;
+    },
+
+    // Determine if light group is different with since last frame
+    // Used to determine whether to update shader and scene's uniforms in Renderer.render
+    isLightNumberChanged: function (lightGroup) {
+        var prevLightNumber = this._previousLightNumber;
+        var currentLightNumber = this._lightNumber;
+        // PENDING Performance
+        for (var type in currentLightNumber[lightGroup]) {
+            if (!prevLightNumber[lightGroup]) {
+                return true;
+            }
+            if (currentLightNumber[lightGroup][type] !== prevLightNumber[lightGroup][type]) {
+                return true;
+            }
+        }
+        for (var type in prevLightNumber[lightGroup]) {
+            if (!currentLightNumber[lightGroup]) {
+                return true;
+            }
+            if (currentLightNumber[lightGroup][type] !== prevLightNumber[lightGroup][type]) {
+                return true;
+            }
+        }
+        return false;
+    },
+
+    getLightsNumbers: function (lightGroup) {
+        return this._lightNumber[lightGroup];
+    },
+
+    getProgramKey: function (lightGroup) {
+        return this._lightProgramKeys[lightGroup];
+    },
+
+    setLightUniforms: (function () {
+        function setUniforms(uniforms, program, renderer) {
+            for (var symbol in uniforms) {
+                var lu = uniforms[symbol];
+                if (lu.type === 'tv') {
+                    if (!program.hasUniform(symbol)) {
+                        continue;
+                    }
+                    var texSlots = [];
+                    for (var i = 0; i < lu.value.length; i++) {
+                        var texture = lu.value[i];
+                        var slot = program.takeCurrentTextureSlot(renderer, texture);
+                        texSlots.push(slot);
+                    }
+                    program.setUniform(renderer.gl, '1iv', symbol, texSlots);
+                }
+                else {
+                    program.setUniform(renderer.gl, lu.type, symbol, lu.value);
+                }
+            }
+        }
+
+        return function (program, lightGroup, renderer) {
+            setUniforms(this._lightUniforms[lightGroup], program, renderer);
+            // Set shadows
+            setUniforms(this.shadowUniforms, program, renderer);
+        };
+    })(),
+
+    /**
+     * Dispose self, clear all the scene objects
+     * But resources of gl like texuture, shader will not be disposed.
+     * Mostly you should use disposeScene method in Renderer to do dispose.
+     */
+    dispose: function () {
+        this.material = null;
+        this._opaqueList = [];
+        this._transparentList = [];
+
+        this.lights = [];
+
+        this._lightUniforms = {};
+
+        this._lightNumber = {};
+        this._nodeRepository = {};
+    }
+});
+
+function lightSortFunc(a, b) {
+    if (b.castShadow && !a.castShadow) {
+        return true;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Scene);
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Camera__ = __webpack_require__(51);
+
+/**
+ * @constructor clay.camera.Orthographic
+ * @extends clay.Camera
+ */
+var Orthographic = __WEBPACK_IMPORTED_MODULE_0__Camera__["a" /* default */].extend(
+/** @lends clay.camera.Orthographic# */
+{
+    /**
+     * @type {number}
+     */
+    left: -1,
+    /**
+     * @type {number}
+     */
+    right: 1,
+    /**
+     * @type {number}
+     */
+    near: -1,
+    /**
+     * @type {number}
+     */
+    far: 1,
+    /**
+     * @type {number}
+     */
+    top: 1,
+    /**
+     * @type {number}
+     */
+    bottom: -1
+},
+/** @lends clay.camera.Orthographic.prototype */
+{
+
+    updateProjectionMatrix: function() {
+        this.projectionMatrix.ortho(this.left, this.right, this.bottom, this.top, this.near, this.far);
+    },
+
+    decomposeProjectionMatrix: function () {
+        var m = this.projectionMatrix.array;
+        this.left = (-1 - m[12]) / m[0];
+        this.right = (1 - m[12]) / m[0];
+        this.top = (1 - m[13]) / m[5];
+        this.bottom = (-1 - m[13]) / m[5];
+        this.near = -(-1 - m[14]) / m[10];
+        this.far = -(1 - m[14]) / m[10];
+    },
+    /**
+     * @return {clay.camera.Orthographic}
+     */
+    clone: function() {
+        var camera = __WEBPACK_IMPORTED_MODULE_0__Camera__["a" /* default */].prototype.clone.call(this);
+        camera.left = this.left;
+        camera.right = this.right;
+        camera.near = this.near;
+        camera.far = this.far;
+        camera.top = this.top;
+        camera.bottom = this.bottom;
+
+        return camera;
+    }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (Orthographic);
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    convertToDynamicArray: function (clear) {
+        if (clear) {
+            this.resetOffset();
+        }
+        var attributes = this.attributes;
+        for (var name in attributes) {
+            if (clear || !attributes[name].value) {
+                attributes[name].value = [];
+            }
+            else {
+                attributes[name].value = Array.prototype.slice.call(attributes[name].value);
+            }
+        }
+        if (clear || !this.indices) {
+            this.indices = [];
+        }
+        else {
+            this.indices = Array.prototype.slice.call(this.indices);
+        }
+    },
+
+    convertToTypedArray: function () {
+        var attributes = this.attributes;
+        for (var name in attributes) {
+            if (attributes[name].value && attributes[name].value.length > 0) {
+                attributes[name].value = new Float32Array(attributes[name].value);
+            }
+            else {
+                attributes[name].value = null;
+            }
+        }
+        if (this.indices && this.indices.length > 0) {
+            this.indices = this.vertexCount > 0xffff ? new Uint32Array(this.indices) : new Uint16Array(this.indices);
+        }
+
+        this.dirty();
+    }
+});
 
 /***/ }),
 /* 35 */
@@ -16423,7 +16637,7 @@ var Plane = __WEBPACK_IMPORTED_MODULE_0__Geometry__["a" /* default */].extend(
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_math_Vector2__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_math_Quaternion__ = __webpack_require__(50);
@@ -17284,7 +17498,7 @@ var _number = __webpack_require__(78);
 
 var parsePercent = _number.parsePercent;
 
-var formatUtil = __webpack_require__(149);
+var formatUtil = __webpack_require__(162);
 
 // Layout helpers for each component positioning
 var each = zrUtil.each;
@@ -17767,7 +17981,7 @@ exports.copyLayoutParams = copyLayoutParams;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 
 
 // PENDING
@@ -17776,12 +17990,12 @@ exports.copyLayoutParams = copyLayoutParams;
 /**
  * Node of graph based post processing.
  *
- * @constructor clay.compositor.Node
+ * @constructor clay.compositor.CompositorNode
  * @extends clay.core.Base
  *
  */
-var Node = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(function () {
-    return /** @lends clay.compositor.Node# */ {
+var CompositorNode = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(function () {
+    return /** @lends clay.compositor.CompositorNode# */ {
         /**
          * @type {string}
          */
@@ -17824,7 +18038,7 @@ var Node = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(fu
         _compositor: null
     };
 },
-/** @lends clay.compositor.Node.prototype */
+/** @lends clay.compositor.CompositorNode.prototype */
 {
 
     // TODO Remove parameter function callback
@@ -18013,7 +18227,7 @@ var Node = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(fu
     }
 });
 
-/* harmony default export */ __webpack_exports__["a"] = (Node);
+/* harmony default export */ __webpack_exports__["a"] = (CompositorNode);
 
 
 /***/ }),
@@ -18061,9 +18275,9 @@ function halton(index, base) {
             var axis3DModel = seriesModel.getReferringComponents(dim + 'Axis3D')[0];
             return {
                 type: (axis3DModel && axis3DModel.get('type') === 'category') ? 'ordinal' : 'float',
-                name: dim,
+                name: dim
                 // Find stackable dimension. Which will represent value.
-                stackable: dim === 'z'
+                // stackable: dim === 'z'
             };
         })
     });
@@ -18078,7 +18292,15 @@ function halton(index, base) {
         });
     }
 
+    var stackCalculationInfo = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.helper.dataStack.enableDataStack(
+        // Only support 'z' and `byIndex` now.
+        seriesModel, dimensions, {byIndex: true, stackedCoordDimension: 'z'}
+    );
+
     var data = new __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.List(dimensions, seriesModel);
+
+    data.setCalculationInfo(stackCalculationInfo);
+
     data.initData(source);
 
     return data;
@@ -18147,18 +18369,18 @@ module.exports = _default;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_GLInfo__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_GLInfo__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_vendor__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__math_BoundingBox__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Material__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__math_Vector2__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gpu_ProgramManager__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Shader__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shader_source_header_light__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shader_source_prez_glsl_js__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gpu_ProgramManager__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Shader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shader_source_header_light__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shader_source_prez_glsl_js__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__dep_glmatrix__);
 // TODO Resources like shader, texture, geometry reference management
@@ -18195,6 +18417,21 @@ function defaultGetMaterial(renderable) {
 
 function noop() {}
 
+var attributeBufferTypeMap = {
+    float: __WEBPACK_IMPORTED_MODULE_2__core_glenum__["a" /* default */].FLOAT,
+    byte: __WEBPACK_IMPORTED_MODULE_2__core_glenum__["a" /* default */].BYTE,
+    ubyte: __WEBPACK_IMPORTED_MODULE_2__core_glenum__["a" /* default */].UNSIGNED_BYTE,
+    short: __WEBPACK_IMPORTED_MODULE_2__core_glenum__["a" /* default */].SHORT,
+    ushort: __WEBPACK_IMPORTED_MODULE_2__core_glenum__["a" /* default */].UNSIGNED_SHORT
+};
+
+function VertexArrayObject(availableAttributes, availableAttributeSymbols, indicesBuffer) {
+    this.availableAttributes = availableAttributes;
+    this.availableAttributeSymbols = availableAttributeSymbols;
+    this.indicesBuffer = indicesBuffer;
+
+    this.vao = null;
+}
 /**
  * @constructor clay.Renderer
  */
@@ -18228,7 +18465,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
          * @type {number}
          * @private
          */
-        devicePixelRatio: window.devicePixelRatio || 1.0,
+        devicePixelRatio: (window && window.devicePixelRatio) || 1.0,
 
         /**
          * Clear color
@@ -18559,27 +18796,23 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
         if (!notUpdateScene) {
             scene.update(false);
         }
+        scene.updateLights();
+
         camera = camera || scene.getMainCamera();
         if (!camera) {
             console.error('Can\'t find camera in the scene.');
             return;
         }
-        // Update if camera not mounted on the scene
-        if (!camera.getScene()) {
-            camera.update(true);
-        }
+        camera.update();
+        var renderList = scene.updateRenderList(camera);
 
         this._sceneRendering = scene;
 
-        // Reset the scene bounding box;
-        scene.viewBoundingBoxLastFrame.min.set(Infinity, Infinity, Infinity);
-        scene.viewBoundingBoxLastFrame.max.set(-Infinity, -Infinity, -Infinity);
-
-        var opaqueList = this.cullRenderList(scene.opaqueList, scene, camera);
-        var transparentList = this.cullRenderList(scene.transparentList, scene, camera);
+        var opaqueList = renderList.opaque;
+        var transparentList = renderList.transparent;
         var sceneMaterial = scene.material;
 
-        scene.trigger('beforerender', this, scene, camera);
+        scene.trigger('beforerender', this, scene, camera, renderList);
 
         // Render pre z
         if (preZ) {
@@ -18601,30 +18834,24 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
         }
 
         // Render opaque list
-        var opaqueRenderInfo = this.renderPass(opaqueList, camera, {
+        this.renderPass(opaqueList, camera, {
             getMaterial: function (renderable) {
                 return sceneMaterial || renderable.material;
             },
             sortCompare: this.opaqueSortCompare
         });
 
-        var transparentRenderInfo = this.renderPass(transparentList, camera, {
+        this.renderPass(transparentList, camera, {
             getMaterial: function (renderable) {
                 return sceneMaterial || renderable.material;
             },
             sortCompare: this.transparentSortCompare
         });
 
-        var renderInfo = {};
-        for (var name in opaqueRenderInfo) {
-            renderInfo[name] = opaqueRenderInfo[name] + transparentRenderInfo[name];
-        }
-
-        scene.trigger('afterrender', this, scene, camera, renderInfo);
+        scene.trigger('afterrender', this, scene, camera, renderList);
 
         // Cleanup
         this._sceneRendering = null;
-        return renderInfo;
     },
 
     getProgram: function (renderable, renderMaterial, scene) {
@@ -18659,7 +18886,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
             if (i > 0) {
                 var prevRenderable = list[i - 1];
                 var prevJointsLen = prevRenderable.joints ? prevRenderable.joints.length : 0;
-                var jointsLen = renderable.joints.length ? renderable.joints.length : 0;
+                var jointsLen = renderable.joints ? renderable.joints.length : 0;
                 // Keep program not change if joints, material, lightGroup are same of two renderables.
                 if (jointsLen === prevJointsLen
                     && renderable.material === prevRenderable.material
@@ -18679,32 +18906,6 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
     },
 
     /**
-     * Do frustum culling on render list
-     */
-    cullRenderList: function (list, scene, camera) {
-        var culledRenderList = [];
-        for (var i = 0; i < list.length; i++) {
-            var renderable = list[i];
-
-            var worldM = renderable.isSkinnedMesh() ? matrices.IDENTITY : renderable.worldTransform.array;
-            var geometry = renderable.geometry;
-
-            mat4.multiplyAffine(matrices.WORLDVIEW, camera.viewMatrix.array , worldM);
-            if (geometry.boundingBox) {
-                if (this.isFrustumCulled(
-                    renderable, scene, camera, matrices.WORLDVIEW, camera.projectionMatrix.array
-                )) {
-                    continue;
-                }
-            }
-
-            culledRenderList.push(renderable);
-        }
-
-        return culledRenderList;
-    },
-
-    /**
      * Render a single renderable list in camera in sequence
      * @param {clay.Renderable[]} list List of all renderables.
      * @param {clay.Camera} camera
@@ -18719,13 +18920,6 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
     renderPass: function(list, camera, passConfig) {
         this.trigger('beforerenderpass', this, list, camera, passConfig);
 
-        var renderInfo = {
-            triangleCount: 0,
-            vertexCount: 0,
-            drawCallCount: 0,
-            meshCount: list.length,
-            renderedMeshCount: 0
-        };
         passConfig = passConfig || {};
         passConfig.getMaterial = passConfig.getMaterial || defaultGetMaterial;
         passConfig.beforeRender = passConfig.beforeRender || noop;
@@ -18771,6 +18965,10 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
         var depthTest, depthMask;
         var culling, cullFace, frontFace;
         var transparent;
+        var drawID;
+        var currentVAO;
+
+        var vaoExt = this.getGLExtension('OES_vertex_array_object');
 
         for (var i = 0; i < list.length; i++) {
             var renderable = list[i];
@@ -18780,14 +18978,23 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
 
             // Skinned mesh will transformed to joint space. Ignore the mesh transform
             var worldM = renderable.isSkinnedMesh() ? matrices.IDENTITY : renderable.worldTransform.array;
-
+            var geometry = renderable.geometry;
             var material = passConfig.getMaterial.call(this, renderable);
 
             var program = renderable.__program;
             var shader = material.shader;
 
+            var currentDrawID = geometry.__uid__ + '-' + program.__uid__;
+            var drawIDChanged = currentDrawID !== drawID;
+            drawID = currentDrawID;
+            if (drawIDChanged && vaoExt) {
+                // TODO Seems need to be bound to null immediately (or before bind another program?) if vao is changed
+                vaoExt.bindVertexArrayOES(null);
+            }
+
             mat4.copy(matrices.WORLD, worldM);
-            mat4.multiply(matrices.WORLDVIEWPROJECTION, matrices.VIEWPROJECTION , worldM);
+            mat4.multiply(matrices.WORLDVIEWPROJECTION, matrices.VIEWPROJECTION, worldM);
+            mat4.multiplyAffine(matrices.WORLDVIEW, camera.viewMatrix.array, worldM);
             if (shader.matrixSemantics.WORLDINVERSE ||
                 shader.matrixSemantics.WORLDINVERSETRANSPOSE) {
                 mat4.invert(matrices.WORLDINVERSE, worldM);
@@ -18832,9 +19039,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
             // Program changes also needs reset the materials.
             if (prevMaterial !== material || programChanged) {
                 if (material.depthTest !== depthTest) {
-                    material.depthTest
-                        ? _gl.enable(_gl.DEPTH_TEST)
-                        : _gl.disable(_gl.DEPTH_TEST);
+                    material.depthTest ? _gl.enable(_gl.DEPTH_TEST) : _gl.disable(_gl.DEPTH_TEST);
                     depthTest = material.depthTest;
                 }
                 if (material.depthMask !== depthMask) {
@@ -18842,9 +19047,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
                     depthMask = material.depthMask;
                 }
                 if (material.transparent !== transparent) {
-                    material.transparent
-                        ? _gl.enable(_gl.BLEND)
-                        : _gl.disable(_gl.BLEND);
+                    material.transparent ? _gl.enable(_gl.BLEND) : _gl.disable(_gl.BLEND);
                     transparent = material.transparent;
                 }
                 // TODO cache blending
@@ -18859,7 +19062,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
                     }
                 }
 
-                material.bind(this, program, prevMaterial, prevProgram);
+                this._bindMaterial(material, program, prevMaterial || null, prevProgram || null);
                 prevMaterial = material;
             }
 
@@ -18888,30 +19091,264 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
                 culling ? _gl.enable(_gl.CULL_FACE) : _gl.disable(_gl.CULL_FACE);
             }
 
-            var objectRenderInfo = renderable.render(this, material, program);
-
-            if (objectRenderInfo) {
-                renderInfo.triangleCount += objectRenderInfo.triangleCount;
-                renderInfo.vertexCount += objectRenderInfo.vertexCount;
-                renderInfo.drawCallCount += objectRenderInfo.drawCallCount;
-                renderInfo.renderedMeshCount ++;
+            this._updateSkeleton(renderable, program);
+            if (drawIDChanged) {
+                currentVAO = this._bindVAO(vaoExt, shader, geometry, program);
             }
+            this._renderObject(renderable, currentVAO);
 
             // After render hook
-            passConfig.afterRender.call(this, renderable, objectRenderInfo);
-            renderable.afterRender(this, objectRenderInfo);
+            passConfig.afterRender.call(this, renderable);
+            renderable.afterRender(this);
 
             prevProgram = program;
         }
 
-        // Remove programs incase it's not updated in the other passes.
-        for (var i = 0; i < list.length; i++) {
-            list[i].__program = null;
+        // TODO Seems need to be bound to null immediately if vao is changed?
+        if (vaoExt) {
+            vaoExt.bindVertexArrayOES(null);
         }
 
         this.trigger('afterrenderpass', this, list, camera, passConfig);
+    },
 
-        return renderInfo;
+    _updateSkeleton: function (object, program) {
+        var _gl = this.gl;
+        // Set pose matrices of skinned mesh
+        if (object.skeleton) {
+            object.skeleton.update();
+            var skinMatricesArray = object.skeleton.getSubSkinMatrices(object.__uid__, object.joints);
+            program.setUniformOfSemantic(_gl, 'SKIN_MATRIX', skinMatricesArray);
+        }
+    },
+
+    _renderObject: function (renderable, vao) {
+        var _gl = this.gl;
+        var geometry = renderable.geometry;
+
+        var glDrawMode = renderable.mode;
+
+        // if (glDrawMode === glenum.LINES || glDrawMode === glenum.LINE_STRIP || glDrawMode === glenum.LINE_LOOP) {
+        //     _gl.lineWidth(this.lineWidth);
+        // }
+
+        if (vao.indicesBuffer) {
+            var uintExt = this.getGLExtension('OES_element_index_uint');
+            var useUintExt = uintExt && (geometry.indices instanceof Uint32Array);
+            var indicesType = useUintExt ? _gl.UNSIGNED_INT : _gl.UNSIGNED_SHORT;
+
+            _gl.drawElements(glDrawMode, vao.indicesBuffer.count, indicesType, 0);
+        }
+        else {
+            // FIXME Use vertex number in buffer
+            // vertexCount may get the wrong value when geometry forget to mark dirty after update
+            _gl.drawArrays(glDrawMode, 0, geometry.vertexCount);
+        }
+    },
+
+    _bindMaterial: function (material, program, prevMaterial, prevProgram) {
+        var _gl = this.gl;
+        // PENDING Same texture in different material take different slot?
+
+        // May use shader of other material if shader code are same
+        var sameProgram = prevProgram === program;
+
+        var currentTextureSlot = program.currentTextureSlot();
+        var enabledUniforms = material.getEnabledUniforms();
+        var textureUniforms = material.getTextureUniforms();
+
+        for (var u = 0; u < textureUniforms.length; u++) {
+            var symbol = textureUniforms[u];
+            var uniformValue = material.uniforms[symbol].value;
+            var uniformType = material.uniforms[symbol].type;
+            // Not use `instanceof` to determine if a value is texture in Material#bind.
+            // Use type instead, in some case texture may be in different namespaces.
+            // TODO Duck type validate.
+            if (uniformType === 't' && uniformValue) {
+                // Reset slot
+                uniformValue.__slot = -1;
+            }
+            else if (uniformType === 'tv') {
+                for (var i = 0; i < uniformValue.length; i++) {
+                    if (uniformValue[i] instanceof Texture) {
+                        uniformValue[i].__slot = -1;
+                    }
+                }
+            }
+        }
+
+        // Set uniforms
+        for (var u = 0; u < enabledUniforms.length; u++) {
+            var symbol = enabledUniforms[u];
+            var uniform = material.uniforms[symbol];
+            var uniformValue = uniform.value;
+            // PENDING
+            // When binding two materials with the same shader
+            // Many uniforms will be be set twice even if they have the same value
+            // So add a evaluation to see if the uniform is really needed to be set
+            if (prevMaterial && sameProgram) {
+                if (prevMaterial.uniforms[symbol].value === uniformValue) {
+                    continue;
+                }
+            }
+            var uniformType = uniform.type;
+
+            if (uniformValue == null) {
+                // FIXME Assume material with same shader have same order uniforms
+                // Or if different material use same textures,
+                // the slot will be different and still skipped because optimization
+                if (uniform.type === 't') {
+                    var slot = program.currentTextureSlot();
+                    var res = program.setUniform(_gl, '1i', symbol, slot);
+                    if (res) { // Texture is enabled
+                        // Still occupy the slot to make sure same texture in different materials have same slot.
+                        program.takeCurrentTextureSlot(this, null);
+                    }
+                }
+                continue;
+            }
+            else if (uniformType === 't') {
+                if (uniformValue.__slot < 0) {
+                    var slot = program.currentTextureSlot();
+                    var res = program.setUniform(_gl, '1i', symbol, slot);
+                    if (!res) { // Texture uniform is not enabled
+                        continue;
+                    }
+                    program.takeCurrentTextureSlot(this, uniformValue);
+                    uniformValue.__slot = slot;
+                }
+                // Multiple uniform use same texture..
+                else {
+                    program.setUniform(_gl, '1i', symbol, uniformValue.__slot);
+                }
+            }
+            else if (Array.isArray(uniformValue)) {
+                if (uniformValue.length === 0) {
+                    continue;
+                }
+                // Texture Array
+                if (uniformType === 'tv') {
+                    if (!program.hasUniform(symbol)) {
+                        continue;
+                    }
+
+                    var arr = [];
+                    for (var i = 0; i < uniformValue.length; i++) {
+                        var texture = uniformValue[i];
+
+                        if (texture.__slot < 0) {
+                            var slot = program.currentTextureSlot();
+                            arr.push(slot);
+                            program.takeCurrentTextureSlot(this, texture);
+                            texture.__slot = slot;
+                        }
+                        else {
+                            arr.push(texture.__slot);
+                        }
+                    }
+
+                    program.setUniform(_gl, '1iv', symbol, arr);
+                }
+                else {
+                    program.setUniform(_gl, uniform.type, symbol, uniformValue);
+                }
+            }
+            else{
+                program.setUniform(_gl, uniform.type, symbol, uniformValue);
+            }
+        }
+        // Texture slot maybe used out of material.
+        program.resetTextureSlot(currentTextureSlot);
+    },
+
+    _bindVAO: function (vaoExt, shader, geometry, program) {
+        var isStatic = !geometry.dynamic;
+        var _gl = this.gl;
+
+        var vaoId = this.__uid__ + '-' + program.__uid__;
+        var vao = geometry.__vaoCache[vaoId];
+        if (!vao) {
+            var chunks = geometry.getBufferChunks(this);
+            if (!chunks || !chunks.length) {  // Empty mesh
+                return;
+            }
+            var chunk = chunks[0];
+            var attributeBuffers = chunk.attributeBuffers;
+            var indicesBuffer = chunk.indicesBuffer;
+
+            var availableAttributes = [];
+            var availableAttributeSymbols = [];
+            for (var a = 0; a < attributeBuffers.length; a++) {
+                var attributeBufferInfo = attributeBuffers[a];
+                var name = attributeBufferInfo.name;
+                var semantic = attributeBufferInfo.semantic;
+                var symbol;
+                if (semantic) {
+                    var semanticInfo = shader.attributeSemantics[semantic];
+                    symbol = semanticInfo && semanticInfo.symbol;
+                }
+                else {
+                    symbol = name;
+                }
+                if (symbol && program.attributes[symbol]) {
+                    availableAttributes.push(attributeBufferInfo);
+                    availableAttributeSymbols.push(symbol);
+                }
+            }
+
+            vao = new VertexArrayObject(
+                availableAttributes,
+                availableAttributeSymbols,
+                indicesBuffer
+            );
+
+            if (isStatic) {
+                geometry.__vaoCache[vaoId] = vao;
+            }
+        }
+
+        var needsBindAttributes = true;
+
+        // Create vertex object array cost a lot
+        // So we don't use it on the dynamic object
+        if (vaoExt && isStatic) {
+            // Use vertex array object
+            // http://blog.tojicode.com/2012/10/oesvertexarrayobject-extension.html
+            if (vao.vao == null) {
+                vao.vao = vaoExt.createVertexArrayOES();
+            }
+            else {
+                needsBindAttributes = false;
+            }
+            vaoExt.bindVertexArrayOES(vao.vao);
+        }
+
+        var availableAttributes = vao.availableAttributes;
+        var indicesBuffer = vao.indicesBuffer;
+
+        if (needsBindAttributes) {
+            var locationList = program.enableAttributes(this, vao.availableAttributeSymbols, (vaoExt && isStatic && vao));
+            // Setting attributes;
+            for (var a = 0; a < availableAttributes.length; a++) {
+                var location = locationList[a];
+                if (location === -1) {
+                    continue;
+                }
+                var attributeBufferInfo = availableAttributes[a];
+                var buffer = attributeBufferInfo.buffer;
+                var size = attributeBufferInfo.size;
+                var glType = attributeBufferTypeMap[attributeBufferInfo.type] || _gl.FLOAT;
+
+                _gl.bindBuffer(_gl.ARRAY_BUFFER, buffer);
+                _gl.vertexAttribPointer(location, size, glType, false, 0, 0);
+            }
+
+            if (geometry.isUseIndices()) {
+                _gl.bindBuffer(_gl.ELEMENT_ARRAY_BUFFER, indicesBuffer.buffer);
+            }
+        }
+
+        return vao;
     },
 
     renderPreZ: function (list, scene, camera) {
@@ -18940,69 +19377,6 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
     },
 
     /**
-     * If an scene object is culled by camera frustum
-     *
-     * Object can be a renderable or a light
-     *
-     * @param {clay.Node} Scene object
-     * @param {clay.Camera} camera
-     * @param {Array.<number>} worldViewMat represented with array
-     * @param {Array.<number>} projectionMat represented with array
-     */
-    isFrustumCulled: (function () {
-        // Frustum culling
-        // http://www.cse.chalmers.se/~uffe/vfc_bbox.pdf
-        var cullingBoundingBox = new __WEBPACK_IMPORTED_MODULE_4__math_BoundingBox__["a" /* default */]();
-        var cullingMatrix = new __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__["a" /* default */]();
-        return function (object, scene, camera, worldViewMat, projectionMat) {
-            // Bounding box can be a property of object(like light) or renderable.geometry
-            var geoBBox = object.boundingBox || object.geometry.boundingBox;
-            cullingMatrix.array = worldViewMat;
-            cullingBoundingBox.copy(geoBBox);
-            cullingBoundingBox.applyTransform(cullingMatrix);
-
-            // Passingly update the scene bounding box
-            // FIXME exclude very large mesh like ground plane or terrain ?
-            // FIXME Only rendererable which cast shadow ?
-
-            // FIXME boundingBox becomes much larger after transformd.
-            if (scene && object.isRenderable() && object.castShadow) {
-                scene.viewBoundingBoxLastFrame.union(cullingBoundingBox);
-            }
-            // Ignore frustum culling if object is skinned mesh.
-            if (object.frustumCulling && !object.isSkinnedMesh())  {
-                if (!cullingBoundingBox.intersectBoundingBox(camera.frustum.boundingBox)) {
-                    return true;
-                }
-
-                cullingMatrix.array = projectionMat;
-                if (
-                    cullingBoundingBox.max.array[2] > 0 &&
-                    cullingBoundingBox.min.array[2] < 0
-                ) {
-                    // Clip in the near plane
-                    cullingBoundingBox.max.array[2] = -1e-20;
-                }
-
-                cullingBoundingBox.applyProjection(cullingMatrix);
-
-                var min = cullingBoundingBox.min.array;
-                var max = cullingBoundingBox.max.array;
-
-                if (
-                    max[0] < -1 || min[0] > 1
-                    || max[1] < -1 || min[1] > 1
-                    || max[2] < -1 || min[2] > 1
-                ) {
-                    return true;
-                }
-            }
-
-            return false;
-        };
-    })(),
-
-    /**
      * Dispose given scene, including all geometris, textures and shaders in the scene
      * @param {clay.Scene} scene
      */
@@ -19022,9 +19396,33 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
         if (root.getParent()) {
             root.getParent().remove(root);
         }
+        var disposedMap = {};
         root.traverse(function(node) {
+            var material = node.material;
             if (node.geometry && disposeGeometry) {
                 node.geometry.dispose(this);
+            }
+            if (disposeTexture && material && !disposedMap[material.__uid__]) {
+                var textureUniforms = material.getTextureUniforms();
+                for (var u = 0; u < textureUniforms.length; u++) {
+                    var uniformName = textureUniforms[u];
+                    var val = material.uniforms[uniformName].value;
+                    var uniformType = material.uniforms[uniformName].type;
+                    if (!val) {
+                        continue;
+                    }
+                    if (uniformType === 't') {
+                        val.dispose && val.dispose(this);
+                    }
+                    else if (uniformType === 'tv') {
+                        for (var k = 0; k < val.length; k++) {
+                            if (val[k]) {
+                                val[k].dispose && val[k].dispose(this);
+                            }
+                        }
+                    }
+                }
+                disposedMap[material.__uid__] = true;
             }
             // Particle system and AmbientCubemap light need to dispose
             if (node.dispose) {
@@ -19069,8 +19467,8 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
      *
      * @param  {number}       x
      * @param  {number}       y
-     * @param  {clay.math.Vector2} [out]
-     * @return {clay.math.Vector2}
+     * @param  {clay.Vector2} [out]
+     * @return {clay.Vector2}
      */
     screenToNDC: function(x, y, out) {
         if (!out) {
@@ -19106,7 +19504,7 @@ Renderer.opaqueSortCompare = Renderer.prototype.opaqueSortCompare = function(x, 
             }
             return x.material.__uid__ - y.material.__uid__;
         }
-        if (x.__program  && y.__program) {
+        if (x.__program && y.__program) {
             return x.__program.__uid__ - y.__program.__uid__;
         }
         return 0;
@@ -19536,17 +19934,17 @@ var EPSILON = 1e-5;
 
 /**
  * @constructor
- * @alias clay.math.Ray
- * @param {clay.math.Vector3} [origin]
- * @param {clay.math.Vector3} [direction]
+ * @alias clay.Ray
+ * @param {clay.Vector3} [origin]
+ * @param {clay.Vector3} [direction]
  */
 var Ray = function (origin, direction) {
     /**
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.origin = origin || new __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */]();
     /**
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.direction = direction || new __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */]();
 };
@@ -19558,9 +19956,9 @@ Ray.prototype = {
     // http://www.siggraph.org/education/materials/HyperGraph/raytrace/rayplane_intersection.htm
     /**
      * Calculate intersection point between ray and a give plane
-     * @param  {clay.math.Plane} plane
-     * @param  {clay.math.Vector3} [out]
-     * @return {clay.math.Vector3}
+     * @param  {clay.Plane} plane
+     * @param  {clay.Vector3} [out]
+     * @return {clay.Vector3}
      */
     intersectPlane: function (plane, out) {
         var pn = plane.normal.array;
@@ -19584,7 +19982,7 @@ Ray.prototype = {
 
     /**
      * Mirror the ray against plane
-     * @param  {clay.math.Plane} plane
+     * @param  {clay.Plane} plane
      */
     mirrorAgainstPlane: function (plane) {
         // Distance to plane
@@ -19611,10 +20009,10 @@ Ray.prototype = {
 
     /**
      * Calculate intersection point between ray and sphere
-     * @param  {clay.math.Vector3} center
+     * @param  {clay.Vector3} center
      * @param  {number} radius
-     * @param  {clay.math.Vector3} out
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} out
+     * @return {clay.Vector3}
      */
     intersectSphere: (function () {
         var v = vec3.create();
@@ -19664,9 +20062,9 @@ Ray.prototype = {
     // http://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-7-intersecting-simple-shapes/ray-box-intersection/
     /**
      * Calculate intersection point between ray and bounding box
-     * @param {clay.math.BoundingBox} bbox
-     * @param {clay.math.Vector3}
-     * @return {clay.math.Vector3}
+     * @param {clay.BoundingBox} bbox
+     * @param {clay.Vector3}
+     * @return {clay.Vector3}
      */
     intersectBoundingBox: function (bbox, out) {
         var dir = this.direction.array;
@@ -19742,13 +20140,13 @@ Ray.prototype = {
     // http://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
     /**
      * Calculate intersection point between ray and three triangle vertices
-     * @param {clay.math.Vector3} a
-     * @param {clay.math.Vector3} b
-     * @param {clay.math.Vector3} c
+     * @param {clay.Vector3} a
+     * @param {clay.Vector3} b
+     * @param {clay.Vector3} c
      * @param {boolean}           singleSided, CW triangle will be ignored
-     * @param {clay.math.Vector3} [out]
-     * @param {clay.math.Vector3} [barycenteric] barycentric coords
-     * @return {clay.math.Vector3}
+     * @param {clay.Vector3} [out]
+     * @param {clay.Vector3} [barycenteric] barycentric coords
+     * @return {clay.Vector3}
      */
     intersectTriangle: (function () {
 
@@ -19816,7 +20214,7 @@ Ray.prototype = {
 
     /**
      * Apply an affine transform matrix to the ray
-     * @return {clay.math.Matrix4} matrix
+     * @return {clay.Matrix4} matrix
      */
     applyTransform: function (matrix) {
         __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */].add(this.direction, this.direction, this.origin);
@@ -19829,7 +20227,7 @@ Ray.prototype = {
 
     /**
      * Copy values from another ray
-     * @param {clay.math.Ray} ray
+     * @param {clay.Ray} ray
      */
     copy: function (ray) {
         __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */].copy(this.origin, ray.origin);
@@ -19838,7 +20236,7 @@ Ray.prototype = {
 
     /**
      * Clone a new ray
-     * @return {clay.math.Ray}
+     * @return {clay.Ray}
      */
     clone: function () {
         var ray = new Ray();
@@ -19862,7 +20260,7 @@ var quat = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.quat;
 
 /**
  * @constructor
- * @alias clay.math.Quaternion
+ * @alias clay.Quaternion
  * @param {number} x
  * @param {number} y
  * @param {number} z
@@ -19880,7 +20278,7 @@ var Quaternion = function (x, y, z, w) {
      * All methods also operate on the array instead of x, y, z, w components
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Quaternion#
+     * @memberOf clay.Quaternion#
      */
     this.array = quat.fromValues(x, y, z, w);
 
@@ -19889,7 +20287,7 @@ var Quaternion = function (x, y, z, w) {
      * if the matrix is updated to latest
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Quaternion#
+     * @memberOf clay.Quaternion#
      */
     this._dirty = true;
 };
@@ -19900,8 +20298,8 @@ Quaternion.prototype = {
 
     /**
      * Add b to self
-     * @param  {clay.math.Quaternion} b
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Quaternion} b
+     * @return {clay.Quaternion}
      */
     add: function (b) {
         quat.add(this.array, this.array, b.array);
@@ -19911,7 +20309,7 @@ Quaternion.prototype = {
 
     /**
      * Calculate the w component from x, y, z component
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     calculateW: function () {
         quat.calculateW(this.array, this.array);
@@ -19925,7 +20323,7 @@ Quaternion.prototype = {
      * @param  {number}  y
      * @param  {number}  z
      * @param  {number}  w
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     set: function (x, y, z, w) {
         this.array[0] = x;
@@ -19939,7 +20337,7 @@ Quaternion.prototype = {
     /**
      * Set x, y, z and w components from array
      * @param  {Float32Array|number[]} arr
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     setArray: function (arr) {
         this.array[0] = arr[0];
@@ -19953,7 +20351,7 @@ Quaternion.prototype = {
 
     /**
      * Clone a new Quaternion
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     clone: function () {
         return new Quaternion(this.x, this.y, this.z, this.w);
@@ -19963,7 +20361,7 @@ Quaternion.prototype = {
      * Calculates the conjugate of self If the quaternion is normalized,
      * this function is faster than invert and produces the same result.
      *
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     conjugate: function () {
         quat.conjugate(this.array, this.array);
@@ -19973,8 +20371,8 @@ Quaternion.prototype = {
 
     /**
      * Copy from b
-     * @param  {clay.math.Quaternion} b
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Quaternion} b
+     * @return {clay.Quaternion}
      */
     copy: function (b) {
         quat.copy(this.array, b.array);
@@ -19984,7 +20382,7 @@ Quaternion.prototype = {
 
     /**
      * Dot product of self and b
-     * @param  {clay.math.Quaternion} b
+     * @param  {clay.Quaternion} b
      * @return {number}
      */
     dot: function (b) {
@@ -19993,8 +20391,8 @@ Quaternion.prototype = {
 
     /**
      * Set from the given 3x3 rotation matrix
-     * @param  {clay.math.Matrix3} m
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Matrix3} m
+     * @return {clay.Quaternion}
      */
     fromMat3: function (m) {
         quat.fromMat3(this.array, m.array);
@@ -20005,8 +20403,8 @@ Quaternion.prototype = {
     /**
      * Set from the given 4x4 rotation matrix
      * The 4th column and 4th row will be droped
-     * @param  {clay.math.Matrix4} m
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Matrix4} m
+     * @return {clay.Quaternion}
      */
     fromMat4: (function () {
         var mat3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat3;
@@ -20023,7 +20421,7 @@ Quaternion.prototype = {
 
     /**
      * Set to identity quaternion
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     identity: function () {
         quat.identity(this.array);
@@ -20032,7 +20430,7 @@ Quaternion.prototype = {
     },
     /**
      * Invert self
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     invert: function () {
         quat.invert(this.array, this.array);
@@ -20057,10 +20455,10 @@ Quaternion.prototype = {
 
     /**
      * Linear interpolation between a and b
-     * @param  {clay.math.Quaternion} a
-     * @param  {clay.math.Quaternion} b
+     * @param  {clay.Quaternion} a
+     * @param  {clay.Quaternion} b
      * @param  {number}  t
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     lerp: function (a, b, t) {
         quat.lerp(this.array, a.array, b.array, t);
@@ -20070,8 +20468,8 @@ Quaternion.prototype = {
 
     /**
      * Alias for multiply
-     * @param  {clay.math.Quaternion} b
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Quaternion} b
+     * @return {clay.Quaternion}
      */
     mul: function (b) {
         quat.mul(this.array, this.array, b.array);
@@ -20081,8 +20479,8 @@ Quaternion.prototype = {
 
     /**
      * Alias for multiplyLeft
-     * @param  {clay.math.Quaternion} a
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Quaternion} a
+     * @return {clay.Quaternion}
      */
     mulLeft: function (a) {
         quat.multiply(this.array, a.array, this.array);
@@ -20092,8 +20490,8 @@ Quaternion.prototype = {
 
     /**
      * Mutiply self and b
-     * @param  {clay.math.Quaternion} b
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Quaternion} b
+     * @return {clay.Quaternion}
      */
     multiply: function (b) {
         quat.multiply(this.array, this.array, b.array);
@@ -20104,8 +20502,8 @@ Quaternion.prototype = {
     /**
      * Mutiply a and self
      * Quaternion mutiply is not commutative, so the result of mutiplyLeft is different with multiply.
-     * @param  {clay.math.Quaternion} a
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Quaternion} a
+     * @return {clay.Quaternion}
      */
     multiplyLeft: function (a) {
         quat.multiply(this.array, a.array, this.array);
@@ -20115,7 +20513,7 @@ Quaternion.prototype = {
 
     /**
      * Normalize self
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     normalize: function () {
         quat.normalize(this.array, this.array);
@@ -20126,7 +20524,7 @@ Quaternion.prototype = {
     /**
      * Rotate self by a given radian about X axis
      * @param {number} rad
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     rotateX: function (rad) {
         quat.rotateX(this.array, this.array, rad);
@@ -20137,7 +20535,7 @@ Quaternion.prototype = {
     /**
      * Rotate self by a given radian about Y axis
      * @param {number} rad
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     rotateY: function (rad) {
         quat.rotateY(this.array, this.array, rad);
@@ -20148,7 +20546,7 @@ Quaternion.prototype = {
     /**
      * Rotate self by a given radian about Z axis
      * @param {number} rad
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     rotateZ: function (rad) {
         quat.rotateZ(this.array, this.array, rad);
@@ -20159,9 +20557,9 @@ Quaternion.prototype = {
     /**
      * Sets self to represent the shortest rotation from Vector3 a to Vector3 b.
      * a and b needs to be normalized
-     * @param  {clay.math.Vector3} a
-     * @param  {clay.math.Vector3} b
-     * @return {clay.math.Quaternion}
+     * @param  {clay.Vector3} a
+     * @param  {clay.Vector3} b
+     * @return {clay.Quaternion}
      */
     rotationTo: function (a, b) {
         quat.rotationTo(this.array, a.array, b.array);
@@ -20170,10 +20568,10 @@ Quaternion.prototype = {
     },
     /**
      * Sets self with values corresponding to the given axes
-     * @param {clay.math.Vector3} view
-     * @param {clay.math.Vector3} right
-     * @param {clay.math.Vector3} up
-     * @return {clay.math.Quaternion}
+     * @param {clay.Vector3} view
+     * @param {clay.Vector3} right
+     * @param {clay.Vector3} up
+     * @return {clay.Quaternion}
      */
     setAxes: function (view, right, up) {
         quat.setAxes(this.array, view.array, right.array, up.array);
@@ -20183,9 +20581,9 @@ Quaternion.prototype = {
 
     /**
      * Sets self with a rotation axis and rotation angle
-     * @param {clay.math.Vector3} axis
+     * @param {clay.Vector3} axis
      * @param {number} rad
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     setAxisAngle: function (axis, rad) {
         quat.setAxisAngle(this.array, axis.array, rad);
@@ -20194,10 +20592,10 @@ Quaternion.prototype = {
     },
     /**
      * Perform spherical linear interpolation between a and b
-     * @param  {clay.math.Quaternion} a
-     * @param  {clay.math.Quaternion} b
+     * @param  {clay.Quaternion} a
+     * @param  {clay.Quaternion} b
      * @param  {number} t
-     * @return {clay.math.Quaternion}
+     * @return {clay.Quaternion}
      */
     slerp: function (a, b, t) {
         quat.slerp(this.array, a.array, b.array, t);
@@ -20223,7 +20621,7 @@ Quaternion.prototype = {
 
     /**
      * Set from euler
-     * @param {clay.math.Vector3} v
+     * @param {clay.Vector3} v
      * @param {String} order
      */
     fromEuler: function (v, order) {
@@ -20247,7 +20645,7 @@ if (defineProperty) {
     /**
      * @name x
      * @type {number}
-     * @memberOf clay.math.Quaternion
+     * @memberOf clay.Quaternion
      * @instance
      */
     defineProperty(proto, 'x', {
@@ -20263,7 +20661,7 @@ if (defineProperty) {
     /**
      * @name y
      * @type {number}
-     * @memberOf clay.math.Quaternion
+     * @memberOf clay.Quaternion
      * @instance
      */
     defineProperty(proto, 'y', {
@@ -20279,7 +20677,7 @@ if (defineProperty) {
     /**
      * @name z
      * @type {number}
-     * @memberOf clay.math.Quaternion
+     * @memberOf clay.Quaternion
      * @instance
      */
     defineProperty(proto, 'z', {
@@ -20295,7 +20693,7 @@ if (defineProperty) {
     /**
      * @name w
      * @type {number}
-     * @memberOf clay.math.Quaternion
+     * @memberOf clay.Quaternion
      * @instance
      */
     defineProperty(proto, 'w', {
@@ -20312,10 +20710,10 @@ if (defineProperty) {
 // Supply methods that are not in place
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @param  {clay.math.Quaternion} b
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @param  {clay.Quaternion} b
+ * @return {clay.Quaternion}
  */
 Quaternion.add = function (out, a, b) {
     quat.add(out.array, a.array, b.array);
@@ -20324,12 +20722,12 @@ Quaternion.add = function (out, a, b) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
+ * @param  {clay.Quaternion} out
  * @param  {number}     x
  * @param  {number}     y
  * @param  {number}     z
  * @param  {number}     w
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.set = function (out, x, y, z, w) {
     quat.set(out.array, x, y, z, w);
@@ -20337,9 +20735,9 @@ Quaternion.set = function (out, x, y, z, w) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} b
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} b
+ * @return {clay.Quaternion}
  */
 Quaternion.copy = function (out, b) {
     quat.copy(out.array, b.array);
@@ -20348,9 +20746,9 @@ Quaternion.copy = function (out, b) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @return {clay.Quaternion}
  */
 Quaternion.calculateW = function (out, a) {
     quat.calculateW(out.array, a.array);
@@ -20359,9 +20757,9 @@ Quaternion.calculateW = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @return {clay.Quaternion}
  */
 Quaternion.conjugate = function (out, a) {
     quat.conjugate(out.array, a.array);
@@ -20370,8 +20768,8 @@ Quaternion.conjugate = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @return {clay.Quaternion}
  */
 Quaternion.identity = function (out) {
     quat.identity(out.array);
@@ -20380,9 +20778,9 @@ Quaternion.identity = function (out) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @return {clay.Quaternion}
  */
 Quaternion.invert = function (out, a) {
     quat.invert(out.array, a.array);
@@ -20391,8 +20789,8 @@ Quaternion.invert = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Quaternion} a
- * @param  {clay.math.Quaternion} b
+ * @param  {clay.Quaternion} a
+ * @param  {clay.Quaternion} b
  * @return {number}
  */
 Quaternion.dot = function (a, b) {
@@ -20400,7 +20798,7 @@ Quaternion.dot = function (a, b) {
 };
 
 /**
- * @param  {clay.math.Quaternion} a
+ * @param  {clay.Quaternion} a
  * @return {number}
  */
 Quaternion.len = function (a) {
@@ -20410,11 +20808,11 @@ Quaternion.len = function (a) {
 // Quaternion.length = Quaternion.len;
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @param  {clay.math.Quaternion} b
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @param  {clay.Quaternion} b
  * @param  {number}     t
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.lerp = function (out, a, b, t) {
     quat.lerp(out.array, a.array, b.array, t);
@@ -20423,11 +20821,11 @@ Quaternion.lerp = function (out, a, b, t) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @param  {clay.math.Quaternion} b
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @param  {clay.Quaternion} b
  * @param  {number}     t
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.slerp = function (out, a, b, t) {
     quat.slerp(out.array, a.array, b.array, t);
@@ -20436,10 +20834,10 @@ Quaternion.slerp = function (out, a, b, t) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @param  {clay.math.Quaternion} b
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @param  {clay.Quaternion} b
+ * @return {clay.Quaternion}
  */
 Quaternion.mul = function (out, a, b) {
     quat.multiply(out.array, a.array, b.array);
@@ -20449,18 +20847,18 @@ Quaternion.mul = function (out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @param  {clay.math.Quaternion} b
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @param  {clay.Quaternion} b
+ * @return {clay.Quaternion}
  */
 Quaternion.multiply = Quaternion.mul;
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
  * @param  {number}     rad
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.rotateX = function (out, a, rad) {
     quat.rotateX(out.array, a.array, rad);
@@ -20469,10 +20867,10 @@ Quaternion.rotateX = function (out, a, rad) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
  * @param  {number}     rad
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.rotateY = function (out, a, rad) {
     quat.rotateY(out.array, a.array, rad);
@@ -20481,10 +20879,10 @@ Quaternion.rotateY = function (out, a, rad) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
  * @param  {number}     rad
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.rotateZ = function (out, a, rad) {
     quat.rotateZ(out.array, a.array, rad);
@@ -20493,10 +20891,10 @@ Quaternion.rotateZ = function (out, a, rad) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Vector3}    axis
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Vector3}    axis
  * @param  {number}     rad
- * @return {clay.math.Quaternion}
+ * @return {clay.Quaternion}
  */
 Quaternion.setAxisAngle = function (out, axis, rad) {
     quat.setAxisAngle(out.array, axis.array, rad);
@@ -20505,9 +20903,9 @@ Quaternion.setAxisAngle = function (out, axis, rad) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Quaternion} a
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Quaternion} a
+ * @return {clay.Quaternion}
  */
 Quaternion.normalize = function (out, a) {
     quat.normalize(out.array, a.array);
@@ -20516,7 +20914,7 @@ Quaternion.normalize = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Quaternion} a
+ * @param  {clay.Quaternion} a
  * @return {number}
  */
 Quaternion.sqrLen = function (a) {
@@ -20525,15 +20923,15 @@ Quaternion.sqrLen = function (a) {
 
 /**
  * @function
- * @param  {clay.math.Quaternion} a
+ * @param  {clay.Quaternion} a
  * @return {number}
  */
 Quaternion.squaredLength = Quaternion.sqrLen;
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Matrix3}    m
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Matrix3}    m
+ * @return {clay.Quaternion}
  */
 Quaternion.fromMat3 = function (out, m) {
     quat.fromMat3(out.array, m.array);
@@ -20542,11 +20940,11 @@ Quaternion.fromMat3 = function (out, m) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Vector3}    view
- * @param  {clay.math.Vector3}    right
- * @param  {clay.math.Vector3}    up
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Vector3}    view
+ * @param  {clay.Vector3}    right
+ * @param  {clay.Vector3}    up
+ * @return {clay.Quaternion}
  */
 Quaternion.setAxes = function (out, view, right, up) {
     quat.setAxes(out.array, view.array, right.array, up.array);
@@ -20555,10 +20953,10 @@ Quaternion.setAxes = function (out, view, right, up) {
 };
 
 /**
- * @param  {clay.math.Quaternion} out
- * @param  {clay.math.Vector3}    a
- * @param  {clay.math.Vector3}    b
- * @return {clay.math.Quaternion}
+ * @param  {clay.Quaternion} out
+ * @param  {clay.Vector3}    a
+ * @param  {clay.Vector3}    b
+ * @return {clay.Quaternion}
  */
 Quaternion.rotationTo = function (out, a, b) {
     quat.rotationTo(out.array, a.array, b.array);
@@ -20568,8 +20966,8 @@ Quaternion.rotationTo = function (out, a, b) {
 
 /**
  * Set quaternion from euler
- * @param {clay.math.Quaternion} out
- * @param {clay.math.Vector3} v
+ * @param {clay.Quaternion} out
+ * @param {clay.Vector3} v
  * @param {String} order
  */
 Quaternion.fromEuler = function (out, v, order) {
@@ -20639,8 +21037,8 @@ Quaternion.fromEuler = function (out, v, order) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Frustum__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_Ray__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dep_glmatrix__ = __webpack_require__(1);
@@ -20662,25 +21060,25 @@ var Camera = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(funct
     return /** @lends clay.Camera# */ {
         /**
          * Camera projection matrix
-         * @type {clay.math.Matrix4}
+         * @type {clay.Matrix4}
          */
         projectionMatrix: new __WEBPACK_IMPORTED_MODULE_1__math_Matrix4__["a" /* default */](),
 
         /**
          * Inverse of camera projection matrix
-         * @type {clay.math.Matrix4}
+         * @type {clay.Matrix4}
          */
         invProjectionMatrix: new __WEBPACK_IMPORTED_MODULE_1__math_Matrix4__["a" /* default */](),
 
         /**
          * View matrix, equal to inverse of camera's world matrix
-         * @type {clay.math.Matrix4}
+         * @type {clay.Matrix4}
          */
         viewMatrix: new __WEBPACK_IMPORTED_MODULE_1__math_Matrix4__["a" /* default */](),
 
         /**
          * Camera frustum in view space
-         * @type {clay.math.Frustum}
+         * @type {clay.Frustum}
          */
         frustum: new __WEBPACK_IMPORTED_MODULE_2__math_Frustum__["a" /* default */]()
     };
@@ -20716,7 +21114,7 @@ var Camera = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(funct
 
     /**
      * Set camera projection matrix
-     * @param {clay.math.Matrix4} projectionMatrix
+     * @param {clay.Matrix4} projectionMatrix
      */
     setProjectionMatrix: function (projectionMatrix) {
         __WEBPACK_IMPORTED_MODULE_1__math_Matrix4__["a" /* default */].copy(this.projectionMatrix, projectionMatrix);
@@ -20731,9 +21129,9 @@ var Camera = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(funct
     /**
      * Cast a picking ray from camera near plane to far plane
      * @function
-     * @param {clay.math.Vector2} ndc
-     * @param {clay.math.Ray} [out]
-     * @return {clay.math.Ray}
+     * @param {clay.Vector2} ndc
+     * @param {clay.Ray} [out]
+     * @return {clay.Ray}
      */
     castRay: (function () {
         var v4 = vec4.create();
@@ -20758,7 +21156,7 @@ var Camera = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(funct
 
             return ray;
         };
-    })()
+    })(),
 
     /**
      * @function
@@ -20778,7 +21176,7 @@ var Camera = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(funct
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BoundingBox__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Plane__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Plane__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dep_glmatrix__);
 
@@ -20795,13 +21193,13 @@ var mathMin = Math.min;
 var mathMax = Math.max;
 /**
  * @constructor
- * @alias clay.math.Frustum
+ * @alias clay.Frustum
  */
 var Frustum = function() {
 
     /**
      * Eight planes to enclose the frustum
-     * @type {clay.math.Plane[]}
+     * @type {clay.Plane[]}
      */
     this.planes = [];
 
@@ -20811,7 +21209,7 @@ var Frustum = function() {
 
     /**
      * Bounding box of frustum
-     * @type {clay.math.BoundingBox}
+     * @type {clay.BoundingBox}
      */
     this.boundingBox = new __WEBPACK_IMPORTED_MODULE_1__BoundingBox__["a" /* default */]();
 
@@ -20830,7 +21228,7 @@ Frustum.prototype = {
     // http://web.archive.org/web/20120531231005/http://crazyjoke.free.fr/doc/3D/plane%20extraction.pdf
     /**
      * Set frustum from a projection matrix
-     * @param {clay.math.Matrix4} projectionMatrix
+     * @param {clay.Matrix4} projectionMatrix
      */
     setFromProjection: function(projectionMatrix) {
 
@@ -20868,6 +21266,7 @@ Frustum.prototype = {
 
         // Perspective projection
         var boundingBox = this.boundingBox;
+        var vertices = this.vertices;
         if (m15 === 0)  {
             var aspect = m5 / m0;
             var zNear = -m14 / (m10 - 1);
@@ -20878,7 +21277,6 @@ Frustum.prototype = {
             boundingBox.min.set(-farY * aspect, -farY, zFar);
             boundingBox.max.set(farY * aspect, farY, zNear);
             // update vertices
-            var vertices = this.vertices;
             //--- min z
             // min x
             vec3Set(vertices[0], -farY * aspect, -farY, zFar);
@@ -20906,7 +21304,6 @@ Frustum.prototype = {
 
             var min = boundingBox.min.array;
             var max = boundingBox.max.array;
-            var vertices = this.vertices;
             //--- min z
             // min x
             vec3Set(vertices[0], min[0], min[1], min[2]);
@@ -20925,9 +21322,9 @@ Frustum.prototype = {
     /**
      * Apply a affine transform matrix and set to the given bounding box
      * @function
-     * @param {clay.math.BoundingBox}
-     * @param {clay.math.Matrix4}
-     * @return {clay.math.BoundingBox}
+     * @param {clay.BoundingBox}
+     * @param {clay.Matrix4}
+     * @return {clay.BoundingBox}
      */
     getTransformedBoundingBox: (function() {
 
@@ -21182,13 +21579,13 @@ module.exports = _default;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture2D__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextureCube__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_request__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextureCube__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_request__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__prePass_EnvironmentMap__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugin_Skydome__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Scene__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dds__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__hdr__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Scene__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dds__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__hdr__ = __webpack_require__(115);
 
 
 
@@ -21260,8 +21657,8 @@ var textureUtil = {
                 texture.error(onerror);
             }
         }
-        else if (typeof(path) == 'object' && typeof(path.px) !== 'undefined') {
-            var texture = new __WEBPACK_IMPORTED_MODULE_1__TextureCube__["a" /* default */]();
+        else if (typeof path === 'object' && typeof(path.px) !== 'undefined') {
+            texture = new __WEBPACK_IMPORTED_MODULE_1__TextureCube__["a" /* default */]();
             texture.load(path);
             texture.success(onsuccess);
             texture.error(onerror);
@@ -21314,7 +21711,7 @@ var textureUtil = {
         var skydome = new __WEBPACK_IMPORTED_MODULE_4__plugin_Skydome__["a" /* default */]({
             scene: new __WEBPACK_IMPORTED_MODULE_5__Scene__["a" /* default */]()
         });
-        skydome.material.set('diffuseMap', panoramaMap);
+        skydome.setEnvironmentMap(panoramaMap);
 
         option = option || {};
         if (option.encodeRGBM) {
@@ -21508,7 +21905,7 @@ var textureUtil = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__camera_Perspective__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__ = __webpack_require__(10);
@@ -21547,7 +21944,7 @@ var EnvironmentMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default
     var ret = /** @lends clay.prePass.EnvironmentMap# */ {
         /**
          * Camera position
-         * @type {clay.math.Vector3}
+         * @type {clay.Vector3}
          * @memberOf clay.prePass.EnvironmentMap#
          */
         position: new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */](),
@@ -21662,18 +22059,18 @@ var EnvironmentMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Mesh__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geometry_Sphere__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Mesh__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geometry_Sphere__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shader_source_basic_glsl_js__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shader_source_skydome_glsl_js__ = __webpack_require__(113);
 
 
 
 
 
 
-__WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].import(__WEBPACK_IMPORTED_MODULE_4__shader_source_basic_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].import(__WEBPACK_IMPORTED_MODULE_4__shader_source_skydome_glsl_js__["a" /* default */]);
 /**
  * @constructor clay.plugin.Skydome
  *
@@ -21684,16 +22081,15 @@ __WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].import(__WEBPACK_IMPORT
  *         scene: scene
  *     });
  *     skydome.material.set('diffuseMap', skyTex);
- */
+*/
 var Skydome = __WEBPACK_IMPORTED_MODULE_0__Mesh__["a" /* default */].extend(function () {
 
-    var skydomeShader = new __WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */](__WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].source('clay.basic.vertex'), __WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].source('clay.basic.fragment'));
+    var skydomeShader = new __WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */](__WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].source('clay.skydome.vertex'), __WEBPACK_IMPORTED_MODULE_2__Shader__["a" /* default */].source('clay.skydome.fragment'));
 
     var material = new __WEBPACK_IMPORTED_MODULE_3__Material__["a" /* default */]({
         shader: skydomeShader,
         depthMask: false
     });
-    material.enableTexture('diffuseMap');
 
     return {
         /**
@@ -21757,11 +22153,11 @@ var Skydome = __WEBPACK_IMPORTED_MODULE_0__Mesh__["a" /* default */].extend(func
     },
 
     setEnvironmentMap: function (envMap) {
-        this.material.set('diffuseMap', envMap);
+        this.material.set('environmentMap', envMap);
     },
 
     getEnvironmentMap: function () {
-        return this.material.get('diffuseMap');
+        return this.material.get('environmentMap');
     },
 
     dispose: function (renderer) {
@@ -21778,11 +22174,11 @@ var Skydome = __WEBPACK_IMPORTED_MODULE_0__Mesh__["a" /* default */].extend(func
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Mesh__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geometry_Cube__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Mesh__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geometry_Cube__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shader_source_skybox_glsl_js__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shader_source_skybox_glsl_js__ = __webpack_require__(119);
 // TODO Should not derived from mesh?
 
 
@@ -21919,8 +22315,8 @@ var Skybox = __WEBPACK_IMPORTED_MODULE_0__Mesh__["a" /* default */].extend(funct
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geometry_Sprites__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shader_labels_glsl_js__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geometry_Sprites__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shader_labels_glsl_js__ = __webpack_require__(157);
 
 
 
@@ -21954,7 +22350,7 @@ __WEBPACK_IMPORTED_MODULE_0__graphicGL__["a" /* default */].Shader.import(__WEBP
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_earcut__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_earcut__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines3D__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_retrieve__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_dep_glmatrix__ = __webpack_require__(1);
@@ -22104,11 +22500,12 @@ Geo3DBuilder.prototype = {
                 material: new __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Material({
                     shader: self._shadersMap.lambert
                 }),
-                // culling: false,
                 geometry: new __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Geometry({
                     sortTriangles: true,
                     dynamic: true
                 }),
+                // TODO Disable culling
+                culling: false,
                 ignorePicking: true,
                 // Render normal in normal pass
                 renderNormal: true
@@ -22272,6 +22669,8 @@ Geo3DBuilder.prototype = {
         polygonMesh.material.depthMask = !hasTranparentRegion;
         polygonMesh.geometry.updateBoundingBox();
 
+        polygonMesh.frontFace = this.extrudeY ? __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Mesh.CCW : __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Mesh.CW;
+
         // Update tangents
         if (polygonMesh.material.get('normalMap')) {
             polygonMesh.geometry.generateTangents();
@@ -22295,6 +22694,7 @@ Geo3DBuilder.prototype = {
                 debugWireframeModel.get('lineStyle.width'), 1
             );
 
+            // TODO  Will cause highlight wrong
             var mesh = this._polygonMesh;
             mesh.geometry.generateBarycentric();
             mesh.material.define('both', 'WIREFRAME_TRIANGLE');
@@ -22509,7 +22909,8 @@ Geo3DBuilder.prototype = {
 
             addVertices(polygon, y, insideOffset);
 
-            for (var k = 0; k < polygon.indices.length; k++) {
+            var len = polygon.indices.length;
+            for (var k = 0; k < len; k++) {
                 indices[triangleOffset * 3 + k] = polygon.indices[k] + startVertexOffset;
             }
             triangleOffset += polygon.indices.length / 3;
@@ -22726,7 +23127,7 @@ Geo3DBuilder.prototype = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProgressiveQuickSort__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProgressiveQuickSort__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix__);
 
@@ -23056,10 +23457,10 @@ LabelsBuilder.prototype.updateLabels = function (highlightDataIndices) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_sprite__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PointsMesh__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_sprite__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PointsMesh__ = __webpack_require__(232);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_common_LabelsBuilder__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_retrieve__ = __webpack_require__(3);
 
 
@@ -23644,10 +24045,29 @@ PointsBuilder.prototype = {
 
 /***/ }),
 /* 63 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.prez.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\n@import clay.chunk.skinning_header\nvoid main()\n{\n    vec3 skinnedPosition = position;\n#ifdef SKINNING\n    @import clay.chunk.skin_matrix\n    skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n    gl_Position = worldViewProjection * vec4(skinnedPosition, 1.0);\n}\n@end\n@export clay.prez.fragment\nvoid main()\n{\n    gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n}\n@end");
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -23655,43 +24075,114 @@ PointsBuilder.prototype = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LinkedList__ = __webpack_require__(106);
+
+
+/**
+ * LRU Cache
+ * @constructor
+ * @alias clay.core.LRU
+ */
+var LRU = function(maxSize) {
+
+    this._list = new __WEBPACK_IMPORTED_MODULE_0__LinkedList__["a" /* default */]();
+
+    this._map = {};
+
+    this._maxSize = maxSize || 10;
+};
+
+/**
+ * Set cache max size
+ * @param {number} size
+ */
+LRU.prototype.setMaxSize = function(size) {
+    this._maxSize = size;
+};
+
+/**
+ * @param  {string} key
+ * @param  {} value
+ */
+LRU.prototype.put = function(key, value) {
+    if (typeof(this._map[key]) == 'undefined') {
+        var len = this._list.length();
+        if (len >= this._maxSize && len > 0) {
+            // Remove the least recently used
+            var leastUsedEntry = this._list.head;
+            this._list.remove(leastUsedEntry);
+            delete this._map[leastUsedEntry.key];
+        }
+
+        var entry = this._list.insert(value);
+        entry.key = key;
+        this._map[key] = entry;
+    }
+};
+
+/**
+ * @param  {string} key
+ * @return {}
+ */
+LRU.prototype.get = function(key) {
+    var entry = this._map[key];
+    if (typeof(entry) != 'undefined') {
+        // Put the latest used entry in the tail
+        if (entry !== this._list.tail) {
+            this._list.remove(entry);
+            this._list.insertEntry(entry);
+        }
+
+        return entry.value;
+    }
+};
+
+/**
+ * @param {string} key
+ */
+LRU.prototype.remove = function(key) {
+    var entry = this._map[key];
+    if (typeof(entry) != 'undefined') {
+        delete this._map[key];
+        this._list.remove(entry);
+    }
+};
+
+/**
+ * Clear the cache
+ */
+LRU.prototype.clear = function() {
+    this._list.clear();
+    this._map = {};
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (LRU);
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.prez.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\n@import clay.chunk.skinning_header\nvoid main()\n{\n vec3 skinnedPosition = position;\n#ifdef SKINNING\n @import clay.chunk.skin_matrix\n skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n gl_Position = worldViewProjection * vec4(skinnedPosition, 1.0);\n}\n@end\n@export clay.prez.fragment\nvoid main()\n{\n gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n}\n@end");
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
 
 
 
-// Cache
-var prevDrawID = 0;
-var prevDrawIndicesBuffer = null;
-var prevDrawIsUseIndices = true;
-
-var currentDrawID;
-
-var RenderInfo = function() {
-    this.triangleCount = 0;
-    this.vertexCount = 0;
-    this.drawCallCount = 0;
-};
-
-function VertexArrayObject(
-    availableAttributes,
-    availableAttributeSymbols,
-    indicesBuffer
-) {
-    this.availableAttributes = availableAttributes;
-    this.availableAttributeSymbols = availableAttributeSymbols;
-    this.indicesBuffer = indicesBuffer;
-
-    this.vao = null;
-}
 /**
  * @constructor
  * @alias clay.Renderable
  * @extends clay.Node
  */
-var Renderable = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
-/** @lends clay.Renderable# */
-{
+var Renderable = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(/** @lends clay.Renderable# */ {
     /**
      * @type {clay.Material}
      */
@@ -23707,12 +24198,7 @@ var Renderable = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
      */
     mode: __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].TRIANGLES,
 
-    _drawCache: null,
-
     _renderInfo: null
-}, function() {
-    this._drawCache = {};
-    this._renderInfo = new RenderInfo();
 },
 /** @lends clay.Renderable.prototype */
 {
@@ -23728,11 +24214,12 @@ var Renderable = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
      * @type {Number}
      */
     renderOrder: 0,
+
     /**
      * Used when mode is LINES, LINE_STRIP or LINE_LOOP
      * @type {number}
      */
-    lineWidth: 1,
+    // lineWidth: 1,
 
     /**
      * If enable culling
@@ -23817,208 +24304,6 @@ var Renderable = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
     },
 
     /**
-     * @param  {clay.Renderer} renderer
-     * @param  {clay.Material} [material]
-     * @return {Object}
-     */
-    render: function (renderer, material, program) {
-        var _gl = renderer.gl;
-        material = material || this.material;
-        // May use shader of other material if shader code are same
-        var shader = material.shader;
-        var geometry = this.geometry;
-
-        var glDrawMode = this.mode;
-
-        var nVertex = geometry.vertexCount;
-        var isUseIndices = geometry.isUseIndices();
-
-        var uintExt = renderer.getGLExtension('OES_element_index_uint');
-        var useUintExt = uintExt && nVertex > 0xffff;
-        var indicesType = useUintExt ? _gl.UNSIGNED_INT : _gl.UNSIGNED_SHORT;
-
-        var vaoExt = renderer.getGLExtension('OES_vertex_array_object');
-        // var vaoExt = null;
-
-        var isStatic = !geometry.dynamic;
-
-        var renderInfo = this._renderInfo;
-        renderInfo.vertexCount = nVertex;
-        renderInfo.triangleCount = 0;
-        renderInfo.drawCallCount = 0;
-        // Draw each chunk
-        var drawHashChanged = false;
-        // Hash with shader id in case previous material has less attributes than next material
-        currentDrawID = renderer.__uid__ + '-' + geometry.__uid__ + '-' + program.__uid__;
-
-        if (currentDrawID !== prevDrawID) {
-            drawHashChanged = true;
-        }
-        else {
-            // The cache will be invalid in the following cases
-            // 1. VAO is enabled and is binded to null after render
-            // 2. Geometry needs update
-            if (
-                // TODO Optimize
-                (vaoExt && isStatic)
-                // PENDING
-                || geometry._cache.isDirty('any')
-            ) {
-                drawHashChanged = true;
-            }
-        }
-        prevDrawID = currentDrawID;
-
-        if (!drawHashChanged) {
-            // Direct draw
-            if (prevDrawIsUseIndices) {
-                _gl.drawElements(glDrawMode, prevDrawIndicesBuffer.count, indicesType, 0);
-                renderInfo.triangleCount = prevDrawIndicesBuffer.count / 3;
-            }
-            else {
-                // FIXME Use vertex number in buffer
-                // vertexCount may get the wrong value when geometry forget to mark dirty after update
-                _gl.drawArrays(glDrawMode, 0, nVertex);
-            }
-            renderInfo.drawCallCount = 1;
-        }
-        else {
-            // Use the cache of static geometry
-            var vaoList = this._drawCache[currentDrawID];
-            if (!vaoList) {
-                var chunks = geometry.getBufferChunks(renderer);
-                if (!chunks) {  // Empty mesh
-                    return;
-                }
-                vaoList = [];
-                for (var c = 0; c < chunks.length; c++) {
-                    var chunk = chunks[c];
-                    var attributeBuffers = chunk.attributeBuffers;
-                    var indicesBuffer = chunk.indicesBuffer;
-
-                    var availableAttributes = [];
-                    var availableAttributeSymbols = [];
-                    for (var a = 0; a < attributeBuffers.length; a++) {
-                        var attributeBufferInfo = attributeBuffers[a];
-                        var name = attributeBufferInfo.name;
-                        var semantic = attributeBufferInfo.semantic;
-                        var symbol;
-                        if (semantic) {
-                            var semanticInfo = shader.attributeSemantics[semantic];
-                            symbol = semanticInfo && semanticInfo.symbol;
-                        }
-                        else {
-                            symbol = name;
-                        }
-                        if (symbol && program.attributes[symbol]) {
-                            availableAttributes.push(attributeBufferInfo);
-                            availableAttributeSymbols.push(symbol);
-                        }
-                    }
-
-                    var vao = new VertexArrayObject(
-                        availableAttributes,
-                        availableAttributeSymbols,
-                        indicesBuffer
-                    );
-                    vaoList.push(vao);
-                }
-                if (isStatic) {
-                    this._drawCache[currentDrawID] = vaoList;
-                }
-            }
-
-            for (var i = 0; i < vaoList.length; i++) {
-                var vao = vaoList[i];
-                var needsBindAttributes = true;
-
-                // Create vertex object array cost a lot
-                // So we don't use it on the dynamic object
-                if (vaoExt && isStatic) {
-                    // Use vertex array object
-                    // http://blog.tojicode.com/2012/10/oesvertexarrayobject-extension.html
-                    if (vao.vao == null) {
-                        vao.vao = vaoExt.createVertexArrayOES();
-                    }
-                    else {
-                        needsBindAttributes = false;
-                    }
-                    vaoExt.bindVertexArrayOES(vao.vao);
-                }
-
-                var availableAttributes = vao.availableAttributes;
-                var indicesBuffer = vao.indicesBuffer;
-
-                if (needsBindAttributes) {
-                    var locationList = program.enableAttributes(renderer, vao.availableAttributeSymbols, (vaoExt && isStatic && vao.vao));
-                    // Setting attributes;
-                    for (var a = 0; a < availableAttributes.length; a++) {
-                        var location = locationList[a];
-                        if (location === -1) {
-                            continue;
-                        }
-                        var attributeBufferInfo = availableAttributes[a];
-                        var buffer = attributeBufferInfo.buffer;
-                        var size = attributeBufferInfo.size;
-                        var glType;
-                        switch (attributeBufferInfo.type) {
-                            case 'float':
-                                glType = _gl.FLOAT;
-                                break;
-                            case 'byte':
-                                glType = _gl.BYTE;
-                                break;
-                            case 'ubyte':
-                                glType = _gl.UNSIGNED_BYTE;
-                                break;
-                            case 'short':
-                                glType = _gl.SHORT;
-                                break;
-                            case 'ushort':
-                                glType = _gl.UNSIGNED_SHORT;
-                                break;
-                            default:
-                                glType = _gl.FLOAT;
-                                break;
-                        }
-
-                        _gl.bindBuffer(_gl.ARRAY_BUFFER, buffer);
-                        _gl.vertexAttribPointer(location, size, glType, false, 0, 0);
-                    }
-                }
-                if (
-                    glDrawMode == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINES ||
-                    glDrawMode == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINE_STRIP ||
-                    glDrawMode == __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].LINE_LOOP
-                ) {
-                    _gl.lineWidth(this.lineWidth);
-                }
-
-                prevDrawIndicesBuffer = indicesBuffer;
-                prevDrawIsUseIndices = geometry.isUseIndices();
-                // Do drawing
-                if (prevDrawIsUseIndices) {
-                    if (needsBindAttributes) {
-                        _gl.bindBuffer(_gl.ELEMENT_ARRAY_BUFFER, indicesBuffer.buffer);
-                    }
-                    _gl.drawElements(glDrawMode, indicesBuffer.count, indicesType, 0);
-                    renderInfo.triangleCount += indicesBuffer.count / 3;
-                } else {
-                    _gl.drawArrays(glDrawMode, 0, nVertex);
-                }
-
-                if (vaoExt && isStatic) {
-                    vaoExt.bindVertexArrayOES(null);
-                }
-
-                renderInfo.drawCallCount++;
-            }
-        }
-
-        return renderInfo;
-    },
-
-    /**
      * Clone a new renderable
      * @function
      * @return {clay.Renderable}
@@ -24099,24 +24384,11 @@ Renderable.CW = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].CW
  */
 Renderable.CCW = __WEBPACK_IMPORTED_MODULE_1__core_glenum__["a" /* default */].CCW;
 
-Renderable.RenderInfo = RenderInfo;
-
 /* harmony default export */ __webpack_exports__["a"] = (Renderable);
 
 
 /***/ }),
-/* 65 */
-/***/ (function(module, exports) {
-
-var _default = typeof window !== 'undefined' && (window.requestAnimationFrame && window.requestAnimationFrame.bind(window) || // https://github.com/ecomfe/zrender/issues/189#issuecomment-224919809
-window.msRequestAnimationFrame && window.msRequestAnimationFrame.bind(window) || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame) || function (func) {
-  setTimeout(func, 16);
-};
-
-module.exports = _default;
-
-/***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24146,7 +24418,7 @@ mathUtil.nearestPowerOfTwo = function (value) {
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24161,14 +24433,14 @@ var vec4 = __WEBPACK_IMPORTED_MODULE_1__dep_glmatrix___default.a.vec4;
 
 /**
  * @constructor
- * @alias clay.math.Plane
- * @param {clay.math.Vector3} [normal]
+ * @alias clay.Plane
+ * @param {clay.Vector3} [normal]
  * @param {number} [distance]
  */
 var Plane = function(normal, distance) {
     /**
      * Normal of the plane
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.normal = normal || new __WEBPACK_IMPORTED_MODULE_0__Vector3__["a" /* default */](0, 1, 0);
 
@@ -24185,7 +24457,7 @@ Plane.prototype = {
 
     /**
      * Distance from a given point to the plane
-     * @param  {clay.math.Vector3} point
+     * @param  {clay.Vector3} point
      * @return {number}
      */
     distanceToPoint: function(point) {
@@ -24194,9 +24466,9 @@ Plane.prototype = {
 
     /**
      * Calculate the projection point on the plane
-     * @param  {clay.math.Vector3} point
-     * @param  {clay.math.Vector3} out
-     * @return {clay.math.Vector3}
+     * @param  {clay.Vector3} point
+     * @param  {clay.Vector3} out
+     * @return {clay.Vector3}
      */
     projectPoint: function(point, out) {
         if (!out) {
@@ -24219,7 +24491,7 @@ Plane.prototype = {
 
     /**
      * If the plane intersect a frustum
-     * @param  {clay.math.Frustum} Frustum
+     * @param  {clay.Frustum} Frustum
      * @return {boolean}
      */
     intersectFrustum: function(frustum) {
@@ -24237,10 +24509,10 @@ Plane.prototype = {
     /**
      * Calculate the intersection point between plane and a given line
      * @function
-     * @param {clay.math.Vector3} start start point of line
-     * @param {clay.math.Vector3} end end point of line
-     * @param {clay.math.Vector3} [out]
-     * @return {clay.math.Vector3}
+     * @param {clay.Vector3} start start point of line
+     * @param {clay.Vector3} end end point of line
+     * @param {clay.Vector3} [out]
+     * @return {clay.Vector3}
      */
     intersectLine: (function() {
         var rd = vec3.create();
@@ -24276,7 +24548,7 @@ Plane.prototype = {
     /**
      * Apply an affine transform matrix to plane
      * @function
-     * @return {clay.math.Matrix4}
+     * @return {clay.Matrix4}
      */
     applyTransform: (function() {
         var inverseTranspose = mat4.create();
@@ -24301,7 +24573,7 @@ Plane.prototype = {
 
     /**
      * Copy from another plane
-     * @param  {clay.math.Vector3} plane
+     * @param  {clay.Vector3} plane
      */
     copy: function(plane) {
         vec3.copy(this.normal.array, plane.normal.array);
@@ -24311,7 +24583,7 @@ Plane.prototype = {
 
     /**
      * Clone a new plane
-     * @return {clay.math.Plane}
+     * @return {clay.Plane}
      */
     clone: function() {
         var plane = new Plane();
@@ -24324,7 +24596,7 @@ Plane.prototype = {
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24345,9 +24617,7 @@ Plane.prototype = {
  * @param {number} [thetaLength]
  * @param {number} [radius]
  */
-var Sphere = __WEBPACK_IMPORTED_MODULE_0__Geometry__["a" /* default */].extend(
-/** @lends clay.geometry.Sphere# */
-{
+var Sphere = __WEBPACK_IMPORTED_MODULE_0__Geometry__["a" /* default */].extend(/** @lends clay.geometry.Sphere# */ {
     dynamic: false,
     /**
      * @type {number}
@@ -24474,13 +24744,323 @@ var Sphere = __WEBPACK_IMPORTED_MODULE_0__Geometry__["a" /* default */].extend(
 
 
 /***/ }),
-/* 69 */
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture2D__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextureCube__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Texture__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compositor_Pass__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Material__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__plugin_Skybox__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Scene__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__prePass_EnvironmentMap__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_vendor__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__texture__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shader_integrateBRDF_glsl_js__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shader_prefilter_glsl_js__ = __webpack_require__(121);
+// Cubemap prefilter utility
+// http://www.unrealengine.com/files/downloads/2013SiggraphPresentationsNotes.pdf
+// http://http.developer.nvidia.com/GPUGems3/gpugems3_ch20.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var cubemapUtil = {};
+
+var targets = ['px', 'nx', 'py', 'ny', 'pz', 'nz'];
+
+/**
+ * @name clay.util.cubemap.prefilterEnvironmentMap
+ * @param  {clay.Renderer} renderer
+ * @param  {clay.Texture} envMap
+ * @param  {Object} [textureOpts]
+ * @param  {number} [textureOpts.width=64]
+ * @param  {number} [textureOpts.height=64]
+ * @param  {number} [textureOpts.type]
+ * @param  {boolean} [textureOpts.encodeRGBM=false]
+ * @param  {boolean} [textureOpts.decodeRGBM=false]
+ * @param  {clay.Texture2D} [normalDistribution]
+ * @param  {clay.Texture2D} [brdfLookup]
+ */
+cubemapUtil.prefilterEnvironmentMap = function (
+    renderer, envMap, textureOpts, normalDistribution, brdfLookup
+) {
+    // Not create other renderer, it is easy having issue of cross reference of resources like framebuffer
+    // PENDING preserveDrawingBuffer?
+    if (!brdfLookup || !normalDistribution) {
+        normalDistribution = cubemapUtil.generateNormalDistribution();
+        brdfLookup = cubemapUtil.integrateBRDF(renderer, normalDistribution);
+    }
+    textureOpts = textureOpts || {};
+
+    var width = textureOpts.width || 64;
+    var height = textureOpts.height || 64;
+
+    var textureType = textureOpts.type || envMap.type;
+
+    // Use same type with given envMap
+    var prefilteredCubeMap = new __WEBPACK_IMPORTED_MODULE_1__TextureCube__["a" /* default */]({
+        width: width,
+        height: height,
+        type: textureType,
+        flipY: false,
+        mipmaps: []
+    });
+
+    if (!prefilteredCubeMap.isPowerOfTwo()) {
+        console.warn('Width and height must be power of two to enable mipmap.');
+    }
+
+    var size = Math.min(width, height);
+    var mipmapNum = Math.log(size) / Math.log(2) + 1;
+
+    var prefilterMaterial = new __WEBPACK_IMPORTED_MODULE_5__Material__["a" /* default */]({
+        shader: new __WEBPACK_IMPORTED_MODULE_6__Shader__["a" /* default */]({
+            vertex: __WEBPACK_IMPORTED_MODULE_6__Shader__["a" /* default */].source('clay.skybox.vertex'),
+            fragment: __WEBPACK_IMPORTED_MODULE_13__shader_prefilter_glsl_js__["a" /* default */]
+        })
+    });
+    prefilterMaterial.set('normalDistribution', normalDistribution);
+
+    textureOpts.encodeRGBM && prefilterMaterial.define('fragment', 'RGBM_ENCODE');
+    textureOpts.decodeRGBM && prefilterMaterial.define('fragment', 'RGBM_DECODE');
+
+    var dummyScene = new __WEBPACK_IMPORTED_MODULE_8__Scene__["a" /* default */]();
+    var skyEnv;
+
+    if (envMap.textureType === 'texture2D') {
+        // Convert panorama to cubemap
+        var envCubemap = new __WEBPACK_IMPORTED_MODULE_1__TextureCube__["a" /* default */]({
+            width: width,
+            height: height,
+            // FIXME FLOAT type will cause GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT error on iOS
+            type: textureType === __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].FLOAT ?
+                __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].HALF_FLOAT : textureType
+        });
+        __WEBPACK_IMPORTED_MODULE_11__texture__["a" /* default */].panoramaToCubeMap(renderer, envMap, envCubemap, {
+            // PENDING encodeRGBM so it can be decoded as RGBM
+            encodeRGBM: textureOpts.decodeRGBM
+        });
+        envMap = envCubemap;
+    }
+    skyEnv = new __WEBPACK_IMPORTED_MODULE_7__plugin_Skybox__["a" /* default */]({
+        scene: dummyScene,
+        material: prefilterMaterial
+    });
+    skyEnv.material.set('environmentMap', envMap);
+
+    var envMapPass = new __WEBPACK_IMPORTED_MODULE_9__prePass_EnvironmentMap__["a" /* default */]({
+        texture: prefilteredCubeMap
+    });
+
+    // Force to be UNSIGNED_BYTE
+    if (textureOpts.encodeRGBM) {
+        textureType = prefilteredCubeMap.type = __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].UNSIGNED_BYTE;
+    }
+
+    var renderTargetTmp = new __WEBPACK_IMPORTED_MODULE_0__Texture2D__["a" /* default */]({
+        width: width,
+        height: height,
+        type: textureType
+    });
+    var frameBuffer = new __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__["a" /* default */]({
+        depthBuffer: false
+    });
+    var ArrayCtor = __WEBPACK_IMPORTED_MODULE_10__core_vendor__["a" /* default */][textureType === __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].UNSIGNED_BYTE ? 'Uint8Array' : 'Float32Array'];
+    for (var i = 0; i < mipmapNum; i++) {
+        // console.time('prefilter');
+        prefilteredCubeMap.mipmaps[i] = {
+            pixels: {}
+        };
+        skyEnv.material.set('roughness', i / (targets.length - 1));
+        var maxSampleNumber = renderTargetTmp.width * renderTargetTmp.height;
+        if (renderTargetTmp.width >= 32) {
+            maxSampleNumber /= 4;
+        }
+        skyEnv.material.set('maxSampleNumber', Math.min(maxSampleNumber, 1024));
+
+        // Tweak fov
+        // http://the-witness.net/news/2012/02/seamless-cube-map-filtering/
+        var n = renderTargetTmp.width;
+        var fov = 2 * Math.atan(n / (n - 0.5)) / Math.PI * 180;
+
+        for (var j = 0; j < targets.length; j++) {
+            var pixels = new ArrayCtor(renderTargetTmp.width * renderTargetTmp.height * 4);
+            frameBuffer.attach(renderTargetTmp);
+            frameBuffer.bind(renderer);
+
+            var camera = envMapPass.getCamera(targets[j]);
+            camera.fov = fov;
+            renderer.render(dummyScene, camera);
+            renderer.gl.readPixels(
+                0, 0, renderTargetTmp.width, renderTargetTmp.height,
+                __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].RGBA, textureType, pixels
+            );
+
+            // var canvas = document.createElement('canvas');
+            // var ctx = canvas.getContext('2d');
+            // canvas.width = renderTargetTmp.width;
+            // canvas.height = renderTargetTmp.height;
+            // var imageData = ctx.createImageData(renderTargetTmp.width, renderTargetTmp.height);
+            // for (var k = 0; k < pixels.length; k++) {
+            //     imageData.data[k] = pixels[k];
+            // }
+            // ctx.putImageData(imageData, 0, 0);
+            // document.body.appendChild(canvas);
+
+            frameBuffer.unbind(renderer);
+            prefilteredCubeMap.mipmaps[i].pixels[targets[j]] = pixels;
+        }
+
+        renderTargetTmp.width /= 2;
+        renderTargetTmp.height /= 2;
+        renderTargetTmp.dirty();
+        // console.timeEnd('prefilter');
+    }
+
+    frameBuffer.dispose(renderer);
+    renderTargetTmp.dispose(renderer);
+    skyEnv.dispose(renderer);
+    // Remove gpu resource allucated in renderer
+    normalDistribution.dispose(renderer);
+
+    // renderer.dispose();
+
+    return {
+        environmentMap: prefilteredCubeMap,
+        brdfLookup: brdfLookup,
+        normalDistribution: normalDistribution,
+        maxMipmapLevel: mipmapNum
+    };
+};
+
+cubemapUtil.integrateBRDF = function (renderer, normalDistribution) {
+    normalDistribution = normalDistribution || cubemapUtil.generateNormalDistribution();
+    var framebuffer = new __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__["a" /* default */]({
+        depthBuffer: false
+    });
+    var pass = new __WEBPACK_IMPORTED_MODULE_4__compositor_Pass__["a" /* default */]({
+        fragment: __WEBPACK_IMPORTED_MODULE_12__shader_integrateBRDF_glsl_js__["a" /* default */]
+    });
+
+    var texture = new __WEBPACK_IMPORTED_MODULE_0__Texture2D__["a" /* default */]({
+        width: 512,
+        height: 256,
+        type: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].HALF_FLOAT,
+        minFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
+        magFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
+        useMipmap: false
+    });
+    pass.setUniform('normalDistribution', normalDistribution);
+    pass.setUniform('viewportSize', [512, 256]);
+    pass.attachOutput(texture);
+    pass.render(renderer, framebuffer);
+
+    // FIXME Only chrome and firefox can readPixels with float type.
+    // framebuffer.bind(renderer);
+    // var pixels = new Float32Array(512 * 256 * 4);
+    // renderer.gl.readPixels(
+    //     0, 0, texture.width, texture.height,
+    //     Texture.RGBA, Texture.FLOAT, pixels
+    // );
+    // texture.pixels = pixels;
+    // texture.flipY = false;
+    // texture.dirty();
+    // framebuffer.unbind(renderer);
+
+    framebuffer.dispose(renderer);
+
+    return texture;
+};
+
+cubemapUtil.generateNormalDistribution = function (roughnessLevels, sampleSize) {
+
+    // http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html
+    // GLSL not support bit operation, use lookup instead
+    // V -> i / N, U -> roughness
+    var roughnessLevels = roughnessLevels || 256;
+    var sampleSize = sampleSize || 1024;
+
+    var normalDistribution = new __WEBPACK_IMPORTED_MODULE_0__Texture2D__["a" /* default */]({
+        width: roughnessLevels,
+        height: sampleSize,
+        type: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].FLOAT,
+        minFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
+        magFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
+        wrapS: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].CLAMP_TO_EDGE,
+        wrapT: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].CLAMP_TO_EDGE,
+        useMipmap: false
+    });
+    var pixels = new Float32Array(sampleSize * roughnessLevels * 4);
+    var tmp = [];
+
+    // function sortFunc(a, b) {
+    //     return Math.abs(b) - Math.abs(a);
+    // }
+    for (var j = 0; j < roughnessLevels; j++) {
+        var roughness = j / roughnessLevels;
+        var a = roughness * roughness;
+
+        for (var i = 0; i < sampleSize; i++) {
+            // http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
+            // http://stackoverflow.com/questions/1908492/unsigned-integer-in-javascript
+            // http://stackoverflow.com/questions/1822350/what-is-the-javascript-operator-and-how-do-you-use-it
+            var y = (i << 16 | i >>> 16) >>> 0;
+            y = ((y & 1431655765) << 1 | (y & 2863311530) >>> 1) >>> 0;
+            y = ((y & 858993459) << 2 | (y & 3435973836) >>> 2) >>> 0;
+            y = ((y & 252645135) << 4 | (y & 4042322160) >>> 4) >>> 0;
+            y = (((y & 16711935) << 8 | (y & 4278255360) >>> 8) >>> 0) / 4294967296;
+
+            // CDF
+            var cosTheta = Math.sqrt((1 - y) / (1 + (a * a - 1.0) * y));
+            tmp[i] = cosTheta;
+        }
+
+        for (var i = 0; i < sampleSize; i++) {
+            var offset = (i * roughnessLevels + j) * 4;
+            var cosTheta = tmp[i];
+            var sinTheta = Math.sqrt(1.0 - cosTheta * cosTheta);
+            var x = i / sampleSize;
+            var phi = 2.0 * Math.PI * x;
+            pixels[offset] = sinTheta * Math.cos(phi);
+            pixels[offset + 1] = cosTheta;
+            pixels[offset + 2] = sinTheta * Math.sin(phi);
+            pixels[offset + 3] = 1.0;
+        }
+    }
+    normalDistribution.pixels = pixels;
+
+    return normalDistribution;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (cubemapUtil);
+
+
+/***/ }),
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Plane__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__math_BoundingBox__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_vendor__ = __webpack_require__(18);
@@ -24625,263 +25205,15 @@ function createPlane(pos, widthSegments, heightSegments) {
 
 
 /***/ }),
-/* 70 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
-
-
-
-/**
- * @constructor clay.light.Directional
- * @extends clay.Light
- *
- * @example
- *     var light = new clay.light.Directional({
- *         intensity: 0.5,
- *         color: [1.0, 0.0, 0.0]
- *     });
- *     light.position.set(10, 10, 10);
- *     light.lookAt(clay.math.Vector3.ZERO);
- *     scene.add(light);
- */
-var DirectionalLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].extend(
-/** @lends clay.light.Directional# */
-{
-    /**
-     * @type {number}
-     */
-    shadowBias: 0.001,
-    /**
-     * @type {number}
-     */
-    shadowSlopeScale: 2.0,
-    /**
-     * Shadow cascade.
-     * Use PSSM technique when it is larger than 1 and have a unique directional light in scene.
-     * @type {number}
-     */
-    shadowCascade: 1,
-
-    /**
-     * Available when shadowCascade is larger than 1 and have a unique directional light in scene.
-     * @type {number}
-     */
-    cascadeSplitLogFactor: 0.2
-}, {
-
-    type: 'DIRECTIONAL_LIGHT',
-
-    uniformTemplates: {
-        directionalLightDirection: {
-            type: '3f',
-            value: function (instance) {
-                instance.__dir = instance.__dir || new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
-                // Direction is target to eye
-                return instance.__dir.copy(instance.worldTransform.z).normalize().negate().array;
-            }
-        },
-        directionalLightColor: {
-            type: '3f',
-            value: function (instance) {
-                var color = instance.color;
-                var intensity = instance.intensity;
-                return [color[0] * intensity, color[1] * intensity, color[2] * intensity];
-            }
-        }
-    },
-    /**
-     * @return {clay.light.Directional}
-     * @memberOf clay.light.Directional.prototype
-     */
-    clone: function () {
-        var light = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].prototype.clone.call(this);
-        light.shadowBias = this.shadowBias;
-        light.shadowSlopeScale = this.shadowSlopeScale;
-        return light;
-    }
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (DirectionalLight);
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(19);
-
-
-/**
- * @constructor clay.light.Point
- * @extends clay.Light
- */
-var PointLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].extend(
-/** @lends clay.light.Point# */
-{
-    /**
-     * @type {number}
-     */
-    range: 100,
-
-    /**
-     * @type {number}
-     */
-    castShadow: false
-}, {
-
-    type: 'POINT_LIGHT',
-
-    uniformTemplates: {
-        pointLightPosition: {
-            type: '3f',
-            value: function(instance) {
-                return instance.getWorldPosition().array;
-            }
-        },
-        pointLightRange: {
-            type: '1f',
-            value: function(instance) {
-                return instance.range;
-            }
-        },
-        pointLightColor: {
-            type: '3f',
-            value: function(instance) {
-                var color = instance.color,
-                    intensity = instance.intensity;
-                return [ color[0]*intensity, color[1]*intensity, color[2]*intensity ];
-            }
-        }
-    },
-    /**
-     * @return {clay.light.Point}
-     * @memberOf clay.light.Point.prototype
-     */
-    clone: function() {
-        var light = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].prototype.clone.call(this);
-        light.range = this.range;
-        return light;
-    }
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (PointLight);
-
-
-/***/ }),
 /* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
+var _default = typeof window !== 'undefined' && (window.requestAnimationFrame && window.requestAnimationFrame.bind(window) || // https://github.com/ecomfe/zrender/issues/189#issuecomment-224919809
+window.msRequestAnimationFrame && window.msRequestAnimationFrame.bind(window) || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame) || function (func) {
+  setTimeout(func, 16);
+};
 
-
-
-/**
- * @constructor clay.light.Spot
- * @extends clay.Light
- */
-var SpotLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].extend(
-/**@lends clay.light.Spot */
-{
-    /**
-     * @type {number}
-     */
-    range: 20,
-    /**
-     * @type {number}
-     */
-    umbraAngle: 30,
-    /**
-     * @type {number}
-     */
-    penumbraAngle: 45,
-    /**
-     * @type {number}
-     */
-    falloffFactor: 2.0,
-    /**
-     * @type {number}
-     */
-    shadowBias: 0.0002,
-    /**
-     * @type {number}
-     */
-    shadowSlopeScale: 2.0
-},{
-
-    type: 'SPOT_LIGHT',
-
-    uniformTemplates: {
-        spotLightPosition: {
-            type: '3f',
-            value: function (instance) {
-                return instance.getWorldPosition().array;
-            }
-        },
-        spotLightRange: {
-            type: '1f',
-            value: function (instance) {
-                return instance.range;
-            }
-        },
-        spotLightUmbraAngleCosine: {
-            type: '1f',
-            value: function (instance) {
-                return Math.cos(instance.umbraAngle * Math.PI / 180);
-            }
-        },
-        spotLightPenumbraAngleCosine: {
-            type: '1f',
-            value: function (instance) {
-                return Math.cos(instance.penumbraAngle * Math.PI / 180);
-            }
-        },
-        spotLightFalloffFactor: {
-            type: '1f',
-            value: function (instance) {
-                return instance.falloffFactor;
-            }
-        },
-        spotLightDirection: {
-            type: '3f',
-            value: function (instance) {
-                instance.__dir = instance.__dir || new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
-                // Direction is target to eye
-                return instance.__dir.copy(instance.worldTransform.z).negate().array;
-            }
-        },
-        spotLightColor: {
-            type: '3f',
-            value: function (instance) {
-                var color = instance.color;
-                var intensity = instance.intensity;
-                return [color[0] * intensity, color[1] * intensity, color[2] * intensity];
-            }
-        }
-    },
-    /**
-     * @return {clay.light.Spot}
-     * @memberOf clay.light.Spot.prototype
-     */
-    clone: function () {
-        var light = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].prototype.clone.call(this);
-        light.range = this.range;
-        light.umbraAngle = this.umbraAngle;
-        light.penumbraAngle = this.penumbraAngle;
-        light.falloffFactor = this.falloffFactor;
-        light.shadowBias = this.shadowBias;
-        light.shadowSlopeScale = this.shadowSlopeScale;
-        return light;
-    }
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (SpotLight);
-
+module.exports = _default;
 
 /***/ }),
 /* 73 */
@@ -26465,7 +26797,7 @@ exports.isNumeric = isNumeric;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_util__ = __webpack_require__(20);
 
 
 
@@ -26579,6 +26911,78 @@ function isPowerOfTwo(width, height) {
 
 /***/ }),
 /* 80 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.kernel.gaussian_9\nfloat gaussianKernel[9];\ngaussianKernel[0] = 0.07;\ngaussianKernel[1] = 0.09;\ngaussianKernel[2] = 0.12;\ngaussianKernel[3] = 0.14;\ngaussianKernel[4] = 0.16;\ngaussianKernel[5] = 0.14;\ngaussianKernel[6] = 0.12;\ngaussianKernel[7] = 0.09;\ngaussianKernel[8] = 0.07;\n@end\n@export clay.compositor.kernel.gaussian_13\nfloat gaussianKernel[13];\ngaussianKernel[0] = 0.02;\ngaussianKernel[1] = 0.03;\ngaussianKernel[2] = 0.06;\ngaussianKernel[3] = 0.08;\ngaussianKernel[4] = 0.11;\ngaussianKernel[5] = 0.13;\ngaussianKernel[6] = 0.14;\ngaussianKernel[7] = 0.13;\ngaussianKernel[8] = 0.11;\ngaussianKernel[9] = 0.08;\ngaussianKernel[10] = 0.06;\ngaussianKernel[11] = 0.03;\ngaussianKernel[12] = 0.02;\n@end\n@export clay.compositor.gaussian_blur\n#define SHADER_NAME gaussian_blur\nuniform sampler2D texture;varying vec2 v_Texcoord;\nuniform float blurSize : 2.0;\nuniform vec2 textureSize : [512.0, 512.0];\nuniform float blurDir : 0.0;\n@import clay.util.rgbm\n@import clay.util.clamp_sample\nvoid main (void)\n{\n @import clay.compositor.kernel.gaussian_9\n vec2 off = blurSize / textureSize;\n off *= vec2(1.0 - blurDir, blurDir);\n vec4 sum = vec4(0.0);\n float weightAll = 0.0;\n for (int i = 0; i < 9; i++) {\n float w = gaussianKernel[i];\n vec4 texel = decodeHDR(clampSample(texture, v_Texcoord + float(i - 4) * off));\n sum += texel * w;\n weightAll += w;\n }\n gl_FragColor = encodeHDR(sum / max(weightAll, 0.01));\n}\n@end\n");
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.compositor.lut\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform sampler2D lookup;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n float blueColor = tex.b * 63.0;\n vec2 quad1;\n quad1.y = floor(floor(blueColor) / 8.0);\n quad1.x = floor(blueColor) - (quad1.y * 8.0);\n vec2 quad2;\n quad2.y = floor(ceil(blueColor) / 8.0);\n quad2.x = ceil(blueColor) - (quad2.y * 8.0);\n vec2 texPos1;\n texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.r);\n texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.g);\n vec2 texPos2;\n texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.r);\n texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.g);\n vec4 newColor1 = texture2D(lookup, texPos1);\n vec4 newColor2 = texture2D(lookup, texPos2);\n vec4 newColor = mix(newColor1, newColor2, fract(blueColor));\n gl_FragColor = vec4(newColor.rgb, tex.w);\n}\n@end");
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.output\n#define OUTPUT_ALPHA\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\n@import clay.util.rgbm\nvoid main()\n{\n vec4 tex = decodeHDR(texture2D(texture, v_Texcoord));\n gl_FragColor.rgb = tex.rgb;\n#ifdef OUTPUT_ALPHA\n gl_FragColor.a = tex.a;\n#else\n gl_FragColor.a = 1.0;\n#endif\n gl_FragColor = encodeHDR(gl_FragColor);\n#ifdef PREMULTIPLY_ALPHA\n gl_FragColor.rgb *= gl_FragColor.a;\n#endif\n}\n@end");
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.bright\nuniform sampler2D texture;\nuniform float threshold : 1;\nuniform float scale : 1.0;\nuniform vec2 textureSize: [512, 512];\nvarying vec2 v_Texcoord;\nconst vec3 lumWeight = vec3(0.2125, 0.7154, 0.0721);\n@import clay.util.rgbm\nvec4 median(vec4 a, vec4 b, vec4 c)\n{\n return a + b + c - min(min(a, b), c) - max(max(a, b), c);\n}\nvoid main()\n{\n vec4 texel = decodeHDR(texture2D(texture, v_Texcoord));\n#ifdef ANTI_FLICKER\n vec3 d = 1.0 / textureSize.xyx * vec3(1.0, 1.0, 0.0);\n vec4 s1 = decodeHDR(texture2D(texture, v_Texcoord - d.xz));\n vec4 s2 = decodeHDR(texture2D(texture, v_Texcoord + d.xz));\n vec4 s3 = decodeHDR(texture2D(texture, v_Texcoord - d.zy));\n vec4 s4 = decodeHDR(texture2D(texture, v_Texcoord + d.zy));\n texel = median(median(texel, s1, s2), s3, s4);\n#endif\n float lum = dot(texel.rgb , lumWeight);\n vec4 color;\n if (lum > threshold && texel.a > 0.0)\n {\n color = vec4(texel.rgb * scale, texel.a * scale);\n }\n else\n {\n color = vec4(0.0);\n }\n gl_FragColor = encodeHDR(color);\n}\n@end\n");
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.downsample\nuniform sampler2D texture;\nuniform vec2 textureSize : [512, 512];\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\nfloat brightness(vec3 c)\n{\n return max(max(c.r, c.g), c.b);\n}\n@import clay.util.clamp_sample\nvoid main()\n{\n vec4 d = vec4(-1.0, -1.0, 1.0, 1.0) / textureSize.xyxy;\n#ifdef ANTI_FLICKER\n vec3 s1 = decodeHDR(clampSample(texture, v_Texcoord + d.xy)).rgb;\n vec3 s2 = decodeHDR(clampSample(texture, v_Texcoord + d.zy)).rgb;\n vec3 s3 = decodeHDR(clampSample(texture, v_Texcoord + d.xw)).rgb;\n vec3 s4 = decodeHDR(clampSample(texture, v_Texcoord + d.zw)).rgb;\n float s1w = 1.0 / (brightness(s1) + 1.0);\n float s2w = 1.0 / (brightness(s2) + 1.0);\n float s3w = 1.0 / (brightness(s3) + 1.0);\n float s4w = 1.0 / (brightness(s4) + 1.0);\n float oneDivideSum = 1.0 / (s1w + s2w + s3w + s4w);\n vec4 color = vec4(\n (s1 * s1w + s2 * s2w + s3 * s3w + s4 * s4w) * oneDivideSum,\n 1.0\n );\n#else\n vec4 color = decodeHDR(clampSample(texture, v_Texcoord + d.xy));\n color += decodeHDR(clampSample(texture, v_Texcoord + d.zy));\n color += decodeHDR(clampSample(texture, v_Texcoord + d.xw));\n color += decodeHDR(clampSample(texture, v_Texcoord + d.zw));\n color *= 0.25;\n#endif\n gl_FragColor = encodeHDR(color);\n}\n@end");
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.compositor.upsample\n#define HIGH_QUALITY\nuniform sampler2D texture;\nuniform vec2 textureSize : [512, 512];\nuniform float sampleScale: 0.5;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.clamp_sample\nvoid main()\n{\n#ifdef HIGH_QUALITY\n vec4 d = vec4(1.0, 1.0, -1.0, 0.0) / textureSize.xyxy * sampleScale;\n vec4 s;\n s = decodeHDR(clampSample(texture, v_Texcoord - d.xy));\n s += decodeHDR(clampSample(texture, v_Texcoord - d.wy)) * 2.0;\n s += decodeHDR(clampSample(texture, v_Texcoord - d.zy));\n s += decodeHDR(clampSample(texture, v_Texcoord + d.zw)) * 2.0;\n s += decodeHDR(clampSample(texture, v_Texcoord )) * 4.0;\n s += decodeHDR(clampSample(texture, v_Texcoord + d.xw)) * 2.0;\n s += decodeHDR(clampSample(texture, v_Texcoord + d.zy));\n s += decodeHDR(clampSample(texture, v_Texcoord + d.wy)) * 2.0;\n s += decodeHDR(clampSample(texture, v_Texcoord + d.xy));\n gl_FragColor = encodeHDR(s / 16.0);\n#else\n vec4 d = vec4(-1.0, -1.0, +1.0, +1.0) / textureSize.xyxy;\n vec4 s;\n s = decodeHDR(clampSample(texture, v_Texcoord + d.xy));\n s += decodeHDR(clampSample(texture, v_Texcoord + d.zy));\n s += decodeHDR(clampSample(texture, v_Texcoord + d.xw));\n s += decodeHDR(clampSample(texture, v_Texcoord + d.zw));\n gl_FragColor = encodeHDR(s / 4.0);\n#endif\n}\n@end");
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.composite\nuniform sampler2D texture;\n#ifdef BLOOM_ENABLED\nuniform sampler2D bloom;\n#endif\n#ifdef LENSFLARE_ENABLED\nuniform sampler2D lensflare;\nuniform sampler2D lensdirt;\n#endif\n#ifdef LUM_ENABLED\nuniform sampler2D lum;\n#endif\n#ifdef LUT_ENABLED\nuniform sampler2D lut;\n#endif\n#ifdef COLOR_CORRECTION\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float saturation : 1.0;\n#endif\n#ifdef VIGNETTE\nuniform float vignetteDarkness: 1.0;\nuniform float vignetteOffset: 1.0;\n#endif\nuniform float exposure : 1.0;\nuniform float bloomIntensity : 0.25;\nuniform float lensflareIntensity : 1;\nvarying vec2 v_Texcoord;\n@import clay.util.srgb\nvec3 ACESToneMapping(vec3 color)\n{\n const float A = 2.51;\n const float B = 0.03;\n const float C = 2.43;\n const float D = 0.59;\n const float E = 0.14;\n return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\nfloat eyeAdaption(float fLum)\n{\n return mix(0.2, fLum, 0.5);\n}\n#ifdef LUT_ENABLED\nvec3 lutTransform(vec3 color) {\n float blueColor = color.b * 63.0;\n vec2 quad1;\n quad1.y = floor(floor(blueColor) / 8.0);\n quad1.x = floor(blueColor) - (quad1.y * 8.0);\n vec2 quad2;\n quad2.y = floor(ceil(blueColor) / 8.0);\n quad2.x = ceil(blueColor) - (quad2.y * 8.0);\n vec2 texPos1;\n texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n vec2 texPos2;\n texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n vec4 newColor1 = texture2D(lut, texPos1);\n vec4 newColor2 = texture2D(lut, texPos2);\n vec4 newColor = mix(newColor1, newColor2, fract(blueColor));\n return newColor.rgb;\n}\n#endif\n@import clay.util.rgbm\nvoid main()\n{\n vec4 texel = vec4(0.0);\n vec4 originalTexel = vec4(0.0);\n#ifdef TEXTURE_ENABLED\n texel = decodeHDR(texture2D(texture, v_Texcoord));\n originalTexel = texel;\n#endif\n#ifdef BLOOM_ENABLED\n vec4 bloomTexel = decodeHDR(texture2D(bloom, v_Texcoord));\n texel.rgb += bloomTexel.rgb * bloomIntensity;\n texel.a += bloomTexel.a * bloomIntensity;\n#endif\n#ifdef LENSFLARE_ENABLED\n texel += decodeHDR(texture2D(lensflare, v_Texcoord)) * texture2D(lensdirt, v_Texcoord) * lensflareIntensity;\n#endif\n texel.a = min(texel.a, 1.0);\n#ifdef LUM_ENABLED\n float fLum = texture2D(lum, vec2(0.5, 0.5)).r;\n float adaptedLumDest = 3.0 / (max(0.1, 1.0 + 10.0*eyeAdaption(fLum)));\n float exposureBias = adaptedLumDest * exposure;\n#else\n float exposureBias = exposure;\n#endif\n texel.rgb *= exposureBias;\n texel.rgb = ACESToneMapping(texel.rgb);\n texel = linearTosRGB(texel);\n#ifdef LUT_ENABLED\n texel.rgb = lutTransform(clamp(texel.rgb,vec3(0.0),vec3(1.0)));\n#endif\n#ifdef COLOR_CORRECTION\n texel.rgb = clamp(texel.rgb + vec3(brightness), 0.0, 1.0);\n texel.rgb = clamp((texel.rgb - vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n float lum = dot(texel.rgb, vec3(0.2125, 0.7154, 0.0721));\n texel.rgb = mix(vec3(lum), texel.rgb, saturation);\n#endif\n#ifdef VIGNETTE\n vec2 uv = (v_Texcoord - vec2(0.5)) * vec2(vignetteOffset);\n texel.rgb = mix(texel.rgb, vec3(1.0 - vignetteDarkness), dot(uv, uv));\n#endif\n gl_FragColor = encodeHDR(texel);\n#ifdef DEBUG\n #if DEBUG == 1\n gl_FragColor = encodeHDR(decodeHDR(texture2D(texture, v_Texcoord)));\n #elif DEBUG == 2\n gl_FragColor = encodeHDR(decodeHDR(texture2D(bloom, v_Texcoord)) * bloomIntensity);\n #elif DEBUG == 3\n gl_FragColor = encodeHDR(decodeHDR(texture2D(lensflare, v_Texcoord) * lensflareIntensity));\n #endif\n#endif\n if (originalTexel.a <= 0.01 && gl_FragColor.a > 1e-5) {\n gl_FragColor.a = dot(gl_FragColor.rgb, vec3(0.2125, 0.7154, 0.0721));\n }\n#ifdef PREMULTIPLY_ALPHA\n gl_FragColor.rgb *= gl_FragColor.a;\n#endif\n}\n@end");
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.blend\n#define SHADER_NAME blend\n#ifdef TEXTURE1_ENABLED\nuniform sampler2D texture1;\nuniform float weight1 : 1.0;\n#endif\n#ifdef TEXTURE2_ENABLED\nuniform sampler2D texture2;\nuniform float weight2 : 1.0;\n#endif\n#ifdef TEXTURE3_ENABLED\nuniform sampler2D texture3;\nuniform float weight3 : 1.0;\n#endif\n#ifdef TEXTURE4_ENABLED\nuniform sampler2D texture4;\nuniform float weight4 : 1.0;\n#endif\n#ifdef TEXTURE5_ENABLED\nuniform sampler2D texture5;\nuniform float weight5 : 1.0;\n#endif\n#ifdef TEXTURE6_ENABLED\nuniform sampler2D texture6;\nuniform float weight6 : 1.0;\n#endif\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\nvoid main()\n{\n vec4 tex = vec4(0.0);\n#ifdef TEXTURE1_ENABLED\n tex += decodeHDR(texture2D(texture1, v_Texcoord)) * weight1;\n#endif\n#ifdef TEXTURE2_ENABLED\n tex += decodeHDR(texture2D(texture2, v_Texcoord)) * weight2;\n#endif\n#ifdef TEXTURE3_ENABLED\n tex += decodeHDR(texture2D(texture3, v_Texcoord)) * weight3;\n#endif\n#ifdef TEXTURE4_ENABLED\n tex += decodeHDR(texture2D(texture4, v_Texcoord)) * weight4;\n#endif\n#ifdef TEXTURE5_ENABLED\n tex += decodeHDR(texture2D(texture5, v_Texcoord)) * weight5;\n#endif\n#ifdef TEXTURE6_ENABLED\n tex += decodeHDR(texture2D(texture6, v_Texcoord)) * weight6;\n#endif\n gl_FragColor = encodeHDR(tex);\n}\n@end");
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.fxaa\nuniform sampler2D texture;\nuniform vec4 viewport : VIEWPORT;\nvarying vec2 v_Texcoord;\n#define FXAA_REDUCE_MIN (1.0/128.0)\n#define FXAA_REDUCE_MUL (1.0/8.0)\n#define FXAA_SPAN_MAX 8.0\n@import clay.util.rgbm\nvoid main()\n{\n vec2 resolution = 1.0 / viewport.zw;\n vec3 rgbNW = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( -1.0, -1.0 ) ) * resolution ) ).xyz;\n vec3 rgbNE = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( 1.0, -1.0 ) ) * resolution ) ).xyz;\n vec3 rgbSW = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( -1.0, 1.0 ) ) * resolution ) ).xyz;\n vec3 rgbSE = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( 1.0, 1.0 ) ) * resolution ) ).xyz;\n vec4 rgbaM = decodeHDR( texture2D( texture, gl_FragCoord.xy * resolution ) );\n vec3 rgbM = rgbaM.xyz;\n float opacity = rgbaM.w;\n vec3 luma = vec3( 0.299, 0.587, 0.114 );\n float lumaNW = dot( rgbNW, luma );\n float lumaNE = dot( rgbNE, luma );\n float lumaSW = dot( rgbSW, luma );\n float lumaSE = dot( rgbSE, luma );\n float lumaM = dot( rgbM, luma );\n float lumaMin = min( lumaM, min( min( lumaNW, lumaNE ), min( lumaSW, lumaSE ) ) );\n float lumaMax = max( lumaM, max( max( lumaNW, lumaNE) , max( lumaSW, lumaSE ) ) );\n vec2 dir;\n dir.x = -((lumaNW + lumaNE) - (lumaSW + lumaSE));\n dir.y = ((lumaNW + lumaSW) - (lumaNE + lumaSE));\n float dirReduce = max( ( lumaNW + lumaNE + lumaSW + lumaSE ) * ( 0.25 * FXAA_REDUCE_MUL ), FXAA_REDUCE_MIN );\n float rcpDirMin = 1.0 / ( min( abs( dir.x ), abs( dir.y ) ) + dirReduce );\n dir = min( vec2( FXAA_SPAN_MAX, FXAA_SPAN_MAX),\n max( vec2(-FXAA_SPAN_MAX, -FXAA_SPAN_MAX),\n dir * rcpDirMin)) * resolution;\n vec3 rgbA = decodeHDR( texture2D( texture, gl_FragCoord.xy * resolution + dir * ( 1.0 / 3.0 - 0.5 ) ) ).xyz;\n rgbA += decodeHDR( texture2D( texture, gl_FragCoord.xy * resolution + dir * ( 2.0 / 3.0 - 0.5 ) ) ).xyz;\n rgbA *= 0.5;\n vec3 rgbB = decodeHDR( texture2D( texture, gl_FragCoord.xy * resolution + dir * -0.5 ) ).xyz;\n rgbB += decodeHDR( texture2D( texture, gl_FragCoord.xy * resolution + dir * 0.5 ) ).xyz;\n rgbB *= 0.25;\n rgbB += rgbA * 0.5;\n float lumaB = dot( rgbB, luma );\n if ( ( lumaB < lumaMin ) || ( lumaB > lumaMax ) )\n {\n gl_FragColor = vec4( rgbA, opacity );\n }\n else {\n gl_FragColor = vec4( rgbB, opacity );\n }\n}\n@end");
+
+
+/***/ }),
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26724,7 +27128,7 @@ function isPowerOfTwo(width, height) {
 });
 
 /***/ }),
-/* 81 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26859,16 +27263,16 @@ ProgressiveQuickSort.sort = quickSort;
 /* harmony default export */ __webpack_exports__["a"] = (ProgressiveQuickSort);
 
 /***/ }),
-/* 82 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__geo3D_Geo3D__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__geo3D_Geo3D__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_util_layout__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_util_layout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_util_layout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_retrieve__ = __webpack_require__(3);
 
 
@@ -26921,7 +27325,7 @@ function resizeGeo3D(geo3DModel, api) {
 
 function updateGeo3D(ecModel, api) {
 
-    var altitudeDataExtent = [Infinity, -Infinity]
+    var altitudeDataExtent = [Infinity, -Infinity];
 
     ecModel.eachSeries(function (seriesModel) {
         if (seriesModel.coordinateSystem !== this) {
@@ -26932,7 +27336,8 @@ function updateGeo3D(ecModel, api) {
         }
         // Get altitude data extent.
         var data = seriesModel.getData();
-        var altDim = seriesModel.coordDimToDataDim('alt')[0];
+        var altDims = seriesModel.coordDimToDataDim('alt');
+        var altDim = altDims && altDims[0];
         if (altDim) {
             // TODO altitiude is in coords of lines.
             var dataExtent = data.getDataExtent(altDim, true);
@@ -27043,7 +27448,7 @@ var geo3DCreator = {
     },
 
     createGeo3D: function (componentModel) {
-        
+
         var mapData = componentModel.get('map');
         var name;
         if (typeof mapData === 'string') {
@@ -27082,7 +27487,7 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.registerCoordinateSy
 /* harmony default export */ __webpack_exports__["a"] = (geo3DCreator);
 
 /***/ }),
-/* 83 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27090,9 +27495,9 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.registerCoordinateSy
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_coord_geo_fix_textCoord__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_coord_geo_fix_textCoord__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_coord_geo_fix_textCoord___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_coord_geo_fix_textCoord__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_coord_geo_fix_geoCoord__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_coord_geo_fix_geoCoord__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_coord_geo_fix_geoCoord___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_echarts_lib_coord_geo_fix_geoCoord__);
 
 
@@ -27280,7 +27685,329 @@ Geo3D.prototype = {
 /* harmony default export */ __webpack_exports__["a"] = (Geo3D);
 
 /***/ }),
-/* 84 */
+/* 93 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix__);
+
+var mat4 = __WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix___default.a.mat4;
+
+var TILE_SIZE = 512;
+var FOV = 0.6435011087932844;
+var PI = Math.PI;
+
+var WORLD_SCALE = 1 / 10;
+
+function MapServiceCoordSys3D() {
+    /**
+     * Width of mapbox viewport
+     */
+    this.width = 0;
+    /**
+     * Height of mapbox viewport
+     */
+    this.height = 0;
+
+    this.altitudeScale = 1;
+
+    // TODO Change boxHeight won't have animation.
+    this.boxHeight = 'auto';
+
+    // Set by mapbox creator
+    this.altitudeExtent;
+
+    this.bearing = 0;
+    this.pitch = 0;
+    this.center = [0, 0];
+
+    this._origin;
+
+    this.zoom = 0;
+    this._initialZoom;
+
+    // Some parameters for different map services.
+    this.maxPitch = 60;
+    this.zoomOffset = 0;
+}
+
+MapServiceCoordSys3D.prototype = {
+
+    constructor: MapServiceCoordSys3D,
+
+    dimensions: ['lng', 'lat', 'alt'],
+
+    containPoint: function () {},
+
+    setCameraOption: function (option) {
+        this.bearing = option.bearing;
+        this.pitch = option.pitch;
+
+        this.center = option.center;
+        this.zoom = option.zoom;
+
+        if (!this._origin) {
+            this._origin = this.projectOnTileWithScale(this.center, TILE_SIZE);
+        }
+        if (this._initialZoom == null) {
+            this._initialZoom = this.zoom;
+        }
+
+        this.updateTransform();
+    },
+
+    // https://github.com/mapbox/mapbox-gl-js/blob/master/src/geo/transform.js#L479
+    updateTransform: function () {
+        if (!this.height) { return; }
+
+        var cameraToCenterDistance = 0.5 / Math.tan(FOV / 2) * this.height * WORLD_SCALE;
+        // Convert to radian.
+        var pitch = Math.max(Math.min(this.pitch, this.maxPitch), 0) / 180 * Math.PI;
+
+        // Find the distance from the center point [width/2, height/2] to the
+        // center top point [width/2, 0] in Z units, using the law of sines.
+        // 1 Z unit is equivalent to 1 horizontal px at the center of the map
+        // (the distance between[width/2, height/2] and [width/2 + 1, height/2])
+        var halfFov = FOV / 2;
+        var groundAngle = Math.PI / 2 + pitch;
+        var topHalfSurfaceDistance = Math.sin(halfFov) * cameraToCenterDistance / Math.sin(Math.PI - groundAngle - halfFov);
+
+        // Calculate z distance of the farthest fragment that should be rendered.
+        var furthestDistance = Math.cos(Math.PI / 2 - pitch) * topHalfSurfaceDistance + cameraToCenterDistance;
+        // Add a bit extra to avoid precision problems when a fragment's distance is exactly `furthestDistance`
+        var farZ = furthestDistance * 1.1;
+        // Forced to be 1000
+        if (this.pitch > 50) {
+            farZ = 1000;
+        }
+
+        // matrix for conversion from location to GL coordinates (-1 .. 1)
+        var m = [];
+        mat4.perspective(m, FOV, this.width / this.height, 1, farZ);
+        this.viewGL.camera.projectionMatrix.setArray(m);
+        this.viewGL.camera.decomposeProjectionMatrix();
+
+        var m = mat4.identity([]);
+        var pt = this.dataToPoint(this.center);
+        // Inverse
+        mat4.scale(m, m, [1, -1, 1]);
+        // Translate to altitude
+        mat4.translate(m, m, [0, 0, -cameraToCenterDistance]);
+        mat4.rotateX(m, m, pitch);
+        mat4.rotateZ(m, m, -this.bearing / 180 * Math.PI);
+        // Translate to center.
+        mat4.translate(m, m, [-pt[0] * this.getScale() * WORLD_SCALE, -pt[1] * this.getScale() * WORLD_SCALE, 0]);
+
+        this.viewGL.camera.viewMatrix.array = m;
+        var invertM = [];
+        mat4.invert(invertM, m);
+        this.viewGL.camera.worldTransform.array = invertM;
+        this.viewGL.camera.decomposeWorldTransform();
+
+        // scale vertically to meters per pixel (inverse of ground resolution):
+        // worldSize / (circumferenceOfEarth * cos(lat * π / 180))
+        var worldSize = TILE_SIZE * this.getScale();
+        var verticalScale;
+
+        if (this.altitudeExtent && !isNaN(this.boxHeight)) {
+            var range = this.altitudeExtent[1] - this.altitudeExtent[0];
+            verticalScale = this.boxHeight / range * this.getScale() / Math.pow(2, this._initialZoom - this.zoomOffset);
+        }
+        else {
+            verticalScale = worldSize / (2 * Math.PI * 6378000 * Math.abs(Math.cos(this.center[1] * (Math.PI / 180))))
+                * this.altitudeScale * WORLD_SCALE;
+        }
+        // Include scale to avoid relayout when zooming
+        // FIXME Camera scale may have problem in shadow
+        this.viewGL.rootNode.scale.set(
+            this.getScale() * WORLD_SCALE, this.getScale() * WORLD_SCALE, verticalScale
+        );
+    },
+
+    getScale: function () {
+        return Math.pow(2, this.zoom - this.zoomOffset);
+    },
+
+    projectOnTile: function (data, out) {
+        return this.projectOnTileWithScale(data, this.getScale() * TILE_SIZE, out);
+    },
+
+    projectOnTileWithScale: function (data, scale, out) {
+        var lng = data[0];
+        var lat = data[1];
+        var lambda2 = lng * PI / 180;
+        var phi2 = lat * PI / 180;
+        var x = scale * (lambda2 + PI) / (2 * PI);
+        var y = scale * (PI - Math.log(Math.tan(PI / 4 + phi2 * 0.5))) / (2 * PI);
+        out = out || [];
+        out[0] = x;
+        out[1] = y;
+        return out;
+    },
+
+    unprojectFromTile: function (point, out) {
+        return this.unprojectOnTileWithScale(point, this.getScale() * TILE_SIZE, out);
+    },
+
+    unprojectOnTileWithScale: function (point, scale, out) {
+        var x = point[0];
+        var y = point[1];
+        var lambda2 = (x / scale) * (2 * PI) - PI;
+        var phi2 = 2 * (Math.atan(Math.exp(PI - (y / scale) * (2 * PI))) - PI / 4);
+        out = out || [];
+        out[0] = lambda2 * 180 / PI;
+        out[1] = phi2 * 180 / PI;
+        return out;
+    },
+
+    dataToPoint: function (data, out) {
+        out = this.projectOnTileWithScale(data, TILE_SIZE, out);
+        // Add a origin to avoid precision issue in WebGL.
+        out[0] -= this._origin[0];
+        out[1] -= this._origin[1];
+        // PENDING
+        out[2] = !isNaN(data[2]) ? data[2] : 0;
+        if (!isNaN(data[2])) {
+            out[2] = data[2];
+            if (this.altitudeExtent) {
+                out[2] -= this.altitudeExtent[0];
+            }
+        }
+        return out;
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (MapServiceCoordSys3D);
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_retrieve__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_ViewGL__ = __webpack_require__(19);
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function (serviceComponentType, ServiceCtor, afterCreate) {
+
+    function resizeMapService3D(mapService3DModel, api) {
+        var width = api.getWidth();
+        var height = api.getHeight();
+        var dpr = api.getDevicePixelRatio();
+        this.viewGL.setViewport(0, 0, width, height, dpr);
+
+        this.width = width;
+        this.height = height;
+
+        this.altitudeScale = mapService3DModel.get('altitudeScale');
+
+        this.boxHeight = mapService3DModel.get('boxHeight');
+        // this.updateTransform();
+    }
+
+
+    function updateService3D(ecModel, api) {
+
+        if (this.model.get('boxHeight') === 'auto') {
+            return;
+        }
+
+        var altitudeDataExtent = [Infinity, -Infinity]
+
+        ecModel.eachSeries(function (seriesModel) {
+            if (seriesModel.coordinateSystem !== this) {
+                return;
+            }
+
+            // Get altitude data extent.
+            var data = seriesModel.getData();
+            var altDim = seriesModel.coordDimToDataDim('alt')[0];
+            if (altDim) {
+                // TODO altitiude is in coords of lines.
+                var dataExtent = data.getDataExtent(altDim, true);
+                altitudeDataExtent[0] = Math.min(
+                    altitudeDataExtent[0], dataExtent[0]
+                );
+                altitudeDataExtent[1] = Math.max(
+                    altitudeDataExtent[1], dataExtent[1]
+                );
+            }
+        }, this);
+        if (altitudeDataExtent && isFinite(altitudeDataExtent[1] - altitudeDataExtent[0])) {
+            this.altitudeExtent = altitudeDataExtent;
+        }
+    }
+
+    return {
+
+
+        dimensions: ServiceCtor.prototype.dimensions,
+
+        create: function (ecModel, api) {
+            var mapService3DList = [];
+
+            ecModel.eachComponent(serviceComponentType, function (mapService3DModel) {
+                var viewGL = mapService3DModel.__viewGL;
+                if (!viewGL) {
+                    viewGL = mapService3DModel.__viewGL = new __WEBPACK_IMPORTED_MODULE_2__core_ViewGL__["a" /* default */]();
+                    viewGL.setRootNode(new __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Node());
+                }
+
+                var mapService3DCoordSys = new ServiceCtor();
+                mapService3DCoordSys.viewGL = mapService3DModel.__viewGL;
+                // Inject resize
+                mapService3DCoordSys.resize = resizeMapService3D;
+                mapService3DCoordSys.resize(mapService3DModel, api);
+
+                mapService3DList.push(mapService3DCoordSys);
+
+                mapService3DModel.coordinateSystem = mapService3DCoordSys;
+                mapService3DCoordSys.model = mapService3DModel;
+
+                mapService3DCoordSys.update = updateService3D;
+            });
+
+            ecModel.eachSeries(function (seriesModel) {
+                if (seriesModel.get('coordinateSystem') === serviceComponentType) {
+                    var mapService3DModel = seriesModel.getReferringComponents(serviceComponentType)[0];
+                    if (!mapService3DModel) {
+                        mapService3DModel = ecModel.getComponent(serviceComponentType);
+                    }
+
+                    if (!mapService3DModel) {
+                        throw new Error(serviceComponentType + ' "' + __WEBPACK_IMPORTED_MODULE_0__util_retrieve__["a" /* default */].firstNotNull(
+                            seriesModel.get(serviceComponentType + 'Index'),
+                            seriesModel.get(serviceComponentType + 'Id'),
+                            0
+                        ) + '" not found');
+                    }
+
+                    seriesModel.coordinateSystem = mapService3DModel.coordinateSystem;
+                }
+            });
+
+            afterCreate && afterCreate(mapService3DList, ecModel, api);
+
+            return mapService3DList;
+        }
+    };
+});
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("\n@export ecgl.displayShadow.vertex\n\n@import ecgl.common.transformUniforms\n\n@import ecgl.common.uv.header\n\n@import ecgl.common.attributes\n\nvarying vec3 v_WorldPosition;\n\nvarying vec3 v_Normal;\n\nvoid main()\n{\n @import ecgl.common.uv.main\n v_Normal = normalize((worldInverseTranspose * vec4(normal, 0.0)).xyz);\n\n v_WorldPosition = (world * vec4(position, 1.0)).xyz;\n gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n\n@end\n\n\n@export ecgl.displayShadow.fragment\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform float roughness: 0.2;\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n@import ecgl.common.ssaoMap.header\n\n@import clay.plugin.compute_shadow_map\n\nvoid main()\n{\n float shadow = 1.0;\n\n @import ecgl.common.ssaoMap.main\n\n#if defined(DIRECTIONAL_LIGHT_COUNT) && defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n for (int i = 0; i < DIRECTIONAL_LIGHT_COUNT; i++) {\n shadow = min(shadow, shadowContribsDir[i] * 0.5 + 0.5);\n }\n#endif\n\n shadow *= 0.5 + ao * 0.5;\n shadow = clamp(shadow, 0.0, 1.0);\n\n gl_FragColor = vec4(vec3(0.0), 1.0 - shadow);\n}\n\n@end");
+
+
+/***/ }),
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27373,7 +28100,7 @@ GLViewHelper.prototype._updateCamera = function (width, height, dpr) {
 /* harmony default export */ __webpack_exports__["a"] = (GLViewHelper);
 
 /***/ }),
-/* 85 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// (1) The code `if (__DEV__) ...` can be removed by build tool.
@@ -27396,17 +28123,17 @@ if (typeof dev === 'undefined') {
 
 var __DEV__ = dev;
 exports.__DEV__ = __DEV__;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(243)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(63)))
 
 /***/ }),
-/* 86 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__);
 /**
@@ -27877,27 +28604,29 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.util.defaults(LinesG
 /* harmony default export */ __webpack_exports__["a"] = (LinesGeometry);
 
 /***/ }),
-/* 87 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_echarts_gl__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_component_grid3D__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_component_geo3D__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_component_globe__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_component_mapbox3D__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_chart_bar3D__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_chart_line3D__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_chart_scatter3D__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_chart_lines3D__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_chart_polygons3D__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_chart_surface__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_chart_map3D__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_chart_scatterGL__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_chart_graphGL__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_chart_flowGL__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_chart_linesGL__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_echarts_gl__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_component_grid3D__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_component_geo3D__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_component_globe__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_component_mapbox3D__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_component_maptalks3D__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_chart_bar3D__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_chart_line3D__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_chart_scatter3D__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_chart_lines3D__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_chart_polygons3D__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_chart_surface__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_chart_map3D__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_chart_scatterGL__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_chart_graphGL__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_chart_flowGL__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_chart_linesGL__ = __webpack_require__(273);
+
 
 
 
@@ -27919,15 +28648,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 88 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_version__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_LayerGL__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__preprocessor_backwardCompat__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_version__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_LayerGL__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__preprocessor_backwardCompat__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_graphicGL__ = __webpack_require__(2);
 /**
  * echarts-gl
@@ -27965,10 +28694,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // PENDING Use a single canvas as layer or use image element?
 var echartsGl = {
-    version: '1.0.1',
+    version: '1.1.0',
     dependencies: {
-        echarts: '4.0.0',
-        claygl: '1.0.1'
+        echarts: '4.0.3',
+        claygl: '1.1.0'
     }
 };
 
@@ -28210,29 +28939,30 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.graphicGL = __WEBPAC
 /* unused harmony default export */ var _unused_webpack_default_export = (EChartsGL);
 
 /***/ }),
-/* 89 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /**
  * @name clay.version
  */
-/* harmony default export */ __webpack_exports__["a"] = ('1.0.1');
+/* harmony default export */ __webpack_exports__["a"] = ('1.1.0');
 
 
 /***/ }),
-/* 90 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Renderer__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_picking_RayPicking__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_picking_RayPicking__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_core_mixin_notifier__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_zrender_lib_animation_requestAnimationFrame__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_zrender_lib_animation_requestAnimationFrame___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_zrender_lib_animation_requestAnimationFrame__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_graphicGL__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_core_mixin_notifier__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_zrender_lib_animation_requestAnimationFrame__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_zrender_lib_animation_requestAnimationFrame___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_zrender_lib_animation_requestAnimationFrame__);
 /**
  * Provide WebGL layer to zrender. Which is rendered on top of clay.
  *
@@ -28248,6 +28978,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.graphicGL = __WEBPAC
  * @module echarts-gl/core/LayerGL
  * @author Yi Shen(http://github.com/pissang)
  */
+
 
 
 
@@ -28335,6 +29066,8 @@ var LayerGL = function (id, zr) {
         // FIXME Better solution.
         __isGLToZRProxy: true
     });
+
+    this._backgroundColor = null;
 };
 
 /**
@@ -28421,7 +29154,8 @@ LayerGL.prototype.resize = function (width, height) {
  */
 LayerGL.prototype.clear = function () {
     var gl = this.renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
+    var clearColor = this._backgroundColor || [0, 0, 0, 0];
+    gl.clearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
     gl.depthMask(true);
     gl.colorMask(true, true, true, true);
     gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
@@ -28454,10 +29188,13 @@ LayerGL.prototype.needsRefresh = function () {
 /**
  * Refresh the layer, will be invoked by zrender
  */
-LayerGL.prototype.refresh = function () {
+LayerGL.prototype.refresh = function (bgColor) {
+
+    this._backgroundColor = bgColor ? __WEBPACK_IMPORTED_MODULE_4__util_graphicGL__["a" /* default */].parseColor(bgColor) : [0, 0, 0, 0];
+    this.renderer.clearColor = this._backgroundColor;
 
     for (var i = 0; i < this.views.length; i++) {
-        this.views[i].prepareRender();
+        this.views[i].prepareRender(this.renderer);
     }
 
     this._doRender(false);
@@ -28533,7 +29270,7 @@ LayerGL.prototype._startAccumulating = function (immediate) {
                 accumulate(id);
             }
             else {
-                __WEBPACK_IMPORTED_MODULE_5_zrender_lib_animation_requestAnimationFrame___default()(function () {
+                __WEBPACK_IMPORTED_MODULE_6_zrender_lib_animation_requestAnimationFrame___default()(function () {
                     accumulate(id);
                 });
             }
@@ -28597,11 +29334,10 @@ function updateUsed(resource, list) {
     }
 }
 function collectResources(scene, textureResourceList, geometryResourceList) {
-    function trackQueue(queue) {
-        var prevMaterial;
-        var prevGeometry;
-        for (var i = 0; i < queue.length; i++) {
-            var renderable = queue[i];
+    var prevMaterial;
+    var prevGeometry;
+    scene.traverse(function (renderable) {
+        if (renderable.isRenderable()) {
             var geometry = renderable.geometry;
             var material = renderable.material;
 
@@ -28633,10 +29369,7 @@ function collectResources(scene, textureResourceList, geometryResourceList) {
             prevMaterial = material;
             prevGeometry = geometry;
         }
-    }
-
-    trackQueue(scene.opaqueList);
-    trackQueue(scene.transparentList);
+    });
 
     for (var k = 0; k < scene.lights.length; k++) {
         // Track AmbientCubemap
@@ -28673,7 +29406,7 @@ LayerGL.prototype.onmousedown = function (e) {
 };
 
 LayerGL.prototype.onmousemove = function (e) {
-        if (e.target && e.target.__isGLToZRProxy) {
+    if (e.target && e.target.__isGLToZRProxy) {
         return;
     }
 
@@ -28894,12 +29627,12 @@ LayerGL.prototype._dispatchToView = function (eventName, e) {
     }
 };
 
-__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.extend(LayerGL.prototype, __WEBPACK_IMPORTED_MODULE_4_claygl_src_core_mixin_notifier__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.extend(LayerGL.prototype, __WEBPACK_IMPORTED_MODULE_5_claygl_src_core_mixin_notifier__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (LayerGL);
 
 /***/ }),
-/* 91 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29012,7 +29745,7 @@ function extendWithPropList(target, source, propList) {
 
 
 /***/ }),
-/* 92 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29080,11 +29813,11 @@ function GLInfo(_gl) {
 
 
 /***/ }),
-/* 93 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_LRU__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_LRU__ = __webpack_require__(64);
 /**
  * @namespace clay.core.color
  */
@@ -29633,96 +30366,7 @@ colorUtil.stringify = function (arrColor, type) {
 /* harmony default export */ __webpack_exports__["a"] = (colorUtil);
 
 /***/ }),
-/* 94 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LinkedList__ = __webpack_require__(95);
-
-
-/**
- * LRU Cache
- * @constructor
- * @alias clay.core.LRU
- */
-var LRU = function(maxSize) {
-
-    this._list = new __WEBPACK_IMPORTED_MODULE_0__LinkedList__["a" /* default */]();
-
-    this._map = {};
-
-    this._maxSize = maxSize || 10;
-};
-
-/**
- * Set cache max size
- * @param {number} size
- */
-LRU.prototype.setMaxSize = function(size) {
-    this._maxSize = size;
-};
-
-/**
- * @param  {string} key
- * @param  {} value
- */
-LRU.prototype.put = function(key, value) {
-    if (typeof(this._map[key]) == 'undefined') {
-        var len = this._list.length();
-        if (len >= this._maxSize && len > 0) {
-            // Remove the least recently used
-            var leastUsedEntry = this._list.head;
-            this._list.remove(leastUsedEntry);
-            delete this._map[leastUsedEntry.key];
-        }
-
-        var entry = this._list.insert(value);
-        entry.key = key;
-        this._map[key] = entry;
-    }
-};
-
-/**
- * @param  {string} key
- * @return {}
- */
-LRU.prototype.get = function(key) {
-    var entry = this._map[key];
-    if (typeof(entry) != 'undefined') {
-        // Put the latest used entry in the tail
-        if (entry !== this._list.tail) {
-            this._list.remove(entry);
-            this._list.insertEntry(entry);
-        }
-
-        return entry.value;
-    }
-};
-
-/**
- * @param {string} key
- */
-LRU.prototype.remove = function(key) {
-    var entry = this._map[key];
-    if (typeof(entry) != 'undefined') {
-        delete this._map[key];
-        this._list.remove(entry);
-    }
-};
-
-/**
- * Clear the cache
- */
-LRU.prototype.clear = function() {
-    this._list.clear();
-    this._map = {};
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (LRU);
-
-
-/***/ }),
-/* 95 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29987,11 +30631,11 @@ LinkedList.Entry = function (val) {
 
 
 /***/ }),
-/* 96 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GLProgram__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GLProgram__ = __webpack_require__(108);
 
 
 var loopRegex = /for\s*?\(int\s*?_idx_\s*\=\s*([\w-]+)\;\s*_idx_\s*<\s*([\w-]+);\s*_idx_\s*\+\+\s*\)\s*\{\{([\s\S]+?)(?=\}\})\}\}/g;
@@ -30100,7 +30744,7 @@ function ProgramManager(renderer) {
 ProgramManager.prototype.getProgram = function (renderable, material, scene) {
     var cache = this._cache;
 
-    var key = 's' + material.shader.shaderID + 'm' + material.programKey;
+    var key = 's' + material.shader.shaderID + 'm' + material.getProgramKey();
     if (scene) {
         key += 'se' + scene.getProgramKey(renderable.lightGroup);
     }
@@ -30157,12 +30801,12 @@ ProgramManager.prototype.getProgram = function (renderable, material, scene) {
 /* harmony default export */ __webpack_exports__["a"] = (ProgramManager);
 
 /***/ }),
-/* 97 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_vendor__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_Base__ = __webpack_require__(9);
 
 
 
@@ -30490,11 +31134,11 @@ var GLProgram = __WEBPACK_IMPORTED_MODULE_1__core_Base__["a" /* default */].exte
 /* harmony default export */ __webpack_exports__["a"] = (GLProgram);
 
 /***/ }),
-/* 98 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__calcAmbientSHLight_glsl_js__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__calcAmbientSHLight_glsl_js__ = __webpack_require__(110);
 
 
 var uniformVec3Prefix = 'uniform vec3 ';
@@ -30543,24 +31187,24 @@ var unconfigurable = ':unconfigurable;';
 
 
 /***/ }),
-/* 99 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("vec3 calcAmbientSHLight(int idx, vec3 N) {\n    int offset = 9 * idx;\n    return ambientSHLightCoefficients[0]\n        + ambientSHLightCoefficients[1] * N.x\n        + ambientSHLightCoefficients[2] * N.y\n        + ambientSHLightCoefficients[3] * N.z\n        + ambientSHLightCoefficients[4] * N.x * N.z\n        + ambientSHLightCoefficients[5] * N.z * N.y\n        + ambientSHLightCoefficients[6] * N.y * N.x\n        + ambientSHLightCoefficients[7] * (3.0 * N.z * N.z - 1.0)\n        + ambientSHLightCoefficients[8] * (N.x * N.x - N.y * N.y);\n}");
+/* harmony default export */ __webpack_exports__["a"] = ("vec3 calcAmbientSHLight(int idx, vec3 N) {\n int offset = 9 * idx;\n return ambientSHLightCoefficients[0]\n + ambientSHLightCoefficients[1] * N.x\n + ambientSHLightCoefficients[2] * N.y\n + ambientSHLightCoefficients[3] * N.z\n + ambientSHLightCoefficients[4] * N.x * N.z\n + ambientSHLightCoefficients[5] * N.z * N.y\n + ambientSHLightCoefficients[6] * N.y * N.x\n + ambientSHLightCoefficients[7] * (3.0 * N.z * N.z - 1.0)\n + ambientSHLightCoefficients[8] * (N.x * N.x - N.y * N.y);\n}");
 
 
 /***/ }),
-/* 100 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Ray__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Vector2__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_Vector3__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__math_Matrix4__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Renderable__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__math_Matrix4__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Renderable__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__dep_glmatrix__);
@@ -30791,8 +31435,8 @@ var RayPicking = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].ext
 
 /**
  * @constructor clay.picking.RayPicking~Intersection
- * @param {clay.math.Vector3} point
- * @param {clay.math.Vector3} pointWorld
+ * @param {clay.Vector3} point
+ * @param {clay.Vector3} pointWorld
  * @param {clay.Node} target
  * @param {Array.<number>} triangle
  * @param {number} triangleIndex
@@ -30801,12 +31445,12 @@ var RayPicking = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].ext
 RayPicking.Intersection = function (point, pointWorld, target, triangle, triangleIndex, distance) {
     /**
      * Intersection point in local transform coordinates
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.point = point;
     /**
      * Intersection point in world transform coordinates
-     * @type {clay.math.Vector3}
+     * @type {clay.Vector3}
      */
     this.pointWorld = pointWorld;
     /**
@@ -30834,77 +31478,7 @@ RayPicking.Intersection = function (point, pointWorld, target, triangle, triangl
 
 
 /***/ }),
-/* 101 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-
-
-var GL_SERIES = ['bar3D', 'line3D', 'map3D', 'scatter3D', 'surface', 'lines3D', 'scatterGL', 'scatter3D'];
-
-function convertNormalEmphasis(option, optType) {
-    if (option && option[optType] && (option[optType].normal || option[optType].emphasis)) {
-        var normalOpt = option[optType].normal;
-        var emphasisOpt = option[optType].emphasis;
-
-        if (normalOpt) {
-            option[optType] = normalOpt;
-        }
-        if (emphasisOpt) {
-            option.emphasis = option.emphasis || {};
-            option.emphasis[optType] = emphasisOpt;
-        }
-    }
-}
-
-function convertNormalEmphasisForEach(option) {
-    convertNormalEmphasis(option, 'itemStyle');
-    convertNormalEmphasis(option, 'lineStyle');
-    convertNormalEmphasis(option, 'areaStyle');
-    convertNormalEmphasis(option, 'label');
-}
-
-function removeTextStyleInAxis(axesOpt) {
-    if (!axesOpt) {
-        return;
-    }
-    if (!(axesOpt instanceof Array)) {
-        axesOpt = [axesOpt];
-    }
-    __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.each(axesOpt, function (axisOpt) {
-        if (axisOpt.axisLabel) {
-            var labelOpt = axisOpt.axisLabel;
-            __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.extend(labelOpt, labelOpt.textStyle);
-            labelOpt.textStyle = null;
-        }
-    });
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (function (option) {
-    __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.each(option.series, function (series) {
-        if (__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.indexOf(GL_SERIES, series.type) >= 0) {
-            convertNormalEmphasisForEach(series);
-
-            // Compatitable with original mapbox
-            if (series.coordinateSystem === 'mapbox') {
-                series.coordinateSystem = 'mapbox3D';
-                option.mapbox3D = option.mapbox;
-            }
-        }
-    });
-
-    removeTextStyleInAxis(option.xAxis3D);
-    removeTextStyleInAxis(option.yAxis3D);
-    removeTextStyleInAxis(option.zAxis3D);
-    removeTextStyleInAxis(option.grid3D);
-
-    convertNormalEmphasis(option.geo3D);
-});;
-
-/***/ }),
-/* 102 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30951,21 +31525,21 @@ function get(options) {
 
 
 /***/ }),
-/* 103 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.basic.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nuniform vec2 uvRepeat : [1.0, 1.0];\nuniform vec2 uvOffset : [0.0, 0.0];\nattribute vec2 texcoord : TEXCOORD_0;\nattribute vec3 position : POSITION;\nattribute vec3 barycentric;\n@import clay.chunk.skinning_header\nvarying vec2 v_Texcoord;\nvarying vec3 v_Barycentric;\n#ifdef VERTEX_COLOR\nattribute vec4 a_Color : COLOR;\nvarying vec4 v_Color;\n#endif\nvoid main()\n{\n    vec3 skinnedPosition = position;\n#ifdef SKINNING\n    @import clay.chunk.skin_matrix\n    skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n    v_Texcoord = texcoord * uvRepeat + uvOffset;\n    v_Barycentric = barycentric;\n    gl_Position = worldViewProjection * vec4(skinnedPosition, 1.0);\n#ifdef VERTEX_COLOR\n    v_Color = a_Color;\n#endif\n}\n@end\n@export clay.basic.fragment\nvarying vec2 v_Texcoord;\nuniform sampler2D diffuseMap;\nuniform vec3 color : [1.0, 1.0, 1.0];\nuniform vec3 emission : [0.0, 0.0, 0.0];\nuniform float alpha : 1.0;\n#ifdef ALPHA_TEST\nuniform float alphaCutoff: 0.9;\n#endif\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\nuniform float lineWidth : 0.0;\nuniform vec4 lineColor : [0.0, 0.0, 0.0, 0.6];\nvarying vec3 v_Barycentric;\n@import clay.util.edge_factor\n@import clay.util.rgbm\n@import clay.util.srgb\n@import clay.util.ACES\nvoid main()\n{\n#ifdef RENDER_TEXCOORD\n    gl_FragColor = vec4(v_Texcoord, 1.0, 1.0);\n    return;\n#endif\n    gl_FragColor = vec4(color, alpha);\n#ifdef VERTEX_COLOR\n    gl_FragColor *= v_Color;\n#endif\n#ifdef DIFFUSEMAP_ENABLED\n    vec4 tex = decodeHDR(texture2D(diffuseMap, v_Texcoord));\n#ifdef SRGB_DECODE\n    tex = sRGBToLinear(tex);\n#endif\n#if defined(DIFFUSEMAP_ALPHA_ALPHA)\n    gl_FragColor.a = tex.a;\n#endif\n    gl_FragColor.rgb *= tex.rgb;\n#endif\n    gl_FragColor.rgb += emission;\n    if( lineWidth > 0.)\n    {\n        gl_FragColor.rgb = mix(gl_FragColor.rgb, lineColor.rgb, (1.0 - edgeFactor(lineWidth)) * lineColor.a);\n    }\n#ifdef ALPHA_TEST\n    if (gl_FragColor.a < alphaCutoff) {\n        discard;\n    }\n#endif\n#ifdef TONEMAPPING\n    gl_FragColor.rgb = ACESToneMapping(gl_FragColor.rgb);\n#endif\n#ifdef SRGB_ENCODE\n    gl_FragColor = linearTosRGB(gl_FragColor);\n#endif\n    gl_FragColor = encodeHDR(gl_FragColor);\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.skydome.vertex\n#define SHADER_NAME skydome\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec2 texcoord : TEXCOORD_0;\nattribute vec3 position : POSITION;\nvarying vec2 v_Texcoord;\nvoid main()\n{\n gl_Position = worldViewProjection * vec4(position, 1.0);\n v_Texcoord = texcoord;\n}\n@end\n@export clay.skydome.fragment\nuniform sampler2D environmentMap;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.srgb\n@import clay.util.ACES\nvoid main()\n{\n vec4 texel = decodeHDR(texture2D(environmentMap, v_Texcoord));\n#ifdef SRGB_DECODE\n texel = sRGBToLinear(texel);\n#endif\n#ifdef TONEMAPPING\n texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n#ifdef SRGB_ENCODE\n texel = linearTosRGB(texel);\n#endif\n gl_FragColor = encodeHDR(vec4(texel.rgb, 1.0));\n}\n@end");
 
 
 /***/ }),
-/* 104 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Texture2D__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TextureCube__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TextureCube__ = __webpack_require__(24);
 
 
 
@@ -31024,7 +31598,7 @@ var headerLengthInt = 31; // The header length in 32 bit ints
 var FOURCC_DXT1 = fourCCToInt32('DXT1');
 var FOURCC_DXT3 = fourCCToInt32('DXT3');
 var FOURCC_DXT5 = fourCCToInt32('DXT5');
-    // Offsets into the header array
+// Offsets into the header array
 var off_magic = 0;
 
 var off_size = 1;
@@ -31087,9 +31661,9 @@ var ret = {
             var _width = width;
             var _height = height;
             textures[f] = new __WEBPACK_IMPORTED_MODULE_1__Texture2D__["a" /* default */]({
-                width : _width,
-                height : _height,
-                format : internalFormat
+                width: _width,
+                height: _height,
+                format: internalFormat
             });
             var mipmaps = [];
             for (var i = 0; i < mipmapCount; i++) {
@@ -31125,7 +31699,7 @@ var ret = {
 
 
 /***/ }),
-/* 105 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31311,7 +31885,7 @@ var ret = {
 
 
 /***/ }),
-/* 106 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31497,12 +32071,12 @@ EChartsSurface.prototype = {
 /* harmony default export */ __webpack_exports__["a"] = (EChartsSurface);
 
 /***/ }),
-/* 107 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_cubemap__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_cubemap__ = __webpack_require__(70);
 // https://docs.unrealengine.com/latest/INT/Engine/Rendering/LightingAndShadows/AmbientCubemap/
 
 
@@ -31597,333 +32171,43 @@ var AmbientCubemapLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */
 
 
 /***/ }),
-/* 108 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Texture2D__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextureCube__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compositor_Pass__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shader__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__plugin_Skybox__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Scene__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__prePass_EnvironmentMap__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_vendor__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__texture__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shader_integrateBRDF_glsl_js__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shader_prefilter_glsl_js__ = __webpack_require__(112);
-// Cubemap prefilter utility
-// http://www.unrealengine.com/files/downloads/2013SiggraphPresentationsNotes.pdf
-// http://http.developer.nvidia.com/GPUGems3/gpugems3_ch20.html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var cubemapUtil = {};
-
-var targets = ['px', 'nx', 'py', 'ny', 'pz', 'nz'];
-
-/**
- * @name clay.util.cubemap.prefilterEnvironmentMap
- * @param  {clay.Renderer} renderer
- * @param  {clay.Texture} envMap
- * @param  {Object} [textureOpts]
- * @param  {number} [textureOpts.width=64]
- * @param  {number} [textureOpts.height=64]
- * @param  {number} [textureOpts.type]
- * @param  {boolean} [textureOpts.encodeRGBM=false]
- * @param  {boolean} [textureOpts.decodeRGBM=false]
- * @param  {clay.Texture2D} [normalDistribution]
- * @param  {clay.Texture2D} [brdfLookup]
- */
-cubemapUtil.prefilterEnvironmentMap = function (
-    renderer, envMap, textureOpts, normalDistribution, brdfLookup
-) {
-    // Not create other renderer, it is easy having issue of cross reference of resources like framebuffer
-    // PENDING preserveDrawingBuffer?
-    if (!brdfLookup || !normalDistribution) {
-        normalDistribution = cubemapUtil.generateNormalDistribution();
-        brdfLookup = cubemapUtil.integrateBRDF(renderer, normalDistribution);
-    }
-    textureOpts = textureOpts || {};
-
-    var width = textureOpts.width || 64;
-    var height = textureOpts.height || 64;
-
-    var textureType = textureOpts.type || envMap.type;
-
-    // Use same type with given envMap
-    var prefilteredCubeMap = new __WEBPACK_IMPORTED_MODULE_1__TextureCube__["a" /* default */]({
-        width: width,
-        height: height,
-        type: textureType,
-        flipY: false,
-        mipmaps: []
-    });
-
-    if (!prefilteredCubeMap.isPowerOfTwo()) {
-        console.warn('Width and height must be power of two to enable mipmap.');
-    }
-
-    var size = Math.min(width, height);
-    var mipmapNum = Math.log(size) / Math.log(2) + 1;
-
-    var prefilterMaterial = new __WEBPACK_IMPORTED_MODULE_5__Material__["a" /* default */]({
-        shader: new __WEBPACK_IMPORTED_MODULE_6__Shader__["a" /* default */]({
-            vertex: __WEBPACK_IMPORTED_MODULE_6__Shader__["a" /* default */].source('clay.skybox.vertex'),
-            fragment: __WEBPACK_IMPORTED_MODULE_13__shader_prefilter_glsl_js__["a" /* default */]
-        })
-    });
-    prefilterMaterial.set('normalDistribution', normalDistribution);
-
-    textureOpts.encodeRGBM && prefilterMaterial.define('fragment', 'RGBM_ENCODE');
-    textureOpts.decodeRGBM && prefilterMaterial.define('fragment', 'RGBM_DECODE');
-
-    var dummyScene = new __WEBPACK_IMPORTED_MODULE_8__Scene__["a" /* default */]();
-    var skyEnv;
-
-    if (envMap.textureType === 'texture2D') {
-        // Convert panorama to cubemap
-        var envCubemap = new __WEBPACK_IMPORTED_MODULE_1__TextureCube__["a" /* default */]({
-            width: width,
-            height: height,
-            // FIXME FLOAT type will cause GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT error on iOS
-            type: textureType === __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].FLOAT ?
-                    __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].HALF_FLOAT : textureType
-        });
-        __WEBPACK_IMPORTED_MODULE_11__texture__["a" /* default */].panoramaToCubeMap(renderer, envMap, envCubemap, {
-            // PENDING encodeRGBM so it can be decoded as RGBM
-            encodeRGBM: textureOpts.decodeRGBM
-        });
-        envMap = envCubemap;
-    }
-    skyEnv = new __WEBPACK_IMPORTED_MODULE_7__plugin_Skybox__["a" /* default */]({
-        scene: dummyScene,
-        material: prefilterMaterial
-    });
-    skyEnv.material.set('environmentMap', envMap);
-
-    var envMapPass = new __WEBPACK_IMPORTED_MODULE_9__prePass_EnvironmentMap__["a" /* default */]({
-        texture: prefilteredCubeMap
-    });
-
-    // Force to be UNSIGNED_BYTE
-    if (textureOpts.encodeRGBM) {
-        textureType = prefilteredCubeMap.type = __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].UNSIGNED_BYTE;
-    }
-
-    var renderTargetTmp = new __WEBPACK_IMPORTED_MODULE_0__Texture2D__["a" /* default */]({
-        width: width,
-        height: height,
-        type: textureType
-    });
-    var frameBuffer = new __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__["a" /* default */]({
-        depthBuffer: false
-    });
-    var ArrayCtor = __WEBPACK_IMPORTED_MODULE_10__core_vendor__["a" /* default */][textureType === __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].UNSIGNED_BYTE ? 'Uint8Array' : 'Float32Array'];
-    for (var i = 0; i < mipmapNum; i++) {
-        prefilteredCubeMap.mipmaps[i] = {
-            pixels: {}
-        };
-        skyEnv.material.set('roughness', i / (targets.length - 1));
-
-        // Tweak fov
-        // http://the-witness.net/news/2012/02/seamless-cube-map-filtering/
-        var n = renderTargetTmp.width;
-        var fov = 2 * Math.atan(n / (n - 0.5)) / Math.PI * 180;
-
-        for (var j = 0; j < targets.length; j++) {
-            var pixels = new ArrayCtor(renderTargetTmp.width * renderTargetTmp.height * 4);
-            frameBuffer.attach(renderTargetTmp);
-            frameBuffer.bind(renderer);
-
-            var camera = envMapPass.getCamera(targets[j]);
-            camera.fov = fov;
-            renderer.render(dummyScene, camera);
-            renderer.gl.readPixels(
-                0, 0, renderTargetTmp.width, renderTargetTmp.height,
-                __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].RGBA, textureType, pixels
-            );
-
-            // var canvas = document.createElement('canvas');
-            // var ctx = canvas.getContext('2d');
-            // canvas.width = renderTargetTmp.width;
-            // canvas.height = renderTargetTmp.height;
-            // var imageData = ctx.createImageData(renderTargetTmp.width, renderTargetTmp.height);
-            // for (var k = 0; k < pixels.length; k++) {
-            //     imageData.data[k] = pixels[k];
-            // }
-            // ctx.putImageData(imageData, 0, 0);
-            // document.body.appendChild(canvas);
-
-            frameBuffer.unbind(renderer);
-            prefilteredCubeMap.mipmaps[i].pixels[targets[j]] = pixels;
-        }
-
-        renderTargetTmp.width /= 2;
-        renderTargetTmp.height /= 2;
-        renderTargetTmp.dirty();
-    }
-
-    frameBuffer.dispose(renderer);
-    renderTargetTmp.dispose(renderer);
-    skyEnv.dispose(renderer);
-    // Remove gpu resource allucated in renderer
-    normalDistribution.dispose(renderer);
-
-    // renderer.dispose();
-
-    return {
-        environmentMap: prefilteredCubeMap,
-        brdfLookup: brdfLookup,
-        normalDistribution: normalDistribution,
-        maxMipmapLevel: mipmapNum
-    };
-};
-
-cubemapUtil.integrateBRDF = function (renderer, normalDistribution) {
-    normalDistribution = normalDistribution || cubemapUtil.generateNormalDistribution();
-    var framebuffer = new __WEBPACK_IMPORTED_MODULE_3__FrameBuffer__["a" /* default */]({
-        depthBuffer: false
-    });
-    var pass = new __WEBPACK_IMPORTED_MODULE_4__compositor_Pass__["a" /* default */]({
-        fragment: __WEBPACK_IMPORTED_MODULE_12__shader_integrateBRDF_glsl_js__["a" /* default */]
-    });
-
-    var texture = new __WEBPACK_IMPORTED_MODULE_0__Texture2D__["a" /* default */]({
-        width: 512,
-        height: 256,
-        type: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].HALF_FLOAT,
-        minFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
-        magFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
-        useMipmap: false
-    });
-    pass.setUniform('normalDistribution', normalDistribution);
-    pass.setUniform('viewportSize', [512, 256]);
-    pass.attachOutput(texture);
-    pass.render(renderer, framebuffer);
-
-    // FIXME Only chrome and firefox can readPixels with float type.
-    // framebuffer.bind(renderer);
-    // var pixels = new Float32Array(512 * 256 * 4);
-    // renderer.gl.readPixels(
-    //     0, 0, texture.width, texture.height,
-    //     Texture.RGBA, Texture.FLOAT, pixels
-    // );
-    // texture.pixels = pixels;
-    // texture.flipY = false;
-    // texture.dirty();
-    // framebuffer.unbind(renderer);
-
-    framebuffer.dispose(renderer);
-
-    return texture;
-};
-
-cubemapUtil.generateNormalDistribution = function (roughnessLevels, sampleSize) {
-
-    // http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html
-    // GLSL not support bit operation, use lookup instead
-    // V -> i / N, U -> roughness
-    var roughnessLevels = roughnessLevels || 256;
-    var sampleSize = sampleSize || 1024;
-
-    var normalDistribution = new __WEBPACK_IMPORTED_MODULE_0__Texture2D__["a" /* default */]({
-        width: roughnessLevels,
-        height: sampleSize,
-        type: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].FLOAT,
-        minFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
-        magFilter: __WEBPACK_IMPORTED_MODULE_2__Texture__["a" /* default */].NEAREST,
-        useMipmap: false
-    });
-    var pixels = new Float32Array(sampleSize * roughnessLevels * 4);
-    for (var i = 0; i < sampleSize; i++) {
-        var x = i / sampleSize;
-        // http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
-        // http://stackoverflow.com/questions/1908492/unsigned-integer-in-javascript
-        // http://stackoverflow.com/questions/1822350/what-is-the-javascript-operator-and-how-do-you-use-it
-        var y = (i << 16 | i >>> 16) >>> 0;
-        y = ((y & 1431655765) << 1 | (y & 2863311530) >>> 1) >>> 0;
-        y = ((y & 858993459) << 2 | (y & 3435973836) >>> 2) >>> 0;
-        y = ((y & 252645135) << 4 | (y & 4042322160) >>> 4) >>> 0;
-        y = (((y & 16711935) << 8 | (y & 4278255360) >>> 8) >>> 0) / 4294967296;
-
-        for (var j = 0; j < roughnessLevels; j++) {
-            var roughness = j / roughnessLevels;
-            var a = roughness * roughness;
-            var phi = 2.0 * Math.PI * x;
-            // CDF
-            var cosTheta = Math.sqrt((1 - y) / (1 + (a * a - 1.0) * y));
-            var sinTheta = Math.sqrt(1.0 - cosTheta * cosTheta);
-            var offset = (i * roughnessLevels + j) * 4;
-            pixels[offset] = sinTheta * Math.cos(phi);
-            pixels[offset + 1] = sinTheta * Math.sin(phi);
-            pixels[offset + 2] = cosTheta;
-            pixels[offset + 3] = 1.0;
-        }
-    }
-    normalDistribution.pixels = pixels;
-
-    return normalDistribution;
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (cubemapUtil);
+/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.compositor.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\nattribute vec2 texcoord : TEXCOORD_0;\nvarying vec2 v_Texcoord;\nvoid main()\n{\n v_Texcoord = texcoord;\n gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n@end");
 
 
 /***/ }),
-/* 109 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.compositor.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\nattribute vec2 texcoord : TEXCOORD_0;\nvarying vec2 v_Texcoord;\nvoid main()\n{\n    v_Texcoord = texcoord;\n    gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.skybox.vertex\n#define SHADER_NAME skybox\nuniform mat4 world : WORLD;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\nvarying vec3 v_WorldPosition;\nvoid main()\n{\n v_WorldPosition = (world * vec4(position, 1.0)).xyz;\n gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n@end\n@export clay.skybox.fragment\nuniform mat4 viewInverse : VIEWINVERSE;\nuniform samplerCube environmentMap;\nuniform float lod: 0.0;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\n@import clay.util.srgb\n@import clay.util.ACES\nvoid main()\n{\n vec3 eyePos = viewInverse[3].xyz;\n vec3 viewDirection = normalize(v_WorldPosition - eyePos);\n#ifdef LOD\n vec4 texel = decodeHDR(textureCubeLodEXT(environmentMap, viewDirection, lod));\n#else\n vec4 texel = decodeHDR(textureCube(environmentMap, viewDirection));\n#endif\n#ifdef SRGB_DECODE\n texel = sRGBToLinear(texel);\n#endif\n#ifdef TONEMAPPING\n texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n#ifdef SRGB_ENCODE\n texel = linearTosRGB(texel);\n#endif\n gl_FragColor = encodeHDR(vec4(texel.rgb, 1.0));\n}\n@end");
 
 
 /***/ }),
-/* 110 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.skybox.vertex\nuniform mat4 world : WORLD;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\nvarying vec3 v_WorldPosition;\nvoid main()\n{\n    v_WorldPosition = (world * vec4(position, 1.0)).xyz;\n    gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n@end\n@export clay.skybox.fragment\nuniform mat4 viewInverse : VIEWINVERSE;\nuniform samplerCube environmentMap;\nuniform float lod: 0.0;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\n@import clay.util.srgb\n@import clay.util.ACES\nvoid main()\n{\n    vec3 eyePos = viewInverse[3].xyz;\n    vec3 viewDirection = normalize(v_WorldPosition - eyePos);\n#ifdef LOD\n    vec4 texel = decodeHDR(textureCubeLodEXT(environmentMap, viewDirection, lod));\n#else\n    vec4 texel = decodeHDR(textureCube(environmentMap, viewDirection));\n#endif\n#ifdef SRGB_DECODE\n    texel = sRGBToLinear(texel);\n#endif\n#ifdef TONEMAPPING\n    texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n#ifdef SRGB_ENCODE\n    texel = linearTosRGB(texel);\n#endif\n    gl_FragColor = encodeHDR(vec4(texel.rgb, 1.0));\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("#define SAMPLE_NUMBER 1024\n#define PI 3.14159265358979\nuniform sampler2D normalDistribution;\nuniform vec2 viewportSize : [512, 256];\nconst vec3 N = vec3(0.0, 0.0, 1.0);\nconst float fSampleNumber = float(SAMPLE_NUMBER);\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n vec3 upVector = abs(N.y) > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nfloat G_Smith(float roughness, float NoV, float NoL) {\n float k = roughness * roughness / 2.0;\n float G1V = NoV / (NoV * (1.0 - k) + k);\n float G1L = NoL / (NoL * (1.0 - k) + k);\n return G1L * G1V;\n}\nvoid main() {\n vec2 uv = gl_FragCoord.xy / viewportSize;\n float NoV = uv.x;\n float roughness = uv.y;\n vec3 V;\n V.x = sqrt(1.0 - NoV * NoV);\n V.y = 0.0;\n V.z = NoV;\n float A = 0.0;\n float B = 0.0;\n for (int i = 0; i < SAMPLE_NUMBER; i++) {\n vec3 H = importanceSampleNormal(float(i) / fSampleNumber, roughness, N);\n vec3 L = reflect(-V, H);\n float NoL = clamp(L.z, 0.0, 1.0);\n float NoH = clamp(H.z, 0.0, 1.0);\n float VoH = clamp(dot(V, H), 0.0, 1.0);\n if (NoL > 0.0) {\n float G = G_Smith(roughness, NoV, NoL);\n float G_Vis = G * VoH / (NoH * NoV);\n float Fc = pow(1.0 - VoH, 5.0);\n A += (1.0 - Fc) * G_Vis;\n B += Fc * G_Vis;\n }\n }\n gl_FragColor = vec4(vec2(A, B) / fSampleNumber, 0.0, 1.0);\n}\n");
 
 
 /***/ }),
-/* 111 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("#define SAMPLE_NUMBER 1024\n#define PI 3.14159265358979\nuniform sampler2D normalDistribution;\nuniform vec2 viewportSize : [512, 256];\nconst vec3 N = vec3(0.0, 0.0, 1.0);\nconst float fSampleNumber = float(SAMPLE_NUMBER);\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n    vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n    vec3 upVector = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);\n    vec3 tangentX = normalize(cross(upVector, N));\n    vec3 tangentY = cross(N, tangentX);\n    return tangentX * H.x + tangentY * H.y + N * H.z;\n}\nfloat G_Smith(float roughness, float NoV, float NoL) {\n    float k = roughness * roughness / 2.0;\n    float G1V = NoV / (NoV * (1.0 - k) + k);\n    float G1L = NoL / (NoL * (1.0 - k) + k);\n    return G1L * G1V;\n}\nvoid main() {\n    vec2 uv = gl_FragCoord.xy / viewportSize;\n    float NoV = uv.x;\n    float roughness = uv.y;\n    vec3 V;\n    V.x = sqrt(1.0 - NoV * NoV);\n    V.y = 0.0;\n    V.z = NoV;\n    float A = 0.0;\n    float B = 0.0;\n    for (int i = 0; i < SAMPLE_NUMBER; i++) {\n        vec3 H = importanceSampleNormal(float(i) / fSampleNumber, roughness, N);\n        vec3 L = reflect(-V, H);\n        float NoL = clamp(L.z, 0.0, 1.0);\n        float NoH = clamp(H.z, 0.0, 1.0);\n        float VoH = clamp(dot(V, H), 0.0, 1.0);\n        if (NoL > 0.0) {\n            float G = G_Smith(roughness, NoV, NoL);\n            float G_Vis = G * VoH / (NoH * NoV);\n            float Fc = pow(1.0 - VoH, 5.0);\n            A += (1.0 - Fc) * G_Vis;\n            B += Fc * G_Vis;\n        }\n    }\n    gl_FragColor = vec4(vec2(A, B) / fSampleNumber, 0.0, 1.0);\n}\n");
+/* harmony default export */ __webpack_exports__["a"] = ("#define SHADER_NAME prefilter\n#define SAMPLE_NUMBER 1024\n#define PI 3.14159265358979\nuniform mat4 viewInverse : VIEWINVERSE;\nuniform samplerCube environmentMap;\nuniform sampler2D normalDistribution;\nuniform float roughness : 0.5;\nuniform int maxSampleNumber: 1024\nvarying vec2 v_Texcoord;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n vec3 upVector = abs(N.y) > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nvoid main() {\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(v_WorldPosition - eyePos);\n vec3 N = V;\n vec3 prefilteredColor = vec3(0.0);\n float totalWeight = 0.0;\n float fMaxSampleNumber = float(maxSampleNumber);\n for (int i = 0; i < SAMPLE_NUMBER; i++) {\n if (i > maxSampleNumber) {\n break;\n }\n vec3 H = importanceSampleNormal(float(i) / fMaxSampleNumber, roughness, N);\n vec3 L = reflect(-V, H);\n float NoL = clamp(dot(N, L), 0.0, 1.0);\n if (NoL > 0.0) {\n prefilteredColor += decodeHDR(textureCube(environmentMap, L)).rgb * NoL;\n totalWeight += NoL;\n }\n }\n gl_FragColor = encodeHDR(vec4(prefilteredColor / totalWeight, 1.0));\n}\n");
 
 
 /***/ }),
-/* 112 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("#define SAMPLE_NUMBER 1024\n#define PI 3.14159265358979\nuniform mat4 viewInverse : VIEWINVERSE;\nuniform samplerCube environmentMap;\nuniform sampler2D normalDistribution;\nuniform float roughness : 0.5;\nvarying vec2 v_Texcoord;\nvarying vec3 v_WorldPosition;\nconst float fSampleNumber = float(SAMPLE_NUMBER);\n@import clay.util.rgbm\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n    vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n    vec3 upVector = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);\n    vec3 tangentX = normalize(cross(upVector, N));\n    vec3 tangentY = cross(N, tangentX);\n    return tangentX * H.x + tangentY * H.y + N * H.z;\n}\nvoid main() {\n    vec3 eyePos = viewInverse[3].xyz;\n    vec3 V = normalize(v_WorldPosition - eyePos);\n    vec3 N = V;\n    vec3 R = V;\n    vec3 prefilteredColor = vec3(0.0);\n    float totalWeight = 0.0;\n    for (int i = 0; i < SAMPLE_NUMBER; i++) {\n        vec3 H = importanceSampleNormal(float(i) / fSampleNumber, roughness, N);\n        vec3 L = reflect(-V, H);\n        float NoL = clamp(dot(N, L), 0.0, 1.0);\n        if (NoL > 0.0) {\n            prefilteredColor += decodeHDR(textureCube(environmentMap, L)).rgb * NoL;\n            totalWeight += NoL;\n        }\n    }\n    gl_FragColor = encodeHDR(vec4(prefilteredColor / totalWeight, 1.0));\n}\n");
-
-
-/***/ }),
-/* 113 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_vendor__ = __webpack_require__(18);
 
 
@@ -31983,7 +32267,7 @@ var AmbientSHLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].ext
 
 
 /***/ }),
-/* 114 */
+/* 123 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31995,10 +32279,10 @@ var AmbientSHLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].ext
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugin_Skybox__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugin_Skydome__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__prePass_EnvironmentMap__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Scene__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Scene__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shader_projectEnvMap_glsl_js__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shader_projectEnvMap_glsl_js__ = __webpack_require__(124);
 // Spherical Harmonic Helpers
 
 
@@ -32127,7 +32411,7 @@ function projectEnvironmentMapCPU(renderer, cubePixels, width, height) {
                     texel[1] = pixels[i++] / 255;
                     texel[2] = pixels[i++] / 255;
                     // RGBM Decode
-                    var scale = pixels[i++] / 255 * 51.5;
+                    var scale = pixels[i++] / 255 * 8.12;
                     texel[0] *= scale;
                     texel[1] *= scale;
                     texel[2] *= scale;
@@ -32219,19 +32503,19 @@ sh.projectEnvironmentMap = function (renderer, envMap, opts) {
 
 
 /***/ }),
-/* 115 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("uniform samplerCube environmentMap;\nvarying vec2 v_Texcoord;\n#define TEXTURE_SIZE 16\nmat3 front = mat3(\n     1.0,  0.0,  0.0,\n     0.0,  1.0,  0.0,\n     0.0,  0.0,  1.0\n);\nmat3 back = mat3(\n    -1.0,  0.0,  0.0,\n     0.0,  1.0,  0.0,\n     0.0,  0.0, -1.0\n);\nmat3 left = mat3(\n     0.0,  0.0, -1.0,\n     0.0,  1.0,  0.0,\n     1.0,  0.0,  0.0\n);\nmat3 right = mat3(\n     0.0,  0.0,  1.0,\n     0.0,  1.0,  0.0,\n    -1.0,  0.0,  0.0\n);\nmat3 up = mat3(\n     1.0,  0.0,  0.0,\n     0.0,  0.0,  1.0,\n     0.0, -1.0,  0.0\n);\nmat3 down = mat3(\n     1.0,  0.0,  0.0,\n     0.0,  0.0, -1.0,\n     0.0,  1.0,  0.0\n);\nfloat harmonics(vec3 normal){\n    int index = int(gl_FragCoord.x);\n    float x = normal.x;\n    float y = normal.y;\n    float z = normal.z;\n    if(index==0){\n        return 1.0;\n    }\n    else if(index==1){\n        return x;\n    }\n    else if(index==2){\n        return y;\n    }\n    else if(index==3){\n        return z;\n    }\n    else if(index==4){\n        return x*z;\n    }\n    else if(index==5){\n        return y*z;\n    }\n    else if(index==6){\n        return x*y;\n    }\n    else if(index==7){\n        return 3.0*z*z - 1.0;\n    }\n    else{\n        return x*x - y*y;\n    }\n}\nvec3 sampleSide(mat3 rot)\n{\n    vec3 result = vec3(0.0);\n    float divider = 0.0;\n    for (int i = 0; i < TEXTURE_SIZE * TEXTURE_SIZE; i++) {\n        float x = mod(float(i), float(TEXTURE_SIZE));\n        float y = float(i / TEXTURE_SIZE);\n        vec2 sidecoord = ((vec2(x, y) + vec2(0.5, 0.5)) / vec2(TEXTURE_SIZE)) * 2.0 - 1.0;\n        vec3 normal = normalize(vec3(sidecoord, -1.0));\n        vec3 fetchNormal = rot * normal;\n        vec3 texel = textureCube(environmentMap, fetchNormal).rgb;\n        result += harmonics(fetchNormal) * texel * -normal.z;\n        divider += -normal.z;\n    }\n    return result / divider;\n}\nvoid main()\n{\n    vec3 result = (\n        sampleSide(front) +\n        sampleSide(back) +\n        sampleSide(left) +\n        sampleSide(right) +\n        sampleSide(up) +\n        sampleSide(down)\n    ) / 6.0;\n    gl_FragColor = vec4(result, 1.0);\n}");
+/* harmony default export */ __webpack_exports__["a"] = ("uniform samplerCube environmentMap;\nvarying vec2 v_Texcoord;\n#define TEXTURE_SIZE 16\nmat3 front = mat3(\n 1.0, 0.0, 0.0,\n 0.0, 1.0, 0.0,\n 0.0, 0.0, 1.0\n);\nmat3 back = mat3(\n -1.0, 0.0, 0.0,\n 0.0, 1.0, 0.0,\n 0.0, 0.0, -1.0\n);\nmat3 left = mat3(\n 0.0, 0.0, -1.0,\n 0.0, 1.0, 0.0,\n 1.0, 0.0, 0.0\n);\nmat3 right = mat3(\n 0.0, 0.0, 1.0,\n 0.0, 1.0, 0.0,\n -1.0, 0.0, 0.0\n);\nmat3 up = mat3(\n 1.0, 0.0, 0.0,\n 0.0, 0.0, 1.0,\n 0.0, -1.0, 0.0\n);\nmat3 down = mat3(\n 1.0, 0.0, 0.0,\n 0.0, 0.0, -1.0,\n 0.0, 1.0, 0.0\n);\nfloat harmonics(vec3 normal){\n int index = int(gl_FragCoord.x);\n float x = normal.x;\n float y = normal.y;\n float z = normal.z;\n if(index==0){\n return 1.0;\n }\n else if(index==1){\n return x;\n }\n else if(index==2){\n return y;\n }\n else if(index==3){\n return z;\n }\n else if(index==4){\n return x*z;\n }\n else if(index==5){\n return y*z;\n }\n else if(index==6){\n return x*y;\n }\n else if(index==7){\n return 3.0*z*z - 1.0;\n }\n else{\n return x*x - y*y;\n }\n}\nvec3 sampleSide(mat3 rot)\n{\n vec3 result = vec3(0.0);\n float divider = 0.0;\n for (int i = 0; i < TEXTURE_SIZE * TEXTURE_SIZE; i++) {\n float x = mod(float(i), float(TEXTURE_SIZE));\n float y = float(i / TEXTURE_SIZE);\n vec2 sidecoord = ((vec2(x, y) + vec2(0.5, 0.5)) / vec2(TEXTURE_SIZE)) * 2.0 - 1.0;\n vec3 normal = normalize(vec3(sidecoord, -1.0));\n vec3 fetchNormal = rot * normal;\n vec3 texel = textureCube(environmentMap, fetchNormal).rgb;\n result += harmonics(fetchNormal) * texel * -normal.z;\n divider += -normal.z;\n }\n return result / divider;\n}\nvoid main()\n{\n vec3 result = (\n sampleSide(front) +\n sampleSide(back) +\n sampleSide(left) +\n sampleSide(right) +\n sampleSide(up) +\n sampleSide(down)\n ) / 6.0;\n gl_FragColor = vec4(result, 1.0);\n}");
 
 
 /***/ }),
-/* 116 */
+/* 125 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(21);
 
 
 /**
@@ -32268,7 +32552,262 @@ var AmbientLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].exten
 
 
 /***/ }),
-/* 117 */
+/* 126 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
+
+
+
+/**
+ * @constructor clay.light.Directional
+ * @extends clay.Light
+ *
+ * @example
+ *     var light = new clay.light.Directional({
+ *         intensity: 0.5,
+ *         color: [1.0, 0.0, 0.0]
+ *     });
+ *     light.position.set(10, 10, 10);
+ *     light.lookAt(clay.Vector3.ZERO);
+ *     scene.add(light);
+ */
+var DirectionalLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].extend(/** @lends clay.light.Directional# */ {
+    /**
+     * @type {number}
+     */
+    shadowBias: 0.001,
+    /**
+     * @type {number}
+     */
+    shadowSlopeScale: 2.0,
+    /**
+     * Shadow cascade.
+     * Use PSSM technique when it is larger than 1 and have a unique directional light in scene.
+     * @type {number}
+     */
+    shadowCascade: 1,
+
+    /**
+     * Available when shadowCascade is larger than 1 and have a unique directional light in scene.
+     * @type {number}
+     */
+    cascadeSplitLogFactor: 0.2
+}, {
+
+    type: 'DIRECTIONAL_LIGHT',
+
+    uniformTemplates: {
+        directionalLightDirection: {
+            type: '3f',
+            value: function (instance) {
+                instance.__dir = instance.__dir || new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
+                // Direction is target to eye
+                return instance.__dir.copy(instance.worldTransform.z).normalize().negate().array;
+            }
+        },
+        directionalLightColor: {
+            type: '3f',
+            value: function (instance) {
+                var color = instance.color;
+                var intensity = instance.intensity;
+                return [color[0] * intensity, color[1] * intensity, color[2] * intensity];
+            }
+        }
+    },
+    /**
+     * @return {clay.light.Directional}
+     * @memberOf clay.light.Directional.prototype
+     */
+    clone: function () {
+        var light = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].prototype.clone.call(this);
+        light.shadowBias = this.shadowBias;
+        light.shadowSlopeScale = this.shadowSlopeScale;
+        return light;
+    }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (DirectionalLight);
+
+
+/***/ }),
+/* 127 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(21);
+
+
+/**
+ * @constructor clay.light.Point
+ * @extends clay.Light
+ */
+var PointLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].extend(/** @lends clay.light.Point# */ {
+    /**
+     * @type {number}
+     */
+    range: 100,
+
+    /**
+     * @type {number}
+     */
+    castShadow: false
+}, {
+
+    type: 'POINT_LIGHT',
+
+    uniformTemplates: {
+        pointLightPosition: {
+            type: '3f',
+            value: function(instance) {
+                return instance.getWorldPosition().array;
+            }
+        },
+        pointLightRange: {
+            type: '1f',
+            value: function(instance) {
+                return instance.range;
+            }
+        },
+        pointLightColor: {
+            type: '3f',
+            value: function(instance) {
+                var color = instance.color;
+                var intensity = instance.intensity;
+                return [color[0] * intensity, color[1] * intensity, color[2] * intensity];
+            }
+        }
+    },
+    /**
+     * @return {clay.light.Point}
+     * @memberOf clay.light.Point.prototype
+     */
+    clone: function() {
+        var light = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].prototype.clone.call(this);
+        light.range = this.range;
+        return light;
+    }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (PointLight);
+
+
+/***/ }),
+/* 128 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Light__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_Vector3__ = __webpack_require__(4);
+
+
+
+/**
+ * @constructor clay.light.Spot
+ * @extends clay.Light
+ */
+var SpotLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].extend(
+/**@lends clay.light.Spot */
+{
+    /**
+     * @type {number}
+     */
+    range: 20,
+    /**
+     * @type {number}
+     */
+    umbraAngle: 30,
+    /**
+     * @type {number}
+     */
+    penumbraAngle: 45,
+    /**
+     * @type {number}
+     */
+    falloffFactor: 2.0,
+    /**
+     * @type {number}
+     */
+    shadowBias: 0.0002,
+    /**
+     * @type {number}
+     */
+    shadowSlopeScale: 2.0
+},{
+
+    type: 'SPOT_LIGHT',
+
+    uniformTemplates: {
+        spotLightPosition: {
+            type: '3f',
+            value: function (instance) {
+                return instance.getWorldPosition().array;
+            }
+        },
+        spotLightRange: {
+            type: '1f',
+            value: function (instance) {
+                return instance.range;
+            }
+        },
+        spotLightUmbraAngleCosine: {
+            type: '1f',
+            value: function (instance) {
+                return Math.cos(instance.umbraAngle * Math.PI / 180);
+            }
+        },
+        spotLightPenumbraAngleCosine: {
+            type: '1f',
+            value: function (instance) {
+                return Math.cos(instance.penumbraAngle * Math.PI / 180);
+            }
+        },
+        spotLightFalloffFactor: {
+            type: '1f',
+            value: function (instance) {
+                return instance.falloffFactor;
+            }
+        },
+        spotLightDirection: {
+            type: '3f',
+            value: function (instance) {
+                instance.__dir = instance.__dir || new __WEBPACK_IMPORTED_MODULE_1__math_Vector3__["a" /* default */]();
+                // Direction is target to eye
+                return instance.__dir.copy(instance.worldTransform.z).negate().array;
+            }
+        },
+        spotLightColor: {
+            type: '3f',
+            value: function (instance) {
+                var color = instance.color;
+                var intensity = instance.intensity;
+                return [color[0] * intensity, color[1] * intensity, color[2] * intensity];
+            }
+        }
+    },
+    /**
+     * @return {clay.light.Spot}
+     * @memberOf clay.light.Spot.prototype
+     */
+    clone: function () {
+        var light = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */].prototype.clone.call(this);
+        light.range = this.range;
+        light.umbraAngle = this.umbraAngle;
+        light.penumbraAngle = this.penumbraAngle;
+        light.falloffFactor = this.falloffFactor;
+        light.shadowBias = this.shadowBias;
+        light.shadowSlopeScale = this.shadowSlopeScale;
+        return light;
+    }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (SpotLight);
+
+
+/***/ }),
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32279,7 +32818,7 @@ var vec4 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.vec4;
 
 /**
  * @constructor
- * @alias clay.math.Vector4
+ * @alias clay.Vector4
  * @param {number} x
  * @param {number} y
  * @param {number} z
@@ -32297,7 +32836,7 @@ var Vector4 = function(x, y, z, w) {
      * All methods also operate on the array instead of x, y, z, w components
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Vector4#
+     * @memberOf clay.Vector4#
      */
     this.array = vec4.fromValues(x, y, z, w);
 
@@ -32306,7 +32845,7 @@ var Vector4 = function(x, y, z, w) {
      * if the matrix is updated to latest
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Vector4#
+     * @memberOf clay.Vector4#
      */
     this._dirty = true;
 };
@@ -32317,8 +32856,8 @@ Vector4.prototype = {
 
     /**
      * Add b to self
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     add: function(b) {
         vec4.add(this.array, this.array, b.array);
@@ -32332,7 +32871,7 @@ Vector4.prototype = {
      * @param  {number}  y
      * @param  {number}  z
      * @param  {number}  w
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     set: function(x, y, z, w) {
         this.array[0] = x;
@@ -32346,7 +32885,7 @@ Vector4.prototype = {
     /**
      * Set x, y, z and w components from array
      * @param  {Float32Array|number[]} arr
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     setArray: function(arr) {
         this.array[0] = arr[0];
@@ -32360,7 +32899,7 @@ Vector4.prototype = {
 
     /**
      * Clone a new Vector4
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     clone: function() {
         return new Vector4(this.x, this.y, this.z, this.w);
@@ -32368,8 +32907,8 @@ Vector4.prototype = {
 
     /**
      * Copy from b
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     copy: function(b) {
         vec4.copy(this.array, b.array);
@@ -32379,7 +32918,7 @@ Vector4.prototype = {
 
     /**
      * Alias for distance
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} b
      * @return {number}
      */
     dist: function(b) {
@@ -32388,7 +32927,7 @@ Vector4.prototype = {
 
     /**
      * Distance between self and b
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} b
      * @return {number}
      */
     distance: function(b) {
@@ -32397,8 +32936,8 @@ Vector4.prototype = {
 
     /**
      * Alias for divide
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     div: function(b) {
         vec4.div(this.array, this.array, b.array);
@@ -32408,8 +32947,8 @@ Vector4.prototype = {
 
     /**
      * Divide self by b
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     divide: function(b) {
         vec4.divide(this.array, this.array, b.array);
@@ -32419,7 +32958,7 @@ Vector4.prototype = {
 
     /**
      * Dot product of self and b
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} b
      * @return {number}
      */
     dot: function(b) {
@@ -32443,10 +32982,10 @@ Vector4.prototype = {
     },
     /**
      * Linear interpolation between a and b
-     * @param  {clay.math.Vector4} a
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} a
+     * @param  {clay.Vector4} b
      * @param  {number}  t
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     lerp: function(a, b, t) {
         vec4.lerp(this.array, a.array, b.array, t);
@@ -32456,8 +32995,8 @@ Vector4.prototype = {
 
     /**
      * Minimum of self and b
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     min: function(b) {
         vec4.min(this.array, this.array, b.array);
@@ -32467,8 +33006,8 @@ Vector4.prototype = {
 
     /**
      * Maximum of self and b
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     max: function(b) {
         vec4.max(this.array, this.array, b.array);
@@ -32478,8 +33017,8 @@ Vector4.prototype = {
 
     /**
      * Alias for multiply
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     mul: function(b) {
         vec4.mul(this.array, this.array, b.array);
@@ -32489,8 +33028,8 @@ Vector4.prototype = {
 
     /**
      * Mutiply self and b
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     multiply: function(b) {
         vec4.multiply(this.array, this.array, b.array);
@@ -32500,7 +33039,7 @@ Vector4.prototype = {
 
     /**
      * Negate self
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     negate: function() {
         vec4.negate(this.array, this.array);
@@ -32510,7 +33049,7 @@ Vector4.prototype = {
 
     /**
      * Normalize self
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     normalize: function() {
         vec4.normalize(this.array, this.array);
@@ -32521,7 +33060,7 @@ Vector4.prototype = {
     /**
      * Generate random x, y, z, w components with a given scale
      * @param  {number} scale
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     random: function(scale) {
         vec4.random(this.array, scale);
@@ -32532,7 +33071,7 @@ Vector4.prototype = {
     /**
      * Scale self
      * @param  {number}  scale
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     scale: function(s) {
         vec4.scale(this.array, this.array, s);
@@ -32541,9 +33080,9 @@ Vector4.prototype = {
     },
     /**
      * Scale b and add to self
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} b
      * @param  {number}  scale
-     * @return {clay.math.Vector4}
+     * @return {clay.Vector4}
      */
     scaleAndAdd: function(b, s) {
         vec4.scaleAndAdd(this.array, this.array, b.array, s);
@@ -32553,7 +33092,7 @@ Vector4.prototype = {
 
     /**
      * Alias for squaredDistance
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} b
      * @return {number}
      */
     sqrDist: function(b) {
@@ -32562,7 +33101,7 @@ Vector4.prototype = {
 
     /**
      * Squared distance between self and b
-     * @param  {clay.math.Vector4} b
+     * @param  {clay.Vector4} b
      * @return {number}
      */
     squaredDistance: function(b) {
@@ -32587,8 +33126,8 @@ Vector4.prototype = {
 
     /**
      * Alias for subtract
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     sub: function(b) {
         vec4.sub(this.array, this.array, b.array);
@@ -32598,8 +33137,8 @@ Vector4.prototype = {
 
     /**
      * Subtract b from self
-     * @param  {clay.math.Vector4} b
-     * @return {clay.math.Vector4}
+     * @param  {clay.Vector4} b
+     * @return {clay.Vector4}
      */
     subtract: function(b) {
         vec4.subtract(this.array, this.array, b.array);
@@ -32609,8 +33148,8 @@ Vector4.prototype = {
 
     /**
      * Transform self with a Matrix4 m
-     * @param  {clay.math.Matrix4} m
-     * @return {clay.math.Vector4}
+     * @param  {clay.Matrix4} m
+     * @return {clay.Vector4}
      */
     transformMat4: function(m) {
         vec4.transformMat4(this.array, this.array, m.array);
@@ -32620,8 +33159,8 @@ Vector4.prototype = {
 
     /**
      * Transform self with a Quaternion q
-     * @param  {clay.math.Quaternion} q
-     * @return {clay.math.Vector4}
+     * @param  {clay.Quaternion} q
+     * @return {clay.Vector4}
      */
     transformQuat: function(q) {
         vec4.transformQuat(this.array, this.array, q.array);
@@ -32646,7 +33185,7 @@ if (defineProperty) {
     /**
      * @name x
      * @type {number}
-     * @memberOf clay.math.Vector4
+     * @memberOf clay.Vector4
      * @instance
      */
     defineProperty(proto, 'x', {
@@ -32662,7 +33201,7 @@ if (defineProperty) {
     /**
      * @name y
      * @type {number}
-     * @memberOf clay.math.Vector4
+     * @memberOf clay.Vector4
      * @instance
      */
     defineProperty(proto, 'y', {
@@ -32678,7 +33217,7 @@ if (defineProperty) {
     /**
      * @name z
      * @type {number}
-     * @memberOf clay.math.Vector4
+     * @memberOf clay.Vector4
      * @instance
      */
     defineProperty(proto, 'z', {
@@ -32694,7 +33233,7 @@ if (defineProperty) {
     /**
      * @name w
      * @type {number}
-     * @memberOf clay.math.Vector4
+     * @memberOf clay.Vector4
      * @instance
      */
     defineProperty(proto, 'w', {
@@ -32711,10 +33250,10 @@ if (defineProperty) {
 // Supply methods that are not in place
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.add = function(out, a, b) {
     vec4.add(out.array, a.array, b.array);
@@ -32723,11 +33262,11 @@ Vector4.add = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
+ * @param  {clay.Vector4} out
  * @param  {number}  x
  * @param  {number}  y
  * @param  {number}  z
- * @return {clay.math.Vector4}
+ * @return {clay.Vector4}
  */
 Vector4.set = function(out, x, y, z, w) {
     vec4.set(out.array, x, y, z, w);
@@ -32735,9 +33274,9 @@ Vector4.set = function(out, x, y, z, w) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.copy = function(out, b) {
     vec4.copy(out.array, b.array);
@@ -32746,8 +33285,8 @@ Vector4.copy = function(out, b) {
 };
 
 /**
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @return {number}
  */
 Vector4.dist = function(a, b) {
@@ -32756,17 +33295,17 @@ Vector4.dist = function(a, b) {
 
 /**
  * @function
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @return {number}
  */
 Vector4.distance = Vector4.dist;
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.div = function(out, a, b) {
     vec4.divide(out.array, a.array, b.array);
@@ -32776,16 +33315,16 @@ Vector4.div = function(out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.divide = Vector4.div;
 
 /**
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @return {number}
  */
 Vector4.dot = function(a, b) {
@@ -32793,7 +33332,7 @@ Vector4.dot = function(a, b) {
 };
 
 /**
- * @param  {clay.math.Vector4} a
+ * @param  {clay.Vector4} a
  * @return {number}
  */
 Vector4.len = function(b) {
@@ -32803,11 +33342,11 @@ Vector4.len = function(b) {
 // Vector4.length = Vector4.len;
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @param  {number}  t
- * @return {clay.math.Vector4}
+ * @return {clay.Vector4}
  */
 Vector4.lerp = function(out, a, b, t) {
     vec4.lerp(out.array, a.array, b.array, t);
@@ -32816,10 +33355,10 @@ Vector4.lerp = function(out, a, b, t) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.min = function(out, a, b) {
     vec4.min(out.array, a.array, b.array);
@@ -32828,10 +33367,10 @@ Vector4.min = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.max = function(out, a, b) {
     vec4.max(out.array, a.array, b.array);
@@ -32840,10 +33379,10 @@ Vector4.max = function(out, a, b) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.mul = function(out, a, b) {
     vec4.multiply(out.array, a.array, b.array);
@@ -32853,17 +33392,17 @@ Vector4.mul = function(out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.multiply = Vector4.mul;
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @return {clay.Vector4}
  */
 Vector4.negate = function(out, a) {
     vec4.negate(out.array, a.array);
@@ -32872,9 +33411,9 @@ Vector4.negate = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @return {clay.Vector4}
  */
 Vector4.normalize = function(out, a) {
     vec4.normalize(out.array, a.array);
@@ -32883,9 +33422,9 @@ Vector4.normalize = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
+ * @param  {clay.Vector4} out
  * @param  {number}  scale
- * @return {clay.math.Vector4}
+ * @return {clay.Vector4}
  */
 Vector4.random = function(out, scale) {
     vec4.random(out.array, scale);
@@ -32894,10 +33433,10 @@ Vector4.random = function(out, scale) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
  * @param  {number}  scale
- * @return {clay.math.Vector4}
+ * @return {clay.Vector4}
  */
 Vector4.scale = function(out, a, scale) {
     vec4.scale(out.array, a.array, scale);
@@ -32906,11 +33445,11 @@ Vector4.scale = function(out, a, scale) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @param  {number}  scale
- * @return {clay.math.Vector4}
+ * @return {clay.Vector4}
  */
 Vector4.scaleAndAdd = function(out, a, b, scale) {
     vec4.scaleAndAdd(out.array, a.array, b.array, scale);
@@ -32919,8 +33458,8 @@ Vector4.scaleAndAdd = function(out, a, b, scale) {
 };
 
 /**
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @return {number}
  */
 Vector4.sqrDist = function(a, b) {
@@ -32929,14 +33468,14 @@ Vector4.sqrDist = function(a, b) {
 
 /**
  * @function
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
  * @return {number}
  */
 Vector4.squaredDistance = Vector4.sqrDist;
 
 /**
- * @param  {clay.math.Vector4} a
+ * @param  {clay.Vector4} a
  * @return {number}
  */
 Vector4.sqrLen = function(a) {
@@ -32944,16 +33483,16 @@ Vector4.sqrLen = function(a) {
 };
 /**
  * @function
- * @param  {clay.math.Vector4} a
+ * @param  {clay.Vector4} a
  * @return {number}
  */
 Vector4.squaredLength = Vector4.sqrLen;
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.sub = function(out, a, b) {
     vec4.subtract(out.array, a.array, b.array);
@@ -32962,18 +33501,18 @@ Vector4.sub = function(out, a, b) {
 };
 /**
  * @function
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Vector4} b
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Vector4} b
+ * @return {clay.Vector4}
  */
 Vector4.subtract = Vector4.sub;
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Matrix4} m
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Matrix4} m
+ * @return {clay.Vector4}
  */
 Vector4.transformMat4 = function(out, a, m) {
     vec4.transformMat4(out.array, a.array, m.array);
@@ -32982,10 +33521,10 @@ Vector4.transformMat4 = function(out, a, m) {
 };
 
 /**
- * @param  {clay.math.Vector4} out
- * @param  {clay.math.Vector4} a
- * @param  {clay.math.Quaternion} q
- * @return {clay.math.Vector4}
+ * @param  {clay.Vector4} out
+ * @param  {clay.Vector4} a
+ * @param  {clay.Quaternion} q
+ * @return {clay.Vector4}
  */
 Vector4.transformQuat = function(out, a, q) {
     vec4.transformQuat(out.array, a.array, q.array);
@@ -32997,7 +33536,7 @@ Vector4.transformQuat = function(out, a, q) {
 
 
 /***/ }),
-/* 118 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33008,7 +33547,7 @@ var mat2 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat2;
 
 /**
  * @constructor
- * @alias clay.math.Matrix2
+ * @alias clay.Matrix2
  */
 var Matrix2 = function() {
 
@@ -33016,14 +33555,14 @@ var Matrix2 = function() {
      * Storage of Matrix2
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Matrix2#
+     * @memberOf clay.Matrix2#
      */
     this.array = mat2.create();
 
     /**
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Matrix2#
+     * @memberOf clay.Matrix2#
      */
     this._dirty = true;
 };
@@ -33045,7 +33584,7 @@ Matrix2.prototype = {
     },
     /**
      * Clone a new Matrix2
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     clone: function() {
         return (new Matrix2()).copy(this);
@@ -33053,8 +33592,8 @@ Matrix2.prototype = {
 
     /**
      * Copy from b
-     * @param  {clay.math.Matrix2} b
-     * @return {clay.math.Matrix2}
+     * @param  {clay.Matrix2} b
+     * @return {clay.Matrix2}
      */
     copy: function(b) {
         mat2.copy(this.array, b.array);
@@ -33064,7 +33603,7 @@ Matrix2.prototype = {
 
     /**
      * Calculate the adjugate of self, in-place
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     adjoint: function() {
         mat2.adjoint(this.array, this.array);
@@ -33082,7 +33621,7 @@ Matrix2.prototype = {
 
     /**
      * Set to a identity matrix
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     identity: function() {
         mat2.identity(this.array);
@@ -33092,7 +33631,7 @@ Matrix2.prototype = {
 
     /**
      * Invert self
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     invert: function() {
         mat2.invert(this.array, this.array);
@@ -33102,8 +33641,8 @@ Matrix2.prototype = {
 
     /**
      * Alias for mutiply
-     * @param  {clay.math.Matrix2} b
-     * @return {clay.math.Matrix2}
+     * @param  {clay.Matrix2} b
+     * @return {clay.Matrix2}
      */
     mul: function(b) {
         mat2.mul(this.array, this.array, b.array);
@@ -33113,8 +33652,8 @@ Matrix2.prototype = {
 
     /**
      * Alias for multiplyLeft
-     * @param  {clay.math.Matrix2} a
-     * @return {clay.math.Matrix2}
+     * @param  {clay.Matrix2} a
+     * @return {clay.Matrix2}
      */
     mulLeft: function(a) {
         mat2.mul(this.array, a.array, this.array);
@@ -33124,8 +33663,8 @@ Matrix2.prototype = {
 
     /**
      * Multiply self and b
-     * @param  {clay.math.Matrix2} b
-     * @return {clay.math.Matrix2}
+     * @param  {clay.Matrix2} b
+     * @return {clay.Matrix2}
      */
     multiply: function(b) {
         mat2.multiply(this.array, this.array, b.array);
@@ -33135,8 +33674,8 @@ Matrix2.prototype = {
 
     /**
      * Multiply a and self, a is on the left
-     * @param  {clay.math.Matrix2} a
-     * @return {clay.math.Matrix2}
+     * @param  {clay.Matrix2} a
+     * @return {clay.Matrix2}
      */
     multiplyLeft: function(a) {
         mat2.multiply(this.array, a.array, this.array);
@@ -33147,7 +33686,7 @@ Matrix2.prototype = {
     /**
      * Rotate self by a given radian
      * @param  {number}   rad
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     rotate: function(rad) {
         mat2.rotate(this.array, this.array, rad);
@@ -33157,8 +33696,8 @@ Matrix2.prototype = {
 
     /**
      * Scale self by s
-     * @param  {clay.math.Vector2}  s
-     * @return {clay.math.Matrix2}
+     * @param  {clay.Vector2}  s
+     * @return {clay.Matrix2}
      */
     scale: function(v) {
         mat2.scale(this.array, this.array, v.array);
@@ -33167,7 +33706,7 @@ Matrix2.prototype = {
     },
     /**
      * Transpose self, in-place.
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     transpose: function() {
         mat2.transpose(this.array, this.array);
@@ -33196,9 +33735,9 @@ Matrix2.adjoint = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix2} out
- * @param  {clay.math.Matrix2} a
- * @return {clay.math.Matrix2}
+ * @param  {clay.Matrix2} out
+ * @param  {clay.Matrix2} a
+ * @return {clay.Matrix2}
  */
 Matrix2.copy = function(out, a) {
     mat2.copy(out.array, a.array);
@@ -33207,7 +33746,7 @@ Matrix2.copy = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix2} a
+ * @param  {clay.Matrix2} a
  * @return {number}
  */
 Matrix2.determinant = function(a) {
@@ -33215,8 +33754,8 @@ Matrix2.determinant = function(a) {
 };
 
 /**
- * @param  {clay.math.Matrix2} out
- * @return {clay.math.Matrix2}
+ * @param  {clay.Matrix2} out
+ * @return {clay.Matrix2}
  */
 Matrix2.identity = function(out) {
     mat2.identity(out.array);
@@ -33225,9 +33764,9 @@ Matrix2.identity = function(out) {
 };
 
 /**
- * @param  {clay.math.Matrix2} out
- * @param  {clay.math.Matrix2} a
- * @return {clay.math.Matrix2}
+ * @param  {clay.Matrix2} out
+ * @param  {clay.Matrix2} a
+ * @return {clay.Matrix2}
  */
 Matrix2.invert = function(out, a) {
     mat2.invert(out.array, a.array);
@@ -33236,10 +33775,10 @@ Matrix2.invert = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix2} out
- * @param  {clay.math.Matrix2} a
- * @param  {clay.math.Matrix2} b
- * @return {clay.math.Matrix2}
+ * @param  {clay.Matrix2} out
+ * @param  {clay.Matrix2} a
+ * @param  {clay.Matrix2} b
+ * @return {clay.Matrix2}
  */
 Matrix2.mul = function(out, a, b) {
     mat2.mul(out.array, a.array, b.array);
@@ -33249,18 +33788,18 @@ Matrix2.mul = function(out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Matrix2} out
- * @param  {clay.math.Matrix2} a
- * @param  {clay.math.Matrix2} b
- * @return {clay.math.Matrix2}
+ * @param  {clay.Matrix2} out
+ * @param  {clay.Matrix2} a
+ * @param  {clay.Matrix2} b
+ * @return {clay.Matrix2}
  */
 Matrix2.multiply = Matrix2.mul;
 
 /**
- * @param  {clay.math.Matrix2} out
- * @param  {clay.math.Matrix2} a
+ * @param  {clay.Matrix2} out
+ * @param  {clay.Matrix2} a
  * @param  {number}   rad
- * @return {clay.math.Matrix2}
+ * @return {clay.Matrix2}
  */
 Matrix2.rotate = function(out, a, rad) {
     mat2.rotate(out.array, a.array, rad);
@@ -33269,10 +33808,10 @@ Matrix2.rotate = function(out, a, rad) {
 };
 
 /**
- * @param  {clay.math.Matrix2} out
- * @param  {clay.math.Matrix2} a
- * @param  {clay.math.Vector2}  v
- * @return {clay.math.Matrix2}
+ * @param  {clay.Matrix2} out
+ * @param  {clay.Matrix2} a
+ * @param  {clay.Vector2}  v
+ * @return {clay.Matrix2}
  */
 Matrix2.scale = function(out, a, v) {
     mat2.scale(out.array, a.array, v.array);
@@ -33294,7 +33833,7 @@ Matrix2.transpose = function(out, a) {
 
 
 /***/ }),
-/* 119 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33305,21 +33844,21 @@ var mat2d = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat2d;
 
 /**
  * @constructor
- * @alias clay.math.Matrix2d
+ * @alias clay.Matrix2d
  */
 var Matrix2d = function() {
     /**
      * Storage of Matrix2d
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Matrix2d#
+     * @memberOf clay.Matrix2d#
      */
     this.array = mat2d.create();
 
     /**
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Matrix2d#
+     * @memberOf clay.Matrix2d#
      */
     this._dirty = true;
 };
@@ -33341,7 +33880,7 @@ Matrix2d.prototype = {
     },
     /**
      * Clone a new Matrix2d
-     * @return {clay.math.Matrix2d}
+     * @return {clay.Matrix2d}
      */
     clone: function() {
         return (new Matrix2d()).copy(this);
@@ -33349,8 +33888,8 @@ Matrix2d.prototype = {
 
     /**
      * Copy from b
-     * @param  {clay.math.Matrix2d} b
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Matrix2d} b
+     * @return {clay.Matrix2d}
      */
     copy: function(b) {
         mat2d.copy(this.array, b.array);
@@ -33368,7 +33907,7 @@ Matrix2d.prototype = {
 
     /**
      * Set to a identity matrix
-     * @return {clay.math.Matrix2d}
+     * @return {clay.Matrix2d}
      */
     identity: function() {
         mat2d.identity(this.array);
@@ -33378,7 +33917,7 @@ Matrix2d.prototype = {
 
     /**
      * Invert self
-     * @return {clay.math.Matrix2d}
+     * @return {clay.Matrix2d}
      */
     invert: function() {
         mat2d.invert(this.array, this.array);
@@ -33388,8 +33927,8 @@ Matrix2d.prototype = {
 
     /**
      * Alias for mutiply
-     * @param  {clay.math.Matrix2d} b
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Matrix2d} b
+     * @return {clay.Matrix2d}
      */
     mul: function(b) {
         mat2d.mul(this.array, this.array, b.array);
@@ -33399,8 +33938,8 @@ Matrix2d.prototype = {
 
     /**
      * Alias for multiplyLeft
-     * @param  {clay.math.Matrix2d} a
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Matrix2d} a
+     * @return {clay.Matrix2d}
      */
     mulLeft: function(b) {
         mat2d.mul(this.array, b.array, this.array);
@@ -33410,8 +33949,8 @@ Matrix2d.prototype = {
 
     /**
      * Multiply self and b
-     * @param  {clay.math.Matrix2d} b
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Matrix2d} b
+     * @return {clay.Matrix2d}
      */
     multiply: function(b) {
         mat2d.multiply(this.array, this.array, b.array);
@@ -33421,8 +33960,8 @@ Matrix2d.prototype = {
 
     /**
      * Multiply a and self, a is on the left
-     * @param  {clay.math.Matrix2d} a
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Matrix2d} a
+     * @return {clay.Matrix2d}
      */
     multiplyLeft: function(b) {
         mat2d.multiply(this.array, b.array, this.array);
@@ -33433,7 +33972,7 @@ Matrix2d.prototype = {
     /**
      * Rotate self by a given radian
      * @param  {number}   rad
-     * @return {clay.math.Matrix2d}
+     * @return {clay.Matrix2d}
      */
     rotate: function(rad) {
         mat2d.rotate(this.array, this.array, rad);
@@ -33443,8 +33982,8 @@ Matrix2d.prototype = {
 
     /**
      * Scale self by s
-     * @param  {clay.math.Vector2}  s
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Vector2}  s
+     * @return {clay.Matrix2d}
      */
     scale: function(s) {
         mat2d.scale(this.array, this.array, s.array);
@@ -33454,8 +33993,8 @@ Matrix2d.prototype = {
 
     /**
      * Translate self by v
-     * @param  {clay.math.Vector2}  v
-     * @return {clay.math.Matrix2d}
+     * @param  {clay.Vector2}  v
+     * @return {clay.Matrix2d}
      */
     translate: function(v) {
         mat2d.translate(this.array, this.array, v.array);
@@ -33473,9 +34012,9 @@ Matrix2d.prototype = {
 };
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
+ * @return {clay.Matrix2d}
  */
 Matrix2d.copy = function(out, a) {
     mat2d.copy(out.array, a.array);
@@ -33484,7 +34023,7 @@ Matrix2d.copy = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix2d} a
+ * @param  {clay.Matrix2d} a
  * @return {number}
  */
 Matrix2d.determinant = function(a) {
@@ -33492,8 +34031,8 @@ Matrix2d.determinant = function(a) {
 };
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @return {clay.Matrix2d}
  */
 Matrix2d.identity = function(out) {
     mat2d.identity(out.array);
@@ -33502,9 +34041,9 @@ Matrix2d.identity = function(out) {
 };
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
+ * @return {clay.Matrix2d}
  */
 Matrix2d.invert = function(out, a) {
     mat2d.invert(out.array, a.array);
@@ -33513,10 +34052,10 @@ Matrix2d.invert = function(out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
- * @param  {clay.math.Matrix2d} b
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
+ * @param  {clay.Matrix2d} b
+ * @return {clay.Matrix2d}
  */
 Matrix2d.mul = function(out, a, b) {
     mat2d.mul(out.array, a.array, b.array);
@@ -33526,18 +34065,18 @@ Matrix2d.mul = function(out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
- * @param  {clay.math.Matrix2d} b
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
+ * @param  {clay.Matrix2d} b
+ * @return {clay.Matrix2d}
  */
 Matrix2d.multiply = Matrix2d.mul;
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
  * @param  {number}   rad
- * @return {clay.math.Matrix2d}
+ * @return {clay.Matrix2d}
  */
 Matrix2d.rotate = function(out, a, rad) {
     mat2d.rotate(out.array, a.array, rad);
@@ -33546,10 +34085,10 @@ Matrix2d.rotate = function(out, a, rad) {
 };
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
- * @param  {clay.math.Vector2}  v
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
+ * @param  {clay.Vector2}  v
+ * @return {clay.Matrix2d}
  */
 Matrix2d.scale = function(out, a, v) {
     mat2d.scale(out.array, a.array, v.array);
@@ -33558,10 +34097,10 @@ Matrix2d.scale = function(out, a, v) {
 };
 
 /**
- * @param  {clay.math.Matrix2d} out
- * @param  {clay.math.Matrix2d} a
- * @param  {clay.math.Vector2}  v
- * @return {clay.math.Matrix2d}
+ * @param  {clay.Matrix2d} out
+ * @param  {clay.Matrix2d} a
+ * @param  {clay.Vector2}  v
+ * @return {clay.Matrix2d}
  */
 Matrix2d.translate = function(out, a, v) {
     mat2d.translate(out.array, a.array, v.array);
@@ -33573,7 +34112,7 @@ Matrix2d.translate = function(out, a, v) {
 
 
 /***/ }),
-/* 120 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33584,7 +34123,7 @@ var mat3 = __WEBPACK_IMPORTED_MODULE_0__dep_glmatrix___default.a.mat3;
 
 /**
  * @constructor
- * @alias clay.math.Matrix3
+ * @alias clay.Matrix3
  */
 var Matrix3 = function () {
 
@@ -33592,14 +34131,14 @@ var Matrix3 = function () {
      * Storage of Matrix3
      * @name array
      * @type {Float32Array}
-     * @memberOf clay.math.Matrix3#
+     * @memberOf clay.Matrix3#
      */
     this.array = mat3.create();
 
     /**
      * @name _dirty
      * @type {boolean}
-     * @memberOf clay.math.Matrix3#
+     * @memberOf clay.Matrix3#
      */
     this._dirty = true;
 };
@@ -33621,7 +34160,7 @@ Matrix3.prototype = {
     },
     /**
      * Calculate the adjugate of self, in-place
-     * @return {clay.math.Matrix3}
+     * @return {clay.Matrix3}
      */
     adjoint: function () {
         mat3.adjoint(this.array, this.array);
@@ -33631,7 +34170,7 @@ Matrix3.prototype = {
 
     /**
      * Clone a new Matrix3
-     * @return {clay.math.Matrix3}
+     * @return {clay.Matrix3}
      */
     clone: function () {
         return (new Matrix3()).copy(this);
@@ -33639,8 +34178,8 @@ Matrix3.prototype = {
 
     /**
      * Copy from b
-     * @param  {clay.math.Matrix3} b
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix3} b
+     * @return {clay.Matrix3}
      */
     copy: function (b) {
         mat3.copy(this.array, b.array);
@@ -33658,8 +34197,8 @@ Matrix3.prototype = {
 
     /**
      * Copy the values from Matrix2d a
-     * @param  {clay.math.Matrix2d} a
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix2d} a
+     * @return {clay.Matrix3}
      */
     fromMat2d: function (a) {
         mat3.fromMat2d(this.array, a.array);
@@ -33669,8 +34208,8 @@ Matrix3.prototype = {
 
     /**
      * Copies the upper-left 3x3 values of Matrix4
-     * @param  {clay.math.Matrix4} a
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix4} a
+     * @return {clay.Matrix3}
      */
     fromMat4: function (a) {
         mat3.fromMat4(this.array, a.array);
@@ -33680,8 +34219,8 @@ Matrix3.prototype = {
 
     /**
      * Calculates a rotation matrix from the given quaternion
-     * @param  {clay.math.Quaternion} q
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Quaternion} q
+     * @return {clay.Matrix3}
      */
     fromQuat: function (q) {
         mat3.fromQuat(this.array, q.array);
@@ -33691,7 +34230,7 @@ Matrix3.prototype = {
 
     /**
      * Set to a identity matrix
-     * @return {clay.math.Matrix3}
+     * @return {clay.Matrix3}
      */
     identity: function () {
         mat3.identity(this.array);
@@ -33701,7 +34240,7 @@ Matrix3.prototype = {
 
     /**
      * Invert self
-     * @return {clay.math.Matrix3}
+     * @return {clay.Matrix3}
      */
     invert: function () {
         mat3.invert(this.array, this.array);
@@ -33711,8 +34250,8 @@ Matrix3.prototype = {
 
     /**
      * Alias for mutiply
-     * @param  {clay.math.Matrix3} b
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix3} b
+     * @return {clay.Matrix3}
      */
     mul: function (b) {
         mat3.mul(this.array, this.array, b.array);
@@ -33722,8 +34261,8 @@ Matrix3.prototype = {
 
     /**
      * Alias for multiplyLeft
-     * @param  {clay.math.Matrix3} a
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix3} a
+     * @return {clay.Matrix3}
      */
     mulLeft: function (a) {
         mat3.mul(this.array, a.array, this.array);
@@ -33733,8 +34272,8 @@ Matrix3.prototype = {
 
     /**
      * Multiply self and b
-     * @param  {clay.math.Matrix3} b
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix3} b
+     * @return {clay.Matrix3}
      */
     multiply: function (b) {
         mat3.multiply(this.array, this.array, b.array);
@@ -33744,8 +34283,8 @@ Matrix3.prototype = {
 
     /**
      * Multiply a and self, a is on the left
-     * @param  {clay.math.Matrix3} a
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Matrix3} a
+     * @return {clay.Matrix3}
      */
     multiplyLeft: function (a) {
         mat3.multiply(this.array, a.array, this.array);
@@ -33756,7 +34295,7 @@ Matrix3.prototype = {
     /**
      * Rotate self by a given radian
      * @param  {number}   rad
-     * @return {clay.math.Matrix3}
+     * @return {clay.Matrix3}
      */
     rotate: function (rad) {
         mat3.rotate(this.array, this.array, rad);
@@ -33766,8 +34305,8 @@ Matrix3.prototype = {
 
     /**
      * Scale self by s
-     * @param  {clay.math.Vector2}  s
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Vector2}  s
+     * @return {clay.Matrix3}
      */
     scale: function (v) {
         mat3.scale(this.array, this.array, v.array);
@@ -33777,8 +34316,8 @@ Matrix3.prototype = {
 
     /**
      * Translate self by v
-     * @param  {clay.math.Vector2}  v
-     * @return {clay.math.Matrix3}
+     * @param  {clay.Vector2}  v
+     * @return {clay.Matrix3}
      */
     translate: function (v) {
         mat3.translate(this.array, this.array, v.array);
@@ -33787,7 +34326,7 @@ Matrix3.prototype = {
     },
     /**
      * Calculates a 3x3 normal matrix (transpose inverse) from the 4x4 matrix
-     * @param {clay.math.Matrix4} a
+     * @param {clay.Matrix4} a
      */
     normalFromMat4: function (a) {
         mat3.normalFromMat4(this.array, a.array);
@@ -33797,7 +34336,7 @@ Matrix3.prototype = {
 
     /**
      * Transpose self, in-place.
-     * @return {clay.math.Matrix2}
+     * @return {clay.Matrix2}
      */
     transpose: function () {
         mat3.transpose(this.array, this.array);
@@ -33814,9 +34353,9 @@ Matrix3.prototype = {
     }
 };
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @return {clay.Matrix3}
  */
 Matrix3.adjoint = function (out, a) {
     mat3.adjoint(out.array, a.array);
@@ -33825,9 +34364,9 @@ Matrix3.adjoint = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @return {clay.Matrix3}
  */
 Matrix3.copy = function (out, a) {
     mat3.copy(out.array, a.array);
@@ -33836,7 +34375,7 @@ Matrix3.copy = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} a
+ * @param  {clay.Matrix3} a
  * @return {number}
  */
 Matrix3.determinant = function (a) {
@@ -33844,8 +34383,8 @@ Matrix3.determinant = function (a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @return {clay.Matrix3}
  */
 Matrix3.identity = function (out) {
     mat3.identity(out.array);
@@ -33854,9 +34393,9 @@ Matrix3.identity = function (out) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @return {clay.Matrix3}
  */
 Matrix3.invert = function (out, a) {
     mat3.invert(out.array, a.array);
@@ -33864,10 +34403,10 @@ Matrix3.invert = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @param  {clay.math.Matrix3} b
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @param  {clay.Matrix3} b
+ * @return {clay.Matrix3}
  */
 Matrix3.mul = function (out, a, b) {
     mat3.mul(out.array, a.array, b.array);
@@ -33877,17 +34416,17 @@ Matrix3.mul = function (out, a, b) {
 
 /**
  * @function
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @param  {clay.math.Matrix3} b
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @param  {clay.Matrix3} b
+ * @return {clay.Matrix3}
  */
 Matrix3.multiply = Matrix3.mul;
 
 /**
- * @param  {clay.math.Matrix3}  out
- * @param  {clay.math.Matrix2d} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3}  out
+ * @param  {clay.Matrix2d} a
+ * @return {clay.Matrix3}
  */
 Matrix3.fromMat2d = function (out, a) {
     mat3.fromMat2d(out.array, a.array);
@@ -33896,9 +34435,9 @@ Matrix3.fromMat2d = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix4} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix4} a
+ * @return {clay.Matrix3}
  */
 Matrix3.fromMat4 = function (out, a) {
     mat3.fromMat4(out.array, a.array);
@@ -33907,9 +34446,9 @@ Matrix3.fromMat4 = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3}    out
- * @param  {clay.math.Quaternion} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3}    out
+ * @param  {clay.Quaternion} a
+ * @return {clay.Matrix3}
  */
 Matrix3.fromQuat = function (out, q) {
     mat3.fromQuat(out.array, q.array);
@@ -33918,9 +34457,9 @@ Matrix3.fromQuat = function (out, q) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix4} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix4} a
+ * @return {clay.Matrix3}
  */
 Matrix3.normalFromMat4 = function (out, a) {
     mat3.normalFromMat4(out.array, a.array);
@@ -33929,10 +34468,10 @@ Matrix3.normalFromMat4 = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
  * @param  {number}  rad
- * @return {clay.math.Matrix3}
+ * @return {clay.Matrix3}
  */
 Matrix3.rotate = function (out, a, rad) {
     mat3.rotate(out.array, a.array, rad);
@@ -33941,10 +34480,10 @@ Matrix3.rotate = function (out, a, rad) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @param  {clay.math.Vector2} v
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @param  {clay.Vector2} v
+ * @return {clay.Matrix3}
  */
 Matrix3.scale = function (out, a, v) {
     mat3.scale(out.array, a.array, v.array);
@@ -33953,9 +34492,9 @@ Matrix3.scale = function (out, a, v) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @return {clay.Matrix3}
  */
 Matrix3.transpose = function (out, a) {
     mat3.transpose(out.array, a.array);
@@ -33964,10 +34503,10 @@ Matrix3.transpose = function (out, a) {
 };
 
 /**
- * @param  {clay.math.Matrix3} out
- * @param  {clay.math.Matrix3} a
- * @param  {clay.math.Vector2} v
- * @return {clay.math.Matrix3}
+ * @param  {clay.Matrix3} out
+ * @param  {clay.Matrix3} a
+ * @param  {clay.Vector2} v
+ * @return {clay.Matrix3}
  */
 Matrix3.translate = function (out, a, v) {
     mat3.translate(out.array, a.array, v.array);
@@ -33979,11 +34518,11 @@ Matrix3.translate = function (out, a, v) {
 
 
 /***/ }),
-/* 121 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_zrender_lib_animation_Animator__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_zrender_lib_animation_Animator__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_zrender_lib_animation_Animator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_zrender_lib_animation_Animator__);
 
 
@@ -34080,12 +34619,12 @@ var animatableMixin = {
 /* harmony default export */ __webpack_exports__["a"] = (animatableMixin);
 
 /***/ }),
-/* 122 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Clip = __webpack_require__(123);
+var Clip = __webpack_require__(135);
 
-var color = __webpack_require__(125);
+var color = __webpack_require__(137);
 
 var _util = __webpack_require__(12);
 
@@ -34729,10 +35268,10 @@ var _default = Animator;
 module.exports = _default;
 
 /***/ }),
-/* 123 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var easingFuncs = __webpack_require__(124);
+var easingFuncs = __webpack_require__(136);
 
 /**
  * 动画主控制器
@@ -34835,7 +35374,7 @@ var _default = Clip;
 module.exports = _default;
 
 /***/ }),
-/* 124 */
+/* 136 */
 /***/ (function(module, exports) {
 
 /**
@@ -35218,7 +35757,7 @@ var _default = easing;
 module.exports = _default;
 
 /***/ }),
-/* 125 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var LRU = __webpack_require__(53);
@@ -35844,15 +36383,15 @@ exports.modifyAlpha = modifyAlpha;
 exports.stringify = stringify;
 
 /***/ }),
-/* 126 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.util.rand\nhighp float rand(vec2 uv) {\n    const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n    highp float dt = dot(uv.xy, vec2(a,b)), sn = mod(dt, 3.141592653589793);\n    return fract(sin(sn) * c);\n}\n@end\n@export clay.util.calculate_attenuation\nuniform float attenuationFactor : 5.0;\nfloat lightAttenuation(float dist, float range)\n{\n    float attenuation = 1.0;\n    attenuation = dist*dist/(range*range+1.0);\n    float att_s = attenuationFactor;\n    attenuation = 1.0/(attenuation*att_s+1.0);\n    att_s = 1.0/(att_s+1.0);\n    attenuation = attenuation - att_s;\n    attenuation /= 1.0 - att_s;\n    return clamp(attenuation, 0.0, 1.0);\n}\n@end\n@export clay.util.edge_factor\nfloat edgeFactor(float width)\n{\n    vec3 d = fwidth(v_Barycentric);\n    vec3 a3 = smoothstep(vec3(0.0), d * width, v_Barycentric);\n    return min(min(a3.x, a3.y), a3.z);\n}\n@end\n@export clay.util.encode_float\nvec4 encodeFloat(const in float depth)\n{\n    const vec4 bitShifts = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);\n    const vec4 bit_mask  = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);\n    vec4 res = fract(depth * bitShifts);\n    res -= res.xxyz * bit_mask;\n    return res;\n}\n@end\n@export clay.util.decode_float\nfloat decodeFloat(const in vec4 color)\n{\n    const vec4 bitShifts = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);\n    return dot(color, bitShifts);\n}\n@end\n@export clay.util.float\n@import clay.util.encode_float\n@import clay.util.decode_float\n@end\n@export clay.util.rgbm_decode\nvec3 RGBMDecode(vec4 rgbm, float range) {\n  return range * rgbm.rgb * rgbm.a;\n}\n@end\n@export clay.util.rgbm_encode\nvec4 RGBMEncode(vec3 color, float range) {\n    if (dot(color, color) == 0.0) {\n        return vec4(0.0);\n    }\n    vec4 rgbm;\n    color /= range;\n    rgbm.a = clamp(max(max(color.r, color.g), max(color.b, 1e-6)), 0.0, 1.0);\n    rgbm.a = ceil(rgbm.a * 255.0) / 255.0;\n    rgbm.rgb = color / rgbm.a;\n    return rgbm;\n}\n@end\n@export clay.util.rgbm\n@import clay.util.rgbm_decode\n@import clay.util.rgbm_encode\nvec4 decodeHDR(vec4 color)\n{\n#if defined(RGBM_DECODE) || defined(RGBM)\n    return vec4(RGBMDecode(color, 51.5), 1.0);\n#else\n    return color;\n#endif\n}\nvec4 encodeHDR(vec4 color)\n{\n#if defined(RGBM_ENCODE) || defined(RGBM)\n    return RGBMEncode(color.xyz, 51.5);\n#else\n    return color;\n#endif\n}\n@end\n@export clay.util.srgb\nvec4 sRGBToLinear(in vec4 value) {\n    return vec4(mix(pow(value.rgb * 0.9478672986 + vec3(0.0521327014), vec3(2.4)), value.rgb * 0.0773993808, vec3(lessThanEqual(value.rgb, vec3(0.04045)))), value.w);\n}\nvec4 linearTosRGB(in vec4 value) {\n    return vec4(mix(pow(value.rgb, vec3(0.41666)) * 1.055 - vec3(0.055), value.rgb * 12.92, vec3(lessThanEqual(value.rgb, vec3(0.0031308)))), value.w);\n}\n@end\n@export clay.chunk.skinning_header\n#ifdef SKINNING\nattribute vec3 weight : WEIGHT;\nattribute vec4 joint : JOINT;\nuniform mat4 skinMatrix[JOINT_COUNT] : SKIN_MATRIX;\nmat4 getSkinMatrix(float idx) {\n    return skinMatrix[int(idx)];\n}\n#endif\n@end\n@export clay.chunk.skin_matrix\nmat4 skinMatrixWS = getSkinMatrix(joint.x) * weight.x;\nif (weight.y > 1e-4)\n{\n    skinMatrixWS += getSkinMatrix(joint.y) * weight.y;\n}\nif (weight.z > 1e-4)\n{\n    skinMatrixWS += getSkinMatrix(joint.z) * weight.z;\n}\nfloat weightW = 1.0-weight.x-weight.y-weight.z;\nif (weightW > 1e-4)\n{\n    skinMatrixWS += getSkinMatrix(joint.w) * weightW;\n}\n@end\n@export clay.util.parallax_correct\nvec3 parallaxCorrect(in vec3 dir, in vec3 pos, in vec3 boxMin, in vec3 boxMax) {\n    vec3 first = (boxMax - pos) / dir;\n    vec3 second = (boxMin - pos) / dir;\n    vec3 further = max(first, second);\n    float dist = min(further.x, min(further.y, further.z));\n    vec3 fixedPos = pos + dir * dist;\n    vec3 boxCenter = (boxMax + boxMin) * 0.5;\n    return normalize(fixedPos - boxCenter);\n}\n@end\n@export clay.util.clamp_sample\nvec4 clampSample(const in sampler2D texture, const in vec2 coord)\n{\n#ifdef STEREO\n    float eye = step(0.5, coord.x) * 0.5;\n    vec2 coordClamped = clamp(coord, vec2(eye, 0.0), vec2(0.5 + eye, 1.0));\n#else\n    vec2 coordClamped = clamp(coord, vec2(0.0), vec2(1.0));\n#endif\n    return texture2D(texture, coordClamped);\n}\n@end\n@export clay.util.ACES\nvec3 ACESToneMapping(vec3 color)\n{\n    const float A = 2.51;\n    const float B = 0.03;\n    const float C = 2.43;\n    const float D = 0.59;\n    const float E = 0.14;\n    return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.util.rand\nhighp float rand(vec2 uv) {\n const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n highp float dt = dot(uv.xy, vec2(a,b)), sn = mod(dt, 3.141592653589793);\n return fract(sin(sn) * c);\n}\n@end\n@export clay.util.calculate_attenuation\nuniform float attenuationFactor : 5.0;\nfloat lightAttenuation(float dist, float range)\n{\n float attenuation = 1.0;\n attenuation = dist*dist/(range*range+1.0);\n float att_s = attenuationFactor;\n attenuation = 1.0/(attenuation*att_s+1.0);\n att_s = 1.0/(att_s+1.0);\n attenuation = attenuation - att_s;\n attenuation /= 1.0 - att_s;\n return clamp(attenuation, 0.0, 1.0);\n}\n@end\n@export clay.util.edge_factor\nfloat edgeFactor(float width)\n{\n vec3 d = fwidth(v_Barycentric);\n vec3 a3 = smoothstep(vec3(0.0), d * width, v_Barycentric);\n return min(min(a3.x, a3.y), a3.z);\n}\n@end\n@export clay.util.encode_float\nvec4 encodeFloat(const in float depth)\n{\n const vec4 bitShifts = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);\n const vec4 bit_mask = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);\n vec4 res = fract(depth * bitShifts);\n res -= res.xxyz * bit_mask;\n return res;\n}\n@end\n@export clay.util.decode_float\nfloat decodeFloat(const in vec4 color)\n{\n const vec4 bitShifts = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);\n return dot(color, bitShifts);\n}\n@end\n@export clay.util.float\n@import clay.util.encode_float\n@import clay.util.decode_float\n@end\n@export clay.util.rgbm_decode\nvec3 RGBMDecode(vec4 rgbm, float range) {\n return range * rgbm.rgb * rgbm.a;\n}\n@end\n@export clay.util.rgbm_encode\nvec4 RGBMEncode(vec3 color, float range) {\n if (dot(color, color) == 0.0) {\n return vec4(0.0);\n }\n vec4 rgbm;\n color /= range;\n rgbm.a = clamp(max(max(color.r, color.g), max(color.b, 1e-6)), 0.0, 1.0);\n rgbm.a = ceil(rgbm.a * 255.0) / 255.0;\n rgbm.rgb = color / rgbm.a;\n return rgbm;\n}\n@end\n@export clay.util.rgbm\n@import clay.util.rgbm_decode\n@import clay.util.rgbm_encode\nvec4 decodeHDR(vec4 color)\n{\n#if defined(RGBM_DECODE) || defined(RGBM)\n return vec4(RGBMDecode(color, 8.12), 1.0);\n#else\n return color;\n#endif\n}\nvec4 encodeHDR(vec4 color)\n{\n#if defined(RGBM_ENCODE) || defined(RGBM)\n return RGBMEncode(color.xyz, 8.12);\n#else\n return color;\n#endif\n}\n@end\n@export clay.util.srgb\nvec4 sRGBToLinear(in vec4 value) {\n return vec4(mix(pow(value.rgb * 0.9478672986 + vec3(0.0521327014), vec3(2.4)), value.rgb * 0.0773993808, vec3(lessThanEqual(value.rgb, vec3(0.04045)))), value.w);\n}\nvec4 linearTosRGB(in vec4 value) {\n return vec4(mix(pow(value.rgb, vec3(0.41666)) * 1.055 - vec3(0.055), value.rgb * 12.92, vec3(lessThanEqual(value.rgb, vec3(0.0031308)))), value.w);\n}\n@end\n@export clay.chunk.skinning_header\n#ifdef SKINNING\nattribute vec3 weight : WEIGHT;\nattribute vec4 joint : JOINT;\nuniform mat4 skinMatrix[JOINT_COUNT] : SKIN_MATRIX;\nmat4 getSkinMatrix(float idx) {\n return skinMatrix[int(idx)];\n}\n#endif\n@end\n@export clay.chunk.skin_matrix\nmat4 skinMatrixWS = getSkinMatrix(joint.x) * weight.x;\nif (weight.y > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.y) * weight.y;\n}\nif (weight.z > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.z) * weight.z;\n}\nfloat weightW = 1.0-weight.x-weight.y-weight.z;\nif (weightW > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.w) * weightW;\n}\n@end\n@export clay.util.parallax_correct\nvec3 parallaxCorrect(in vec3 dir, in vec3 pos, in vec3 boxMin, in vec3 boxMax) {\n vec3 first = (boxMax - pos) / dir;\n vec3 second = (boxMin - pos) / dir;\n vec3 further = max(first, second);\n float dist = min(further.x, min(further.y, further.z));\n vec3 fixedPos = pos + dir * dist;\n vec3 boxCenter = (boxMax + boxMin) * 0.5;\n return normalize(fixedPos - boxCenter);\n}\n@end\n@export clay.util.clamp_sample\nvec4 clampSample(const in sampler2D texture, const in vec2 coord)\n{\n#ifdef STEREO\n float eye = step(0.5, coord.x) * 0.5;\n vec2 coordClamped = clamp(coord, vec2(eye, 0.0), vec2(0.5 + eye, 1.0));\n#else\n vec2 coordClamped = clamp(coord, vec2(0.0), vec2(1.0));\n#endif\n return texture2D(texture, coordClamped);\n}\n@end\n@export clay.util.ACES\nvec3 ACESToneMapping(vec3 color)\n{\n const float A = 2.51;\n const float B = 0.03;\n const float C = 2.43;\n const float D = 0.59;\n const float E = 0.14;\n return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\n@end");
 
 
 /***/ }),
-/* 127 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35860,7 +36399,7 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 128 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35868,7 +36407,7 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 129 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35876,15 +36415,15 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 130 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.realistic.vertex\n\n@import ecgl.common.transformUniforms\n\n@import ecgl.common.uv.header\n\n@import ecgl.common.attributes\n\n\n@import ecgl.common.wireframe.vertexHeader\n\n#ifdef VERTEX_COLOR\nattribute vec4 a_Color : COLOR;\nvarying vec4 v_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\nattribute vec4 tangent : TANGENT;\nvarying vec3 v_Tangent;\nvarying vec3 v_Bitangent;\n#endif\n\n@import ecgl.common.vertexAnimation.header\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nvoid main()\n{\n\n @import ecgl.common.uv.main\n\n @import ecgl.common.vertexAnimation.main\n\n gl_Position = worldViewProjection * vec4(pos, 1.0);\n\n v_Normal = normalize((worldInverseTranspose * vec4(norm, 0.0)).xyz);\n v_WorldPosition = (world * vec4(pos, 1.0)).xyz;\n\n#ifdef VERTEX_COLOR\n v_Color = a_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\n v_Tangent = normalize((worldInverseTranspose * vec4(tangent.xyz, 0.0)).xyz);\n v_Bitangent = normalize(cross(v_Normal, v_Tangent) * tangent.w);\n#endif\n\n @import ecgl.common.wireframe.vertexMain\n\n}\n\n@end\n\n\n\n@export ecgl.realistic.fragment\n\n#define LAYER_DIFFUSEMAP_COUNT 0\n#define LAYER_EMISSIVEMAP_COUNT 0\n#define PI 3.14159265358979\n#define ROUGHNESS_CHANEL 0\n#define METALNESS_CHANEL 1\n\n#define NORMAL_UP_AXIS 1\n#define NORMAL_FRONT_AXIS 2\n\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform sampler2D diffuseMap;\n\nuniform sampler2D detailMap;\nuniform sampler2D metalnessMap;\nuniform sampler2D roughnessMap;\n\n@import ecgl.common.layers.header\n\nuniform float emissionIntensity: 1.0;\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\n\nuniform float metalness : 0.0;\nuniform float roughness : 0.5;\n\nuniform mat4 viewInverse : VIEWINVERSE;\n\n#ifdef AMBIENT_LIGHT_COUNT\n@import clay.header.ambient_light\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n@import clay.header.ambient_sh_light\n#endif\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n@import clay.header.ambient_cubemap_light\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n@import ecgl.common.normalMap.fragmentHeader\n\n@import ecgl.common.ssaoMap.header\n\n@import ecgl.common.bumpMap.header\n\n@import clay.util.srgb\n\n@import clay.util.rgbm\n\n@import ecgl.common.wireframe.fragmentHeader\n\n@import clay.plugin.compute_shadow_map\n\nvec3 F_Schlick(float ndv, vec3 spec) {\n return spec + (1.0 - spec) * pow(1.0 - ndv, 5.0);\n}\n\nfloat D_Phong(float g, float ndh) {\n float a = pow(8192.0, g);\n return (a + 2.0) / 8.0 * pow(ndh, a);\n}\n\nvoid main()\n{\n vec4 albedoColor = color;\n\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(eyePos - v_WorldPosition);\n#ifdef VERTEX_COLOR\n #ifdef SRGB_DECODE\n albedoColor *= sRGBToLinear(v_Color);\n #else\n albedoColor *= v_Color;\n #endif\n#endif\n\n @import ecgl.common.albedo.main\n\n @import ecgl.common.diffuseLayer.main\n\n albedoColor *= albedoTexel;\n\n float m = metalness;\n\n#ifdef METALNESSMAP_ENABLED\n float m2 = texture2D(metalnessMap, v_DetailTexcoord)[METALNESS_CHANEL];\n m = clamp(m2 + (m - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 baseColor = albedoColor.rgb;\n albedoColor.rgb = baseColor * (1.0 - m);\n vec3 specFactor = mix(vec3(0.04), baseColor, m);\n\n float g = 1.0 - roughness;\n\n#ifdef ROUGHNESSMAP_ENABLED\n float g2 = 1.0 - texture2D(roughnessMap, v_DetailTexcoord)[ROUGHNESS_CHANEL];\n g = clamp(g2 + (g - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 N = v_Normal;\n\n#ifdef DOUBLE_SIDED\n if (dot(N, V) < 0.0) {\n N = -N;\n }\n#endif\n\n float ambientFactor = 1.0;\n\n#ifdef BUMPMAP_ENABLED\n N = bumpNormal(v_WorldPosition, v_Normal, N);\n ambientFactor = dot(v_Normal, N);\n#endif\n\n@import ecgl.common.normalMap.fragmentMain\n\n vec3 N2 = vec3(N.x, N[NORMAL_UP_AXIS], N[NORMAL_FRONT_AXIS]);\n\n vec3 diffuseTerm = vec3(0.0);\n vec3 specularTerm = vec3(0.0);\n\n float ndv = clamp(dot(N, V), 0.0, 1.0);\n vec3 fresnelTerm = F_Schlick(ndv, specFactor);\n\n @import ecgl.common.ssaoMap.main\n\n#ifdef AMBIENT_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += ambientLightColor[_idx_] * ambientFactor * ao;\n }}\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_SH_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += calcAmbientSHLight(_idx_, N2) * ambientSHLightColor[_idx_] * ao;\n }}\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n#endif\n for(int _idx_ = 0; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++)\n {{\n vec3 L = -directionalLightDirection[_idx_];\n vec3 lc = directionalLightColor[_idx_];\n\n vec3 H = normalize(L + V);\n float ndl = clamp(dot(N, normalize(L)), 0.0, 1.0);\n float ndh = clamp(dot(N, H), 0.0, 1.0);\n\n float shadowContrib = 1.0;\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n if (shadowEnabled)\n {\n shadowContrib = shadowContribsDir[_idx_];\n }\n#endif\n\n vec3 li = lc * ndl * shadowContrib;\n\n diffuseTerm += li;\n specularTerm += li * fresnelTerm * D_Phong(g, ndh);\n }}\n#endif\n\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n vec3 L = reflect(-V, N);\n L = vec3(L.x, L[NORMAL_UP_AXIS], L[NORMAL_FRONT_AXIS]);\n float rough2 = clamp(1.0 - g, 0.0, 1.0);\n float bias2 = rough2 * 5.0;\n vec2 brdfParam2 = texture2D(ambientCubemapLightBRDFLookup[0], vec2(rough2, ndv)).xy;\n vec3 envWeight2 = specFactor * brdfParam2.x + brdfParam2.y;\n vec3 envTexel2;\n for(int _idx_ = 0; _idx_ < AMBIENT_CUBEMAP_LIGHT_COUNT; _idx_++)\n {{\n envTexel2 = RGBMDecode(textureCubeLodEXT(ambientCubemapLightCubemap[_idx_], L, bias2), 51.5);\n specularTerm += ambientCubemapLightColor[_idx_] * envTexel2 * envWeight2 * ao;\n }}\n#endif\n\n gl_FragColor.rgb = albedoColor.rgb * diffuseTerm + specularTerm;\n gl_FragColor.a = albedoColor.a;\n\n#ifdef SRGB_ENCODE\n gl_FragColor = linearTosRGB(gl_FragColor);\n#endif\n\n @import ecgl.common.emissiveLayer.main\n\n @import ecgl.common.wireframe.fragmentMain\n}\n\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.realistic.vertex\n\n@import ecgl.common.transformUniforms\n\n@import ecgl.common.uv.header\n\n@import ecgl.common.attributes\n\n\n@import ecgl.common.wireframe.vertexHeader\n\n#ifdef VERTEX_COLOR\nattribute vec4 a_Color : COLOR;\nvarying vec4 v_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\nattribute vec4 tangent : TANGENT;\nvarying vec3 v_Tangent;\nvarying vec3 v_Bitangent;\n#endif\n\n@import ecgl.common.vertexAnimation.header\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nvoid main()\n{\n\n @import ecgl.common.uv.main\n\n @import ecgl.common.vertexAnimation.main\n\n gl_Position = worldViewProjection * vec4(pos, 1.0);\n\n v_Normal = normalize((worldInverseTranspose * vec4(norm, 0.0)).xyz);\n v_WorldPosition = (world * vec4(pos, 1.0)).xyz;\n\n#ifdef VERTEX_COLOR\n v_Color = a_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\n v_Tangent = normalize((worldInverseTranspose * vec4(tangent.xyz, 0.0)).xyz);\n v_Bitangent = normalize(cross(v_Normal, v_Tangent) * tangent.w);\n#endif\n\n @import ecgl.common.wireframe.vertexMain\n\n}\n\n@end\n\n\n\n@export ecgl.realistic.fragment\n\n#define LAYER_DIFFUSEMAP_COUNT 0\n#define LAYER_EMISSIVEMAP_COUNT 0\n#define PI 3.14159265358979\n#define ROUGHNESS_CHANEL 0\n#define METALNESS_CHANEL 1\n\n#define NORMAL_UP_AXIS 1\n#define NORMAL_FRONT_AXIS 2\n\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform sampler2D diffuseMap;\n\nuniform sampler2D detailMap;\nuniform sampler2D metalnessMap;\nuniform sampler2D roughnessMap;\n\n@import ecgl.common.layers.header\n\nuniform float emissionIntensity: 1.0;\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\n\nuniform float metalness : 0.0;\nuniform float roughness : 0.5;\n\nuniform mat4 viewInverse : VIEWINVERSE;\n\n#ifdef AMBIENT_LIGHT_COUNT\n@import clay.header.ambient_light\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n@import clay.header.ambient_sh_light\n#endif\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n@import clay.header.ambient_cubemap_light\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n@import ecgl.common.normalMap.fragmentHeader\n\n@import ecgl.common.ssaoMap.header\n\n@import ecgl.common.bumpMap.header\n\n@import clay.util.srgb\n\n@import clay.util.rgbm\n\n@import ecgl.common.wireframe.fragmentHeader\n\n@import clay.plugin.compute_shadow_map\n\nvec3 F_Schlick(float ndv, vec3 spec) {\n return spec + (1.0 - spec) * pow(1.0 - ndv, 5.0);\n}\n\nfloat D_Phong(float g, float ndh) {\n float a = pow(8192.0, g);\n return (a + 2.0) / 8.0 * pow(ndh, a);\n}\n\nvoid main()\n{\n vec4 albedoColor = color;\n\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(eyePos - v_WorldPosition);\n#ifdef VERTEX_COLOR\n #ifdef SRGB_DECODE\n albedoColor *= sRGBToLinear(v_Color);\n #else\n albedoColor *= v_Color;\n #endif\n#endif\n\n @import ecgl.common.albedo.main\n\n @import ecgl.common.diffuseLayer.main\n\n albedoColor *= albedoTexel;\n\n float m = metalness;\n\n#ifdef METALNESSMAP_ENABLED\n float m2 = texture2D(metalnessMap, v_DetailTexcoord)[METALNESS_CHANEL];\n m = clamp(m2 + (m - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 baseColor = albedoColor.rgb;\n albedoColor.rgb = baseColor * (1.0 - m);\n vec3 specFactor = mix(vec3(0.04), baseColor, m);\n\n float g = 1.0 - roughness;\n\n#ifdef ROUGHNESSMAP_ENABLED\n float g2 = 1.0 - texture2D(roughnessMap, v_DetailTexcoord)[ROUGHNESS_CHANEL];\n g = clamp(g2 + (g - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 N = v_Normal;\n\n#ifdef DOUBLE_SIDED\n if (dot(N, V) < 0.0) {\n N = -N;\n }\n#endif\n\n float ambientFactor = 1.0;\n\n#ifdef BUMPMAP_ENABLED\n N = bumpNormal(v_WorldPosition, v_Normal, N);\n ambientFactor = dot(v_Normal, N);\n#endif\n\n@import ecgl.common.normalMap.fragmentMain\n\n vec3 N2 = vec3(N.x, N[NORMAL_UP_AXIS], N[NORMAL_FRONT_AXIS]);\n\n vec3 diffuseTerm = vec3(0.0);\n vec3 specularTerm = vec3(0.0);\n\n float ndv = clamp(dot(N, V), 0.0, 1.0);\n vec3 fresnelTerm = F_Schlick(ndv, specFactor);\n\n @import ecgl.common.ssaoMap.main\n\n#ifdef AMBIENT_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += ambientLightColor[_idx_] * ambientFactor * ao;\n }}\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_SH_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += calcAmbientSHLight(_idx_, N2) * ambientSHLightColor[_idx_] * ao;\n }}\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n#endif\n for(int _idx_ = 0; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++)\n {{\n vec3 L = -directionalLightDirection[_idx_];\n vec3 lc = directionalLightColor[_idx_];\n\n vec3 H = normalize(L + V);\n float ndl = clamp(dot(N, normalize(L)), 0.0, 1.0);\n float ndh = clamp(dot(N, H), 0.0, 1.0);\n\n float shadowContrib = 1.0;\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n if (shadowEnabled)\n {\n shadowContrib = shadowContribsDir[_idx_];\n }\n#endif\n\n vec3 li = lc * ndl * shadowContrib;\n\n diffuseTerm += li;\n specularTerm += li * fresnelTerm * D_Phong(g, ndh);\n }}\n#endif\n\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n vec3 L = reflect(-V, N);\n L = vec3(L.x, L[NORMAL_UP_AXIS], L[NORMAL_FRONT_AXIS]);\n float rough2 = clamp(1.0 - g, 0.0, 1.0);\n float bias2 = rough2 * 5.0;\n vec2 brdfParam2 = texture2D(ambientCubemapLightBRDFLookup[0], vec2(rough2, ndv)).xy;\n vec3 envWeight2 = specFactor * brdfParam2.x + brdfParam2.y;\n vec3 envTexel2;\n for(int _idx_ = 0; _idx_ < AMBIENT_CUBEMAP_LIGHT_COUNT; _idx_++)\n {{\n envTexel2 = RGBMDecode(textureCubeLodEXT(ambientCubemapLightCubemap[_idx_], L, bias2), 8.12);\n specularTerm += ambientCubemapLightColor[_idx_] * envTexel2 * envWeight2 * ao;\n }}\n#endif\n\n gl_FragColor.rgb = albedoColor.rgb * diffuseTerm + specularTerm;\n gl_FragColor.a = albedoColor.a;\n\n#ifdef SRGB_ENCODE\n gl_FragColor = linearTosRGB(gl_FragColor);\n#endif\n\n @import ecgl.common.emissiveLayer.main\n\n @import ecgl.common.wireframe.fragmentMain\n}\n\n@end");
 
 
 /***/ }),
-/* 131 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35892,7 +36431,7 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 132 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35900,14 +36439,84 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 133 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__grid3D_Axis3DModel__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__grid3D_Grid3DModel__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__grid3D_Grid3DView__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_grid3DCreator__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
+
+
+var GL_SERIES = ['bar3D', 'line3D', 'map3D', 'scatter3D', 'surface', 'lines3D', 'scatterGL', 'scatter3D'];
+
+function convertNormalEmphasis(option, optType) {
+    if (option && option[optType] && (option[optType].normal || option[optType].emphasis)) {
+        var normalOpt = option[optType].normal;
+        var emphasisOpt = option[optType].emphasis;
+
+        if (normalOpt) {
+            option[optType] = normalOpt;
+        }
+        if (emphasisOpt) {
+            option.emphasis = option.emphasis || {};
+            option.emphasis[optType] = emphasisOpt;
+        }
+    }
+}
+
+function convertNormalEmphasisForEach(option) {
+    convertNormalEmphasis(option, 'itemStyle');
+    convertNormalEmphasis(option, 'lineStyle');
+    convertNormalEmphasis(option, 'areaStyle');
+    convertNormalEmphasis(option, 'label');
+}
+
+function removeTextStyleInAxis(axesOpt) {
+    if (!axesOpt) {
+        return;
+    }
+    if (!(axesOpt instanceof Array)) {
+        axesOpt = [axesOpt];
+    }
+    __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.each(axesOpt, function (axisOpt) {
+        if (axisOpt.axisLabel) {
+            var labelOpt = axisOpt.axisLabel;
+            __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.extend(labelOpt, labelOpt.textStyle);
+            labelOpt.textStyle = null;
+        }
+    });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function (option) {
+    __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.each(option.series, function (series) {
+        if (__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.indexOf(GL_SERIES, series.type) >= 0) {
+            convertNormalEmphasisForEach(series);
+
+            // Compatitable with original mapbox
+            if (series.coordinateSystem === 'mapbox') {
+                series.coordinateSystem = 'mapbox3D';
+                option.mapbox3D = option.mapbox;
+            }
+        }
+    });
+
+    removeTextStyleInAxis(option.xAxis3D);
+    removeTextStyleInAxis(option.yAxis3D);
+    removeTextStyleInAxis(option.zAxis3D);
+    removeTextStyleInAxis(option.grid3D);
+
+    convertNormalEmphasis(option.geo3D);
+});;
+
+/***/ }),
+/* 146 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__grid3D_Axis3DModel__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__grid3D_Grid3DModel__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__grid3D_Grid3DView__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_grid3DCreator__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_echarts_lib_echarts__);
 
@@ -35944,13 +36553,13 @@ __WEBPACK_IMPORTED_MODULE_4_echarts_lib_echarts___default.a.registerAction({
 });
 
 /***/ }),
-/* 134 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createAxis3DModel__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createAxis3DModel__ = __webpack_require__(148);
 
 
 
@@ -35990,14 +36599,14 @@ Object(__WEBPACK_IMPORTED_MODULE_1__createAxis3DModel__["a" /* default */])('z',
 });
 
 /***/ }),
-/* 135 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axis3DDefault__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axis3DDefault__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta__);
 
 
@@ -36071,7 +36680,7 @@ var AXIS_TYPES = ['value', 'category', 'time', 'log'];
 });;
 
 /***/ }),
-/* 136 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36170,7 +36779,7 @@ logAxis.scale = true;
 });
 
 /***/ }),
-/* 137 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _util = __webpack_require__(12);
@@ -36303,15 +36912,15 @@ var _default = OrdinalMeta;
 module.exports = _default;
 
 /***/ }),
-/* 138 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_componentViewControlMixin__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentPostEffectMixin__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_componentLightMixin__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentPostEffectMixin__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_componentLightMixin__ = __webpack_require__(26);
 
 
 
@@ -36460,7 +37069,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Grid3DMod
 
 
 /***/ }),
-/* 139 */
+/* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36471,9 +37080,9 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Grid3DMod
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines3D__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_retrieve__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_ZRTextureAtlasSurface__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_SceneHelper__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Grid3DFace__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Grid3DAxis__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_SceneHelper__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Grid3DFace__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Grid3DAxis__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_mesh_LabelsMesh__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__util_shader_lines3D_glsl_js__ = __webpack_require__(40);
 // TODO orthographic camera
@@ -37083,7 +37692,7 @@ var dimIndicesMap = {
 }));
 
 /***/ }),
-/* 140 */
+/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37092,7 +37701,7 @@ var dimIndicesMap = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_retrieve__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines3D__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_geometry_Quads__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_geometry_Quads__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ifIgnoreOnTick__ = __webpack_require__(74);
 
 
@@ -37145,13 +37754,18 @@ function Grid3DFace(faceInfo, linesMaterial, quadsMaterial) {
         geometry: new __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines3D__["a" /* default */]({ useNativeLine: false }),
         material: linesMaterial,
         castShadow: false,
-        ignorePicking: true, renderOrder: 1
+        ignorePicking: true,
+        $ignorePicking: true,
+        renderOrder: 1
     });
     var quadsMesh = new __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Mesh({
         geometry: new __WEBPACK_IMPORTED_MODULE_4__util_geometry_Quads__["a" /* default */](),
         material: quadsMaterial,
         castShadow: false,
-        culling: false, ignorePicking: true, renderOrder: 0
+        culling: false,
+        ignorePicking: true,
+        $ignorePicking: true,
+        renderOrder: 0
     });
     // Quads are behind lines.
     this.rootNode.add(quadsMesh);
@@ -37297,14 +37911,14 @@ Grid3DFace.prototype._udpateSplitAreas = function (geometry, axes, grid3DModel, 
 /* harmony default export */ __webpack_exports__["a"] = (Grid3DFace);
 
 /***/ }),
-/* 141 */
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__);
 /**
@@ -37417,7 +38031,7 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.util.defaults(QuadsG
 /* harmony default export */ __webpack_exports__["a"] = (QuadsGeometry);
 
 /***/ }),
-/* 142 */
+/* 155 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37658,14 +38272,14 @@ Grid3DAxis.prototype.setSpriteAlign = function (textAlign, textVerticalAlign, ap
 /* harmony default export */ __webpack_exports__["a"] = (Grid3DAxis);
 
 /***/ }),
-/* 143 */
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(34);
 /**
  * Geometry collecting sprites
  *
@@ -37806,7 +38420,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.defaults(Sprite
 /* harmony default export */ __webpack_exports__["a"] = (SpritesGeometry);
 
 /***/ }),
-/* 144 */
+/* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37814,17 +38428,17 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.defaults(Sprite
 
 
 /***/ }),
-/* 145 */
+/* 158 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__grid3D_Cartesian3D__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__grid3D_Axis3D__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__grid3D_Cartesian3D__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__grid3D_Axis3D__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_util_layout__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_util_layout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_echarts_lib_util_layout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_ViewGL__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_ViewGL__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_retrieve__ = __webpack_require__(3);
 
 
@@ -37879,10 +38493,12 @@ function updateCartesian3D(ecModel, api) {
             return;
         }
         var data = seriesModel.getData();
-        ['x', 'y', 'z'].forEach(function (dim) {
-            unionDataExtents(
-                dim, data.getDataExtent(seriesModel.coordDimToDataDim(dim)[0], true)
-            );
+        ['x', 'y', 'z'].forEach(function (coordDim) {
+            data.mapDimension(coordDim, true).forEach(function (dataDim) {
+                unionDataExtents(
+                    coordDim, data.getDataExtent(dataDim, true)
+                );
+            });
         });
     }, this);
 
@@ -37890,7 +38506,7 @@ function updateCartesian3D(ecModel, api) {
         ecModel.eachComponent(axisType, function (axisModel) {
             var dim = axisType.charAt(0);
             var grid3DModel = axisModel.getReferringComponents('grid3D')[0];
-            
+
             var cartesian3D = grid3DModel.coordinateSystem;
             if (cartesian3D !== this) {
                 return;
@@ -38008,13 +38624,13 @@ __WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts___default.a.registerCoordinateSy
 /* unused harmony default export */ var _unused_webpack_default_export = (grid3DCreator);
 
 /***/ }),
-/* 146 */
+/* 159 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_coord_cartesian_Cartesian__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_coord_cartesian_Cartesian__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_coord_cartesian_Cartesian___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_coord_cartesian_Cartesian__);
 
 
@@ -38070,7 +38686,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.inherits(Cartes
 /* harmony default export */ __webpack_exports__["a"] = (Cartesian3D);
 
 /***/ }),
-/* 147 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var zrUtil = __webpack_require__(12);
@@ -38175,7 +38791,7 @@ var _default = Cartesian;
 module.exports = _default;
 
 /***/ }),
-/* 148 */
+/* 161 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38207,12 +38823,12 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.inherits(Axis3D
 /* harmony default export */ __webpack_exports__["a"] = (Axis3D);
 
 /***/ }),
-/* 149 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var zrUtil = __webpack_require__(12);
 
-var textContain = __webpack_require__(150);
+var textContain = __webpack_require__(163);
 
 var numberUtil = __webpack_require__(78);
 
@@ -38335,16 +38951,11 @@ function getTooltipMarker(opt, extraCssText) {
 
   return type === 'subItem' ? '<span style="display:inline-block;vertical-align:middle;margin-right:8px;margin-left:3px;' + 'border-radius:4px;width:4px;height:4px;background-color:' + encodeHTML(color) + ';' + (extraCssText || '') + '"></span>' : '<span style="display:inline-block;margin-right:5px;' + 'border-radius:10px;width:10px;height:10px;background-color:' + encodeHTML(color) + ';' + (extraCssText || '') + '"></span>';
 }
-/**
- * @param {string} str
- * @return {string}
- * @inner
- */
 
-
-var s2d = function (str) {
-  return str < 10 ? '0' + str : str;
-};
+function pad(str, len) {
+  str += '';
+  return '0000'.substr(0, len - str.length) + str;
+}
 /**
  * ISO Date format
  * @param {string} tpl
@@ -38369,7 +38980,8 @@ function formatTime(tpl, value, isUTC) {
   var h = date['get' + utc + 'Hours']();
   var m = date['get' + utc + 'Minutes']();
   var s = date['get' + utc + 'Seconds']();
-  tpl = tpl.replace('MM', s2d(M)).replace('M', M).replace('yyyy', y).replace('yy', y % 100).replace('dd', s2d(d)).replace('d', d).replace('hh', s2d(h)).replace('h', h).replace('mm', s2d(m)).replace('m', m).replace('ss', s2d(s)).replace('s', s);
+  var S = date['get' + utc + 'Milliseconds']();
+  tpl = tpl.replace('MM', pad(M, 2)).replace('M', M).replace('yyyy', y).replace('yy', y % 100).replace('dd', pad(d, 2)).replace('d', d).replace('hh', pad(h, 2)).replace('h', h).replace('mm', pad(m, 2)).replace('m', m).replace('ss', pad(s, 2)).replace('s', s).replace('SSS', pad(S, 3));
   return tpl;
 }
 /**
@@ -38398,12 +39010,12 @@ exports.truncateText = truncateText;
 exports.getTextRect = getTextRect;
 
 /***/ }),
-/* 150 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var BoundingRect = __webpack_require__(75);
 
-var imageHelper = __webpack_require__(151);
+var imageHelper = __webpack_require__(164);
 
 var _util = __webpack_require__(12);
 
@@ -39092,7 +39704,7 @@ exports.parseRichText = parseRichText;
 exports.makeFont = makeFont;
 
 /***/ }),
-/* 151 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var LRU = __webpack_require__(53);
@@ -39185,36 +39797,30 @@ exports.createOrUpdateImage = createOrUpdateImage;
 exports.isImageReady = isImageReady;
 
 /***/ }),
-/* 152 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__math_Frustum__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Renderer__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Shader__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Light__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Mesh__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__light_Spot__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__light_Directional__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__light_Point__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shader_library__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__FrameBuffer__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Texture2D__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__TextureCube__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__camera_Orthographic__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__compositor_Pass__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__compositor_TexturePool__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__dep_glmatrix__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__shader_source_shadowmap_glsl_js__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Shader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Material__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__FrameBuffer__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Texture__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Texture2D__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__TextureCube__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__camera_Orthographic__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__compositor_TexturePool__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__dep_glmatrix__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__dep_glmatrix__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shader_source_shadowmap_glsl_js__ = __webpack_require__(166);
 
 
 
@@ -39235,19 +39841,12 @@ exports.isImageReady = isImageReady;
 
 
 
-
-
-
-
-
-
-var mat4 = __WEBPACK_IMPORTED_MODULE_23__dep_glmatrix___default.a.mat4;
-var vec3 = __WEBPACK_IMPORTED_MODULE_23__dep_glmatrix___default.a.vec3;
+var mat4 = __WEBPACK_IMPORTED_MODULE_17__dep_glmatrix___default.a.mat4;
 
 var targets = ['px', 'nx', 'py', 'ny', 'pz', 'nz'];
 
 
-__WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_24__shader_source_shadowmap_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_18__shader_source_shadowmap_glsl_js__["a" /* default */]);
 
 /**
  * Pass rendering shadow map.
@@ -39292,11 +39891,11 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             0, -1
         ]),
 
-        precision: 'mediump',
+        precision: 'highp',
 
         _lastRenderNotCastShadow: false,
 
-        _frameBuffer: new __WEBPACK_IMPORTED_MODULE_15__FrameBuffer__["a" /* default */](),
+        _frameBuffer: new __WEBPACK_IMPORTED_MODULE_9__FrameBuffer__["a" /* default */](),
 
         _textures: {},
         _shadowMapNumber: {
@@ -39308,21 +39907,20 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         _depthMaterials: {},
         _distanceMaterials: {},
 
-        _opaqueCasters: [],
         _receivers: [],
         _lightsCastShadow: [],
 
         _lightCameras: {},
         _lightMaterials: {},
 
-        _texturePool: new __WEBPACK_IMPORTED_MODULE_22__compositor_TexturePool__["a" /* default */]()
+        _texturePool: new __WEBPACK_IMPORTED_MODULE_16__compositor_TexturePool__["a" /* default */]()
     };
 }, function () {
     // Gaussian filter pass for VSM
-    this._gaussianPassH = new __WEBPACK_IMPORTED_MODULE_21__compositor_Pass__["a" /* default */]({
+    this._gaussianPassH = new __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__["a" /* default */]({
         fragment: __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source('clay.compositor.gaussian_blur')
     });
-    this._gaussianPassV = new __WEBPACK_IMPORTED_MODULE_21__compositor_Pass__["a" /* default */]({
+    this._gaussianPassV = new __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__["a" /* default */]({
         fragment: __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source('clay.compositor.gaussian_blur')
     });
     this._gaussianPassH.setUniform('blurSize', this.shadowBlur);
@@ -39330,7 +39928,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
     this._gaussianPassV.setUniform('blurSize', this.shadowBlur);
     this._gaussianPassV.setUniform('blurDir', 1.0);
 
-    this._outputDepthPass = new __WEBPACK_IMPORTED_MODULE_21__compositor_Pass__["a" /* default */]({
+    this._outputDepthPass = new __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__["a" /* default */]({
         fragment: __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source('clay.sm.debug_depth')
     });
 }, {
@@ -39380,10 +39978,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         renderer.restoreClear();
     },
 
-    _updateCasterAndReceiver: function (renderer, mesh) {
-        if (mesh.castShadow) {
-            this._opaqueCasters.push(mesh);
-        }
+    _updateReceivers: function (renderer, mesh) {
         if (mesh.receiveShadow) {
             this._receivers.push(mesh);
             mesh.material.set('shadowEnabled', 1);
@@ -39394,9 +39989,6 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             mesh.material.set('shadowEnabled', 0);
         }
 
-        if (!mesh.material.shader && mesh.material.updateShader) {
-            mesh.material.updateShader(renderer);
-        }
         if (this.softShadow === ShadowMapPass.VSM) {
             mesh.material.define('fragment', 'USE_VSM');
             mesh.material.undefine('fragment', 'PCF_KERNEL_SIZE');
@@ -39414,17 +40006,16 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
     },
 
     _update: function (renderer, scene) {
-        for (var i = 0; i < scene.opaqueList.length; i++) {
-            this._updateCasterAndReceiver(renderer, scene.opaqueList[i]);
-        }
-        for (var i = 0; i < scene.transparentList.length; i++) {
-            // TODO Transparent object receive shadow will be very slow
-            // in stealth demo, still not find the reason
-            this._updateCasterAndReceiver(renderer, scene.transparentList[i]);
-        }
+        var self = this;
+        scene.traverse(function (renderable) {
+            if (renderable.isRenderable()) {
+                self._updateReceivers(renderer, renderable);
+            }
+        });
+
         for (var i = 0; i < scene.lights.length; i++) {
             var light = scene.lights[i];
-            if (light.castShadow) {
+            if (light.castShadow && !light.invisible) {
                 this._lightsCastShadow.push(light);
             }
         }
@@ -39436,7 +40027,6 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             this._shadowMapNumber[name] = 0;
         }
         this._lightsCastShadow.length = 0;
-        this._opaqueCasters.length = 0;
         this._receivers.length = 0;
 
         var _gl = renderer.gl;
@@ -39448,6 +40038,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             sceneCamera.update();
         }
 
+        scene.updateLights();
         this._update(renderer, scene);
 
         // Needs to update the receivers again if shadows come from 1 to 0.
@@ -39489,7 +40080,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
                     continue;
                 }
                 if (light.shadowCascade > 1) {
-                    dirLightHasCascade = light.shadowCascade;
+                    dirLightHasCascade = light;
                 }
 
                 this.renderDirectionalLightShadow(
@@ -39497,7 +40088,6 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
                     scene,
                     sceneCamera,
                     light,
-                    this._opaqueCasters,
                     shadowCascadeClips,
                     directionalLightMatrices,
                     directionalLightShadowMaps
@@ -39508,7 +40098,6 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
                     renderer,
                     scene,
                     light,
-                    this._opaqueCasters,
                     spotLightMatrices,
                     spotLightShadowMaps
                 );
@@ -39518,7 +40107,6 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
                     renderer,
                     scene,
                     light,
-                    this._opaqueCasters,
                     pointLightShadowMaps
                 );
             }
@@ -39602,12 +40190,15 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         var lightViewProjMatrix = new __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__["a" /* default */]();
         var lightProjMatrix = new __WEBPACK_IMPORTED_MODULE_5__math_Matrix4__["a" /* default */]();
 
-        return function (renderer, scene, sceneCamera, light, casters, shadowCascadeClips, directionalLightMatrices, directionalLightShadowMaps) {
+        return function (renderer, scene, sceneCamera, light, shadowCascadeClips, directionalLightMatrices, directionalLightShadowMaps) {
 
             var defaultShadowMaterial = this._getDepthMaterial(light);
             var passConfig = {
                 getMaterial: function (renderable) {
                     return renderable.shadowDepthMaterial || defaultShadowMaterial;
+                },
+                ifRender: function (renderable) {
+                    return renderable.castShadow;
                 },
                 sortCompare: __WEBPACK_IMPORTED_MODULE_6__Renderer__["a" /* default */].opaqueSortCompare
             };
@@ -39632,7 +40223,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             mat4.multiply(lvpMat4Arr, lightProjMatrix.array, lightViewMatrix.array);
 
             var clipPlanes = [];
-            var isPerspective = sceneCamera instanceof __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */];
+            var isPerspective = sceneCamera instanceof __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */];
 
             var scaleZ = (sceneCamera.near + sceneCamera.far) / (sceneCamera.near - sceneCamera.far);
             var offsetZ = 2 * sceneCamera.near * sceneCamera.far / (sceneCamera.near - sceneCamera.far);
@@ -39684,7 +40275,8 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
                 // Reversed, left to right => far to near
                 renderer.setViewport((light.shadowCascade - i - 1) * shadowSize, 0, shadowSize, shadowSize, 1);
 
-                renderer.renderPass(casters, lightCamera, passConfig);
+                var renderList = scene.updateRenderList(lightCamera);
+                renderer.renderPass(renderList.opaque, lightCamera, passConfig);
 
                 // Filter for VSM
                 if (this.softShadow === ShadowMapPass.VSM) {
@@ -39706,7 +40298,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         };
     })(),
 
-    renderSpotLightShadow: function (renderer, scene, light, casters, spotLightMatrices, spotLightShadowMaps) {
+    renderSpotLightShadow: function (renderer, scene, light, spotLightMatrices, spotLightShadowMaps) {
 
         var texture = this._getTexture(light);
         var lightCamera = this._getSpotLightCamera(light);
@@ -39722,10 +40314,14 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             getMaterial: function (renderable) {
                 return renderable.shadowDepthMaterial || defaultShadowMaterial;
             },
+            ifRender: function (renderable) {
+                return renderable.castShadow;
+            },
             sortCompare: __WEBPACK_IMPORTED_MODULE_6__Renderer__["a" /* default */].opaqueSortCompare
         };
 
-        renderer.renderPass(renderer.cullRenderList(casters, null, lightCamera), lightCamera, passConfig);
+        var renderList = scene.updateRenderList(lightCamera);
+        renderer.renderPass(renderList.opaque, lightCamera, passConfig);
 
         this._frameBuffer.unbind(renderer);
 
@@ -39743,7 +40339,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         spotLightMatrices.push(matrix.array);
     },
 
-    renderPointLightShadow: function (renderer, scene, light, casters, pointLightShadowMaps) {
+    renderPointLightShadow: function (renderer, scene, light, pointLightShadowMaps) {
         var texture = this._getTexture(light);
         var _gl = renderer.gl;
         pointLightShadowMaps.push(texture);
@@ -39756,6 +40352,71 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             sortCompare: __WEBPACK_IMPORTED_MODULE_6__Renderer__["a" /* default */].opaqueSortCompare
         };
 
+        var renderListEachSide = {
+            px: [], py: [], pz: [], nx: [], ny: [], nz: []
+        };
+        var bbox = new __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__["a" /* default */]();
+        var lightWorldPosition = light.getWorldPosition().array;
+        var lightBBox = new __WEBPACK_IMPORTED_MODULE_3__math_BoundingBox__["a" /* default */]();
+        var range = light.range;
+        lightBBox.min.setArray(lightWorldPosition);
+        lightBBox.max.setArray(lightWorldPosition);
+        var extent = new __WEBPACK_IMPORTED_MODULE_2__math_Vector3__["a" /* default */](range, range, range);
+        lightBBox.max.add(extent);
+        lightBBox.min.sub(extent);
+
+        var targetsNeedRender = { px: false, py: false, pz: false, nx: false, ny: false, nz: false };
+        scene.traverse(function (renderable) {
+            if (renderable.isRenderable() && renderable.castShadow) {
+                var geometry = renderable.geometry;
+                if (!geometry.boundingBox) {
+                    for (var i = 0; i < targets.length; i++) {
+                        renderListEachSide[targets[i]].push(renderable);
+                    }
+                    return;
+                }
+                bbox.transformFrom(geometry.boundingBox, renderable.worldTransform);
+                if (!bbox.intersectBoundingBox(lightBBox)) {
+                    return;
+                }
+
+                bbox.updateVertices();
+                for (var i = 0; i < targets.length; i++) {
+                    targetsNeedRender[targets[i]] = false;
+                }
+                for (var i = 0; i < 8; i++) {
+                    var vtx = bbox.vertices[i];
+                    var x = vtx[0] - lightWorldPosition[0];
+                    var y = vtx[1] - lightWorldPosition[1];
+                    var z = vtx[2] - lightWorldPosition[2];
+                    var absx = Math.abs(x);
+                    var absy = Math.abs(y);
+                    var absz = Math.abs(z);
+                    if (absx > absy) {
+                        if (absx > absz) {
+                            targetsNeedRender[x > 0 ? 'px' : 'nx'] = true;
+                        }
+                        else {
+                            targetsNeedRender[z > 0 ? 'pz' : 'nz'] = true;
+                        }
+                    }
+                    else {
+                        if (absy > absz) {
+                            targetsNeedRender[y > 0 ? 'py' : 'ny'] = true;
+                        }
+                        else {
+                            targetsNeedRender[z > 0 ? 'pz' : 'nz'] = true;
+                        }
+                    }
+                }
+                for (var i = 0; i < targets.length; i++) {
+                    if (targetsNeedRender[targets[i]]) {
+                        renderListEachSide[targets[i]].push(renderable);
+                    }
+                }
+            }
+        });
+
         for (var i = 0; i < 6; i++) {
             var target = targets[i];
             var camera = this._getPointLightCamera(light, target);
@@ -39764,7 +40425,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             this._frameBuffer.bind(renderer);
             _gl.clear(_gl.COLOR_BUFFER_BIT | _gl.DEPTH_BUFFER_BIT);
 
-            renderer.renderPass(renderer.cullRenderList(casters, null, camera), camera, passConfig);
+            renderer.renderPass(renderListEachSide[target], camera, passConfig);
         }
 
         this._frameBuffer.unbind(renderer);
@@ -39772,10 +40433,10 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
 
     _getDepthMaterial: function (light) {
         var shadowMaterial = this._lightMaterials[light.__uid__];
-        var isPointLight = light instanceof __WEBPACK_IMPORTED_MODULE_12__light_Point__["a" /* default */];
+        var isPointLight = light.type === 'POINT_LIGHT';
         if (!shadowMaterial) {
             var shaderPrefix = isPointLight ? 'clay.sm.distance.' : 'clay.sm.depth.';
-            shadowMaterial = new __WEBPACK_IMPORTED_MODULE_14__Material__["a" /* default */]({
+            shadowMaterial = new __WEBPACK_IMPORTED_MODULE_8__Material__["a" /* default */]({
                 precision: this.precision,
                 shader: new __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */](__WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source(shaderPrefix + 'vertex'), __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source(shaderPrefix + 'fragment'))
             });
@@ -39786,7 +40447,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
             shadowMaterial.setUniform('slopeScale', light.shadowSlopeScale);
         }
         if (light.shadowBias != null) {
-            shadowMaterial.setUniform('shadowBias', light.shadowBias);
+            shadowMaterial.setUniform('bias', light.shadowBias);
         }
         if (this.softShadow === ShadowMapPass.VSM) {
             shadowMaterial.define('fragment', 'USE_VSM');
@@ -39807,7 +40468,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         var parameter = {
             width: size,
             height: size,
-            type: __WEBPACK_IMPORTED_MODULE_16__Texture__["a" /* default */].FLOAT
+            type: __WEBPACK_IMPORTED_MODULE_10__Texture__["a" /* default */].FLOAT
         };
         var tmpTexture = this._texturePool.get(parameter);
 
@@ -39832,18 +40493,18 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         var resolution = light.shadowResolution || 512;
         cascade = cascade || 1;
         if (!texture) {
-            if (light instanceof __WEBPACK_IMPORTED_MODULE_12__light_Point__["a" /* default */]) {
-                texture = new __WEBPACK_IMPORTED_MODULE_18__TextureCube__["a" /* default */]();
+            if (light.type === 'POINT_LIGHT') {
+                texture = new __WEBPACK_IMPORTED_MODULE_12__TextureCube__["a" /* default */]();
             }
             else {
-                texture = new __WEBPACK_IMPORTED_MODULE_17__Texture2D__["a" /* default */]();
+                texture = new __WEBPACK_IMPORTED_MODULE_11__Texture2D__["a" /* default */]();
             }
             // At most 4 cascade
             // TODO share with height ?
             texture.width = resolution * cascade;
             texture.height = resolution;
             if (this.softShadow === ShadowMapPass.VSM) {
-                texture.type = __WEBPACK_IMPORTED_MODULE_16__Texture__["a" /* default */].FLOAT;
+                texture.type = __WEBPACK_IMPORTED_MODULE_10__Texture__["a" /* default */].FLOAT;
                 texture.anisotropic = 4;
             }
             else {
@@ -39860,12 +40521,12 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
     _getPointLightCamera: function (light, target) {
         if (!this._lightCameras.point) {
             this._lightCameras.point = {
-                px: new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */](),
-                nx: new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */](),
-                py: new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */](),
-                ny: new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */](),
-                pz: new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */](),
-                nz: new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */]()
+                px: new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */](),
+                nx: new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */](),
+                py: new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */](),
+                ny: new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */](),
+                pz: new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */](),
+                nz: new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */]()
             };
         }
         var camera = this._lightCameras.point[target];
@@ -39907,7 +40568,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         // to contain the view frustum and scene bounding box as tightly as possible
         return function (light, scene, sceneCamera) {
             if (!this._lightCameras.directional) {
-                this._lightCameras.directional = new __WEBPACK_IMPORTED_MODULE_20__camera_Orthographic__["a" /* default */]();
+                this._lightCameras.directional = new __WEBPACK_IMPORTED_MODULE_14__camera_Orthographic__["a" /* default */]();
             }
             var camera = this._lightCameras.directional;
 
@@ -39956,7 +40617,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
 
     _getSpotLightCamera: function (light) {
         if (!this._lightCameras.spot) {
-            this._lightCameras.spot = new __WEBPACK_IMPORTED_MODULE_19__camera_Perspective__["a" /* default */]();
+            this._lightCameras.spot = new __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__["a" /* default */]();
         }
         var camera = this._lightCameras.spot;
         // Update properties
@@ -40001,17 +40662,15 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
         for (var i = 0; i < this._receivers.length; i++) {
             var mesh = this._receivers[i];
             // Mesh may be disposed
-            if (mesh.material && mesh.material.shader) {
+            if (mesh.material) {
                 var material = mesh.material;
-                var shader = material.shader;
-                shader.undefine('fragment', 'POINT_LIGHT_SHADOW_COUNT');
-                shader.undefine('fragment', 'DIRECTIONAL_LIGHT_SHADOW_COUNT');
-                shader.undefine('fragment', 'AMBIENT_LIGHT_SHADOW_COUNT');
+                material.undefine('fragment', 'POINT_LIGHT_SHADOW_COUNT');
+                material.undefine('fragment', 'DIRECTIONAL_LIGHT_SHADOW_COUNT');
+                material.undefine('fragment', 'AMBIENT_LIGHT_SHADOW_COUNT');
                 material.set('shadowEnabled', 0);
             }
         }
 
-        this._opaqueCasters = [];
         this._receivers = [];
         this._lightsCastShadow = [];
     }
@@ -40033,127 +40692,42 @@ ShadowMapPass.PCF = 2;
 
 
 /***/ }),
-/* 153 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shader__ = __webpack_require__(7);
-
-
-var _library = {};
-
-function ShaderLibrary () {
-    this._pool = {};
-}
-
-ShaderLibrary.prototype.get = function(name) {
-    var key = name;
-
-    if (this._pool[key]) {
-        return this._pool[key];
-    }
-    else {
-        var source = _library[name];
-        if (!source) {
-            console.error('Shader "' + name + '"' + ' is not in the library');
-            return;
-        }
-        var shader = new __WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */](source.vertex, source.fragment);
-        this._pool[key] = shader;
-        return shader;
-    }
-};
-
-ShaderLibrary.prototype.clear = function() {
-    this._pool = {};
-};
-
-function template(name, vertex, fragment) {
-    _library[name] = {
-        vertex: vertex,
-        fragment: fragment
-    };
-}
-
-var defaultLibrary = new ShaderLibrary();
-
-/**
- * ### Builin shaders
- * + clay.standard
- * + clay.basic
- * + clay.lambert
- * + clay.wireframe
- *
- * @namespace clay.shader.library
- */
-/* unused harmony default export */ var _unused_webpack_default_export = ({
-    /**
-     * Create a new shader library.
-     */
-    createLibrary: function () {
-        return new ShaderLibrary();
-    },
-    /**
-     * Get shader from default library.
-     * @param {string} name
-     * @return {clay.Shader}
-     * @memberOf clay.shader.library
-     * @example
-     *     clay.shader.library.get('clay.standard')
-     */
-    get: function () {
-        return defaultLibrary.get.apply(defaultLibrary, arguments);
-    },
-    /**
-     * @memberOf clay.shader.library
-     * @param  {string} name
-     * @param  {string} vertex - Vertex shader code
-     * @param  {string} fragment - Fragment shader code
-     */
-    template: template,
-    clear: function () {
-        return defaultLibrary.clear();
-    }
-});
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.sm.depth.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\n#ifdef SHADOW_TRANSPARENT\nattribute vec2 texcoord : TEXCOORD_0;\n#endif\n@import clay.chunk.skinning_header\nvarying vec4 v_ViewPosition;\n#ifdef SHADOW_TRANSPARENT\nvarying vec2 v_Texcoord;\n#endif\nvoid main(){\n vec3 skinnedPosition = position;\n#ifdef SKINNING\n @import clay.chunk.skin_matrix\n skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n v_ViewPosition = worldViewProjection * vec4(skinnedPosition, 1.0);\n gl_Position = v_ViewPosition;\n#ifdef SHADOW_TRANSPARENT\n v_Texcoord = texcoord;\n#endif\n}\n@end\n@export clay.sm.depth.fragment\nvarying vec4 v_ViewPosition;\n#ifdef SHADOW_TRANSPARENT\nvarying vec2 v_Texcoord;\n#endif\nuniform float bias : 0.001;\nuniform float slopeScale : 1.0;\n#ifdef SHADOW_TRANSPARENT\nuniform sampler2D transparentMap;\n#endif\n@import clay.util.encode_float\nvoid main(){\n float depth = v_ViewPosition.z / v_ViewPosition.w;\n#ifdef USE_VSM\n depth = depth * 0.5 + 0.5;\n float moment1 = depth;\n float moment2 = depth * depth;\n float dx = dFdx(depth);\n float dy = dFdy(depth);\n moment2 += 0.25*(dx*dx+dy*dy);\n gl_FragColor = vec4(moment1, moment2, 0.0, 1.0);\n#else\n float dx = dFdx(depth);\n float dy = dFdy(depth);\n depth += sqrt(dx*dx + dy*dy) * slopeScale + bias;\n#ifdef SHADOW_TRANSPARENT\n if (texture2D(transparentMap, v_Texcoord).a <= 0.1) {\n gl_FragColor = encodeFloat(0.9999);\n return;\n }\n#endif\n gl_FragColor = encodeFloat(depth * 0.5 + 0.5);\n#endif\n}\n@end\n@export clay.sm.debug_depth\nuniform sampler2D depthMap;\nvarying vec2 v_Texcoord;\n@import clay.util.decode_float\nvoid main() {\n vec4 tex = texture2D(depthMap, v_Texcoord);\n#ifdef USE_VSM\n gl_FragColor = vec4(tex.rgb, 1.0);\n#else\n float depth = decodeFloat(tex);\n gl_FragColor = vec4(depth, depth, depth, 1.0);\n#endif\n}\n@end\n@export clay.sm.distance.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nuniform mat4 world : WORLD;\nattribute vec3 position : POSITION;\n@import clay.chunk.skinning_header\nvarying vec3 v_WorldPosition;\nvoid main (){\n vec3 skinnedPosition = position;\n#ifdef SKINNING\n @import clay.chunk.skin_matrix\n skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n gl_Position = worldViewProjection * vec4(skinnedPosition , 1.0);\n v_WorldPosition = (world * vec4(skinnedPosition, 1.0)).xyz;\n}\n@end\n@export clay.sm.distance.fragment\nuniform vec3 lightPosition;\nuniform float range : 100;\nvarying vec3 v_WorldPosition;\n@import clay.util.encode_float\nvoid main(){\n float dist = distance(lightPosition, v_WorldPosition);\n#ifdef USE_VSM\n gl_FragColor = vec4(dist, dist * dist, 0.0, 0.0);\n#else\n dist = dist / range;\n gl_FragColor = encodeFloat(dist);\n#endif\n}\n@end\n@export clay.plugin.shadow_map_common\n@import clay.util.decode_float\nfloat tapShadowMap(sampler2D map, vec2 uv, float z){\n vec4 tex = texture2D(map, uv);\n return step(z, decodeFloat(tex) * 2.0 - 1.0);\n}\nfloat pcf(sampler2D map, vec2 uv, float z, float textureSize, vec2 scale) {\n float shadowContrib = tapShadowMap(map, uv, z);\n vec2 offset = vec2(1.0 / textureSize) * scale;\n#ifdef PCF_KERNEL_SIZE\n for (int _idx_ = 0; _idx_ < PCF_KERNEL_SIZE; _idx_++) {{\n shadowContrib += tapShadowMap(map, uv + offset * pcfKernel[_idx_], z);\n }}\n return shadowContrib / float(PCF_KERNEL_SIZE + 1);\n#else\n shadowContrib += tapShadowMap(map, uv+vec2(offset.x, 0.0), z);\n shadowContrib += tapShadowMap(map, uv+vec2(offset.x, offset.y), z);\n shadowContrib += tapShadowMap(map, uv+vec2(-offset.x, offset.y), z);\n shadowContrib += tapShadowMap(map, uv+vec2(0.0, offset.y), z);\n shadowContrib += tapShadowMap(map, uv+vec2(-offset.x, 0.0), z);\n shadowContrib += tapShadowMap(map, uv+vec2(-offset.x, -offset.y), z);\n shadowContrib += tapShadowMap(map, uv+vec2(offset.x, -offset.y), z);\n shadowContrib += tapShadowMap(map, uv+vec2(0.0, -offset.y), z);\n return shadowContrib / 9.0;\n#endif\n}\nfloat pcf(sampler2D map, vec2 uv, float z, float textureSize) {\n return pcf(map, uv, z, textureSize, vec2(1.0));\n}\nfloat chebyshevUpperBound(vec2 moments, float z){\n float p = 0.0;\n z = z * 0.5 + 0.5;\n if (z <= moments.x) {\n p = 1.0;\n }\n float variance = moments.y - moments.x * moments.x;\n variance = max(variance, 0.0000001);\n float mD = moments.x - z;\n float pMax = variance / (variance + mD * mD);\n pMax = clamp((pMax-0.4)/(1.0-0.4), 0.0, 1.0);\n return max(p, pMax);\n}\nfloat computeShadowContrib(\n sampler2D map, mat4 lightVPM, vec3 position, float textureSize, vec2 scale, vec2 offset\n) {\n vec4 posInLightSpace = lightVPM * vec4(position, 1.0);\n posInLightSpace.xyz /= posInLightSpace.w;\n float z = posInLightSpace.z;\n if(all(greaterThan(posInLightSpace.xyz, vec3(-0.99, -0.99, -1.0))) &&\n all(lessThan(posInLightSpace.xyz, vec3(0.99, 0.99, 1.0)))){\n vec2 uv = (posInLightSpace.xy+1.0) / 2.0;\n #ifdef USE_VSM\n vec2 moments = texture2D(map, uv * scale + offset).xy;\n return chebyshevUpperBound(moments, z);\n #else\n return pcf(map, uv * scale + offset, z, textureSize, scale);\n #endif\n }\n return 1.0;\n}\nfloat computeShadowContrib(sampler2D map, mat4 lightVPM, vec3 position, float textureSize) {\n return computeShadowContrib(map, lightVPM, position, textureSize, vec2(1.0), vec2(0.0));\n}\nfloat computeShadowContribOmni(samplerCube map, vec3 direction, float range)\n{\n float dist = length(direction);\n vec4 shadowTex = textureCube(map, direction);\n#ifdef USE_VSM\n vec2 moments = shadowTex.xy;\n float variance = moments.y - moments.x * moments.x;\n float mD = moments.x - dist;\n float p = variance / (variance + mD * mD);\n if(moments.x + 0.001 < dist){\n return clamp(p, 0.0, 1.0);\n }else{\n return 1.0;\n }\n#else\n return step(dist, (decodeFloat(shadowTex) + 0.0002) * range);\n#endif\n}\n@end\n@export clay.plugin.compute_shadow_map\n#if defined(SPOT_LIGHT_SHADOWMAP_COUNT) || defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT) || defined(POINT_LIGHT_SHADOWMAP_COUNT)\n#ifdef SPOT_LIGHT_SHADOWMAP_COUNT\nuniform sampler2D spotLightShadowMaps[SPOT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform mat4 spotLightMatrices[SPOT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform float spotLightShadowMapSizes[SPOT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\n#endif\n#ifdef DIRECTIONAL_LIGHT_SHADOWMAP_COUNT\n#if defined(SHADOW_CASCADE)\nuniform sampler2D directionalLightShadowMaps[1]:unconfigurable;\nuniform mat4 directionalLightMatrices[SHADOW_CASCADE]:unconfigurable;\nuniform float directionalLightShadowMapSizes[1]:unconfigurable;\nuniform float shadowCascadeClipsNear[SHADOW_CASCADE]:unconfigurable;\nuniform float shadowCascadeClipsFar[SHADOW_CASCADE]:unconfigurable;\n#else\nuniform sampler2D directionalLightShadowMaps[DIRECTIONAL_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform mat4 directionalLightMatrices[DIRECTIONAL_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform float directionalLightShadowMapSizes[DIRECTIONAL_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\n#endif\n#endif\n#ifdef POINT_LIGHT_SHADOWMAP_COUNT\nuniform samplerCube pointLightShadowMaps[POINT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\n#endif\nuniform bool shadowEnabled : true;\n#ifdef PCF_KERNEL_SIZE\nuniform vec2 pcfKernel[PCF_KERNEL_SIZE];\n#endif\n@import clay.plugin.shadow_map_common\n#if defined(SPOT_LIGHT_SHADOWMAP_COUNT)\nvoid computeShadowOfSpotLights(vec3 position, inout float shadowContribs[SPOT_LIGHT_COUNT] ) {\n float shadowContrib;\n for(int _idx_ = 0; _idx_ < SPOT_LIGHT_SHADOWMAP_COUNT; _idx_++) {{\n shadowContrib = computeShadowContrib(\n spotLightShadowMaps[_idx_], spotLightMatrices[_idx_], position,\n spotLightShadowMapSizes[_idx_]\n );\n shadowContribs[_idx_] = shadowContrib;\n }}\n for(int _idx_ = SPOT_LIGHT_SHADOWMAP_COUNT; _idx_ < SPOT_LIGHT_COUNT; _idx_++){{\n shadowContribs[_idx_] = 1.0;\n }}\n}\n#endif\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n#ifdef SHADOW_CASCADE\nvoid computeShadowOfDirectionalLights(vec3 position, inout float shadowContribs[DIRECTIONAL_LIGHT_COUNT]){\n float depth = (2.0 * gl_FragCoord.z - gl_DepthRange.near - gl_DepthRange.far)\n / (gl_DepthRange.far - gl_DepthRange.near);\n float shadowContrib;\n shadowContribs[0] = 1.0;\n for (int _idx_ = 0; _idx_ < SHADOW_CASCADE; _idx_++) {{\n if (\n depth >= shadowCascadeClipsNear[_idx_] &&\n depth <= shadowCascadeClipsFar[_idx_]\n ) {\n shadowContrib = computeShadowContrib(\n directionalLightShadowMaps[0], directionalLightMatrices[_idx_], position,\n directionalLightShadowMapSizes[0],\n vec2(1.0 / float(SHADOW_CASCADE), 1.0),\n vec2(float(_idx_) / float(SHADOW_CASCADE), 0.0)\n );\n shadowContribs[0] = shadowContrib;\n }\n }}\n for(int _idx_ = DIRECTIONAL_LIGHT_SHADOWMAP_COUNT; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++) {{\n shadowContribs[_idx_] = 1.0;\n }}\n}\n#else\nvoid computeShadowOfDirectionalLights(vec3 position, inout float shadowContribs[DIRECTIONAL_LIGHT_COUNT]){\n float shadowContrib;\n for(int _idx_ = 0; _idx_ < DIRECTIONAL_LIGHT_SHADOWMAP_COUNT; _idx_++) {{\n shadowContrib = computeShadowContrib(\n directionalLightShadowMaps[_idx_], directionalLightMatrices[_idx_], position,\n directionalLightShadowMapSizes[_idx_]\n );\n shadowContribs[_idx_] = shadowContrib;\n }}\n for(int _idx_ = DIRECTIONAL_LIGHT_SHADOWMAP_COUNT; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++) {{\n shadowContribs[_idx_] = 1.0;\n }}\n}\n#endif\n#endif\n#if defined(POINT_LIGHT_SHADOWMAP_COUNT)\nvoid computeShadowOfPointLights(vec3 position, inout float shadowContribs[POINT_LIGHT_COUNT] ){\n vec3 lightPosition;\n vec3 direction;\n for(int _idx_ = 0; _idx_ < POINT_LIGHT_SHADOWMAP_COUNT; _idx_++) {{\n lightPosition = pointLightPosition[_idx_];\n direction = position - lightPosition;\n shadowContribs[_idx_] = computeShadowContribOmni(pointLightShadowMaps[_idx_], direction, pointLightRange[_idx_]);\n }}\n for(int _idx_ = POINT_LIGHT_SHADOWMAP_COUNT; _idx_ < POINT_LIGHT_COUNT; _idx_++) {{\n shadowContribs[_idx_] = 1.0;\n }}\n}\n#endif\n#endif\n@end");
 
 
 /***/ }),
-/* 154 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.sm.depth.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\n#ifdef SHADOW_TRANSPARENT\nattribute vec2 texcoord : TEXCOORD_0;\n#endif\n@import clay.chunk.skinning_header\nvarying vec4 v_ViewPosition;\n#ifdef SHADOW_TRANSPARENT\nvarying vec2 v_Texcoord;\n#endif\nvoid main(){\n    vec3 skinnedPosition = position;\n#ifdef SKINNING\n    @import clay.chunk.skin_matrix\n    skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n    v_ViewPosition = worldViewProjection * vec4(skinnedPosition, 1.0);\n    gl_Position = v_ViewPosition;\n#ifdef SHADOW_TRANSPARENT\n    v_Texcoord = texcoord;\n#endif\n}\n@end\n@export clay.sm.depth.fragment\nvarying vec4 v_ViewPosition;\n#ifdef SHADOW_TRANSPARENT\nvarying vec2 v_Texcoord;\n#endif\nuniform float bias : 0.001;\nuniform float slopeScale : 1.0;\n#ifdef SHADOW_TRANSPARENT\nuniform sampler2D transparentMap;\n#endif\n@import clay.util.encode_float\nvoid main(){\n    float depth = v_ViewPosition.z / v_ViewPosition.w;\n#ifdef USE_VSM\n    depth = depth * 0.5 + 0.5;\n    float moment1 = depth;\n    float moment2 = depth * depth;\n    float dx = dFdx(depth);\n    float dy = dFdy(depth);\n    moment2 += 0.25*(dx*dx+dy*dy);\n    gl_FragColor = vec4(moment1, moment2, 0.0, 1.0);\n#else\n    float dx = dFdx(depth);\n    float dy = dFdy(depth);\n    depth += sqrt(dx*dx + dy*dy) * slopeScale + bias;\n#ifdef SHADOW_TRANSPARENT\n    if (texture2D(transparentMap, v_Texcoord).a <= 0.1) {\n        gl_FragColor = encodeFloat(0.9999);\n        return;\n    }\n#endif\n    gl_FragColor = encodeFloat(depth * 0.5 + 0.5);\n#endif\n}\n@end\n@export clay.sm.debug_depth\nuniform sampler2D depthMap;\nvarying vec2 v_Texcoord;\n@import clay.util.decode_float\nvoid main() {\n    vec4 tex = texture2D(depthMap, v_Texcoord);\n#ifdef USE_VSM\n    gl_FragColor = vec4(tex.rgb, 1.0);\n#else\n    float depth = decodeFloat(tex);\n    gl_FragColor = vec4(depth, depth, depth, 1.0);\n#endif\n}\n@end\n@export clay.sm.distance.vertex\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nuniform mat4 world : WORLD;\nattribute vec3 position : POSITION;\n@import clay.chunk.skinning_header\nvarying vec3 v_WorldPosition;\nvoid main (){\n    vec3 skinnedPosition = position;\n#ifdef SKINNING\n    @import clay.chunk.skin_matrix\n    skinnedPosition = (skinMatrixWS * vec4(position, 1.0)).xyz;\n#endif\n    gl_Position = worldViewProjection * vec4(skinnedPosition , 1.0);\n    v_WorldPosition = (world * vec4(skinnedPosition, 1.0)).xyz;\n}\n@end\n@export clay.sm.distance.fragment\nuniform vec3 lightPosition;\nuniform float range : 100;\nvarying vec3 v_WorldPosition;\n@import clay.util.encode_float\nvoid main(){\n    float dist = distance(lightPosition, v_WorldPosition);\n#ifdef USE_VSM\n    gl_FragColor = vec4(dist, dist * dist, 0.0, 0.0);\n#else\n    dist = dist / range;\n    gl_FragColor = encodeFloat(dist);\n#endif\n}\n@end\n@export clay.plugin.shadow_map_common\n@import clay.util.decode_float\nfloat tapShadowMap(sampler2D map, vec2 uv, float z){\n    vec4 tex = texture2D(map, uv);\n    return step(z, decodeFloat(tex) * 2.0 - 1.0);\n}\nfloat pcf(sampler2D map, vec2 uv, float z, float textureSize, vec2 scale) {\n    float shadowContrib = tapShadowMap(map, uv, z);\n    vec2 offset = vec2(1.0 / textureSize) * scale;\n#ifdef PCF_KERNEL_SIZE\n    for (int _idx_ = 0; _idx_ < PCF_KERNEL_SIZE; _idx_++) {{\n        shadowContrib += tapShadowMap(map, uv + offset * pcfKernel[_idx_], z);\n    }}\n    return shadowContrib / float(PCF_KERNEL_SIZE + 1);\n#else\n    shadowContrib += tapShadowMap(map, uv+vec2(offset.x, 0.0), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(offset.x, offset.y), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(-offset.x, offset.y), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(0.0, offset.y), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(-offset.x, 0.0), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(-offset.x, -offset.y), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(offset.x, -offset.y), z);\n    shadowContrib += tapShadowMap(map, uv+vec2(0.0, -offset.y), z);\n    return shadowContrib / 9.0;\n#endif\n}\nfloat pcf(sampler2D map, vec2 uv, float z, float textureSize) {\n    return pcf(map, uv, z, textureSize, vec2(1.0));\n}\nfloat chebyshevUpperBound(vec2 moments, float z){\n    float p = 0.0;\n    z = z * 0.5 + 0.5;\n    if (z <= moments.x) {\n        p = 1.0;\n    }\n    float variance = moments.y - moments.x * moments.x;\n    variance = max(variance, 0.0000001);\n    float mD = moments.x - z;\n    float pMax = variance / (variance + mD * mD);\n    pMax = clamp((pMax-0.4)/(1.0-0.4), 0.0, 1.0);\n    return max(p, pMax);\n}\nfloat computeShadowContrib(\n    sampler2D map, mat4 lightVPM, vec3 position, float textureSize, vec2 scale, vec2 offset\n) {\n    vec4 posInLightSpace = lightVPM * vec4(position, 1.0);\n    posInLightSpace.xyz /= posInLightSpace.w;\n    float z = posInLightSpace.z;\n    if(all(greaterThan(posInLightSpace.xyz, vec3(-0.99, -0.99, -1.0))) &&\n        all(lessThan(posInLightSpace.xyz, vec3(0.99, 0.99, 1.0)))){\n        vec2 uv = (posInLightSpace.xy+1.0) / 2.0;\n        #ifdef USE_VSM\n            vec2 moments = texture2D(map, uv * scale + offset).xy;\n            return chebyshevUpperBound(moments, z);\n        #else\n            return pcf(map, uv * scale + offset, z, textureSize, scale);\n        #endif\n    }\n    return 1.0;\n}\nfloat computeShadowContrib(sampler2D map, mat4 lightVPM, vec3 position, float textureSize) {\n    return computeShadowContrib(map, lightVPM, position, textureSize, vec2(1.0), vec2(0.0));\n}\nfloat computeShadowContribOmni(samplerCube map, vec3 direction, float range)\n{\n    float dist = length(direction);\n    vec4 shadowTex = textureCube(map, direction);\n#ifdef USE_VSM\n    vec2 moments = shadowTex.xy;\n    float variance = moments.y - moments.x * moments.x;\n    float mD = moments.x - dist;\n    float p = variance / (variance + mD * mD);\n    if(moments.x + 0.001 < dist){\n        return clamp(p, 0.0, 1.0);\n    }else{\n        return 1.0;\n    }\n#else\n    return step(dist, (decodeFloat(shadowTex) + 0.0002) * range);\n#endif\n}\n@end\n@export clay.plugin.compute_shadow_map\n#if defined(SPOT_LIGHT_SHADOWMAP_COUNT) || defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT) || defined(POINT_LIGHT_SHADOWMAP_COUNT)\n#ifdef SPOT_LIGHT_SHADOWMAP_COUNT\nuniform sampler2D spotLightShadowMaps[SPOT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform mat4 spotLightMatrices[SPOT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform float spotLightShadowMapSizes[SPOT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\n#endif\n#ifdef DIRECTIONAL_LIGHT_SHADOWMAP_COUNT\n#if defined(SHADOW_CASCADE)\nuniform sampler2D directionalLightShadowMaps[1]:unconfigurable;\nuniform mat4 directionalLightMatrices[SHADOW_CASCADE]:unconfigurable;\nuniform float directionalLightShadowMapSizes[1]:unconfigurable;\nuniform float shadowCascadeClipsNear[SHADOW_CASCADE]:unconfigurable;\nuniform float shadowCascadeClipsFar[SHADOW_CASCADE]:unconfigurable;\n#else\nuniform sampler2D directionalLightShadowMaps[DIRECTIONAL_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform mat4 directionalLightMatrices[DIRECTIONAL_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\nuniform float directionalLightShadowMapSizes[DIRECTIONAL_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\n#endif\n#endif\n#ifdef POINT_LIGHT_SHADOWMAP_COUNT\nuniform samplerCube pointLightShadowMaps[POINT_LIGHT_SHADOWMAP_COUNT]:unconfigurable;\n#endif\nuniform bool shadowEnabled : true;\n#ifdef PCF_KERNEL_SIZE\nuniform vec2 pcfKernel[PCF_KERNEL_SIZE];\n#endif\n@import clay.plugin.shadow_map_common\n#if defined(SPOT_LIGHT_SHADOWMAP_COUNT)\nvoid computeShadowOfSpotLights(vec3 position, inout float shadowContribs[SPOT_LIGHT_COUNT] ) {\n    float shadowContrib;\n    for(int _idx_ = 0; _idx_ < SPOT_LIGHT_SHADOWMAP_COUNT; _idx_++) {{\n        shadowContrib = computeShadowContrib(\n            spotLightShadowMaps[_idx_], spotLightMatrices[_idx_], position,\n            spotLightShadowMapSizes[_idx_]\n        );\n        shadowContribs[_idx_] = shadowContrib;\n    }}\n    for(int _idx_ = SPOT_LIGHT_SHADOWMAP_COUNT; _idx_ < SPOT_LIGHT_COUNT; _idx_++){{\n        shadowContribs[_idx_] = 1.0;\n    }}\n}\n#endif\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n#ifdef SHADOW_CASCADE\nvoid computeShadowOfDirectionalLights(vec3 position, inout float shadowContribs[DIRECTIONAL_LIGHT_COUNT]){\n    float depth = (2.0 * gl_FragCoord.z - gl_DepthRange.near - gl_DepthRange.far)\n                    / (gl_DepthRange.far - gl_DepthRange.near);\n    float shadowContrib;\n    shadowContribs[0] = 1.0;\n    for (int _idx_ = 0; _idx_ < SHADOW_CASCADE; _idx_++) {{\n        if (\n            depth >= shadowCascadeClipsNear[_idx_] &&\n            depth <= shadowCascadeClipsFar[_idx_]\n        ) {\n            shadowContrib = computeShadowContrib(\n                directionalLightShadowMaps[0], directionalLightMatrices[_idx_], position,\n                directionalLightShadowMapSizes[0],\n                vec2(1.0 / float(SHADOW_CASCADE), 1.0),\n                vec2(float(_idx_) / float(SHADOW_CASCADE), 0.0)\n            );\n            shadowContribs[0] = shadowContrib;\n        }\n    }}\n    for(int _idx_ = DIRECTIONAL_LIGHT_SHADOWMAP_COUNT; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++) {{\n        shadowContribs[_idx_] = 1.0;\n    }}\n}\n#else\nvoid computeShadowOfDirectionalLights(vec3 position, inout float shadowContribs[DIRECTIONAL_LIGHT_COUNT]){\n    float shadowContrib;\n    for(int _idx_ = 0; _idx_ < DIRECTIONAL_LIGHT_SHADOWMAP_COUNT; _idx_++) {{\n        shadowContrib = computeShadowContrib(\n            directionalLightShadowMaps[_idx_], directionalLightMatrices[_idx_], position,\n            directionalLightShadowMapSizes[_idx_]\n        );\n        shadowContribs[_idx_] = shadowContrib;\n    }}\n    for(int _idx_ = DIRECTIONAL_LIGHT_SHADOWMAP_COUNT; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++) {{\n        shadowContribs[_idx_] = 1.0;\n    }}\n}\n#endif\n#endif\n#if defined(POINT_LIGHT_SHADOWMAP_COUNT)\nvoid computeShadowOfPointLights(vec3 position, inout float shadowContribs[POINT_LIGHT_COUNT] ){\n    vec3 lightPosition;\n    vec3 direction;\n    for(int _idx_ = 0; _idx_ < POINT_LIGHT_SHADOWMAP_COUNT; _idx_++) {{\n        lightPosition = pointLightPosition[_idx_];\n        direction = position - lightPosition;\n        shadowContribs[_idx_] = computeShadowContribOmni(pointLightShadowMaps[_idx_], direction, pointLightRange[_idx_]);\n    }}\n    for(int _idx_ = POINT_LIGHT_SHADOWMAP_COUNT; _idx_ < POINT_LIGHT_COUNT; _idx_++) {{\n        shadowContribs[_idx_] = 1.0;\n    }}\n}\n#endif\n#endif\n@end");
-
-
-/***/ }),
-/* 155 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_FrameBuffer__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_compositor_createCompositor__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__SSAOPass__ = __webpack_require__(162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SSRPass__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__poissonKernel__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_compositor_createCompositor__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__SSAOPass__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SSRPass__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__poissonKernel__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__NormalPass__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__EdgePass__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_claygl_src_math_Matrix4__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__composite_js__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_claygl_src_shader_source_compositor_blur_glsl_js__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_claygl_src_shader_source_compositor_lut_glsl_js__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_claygl_src_shader_source_compositor_output_glsl_js__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_claygl_src_shader_source_compositor_bright_glsl_js__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_claygl_src_shader_source_compositor_downsample_glsl_js__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_claygl_src_shader_source_compositor_upsample_glsl_js__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_claygl_src_shader_source_compositor_hdr_glsl_js__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_claygl_src_shader_source_compositor_blend_glsl_js__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_claygl_src_shader_source_compositor_fxaa_glsl_js__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__DOF_glsl_js__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__edge_glsl_js__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__NormalPass__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__EdgePass__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_claygl_src_math_Matrix4__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__composite_js__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_claygl_src_shader_source_compositor_blur_glsl_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_claygl_src_shader_source_compositor_lut_glsl_js__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_claygl_src_shader_source_compositor_output_glsl_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_claygl_src_shader_source_compositor_bright_glsl_js__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_claygl_src_shader_source_compositor_downsample_glsl_js__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_claygl_src_shader_source_compositor_upsample_glsl_js__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_claygl_src_shader_source_compositor_hdr_glsl_js__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_claygl_src_shader_source_compositor_blend_glsl_js__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_claygl_src_shader_source_compositor_fxaa_glsl_js__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__DOF_glsl_js__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__edge_glsl_js__ = __webpack_require__(191);
 
 
 
@@ -40359,18 +40933,20 @@ EffectCompositor.prototype.disableSSAO = function () {
  */
 EffectCompositor.prototype.enableSSR = function () {
     this._enableSSR = true;
+    // this._normalPass.enableTargetTexture3 = true;
 };
 /**
  * Disable SSR effect
  */
 EffectCompositor.prototype.disableSSR = function () {
     this._enableSSR = false;
+    // this._normalPass.enableTargetTexture3 = false;
 };
 
 /**
  * Render SSAO after render the scene, before compositing
  */
-EffectCompositor.prototype.getSSAOTexture = function (renderer, scene, camera, frame) {
+EffectCompositor.prototype.getSSAOTexture = function () {
     return this._ssaoPass.getTargetTexture();
 };
 
@@ -40526,13 +41102,16 @@ EffectCompositor.prototype.setDOFParameter = function (name, value) {
 };
 
 EffectCompositor.prototype.setSSRParameter = function (name, value) {
+    if (value == null) {
+        return;
+    }
     switch (name) {
         case 'quality':
             // PENDING
             var maxIteration = ({
                 low: 10,
-                medium: 20,
-                high: 40,
+                medium: 15,
+                high: 30,
                 ultra: 80
             })[value] || 20;
             var pixelStride = ({
@@ -40547,13 +41126,18 @@ EffectCompositor.prototype.setSSRParameter = function (name, value) {
         case 'maxRoughness':
             this._ssrPass.setParameter('minGlossiness', Math.max(Math.min(1.0 - value, 1.0), 0.0));
             break;
+        case 'physical':
+            this.setPhysicallyCorrectSSR(value);
+            break;
         default:
-            if (true) {
-                console.warn('Unkown SSR parameter ' + name);
-            }
+            console.warn('Unkown SSR parameter ' + name);
     }
-}
-;
+};
+
+EffectCompositor.prototype.setPhysicallyCorrectSSR = function (physical) {
+    this._ssrPass.setPhysicallyCorrect(physical);
+};
+
 /**
  * Set color of edge
  */
@@ -40577,7 +41161,11 @@ EffectCompositor.prototype.setColorCorrection = function (type, value) {
     this._compositeNode.setParameter(type, value);
 };
 
-EffectCompositor.prototype.composite = function (renderer, camera, framebuffer, frame) {
+EffectCompositor.prototype.isSSREnabled = function () {
+    return this._enableSSR;
+};
+
+EffectCompositor.prototype.composite = function (renderer, scene, camera, framebuffer, frame) {
 
     var sourceTexture = this._sourceTexture;
     var targetTexture = sourceTexture;
@@ -40592,6 +41180,12 @@ EffectCompositor.prototype.composite = function (renderer, camera, framebuffer, 
         this._ssrPass.setSSAOTexture(
             this._enableSSAO ? this._ssaoPass.getTargetTexture() : null
         );
+        // var lights = scene.getLights();
+        // for (var i = 0; i < lights.length; i++) {
+        //     if (lights[i].cubemap) {
+        //         this._ssrPass.setAmbientCubemap(lights[i].cubemap, lights[i].intensity);
+        //     }
+        // }
     }
     this._sourceNode.texture = targetTexture;
 
@@ -40630,19 +41224,32 @@ EffectCompositor.prototype.dispose = function (renderer) {
 /* harmony default export */ __webpack_exports__["a"] = (EffectCompositor);
 
 /***/ }),
-/* 156 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_util__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Compositor__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SceneNode__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TextureNode__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FilterNode__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createCompositor__ = __webpack_require__(169);
+// Alias
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__createCompositor__["a" /* default */]);
+
+/***/ }),
+/* 169 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__compositor_Compositor__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__compositor_SceneNode__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__compositor_TextureNode__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compositor_FilterNode__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Texture2D__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__TextureCube__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__TextureCube__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shader_builtinCompositor__ = __webpack_require__(175);
+
+
 
 
 
@@ -40656,14 +41263,14 @@ EffectCompositor.prototype.dispose = function (renderer) {
 var shaderSourceReg = /^#source\((.*?)\)/;
 
 /**
- * @name clay.compositor.createCompositor
+ * @name clay.createCompositor
  * @function
  * @param {Object} json
  * @param {Object} [opts]
  * @return {clay.compositor.Compositor}
  */
 function createCompositor(json, opts) {
-    var compositor = new __WEBPACK_IMPORTED_MODULE_1__Compositor__["a" /* default */]();
+    var compositor = new __WEBPACK_IMPORTED_MODULE_1__compositor_Compositor__["a" /* default */]();
     opts = opts || {};
 
     var lib = {
@@ -40751,7 +41358,7 @@ function createNode(nodeInfo, lib, opts) {
     }
     var node;
     if (type === 'scene') {
-        node = new __WEBPACK_IMPORTED_MODULE_2__SceneNode__["a" /* default */]({
+        node = new __WEBPACK_IMPORTED_MODULE_2__compositor_SceneNode__["a" /* default */]({
             name: nodeInfo.name,
             scene: opts.scene,
             camera: opts.camera,
@@ -40759,14 +41366,14 @@ function createNode(nodeInfo, lib, opts) {
         });
     }
     else if (type === 'texture') {
-        node = new __WEBPACK_IMPORTED_MODULE_3__TextureNode__["a" /* default */]({
+        node = new __WEBPACK_IMPORTED_MODULE_3__compositor_TextureNode__["a" /* default */]({
             name: nodeInfo.name,
             outputs: outputs
         });
     }
     // Default is filter
     else {
-        node = new __WEBPACK_IMPORTED_MODULE_4__FilterNode__["a" /* default */]({
+        node = new __WEBPACK_IMPORTED_MODULE_4__compositor_FilterNode__["a" /* default */]({
             name: nodeInfo.name,
             shader: shaderSource,
             inputs: inputs,
@@ -40931,11 +41538,11 @@ function tryConvertExpr(string) {
 
 
 /***/ }),
-/* 157 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Graph__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Graph__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TexturePool__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FrameBuffer__ = __webpack_require__(10);
 
@@ -41027,12 +41634,12 @@ var Compositor = __WEBPACK_IMPORTED_MODULE_0__Graph__["a" /* default */].extend(
 
 
 /***/ }),
-/* 158 */
+/* 171 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Node__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_Base__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CompositorNode__ = __webpack_require__(42);
 
 
 
@@ -41043,7 +41650,7 @@ var Compositor = __WEBPACK_IMPORTED_MODULE_0__Graph__["a" /* default */].extend(
 var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(function () {
     return /** @lends clay.compositor.Graph# */ {
         /**
-         * @type {Array.<clay.compositor.Node>}
+         * @type {Array.<clay.compositor.CompositorNode>}
          */
         nodes: []
     };
@@ -41058,7 +41665,7 @@ var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(f
         this._dirty = true;
     },
     /**
-     * @param {clay.compositor.Node} node
+     * @param {clay.compositor.CompositorNode} node
      */
     addNode: function (node) {
 
@@ -41071,7 +41678,7 @@ var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(f
         this._dirty = true;
     },
     /**
-     * @param  {clay.compositor.Node|string} node
+     * @param  {clay.compositor.CompositorNode|string} node
      */
     removeNode: function (node) {
         if (typeof node === 'string') {
@@ -41085,7 +41692,7 @@ var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(f
     },
     /**
      * @param {string} name
-     * @return {clay.compositor.Node}
+     * @return {clay.compositor.CompositorNode}
      */
     getNodeByName: function (name) {
         for (var i = 0; i < this.nodes.length; i++) {
@@ -41137,7 +41744,7 @@ var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(f
     findPin: function (input) {
         var node;
         // Try to take input as a directly a node
-        if (typeof input === 'string' || input instanceof __WEBPACK_IMPORTED_MODULE_1__Node__["a" /* default */]) {
+        if (typeof input === 'string' || input instanceof __WEBPACK_IMPORTED_MODULE_1__CompositorNode__["a" /* default */]) {
             input = {
                 node: input
             };
@@ -41176,11 +41783,11 @@ var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(f
 
 
 /***/ }),
-/* 159 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CompositorNode__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_glenum__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FrameBuffer__ = __webpack_require__(10);
 
@@ -41189,9 +41796,9 @@ var Graph = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].extend(f
 
 /**
  * @constructor clay.compositor.SceneNode
- * @extends clay.compositor.Node
+ * @extends clay.compositor.CompositorNode
  */
-var SceneNode = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
+var SceneNode = __WEBPACK_IMPORTED_MODULE_0__CompositorNode__["a" /* default */].extend(
 /** @lends clay.compositor.SceneNode# */
 {
     name: 'scene',
@@ -41281,18 +41888,18 @@ var SceneNode = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
 
 
 /***/ }),
-/* 160 */
+/* 173 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Node__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CompositorNode__ = __webpack_require__(42);
 
 
 /**
  * @constructor clay.compositor.TextureNode
- * @extends clay.compositor.Node
+ * @extends clay.compositor.CompositorNode
  */
-var TextureNode = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(function() {
+var TextureNode = __WEBPACK_IMPORTED_MODULE_0__CompositorNode__["a" /* default */].extend(function() {
     return /** @lends clay.compositor.TextureNode# */ {
         /**
          * @type {clay.Texture2D}
@@ -41320,12 +41927,12 @@ var TextureNode = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
 
 
 /***/ }),
-/* 161 */
+/* 174 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Pass__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Node__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CompositorNode__ = __webpack_require__(42);
 // TODO Shader library
 
 
@@ -41339,10 +41946,10 @@ var TextureNode = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
  * Filter node
  *
  * @constructor clay.compositor.FilterNode
- * @extends clay.compositor.Node
+ * @extends clay.compositor.CompositorNode
  *
  * @example
-    var node = new clay.compositor.Node({
+    var node = new clay.compositor.FilterNode({
         name: 'fxaa',
         shader: clay.Shader.source('clay.compositor.fxaa'),
         inputs: {
@@ -41369,8 +41976,8 @@ var TextureNode = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(
     });
     *
     */
-var FilterNode = __WEBPACK_IMPORTED_MODULE_1__Node__["a" /* default */].extend(function () {
-    return /** @lends clay.compositor.Node# */ {
+var FilterNode = __WEBPACK_IMPORTED_MODULE_1__CompositorNode__["a" /* default */].extend(function () {
+    return /** @lends clay.compositor.FilterNode# */ {
         /**
          * @type {string}
          */
@@ -41439,7 +42046,7 @@ var FilterNode = __WEBPACK_IMPORTED_MODULE_1__Node__["a" /* default */].extend(f
     });
     this.pass = pass;
 },
-/** @lends clay.compositor.Node.prototype */
+/** @lends clay.compositor.FilterNode.prototype */
 {
     /**
      * @param  {clay.Renderer} renderer
@@ -41621,7 +42228,7 @@ var FilterNode = __WEBPACK_IMPORTED_MODULE_1__Node__["a" /* default */].extend(f
     },
 
     clear: function () {
-        __WEBPACK_IMPORTED_MODULE_1__Node__["a" /* default */].prototype.clear.call(this);
+        __WEBPACK_IMPORTED_MODULE_1__CompositorNode__["a" /* default */].prototype.clear.call(this);
 
         // Default disable all texture
         this.pass.material.disableTexturesAll();
@@ -41632,19 +42239,116 @@ var FilterNode = __WEBPACK_IMPORTED_MODULE_1__Node__["a" /* default */].extend(f
 
 
 /***/ }),
-/* 162 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__source_compositor_coloradjust_glsl_js__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__source_compositor_blur_glsl_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__source_compositor_lum_glsl_js__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__source_compositor_lut_glsl_js__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__source_compositor_vignette_glsl_js__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__source_compositor_output_glsl_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__source_compositor_bright_glsl_js__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__source_compositor_downsample_glsl_js__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__source_compositor_upsample_glsl_js__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__source_compositor_hdr_glsl_js__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__source_compositor_dof_glsl_js__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__source_compositor_lensflare_glsl_js__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__source_compositor_blend_glsl_js__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__source_compositor_fxaa_glsl_js__ = __webpack_require__(88);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import fxaa3Essl from './source/compositor/fxaa3.glsl.js';
+
+// Some build in shaders
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_1__source_compositor_coloradjust_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_2__source_compositor_blur_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_3__source_compositor_lum_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_4__source_compositor_lut_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_5__source_compositor_vignette_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_6__source_compositor_output_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_7__source_compositor_bright_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_8__source_compositor_downsample_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_9__source_compositor_upsample_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_10__source_compositor_hdr_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_11__source_compositor_dof_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_12__source_compositor_lensflare_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_13__source_compositor_blend_glsl_js__["a" /* default */]);
+
+__WEBPACK_IMPORTED_MODULE_0__Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_14__source_compositor_fxaa_glsl_js__["a" /* default */]);
+// Shader['import'](fxaa3Essl);
+
+
+/***/ }),
+/* 176 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.coloradjust\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float exposure : 0.0;\nuniform float gamma : 1.0;\nuniform float saturation : 1.0;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = clamp(tex.rgb + vec3(brightness), 0.0, 1.0);\n color = clamp( (color-vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n color = clamp( color * pow(2.0, exposure), 0.0, 1.0);\n color = clamp( pow(color, vec3(gamma)), 0.0, 1.0);\n float luminance = dot( color, w );\n color = mix(vec3(luminance), color, saturation);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.brightness\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float brightness : 0.0;\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = tex.rgb + vec3(brightness);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.contrast\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float contrast : 1.0;\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = (tex.rgb-vec3(0.5))*contrast+vec3(0.5);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.exposure\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float exposure : 0.0;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = tex.rgb * pow(2.0, exposure);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.gamma\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float gamma : 1.0;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = pow(tex.rgb, vec3(gamma));\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.saturation\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float saturation : 1.0;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = tex.rgb;\n float luminance = dot(color, w);\n color = mix(vec3(luminance), color, saturation);\n gl_FragColor = vec4(color, tex.a);\n}\n@end");
+
+
+/***/ }),
+/* 177 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.log_lum\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\n@import clay.util.rgbm\nvoid main()\n{\n vec4 tex = decodeHDR(texture2D(texture, v_Texcoord));\n float luminance = dot(tex.rgb, w);\n luminance = log(luminance + 0.001);\n gl_FragColor = encodeHDR(vec4(vec3(luminance), 1.0));\n}\n@end\n@export clay.compositor.hdr.lum_adaption\nvarying vec2 v_Texcoord;\nuniform sampler2D adaptedLum;\nuniform sampler2D currentLum;\nuniform float frameTime : 0.02;\n@import clay.util.rgbm\nvoid main()\n{\n float fAdaptedLum = decodeHDR(texture2D(adaptedLum, vec2(0.5, 0.5))).r;\n float fCurrentLum = exp(encodeHDR(texture2D(currentLum, vec2(0.5, 0.5))).r);\n fAdaptedLum += (fCurrentLum - fAdaptedLum) * (1.0 - pow(0.98, 30.0 * frameTime));\n gl_FragColor = encodeHDR(vec4(vec3(fAdaptedLum), 1.0));\n}\n@end\n@export clay.compositor.lum\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord );\n float luminance = dot(tex.rgb, w);\n gl_FragColor = vec4(vec3(luminance), 1.0);\n}\n@end");
+
+
+/***/ }),
+/* 178 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.vignette\n#define OUTPUT_ALPHA\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float darkness: 1;\nuniform float offset: 1;\n@import clay.util.rgbm\nvoid main()\n{\n vec4 texel = decodeHDR(texture2D(texture, v_Texcoord));\n gl_FragColor.rgb = texel.rgb;\n vec2 uv = (v_Texcoord - vec2(0.5)) * vec2(offset);\n gl_FragColor = encodeHDR(vec4(mix(texel.rgb, vec3(1.0 - darkness), dot(uv, uv)), texel.a));\n}\n@end");
+
+
+/***/ }),
+/* 179 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.dof.coc\nuniform sampler2D depth;\nuniform float zNear: 0.1;\nuniform float zFar: 2000;\nuniform float focalDist: 3;\nuniform float focalRange: 1;\nuniform float focalLength: 30;\nuniform float fstop: 2.8;\nvarying vec2 v_Texcoord;\n@import clay.util.encode_float\nvoid main()\n{\n float z = texture2D(depth, v_Texcoord).r * 2.0 - 1.0;\n float dist = 2.0 * zNear * zFar / (zFar + zNear - z * (zFar - zNear));\n float aperture = focalLength / fstop;\n float coc;\n float uppper = focalDist + focalRange;\n float lower = focalDist - focalRange;\n if (dist <= uppper && dist >= lower) {\n coc = 0.5;\n }\n else {\n float focalAdjusted = dist > uppper ? uppper : lower;\n coc = abs(aperture * (focalLength * (dist - focalAdjusted)) / (dist * (focalAdjusted - focalLength)));\n coc = clamp(coc, 0.0, 0.4) / 0.4000001;\n if (dist < lower) {\n coc = -coc;\n }\n coc = coc * 0.5 + 0.5;\n }\n gl_FragColor = encodeFloat(coc);\n}\n@end\n@export clay.compositor.dof.premultiply\nuniform sampler2D texture;\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.decode_float\nvoid main() {\n float fCoc = max(abs(decodeFloat(texture2D(coc, v_Texcoord)) * 2.0 - 1.0), 0.1);\n gl_FragColor = encodeHDR(\n vec4(decodeHDR(texture2D(texture, v_Texcoord)).rgb * fCoc, 1.0)\n );\n}\n@end\n@export clay.compositor.dof.min_coc\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\nuniform vec2 textureSize : [512.0, 512.0];\n@import clay.util.float\nvoid main()\n{\n vec4 d = vec4(-1.0, -1.0, 1.0, 1.0) / textureSize.xyxy;\n float fCoc = decodeFloat(texture2D(coc, v_Texcoord + d.xy));\n fCoc = min(fCoc, decodeFloat(texture2D(coc, v_Texcoord + d.zy)));\n fCoc = min(fCoc, decodeFloat(texture2D(coc, v_Texcoord + d.xw)));\n fCoc = min(fCoc, decodeFloat(texture2D(coc, v_Texcoord + d.zw)));\n gl_FragColor = encodeFloat(fCoc);\n}\n@end\n@export clay.compositor.dof.max_coc\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\nuniform vec2 textureSize : [512.0, 512.0];\n@import clay.util.float\nvoid main()\n{\n vec4 d = vec4(-1.0, -1.0, 1.0, 1.0) / textureSize.xyxy;\n float fCoc = decodeFloat(texture2D(coc, v_Texcoord + d.xy));\n fCoc = max(fCoc, decodeFloat(texture2D(coc, v_Texcoord + d.zy)));\n fCoc = max(fCoc, decodeFloat(texture2D(coc, v_Texcoord + d.xw)));\n fCoc = max(fCoc, decodeFloat(texture2D(coc, v_Texcoord + d.zw)));\n gl_FragColor = encodeFloat(fCoc);\n}\n@end\n@export clay.compositor.dof.coc_upsample\n#define HIGH_QUALITY\nuniform sampler2D coc;\nuniform vec2 textureSize : [512, 512];\nuniform float sampleScale: 0.5;\nvarying vec2 v_Texcoord;\n@import clay.util.float\nvoid main()\n{\n#ifdef HIGH_QUALITY\n vec4 d = vec4(1.0, 1.0, -1.0, 0.0) / textureSize.xyxy * sampleScale;\n float s;\n s = decodeFloat(texture2D(coc, v_Texcoord - d.xy));\n s += decodeFloat(texture2D(coc, v_Texcoord - d.wy)) * 2.0;\n s += decodeFloat(texture2D(coc, v_Texcoord - d.zy));\n s += decodeFloat(texture2D(coc, v_Texcoord + d.zw)) * 2.0;\n s += decodeFloat(texture2D(coc, v_Texcoord )) * 4.0;\n s += decodeFloat(texture2D(coc, v_Texcoord + d.xw)) * 2.0;\n s += decodeFloat(texture2D(coc, v_Texcoord + d.zy));\n s += decodeFloat(texture2D(coc, v_Texcoord + d.wy)) * 2.0;\n s += decodeFloat(texture2D(coc, v_Texcoord + d.xy));\n gl_FragColor = encodeFloat(s / 16.0);\n#else\n vec4 d = vec4(-1.0, -1.0, +1.0, +1.0) / textureSize.xyxy;\n float s;\n s = decodeFloat(texture2D(coc, v_Texcoord + d.xy));\n s += decodeFloat(texture2D(coc, v_Texcoord + d.zy));\n s += decodeFloat(texture2D(coc, v_Texcoord + d.xw));\n s += decodeFloat(texture2D(coc, v_Texcoord + d.zw));\n gl_FragColor = encodeFloat(s / 4.0);\n#endif\n}\n@end\n@export clay.compositor.dof.upsample\n#define HIGH_QUALITY\nuniform sampler2D coc;\nuniform sampler2D texture;\nuniform vec2 textureSize : [512, 512];\nuniform float sampleScale: 0.5;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.decode_float\nfloat tap(vec2 uv, inout vec4 color, float baseWeight) {\n float weight = abs(decodeFloat(texture2D(coc, uv)) * 2.0 - 1.0) * baseWeight;\n color += decodeHDR(texture2D(texture, uv)) * weight;\n return weight;\n}\nvoid main()\n{\n#ifdef HIGH_QUALITY\n vec4 d = vec4(1.0, 1.0, -1.0, 0.0) / textureSize.xyxy * sampleScale;\n vec4 color = vec4(0.0);\n float baseWeight = 1.0 / 16.0;\n float w = tap(v_Texcoord - d.xy, color, baseWeight);\n w += tap(v_Texcoord - d.wy, color, baseWeight * 2.0);\n w += tap(v_Texcoord - d.zy, color, baseWeight);\n w += tap(v_Texcoord + d.zw, color, baseWeight * 2.0);\n w += tap(v_Texcoord , color, baseWeight * 4.0);\n w += tap(v_Texcoord + d.xw, color, baseWeight * 2.0);\n w += tap(v_Texcoord + d.zy, color, baseWeight);\n w += tap(v_Texcoord + d.wy, color, baseWeight * 2.0);\n w += tap(v_Texcoord + d.xy, color, baseWeight);\n gl_FragColor = encodeHDR(color / w);\n#else\n vec4 d = vec4(-1.0, -1.0, +1.0, +1.0) / textureSize.xyxy;\n vec4 color = vec4(0.0);\n float baseWeight = 1.0 / 4.0;\n float w = tap(v_Texcoord + d.xy, color, baseWeight);\n w += tap(v_Texcoord + d.zy, color, baseWeight);\n w += tap(v_Texcoord + d.xw, color, baseWeight);\n w += tap(v_Texcoord + d.zw, color, baseWeight);\n gl_FragColor = encodeHDR(color / w);\n#endif\n}\n@end\n@export clay.compositor.dof.downsample\nuniform sampler2D texture;\nuniform sampler2D coc;\nuniform vec2 textureSize : [512, 512];\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.decode_float\nfloat tap(vec2 uv, inout vec4 color) {\n float weight = abs(decodeFloat(texture2D(coc, uv)) * 2.0 - 1.0) * 0.25;\n color += decodeHDR(texture2D(texture, uv)) * weight;\n return weight;\n}\nvoid main()\n{\n vec4 d = vec4(-1.0, -1.0, 1.0, 1.0) / textureSize.xyxy;\n vec4 color = vec4(0.0);\n float weight = tap(v_Texcoord + d.xy, color);\n weight += tap(v_Texcoord + d.zy, color);\n weight += tap(v_Texcoord + d.xw, color);\n weight += tap(v_Texcoord + d.zw, color);\n color /= weight;\n gl_FragColor = encodeHDR(color);\n}\n@end\n@export clay.compositor.dof.hexagonal_blur_frag\n@import clay.util.float\nvec4 doBlur(sampler2D targetTexture, vec2 offset) {\n#ifdef BLUR_COC\n float cocSum = 0.0;\n#else\n vec4 color = vec4(0.0);\n#endif\n float weightSum = 0.0;\n float kernelWeight = 1.0 / float(KERNEL_SIZE);\n for (int i = 0; i < KERNEL_SIZE; i++) {\n vec2 coord = v_Texcoord + offset * float(i);\n float w = kernelWeight;\n#ifdef BLUR_COC\n float fCoc = decodeFloat(texture2D(targetTexture, coord)) * 2.0 - 1.0;\n cocSum += clamp(fCoc, -1.0, 0.0) * w;\n#else\n float fCoc = decodeFloat(texture2D(coc, coord)) * 2.0 - 1.0;\n vec4 texel = texture2D(targetTexture, coord);\n #if !defined(BLUR_NEARFIELD)\n w *= abs(fCoc);\n #endif\n color += decodeHDR(texel) * w;\n#endif\n weightSum += w;\n }\n#ifdef BLUR_COC\n return encodeFloat(clamp(cocSum / weightSum, -1.0, 0.0) * 0.5 + 0.5);\n#else\n return color / weightSum;\n#endif\n}\n@end\n@export clay.compositor.dof.hexagonal_blur_1\n#define KERNEL_SIZE 5\nuniform sampler2D texture;\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\nuniform float blurSize : 1.0;\nuniform vec2 textureSize : [512.0, 512.0];\n@import clay.util.rgbm\n@import clay.compositor.dof.hexagonal_blur_frag\nvoid main()\n{\n vec2 offset = blurSize / textureSize;\n#if !defined(BLUR_NEARFIELD) && !defined(BLUR_COC)\n offset *= abs(decodeFloat(texture2D(coc, v_Texcoord)) * 2.0 - 1.0);\n#endif\n gl_FragColor = doBlur(texture, vec2(0.0, offset.y));\n#if !defined(BLUR_COC)\n gl_FragColor = encodeHDR(gl_FragColor);\n#endif\n}\n@end\n@export clay.compositor.dof.hexagonal_blur_2\n#define KERNEL_SIZE 5\nuniform sampler2D texture;\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\nuniform float blurSize : 1.0;\nuniform vec2 textureSize : [512.0, 512.0];\n@import clay.util.rgbm\n@import clay.compositor.dof.hexagonal_blur_frag\nvoid main()\n{\n vec2 offset = blurSize / textureSize;\n#if !defined(BLUR_NEARFIELD) && !defined(BLUR_COC)\n offset *= abs(decodeFloat(texture2D(coc, v_Texcoord)) * 2.0 - 1.0);\n#endif\n offset.y /= 2.0;\n gl_FragColor = doBlur(texture, -offset);\n#if !defined(BLUR_COC)\n gl_FragColor = encodeHDR(gl_FragColor);\n#endif\n}\n@end\n@export clay.compositor.dof.hexagonal_blur_3\n#define KERNEL_SIZE 5\nuniform sampler2D texture1;\nuniform sampler2D texture2;\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\nuniform float blurSize : 1.0;\nuniform vec2 textureSize : [512.0, 512.0];\n@import clay.util.rgbm\n@import clay.compositor.dof.hexagonal_blur_frag\nvoid main()\n{\n vec2 offset = blurSize / textureSize;\n#if !defined(BLUR_NEARFIELD) && !defined(BLUR_COC)\n offset *= abs(decodeFloat(texture2D(coc, v_Texcoord)) * 2.0 - 1.0);\n#endif\n offset.y /= 2.0;\n vec2 vDownRight = vec2(offset.x, -offset.y);\n vec4 texel1 = doBlur(texture1, -offset);\n vec4 texel2 = doBlur(texture1, vDownRight);\n vec4 texel3 = doBlur(texture2, vDownRight);\n#ifdef BLUR_COC\n float coc1 = decodeFloat(texel1) * 2.0 - 1.0;\n float coc2 = decodeFloat(texel2) * 2.0 - 1.0;\n float coc3 = decodeFloat(texel3) * 2.0 - 1.0;\n gl_FragColor = encodeFloat(\n ((coc1 + coc2 + coc3) / 3.0) * 0.5 + 0.5\n );\n#else\n vec4 color = (texel1 + texel2 + texel3) / 3.0;\n gl_FragColor = encodeHDR(color);\n#endif\n}\n@end\n@export clay.compositor.dof.composite\n#define DEBUG 0\nuniform sampler2D original;\nuniform sampler2D blurred;\nuniform sampler2D nearfield;\nuniform sampler2D coc;\nuniform sampler2D nearcoc;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.float\nvoid main()\n{\n vec4 blurredColor = decodeHDR(texture2D(blurred, v_Texcoord));\n vec4 originalColor = decodeHDR(texture2D(original, v_Texcoord));\n float fCoc = decodeFloat(texture2D(coc, v_Texcoord));\n fCoc = abs(fCoc * 2.0 - 1.0);\n float weight = smoothstep(0.0, 1.0, fCoc);\n#ifdef NEARFIELD_ENABLED\n vec4 nearfieldColor = decodeHDR(texture2D(nearfield, v_Texcoord));\n float fNearCoc = decodeFloat(texture2D(nearcoc, v_Texcoord));\n fNearCoc = abs(fNearCoc * 2.0 - 1.0);\n gl_FragColor = encodeHDR(\n mix(\n nearfieldColor, mix(originalColor, blurredColor, weight),\n pow(1.0 - fNearCoc, 4.0)\n )\n );\n#else\n gl_FragColor = encodeHDR(mix(originalColor, blurredColor, weight));\n#endif\n#if DEBUG == 1\n gl_FragColor = vec4(vec3(fCoc), 1.0);\n#elif DEBUG == 2\n gl_FragColor = vec4(vec3(fNearCoc), 1.0);\n#elif DEBUG == 3\n gl_FragColor = encodeHDR(blurredColor);\n#elif DEBUG == 4\n gl_FragColor = encodeHDR(nearfieldColor);\n#endif\n}\n@end");
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.lensflare\n#define SAMPLE_NUMBER 8\nuniform sampler2D texture;\nuniform sampler2D lenscolor;\nuniform vec2 textureSize : [512, 512];\nuniform float dispersal : 0.3;\nuniform float haloWidth : 0.4;\nuniform float distortion : 1.0;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\nvec4 textureDistorted(\n in vec2 texcoord,\n in vec2 direction,\n in vec3 distortion\n) {\n return vec4(\n decodeHDR(texture2D(texture, texcoord + direction * distortion.r)).r,\n decodeHDR(texture2D(texture, texcoord + direction * distortion.g)).g,\n decodeHDR(texture2D(texture, texcoord + direction * distortion.b)).b,\n 1.0\n );\n}\nvoid main()\n{\n vec2 texcoord = -v_Texcoord + vec2(1.0); vec2 textureOffset = 1.0 / textureSize;\n vec2 ghostVec = (vec2(0.5) - texcoord) * dispersal;\n vec2 haloVec = normalize(ghostVec) * haloWidth;\n vec3 distortion = vec3(-textureOffset.x * distortion, 0.0, textureOffset.x * distortion);\n vec4 result = vec4(0.0);\n for (int i = 0; i < SAMPLE_NUMBER; i++)\n {\n vec2 offset = fract(texcoord + ghostVec * float(i));\n float weight = length(vec2(0.5) - offset) / length(vec2(0.5));\n weight = pow(1.0 - weight, 10.0);\n result += textureDistorted(offset, normalize(ghostVec), distortion) * weight;\n }\n result *= texture2D(lenscolor, vec2(length(vec2(0.5) - texcoord)) / length(vec2(0.5)));\n float weight = length(vec2(0.5) - fract(texcoord + haloVec)) / length(vec2(0.5));\n weight = pow(1.0 - weight, 10.0);\n vec2 offset = fract(texcoord + haloVec);\n result += textureDistorted(offset, normalize(ghostVec), distortion) * weight;\n gl_FragColor = result;\n}\n@end");
+
+
+/***/ }),
+/* 181 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_compositor_Pass__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_FrameBuffer__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__halton__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SSAO_glsl_js__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SSAO_glsl_js__ = __webpack_require__(182);
 
 
 
@@ -41875,7 +42579,7 @@ SSAOPass.prototype.dispose = function (renderer) {
 /* harmony default export */ __webpack_exports__["a"] = (SSAOPass);
 
 /***/ }),
-/* 163 */
+/* 182 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41883,19 +42587,20 @@ SSAOPass.prototype.dispose = function (renderer) {
 
 
 /***/ }),
-/* 164 */
+/* 183 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_compositor_Pass__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_FrameBuffer__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__halton__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SSR_glsl_js__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_claygl_src_util_cubemap__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SSR_glsl_js__ = __webpack_require__(184);
 
 
 
@@ -41906,7 +42611,9 @@ SSAOPass.prototype.dispose = function (renderer) {
 
 
 
-__WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__["a" /* default */].import(__WEBPACK_IMPORTED_MODULE_8__SSR_glsl_js__["a" /* default */]);
+
+
+__WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__["a" /* default */].import(__WEBPACK_IMPORTED_MODULE_9__SSR_glsl_js__["a" /* default */]);
 
 function SSRPass(opt) {
     opt = opt || {};
@@ -41923,9 +42630,15 @@ function SSRPass(opt) {
         fragment: __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__["a" /* default */].source('ecgl.ssr.blur'),
         clearColor: [0, 0, 0, 0]
     });
+    this._blendPass = new __WEBPACK_IMPORTED_MODULE_4_claygl_src_compositor_Pass__["a" /* default */]({
+        fragment: __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__["a" /* default */].source('clay.compositor.blend')
+    });
+    this._blendPass.material.disableTexturesAll();
+    this._blendPass.material.enableTexture(['texture1', 'texture2']);
 
     this._ssrPass.setUniform('gBufferTexture1', opt.normalTexture);
     this._ssrPass.setUniform('gBufferTexture2', opt.depthTexture);
+    // this._ssrPass.setUniform('gBufferTexture3', opt.albedoTexture);
 
     this._blurPass1.setUniform('gBufferTexture1', opt.normalTexture);
     this._blurPass1.setUniform('gBufferTexture2', opt.depthTexture);
@@ -41936,7 +42649,7 @@ function SSRPass(opt) {
     this._blurPass2.material.define('fragment', 'VERTICAL');
     this._blurPass2.material.define('fragment', 'BLEND');
 
-    this._texture1 = new __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__["a" /* default */]({
+    this._ssrTexture = new __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__["a" /* default */]({
         type: __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__["a" /* default */].HALF_FLOAT
     });
     this._texture2 = new __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__["a" /* default */]({
@@ -41945,60 +42658,109 @@ function SSRPass(opt) {
     this._texture3 = new __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__["a" /* default */]({
         type: __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__["a" /* default */].HALF_FLOAT
     });
+    this._prevTexture = new __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__["a" /* default */]({
+        type: __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__["a" /* default */].HALF_FLOAT
+    });
+    this._currentTexture = new __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__["a" /* default */]({
+        type: __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__["a" /* default */].HALF_FLOAT
+    });
 
     this._frameBuffer = new __WEBPACK_IMPORTED_MODULE_6_claygl_src_FrameBuffer__["a" /* default */]({
         depthBuffer: false
     });
+
+    this._normalDistribution = null;
+
+    this._totalSamples = 256;
+    this._samplePerFrame = 4;
+
+    this._ssrPass.material.define('fragment', 'SAMPLE_PER_FRAME', this._samplePerFrame);
+    this._ssrPass.material.define('fragment', 'TOTAL_SAMPLES', this._totalSamples);
+
+    this._downScale = 1;
 }
+
+SSRPass.prototype.setAmbientCubemap = function (specularCubemap, specularIntensity) {
+    this._ssrPass.material.set('specularCubemap', specularCubemap);
+    this._ssrPass.material.set('specularIntensity', specularIntensity);
+
+    var enableSpecularMap = specularCubemap && specularIntensity;
+    this._ssrPass.material[enableSpecularMap ? 'enableTexture' : 'disableTexture']('specularCubemap');
+};
 
 SSRPass.prototype.update = function (renderer, camera, sourceTexture, frame) {
     var width = renderer.getWidth();
     var height = renderer.getHeight();
-    var dpr = renderer.getDevicePixelRatio();
-    var texture1 = this._texture1;
+    var ssrTexture = this._ssrTexture;
     var texture2 = this._texture2;
     var texture3 = this._texture3;
-    texture2.width = width / 2;
-    texture2.height = height / 2;
-    texture1.width = width;
-    texture1.height = height;
-    texture3.width = width * dpr;
-    texture3.height = height * dpr;
+    ssrTexture.width = this._prevTexture.width = this._currentTexture.width = width / this._downScale;
+    ssrTexture.height = this._prevTexture.height = this._currentTexture.height = height / this._downScale;
+
+    texture2.width = texture3.width = width;
+    texture2.height = texture3.height = height;
+
     var frameBuffer = this._frameBuffer;
 
     var ssrPass = this._ssrPass;
     var blurPass1 = this._blurPass1;
     var blurPass2 = this._blurPass2;
+    var blendPass = this._blendPass;
 
-    var viewInverseTranspose = new __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__["a" /* default */]();
-    __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__["a" /* default */].transpose(viewInverseTranspose, camera.worldTransform);
+    var toViewSpace = new __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__["a" /* default */]();
+    var toWorldSpace = new __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__["a" /* default */]();
+    __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__["a" /* default */].transpose(toViewSpace, camera.worldTransform);
+    __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__["a" /* default */].transpose(toWorldSpace, camera.viewMatrix);
 
     ssrPass.setUniform('sourceTexture', sourceTexture);
     ssrPass.setUniform('projection', camera.projectionMatrix.array);
     ssrPass.setUniform('projectionInv', camera.invProjectionMatrix.array);
-    ssrPass.setUniform('viewInverseTranspose', viewInverseTranspose.array);
+    ssrPass.setUniform('toViewSpace', toViewSpace.array);
+    ssrPass.setUniform('toWorldSpace', toWorldSpace.array);
     ssrPass.setUniform('nearZ', camera.near);
-    ssrPass.setUniform('jitterOffset', frame / 30);
 
-    blurPass1.setUniform('textureSize', [width / 2, height / 2]);
+    var percent = frame / this._totalSamples * this._samplePerFrame;
+    ssrPass.setUniform('jitterOffset', percent);
+    ssrPass.setUniform('sampleOffset', frame * this._samplePerFrame);
+
+    blurPass1.setUniform('textureSize', [ssrTexture.width, ssrTexture.height]);
     blurPass2.setUniform('textureSize', [width, height]);
     blurPass2.setUniform('sourceTexture', sourceTexture);
 
     blurPass1.setUniform('projection', camera.projectionMatrix.array);
     blurPass2.setUniform('projection', camera.projectionMatrix.array);
 
-    frameBuffer.attach(texture1);
+    frameBuffer.attach(ssrTexture);
     frameBuffer.bind(renderer);
     ssrPass.render(renderer);
 
+    if (this._physicallyCorrect) {
+        frameBuffer.attach(this._currentTexture);
+        blendPass.setUniform('texture1', this._prevTexture);
+        blendPass.setUniform('texture2', ssrTexture);
+        blendPass.material.set({
+            'weight1': frame >= 1 ? 0.95 : 0,
+            'weight2': frame >= 1 ? 0.05 : 1
+            // weight1: frame >= 1 ? 1 : 0,
+            // weight2: 1
+        });
+        blendPass.render(renderer);
+    }
+
     frameBuffer.attach(texture2);
-    blurPass1.setUniform('texture', texture1);
+    blurPass1.setUniform('texture', this._physicallyCorrect ? this._currentTexture : ssrTexture);
     blurPass1.render(renderer);
 
     frameBuffer.attach(texture3);
     blurPass2.setUniform('texture', texture2);
     blurPass2.render(renderer);
     frameBuffer.unbind(renderer);
+
+    if (this._physicallyCorrect) {
+        var tmp = this._prevTexture;
+        this._prevTexture = this._currentTexture;
+        this._currentTexture = tmp;
+    }
 };
 
 SSRPass.prototype.getTargetTexture = function () {
@@ -42014,6 +42776,22 @@ SSRPass.prototype.setParameter = function (name, val) {
     }
 };
 
+SSRPass.prototype.setPhysicallyCorrect = function (isPhysicallyCorrect) {
+    if (isPhysicallyCorrect) {
+        if (!this._normalDistribution) {
+            this._normalDistribution = __WEBPACK_IMPORTED_MODULE_8_claygl_src_util_cubemap__["a" /* default */].generateNormalDistribution(64, this._totalSamples);
+        }
+        this._ssrPass.material.define('fragment', 'PHYSICALLY_CORRECT');
+        this._ssrPass.material.set('normalDistribution', this._normalDistribution);
+        this._ssrPass.material.set('normalDistributionSize', [64, this._totalSamples]);
+    }
+    else {
+        this._ssrPass.material.undefine('fragment', 'PHYSICALLY_CORRECT');
+    }
+
+    this._physicallyCorrect = isPhysicallyCorrect;
+};
+
 SSRPass.prototype.setSSAOTexture = function (texture) {
     var blendPass = this._blurPass2;
     if (texture) {
@@ -42025,25 +42803,36 @@ SSRPass.prototype.setSSAOTexture = function (texture) {
     }
 };
 
+SSRPass.prototype.isFinished = function (frame) {
+    if (this._physicallyCorrect) {
+        return frame > (this._totalSamples / this._samplePerFrame);
+    }
+    else {
+        return true;
+    }
+};
+
 SSRPass.prototype.dispose = function (renderer) {
-    this._texture1.dispose(renderer);
+    this._ssrTexture.dispose(renderer);
     this._texture2.dispose(renderer);
     this._texture3.dispose(renderer);
+    this._prevTexture.dispose(renderer);
+    this._currentTexture.dispose(renderer);
     this._frameBuffer.dispose(renderer);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (SSRPass);
 
 /***/ }),
-/* 165 */
+/* 184 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.ssr.main\n\n#define MAX_ITERATION 20;\n\nuniform sampler2D sourceTexture;\nuniform sampler2D gBufferTexture1;\nuniform sampler2D gBufferTexture2;\n\nuniform mat4 projection;\nuniform mat4 projectionInv;\nuniform mat4 viewInverseTranspose;\n\nuniform float maxRayDistance: 50;\n\nuniform float pixelStride: 16;\nuniform float pixelStrideZCutoff: 50; \nuniform float screenEdgeFadeStart: 0.9; \nuniform float eyeFadeStart : 0.2; uniform float eyeFadeEnd: 0.8; \nuniform float minGlossiness: 0.2; uniform float zThicknessThreshold: 10;\n\nuniform float nearZ;\nuniform vec2 viewportSize : VIEWPORT_SIZE;\n\nuniform float jitterOffset: 0;\n\nvarying vec2 v_Texcoord;\n\n#ifdef DEPTH_DECODE\n@import clay.util.decode_float\n#endif\n\nfloat fetchDepth(sampler2D depthTexture, vec2 uv)\n{\n vec4 depthTexel = texture2D(depthTexture, uv);\n return depthTexel.r * 2.0 - 1.0;\n}\n\nfloat linearDepth(float depth)\n{\n if (projection[3][3] == 0.0) {\n return projection[3][2] / (depth * projection[2][3] - projection[2][2]);\n }\n else {\n return (depth - projection[3][2]) / projection[2][2];\n }\n}\n\nbool rayIntersectDepth(float rayZNear, float rayZFar, vec2 hitPixel)\n{\n if (rayZFar > rayZNear)\n {\n float t = rayZFar; rayZFar = rayZNear; rayZNear = t;\n }\n float cameraZ = linearDepth(fetchDepth(gBufferTexture2, hitPixel));\n return rayZFar <= cameraZ && rayZNear >= cameraZ - zThicknessThreshold;\n}\n\n\nbool traceScreenSpaceRay(\n vec3 rayOrigin, vec3 rayDir, float jitter,\n out vec2 hitPixel, out vec3 hitPoint, out float iterationCount\n)\n{\n float rayLength = ((rayOrigin.z + rayDir.z * maxRayDistance) > -nearZ)\n ? (-nearZ - rayOrigin.z) / rayDir.z : maxRayDistance;\n\n vec3 rayEnd = rayOrigin + rayDir * rayLength;\n\n vec4 H0 = projection * vec4(rayOrigin, 1.0);\n vec4 H1 = projection * vec4(rayEnd, 1.0);\n\n float k0 = 1.0 / H0.w, k1 = 1.0 / H1.w;\n\n vec3 Q0 = rayOrigin * k0, Q1 = rayEnd * k1;\n\n vec2 P0 = (H0.xy * k0 * 0.5 + 0.5) * viewportSize;\n vec2 P1 = (H1.xy * k1 * 0.5 + 0.5) * viewportSize;\n\n P1 += dot(P1 - P0, P1 - P0) < 0.0001 ? 0.01 : 0.0;\n vec2 delta = P1 - P0;\n\n bool permute = false;\n if (abs(delta.x) < abs(delta.y)) {\n permute = true;\n delta = delta.yx;\n P0 = P0.yx;\n P1 = P1.yx;\n }\n float stepDir = sign(delta.x);\n float invdx = stepDir / delta.x;\n\n vec3 dQ = (Q1 - Q0) * invdx;\n float dk = (k1 - k0) * invdx;\n\n vec2 dP = vec2(stepDir, delta.y * invdx);\n\n float strideScaler = 1.0 - min(1.0, -rayOrigin.z / pixelStrideZCutoff);\n float pixStride = 1.0 + strideScaler * pixelStride;\n\n dP *= pixStride; dQ *= pixStride; dk *= pixStride;\n\n vec4 pqk = vec4(P0, Q0.z, k0);\n vec4 dPQK = vec4(dP, dQ.z, dk);\n\n pqk += dPQK * jitter;\n float rayZFar = (dPQK.z * 0.5 + pqk.z) / (dPQK.w * 0.5 + pqk.w);\n float rayZNear;\n\n bool intersect = false;\n\n vec2 texelSize = 1.0 / viewportSize;\n\n iterationCount = 0.0;\n\n for (int i = 0; i < MAX_ITERATION; i++)\n {\n pqk += dPQK;\n\n rayZNear = rayZFar;\n rayZFar = (dPQK.z * 0.5 + pqk.z) / (dPQK.w * 0.5 + pqk.w);\n\n hitPixel = permute ? pqk.yx : pqk.xy;\n hitPixel *= texelSize;\n\n intersect = rayIntersectDepth(rayZNear, rayZFar, hitPixel);\n\n iterationCount += 1.0;\n\n if (intersect) {\n break;\n }\n }\n\n\n Q0.xy += dQ.xy * iterationCount;\n Q0.z = pqk.z;\n hitPoint = Q0 / pqk.w;\n\n return intersect;\n}\n\nfloat calculateAlpha(\n float iterationCount, float reflectivity,\n vec2 hitPixel, vec3 hitPoint, float dist, vec3 rayDir\n)\n{\n float alpha = clamp(reflectivity, 0.0, 1.0);\n alpha *= 1.0 - (iterationCount / float(MAX_ITERATION));\n vec2 hitPixelNDC = hitPixel * 2.0 - 1.0;\n float maxDimension = min(1.0, max(abs(hitPixelNDC.x), abs(hitPixelNDC.y)));\n alpha *= 1.0 - max(0.0, maxDimension - screenEdgeFadeStart) / (1.0 - screenEdgeFadeStart);\n\n float _eyeFadeStart = eyeFadeStart;\n float _eyeFadeEnd = eyeFadeEnd;\n if (_eyeFadeStart > _eyeFadeEnd) {\n float tmp = _eyeFadeEnd;\n _eyeFadeEnd = _eyeFadeStart;\n _eyeFadeStart = tmp;\n }\n\n float eyeDir = clamp(rayDir.z, _eyeFadeStart, _eyeFadeEnd);\n alpha *= 1.0 - (eyeDir - _eyeFadeStart) / (_eyeFadeEnd - _eyeFadeStart);\n\n alpha *= 1.0 - clamp(dist / maxRayDistance, 0.0, 1.0);\n\n return alpha;\n}\n\n@import clay.util.rand\n\n@import clay.util.rgbm\n\nvoid main()\n{\n vec4 normalAndGloss = texture2D(gBufferTexture1, v_Texcoord);\n\n if (dot(normalAndGloss.rgb, vec3(1.0)) == 0.0) {\n discard;\n }\n\n float g = normalAndGloss.a;\n if (g <= minGlossiness) {\n discard;\n }\n\n float reflectivity = (g - minGlossiness) / (1.0 - minGlossiness);\n\n vec3 N = normalAndGloss.rgb * 2.0 - 1.0;\n N = normalize((viewInverseTranspose * vec4(N, 0.0)).xyz);\n\n vec4 projectedPos = vec4(v_Texcoord * 2.0 - 1.0, fetchDepth(gBufferTexture2, v_Texcoord), 1.0);\n vec4 pos = projectionInv * projectedPos;\n vec3 rayOrigin = pos.xyz / pos.w;\n\n vec3 rayDir = normalize(reflect(normalize(rayOrigin), N));\n vec2 hitPixel;\n vec3 hitPoint;\n float iterationCount;\n\n vec2 uv2 = v_Texcoord * viewportSize;\n float jitter = rand(fract(v_Texcoord + jitterOffset));\n\n bool intersect = traceScreenSpaceRay(rayOrigin, rayDir, jitter, hitPixel, hitPoint, iterationCount);\n\n float dist = distance(rayOrigin, hitPoint);\n\n float alpha = calculateAlpha(iterationCount, reflectivity, hitPixel, hitPoint, dist, rayDir) * float(intersect);\n\n vec3 hitNormal = texture2D(gBufferTexture1, hitPixel).rgb * 2.0 - 1.0;\n hitNormal = normalize((viewInverseTranspose * vec4(hitNormal, 0.0)).xyz);\n\n if (dot(hitNormal, rayDir) >= 0.0) {\n discard;\n }\n\n \n if (!intersect) {\n discard;\n }\n vec4 color = decodeHDR(texture2D(sourceTexture, hitPixel));\n gl_FragColor = encodeHDR(vec4(color.rgb * alpha, color.a));\n}\n@end\n\n@export ecgl.ssr.blur\n\nuniform sampler2D texture;\nuniform sampler2D gBufferTexture1;\nuniform sampler2D gBufferTexture2;\nuniform mat4 projection;\nuniform float depthRange : 0.05;\n\nvarying vec2 v_Texcoord;\n\nuniform vec2 textureSize;\nuniform float blurSize : 4.0;\n\n#ifdef BLEND\n #ifdef SSAOTEX_ENABLED\nuniform sampler2D ssaoTex;\n #endif\nuniform sampler2D sourceTexture;\n#endif\n\nfloat getLinearDepth(vec2 coord)\n{\n float depth = texture2D(gBufferTexture2, coord).r * 2.0 - 1.0;\n return projection[3][2] / (depth * projection[2][3] - projection[2][2]);\n}\n\n@import clay.util.rgbm\n\n\nvoid main()\n{\n @import clay.compositor.kernel.gaussian_9\n\n vec4 centerNTexel = texture2D(gBufferTexture1, v_Texcoord);\n float g = centerNTexel.a;\n float maxBlurSize = clamp(1.0 - g + 0.1, 0.0, 1.0) * blurSize;\n#ifdef VERTICAL\n vec2 off = vec2(0.0, maxBlurSize / textureSize.y);\n#else\n vec2 off = vec2(maxBlurSize / textureSize.x, 0.0);\n#endif\n\n vec2 coord = v_Texcoord;\n\n vec4 sum = vec4(0.0);\n float weightAll = 0.0;\n\n vec3 cN = centerNTexel.rgb * 2.0 - 1.0;\n float cD = getLinearDepth(v_Texcoord);\n for (int i = 0; i < 9; i++) {\n vec2 coord = clamp((float(i) - 4.0) * off + v_Texcoord, vec2(0.0), vec2(1.0));\n float w = gaussianKernel[i]\n * clamp(dot(cN, texture2D(gBufferTexture1, coord).rgb * 2.0 - 1.0), 0.0, 1.0);\n float d = getLinearDepth(coord);\n w *= (1.0 - smoothstep(abs(cD - d) / depthRange, 0.0, 1.0));\n\n weightAll += w;\n sum += decodeHDR(texture2D(texture, coord)) * w;\n }\n\n#ifdef BLEND\n float aoFactor = 1.0;\n #ifdef SSAOTEX_ENABLED\n aoFactor = texture2D(ssaoTex, v_Texcoord).r;\n #endif\n gl_FragColor = encodeHDR(\n sum / weightAll * aoFactor + decodeHDR(texture2D(sourceTexture, v_Texcoord))\n );\n#else\n gl_FragColor = encodeHDR(sum / weightAll);\n#endif\n}\n\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.ssr.main\n\n#define SHADER_NAME SSR\n#define MAX_ITERATION 20;\n#define SAMPLE_PER_FRAME 5;\n#define TOTAL_SAMPLES 128;\n\nuniform sampler2D sourceTexture;\nuniform sampler2D gBufferTexture1;\nuniform sampler2D gBufferTexture2;\nuniform sampler2D gBufferTexture3;\nuniform samplerCube specularCubemap;\nuniform float specularIntensity: 1;\n\nuniform mat4 projection;\nuniform mat4 projectionInv;\nuniform mat4 toViewSpace;\nuniform mat4 toWorldSpace;\n\nuniform float maxRayDistance: 200;\n\nuniform float pixelStride: 16;\nuniform float pixelStrideZCutoff: 50; \nuniform float screenEdgeFadeStart: 0.9; \nuniform float eyeFadeStart : 0.2; uniform float eyeFadeEnd: 0.8; \nuniform float minGlossiness: 0.2; uniform float zThicknessThreshold: 1;\n\nuniform float nearZ;\nuniform vec2 viewportSize : VIEWPORT_SIZE;\n\nuniform float jitterOffset: 0;\n\nvarying vec2 v_Texcoord;\n\n#ifdef DEPTH_DECODE\n@import clay.util.decode_float\n#endif\n\n#ifdef PHYSICALLY_CORRECT\nuniform sampler2D normalDistribution;\nuniform float sampleOffset: 0;\nuniform vec2 normalDistributionSize;\n\nvec3 transformNormal(vec3 H, vec3 N) {\n vec3 upVector = N.y > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nvec3 importanceSampleNormalGGX(float i, float roughness, vec3 N) {\n float p = fract((i + sampleOffset) / float(TOTAL_SAMPLES));\n vec3 H = texture2D(normalDistribution,vec2(roughness, p)).rgb;\n return transformNormal(H, N);\n}\nfloat G_Smith(float g, float ndv, float ndl) {\n float roughness = 1.0 - g;\n float k = roughness * roughness / 2.0;\n float G1V = ndv / (ndv * (1.0 - k) + k);\n float G1L = ndl / (ndl * (1.0 - k) + k);\n return G1L * G1V;\n}\nvec3 F_Schlick(float ndv, vec3 spec) {\n return spec + (1.0 - spec) * pow(1.0 - ndv, 5.0);\n}\n#endif\n\nfloat fetchDepth(sampler2D depthTexture, vec2 uv)\n{\n vec4 depthTexel = texture2D(depthTexture, uv);\n return depthTexel.r * 2.0 - 1.0;\n}\n\nfloat linearDepth(float depth)\n{\n if (projection[3][3] == 0.0) {\n return projection[3][2] / (depth * projection[2][3] - projection[2][2]);\n }\n else {\n return (depth - projection[3][2]) / projection[2][2];\n }\n}\n\nbool rayIntersectDepth(float rayZNear, float rayZFar, vec2 hitPixel)\n{\n if (rayZFar > rayZNear)\n {\n float t = rayZFar; rayZFar = rayZNear; rayZNear = t;\n }\n float cameraZ = linearDepth(fetchDepth(gBufferTexture2, hitPixel));\n return rayZFar <= cameraZ && rayZNear >= cameraZ - zThicknessThreshold;\n}\n\n\nbool traceScreenSpaceRay(\n vec3 rayOrigin, vec3 rayDir, float jitter,\n out vec2 hitPixel, out vec3 hitPoint, out float iterationCount\n)\n{\n float rayLength = ((rayOrigin.z + rayDir.z * maxRayDistance) > -nearZ)\n ? (-nearZ - rayOrigin.z) / rayDir.z : maxRayDistance;\n\n vec3 rayEnd = rayOrigin + rayDir * rayLength;\n\n vec4 H0 = projection * vec4(rayOrigin, 1.0);\n vec4 H1 = projection * vec4(rayEnd, 1.0);\n\n float k0 = 1.0 / H0.w, k1 = 1.0 / H1.w;\n\n vec3 Q0 = rayOrigin * k0, Q1 = rayEnd * k1;\n\n vec2 P0 = (H0.xy * k0 * 0.5 + 0.5) * viewportSize;\n vec2 P1 = (H1.xy * k1 * 0.5 + 0.5) * viewportSize;\n\n P1 += dot(P1 - P0, P1 - P0) < 0.0001 ? 0.01 : 0.0;\n vec2 delta = P1 - P0;\n\n bool permute = false;\n if (abs(delta.x) < abs(delta.y)) {\n permute = true;\n delta = delta.yx;\n P0 = P0.yx;\n P1 = P1.yx;\n }\n float stepDir = sign(delta.x);\n float invdx = stepDir / delta.x;\n\n vec3 dQ = (Q1 - Q0) * invdx;\n float dk = (k1 - k0) * invdx;\n\n vec2 dP = vec2(stepDir, delta.y * invdx);\n\n float strideScaler = 1.0 - min(1.0, -rayOrigin.z / pixelStrideZCutoff);\n float pixStride = 1.0 + strideScaler * pixelStride;\n\n dP *= pixStride; dQ *= pixStride; dk *= pixStride;\n\n vec4 pqk = vec4(P0, Q0.z, k0);\n vec4 dPQK = vec4(dP, dQ.z, dk);\n\n pqk += dPQK * jitter;\n float rayZFar = (dPQK.z * 0.5 + pqk.z) / (dPQK.w * 0.5 + pqk.w);\n float rayZNear;\n\n bool intersect = false;\n\n vec2 texelSize = 1.0 / viewportSize;\n\n iterationCount = 0.0;\n\n for (int i = 0; i < MAX_ITERATION; i++)\n {\n pqk += dPQK;\n\n rayZNear = rayZFar;\n rayZFar = (dPQK.z * 0.5 + pqk.z) / (dPQK.w * 0.5 + pqk.w);\n\n hitPixel = permute ? pqk.yx : pqk.xy;\n hitPixel *= texelSize;\n\n intersect = rayIntersectDepth(rayZNear, rayZFar, hitPixel);\n\n iterationCount += 1.0;\n\n dPQK *= 1.2;\n\n if (intersect) {\n break;\n }\n }\n\n Q0.xy += dQ.xy * iterationCount;\n Q0.z = pqk.z;\n hitPoint = Q0 / pqk.w;\n\n return intersect;\n}\n\nfloat calculateAlpha(\n float iterationCount, float reflectivity,\n vec2 hitPixel, vec3 hitPoint, float dist, vec3 rayDir\n)\n{\n float alpha = clamp(reflectivity, 0.0, 1.0);\n alpha *= 1.0 - (iterationCount / float(MAX_ITERATION));\n vec2 hitPixelNDC = hitPixel * 2.0 - 1.0;\n float maxDimension = min(1.0, max(abs(hitPixelNDC.x), abs(hitPixelNDC.y)));\n alpha *= 1.0 - max(0.0, maxDimension - screenEdgeFadeStart) / (1.0 - screenEdgeFadeStart);\n\n float _eyeFadeStart = eyeFadeStart;\n float _eyeFadeEnd = eyeFadeEnd;\n if (_eyeFadeStart > _eyeFadeEnd) {\n float tmp = _eyeFadeEnd;\n _eyeFadeEnd = _eyeFadeStart;\n _eyeFadeStart = tmp;\n }\n\n float eyeDir = clamp(rayDir.z, _eyeFadeStart, _eyeFadeEnd);\n alpha *= 1.0 - (eyeDir - _eyeFadeStart) / (_eyeFadeEnd - _eyeFadeStart);\n\n alpha *= 1.0 - clamp(dist / maxRayDistance, 0.0, 1.0);\n\n return alpha;\n}\n\n@import clay.util.rand\n\n@import clay.util.rgbm\n\nvoid main()\n{\n vec4 normalAndGloss = texture2D(gBufferTexture1, v_Texcoord);\n\n if (dot(normalAndGloss.rgb, vec3(1.0)) == 0.0) {\n discard;\n }\n\n float g = normalAndGloss.a;\n#if !defined(PHYSICALLY_CORRECT)\n if (g <= minGlossiness) {\n discard;\n }\n#endif\n\n float reflectivity = (g - minGlossiness) / (1.0 - minGlossiness);\n\n vec3 N = normalize(normalAndGloss.rgb * 2.0 - 1.0);\n N = normalize((toViewSpace * vec4(N, 0.0)).xyz);\n\n vec4 projectedPos = vec4(v_Texcoord * 2.0 - 1.0, fetchDepth(gBufferTexture2, v_Texcoord), 1.0);\n vec4 pos = projectionInv * projectedPos;\n vec3 rayOrigin = pos.xyz / pos.w;\n vec3 V = -normalize(rayOrigin);\n\n float ndv = clamp(dot(N, V), 0.0, 1.0);\n float iterationCount;\n float jitter = rand(fract(v_Texcoord + jitterOffset));\n\n#ifdef PHYSICALLY_CORRECT\n vec4 color = vec4(vec3(0.0), 1.0);\n vec4 albedoMetalness = texture2D(gBufferTexture3, v_Texcoord);\n vec3 albedo = albedoMetalness.rgb;\n float m = albedoMetalness.a;\n vec3 diffuseColor = albedo * (1.0 - m);\n vec3 spec = mix(vec3(0.04), albedo, m);\n\n float jitter2 = rand(fract(v_Texcoord)) * float(TOTAL_SAMPLES);\n\n for (int i = 0; i < SAMPLE_PER_FRAME; i++) {\n vec3 H = importanceSampleNormalGGX(float(i) + jitter2, 1.0 - g, N);\n vec3 rayDir = normalize(reflect(-V, H));\n#else\n vec3 rayDir = normalize(reflect(-V, N));\n#endif\n vec2 hitPixel;\n vec3 hitPoint;\n\n bool intersect = traceScreenSpaceRay(rayOrigin, rayDir, jitter, hitPixel, hitPoint, iterationCount);\n\n float dist = distance(rayOrigin, hitPoint);\n\n vec3 hitNormal = texture2D(gBufferTexture1, hitPixel).rgb * 2.0 - 1.0;\n hitNormal = normalize((toViewSpace * vec4(hitNormal, 0.0)).xyz);\n#ifdef PHYSICALLY_CORRECT\n float ndl = clamp(dot(N, rayDir), 0.0, 1.0);\n float vdh = clamp(dot(V, H), 0.0, 1.0);\n float ndh = clamp(dot(N, H), 0.0, 1.0);\n vec3 litTexel = vec3(0.0);\n if (dot(hitNormal, rayDir) < 0.0 && intersect) {\n litTexel = texture2D(sourceTexture, hitPixel).rgb;\n litTexel *= pow(clamp(1.0 - dist / 200.0, 0.0, 1.0), 3.0);\n\n }\n else {\n #ifdef SPECULARCUBEMAP_ENABLED\n vec3 rayDirW = normalize(toWorldSpace * vec4(rayDir, 0.0)).rgb;\n litTexel = RGBMDecode(textureCubeLodEXT(specularCubemap, rayDirW, 0.0), 8.12).rgb * specularIntensity;\n#endif\n }\n color.rgb += ndl * litTexel * (\n F_Schlick(ndl, spec) * G_Smith(g, ndv, ndl) * vdh / (ndh * ndv + 0.001)\n );\n }\n color.rgb /= float(SAMPLE_PER_FRAME);\n#else\n #if !defined(SPECULARCUBEMAP_ENABLED)\n if (dot(hitNormal, rayDir) >= 0.0) {\n discard;\n }\n if (!intersect) {\n discard;\n }\n#endif\n float alpha = clamp(calculateAlpha(iterationCount, reflectivity, hitPixel, hitPoint, dist, rayDir), 0.0, 1.0);\n vec4 color = texture2D(sourceTexture, hitPixel);\n color.rgb *= alpha;\n\n#ifdef SPECULARCUBEMAP_ENABLED\n vec3 rayDirW = normalize(toWorldSpace * vec4(rayDir, 0.0)).rgb;\n alpha = alpha * (intersect ? 1.0 : 0.0);\n float bias = (1.0 -g) * 5.0;\n color.rgb += (1.0 - alpha)\n * RGBMDecode(textureCubeLodEXT(specularCubemap, rayDirW, bias), 8.12).rgb\n * specularIntensity;\n#endif\n\n#endif\n\n gl_FragColor = encodeHDR(color);\n}\n@end\n\n@export ecgl.ssr.blur\n\nuniform sampler2D texture;\nuniform sampler2D gBufferTexture1;\nuniform sampler2D gBufferTexture2;\nuniform mat4 projection;\nuniform float depthRange : 0.05;\n\nvarying vec2 v_Texcoord;\n\nuniform vec2 textureSize;\nuniform float blurSize : 1.0;\n\n#ifdef BLEND\n #ifdef SSAOTEX_ENABLED\nuniform sampler2D ssaoTex;\n #endif\nuniform sampler2D sourceTexture;\n#endif\n\nfloat getLinearDepth(vec2 coord)\n{\n float depth = texture2D(gBufferTexture2, coord).r * 2.0 - 1.0;\n return projection[3][2] / (depth * projection[2][3] - projection[2][2]);\n}\n\n@import clay.util.rgbm\n\n\nvoid main()\n{\n @import clay.compositor.kernel.gaussian_9\n\n vec4 centerNTexel = texture2D(gBufferTexture1, v_Texcoord);\n float g = centerNTexel.a;\n float maxBlurSize = clamp(1.0 - g, 0.0, 1.0) * blurSize;\n#ifdef VERTICAL\n vec2 off = vec2(0.0, maxBlurSize / textureSize.y);\n#else\n vec2 off = vec2(maxBlurSize / textureSize.x, 0.0);\n#endif\n\n vec2 coord = v_Texcoord;\n\n vec4 sum = vec4(0.0);\n float weightAll = 0.0;\n\n vec3 cN = centerNTexel.rgb * 2.0 - 1.0;\n float cD = getLinearDepth(v_Texcoord);\n for (int i = 0; i < 9; i++) {\n vec2 coord = clamp((float(i) - 4.0) * off + v_Texcoord, vec2(0.0), vec2(1.0));\n float w = gaussianKernel[i]\n * clamp(dot(cN, texture2D(gBufferTexture1, coord).rgb * 2.0 - 1.0), 0.0, 1.0);\n float d = getLinearDepth(coord);\n w *= (1.0 - smoothstep(abs(cD - d) / depthRange, 0.0, 1.0));\n\n weightAll += w;\n sum += decodeHDR(texture2D(texture, coord)) * w;\n }\n\n#ifdef BLEND\n float aoFactor = 1.0;\n #ifdef SSAOTEX_ENABLED\n aoFactor = texture2D(ssaoTex, v_Texcoord).r;\n #endif\n gl_FragColor = encodeHDR(\n sum / weightAll * aoFactor + decodeHDR(texture2D(sourceTexture, v_Texcoord))\n );\n#else\n gl_FragColor = encodeHDR(sum / weightAll);\n#endif\n}\n\n@end");
 
 
 /***/ }),
-/* 166 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42085,18 +42874,18 @@ SSRPass.prototype.dispose = function (renderer) {
 ]);
 
 /***/ }),
-/* 167 */
+/* 186 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_FrameBuffer__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Material__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_compositor_Pass__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_util_texture__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_shader_normal_glsl_js__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_shader_normal_glsl_js__ = __webpack_require__(187);
 // NormalPass will generate normal and depth data.
 
 // TODO Animation
@@ -42272,7 +43061,7 @@ NormalPass.prototype.update = function (renderer, scene, camera) {
     normalTexture.width = width;
     normalTexture.height = height;
 
-    var opaqueList = scene.opaqueList;
+    var opaqueList = scene.getRenderList(camera).opaque;
 
     this._framebuffer.bind(renderer);
     renderer.gl.clearColor(0, 0, 0, 0);
@@ -42306,7 +43095,7 @@ NormalPass.prototype.dispose = function (renderer) {
 /* harmony default export */ __webpack_exports__["a"] = (NormalPass);
 
 /***/ }),
-/* 168 */
+/* 187 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42314,16 +43103,16 @@ NormalPass.prototype.dispose = function (renderer) {
 
 
 /***/ }),
-/* 169 */
+/* 188 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_compositor_Pass__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_FrameBuffer__ = __webpack_require__(10);
 
 
@@ -42384,7 +43173,7 @@ EdgePass.prototype.dispose = function (renderer) {
 /* harmony default export */ __webpack_exports__["a"] = (EdgePass);
 
 /***/ }),
-/* 170 */
+/* 189 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42960,87 +43749,15 @@ EdgePass.prototype.dispose = function (renderer) {
 });
 
 /***/ }),
-/* 171 */
+/* 190 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.kernel.gaussian_9\nfloat gaussianKernel[9];\ngaussianKernel[0] = 0.07;\ngaussianKernel[1] = 0.09;\ngaussianKernel[2] = 0.12;\ngaussianKernel[3] = 0.14;\ngaussianKernel[4] = 0.16;\ngaussianKernel[5] = 0.14;\ngaussianKernel[6] = 0.12;\ngaussianKernel[7] = 0.09;\ngaussianKernel[8] = 0.07;\n@end\n@export clay.compositor.kernel.gaussian_13\nfloat gaussianKernel[13];\ngaussianKernel[0] = 0.02;\ngaussianKernel[1] = 0.03;\ngaussianKernel[2] = 0.06;\ngaussianKernel[3] = 0.08;\ngaussianKernel[4] = 0.11;\ngaussianKernel[5] = 0.13;\ngaussianKernel[6] = 0.14;\ngaussianKernel[7] = 0.13;\ngaussianKernel[8] = 0.11;\ngaussianKernel[9] = 0.08;\ngaussianKernel[10] = 0.06;\ngaussianKernel[11] = 0.03;\ngaussianKernel[12] = 0.02;\n@end\n@export clay.compositor.gaussian_blur\n#define SHADER_NAME gaussian_blur\nuniform sampler2D texture;varying vec2 v_Texcoord;\nuniform float blurSize : 2.0;\nuniform vec2 textureSize : [512.0, 512.0];\nuniform float blurDir : 0.0;\n@import clay.util.rgbm\n@import clay.util.clamp_sample\nvoid main (void)\n{\n    @import clay.compositor.kernel.gaussian_9\n    vec2 off = blurSize / textureSize;\n    off *= vec2(1.0 - blurDir, blurDir);\n    vec4 sum = vec4(0.0);\n    float weightAll = 0.0;\n    for (int i = 0; i < 9; i++) {\n        float w = gaussianKernel[i];\n        vec4 texel = decodeHDR(clampSample(texture, v_Texcoord + float(i - 4) * off));\n        sum += texel * w;\n        weightAll += w;\n    }\n    gl_FragColor = encodeHDR(sum / max(weightAll, 0.01));\n}\n@end\n");
+/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.dof.coc\n\nuniform sampler2D depth;\n\nuniform float zNear: 0.1;\nuniform float zFar: 2000;\n\nuniform float focalDistance: 3;\nuniform float focalRange: 1;\nuniform float focalLength: 30;\nuniform float fstop: 2.8;\n\nvarying vec2 v_Texcoord;\n\n@import clay.util.encode_float\n\nvoid main()\n{\n float z = texture2D(depth, v_Texcoord).r * 2.0 - 1.0;\n\n float dist = 2.0 * zNear * zFar / (zFar + zNear - z * (zFar - zNear));\n\n float aperture = focalLength / fstop;\n\n float coc;\n\n float uppper = focalDistance + focalRange;\n float lower = focalDistance - focalRange;\n if (dist <= uppper && dist >= lower) {\n coc = 0.5;\n }\n else {\n float focalAdjusted = dist > uppper ? uppper : lower;\n\n coc = abs(aperture * (focalLength * (dist - focalAdjusted)) / (dist * (focalAdjusted - focalLength)));\n coc = clamp(coc, 0.0, 2.0) / 2.00001;\n\n if (dist < lower) {\n coc = -coc;\n }\n coc = coc * 0.5 + 0.5;\n }\n\n gl_FragColor = encodeFloat(coc);\n}\n@end\n\n\n@export ecgl.dof.composite\n\n#define DEBUG 0\n\nuniform sampler2D original;\nuniform sampler2D blurred;\nuniform sampler2D nearfield;\nuniform sampler2D coc;\nuniform sampler2D nearcoc;\nvarying vec2 v_Texcoord;\n\n@import clay.util.rgbm\n@import clay.util.float\n\nvoid main()\n{\n vec4 blurredColor = texture2D(blurred, v_Texcoord);\n vec4 originalColor = texture2D(original, v_Texcoord);\n\n float fCoc = decodeFloat(texture2D(coc, v_Texcoord));\n\n fCoc = abs(fCoc * 2.0 - 1.0);\n\n float weight = smoothstep(0.0, 1.0, fCoc);\n \n#ifdef NEARFIELD_ENABLED\n vec4 nearfieldColor = texture2D(nearfield, v_Texcoord);\n float fNearCoc = decodeFloat(texture2D(nearcoc, v_Texcoord));\n fNearCoc = abs(fNearCoc * 2.0 - 1.0);\n\n gl_FragColor = encodeHDR(\n mix(\n nearfieldColor, mix(originalColor, blurredColor, weight),\n pow(1.0 - fNearCoc, 4.0)\n )\n );\n#else\n gl_FragColor = encodeHDR(mix(originalColor, blurredColor, weight));\n#endif\n\n}\n\n@end\n\n\n\n@export ecgl.dof.diskBlur\n\n#define POISSON_KERNEL_SIZE 16;\n\nuniform sampler2D texture;\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\n\nuniform float blurRadius : 10.0;\nuniform vec2 textureSize : [512.0, 512.0];\n\nuniform vec2 poissonKernel[POISSON_KERNEL_SIZE];\n\nuniform float percent;\n\nfloat nrand(const in vec2 n) {\n return fract(sin(dot(n.xy ,vec2(12.9898,78.233))) * 43758.5453);\n}\n\n@import clay.util.rgbm\n@import clay.util.float\n\n\nvoid main()\n{\n vec2 offset = blurRadius / textureSize;\n\n float rnd = 6.28318 * nrand(v_Texcoord + 0.07 * percent );\n float cosa = cos(rnd);\n float sina = sin(rnd);\n vec4 basis = vec4(cosa, -sina, sina, cosa);\n\n#if !defined(BLUR_NEARFIELD) && !defined(BLUR_COC)\n offset *= abs(decodeFloat(texture2D(coc, v_Texcoord)) * 2.0 - 1.0);\n#endif\n\n#ifdef BLUR_COC\n float cocSum = 0.0;\n#else\n vec4 color = vec4(0.0);\n#endif\n\n\n float weightSum = 0.0;\n\n for (int i = 0; i < POISSON_KERNEL_SIZE; i++) {\n vec2 ofs = poissonKernel[i];\n\n ofs = vec2(dot(ofs, basis.xy), dot(ofs, basis.zw));\n\n vec2 uv = v_Texcoord + ofs * offset;\n vec4 texel = texture2D(texture, uv);\n\n float w = 1.0;\n#ifdef BLUR_COC\n float fCoc = decodeFloat(texel) * 2.0 - 1.0;\n cocSum += clamp(fCoc, -1.0, 0.0) * w;\n#else\n texel = texel;\n #if !defined(BLUR_NEARFIELD)\n float fCoc = decodeFloat(texture2D(coc, uv)) * 2.0 - 1.0;\n w *= abs(fCoc);\n #endif\n texel.rgb *= texel.a;\n color += texel * w;\n#endif\n\n weightSum += w;\n }\n\n#ifdef BLUR_COC\n gl_FragColor = encodeFloat(clamp(cocSum / weightSum, -1.0, 0.0) * 0.5 + 0.5);\n#else\n color /= weightSum;\n color.rgb /= (color.a + 0.0001);\n gl_FragColor = color;\n#endif\n}\n\n@end");
 
 
 /***/ }),
-/* 172 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.compositor.lut\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform sampler2D lookup;\nvoid main()\n{\n    vec4 tex = texture2D(texture, v_Texcoord);\n    float blueColor = tex.b * 63.0;\n    vec2 quad1;\n    quad1.y = floor(floor(blueColor) / 8.0);\n    quad1.x = floor(blueColor) - (quad1.y * 8.0);\n    vec2 quad2;\n    quad2.y = floor(ceil(blueColor) / 8.0);\n    quad2.x = ceil(blueColor) - (quad2.y * 8.0);\n    vec2 texPos1;\n    texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.r);\n    texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.g);\n    vec2 texPos2;\n    texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.r);\n    texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * tex.g);\n    vec4 newColor1 = texture2D(lookup, texPos1);\n    vec4 newColor2 = texture2D(lookup, texPos2);\n    vec4 newColor = mix(newColor1, newColor2, fract(blueColor));\n    gl_FragColor = vec4(newColor.rgb, tex.w);\n}\n@end");
-
-
-/***/ }),
-/* 173 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.output\n#define OUTPUT_ALPHA\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\n@import clay.util.rgbm\nvoid main()\n{\n    vec4 tex = decodeHDR(texture2D(texture, v_Texcoord));\n    gl_FragColor.rgb = tex.rgb;\n#ifdef OUTPUT_ALPHA\n    gl_FragColor.a = tex.a;\n#else\n    gl_FragColor.a = 1.0;\n#endif\n    gl_FragColor = encodeHDR(gl_FragColor);\n#ifdef PREMULTIPLY_ALPHA\n    gl_FragColor.rgb *= gl_FragColor.a;\n#endif\n}\n@end");
-
-
-/***/ }),
-/* 174 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.bright\nuniform sampler2D texture;\nuniform float threshold : 1;\nuniform float scale : 1.0;\nuniform vec2 textureSize: [512, 512];\nvarying vec2 v_Texcoord;\nconst vec3 lumWeight = vec3(0.2125, 0.7154, 0.0721);\n@import clay.util.rgbm\nvec4 median(vec4 a, vec4 b, vec4 c)\n{\n    return a + b + c - min(min(a, b), c) - max(max(a, b), c);\n}\nvoid main()\n{\n    vec4 texel = decodeHDR(texture2D(texture, v_Texcoord));\n#ifdef ANTI_FLICKER\n    vec3 d = 1.0 / textureSize.xyx * vec3(1.0, 1.0, 0.0);\n    vec4 s1 = decodeHDR(texture2D(texture, v_Texcoord - d.xz));\n    vec4 s2 = decodeHDR(texture2D(texture, v_Texcoord + d.xz));\n    vec4 s3 = decodeHDR(texture2D(texture, v_Texcoord - d.zy));\n    vec4 s4 = decodeHDR(texture2D(texture, v_Texcoord + d.zy));\n    texel = median(median(texel, s1, s2), s3, s4);\n#endif\n    float lum = dot(texel.rgb , lumWeight);\n    vec4 color;\n    if (lum > threshold && texel.a > 0.0)\n    {\n        color = vec4(texel.rgb * scale, texel.a * scale);\n    }\n    else\n    {\n        color = vec4(0.0);\n    }\n    gl_FragColor = encodeHDR(color);\n}\n@end\n");
-
-
-/***/ }),
-/* 175 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.downsample\nuniform sampler2D texture;\nuniform vec2 textureSize : [512, 512];\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\nfloat brightness(vec3 c)\n{\n    return max(max(c.r, c.g), c.b);\n}\n@import clay.util.clamp_sample\nvoid main()\n{\n    vec4 d = vec4(-1.0, -1.0, 1.0, 1.0) / textureSize.xyxy;\n#ifdef ANTI_FLICKER\n    vec3 s1 = decodeHDR(clampSample(texture, v_Texcoord + d.xy)).rgb;\n    vec3 s2 = decodeHDR(clampSample(texture, v_Texcoord + d.zy)).rgb;\n    vec3 s3 = decodeHDR(clampSample(texture, v_Texcoord + d.xw)).rgb;\n    vec3 s4 = decodeHDR(clampSample(texture, v_Texcoord + d.zw)).rgb;\n    float s1w = 1.0 / (brightness(s1) + 1.0);\n    float s2w = 1.0 / (brightness(s2) + 1.0);\n    float s3w = 1.0 / (brightness(s3) + 1.0);\n    float s4w = 1.0 / (brightness(s4) + 1.0);\n    float oneDivideSum = 1.0 / (s1w + s2w + s3w + s4w);\n    vec4 color = vec4(\n        (s1 * s1w + s2 * s2w + s3 * s3w + s4 * s4w) * oneDivideSum,\n        1.0\n    );\n#else\n    vec4 color = decodeHDR(clampSample(texture, v_Texcoord + d.xy));\n    color += decodeHDR(clampSample(texture, v_Texcoord + d.zy));\n    color += decodeHDR(clampSample(texture, v_Texcoord + d.xw));\n    color += decodeHDR(clampSample(texture, v_Texcoord + d.zw));\n    color *= 0.25;\n#endif\n    gl_FragColor = encodeHDR(color);\n}\n@end");
-
-
-/***/ }),
-/* 176 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.compositor.upsample\n#define HIGH_QUALITY\nuniform sampler2D texture;\nuniform vec2 textureSize : [512, 512];\nuniform float sampleScale: 0.5;\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\n@import clay.util.clamp_sample\nvoid main()\n{\n#ifdef HIGH_QUALITY\n    vec4 d = vec4(1.0, 1.0, -1.0, 0.0) / textureSize.xyxy * sampleScale;\n    vec4 s;\n    s  = decodeHDR(clampSample(texture, v_Texcoord - d.xy));\n    s += decodeHDR(clampSample(texture, v_Texcoord - d.wy)) * 2.0;\n    s += decodeHDR(clampSample(texture, v_Texcoord - d.zy));\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.zw)) * 2.0;\n    s += decodeHDR(clampSample(texture, v_Texcoord       )) * 4.0;\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.xw)) * 2.0;\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.zy));\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.wy)) * 2.0;\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.xy));\n    gl_FragColor = encodeHDR(s / 16.0);\n#else\n    vec4 d = vec4(-1.0, -1.0, +1.0, +1.0) / textureSize.xyxy;\n    vec4 s;\n    s  = decodeHDR(clampSample(texture, v_Texcoord + d.xy));\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.zy));\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.xw));\n    s += decodeHDR(clampSample(texture, v_Texcoord + d.zw));\n    gl_FragColor = encodeHDR(s / 4.0);\n#endif\n}\n@end");
-
-
-/***/ }),
-/* 177 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.composite\nuniform sampler2D texture;\n#ifdef BLOOM_ENABLED\nuniform sampler2D bloom;\n#endif\n#ifdef LENSFLARE_ENABLED\nuniform sampler2D lensflare;\nuniform sampler2D lensdirt;\n#endif\n#ifdef LUM_ENABLED\nuniform sampler2D lum;\n#endif\n#ifdef LUT_ENABLED\nuniform sampler2D lut;\n#endif\n#ifdef COLOR_CORRECTION\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float saturation : 1.0;\n#endif\n#ifdef VIGNETTE\nuniform float vignetteDarkness: 1.0;\nuniform float vignetteOffset: 1.0;\n#endif\nuniform float exposure : 1.0;\nuniform float bloomIntensity : 0.25;\nuniform float lensflareIntensity : 1;\nvarying vec2 v_Texcoord;\n@import clay.util.srgb\nvec3 ACESToneMapping(vec3 color)\n{\n    const float A = 2.51;\n    const float B = 0.03;\n    const float C = 2.43;\n    const float D = 0.59;\n    const float E = 0.14;\n    return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\nfloat eyeAdaption(float fLum)\n{\n    return mix(0.2, fLum, 0.5);\n}\n#ifdef LUT_ENABLED\nvec3 lutTransform(vec3 color) {\n    float blueColor = color.b * 63.0;\n    vec2 quad1;\n    quad1.y = floor(floor(blueColor) / 8.0);\n    quad1.x = floor(blueColor) - (quad1.y * 8.0);\n    vec2 quad2;\n    quad2.y = floor(ceil(blueColor) / 8.0);\n    quad2.x = ceil(blueColor) - (quad2.y * 8.0);\n    vec2 texPos1;\n    texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n    texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n    vec2 texPos2;\n    texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n    texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n    vec4 newColor1 = texture2D(lut, texPos1);\n    vec4 newColor2 = texture2D(lut, texPos2);\n    vec4 newColor = mix(newColor1, newColor2, fract(blueColor));\n    return newColor.rgb;\n}\n#endif\n@import clay.util.rgbm\nvoid main()\n{\n    vec4 texel = vec4(0.0);\n    vec4 originalTexel = vec4(0.0);\n#ifdef TEXTURE_ENABLED\n    texel = decodeHDR(texture2D(texture, v_Texcoord));\n    originalTexel = texel;\n#endif\n#ifdef BLOOM_ENABLED\n    vec4 bloomTexel = decodeHDR(texture2D(bloom, v_Texcoord));\n    texel.rgb += bloomTexel.rgb * bloomIntensity;\n    texel.a += bloomTexel.a * bloomIntensity;\n#endif\n#ifdef LENSFLARE_ENABLED\n    texel += decodeHDR(texture2D(lensflare, v_Texcoord)) * texture2D(lensdirt, v_Texcoord) * lensflareIntensity;\n#endif\n    texel.a = min(texel.a, 1.0);\n#ifdef LUM_ENABLED\n    float fLum = texture2D(lum, vec2(0.5, 0.5)).r;\n    float adaptedLumDest = 3.0 / (max(0.1, 1.0 + 10.0*eyeAdaption(fLum)));\n    float exposureBias = adaptedLumDest * exposure;\n#else\n    float exposureBias = exposure;\n#endif\n    texel.rgb *= exposureBias;\n    texel.rgb = ACESToneMapping(texel.rgb);\n    texel = linearTosRGB(texel);\n#ifdef LUT_ENABLED\n    texel.rgb = lutTransform(clamp(texel.rgb,vec3(0.0),vec3(1.0)));\n#endif\n#ifdef COLOR_CORRECTION\n    texel.rgb = clamp(texel.rgb + vec3(brightness), 0.0, 1.0);\n    texel.rgb = clamp((texel.rgb - vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n    float lum = dot(texel.rgb, vec3(0.2125, 0.7154, 0.0721));\n    texel.rgb = mix(vec3(lum), texel.rgb, saturation);\n#endif\n#ifdef VIGNETTE\n    vec2 uv = (v_Texcoord - vec2(0.5)) * vec2(vignetteOffset);\n    texel.rgb = mix(texel.rgb, vec3(1.0 - vignetteDarkness), dot(uv, uv));\n#endif\n    gl_FragColor = encodeHDR(texel);\n#ifdef DEBUG\n    #if DEBUG == 1\n    gl_FragColor = encodeHDR(decodeHDR(texture2D(texture, v_Texcoord)));\n    #elif DEBUG == 2\n    gl_FragColor = encodeHDR(decodeHDR(texture2D(bloom, v_Texcoord)) * bloomIntensity);\n    #elif DEBUG == 3\n    gl_FragColor = encodeHDR(decodeHDR(texture2D(lensflare, v_Texcoord) * lensflareIntensity));\n    #endif\n#endif\n    if (originalTexel.a <= 0.01 && gl_FragColor.a > 1e-5) {\n        gl_FragColor.a = dot(gl_FragColor.rgb, vec3(0.2125, 0.7154, 0.0721));\n    }\n#ifdef PREMULTIPLY_ALPHA\n    gl_FragColor.rgb *= gl_FragColor.a;\n#endif\n}\n@end");
-
-
-/***/ }),
-/* 178 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.blend\n#define SHADER_NAME blend\n#ifdef TEXTURE1_ENABLED\nuniform sampler2D texture1;\nuniform float weight1 : 1.0;\n#endif\n#ifdef TEXTURE2_ENABLED\nuniform sampler2D texture2;\nuniform float weight2 : 1.0;\n#endif\n#ifdef TEXTURE3_ENABLED\nuniform sampler2D texture3;\nuniform float weight3 : 1.0;\n#endif\n#ifdef TEXTURE4_ENABLED\nuniform sampler2D texture4;\nuniform float weight4 : 1.0;\n#endif\n#ifdef TEXTURE5_ENABLED\nuniform sampler2D texture5;\nuniform float weight5 : 1.0;\n#endif\n#ifdef TEXTURE6_ENABLED\nuniform sampler2D texture6;\nuniform float weight6 : 1.0;\n#endif\nvarying vec2 v_Texcoord;\n@import clay.util.rgbm\nvoid main()\n{\n    vec4 tex = vec4(0.0);\n#ifdef TEXTURE1_ENABLED\n    tex += decodeHDR(texture2D(texture1, v_Texcoord)) * weight1;\n#endif\n#ifdef TEXTURE2_ENABLED\n    tex += decodeHDR(texture2D(texture2, v_Texcoord)) * weight2;\n#endif\n#ifdef TEXTURE3_ENABLED\n    tex += decodeHDR(texture2D(texture3, v_Texcoord)) * weight3;\n#endif\n#ifdef TEXTURE4_ENABLED\n    tex += decodeHDR(texture2D(texture4, v_Texcoord)) * weight4;\n#endif\n#ifdef TEXTURE5_ENABLED\n    tex += decodeHDR(texture2D(texture5, v_Texcoord)) * weight5;\n#endif\n#ifdef TEXTURE6_ENABLED\n    tex += decodeHDR(texture2D(texture6, v_Texcoord)) * weight6;\n#endif\n    gl_FragColor = encodeHDR(tex);\n}\n@end");
-
-
-/***/ }),
-/* 179 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.fxaa\nuniform sampler2D texture;\nuniform vec4 viewport : VIEWPORT;\nvarying vec2 v_Texcoord;\n#define FXAA_REDUCE_MIN   (1.0/128.0)\n#define FXAA_REDUCE_MUL   (1.0/8.0)\n#define FXAA_SPAN_MAX     8.0\n@import clay.util.rgbm\nvoid main()\n{\n    vec2 resolution = 1.0 / viewport.zw;\n    vec3 rgbNW =  decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( -1.0, -1.0 ) ) * resolution ) ).xyz;\n    vec3 rgbNE = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( 1.0, -1.0 ) ) * resolution ) ).xyz;\n    vec3 rgbSW = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( -1.0, 1.0 ) ) * resolution ) ).xyz;\n    vec3 rgbSE = decodeHDR( texture2D( texture, ( gl_FragCoord.xy + vec2( 1.0, 1.0 ) ) * resolution ) ).xyz;\n    vec4 rgbaM  = decodeHDR( texture2D( texture,  gl_FragCoord.xy  * resolution ) );\n    vec3 rgbM  = rgbaM.xyz;\n    float opacity  = rgbaM.w;\n    vec3 luma = vec3( 0.299, 0.587, 0.114 );\n    float lumaNW = dot( rgbNW, luma );\n    float lumaNE = dot( rgbNE, luma );\n    float lumaSW = dot( rgbSW, luma );\n    float lumaSE = dot( rgbSE, luma );\n    float lumaM  = dot( rgbM,  luma );\n    float lumaMin = min( lumaM, min( min( lumaNW, lumaNE ), min( lumaSW, lumaSE ) ) );\n    float lumaMax = max( lumaM, max( max( lumaNW, lumaNE) , max( lumaSW, lumaSE ) ) );\n    vec2 dir;\n    dir.x = -((lumaNW + lumaNE) - (lumaSW + lumaSE));\n    dir.y =  ((lumaNW + lumaSW) - (lumaNE + lumaSE));\n    float dirReduce = max( ( lumaNW + lumaNE + lumaSW + lumaSE ) * ( 0.25 * FXAA_REDUCE_MUL ), FXAA_REDUCE_MIN );\n    float rcpDirMin = 1.0 / ( min( abs( dir.x ), abs( dir.y ) ) + dirReduce );\n    dir = min( vec2( FXAA_SPAN_MAX,  FXAA_SPAN_MAX),\n          max( vec2(-FXAA_SPAN_MAX, -FXAA_SPAN_MAX),\n                dir * rcpDirMin)) * resolution;\n    vec3 rgbA = decodeHDR( texture2D( texture, gl_FragCoord.xy  * resolution + dir * ( 1.0 / 3.0 - 0.5 ) ) ).xyz;\n    rgbA += decodeHDR( texture2D( texture, gl_FragCoord.xy  * resolution + dir * ( 2.0 / 3.0 - 0.5 ) ) ).xyz;\n    rgbA *= 0.5;\n    vec3 rgbB = decodeHDR( texture2D( texture, gl_FragCoord.xy  * resolution + dir * -0.5 ) ).xyz;\n    rgbB += decodeHDR( texture2D( texture, gl_FragCoord.xy  * resolution + dir * 0.5 ) ).xyz;\n    rgbB *= 0.25;\n    rgbB += rgbA * 0.5;\n    float lumaB = dot( rgbB, luma );\n    if ( ( lumaB < lumaMin ) || ( lumaB > lumaMax ) )\n    {\n        gl_FragColor = vec4( rgbA, opacity );\n    }\n    else {\n        gl_FragColor = vec4( rgbB, opacity );\n    }\n}\n@end");
-
-
-/***/ }),
-/* 180 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.dof.coc\n\nuniform sampler2D depth;\n\nuniform float zNear: 0.1;\nuniform float zFar: 2000;\n\nuniform float focalDistance: 3;\nuniform float focalRange: 1;\nuniform float focalLength: 30;\nuniform float fstop: 2.8;\n\nvarying vec2 v_Texcoord;\n\n@import clay.util.encode_float\n\nvoid main()\n{\n float z = texture2D(depth, v_Texcoord).r * 2.0 - 1.0;\n\n float dist = 2.0 * zNear * zFar / (zFar + zNear - z * (zFar - zNear));\n\n float aperture = focalLength / fstop;\n\n float coc;\n\n float uppper = focalDistance + focalRange;\n float lower = focalDistance - focalRange;\n if (dist <= uppper && dist >= lower) {\n coc = 0.5;\n }\n else {\n float focalAdjusted = dist > uppper ? uppper : lower;\n\n coc = abs(aperture * (focalLength * (dist - focalAdjusted)) / (dist * (focalAdjusted - focalLength)));\n coc = clamp(coc, 0.0, 2.0) / 2.00001;\n\n if (dist < lower) {\n coc = -coc;\n }\n coc = coc * 0.5 + 0.5;\n }\n\n gl_FragColor = encodeFloat(coc);\n}\n@end\n\n\n@export ecgl.dof.composite\n\n#define DEBUG 0\n\nuniform sampler2D original;\nuniform sampler2D blurred;\nuniform sampler2D nearfield;\nuniform sampler2D coc;\nuniform sampler2D nearcoc;\nvarying vec2 v_Texcoord;\n\n@import clay.util.rgbm\n@import clay.util.float\n\nvoid main()\n{\n vec4 blurredColor = decodeHDR(texture2D(blurred, v_Texcoord));\n vec4 originalColor = decodeHDR(texture2D(original, v_Texcoord));\n\n float fCoc = decodeFloat(texture2D(coc, v_Texcoord));\n\n fCoc = abs(fCoc * 2.0 - 1.0);\n\n float weight = smoothstep(0.0, 1.0, fCoc);\n \n#ifdef NEARFIELD_ENABLED\n vec4 nearfieldColor = decodeHDR(texture2D(nearfield, v_Texcoord));\n float fNearCoc = decodeFloat(texture2D(nearcoc, v_Texcoord));\n fNearCoc = abs(fNearCoc * 2.0 - 1.0);\n\n gl_FragColor = encodeHDR(\n mix(\n nearfieldColor, mix(originalColor, blurredColor, weight),\n pow(1.0 - fNearCoc, 4.0)\n )\n );\n#else\n gl_FragColor = encodeHDR(mix(originalColor, blurredColor, weight));\n#endif\n\n}\n\n@end\n\n\n\n@export ecgl.dof.diskBlur\n\n#define POISSON_KERNEL_SIZE 16;\n\nuniform sampler2D texture;\nuniform sampler2D coc;\nvarying vec2 v_Texcoord;\n\nuniform float blurRadius : 10.0;\nuniform vec2 textureSize : [512.0, 512.0];\n\nuniform vec2 poissonKernel[POISSON_KERNEL_SIZE];\n\nuniform float percent;\n\nfloat nrand(const in vec2 n) {\n return fract(sin(dot(n.xy ,vec2(12.9898,78.233))) * 43758.5453);\n}\n\n@import clay.util.rgbm\n@import clay.util.float\n\n\nvoid main()\n{\n vec2 offset = blurRadius / textureSize;\n\n float rnd = 6.28318 * nrand(v_Texcoord + 0.07 * percent );\n float cosa = cos(rnd);\n float sina = sin(rnd);\n vec4 basis = vec4(cosa, -sina, sina, cosa);\n\n#if !defined(BLUR_NEARFIELD) && !defined(BLUR_COC)\n offset *= abs(decodeFloat(texture2D(coc, v_Texcoord)) * 2.0 - 1.0);\n#endif\n\n#ifdef BLUR_COC\n float cocSum = 0.0;\n#else\n vec4 color = vec4(0.0);\n#endif\n\n\n float weightSum = 0.0;\n\n for (int i = 0; i < POISSON_KERNEL_SIZE; i++) {\n vec2 ofs = poissonKernel[i];\n\n ofs = vec2(dot(ofs, basis.xy), dot(ofs, basis.zw));\n\n vec2 uv = v_Texcoord + ofs * offset;\n vec4 texel = texture2D(texture, uv);\n\n float w = 1.0;\n#ifdef BLUR_COC\n float fCoc = decodeFloat(texel) * 2.0 - 1.0;\n cocSum += clamp(fCoc, -1.0, 0.0) * w;\n#else\n texel = decodeHDR(texel);\n #if !defined(BLUR_NEARFIELD)\n float fCoc = decodeFloat(texture2D(coc, uv)) * 2.0 - 1.0;\n w *= abs(fCoc);\n #endif\n color += texel * w;\n#endif\n\n weightSum += w;\n }\n\n#ifdef BLUR_COC\n gl_FragColor = encodeFloat(clamp(cocSum / weightSum, -1.0, 0.0) * 0.5 + 0.5);\n#else\n color /= weightSum;\n gl_FragColor = encodeHDR(color);\n#endif\n}\n\n@end");
-
-
-/***/ }),
-/* 181 */
+/* 191 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43048,7 +43765,7 @@ EdgePass.prototype.dispose = function (renderer) {
 
 
 /***/ }),
-/* 182 */
+/* 192 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43056,8 +43773,8 @@ EdgePass.prototype.dispose = function (renderer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_compositor_Pass__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_FrameBuffer__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Texture2D__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Matrix4__ = __webpack_require__(7);
 // Temporal Super Sample for static Scene
 
 
@@ -43226,15 +43943,15 @@ TemporalSuperSampling.prototype = {
 /* harmony default export */ __webpack_exports__["a"] = (TemporalSuperSampling);
 
 /***/ }),
-/* 183 */
+/* 193 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geo3D_Geo3DModel__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__geo3D_Geo3DView__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_geo3DCreator__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__geo3D_Geo3DModel__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__geo3D_Geo3DView__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_geo3DCreator__ = __webpack_require__(91);
 
 
 
@@ -43255,17 +43972,17 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 });
 
 /***/ }),
-/* 184 */
+/* 194 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_componentViewControlMixin__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentPostEffectMixin__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_componentLightMixin__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_componentShadingMixin__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__coord_geo3D_geo3DModelMixin__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentPostEffectMixin__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_componentLightMixin__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_componentShadingMixin__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__coord_geo3D_geo3DModelMixin__ = __webpack_require__(89);
 
 
 
@@ -43370,7 +44087,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Geo3DMode
 /* unused harmony default export */ var _unused_webpack_default_export = (Geo3DModel);
 
 /***/ }),
-/* 185 */
+/* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43379,7 +44096,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Geo3DMode
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_OrbitControl__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_SceneHelper__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_SceneHelper__ = __webpack_require__(27);
 
 
 
@@ -43477,7 +44194,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Geo3DMode
 }));
 
 /***/ }),
-/* 186 */
+/* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44101,7 +44818,7 @@ function signedArea(data, start, end, dim) {
 }
 
 /***/ }),
-/* 187 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var zrUtil = __webpack_require__(12);
@@ -44131,7 +44848,7 @@ function _default(geo) {
 module.exports = _default;
 
 /***/ }),
-/* 188 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var zrUtil = __webpack_require__(12);
@@ -44157,15 +44874,15 @@ function _default(geo) {
 module.exports = _default;
 
 /***/ }),
-/* 189 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__globe_GlobeModel__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globe_GlobeView__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_globeCreator__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__globe_GlobeModel__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globe_GlobeView__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_globeCreator__ = __webpack_require__(203);
 
 
 
@@ -44194,16 +44911,16 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 });
 
 /***/ }),
-/* 190 */
+/* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_componentViewControlMixin__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentPostEffectMixin__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_componentLightMixin__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_componentShadingMixin__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentPostEffectMixin__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_componentLightMixin__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_componentShadingMixin__ = __webpack_require__(28);
 
 
 
@@ -44405,7 +45122,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(GlobeMode
 /* unused harmony default export */ var _unused_webpack_default_export = (GlobeModel);
 
 /***/ }),
-/* 191 */
+/* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44413,8 +45130,8 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(GlobeMode
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_OrbitControl__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_SceneHelper__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_sunCalc__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_SceneHelper__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_sunCalc__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_retrieve__ = __webpack_require__(3);
 
 
@@ -44830,7 +45547,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(GlobeMode
 }));
 
 /***/ }),
-/* 192 */
+/* 202 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44921,16 +45638,16 @@ SunCalc.getPosition = function (date, lat, lng) {
 /* harmony default export */ __webpack_exports__["a"] = (SunCalc);
 
 /***/ }),
-/* 193 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__globe_Globe__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__globe_Globe__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_util_layout__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_util_layout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_util_layout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_retrieve__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_graphicGL__ = __webpack_require__(2);
 
@@ -44995,7 +45712,8 @@ function updateGlobe(ecModel, api) {
 
         // Get altitude data extent.
         var data = seriesModel.getData();
-        var altDim = seriesModel.coordDimToDataDim('alt')[0];
+        var altDims = seriesModel.coordDimToDataDim('alt');
+        var altDim = altDims && altDims[0];
         if (altDim) {
             // TODO altitiude is in coords of lines.
             var dataExtent = data.getDataExtent(altDim, true);
@@ -45113,7 +45831,7 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.registerCoordinateSy
 /* unused harmony default export */ var _unused_webpack_default_export = (globeCreator);
 
 /***/ }),
-/* 194 */
+/* 204 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45223,15 +45941,15 @@ Globe.prototype = {
 /* harmony default export */ __webpack_exports__["a"] = (Globe);
 
 /***/ }),
-/* 195 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coord_mapbox3DCreator__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapbox3D_Mapbox3DModel__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapbox3D_Mapbox3DView__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coord_mapbox3DCreator__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapbox3D_Mapbox3DModel__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapbox3D_Mapbox3DView__ = __webpack_require__(209);
 
 
 
@@ -45253,327 +45971,54 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 });
 
 /***/ }),
-/* 196 */
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_retrieve__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_ViewGL__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapServiceCommon_createMapService3DCreator__ = __webpack_require__(94);
 
 
 
 
-
-
-function resizeMapbox3D(mapbox3DModel, api) {
-    var width = api.getWidth();
-    var height = api.getHeight();
-    var dpr = api.getDevicePixelRatio();
-    this.viewGL.setViewport(0, 0, width, height, dpr);
-
-    this.width = width;
-    this.height = height;
-
-    this.altitudeScale = mapbox3DModel.get('altitudeScale');
-
-    this.boxHeight = mapbox3DModel.get('boxHeight');
-    // this.updateTransform();
-}
-
-
-function updateMapbox(ecModel, api) {
-
-    if (this.model.get('boxHeight') === 'auto') {
-        return;
-    }
-
-    var altitudeDataExtent = [Infinity, -Infinity]
-
-    ecModel.eachSeries(function (seriesModel) {
-        if (seriesModel.coordinateSystem !== this) {
-            return;
-        }
-
-        // Get altitude data extent.
-        var data = seriesModel.getData();
-        var altDim = seriesModel.coordDimToDataDim('alt')[0];
-        if (altDim) {
-            // TODO altitiude is in coords of lines.
-            var dataExtent = data.getDataExtent(altDim, true);
-            altitudeDataExtent[0] = Math.min(
-                altitudeDataExtent[0], dataExtent[0]
-            );
-            altitudeDataExtent[1] = Math.max(
-                altitudeDataExtent[1], dataExtent[1]
-            );
-        }
-    }, this);
-    if (altitudeDataExtent && isFinite(altitudeDataExtent[1] - altitudeDataExtent[0])) {
-        this.altitudeExtent = altitudeDataExtent;
-    }
-}
-
-var mapbox3DCreator = {
-
-
-    dimensions: __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__["a" /* default */].prototype.dimensions,
-
-    create: function (ecModel, api) {
-        var mapbox3DList = [];
-
-        ecModel.eachComponent('mapbox3D', function (mapbox3DModel) {
-            var viewGL = mapbox3DModel.__viewGL;
-            if (!viewGL) {
-                viewGL = mapbox3DModel.__viewGL = new __WEBPACK_IMPORTED_MODULE_4__core_ViewGL__["a" /* default */]();
-                viewGL.setRootNode(new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Node());
-            }
-
-            var mapbox3DCoordSys = new __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__["a" /* default */]();
-            mapbox3DCoordSys.viewGL = mapbox3DModel.__viewGL;
-            // Inject resize
-            mapbox3DCoordSys.resize = resizeMapbox3D;
-            mapbox3DCoordSys.resize(mapbox3DModel, api);
-
-            mapbox3DList.push(mapbox3DCoordSys);
-
-            mapbox3DModel.coordinateSystem = mapbox3DCoordSys;
-            mapbox3DCoordSys.model = mapbox3DModel;
-
-            mapbox3DCoordSys.setCameraOption(mapbox3DModel.getMapboxCameraOption());
-
-            mapbox3DCoordSys.update = updateMapbox;
-        });
-
-        ecModel.eachSeries(function (seriesModel) {
-            if (seriesModel.get('coordinateSystem') === 'mapbox3D') {
-                var mapbox3DModel = seriesModel.getReferringComponents('mapbox3D')[0];
-                if (!mapbox3DModel) {
-                    mapbox3DModel = ecModel.getComponent('mapbox3D');
-                }
-
-                if (!mapbox3DModel) {
-                    throw new Error('mapbox3D "' + __WEBPACK_IMPORTED_MODULE_2__util_retrieve__["a" /* default */].firstNotNull(
-                        seriesModel.get('mapbox3DIndex'),
-                        seriesModel.get('mapbox3DId'),
-                        0
-                    ) + '" not found');
-                }
-
-                seriesModel.coordinateSystem = mapbox3DModel.coordinateSystem;
-            }
-        });
-
-        return mapbox3DList;
-    }
-};
-
-
+var mapbox3DCreator = Object(__WEBPACK_IMPORTED_MODULE_2__mapServiceCommon_createMapService3DCreator__["a" /* default */])('mapbox3D', __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__["a" /* default */], function (mapbox3DList) {
+    mapbox3DList.forEach(function (mapbox3D) {
+        mapbox3D.setCameraOption(mapbox3D.model.getMapboxCameraOption());
+    });
+});
 __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.registerCoordinateSystem('mapbox3D', mapbox3DCreator);
 
 /* unused harmony default export */ var _unused_webpack_default_export = (mapbox3DCreator);
 
 /***/ }),
-/* 197 */
+/* 207 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mapServiceCommon_MapService3D__ = __webpack_require__(93);
 
-var mat4 = __WEBPACK_IMPORTED_MODULE_0_claygl_src_dep_glmatrix___default.a.mat4;
-
-var TILE_SIZE = 512;
-var FOV = 0.6435011087932844;
-var PI = Math.PI;
-
-var WORLD_SCALE = 1 / 10;
 
 function Mapbox3D() {
-    /**
-     * Width of mapbox viewport
-     */
-    this.width = 0;
-    /**
-     * Height of mapbox viewport
-     */
-    this.height = 0;
-
-    this.altitudeScale = 1;
-
-    // TODO Change boxHeight won't have animation.
-    this.boxHeight = 'auto';
-
-    // Set by mapbox creator
-    this.altitudeExtent;
-
-    this.bearing = 0;
-    this.pitch = 0;
-    this.center = [0, 0];
-    this._origin;
-
-    this.zoom = 0;
-    this._initialZoom;
+    __WEBPACK_IMPORTED_MODULE_0__mapServiceCommon_MapService3D__["a" /* default */].apply(this, arguments);
 }
 
-Mapbox3D.prototype = {
-
-    constructor: Mapbox3D,
-
-    type: 'mapbox3D',
-
-    dimensions: ['lng', 'lat', 'alt'],
-
-    containPoint: function () {},
-
-    setCameraOption: function (option) {
-        this.bearing = option.bearing;
-        this.pitch = option.pitch;
-
-        this.center = option.center;
-        this.zoom = option.zoom;
-
-        if (!this._origin) {
-            this._origin = this.projectOnTileWithScale(this.center, TILE_SIZE);
-        }
-        if (this._initialZoom == null) {
-            this._initialZoom = this.zoom;
-        }
-
-        this.updateTransform();
-    },
-
-    // https://github.com/mapbox/mapbox-gl-js/blob/master/src/geo/transform.js#L479
-    updateTransform: function () {
-        if (!this.height) { return; }
-
-        var cameraToCenterDistance = 0.5 / Math.tan(FOV / 2) * this.height * WORLD_SCALE;
-        // Convert to radian.
-        var pitch = Math.max(Math.min(this.pitch, 60), 0) / 180 * Math.PI;
-
-        // Find the distance from the center point [width/2, height/2] to the
-        // center top point [width/2, 0] in Z units, using the law of sines.
-        // 1 Z unit is equivalent to 1 horizontal px at the center of the map
-        // (the distance between[width/2, height/2] and [width/2 + 1, height/2])
-        var halfFov = FOV / 2;
-        var groundAngle = Math.PI / 2 + pitch;
-        var topHalfSurfaceDistance = Math.sin(halfFov) * cameraToCenterDistance / Math.sin(Math.PI - groundAngle - halfFov);
-
-        // Calculate z distance of the farthest fragment that should be rendered.
-        var furthestDistance = Math.cos(Math.PI / 2 - pitch) * topHalfSurfaceDistance + cameraToCenterDistance;
-        // Add a bit extra to avoid precision problems when a fragment's distance is exactly `furthestDistance`
-        var farZ = furthestDistance * 1.1;
-
-        // matrix for conversion from location to GL coordinates (-1 .. 1)
-        var m = new Float64Array(16);
-        mat4.perspective(m, FOV, this.width / this.height, 1, farZ);
-        this.viewGL.camera.projectionMatrix.setArray(m);
-        this.viewGL.camera.decomposeProjectionMatrix();
-
-        var m = mat4.identity(new Float64Array(16));
-        var pt = this.dataToPoint(this.center);
-        // Inverse
-        mat4.scale(m, m, [1, -1, 1]);
-        // Translate to altitude
-        mat4.translate(m, m, [0, 0, -cameraToCenterDistance]);
-        mat4.rotateX(m, m, pitch);
-        mat4.rotateZ(m, m, -this.bearing / 180 * Math.PI);
-        // Translate to center.
-        mat4.translate(m, m, [-pt[0] * this.getScale() * WORLD_SCALE, -pt[1] * this.getScale() * WORLD_SCALE, 0]);
-
-        this.viewGL.camera.viewMatrix.array = m;
-        var invertM = new Float64Array(16);
-        mat4.invert(invertM, m);
-        this.viewGL.camera.worldTransform.array = invertM;
-        this.viewGL.camera.decomposeWorldTransform();
-
-        // scale vertically to meters per pixel (inverse of ground resolution):
-        // worldSize / (circumferenceOfEarth * cos(lat * π / 180))
-        var worldSize = TILE_SIZE * this.getScale();
-        var verticalScale;
-
-        if (this.altitudeExtent && !isNaN(this.boxHeight)) {
-            var range = this.altitudeExtent[1] - this.altitudeExtent[0];
-            verticalScale = this.boxHeight / range * this.getScale() / Math.pow(2, this._initialZoom);
-        }
-        else {
-            verticalScale = worldSize / (2 * Math.PI * 6378000 * Math.abs(Math.cos(this.center[1] * (Math.PI / 180))))
-                * this.altitudeScale * WORLD_SCALE;
-        }
-        // Include scale to avoid relayout when zooming
-        // FIXME Camera scale may have problem in shadow
-        this.viewGL.rootNode.scale.set(
-            this.getScale() * WORLD_SCALE, this.getScale() * WORLD_SCALE, verticalScale
-        );
-    },
-
-    getScale: function () {
-        return Math.pow(2, this.zoom);
-    },
-
-    projectOnTile: function (data, out) {
-        return this.projectOnTileWithScale(data, this.getScale() * TILE_SIZE, out);
-    },
-
-    projectOnTileWithScale: function (data, scale, out) {
-        var lng = data[0];
-        var lat = data[1];
-        var lambda2 = lng * PI / 180;
-        var phi2 = lat * PI / 180;
-        var x = scale * (lambda2 + PI) / (2 * PI);
-        var y = scale * (PI - Math.log(Math.tan(PI / 4 + phi2 * 0.5))) / (2 * PI);
-        out = out || [];
-        out[0] = x;
-        out[1] = y;
-        return out;
-    },
-
-    unprojectFromTile: function (point, out) {
-        return this.unprojectOnTileWithScale(point, this.getScale() * TILE_SIZE, out);
-    },
-
-    unprojectOnTileWithScale: function (point, scale, out) {
-        var x = point[0];
-        var y = point[1];
-        var lambda2 = (x / scale) * (2 * PI) - PI;
-        var phi2 = 2 * (Math.atan(Math.exp(PI - (y / scale) * (2 * PI))) - PI / 4);
-        out = out || [];
-        out[0] = lambda2 * 180 / PI;
-        out[1] = phi2 * 180 / PI;
-        return out;
-    },
-
-    dataToPoint: function (data, out) {
-        out = this.projectOnTileWithScale(data, TILE_SIZE, out);
-        // Add a origin to avoid precision issue in WebGL.
-        out[0] -= this._origin[0];
-        out[1] -= this._origin[1];
-        // PENDING
-        out[2] = !isNaN(data[2]) ? data[2] : 0;
-        if (!isNaN(data[2])) {
-            out[2] = data[2];
-            if (this.altitudeExtent) {
-                out[2] -= this.altitudeExtent[0];
-            }
-        }
-        return out;
-    }
-};
+Mapbox3D.prototype = new __WEBPACK_IMPORTED_MODULE_0__mapServiceCommon_MapService3D__["a" /* default */]();
+Mapbox3D.prototype.constructor = Mapbox3D;
+Mapbox3D.prototype.type = 'mapbox3D';
 
 /* harmony default export */ __webpack_exports__["a"] = (Mapbox3D);
 
 /***/ }),
-/* 198 */
+/* 208 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_componentPostEffectMixin__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentLightMixin__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_componentPostEffectMixin__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentLightMixin__ = __webpack_require__(26);
 
 
 
@@ -45650,16 +46095,16 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Mapbox3DM
 /* unused harmony default export */ var _unused_webpack_default_export = (Mapbox3DModel);
 
 /***/ }),
-/* 199 */
+/* 209 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Mapbox3DLayer__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_SceneHelper__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Mapbox3DLayer__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_SceneHelper__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_shader_displayShadow_glsl_js__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_shader_displayShadow_glsl_js__ = __webpack_require__(95);
 
 
 
@@ -45801,12 +46246,15 @@ var TILE_SIZE = 512;
     },
 
     dispose: function (ecModel, api) {
-        api.getZr().delLayer(-1000);
+        if (this._zrLayer) {
+            this._zrLayer.dispose();
+        }
+        api.getZr().painter.delLayer(-1000);
     }
 }));
 
 /***/ }),
-/* 200 */
+/* 210 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45889,23 +46337,446 @@ Mapbox3DLayer.prototype.dispose = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Mapbox3DLayer);
 
 /***/ }),
-/* 201 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("\n@export ecgl.displayShadow.vertex\n\n@import ecgl.common.transformUniforms\n\n@import ecgl.common.uv.header\n\n@import ecgl.common.attributes\n\nvarying vec3 v_WorldPosition;\n\nvarying vec3 v_Normal;\n\nvoid main()\n{\n @import ecgl.common.uv.main\n v_Normal = normalize((worldInverseTranspose * vec4(normal, 0.0)).xyz);\n\n v_WorldPosition = (world * vec4(position, 1.0)).xyz;\n gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n\n@end\n\n\n@export ecgl.displayShadow.fragment\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform float roughness: 0.2;\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n@import ecgl.common.ssaoMap.header\n\n@import clay.plugin.compute_shadow_map\n\nvoid main()\n{\n float shadow = 1.0;\n\n @import ecgl.common.ssaoMap.main\n\n#if defined(DIRECTIONAL_LIGHT_COUNT) && defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n for (int i = 0; i < DIRECTIONAL_LIGHT_COUNT; i++) {\n shadow = min(shadow, shadowContribsDir[i] * 0.5 + 0.5);\n }\n#endif\n\n shadow *= 0.5 + ao * 0.5;\n shadow = clamp(shadow, 0.0, 1.0);\n\n gl_FragColor = vec4(vec3(0.0), 1.0 - shadow);\n}\n\n@end");
-
-
-/***/ }),
-/* 202 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bar3D_bar3DLayout__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bar3D_Bar3DView__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bar3D_Bar3DSeries__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coord_maptalks3DCreator__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maptalks3D_Maptalks3DModel__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__maptalks3D_Maptalks3DView__ = __webpack_require__(215);
+// Thanks to https://gitee.com/iverson_hu/maptalks-echarts-gl
+
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
+    type: 'maptalks3DChangeCamera',
+    event: 'maptalks3dcamerachanged',
+    update: 'maptalks3D:updateCamera'
+}, function (payload, ecModel) {
+    ecModel.eachComponent({
+        mainType: 'maptalks3D', query: payload
+    }, function (componentModel) {
+        componentModel.setMaptalksCameraOption(payload);
+    });
+});
+
+/***/ }),
+/* 212 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__maptalks3D_Maptalks3D__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapServiceCommon_createMapService3DCreator__ = __webpack_require__(94);
+
+
+
+
+var maptalks3DCreator = Object(__WEBPACK_IMPORTED_MODULE_2__mapServiceCommon_createMapService3DCreator__["a" /* default */])('maptalks3D', __WEBPACK_IMPORTED_MODULE_0__maptalks3D_Maptalks3D__["a" /* default */], function (maptalks3DList) {
+    maptalks3DList.forEach(function (maptalks3D) {
+        maptalks3D.setCameraOption(maptalks3D.model.getMaptalksCameraOption());
+    });
+});
+__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.registerCoordinateSystem('maptalks3D', maptalks3DCreator);
+
+/* unused harmony default export */ var _unused_webpack_default_export = (maptalks3DCreator);
+
+/***/ }),
+/* 213 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mapServiceCommon_MapService3D__ = __webpack_require__(93);
+
+
+function Maptalks3D() {
+    __WEBPACK_IMPORTED_MODULE_0__mapServiceCommon_MapService3D__["a" /* default */].apply(this, arguments);
+
+    this.maxPitch = 85;
+    this.zoomOffset = 1;
+}
+
+Maptalks3D.prototype = new __WEBPACK_IMPORTED_MODULE_0__mapServiceCommon_MapService3D__["a" /* default */]();
+Maptalks3D.prototype.constructor = Maptalks3D;
+Maptalks3D.prototype.type = 'maptalks3D';
+
+/* harmony default export */ __webpack_exports__["a"] = (Maptalks3D);
+
+/***/ }),
+/* 214 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_componentPostEffectMixin__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_componentLightMixin__ = __webpack_require__(26);
+
+
+
+
+
+var MAPTALKS_CAMERA_OPTION = ['zoom', 'center', 'pitch', 'bearing'];
+
+var Maptalks3DModel = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendComponentModel({
+
+    type: 'maptalks3D',
+
+    layoutMode: 'box',
+
+    coordinateSystem: null,
+
+    defaultOption: {
+        zlevel: -10,
+
+        urlTemplate: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
+
+        center: [0, 0],
+
+        zoom: 0,
+
+        pitch: 0,
+
+        bearing: 0,
+
+        light: {
+            main: {
+                alpha: 20,
+                beta: 30
+            }
+        },
+
+        altitudeScale: 1,
+        // Default depend on altitudeScale
+        boxHeight: 'auto'
+    },
+
+    getMaptalksCameraOption: function () {
+        var self = this;
+        return MAPTALKS_CAMERA_OPTION.reduce(function (obj, key) {
+            obj[key] = self.get(key);
+            return obj;
+        }, {});
+    },
+
+    setMaptalksCameraOption: function (option) {
+        if (option != null) {
+            MAPTALKS_CAMERA_OPTION.forEach(function (key) {
+                if (option[key] != null) {
+                    this.option[key] = option[key];
+                }
+            }, this);
+        }
+    },
+
+    /**
+     * Get maptalks instance
+     */
+    getMaptalks: function () {
+        return this._maptalks;
+    },
+
+    setMaptalks: function (maptalks) {
+        this._maptalks = maptalks;
+    }
+});
+
+__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Maptalks3DModel.prototype, __WEBPACK_IMPORTED_MODULE_1__common_componentPostEffectMixin__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Maptalks3DModel.prototype, __WEBPACK_IMPORTED_MODULE_2__common_componentLightMixin__["a" /* default */]);
+
+/* unused harmony default export */ var _unused_webpack_default_export = (Maptalks3DModel);
+
+/***/ }),
+/* 215 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Maptalks3DLayer__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_SceneHelper__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_shader_displayShadow_glsl_js__ = __webpack_require__(95);
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Shader.import(__WEBPACK_IMPORTED_MODULE_4__util_shader_displayShadow_glsl_js__["a" /* default */]);
+
+/* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendComponentView({
+
+    type: 'maptalks3D',
+
+    __ecgl__: true,
+
+    init: function (ecModel, api) {
+        this._groundMesh = new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Mesh({
+            geometry: new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].PlaneGeometry(),
+            material: new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Material({
+                shader: new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Shader({
+                    vertex: __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Shader.source('ecgl.displayShadow.vertex'),
+                    fragment: __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Shader.source('ecgl.displayShadow.fragment')
+                }),
+                depthMask: false
+            }),
+            // Render first
+            renderOrder: -100,
+            culling: false,
+            castShadow: false,
+            $ignorePicking: true,
+            renderNormal: true
+        });
+    },
+
+    _initMaptalksLayer: function (mapbox3DModel, api) {
+        var zr = api.getZr();
+        this._zrLayer = new __WEBPACK_IMPORTED_MODULE_1__Maptalks3DLayer__["a" /* default */]('maptalks3D', zr, mapbox3DModel.get('center'), mapbox3DModel.get('zoom'));
+        zr.painter.insertLayer(-1000, this._zrLayer);
+
+        this._lightRoot = new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Node();
+        this._sceneHelper = new __WEBPACK_IMPORTED_MODULE_2__common_SceneHelper__["a" /* default */](this._lightRoot);
+        this._sceneHelper.initLight(this._lightRoot);
+
+        var maptalks = this._zrLayer.getMaptalks();
+        var dispatchInteractAction = this._dispatchInteractAction.bind(this, api, maptalks);
+
+        // PENDING
+        ['zoomend', 'zooming', 'zoomstart', 'dragrotating', 'pitch', 'pitchend', 'movestart',
+            'moving', 'moveend', 'resize', 'touchstart', 'touchmove', 'touchend'].forEach(function (eName) {
+            maptalks.on(eName, dispatchInteractAction);
+        });
+
+    },
+
+    render: function (maptalks3DModel, ecModel, api) {
+        if (!this._zrLayer) {
+            this._initMaptalksLayer(maptalks3DModel, api);
+        }
+
+        var mtks = this._zrLayer.getMaptalks();
+        var urlTemplate = maptalks3DModel.get('urlTemplate');
+
+        var baseLayer = mtks.getBaseLayer();
+        if (urlTemplate !== this._oldUrlTemplate) {
+            if (!baseLayer) {
+                baseLayer = new maptalks.TileLayer('maptalks-echarts-gl-baselayer', {
+                    urlTemplate: urlTemplate,
+                    // used sequentially to help with browser parallel requests per domain limitation
+                    subdomains: ['a', 'b', 'c'],
+                    attribution: maptalks3DModel.get('attribution')
+                });
+                mtks.setBaseLayer(baseLayer);
+            }
+            else {
+                // PENDING setOptions may not work?
+                baseLayer.setOptions({
+                    urlTemplate: urlTemplate,
+                    attribution: maptalks3DModel.get('attribution')
+                });
+            }
+        }
+        this._oldUrlTemplate = urlTemplate;
+
+        mtks.setCenter(maptalks3DModel.get('center'));
+        mtks.setZoom(maptalks3DModel.get('zoom'),{ animation: false });
+        mtks.setPitch(maptalks3DModel.get('pitch'));
+        mtks.setBearing(maptalks3DModel.get('bearing'));
+
+        maptalks3DModel.setMaptalks(mtks);
+
+        var coordSys = maptalks3DModel.coordinateSystem;
+
+        // Not add to rootNode. Or light direction will be stretched by rootNode scale
+        coordSys.viewGL.scene.add(this._lightRoot);
+        coordSys.viewGL.add(this._groundMesh);
+
+        this._updateGroundMesh();
+
+        // Update lights
+        this._sceneHelper.setScene(coordSys.viewGL.scene);
+        this._sceneHelper.updateLight(maptalks3DModel);
+
+        // Update post effects
+        coordSys.viewGL.setPostEffect(maptalks3DModel.getModel('postEffect'), api);
+        coordSys.viewGL.setTemporalSuperSampling(maptalks3DModel.getModel('temporalSuperSampling'));
+
+        this._maptalks3DModel = maptalks3DModel;
+    },
+
+    afterRender: function (maptalks3DModel, ecModel, api, layerGL) {
+        var renderer = layerGL.renderer;
+        this._sceneHelper.updateAmbientCubemap(renderer, maptalks3DModel, api);
+        this._sceneHelper.updateSkybox(renderer, maptalks3DModel, api);
+
+        // FIXME If other series changes coordinate system.
+        // FIXME When doing progressive rendering.
+        maptalks3DModel.coordinateSystem.viewGL.scene.traverse(function (mesh) {
+            if (mesh.material) {
+                mesh.material.define('fragment', 'NORMAL_UP_AXIS', 2);
+                mesh.material.define('fragment', 'NORMAL_FRONT_AXIS', 1);
+            }
+        });
+    },
+
+    updateCamera: function (maptalks3DModel, ecModel, api, payload) {
+        maptalks3DModel.coordinateSystem.setCameraOption(payload);
+
+        this._updateGroundMesh();
+
+        api.getZr().refresh();
+    },
+
+    _dispatchInteractAction: function (api, maptalks, maptalks3DModel) {
+        api.dispatchAction({
+            type: 'maptalks3DChangeCamera',
+            pitch: maptalks.getPitch(),
+            zoom: maptalks.getZoom(),
+            center: maptalks.getCenter().toArray(),
+            bearing: maptalks.getBearing(),
+            maptalks3DId: this._maptalks3DModel && this._maptalks3DModel.id
+        });
+    },
+
+    _updateGroundMesh: function () {
+        if (this._maptalks3DModel) {
+            var coordSys = this._maptalks3DModel.coordinateSystem;
+            var pt = coordSys.dataToPoint(coordSys.center);
+            this._groundMesh.position.set(pt[0], pt[1], -0.001);
+
+            var plane = new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Plane(new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Vector3(0, 0, 1), 0);
+            var ray1 = coordSys.viewGL.camera.castRay(new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Vector2(-1, -1));
+            var ray2 = coordSys.viewGL.camera.castRay(new __WEBPACK_IMPORTED_MODULE_3__util_graphicGL__["a" /* default */].Vector2(1, 1));
+            var pos0 = ray1.intersectPlane(plane);
+            var pos1 = ray2.intersectPlane(plane);
+            var scale = pos0.dist(pos1) / coordSys.viewGL.rootNode.scale.x;
+            this._groundMesh.scale.set(scale, scale, 1);
+        }
+    },
+
+    dispose: function (ecModel, api) {
+        if (this._zrLayer) {
+            this._zrLayer.dispose();
+        }
+        api.getZr().painter.delLayer(-1000);
+    }
+}));
+
+/***/ }),
+/* 216 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * @constructor
+ * @alias module:echarts-gl/component/maptalks/Maptalks3DLayer
+ * @param {string} id Layer ID
+ * @param {module:zrender/ZRender} zr
+ */
+function Maptalks3DLayer (id, zr, defaultCenter, defaultZoom) {
+    this.id = id;
+    this.zr = zr;
+
+    this.dom = document.createElement('div');
+    this.dom.style.cssText = 'position:absolute;left:0;right:0;top:0;bottom:0;';
+
+    // FIXME If in module environment.
+    if (!maptalks) {
+        throw new Error('Maptalks library must be included. See https://maptalks.org');
+    }
+
+    this._maptalks = new maptalks.Map(this.dom, {
+        center: defaultCenter,
+        zoom: defaultZoom,
+        fog: false
+        // fogColor: [0, 0, 0]
+    });
+
+    // Proxy events
+    this._initEvents();
+
+}
+
+Maptalks3DLayer.prototype.resize = function () {
+    this._maptalks.checkSize();
+};
+
+Maptalks3DLayer.prototype.getMaptalks = function () {
+    return this._maptalks;
+};
+
+Maptalks3DLayer.prototype.clear = function () {};
+Maptalks3DLayer.prototype.refresh = function () {
+    this._maptalks.checkSize();
+};
+
+var EVENTS = ['mousedown', 'mouseup', 'click', 'dblclick', 'mousemove',
+    'mousewheel', 'DOMMouseScroll',
+    'touchstart', 'touchend', 'touchmove', 'touchcancel'
+];
+Maptalks3DLayer.prototype._initEvents = function () {
+    // Event is bound on canvas container.
+    var maptalksRoot = this.dom;
+    this._handlers = this._handlers || {
+        contextmenu: function (e) {
+            e.preventDefault();
+            return false;
+        }
+    };
+    EVENTS.forEach(function (eName) {
+        this._handlers[eName] = function (e) {
+            var obj = {};
+            for (var name in e) {
+                obj[name] = e[name];
+            }
+            obj.bubbles = false;
+            var newE = new e.constructor(e.type, obj);
+            if (eName === 'mousewheel' || eName === 'DOMMouseScroll') {
+                // maptalks listens events to different elements?
+                maptalksRoot.dispatchEvent(newE);
+            }
+            else {
+                maptalksRoot.firstElementChild.dispatchEvent(newE);
+            }
+        };
+        this.zr.dom.addEventListener(eName, this._handlers[eName]);
+    }, this);
+
+    // PENDING
+    this.zr.dom.addEventListener('contextmenu', this._handlers.contextmenu);
+};
+
+Maptalks3DLayer.prototype.dispose = function () {
+    EVENTS.forEach(function (eName) {
+        this.zr.dom.removeEventListener(eName, this._handlers[eName]);
+    }, this);
+    this._maptalks.remove();
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Maptalks3DLayer);
+
+
+/***/ }),
+/* 217 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bar3D_bar3DLayout__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bar3D_Bar3DView__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bar3D_Bar3DSeries__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
 
 
@@ -45928,7 +46799,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerProcessor(fu
 });
 
 /***/ }),
-/* 203 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45937,8 +46808,8 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerProcessor(fu
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_math_Vector3__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cartesian3DLayout__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__evaluateBarSparseness__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cartesian3DLayout__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__evaluateBarSparseness__ = __webpack_require__(220);
 
 
 
@@ -45946,6 +46817,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerProcessor(fu
 
 
 var vec3 = __WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix___default.a.vec3;
+var isDimensionStacked = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.helper.dataStack.isDimensionStacked;
 
 function globeLayout(seriesModel, coordSys) {
     var data = seriesModel.getData();
@@ -45965,9 +46837,12 @@ function globeLayout(seriesModel, coordSys) {
     else if (!__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.isArray(barSize)) {
         barSize = [barSize, barSize];
     }
+
+    var valueDim = getValueDimension(data, dims);
+
     data.each(dims, function (lng, lat, val, idx) {
-        var stackedValue = data.get(dims[2], idx, true);
-        var baseValue = data.stackedOn ? (stackedValue - val) : coordSys.altitudeAxis.scale.getExtent()[0];
+        var stackedValue = data.get(valueDim.dimension, idx);
+        var baseValue = valueDim.isStacked ? (stackedValue - val) : coordSys.altitudeAxis.scale.getExtent()[0];
         // TODO Stacked with minHeight.
         var height = Math.max(coordSys.altitudeAxis.dataToCoord(val), barMinHeight);
         var start = coordSys.dataToPoint([lng, lat, baseValue]);
@@ -46001,9 +46876,12 @@ function geo3DLayout(seriesModel, coordSys) {
         barSize = [barSize, barSize];
     }
     var dir = [0, 1, 0];
+
+    var valueDim = getValueDimension(data, dims);
+
     data.each(dims, function (lng, lat, val, idx) {
-        var stackedValue = data.get(dims[2], idx, true);
-        var baseValue = data.stackedOn ? (stackedValue - val) : coordSys.altitudeAxis.scale.getExtent()[0];
+        var stackedValue = data.get(valueDim.dimension, idx);
+        var baseValue = valueDim.isStacked ? (stackedValue - val) : coordSys.altitudeAxis.scale.getExtent()[0];
 
         var height = Math.max(coordSys.altitudeAxis.dataToCoord(val), barMinHeight);
         var start = coordSys.dataToPoint([lng, lat, baseValue]);
@@ -46014,7 +46892,7 @@ function geo3DLayout(seriesModel, coordSys) {
     data.setLayout('orient', [1, 0, 0]);
 }
 
-function mapbox3DLayout(seriesModel, coordSys) {
+function mapService3DLayout(seriesModel, coordSys) {
     var data = seriesModel.getData();
     var dimLng = seriesModel.coordDimToDataDim('lng')[0];
     var dimLat = seriesModel.coordDimToDataDim('lat')[0];
@@ -46049,10 +46927,13 @@ function mapbox3DLayout(seriesModel, coordSys) {
     }
 
     var dir = [0, 0, 1];
+    var dims = [dimLng, dimLat, dimAlt];
 
-    data.each([dimLng, dimLat, dimAlt], function (lng, lat, val, idx) {
-        var stackedValue = data.get(dimAlt, idx, true);
-        var baseValue = data.stackedOn ? (stackedValue - val) : 0;
+    var valueDim = getValueDimension(data, dims);
+
+    data.each(dims, function (lng, lat, val, idx) {
+        var stackedValue = data.get(valueDim.dimension, idx);
+        var baseValue = valueDim.isStacked ? (stackedValue - val) : 0;
 
         var start = coordSys.dataToPoint([lng, lat, baseValue]);
         var end = coordSys.dataToPoint([lng, lat, stackedValue]);
@@ -46062,6 +46943,16 @@ function mapbox3DLayout(seriesModel, coordSys) {
     });
 
     data.setLayout('orient', [1, 0, 0]);
+}
+
+function getValueDimension(data, dataDims) {
+    var isStacked = isDimensionStacked(data, dataDims[2]);
+    return {
+        dimension: isStacked
+            ? data.getCalculationInfo('stackResultDimension')
+            : dataDims[2],
+        isStacked: isStacked
+    };
 }
 
 __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(function (ecModel, api) {
@@ -46077,8 +46968,8 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
         else if (coordSysType === 'geo3D') {
             geo3DLayout(seriesModel, coordSys);
         }
-        else if (coordSysType === 'mapbox3D') {
-            mapbox3DLayout(seriesModel, coordSys);
+        else if (coordSysType === 'mapbox3D' || coordSysType === 'maptalks3D') {
+            mapService3DLayout(seriesModel, coordSys);
         }
         else {
             if (true) {
@@ -46094,7 +46985,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
 });
 
 /***/ }),
-/* 204 */
+/* 219 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46105,6 +46996,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
 
 
 var vec3 = __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix___default.a.vec3;
+var isDimensionStacked = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.helper.dataStack.isDimensionStacked;
 
 function ifCrossZero(extent) {
     var min = extent[0];
@@ -46151,11 +47043,17 @@ function cartesian3DLayout(seriesModel, coordSys) {
         return seriesModel.coordDimToDataDim(coordDimName)[0];
     });
 
+    var isStacked = isDimensionStacked(data, dims[2]);
+    var valueDim = isStacked
+        ? data.getCalculationInfo('stackResultDimension')
+        : dims[2];
+
     data.each(dims, function (x, y, z, idx) {
         // TODO zAxis is inversed
         // TODO On different plane.
-        var stackedValue = data.get(dims[2], idx, true);
-        var baseValue = data.stackedOn ? (stackedValue - z)
+        var stackedValue = data.get(valueDim, idx);
+
+        var baseValue = isStacked ? (stackedValue - z)
             : (ifZAxisCrossZero ? 0 : zAxisExtent[0]);
 
         var start = coordSys.dataToPoint([x, y, baseValue]);
@@ -46177,7 +47075,7 @@ function cartesian3DLayout(seriesModel, coordSys) {
 /* harmony default export */ __webpack_exports__["a"] = (cartesian3DLayout);
 
 /***/ }),
-/* 205 */
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46208,7 +47106,7 @@ function cartesian3DLayout(seriesModel, coordSys) {
 });;
 
 /***/ }),
-/* 206 */
+/* 221 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46216,8 +47114,8 @@ function cartesian3DLayout(seriesModel, coordSys) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_retrieve__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_format__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_geometry_Bars3DGeometry__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_format__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_geometry_Bars3DGeometry__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__component_common_LabelsBuilder__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_claygl_src_dep_glmatrix__);
@@ -46544,13 +47442,13 @@ var vec3 = __WEBPACK_IMPORTED_MODULE_6_claygl_src_dep_glmatrix___default.a.vec3;
 }));
 
 /***/ }),
-/* 207 */
+/* 222 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dynamicConvertMixin__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dynamicConvertMixin__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trianglesSortMixin__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Geometry__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_dep_glmatrix__ = __webpack_require__(1);
@@ -46950,14 +47848,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.defaults(BarsGe
 /* harmony default export */ __webpack_exports__["a"] = (BarsGeometry);
 
 /***/ }),
-/* 208 */
+/* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentShadingMixin__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_format__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentShadingMixin__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_format__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_formatTooltip__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_createList__ = __webpack_require__(44);
 
@@ -47047,14 +47945,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Bar3DSeri
 /* unused harmony default export */ var _unused_webpack_default_export = (Bar3DSeries);
 
 /***/ }),
-/* 209 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line3D_Line3DSeries__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__line3D_Line3DView__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line3D_Line3DSeries__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__line3D_Line3DView__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
@@ -47110,7 +48008,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
 });
 
 /***/ }),
-/* 210 */
+/* 225 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47156,7 +48054,7 @@ var Line3DSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.e
 /* unused harmony default export */ var _unused_webpack_default_export = (Line3DSeries);
 
 /***/ }),
-/* 211 */
+/* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47165,9 +48063,9 @@ var Line3DSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.e
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_retrieve__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines3D__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_math_Matrix4__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_math_Matrix4__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_math_Vector3__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_zrender_lib_contain_line__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_zrender_lib_contain_line__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_zrender_lib_contain_line___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_zrender_lib_contain_line__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_claygl_src_dep_glmatrix__);
@@ -47469,7 +48367,7 @@ __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Shader.import(_
 }));
 
 /***/ }),
-/* 212 */
+/* 227 */
 /***/ (function(module, exports) {
 
 /**
@@ -47513,14 +48411,14 @@ function containStroke(x0, y0, x1, y1, lineWidth, x, y) {
 exports.containStroke = containStroke;
 
 /***/ }),
-/* 213 */
+/* 228 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scatter3D_Scatter3DSeries__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scatter3D_Scatter3DView__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scatter3D_Scatter3DSeries__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scatter3D_Scatter3DView__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
@@ -47576,13 +48474,13 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout({
 });
 
 /***/ }),
-/* 214 */
+/* 229 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_format__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_format__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_formatTooltip__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_createList__ = __webpack_require__(44);
 
@@ -47664,7 +48562,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 });
 
 /***/ }),
-/* 215 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47672,7 +48570,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_retrieve__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_format__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_format__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_PointsBuilder__ = __webpack_require__(62);
 
 
@@ -47805,7 +48703,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 });
 
 /***/ }),
-/* 216 */
+/* 231 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47992,17 +48890,17 @@ var spriteUtil = {
 /* harmony default export */ __webpack_exports__["a"] = (spriteUtil);
 
 /***/ }),
-/* 217 */
+/* 232 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_geometry_verticesSortMixin__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_geometry_verticesSortMixin__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_claygl_src_dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sdfSprite_glsl_js__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sdfSprite_glsl_js__ = __webpack_require__(234);
 
 
 
@@ -48120,11 +49018,11 @@ var PointsMesh = __WEBPACK_IMPORTED_MODULE_0__util_graphicGL__["a" /* default */
 /* harmony default export */ __webpack_exports__["a"] = (PointsMesh);
 
 /***/ }),
-/* 218 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProgressiveQuickSort__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProgressiveQuickSort__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix__);
 
@@ -48233,7 +49131,7 @@ var vec3 = __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix___default.a.vec3;
 });
 
 /***/ }),
-/* 219 */
+/* 234 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48241,15 +49139,15 @@ var vec3 = __WEBPACK_IMPORTED_MODULE_1_claygl_src_dep_glmatrix___default.a.vec3;
 
 
 /***/ }),
-/* 220 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lines3D_lines3DLayout__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lines3D_Lines3DView__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lines3D_Lines3DSeries__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lines3D_lines3DLayout__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lines3D_Lines3DView__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lines3D_Lines3DSeries__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
 
 
@@ -48282,7 +49180,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 }, function () {});
 
 /***/ }),
-/* 221 */
+/* 236 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48451,14 +49349,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
         else if (coordSys.type === 'geo3D') {
             layoutOnPlane(seriesModel, coordSys, [0, 1, 0]);
         }
-        else if (coordSys.type === 'mapbox3D') {
+        else if (coordSys.type === 'mapbox3D' || coordSys.type === 'maptalks3D') {
             layoutOnPlane(seriesModel, coordSys, [0, 0, 1]);
         }
     });
 });
 
 /***/ }),
-/* 222 */
+/* 237 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48466,7 +49364,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_geometry_Lines3D__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TrailMesh2__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TrailMesh2__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_shader_lines3D_glsl_js__ = __webpack_require__(40);
 
 
@@ -48657,7 +49555,7 @@ function getCoordSysSize(coordSys) {
 }));
 
 /***/ }),
-/* 223 */
+/* 238 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48667,7 +49565,7 @@ function getCoordSysSize(coordSys) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_claygl_src_dep_glmatrix__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines3D__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shader_trail2_glsl_js__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shader_trail2_glsl_js__ = __webpack_require__(239);
 
 
 
@@ -48824,7 +49722,7 @@ __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Shader.import(_
 }));
 
 /***/ }),
-/* 224 */
+/* 239 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48832,7 +49730,7 @@ __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__["a" /* default */].Shader.import(_
 
 
 /***/ }),
-/* 225 */
+/* 240 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48904,14 +49802,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 });
 
 /***/ }),
-/* 226 */
+/* 241 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polygons3D_Polygons3DSeries__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polygons3D_Polygons3DView__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polygons3D_Polygons3DSeries__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polygons3D_Polygons3DView__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_opacityVisual__ = __webpack_require__(16);
 
 
@@ -48923,13 +49821,13 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerVisual(Object(__WEBPACK_IMPORTED_MODULE_3__common_opacityVisual__["a" /* default */])('polygons3D'));
 
 /***/ }),
-/* 227 */
+/* 242 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentShadingMixin__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentShadingMixin__ = __webpack_require__(28);
 
 
 
@@ -49042,7 +49940,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Polygons3
 /* unused harmony default export */ var _unused_webpack_default_export = (Polygons3DSeries);
 
 /***/ }),
-/* 228 */
+/* 243 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49079,7 +49977,8 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
         var geo3DBuilder = this._geo3DBuilderList[0];
         if (!geo3DBuilder) {
             geo3DBuilder = new __WEBPACK_IMPORTED_MODULE_1__component_common_Geo3DBuilder__["a" /* default */](api);
-            geo3DBuilder.extrudeY = coordSys.type !== 'mapbox3D';
+            geo3DBuilder.extrudeY = coordSys.type !== 'mapbox3D'
+                && coordSys.type !== 'maptalks3D';
             this._geo3DBuilderList[0] = geo3DBuilder;
         }
         this._updateShaderDefines(coordSys, geo3DBuilder);
@@ -49106,7 +50005,8 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
         var coordSys = seriesModel.coordinateSystem;
         if (!geo3DBuilder) {
             geo3DBuilder = new __WEBPACK_IMPORTED_MODULE_1__component_common_Geo3DBuilder__["a" /* default */](api);
-            geo3DBuilder.extrudeY = coordSys.type !== 'mapbox3D';
+            geo3DBuilder.extrudeY = coordSys.type !== 'mapbox3D'
+                && coordSys.type !== 'maptalks3D';
             this._geo3DBuilderList[this._currentStep] = geo3DBuilder;
         }
         geo3DBuilder.update(seriesModel, ecModel, api, params.start, params.end);
@@ -49124,7 +50024,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
                 mesh.material[methodName]('fragment', 'SRGB_DECODE');
 
                 // FIXME
-                if (coordSys.type === 'mapbox3D') {
+                if (coordSys.type === 'mapbox3D' || coordSys.type === 'maptalks3D') {
                     mesh.material.define('fragment', 'NORMAL_UP_AXIS', 2);
                     mesh.material.define('fragment', 'NORMAL_FRONT_AXIS', 1);
                 }
@@ -49142,15 +50042,15 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 });
 
 /***/ }),
-/* 229 */
+/* 244 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__surface_SurfaceSeries__ = __webpack_require__(230);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__surface_SurfaceView__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__surface_surfaceLayout__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__surface_SurfaceSeries__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__surface_SurfaceView__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__surface_surfaceLayout__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
 
 
@@ -49164,13 +50064,13 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerVisual(Objec
 
 
 /***/ }),
-/* 230 */
+/* 245 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentShadingMixin__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentShadingMixin__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_formatTooltip__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_createList__ = __webpack_require__(44);
 
@@ -49205,8 +50105,6 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
         }
 
         if (!data) {
-            data = [];
-
             if (!option.parametric) {
                 // From surface equation
                 var equation = option.equation || {};
@@ -49227,14 +50125,24 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
                     }
                     return;
                 }
+                var xCount = Math.floor((xOpts.max + xOpts.step - xOpts.min) / xOpts.step);
+                var yCount = Math.floor((yOpts.max + yOpts.step - yOpts.min) / yOpts.step);
+                data = new Float32Array(xCount * yCount * 3);
+
                 var xPrecision = getPrecision(xOpts);
                 var yPrecision = getPrecision(yOpts);
-                for (var y = yOpts.min; y < yOpts.max + yOpts.step * 0.999; y += yOpts.step) {
-                    for (var x = xOpts.min; x < xOpts.max + xOpts.step * 0.999; x += xOpts.step) {
+
+                var off = 0;
+                for (var j = 0; j < yCount; j++) {
+                    for (var i = 0; i < xCount; i++) {
+                        var x = i * xOpts.step + xOpts.min;
+                        var y = j * yOpts.step + yOpts.min;
                         var x2 = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.number.round(Math.min(x, xOpts.max), xPrecision);
                         var y2 = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.number.round(Math.min(y, yOpts.max), yPrecision);
                         var z = equation.z(x2, y2);
-                        data.push([x2, y2, z]);
+                        data[off++] = x2;
+                        data[off++] = y2;
+                        data[off++] = z;
                     }
                 }
             }
@@ -49260,17 +50168,28 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
                     }
                 });
 
+                var uCount = Math.floor((uOpts.max + uOpts.step - uOpts.min) / uOpts.step);
+                var vCount = Math.floor((vOpts.max + vOpts.step - vOpts.min) / vOpts.step);
+                data = new Float32Array(uCount * vCount * 5);
+
+
                 var uPrecision = getPrecision(uOpts);
                 var vPrecision = getPrecision(vOpts);
-                // TODO array intermediate storage is needless.
-                for (var v = vOpts.min; v < vOpts.max + vOpts.step * 0.999; v += vOpts.step) {
-                    for (var u = uOpts.min; u < uOpts.max + uOpts.step * 0.999; u += uOpts.step) {
+                var off = 0;
+                for (var j = 0; j < vCount; j++) {
+                    for (var i = 0; i < uCount; i++) {
+                        var u = i * uOpts.step + uOpts.min;
+                        var v = j * vOpts.step + vOpts.min;
                         var u2 = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.number.round(Math.min(u, uOpts.max), uPrecision);
                         var v2 = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.number.round(Math.min(v, vOpts.max), vPrecision);
                         var x = parametricEquation.x(u2, v2);
                         var y = parametricEquation.y(u2, v2);
                         var z = parametricEquation.z(u2, v2);
-                        data.push([x, y, z, u2, v2]);
+                        data[off++] = x;
+                        data[off++] = y;
+                        data[off++] = z;
+                        data[off++] = u2;
+                        data[off++] = v2;
                     }
                 }
             }
@@ -49281,7 +50200,7 @@ var SurfaceSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.
             dims.push('u', 'v');
         }
         // PENDING getSource?
-        var list = Object(__WEBPACK_IMPORTED_MODULE_3__common_createList__["a" /* default */])(this, dims, option.data || data);
+        var list = Object(__WEBPACK_IMPORTED_MODULE_3__common_createList__["a" /* default */])(this, dims, data);
         return list;
     },
 
@@ -49355,7 +50274,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(SurfaceSe
 /* unused harmony default export */ var _unused_webpack_default_export = (SurfaceSeries);
 
 /***/ }),
-/* 231 */
+/* 246 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49835,7 +50754,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 });
 
 /***/ }),
-/* 232 */
+/* 247 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49878,15 +50797,15 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout(funct
 });
 
 /***/ }),
-/* 233 */
+/* 248 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coord_geo3D_Geo3D__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map3D_Map3DSeries__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map3D_Map3DView__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coord_geo3D_Geo3D__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map3D_Map3DSeries__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map3D_Map3DView__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
 
 
@@ -49911,20 +50830,20 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 });
 
 /***/ }),
-/* 234 */
+/* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_common_componentViewControlMixin__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__component_common_componentPostEffectMixin__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component_common_componentLightMixin__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_common_componentShadingMixin__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__coord_geo3D_geo3DModelMixin__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_format__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__component_common_componentPostEffectMixin__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component_common_componentLightMixin__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_common_componentShadingMixin__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__coord_geo3D_geo3DModelMixin__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_format__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_formatTooltip__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__coord_geo3DCreator__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__coord_geo3DCreator__ = __webpack_require__(91);
 
 
 
@@ -50064,7 +50983,7 @@ var Map3DSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ex
     },
 
     defaultOption: {
-        // Support geo3D, mapbox
+        // Support geo3D, mapbox, maptalks3D
         coordinateSystem: 'geo3D',
         // itemStyle: {},
         // height,
@@ -50083,7 +51002,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Map3DSeri
 /* unused harmony default export */ var _unused_webpack_default_export = (Map3DSeries);
 
 /***/ }),
-/* 235 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50091,7 +51010,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Map3DSeri
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_OrbitControl__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component_common_SceneHelper__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component_common_SceneHelper__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_common_Geo3DBuilder__ = __webpack_require__(59);
 
 
@@ -50205,14 +51124,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge(Map3DSeri
 }));
 
 /***/ }),
-/* 236 */
+/* 251 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scatterGL_ScatterGLSeries__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scatterGL_ScatterGLView__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scatterGL_ScatterGLSeries__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scatterGL_ScatterGLView__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
@@ -50274,7 +51193,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerLayout({
 });
 
 /***/ }),
-/* 237 */
+/* 252 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50342,16 +51261,16 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 });
 
 /***/ }),
-/* 238 */
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_ViewGL__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_ViewGL__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_PointsBuilder__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_GLViewHelper__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_GLViewHelper__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_retrieve__ = __webpack_require__(3);
 
 
@@ -50474,14 +51393,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 });
 
 /***/ }),
-/* 239 */
+/* 254 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__graphGL_GraphGLSeries__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__graphGL_GraphGLView__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__graphGL_GraphGLSeries__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__graphGL_GraphGLView__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_echarts_lib_visual_symbol__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_opacityVisual__ = __webpack_require__(16);
@@ -50607,14 +51526,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 }, noop);
 
 /***/ }),
-/* 240 */
+/* 255 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createGraphFromNodeEdge__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_format__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createGraphFromNodeEdge__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_format__ = __webpack_require__(29);
 
 
 
@@ -50888,15 +51807,15 @@ var GraphSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ex
 /* unused harmony default export */ var _unused_webpack_default_export = (GraphSeries);
 
 /***/ }),
-/* 241 */
+/* 256 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_data_Graph__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_data_Graph__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_data_Graph___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_data_Graph__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_helper_linkList__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_helper_linkList__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_helper_linkList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_helper_linkList__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_retrieve__ = __webpack_require__(3);
 
@@ -50957,16 +51876,16 @@ var GraphSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ex
 });;
 
 /***/ }),
-/* 242 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _config = __webpack_require__(85);
+var _config = __webpack_require__(97);
 
 var __DEV__ = _config.__DEV__;
 
 var zrUtil = __webpack_require__(12);
 
-var _clazz = __webpack_require__(244);
+var _clazz = __webpack_require__(258);
 
 var enableClassCheck = _clazz.enableClassCheck;
 
@@ -51501,37 +52420,10 @@ var _default = Graph;
 module.exports = _default;
 
 /***/ }),
-/* 243 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 244 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _config = __webpack_require__(85);
+var _config = __webpack_require__(97);
 
 var __DEV__ = _config.__DEV__;
 
@@ -51776,7 +52668,7 @@ exports.enableClassManagement = enableClassManagement;
 exports.setReadOnly = setReadOnly;
 
 /***/ }),
-/* 245 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var zrUtil = __webpack_require__(12);
@@ -51909,7 +52801,7 @@ var _default = linkList;
 module.exports = _default;
 
 /***/ }),
-/* 246 */
+/* 260 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51918,18 +52810,18 @@ module.exports = _default;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_util_layout__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_util_layout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_util_layout__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_geometry_Lines2D__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_geometry_Lines2D__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_retrieve__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ForceAtlas2GPU__ = __webpack_require__(247);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ForceAtlas2__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_zrender_lib_animation_requestAnimationFrame__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ForceAtlas2GPU__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ForceAtlas2__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_zrender_lib_animation_requestAnimationFrame__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_zrender_lib_animation_requestAnimationFrame___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_zrender_lib_animation_requestAnimationFrame__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_claygl_src_dep_glmatrix__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_claygl_src_dep_glmatrix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_claygl_src_dep_glmatrix__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__util_Roam2DControl__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__util_Roam2DControl__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_PointsBuilder__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__util_shader_lines2D_glsl_js__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__util_shader_lines2D_glsl_js__ = __webpack_require__(266);
 
 
 
@@ -52198,7 +53090,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
                 this._originalEdgeColors[edge.dataIndex * 4 + k] = colorArr[k];
             }
             this._edgeIndicesMap[edge.dataIndex] = idx;
-        }, false, this);
+        }, this);
 
         geometry.dirty();
     },
@@ -52660,7 +53552,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 });
 
 /***/ }),
-/* 247 */
+/* 261 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52669,7 +53561,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_compositor_Pass__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_FrameBuffer__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__forceAtlas2_glsl_js__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__forceAtlas2_glsl_js__ = __webpack_require__(262);
 
 
 
@@ -53142,7 +54034,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ForceAtlas2GPU = For
 /* harmony default export */ __webpack_exports__["a"] = (ForceAtlas2GPU);
 
 /***/ }),
-/* 248 */
+/* 262 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53150,13 +54042,13 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ForceAtlas2GPU = For
 
 
 /***/ }),
-/* 249 */
+/* 263 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forceAtlas2Worker_js__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forceAtlas2Worker_js__ = __webpack_require__(264);
 
 
 
@@ -53440,7 +54332,7 @@ ForceAtlas2.prototype.dispose = function (renderer) {
 /* harmony default export */ __webpack_exports__["a"] = (ForceAtlas2);
 
 /***/ }),
-/* 250 */
+/* 264 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54107,11 +54999,11 @@ function forceAtlas2Worker() {
 /* harmony default export */ __webpack_exports__["a"] = (forceAtlas2Worker);
 
 /***/ }),
-/* 251 */
+/* 265 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__retrieve__ = __webpack_require__(3);
 
 
@@ -54312,7 +55204,7 @@ var Roam2DControl = __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__["a" /* de
 /* harmony default export */ __webpack_exports__["a"] = (Roam2DControl);
 
 /***/ }),
-/* 252 */
+/* 266 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54320,14 +55212,14 @@ var Roam2DControl = __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__["a" /* de
 
 
 /***/ }),
-/* 253 */
+/* 267 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__flowGL_FlowGLView__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__flowGL_FlowGLSeries__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__flowGL_FlowGLView__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__flowGL_FlowGLSeries__ = __webpack_require__(272);
 
 
 
@@ -54335,7 +55227,7 @@ var Roam2DControl = __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__["a" /* de
 
 
 /***/ }),
-/* 254 */
+/* 268 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54343,8 +55235,8 @@ var Roam2DControl = __WEBPACK_IMPORTED_MODULE_0_claygl_src_core_Base__["a" /* de
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_retrieve__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__VectorFieldParticleSurface__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_ViewGL__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__VectorFieldParticleSurface__ = __webpack_require__(269);
 
 
 
@@ -54706,22 +55598,22 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 
 
 /***/ }),
-/* 255 */
+/* 269 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_compositor_Pass__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Mesh__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Mesh__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Material__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Texture2D__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_Texture__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_camera_Orthographic__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_camera_Orthographic__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_claygl_src_geometry_Plane__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_claygl_src_FrameBuffer__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Line2D__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__vectorFieldParticle_glsl_js__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Line2D__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__vectorFieldParticle_glsl_js__ = __webpack_require__(271);
 
 
 
@@ -55166,7 +56058,7 @@ VectorFieldParticleSurface.prototype = {
 /* harmony default export */ __webpack_exports__["a"] = (VectorFieldParticleSurface);
 
 /***/ }),
-/* 256 */
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55256,7 +56148,7 @@ var LinesGeometry = __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__["a" /* def
 /* harmony default export */ __webpack_exports__["a"] = (LinesGeometry);
 
 /***/ }),
-/* 257 */
+/* 271 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55264,7 +56156,7 @@ var LinesGeometry = __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__["a" /* def
 
 
 /***/ }),
-/* 258 */
+/* 272 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55324,14 +56216,14 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 });
 
 /***/ }),
-/* 259 */
+/* 273 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__linesGL_LinesGLSeries__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__linesGL_LinesGLView__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__linesGL_LinesGLSeries__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__linesGL_LinesGLView__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_opacityVisual__ = __webpack_require__(16);
 
 
@@ -55343,7 +56235,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendSeriesModel({
 __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerVisual(Object(__WEBPACK_IMPORTED_MODULE_3__common_opacityVisual__["a" /* default */])('linesGL'));
 
 /***/ }),
-/* 260 */
+/* 274 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55553,16 +56445,16 @@ var LinesSeries = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ex
 });
 
 /***/ }),
-/* 261 */
+/* 275 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_graphicGL__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_ViewGL__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines2D__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_GLViewHelper__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_ViewGL__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_geometry_Lines2D__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_GLViewHelper__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_retrieve__ = __webpack_require__(3);
 
 
