@@ -50,7 +50,7 @@ option = {
                 var res = [];
                 var len = 10;
                 while (len--) {
-                    res.push(len + 1);
+                    res.push(10 - len - 1);
                 }
                 return res;
             })()
