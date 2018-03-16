@@ -43,6 +43,39 @@ var COLORS = {
     dark: ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42']
 };
 
+var blackMap = (function (list) {
+    var map = {};
+    for (var i = 0; i < list.length; i++) {
+        map[list[i]] = 1;
+    }
+    return location.href.indexOf('github.io') >= 0 ? {} : map;
+})([
+    'effectScatter-map',
+    'geo-lines',
+    'geo-map-scatter',
+    'heatmap-map',
+    'lines-airline',
+    'map-china',
+    'map-china-dataRange',
+    'map-labels',
+    'map-locate',
+    'map-province',
+    'map-world',
+    'map-world-dataRange',
+    'scatter-map',
+    'scatter-map-brush',
+    'scatter-weibo',
+    'scatter-world-population',
+    'geo3d',
+    'geo3d-with-different-height',
+    'globe-country-carousel',
+    'globe-with-echarts-surface',
+    'map3d-alcohol-consumption',
+    'map3d-wood-map',
+    'scattergl-weibo'
+]);
+
+
 // Params parser
 var params = {};
 (location.search || '').substr(1).split('&').forEach(function (item) {
@@ -94,6 +127,10 @@ $(document).ready(function() {
     function addExamples(examples, isGL) {
         // load charts
         for (var eid = 0, elen = examples.length; eid < elen; ++eid) {
+            if (blackMap.hasOwnProperty(examples[eid].id)) {
+                continue;
+            }
+
             // show title if exists
             var title = examples[eid].title || '未命名图表';
 
