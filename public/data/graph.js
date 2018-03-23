@@ -45,16 +45,26 @@ $.get('data/asset/data/les-miserables.gexf', function (xml) {
                 links: graph.links,
                 categories: categories,
                 roam: true,
-                label: {
+                focusNodeAdjacency: true,
+                itemStyle: {
                     normal: {
-                        position: 'right',
-                        formatter: '{b}'
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)'
                     }
                 },
+                label: {
+                    position: 'right',
+                    formatter: '{b}'
+                },
                 lineStyle: {
-                    normal: {
-                        color: 'source',
-                        curveness: 0.3
+                    color: 'source',
+                    curveness: 0.3
+                },
+                emphasis: {
+                    lineStyle: {
+                        width: 10
                     }
                 }
             }
