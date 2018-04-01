@@ -974,6 +974,13 @@ var EXAMPLES = [
   },
   {
     "category": "scatter",
+    "id": "scatter-nebula",
+    "theme": "light",
+    "title": "Scatter Nebula",
+    "difficulty": 10
+  },
+  {
+    "category": "scatter",
     "id": "scatter-large",
     "theme": "light",
     "title": "Large Scatter",
