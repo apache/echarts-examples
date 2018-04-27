@@ -1,5 +1,5 @@
 ---
-title: Vertical Tree
+title: From Top to Bottom Tree
 category: tree
-titleCN: 纵向树状图
+titleCN: 从上到下树状图
 ---

@@ -1,5 +1,5 @@
 ---
-title: Basic Tree
+title: From Left to Right Tree
 category: tree
-titleCN: 横向树状图
+titleCN: 从左到右树状图
 ---
