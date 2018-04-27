@@ -32,9 +32,7 @@ var CHART_TYPES = {
     scatterGL: 'Scatter GL',
     linesGL: 'Lines GL',
     flowGL: 'Flow GL',
-    graphGL: 'Graph GL',
-
-    geo3D: '3D Geo'
+    graphGL: 'Graph GL'
 };
 
 var COLORS = {

@@ -124,6 +124,12 @@ var EXAMPLES = [
   },
   {
     "category": "bar",
+    "id": "bar-large",
+    "title": "Large Scale Bar Chart",
+    "difficulty": 10
+  },
+  {
+    "category": "bar",
     "id": "bar-negative",
     "title": "正负条形图",
     "difficulty": 10
@@ -284,6 +290,12 @@ var EXAMPLES = [
     "category": "candlestick",
     "id": "candlestick-brush",
     "title": "Candlestick Brush",
+    "difficulty": 10
+  },
+  {
+    "category": "candlestick",
+    "id": "candlestick-large",
+    "title": "Large Scale Candlestick",
     "difficulty": 10
   },
   {
@@ -974,13 +986,6 @@ var EXAMPLES = [
   },
   {
     "category": "scatter",
-    "id": "scatter-nebula",
-    "theme": "light",
-    "title": "Scatter Nebula",
-    "difficulty": 10
-  },
-  {
-    "category": "scatter",
     "id": "scatter-large",
     "theme": "light",
     "title": "Large Scatter",
@@ -1020,6 +1025,10 @@ var EXAMPLES = [
     "category": "parallel",
     "id": "scatter-matrix",
     "title": "Scatter Matrix",
+    "difficulty": 10
+  },
+  {
+    "id": "scatter-nebula",
     "difficulty": 10
   },
   {
