@@ -49,9 +49,6 @@ var option = {
     series: [{
         type: 'bar',
         data: data.valueData,
-        itemStyle: {
-            color: 'green'
-        },
         // Set `large` for large data amount
         large: true
     }]
