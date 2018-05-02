@@ -1148,13 +1148,25 @@ var EXAMPLES = [
   {
     "category": "tree",
     "id": "tree-basic",
-    "title": "Basic Tree",
+    "title": "From Left to Right Tree",
     "difficulty": 10
   },
   {
     "category": "tree",
     "id": "tree-legend",
     "title": "Multiple Trees",
+    "difficulty": 10
+  },
+  {
+    "category": "tree",
+    "id": "tree-orient-bottom-top",
+    "title": "From Bottom to Top Tree",
+    "difficulty": 10
+  },
+  {
+    "category": "tree",
+    "id": "tree-orient-right-left",
+    "title": "From Right to Left Tree",
     "difficulty": 10
   },
   {
@@ -1166,7 +1178,7 @@ var EXAMPLES = [
   {
     "category": "tree",
     "id": "tree-vertical",
-    "title": "Vertical Tree",
+    "title": "From Top to Bottom Tree",
     "difficulty": 10
   },
   {
