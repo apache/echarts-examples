@@ -70,9 +70,6 @@ option = {
         text: 'Profile',
         left: 'center'
     },
-    legend: {
-        data: ['bar', 'error']
-    },
     dataZoom: [{
         type: 'slider',
         filterMode: 'weakFilter',
