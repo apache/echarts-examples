@@ -3,6 +3,16 @@ extends basic
 block content
 
     nav(class='navbar navbar-default navbar-fixed-top')
-        include ../components/nav
+        if lang == 'cn'
+            include ../../../echarts-www/_jade/components/nav
+        else
+            include ../../../echarts-www/_jade/en/nav
+
+    script(type='text/javascript').
+        var selector = window.EC_DEMO_LANG === 'en' ? 'nav-start' : 'nav-examples';
+        var menu = document.getElementById(selector);
+        if (menu) {
+            menu.className = 'active';
+        }
 
     block inner_content
