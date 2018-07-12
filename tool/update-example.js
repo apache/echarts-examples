@@ -1,3 +1,7 @@
+/**
+ * @deprecated
+ */
+
 'use strict';
 Error.stackTraceLimit = 200;
 

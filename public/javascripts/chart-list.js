@@ -1,38 +1,43 @@
-var CHART_TYPES = {
-    line: 'Line',
-    bar: 'Bar',
-    pie: 'Pie',
-    scatter: 'Scatter',
-    map: 'Map',
-    candlestick: 'Candlestick',
-    radar: 'Radar',
-    boxplot: 'Boxplot',
-    heatmap: 'Heatmap',
-    graph: 'Graph',
-    tree: 'Tree',
-    treemap: 'Treemap',
-    sunburst: 'Sunburst',
-    parallel: 'Parallel',
-    sankey: 'Sankey',
-    funnel: 'Funnel',
-    gauge: 'Gauge',
-    pictorialBar: 'PictorialBar',
-    themeRiver: 'ThemeRiver',
-    calendar: 'Calendar',
-    custom: 'Custom',
-    dataset: 'Dataset',
+var lang = window.EC_DEMO_LANG;
+var isCN = lang !== 'en';
 
-    globe: '3D Globe',
-    bar3D: '3D Bar',
-    scatter3D: '3D Scatter',
-    surface: '3D Surface',
-    map3D: '3D Map',
-    lines3D: '3D Lines',
-    line3D: '3D Line',
-    scatterGL: 'Scatter GL',
-    linesGL: 'Lines GL',
-    flowGL: 'Flow GL',
-    graphGL: 'Graph GL'
+var CHART_TYPES = {
+    line: ['折线图', 'Line'],
+    bar: ['柱状图', 'Bar'],
+    pie: ['饼图', 'Pie'],
+    scatter: ['散点图', 'Scatter'],
+    map: ['地图', 'Map'],
+    geo: ['地理坐标系', 'GEO'],
+    candlestick: ['K 线图', 'Candlestick'],
+    radar: ['雷达图', 'Radar'],
+    boxplot: ['盒须图', 'Boxplot'],
+    heatmap: ['热力图', 'Heatmap'],
+    graph: ['关系图', 'Graph'],
+    lines: ['路径图', 'Lines'],
+    tree: ['树图', 'Tree'],
+    treemap: ['矩形树图', 'Treemap'],
+    sunburst: ['旭日图', 'Sunburst'],
+    parallel: ['平行坐标系', 'Parallel'],
+    sankey: ['桑基图', 'Sankey'],
+    funnel: ['漏斗图', 'Funnel'],
+    gauge: ['仪表盘', 'Gauge'],
+    pictorialBar: ['象形柱图', 'PictorialBar'],
+    themeRiver: ['主题河流图', 'ThemeRiver'],
+    calendar: ['日历坐标系', 'Calendar'],
+    custom: ['自定义系列', 'Custom'],
+    dataset: ['数据集', 'Dataset'],
+
+    globe: ['3D 地球', '3D Globe'],
+    bar3D: ['3D 柱状图', '3D Bar'],
+    scatter3D: ['3D 散点图', '3D Scatter'],
+    surface: ['3D 曲面', '3D Surface'],
+    map3D: ['3D 地图', '3D Map'],
+    lines3D: ['3D 路径图', '3D Lines'],
+    line3D: ['3D 折线图', '3D Line'],
+    scatterGL: ['GL 散点图', 'Scatter GL'],
+    linesGL: ['GL 路径图', 'Lines GL'],
+    flowGL: ['GL 矢量场图', 'Flow GL'],
+    graphGL: ['GL 关系图', 'Graph GL']
 };
 
 var COLORS = {
@@ -110,15 +115,23 @@ $(document).ready(function() {
     var $container = $('#explore-container .chart-list-panel');
     var $nav = $('#left-chart-nav ul');
     for (var type in CHART_TYPES) {
-        $container.append('<h3 class="chart-type-head" id="chart-type-'
-            + type + '">' + CHART_TYPES[type] + '</h3>')
-            .append('<div class="row" id="chart-row-' + type + '"></div>');
-        $nav.append($('<li>').append(
-            '<a class="left-chart-nav-link" id="left-chart-nav-' + type + '" '
-            + 'href="#chart-type-' + type + '">'
-                + '<div class="chart-icon"></div>'
-                + '<div class="chart-name">' + CHART_TYPES[type] + '</div>'
-            + '</a>'));
+        if (CHART_TYPES.hasOwnProperty(type)) {
+            $container.append('<h3 class="chart-type-head" id="chart-type-'
+                + type + '">'
+                + (
+                    isCN
+                        ? CHART_TYPES[type][0] + '<span>' + CHART_TYPES[type][1] + '</span>'
+                        : CHART_TYPES[type][1]
+                )
+                + '</h3>')
+                .append('<div class="row" id="chart-row-' + type + '"></div>');
+            $nav.append($('<li>').append(
+                '<a class="left-chart-nav-link" id="left-chart-nav-' + type + '" '
+                + 'href="#chart-type-' + type + '">'
+                    + '<div class="chart-icon"></div>'
+                    + '<div class="chart-name">' + CHART_TYPES[type][isCN ? 0 : 1] + '</div>'
+                + '</a>'));
+        }
     }
 
 
@@ -130,12 +143,18 @@ $(document).ready(function() {
             }
 
             // show title if exists
-            var title = examples[eid].title || '未命名图表';
+            var title = examples[eid].title || (isCN ? '未命名图表' : 'Unnamed Chart');
 
             // append dom element
             var $row = $('<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6"></div>');
             var $chart = $('<div class="chart"></div>');
-            $('#chart-row-' + examples[eid].category).append($row.append($chart));
+            var category = examples[eid].category;
+            if (!(category instanceof Array)) {
+                category = [category];
+            }
+            for (var k = 0; k < category.length; k++) {
+                $('#chart-row-' + category[k]).append($row.append($chart));
+            }
 
             var hash = ['c=' + examples[eid].id];
             var exampleTheme = examples[eid].theme || params.theme;

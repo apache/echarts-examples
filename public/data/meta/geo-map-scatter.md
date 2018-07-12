@@ -1,5 +1,5 @@
 ---
 title: map and scatter share a geo
-category: map
+category: map, geo
 titleCN: map and scatter share a geo
 ---
