@@ -4,9 +4,11 @@ block content
 
     nav(class='navbar navbar-default navbar-fixed-top')
         if lang == 'cn'
-            include ../../../echarts-www/_jade/components/nav
+            include ../../../echarts-www/_jade/components/nav-mixin
+            +nav('http://www.echartsjs.com')
         else
-            include ../../../echarts-www/_jade/en/nav
+            include ../../../echarts-www/_jade/en/nav-mixin
+            +nav('https://ecomfe.github.io/echarts-doc/public/en')
 
     script(type='text/javascript').
         var selector = window.EC_DEMO_LANG === 'en' ? 'nav-start' : 'nav-examples';
