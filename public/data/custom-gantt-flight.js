@@ -131,47 +131,40 @@ function renderGanttItem(params, api) {
     var text = (barLength > flightNumberWidth + 40 && x + barLength >= 180)
         ? flightNumber : '';
 
-    var group = {
-        type: 'group',
-        children: []
-    };
-
-    var rect = clipRectByRect(params, {
+    var rectNormal = clipRectByRect(params, {
         x: x, y: y, width: barLength, height: barHeight
     });
-    rect && group.children.push({
-        type: 'rect',
-        shape: rect,
-        style: api.style()
+    var rectVIP = clipRectByRect(params, {
+        x: x, y: y, width: (barLength) / 2, height: barHeight
+    });
+    var rectText = clipRectByRect(params, {
+        x: x, y: y, width: barLength, height: barHeight
     });
 
-    if (api.value(4)) {
-        var rectVIP = clipRectByRect(params, {
-            x: x, y: y, width: (barLength) / 2, height: barHeight
-        });
-        rectVIP && group.children.push({
+    return {
+        type: 'group',
+        children: [{
             type: 'rect',
+            ignore: !rectNormal,
+            shape: rectNormal,
+            style: api.style()
+        }, {
+            type: 'rect',
+            ignore: !rectVIP && !api.value(4),
             shape: rectVIP,
             style: api.style({fill: '#ddb30b'})
-        });
-    }
-
-    var textRect = clipRectByRect(params, {
-        x: x, y: y, width: barLength, height: barHeight
-    });
-
-    textRect && group.children.push({
-        type: 'rect',
-        shape: textRect,
-        style: api.style({
-            fill: 'transparent',
-            stroke: 'transparent',
-            text: text,
-            textFill: '#fff'
-        })
-    });
-
-    return group;
+        }, {
+            type: 'rect',
+            ignore: !rectText,
+            shape: rectText,
+            style: api.style({
+                fill: 'transparent',
+                stroke: 'transparent',
+                text: text,
+                textFill: '#fff'
+            })
+        }]
+    };
 }
 
 function renderAxisLabelItem(params, api) {
