@@ -196,7 +196,7 @@ function renderAxisLabelItem(params, api) {
                 layout: 'cover'
             },
             style: {
-                fill: '#03b292'
+                fill: '#368c6c'
             }
         }, {
             type: 'text',
