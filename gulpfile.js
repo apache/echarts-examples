@@ -65,7 +65,8 @@ gulp.task('jade', function() {
             data: {
                 buildVersion: +new Date(),
                 lang: lang,
-                host: config.host
+                host: config.host,
+                blogPath: config.blogPath
             }
         }))
         .pipe(gulp.dest('public/'))
