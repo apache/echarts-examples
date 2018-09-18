@@ -79,9 +79,10 @@ $chart-icon-border: 1px;
 $chart-types: 'line', 'bar', 'scatter', 'pie', 'radar', 'funnel', 'gauge', 'map',
     'graph', 'treemap', 'parallel', 'sankey', 'candlestick', 'boxplot', 'heatmap',
     'pictorialBar', 'themeRiver', 'calendar', 'custom', 'sunburst', 'tree',
-    'globe', 'bar3D', 'scatter3D', 'surface', 'map3D', 'lines3D', 'line3D', 'scatterGL', 'linesGL', 'flowGL', 'graphGL', 'geo3D';
+    'globe', 'bar3D', 'scatter3D', 'surface', 'map3D', 'lines3D', 'line3D',
+    'scatterGL', 'linesGL', 'flowGL', 'graphGL', 'geo3D', 'geo', 'lines', 'dataset';
 $chart-position: 0, 1, 2, 4, 5, 10, 9, 8, 7, 15, 16, 17, 3, 18, 11, 24, 25, 26, 27, 28, 14,
-    29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29;
+    29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 8, 20, 22;
 
 @each $type in $chart-types {
     $i: index($chart-types, $type);

@@ -1,5 +1,5 @@
 ---
 title: Calendar Heatmap Horizontal
 category: calendar
-titleCN: Calendar Heatmap Horizontal
+titleCN: 横向日力图
 ---

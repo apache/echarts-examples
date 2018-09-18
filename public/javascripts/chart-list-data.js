@@ -124,6 +124,12 @@ var EXAMPLES = [
   },
   {
     "category": "bar",
+    "id": "bar-large",
+    "title": "Large Scale Bar Chart",
+    "difficulty": 10
+  },
+  {
+    "category": "bar",
     "id": "bar-negative",
     "title": "正负条形图",
     "difficulty": 10
@@ -249,7 +255,9 @@ var EXAMPLES = [
     "difficulty": 10
   },
   {
+    "category": "calendar",
     "id": "calendar-heatmap",
+    "title": "Calendar Heatmap",
     "difficulty": 10
   },
   {
@@ -271,7 +279,9 @@ var EXAMPLES = [
     "difficulty": 10
   },
   {
+    "category": "calendar",
     "id": "calendar-simple",
+    "title": "Simple Calendar",
     "difficulty": 10
   },
   {
@@ -284,6 +294,12 @@ var EXAMPLES = [
     "category": "candlestick",
     "id": "candlestick-brush",
     "title": "Candlestick Brush",
+    "difficulty": 10
+  },
+  {
+    "category": "candlestick",
+    "id": "candlestick-large",
+    "title": "Large Scale Candlestick",
     "difficulty": 10
   },
   {
@@ -329,7 +345,9 @@ var EXAMPLES = [
     "difficulty": 10
   },
   {
+    "category": "custom",
     "id": "custom-cartesian-polygon",
+    "title": "Custom Cartesian Polygon",
     "difficulty": 10
   },
   {
@@ -342,6 +360,12 @@ var EXAMPLES = [
     "category": "custom",
     "id": "custom-error-scatter",
     "title": "Error Scatter on Catesian",
+    "difficulty": 10
+  },
+  {
+    "category": "custom",
+    "id": "custom-gantt-flight",
+    "title": "Gautt Chart of Ariport Flights",
     "difficulty": 10
   },
   {
@@ -585,7 +609,9 @@ var EXAMPLES = [
     "difficulty": 10
   },
   {
+    "category": "line",
     "id": "line-graphic",
+    "title": "Custom Graphic Component",
     "difficulty": 10
   },
   {
@@ -943,6 +969,12 @@ var EXAMPLES = [
     "difficulty": 10
   },
   {
+    "category": "sankey",
+    "id": "sankey-vertical",
+    "title": "Sankey Diagram Vertical",
+    "difficulty": 10
+  },
+  {
     "category": "scatter",
     "id": "scatter-anscombe-quartet",
     "title": "Anscombe&#39;s quartet",
@@ -1013,6 +1045,12 @@ var EXAMPLES = [
     "category": "parallel",
     "id": "scatter-matrix",
     "title": "Scatter Matrix",
+    "difficulty": 10
+  },
+  {
+    "category": "scatter",
+    "id": "scatter-nebula",
+    "title": "Scatter Nebula",
     "difficulty": 10
   },
   {
@@ -1132,13 +1170,25 @@ var EXAMPLES = [
   {
     "category": "tree",
     "id": "tree-basic",
-    "title": "Basic Tree",
+    "title": "From Left to Right Tree",
     "difficulty": 10
   },
   {
     "category": "tree",
     "id": "tree-legend",
     "title": "Multiple Trees",
+    "difficulty": 10
+  },
+  {
+    "category": "tree",
+    "id": "tree-orient-bottom-top",
+    "title": "From Bottom to Top Tree",
+    "difficulty": 10
+  },
+  {
+    "category": "tree",
+    "id": "tree-orient-right-left",
+    "title": "From Right to Left Tree",
     "difficulty": 10
   },
   {
@@ -1150,7 +1200,7 @@ var EXAMPLES = [
   {
     "category": "tree",
     "id": "tree-vertical",
-    "title": "Vertical Tree",
+    "title": "From Top to Bottom Tree",
     "difficulty": 10
   },
   {

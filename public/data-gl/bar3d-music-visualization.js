@@ -5,7 +5,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext();
 
 var oReq = new XMLHttpRequest();
-oReq.open('GET', '/asset/get/s/data-1493350085456-S1p6LNlyZ.mp3', true);
+oReq.open('GET', 'data/asset/sound/roll-it-up.mp3', true);
 oReq.responseType = 'arraybuffer';
 
 oReq.onload = function(e) {

@@ -134,8 +134,11 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
 
             try {
                 var difficulty = fmResult.attributes.difficulty != null ? fmResult.attributes.difficulty : 10;
+                var category = fmResult.attributes.category.split(',').map(name => {
+                    return name.trim();
+                });
                 exampleList.push({
-                    category: fmResult.attributes.category,
+                    category: category,
                     id: basename,
                     theme: fmResult.attributes.theme,
                     title: fmResult.attributes.title,

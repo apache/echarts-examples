@@ -10,8 +10,8 @@ function renderItem(params, api) {
             cy: params.coordSys.cy,
             r0: coord[2] - size[0] / 2,
             r: coord[2] + size[0] / 2,
-            startAngle: coord[3] - size[1] / 2,
-            endAngle: coord[3] + size[1] / 2
+            startAngle: -(coord[3] + size[1] / 2),
+            endAngle: -(coord[3] - size[1] / 2)
         },
         style: api.style({
             fill: api.visual('color')

@@ -17,6 +17,7 @@ $.get('data/asset/data/product.json', function (data) {
                 layout:'none',
                 data: data.nodes,
                 links: data.links,
+                focusNodeAdjacency: true,
                 itemStyle: {
                     normal: {
                         borderWidth: 1,

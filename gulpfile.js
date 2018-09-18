@@ -33,7 +33,7 @@ gulp.task('browser-sync', ['sass'], function() {
 /**
  * Build files for release
  */
-gulp.task('build', function(){
+gulp.task('build', function() {
     gulp.run('jade');
     gulp.run('sass');
 });

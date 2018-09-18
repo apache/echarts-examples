@@ -129,12 +129,9 @@ option = {
             type:'line',
             animation: false,
             areaStyle: {
-                normal: {}
             },
             lineStyle: {
-                normal: {
-                    width: 1
-                }
+                width: 1
             },
             markArea: {
                 silent: true,
@@ -154,12 +151,9 @@ option = {
             yAxisIndex:1,
             animation: false,
             areaStyle: {
-                normal: {}
             },
             lineStyle: {
-                normal: {
-                    width: 1
-                }
+                width: 1
             },
             markArea: {
                 silent: true,

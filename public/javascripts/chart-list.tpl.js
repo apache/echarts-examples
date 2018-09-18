@@ -1,3 +1,7 @@
+/**
+ * @deprecated
+ */
+
 var CHART_TYPES = {
     line: 'Line',
     bar: 'Bar',

@@ -1,3 +1,7 @@
+/**
+ * @deprecated
+ */
+
 'use strict';
 Error.stackTraceLimit = 200;
 
@@ -87,7 +91,7 @@ $.when = function () {
 };
 
 function getTmpMyChart() {
-    var canvas = new Canvas(700, 560);
+    var canvas = new Canvas(700, 525);
     var myChart = echarts.init(canvas);
     myChart.setOption = function () {};
     myChart.dispatchAction = function (action) {
