@@ -1,5 +1,5 @@
 ---
-title: Sankey Diagram Vertical
+title: Sankey Orient Vertical
 category: sankey
-titleCN: Sankey Diagram Vertical
+titleCN: Sankey Orient Vertical
 ---
