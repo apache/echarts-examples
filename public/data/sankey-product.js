@@ -14,7 +14,6 @@ $.get('data/asset/data/product.json', function (data) {
         series: [
             {
                 type: 'sankey',
-                layout:'none',
                 data: data.nodes,
                 links: data.links,
                 focusNodeAdjacency: true,
