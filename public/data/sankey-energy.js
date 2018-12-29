@@ -13,9 +13,9 @@ $.get('data/asset/data/energy.json', function (data) {
         series: [
             {
                 type: 'sankey',
-                layout: 'none',
                 data: data.nodes,
                 links: data.links,
+                focusNodeAdjacency: 'allEdges',
                 itemStyle: {
                     normal: {
                         borderWidth: 1,

@@ -1,30 +1,26 @@
 myChart.showLoading();
-$.get('data/asset/data/product.json', function (data) {
+$.get('data/asset/data/energy.json', function (data) {
     myChart.hideLoading();
 
     myChart.setOption(option = {
         title: {
-            text: 'Sankey Diagram'
+            text: 'Node Align Right'
         },
         tooltip: {
             trigger: 'item',
             triggerOn: 'mousemove'
-
         },
+        animation: false,
         series: [
             {
                 type: 'sankey',
+                focusNodeAdjacency: 'allEdges',
+                nodeAlign: 'left',
                 data: data.nodes,
                 links: data.links,
-                focusNodeAdjacency: true,
-                itemStyle: {
-                    normal: {
-                        borderWidth: 1,
-                        borderColor: '#aaa'
-                    }
-                },
                 lineStyle: {
                     normal: {
+                        color: 'source',
                         curveness: 0.5
                     }
                 }
@@ -32,3 +28,4 @@ $.get('data/asset/data/product.json', function (data) {
         ]
     });
 });
+

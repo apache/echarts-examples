@@ -10,7 +10,6 @@ option = {
     series: [
         {
             type: 'sankey',
-            layout:'none',
             bottom: '10%',
             focusNodeAdjacency: 'allEdges',
             data: [
