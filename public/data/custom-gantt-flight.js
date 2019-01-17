@@ -2,6 +2,12 @@ var HEIGHT_RATIO = 0.6;
 var DIM_CATEGORY_INDEX = 0;
 var DIM_TIME_ARRIVAL = 1;
 var DIM_TIME_DEPARTURE = 2;
+var DATA_ZOOM_AUTO_MOVE_THROTTLE = 30;
+var DATA_ZOOM_X_INSIDE_INDEX = 1;
+var DATA_ZOOM_Y_INSIDE_INDEX = 3;
+var DATA_ZOOM_AUTO_MOVE_SPEED = 0.2;
+var DATA_ZOOM_AUTO_MOVE_DETECT_AREA_WIDTH = 30;
+
 var _draggable;
 var _draggingEl;
 var _dropShadow;
@@ -9,7 +15,10 @@ var _draggingCursorOffset = [0, 0];
 var _draggingTimeLength;
 var _draggingRecord;
 var _dropRecord;
+var _cartesianXBounds = [];
+var _cartesianYBounds = [];
 var _rawData;
+var _autoDataZoomAnimator;
 
 $.get('data/asset/data/airport-schedule.json', function (rawData) {
     _rawData = rawData;
@@ -45,7 +54,7 @@ function makeOption() {
             filterMode: 'weakFilter',
             height: 20,
             bottom: 0,
-            start: -26,
+            start: 0,
             end: 26,
             handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
             handleSize: '80%',
@@ -55,7 +64,7 @@ function makeOption() {
             id: 'insideX',
             xAxisIndex: 0,
             filterMode: 'weakFilter',
-            start: -26,
+            start: 0,
             end: 26,
             zoomOnMouseWheel: false,
             moveOnMouseMove: true
@@ -150,6 +159,12 @@ function renderGanttItem(params, api) {
     var categoryIndex = api.value(DIM_CATEGORY_INDEX);
     var timeArrival = api.coord([api.value(DIM_TIME_ARRIVAL), categoryIndex]);
     var timeDeparture = api.coord([api.value(DIM_TIME_DEPARTURE), categoryIndex]);
+
+    var coordSys = params.coordSys;
+    _cartesianXBounds[0] = coordSys.x;
+    _cartesianXBounds[1] = coordSys.x + coordSys.width;
+    _cartesianYBounds[0] = coordSys.y;
+    _cartesianYBounds[1] = coordSys.y + coordSys.height;
 
     var barLength = timeDeparture[0] - timeArrival[0];
     // Get the heigth corresponds to length 1 on y axis.
@@ -256,6 +271,10 @@ function clipRectByRect(params, rect) {
     });
 }
 
+// -------------
+//  Enable Drag
+// -------------
+
 function onDragSwitchClick(model, api, type) {
     _draggable = !_draggable;
     myChart.setOption({
@@ -271,6 +290,9 @@ function onDragSwitchClick(model, api, type) {
 }
 
 function initDrag() {
+
+    _autoDataZoomAnimator = makeAnimator(dispatchDataZoom);
+
     myChart.on('mousedown', function (param) {
         if (!_draggable || !param || param.seriesIndex == null) {
             return;
@@ -298,26 +320,18 @@ function initDrag() {
             return;
         }
 
+        var cursorX = event.offsetX;
+        var cursorY = event.offsetY;
+
         // Move _draggingEl.
         _draggingEl.attr('position', [
-            _draggingCursorOffset[0] + event.offsetX,
-            _draggingCursorOffset[1] + event.offsetY,
+            _draggingCursorOffset[0] + cursorX,
+            _draggingCursorOffset[1] + cursorY,
         ]);
 
-        // Check droppable place.
-        var xPixel = _draggingEl.shape.x + _draggingEl.position[0];
-        var yPixel = _draggingEl.shape.y + _draggingEl.position[1];
-        var cursorData = myChart.convertFromPixel('grid', [xPixel, yPixel]);
-        if (cursorData) {
-            // Make drop shadow and _dropRecord
-            _dropRecord = {
-                categoryIndex: Math.floor(cursorData[1]),
-                timeArrival: cursorData[0],
-                timeDeparture: cursorData[0] + _draggingTimeLength
-            };
-            var style = {fill: 'rgba(0,0,0,0.4)'};
-            _dropShadow = addOrUpdateBar(_dropShadow, _dropRecord, style, 99);
-        }
+        prepareDrop();
+
+        autoDataZoomWhenDraggingOutside(cursorX, cursorY);
     });
 
     myChart.getZr().on('mouseup', function () {
@@ -336,6 +350,8 @@ function initDrag() {
     myChart.getZr().on('globalout', dragRelease);
 
     function dragRelease() {
+        _autoDataZoomAnimator.stop();
+
         if (_draggingEl) {
             myChart.getZr().remove(_draggingEl);
             _draggingEl = null;
@@ -371,6 +387,23 @@ function initDrag() {
         return el;
     }
 
+    function prepareDrop() {
+        // Check droppable place.
+        var xPixel = _draggingEl.shape.x + _draggingEl.position[0];
+        var yPixel = _draggingEl.shape.y + _draggingEl.position[1];
+        var cursorData = myChart.convertFromPixel('grid', [xPixel, yPixel]);
+        if (cursorData) {
+            // Make drop shadow and _dropRecord
+            _dropRecord = {
+                categoryIndex: Math.floor(cursorData[1]),
+                timeArrival: cursorData[0],
+                timeDeparture: cursorData[0] + _draggingTimeLength
+            };
+            var style = {fill: 'rgba(0,0,0,0.4)'};
+            _dropShadow = addOrUpdateBar(_dropShadow, _dropRecord, style, 99);
+        }
+    }
+
     // This is some business logic, don't care about it.
     function updateRawData() {
         var flightData = _rawData.flight.data;
@@ -394,5 +427,100 @@ function initDrag() {
         movingItem[DIM_TIME_ARRIVAL] = _dropRecord.timeArrival;
         movingItem[DIM_TIME_DEPARTURE] = _dropRecord.timeDeparture;
         return true;
+    }
+
+    function autoDataZoomWhenDraggingOutside(cursorX, cursorY) {
+        // When cursor is outside the cartesian and being dragging,
+        // auto move the dataZooms.
+        var cursorDistX = getCursorCartesianDist(cursorX, _cartesianXBounds);
+        var cursorDistY = getCursorCartesianDist(cursorY, _cartesianYBounds);
+
+        if (cursorDistX !== 0 || cursorDistY !== 0) {
+            _autoDataZoomAnimator.start({
+                cursorDistX: cursorDistX,
+                cursorDistY: cursorDistY
+            });
+        }
+        else {
+            _autoDataZoomAnimator.stop();
+        }
+    }
+
+    function dispatchDataZoom(params) {
+        var option = myChart.getOption();
+        var optionInsideX = option.dataZoom[DATA_ZOOM_X_INSIDE_INDEX];
+        var optionInsideY = option.dataZoom[DATA_ZOOM_Y_INSIDE_INDEX];
+        var batch = [];
+
+        prepareBatch(batch, 'insideX', optionInsideX.start, optionInsideX.end, params.cursorDistX);
+        prepareBatch(batch, 'insideY', optionInsideY.start, optionInsideY.end, -params.cursorDistY);
+
+        batch.length && myChart.dispatchAction({
+            type: 'dataZoom',
+            batch: batch
+        });
+
+        function prepareBatch(batch, id, start, end, cursorDist) {
+            if (cursorDist === 0) {
+                return;
+            }
+            var sign = cursorDist / Math.abs(cursorDist);
+            var size = end - start;
+            var delta = DATA_ZOOM_AUTO_MOVE_SPEED * sign;
+
+            start += delta;
+            end += delta;
+
+            if (end > 100) {
+                end = 100;
+                start = end - size;
+            }
+            if (start < 0) {
+                start = 0;
+                end = start + size;
+            }
+            batch.push({
+                dataZoomId: id,
+                start: start,
+                end: end
+            });
+        }
+    }
+
+    function getCursorCartesianDist(cursorXY, bounds) {
+        var dist0 = cursorXY - (bounds[0] + DATA_ZOOM_AUTO_MOVE_DETECT_AREA_WIDTH);
+        var dist1 = cursorXY - (bounds[1] - DATA_ZOOM_AUTO_MOVE_DETECT_AREA_WIDTH);
+        return dist0 * dist1 <= 0
+            ? 0 // cursor is in cartesian
+            : dist0 < 0
+            ? dist0 // cursor is at left/top of cartesian
+            : dist1; // cursor is at right/bottom of cartesian
+    }
+
+    function makeAnimator(callback) {
+        var requestId;
+        var callbackParams;
+        // Use throttle to prevent from calling dispatchAction frequently.
+        callback = echarts.throttle(callback, DATA_ZOOM_AUTO_MOVE_THROTTLE);
+
+        function onFrame() {
+            callback(callbackParams);
+            requestId = requestAnimationFrame(onFrame);
+        }
+
+        return {
+            start: function (params) {
+                callbackParams = params;
+                if (requestId == null) {
+                    onFrame();
+                }
+            },
+            stop: function () {
+                if (requestId != null) {
+                    cancelAnimationFrame(requestId);
+                }
+                requestId = callbackParams = null;
+            }
+        };
     }
 }
