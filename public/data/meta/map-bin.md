@@ -1,5 +1,5 @@
 ---
 title: Binning on Map
-category: map, geo
+category: map
 titleCN: Binning on Map
 ---

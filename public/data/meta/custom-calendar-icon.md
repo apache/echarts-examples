@@ -1,5 +1,5 @@
 ---
 title: Custom Calendar Icon
-category: custom
+category: custom, calendar
 titleCN: Custom Calendar Icon
 ---

@@ -1,5 +1,5 @@
 ---
 title: Hexagonal Binning
-category: custom
+category: custom, map
 titleCN: Hexagonal Binning
 ---

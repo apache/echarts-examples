@@ -1,5 +1,5 @@
 ---
 title: Migration
-category: map, geo
+category: map
 titleCN: 模拟迁徙
 ---

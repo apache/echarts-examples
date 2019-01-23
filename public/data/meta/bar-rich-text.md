@@ -1,4 +1,4 @@
 ---
 title: Wheater Statistics
-category: bar
+category: bar, rich
 ---

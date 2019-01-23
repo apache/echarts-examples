@@ -1,5 +1,5 @@
 ---
 title: Calendar Charts
-category: calendar
+category: calendar, scatter
 titleCN: 日力图
 ---

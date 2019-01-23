@@ -1,5 +1,5 @@
 ---
 title: Pie Special Label
-category: pie
+category: pie, rich
 titleCN: 富文本标签
 ---

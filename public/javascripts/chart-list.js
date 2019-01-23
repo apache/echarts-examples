@@ -6,8 +6,7 @@ var CHART_TYPES = {
     bar: ['柱状图', 'Bar'],
     pie: ['饼图', 'Pie'],
     scatter: ['散点图', 'Scatter'],
-    map: ['地图', 'Map'],
-    geo: ['地理坐标系', 'GEO'],
+    map: ['地理坐标/地图', 'GEO/Map'],
     candlestick: ['K 线图', 'Candlestick'],
     radar: ['雷达图', 'Radar'],
     boxplot: ['盒须图', 'Boxplot'],
@@ -25,7 +24,11 @@ var CHART_TYPES = {
     themeRiver: ['主题河流图', 'ThemeRiver'],
     calendar: ['日历坐标系', 'Calendar'],
     custom: ['自定义系列', 'Custom'],
+
     dataset: ['数据集', 'Dataset'],
+    dataZoom: ['数据区域缩放', 'DataZoom'],
+    drag: ['拖拽', 'Drag'],
+    rich: ['富文本', 'Rich Text'],
 
     globe: ['3D 地球', '3D Globe'],
     bar3D: ['3D 柱状图', '3D Bar'],
@@ -136,28 +139,43 @@ $(document).ready(function() {
 
 
     function addExamples(examples, isGL) {
+        var remainExamples = new Array(examples.length);
+        for (var i = 0; i < examples.length; ++i) {
+            remainExamples[i] = {categoryIndex: 0, item: examples[i]};
+        }
+        // The examples has been sorted by `difficulty` asc.
+        remainExamples.reverse();
+
         // load charts
-        for (var eid = 0, elen = examples.length; eid < elen; ++eid) {
-            if (blackMap.hasOwnProperty(examples[eid].id)) {
+        while (remainExamples.length) {
+            var wrap = remainExamples.pop();
+            var exampleItem = wrap.item;
+
+            if (blackMap.hasOwnProperty(exampleItem.id)) {
                 continue;
             }
 
             // show title if exists
-            var title = examples[eid].title || (isCN ? '未命名图表' : 'Unnamed Chart');
+            var title = exampleItem.title || (isCN ? '未命名图表' : 'Unnamed Chart');
 
             // append dom element
             var $row = $('<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6"></div>');
             var $chart = $('<div class="chart"></div>');
-            var category = examples[eid].category;
+
+            var category = exampleItem.category;
             if (!(category instanceof Array)) {
                 category = [category];
             }
-            for (var k = 0; k < category.length; k++) {
-                $('#chart-row-' + category[k]).append($row.append($chart));
+            $('#chart-row-' + category[wrap.categoryIndex]).append($row.append($chart));
+            ++wrap.categoryIndex;
+            // Here sort the display sequence by category.
+            // But category has lower priority than dificulty.
+            if (wrap.categoryIndex < category.length) {
+                remainExamples.unshift(wrap);
             }
 
-            var hash = ['c=' + examples[eid].id];
-            var exampleTheme = examples[eid].theme || params.theme;
+            var hash = ['c=' + exampleItem.id];
+            var exampleTheme = exampleItem.theme || params.theme;
             if (isGL) {
                 hash.push('gl=1');
             }
@@ -173,7 +191,7 @@ $(document).ready(function() {
 
             // load chart image
             $chartArea = $('<img class="chart-area" src="images/placeholder.png" data-original="' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
-                + examples[eid].id + '.png" />');
+                + exampleItem.id + '.png" />');
             $link.append($chartArea);
         }
     }

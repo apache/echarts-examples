@@ -1,6 +1,6 @@
 ---
 title: Simple Example of Dataset
-category: dataset
+category: dataset, bar
 titleCN: 最简单的数据集（dataset）
 difficulty: 1
 ---

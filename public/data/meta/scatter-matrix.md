@@ -1,5 +1,5 @@
 ---
 title: Scatter Matrix
-category: parallel
+category: parallel, scatter
 titleCN: Scatter Matrix
 ---

@@ -1,5 +1,5 @@
 ---
 title: Error Scatter on Catesian
-category: custom
+category: custom, dataZoom
 titleCN: Error Scatter on Catesian
 ---

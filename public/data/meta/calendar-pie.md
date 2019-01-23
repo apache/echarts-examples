@@ -1,5 +1,5 @@
 ---
 title: Calendar Pie
-category: calendar
+category: calendar, pie
 titleCN: 日历饼图
 ---

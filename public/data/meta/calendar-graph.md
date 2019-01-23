@@ -1,5 +1,5 @@
 ---
 title: Calendar Graph
-category: graph
+category: calendar, graph
 titleCN: 日历关系图
 ---

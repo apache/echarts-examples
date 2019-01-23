@@ -1,5 +1,5 @@
 ---
 title: Wind Barb
-category: custom
+category: custom, dataZoom
 titleCN: 风向图
 ---
