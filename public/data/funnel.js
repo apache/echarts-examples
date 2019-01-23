@@ -35,29 +35,23 @@ option = {
             sort: 'descending',
             gap: 2,
             label: {
-                normal: {
-                    show: true,
-                    position: 'inside'
-                },
-                emphasis: {
-                    textStyle: {
-                        fontSize: 20
-                    }
-                }
+                show: true,
+                position: 'inside'
             },
             labelLine: {
-                normal: {
-                    length: 10,
-                    lineStyle: {
-                        width: 1,
-                        type: 'solid'
-                    }
+                length: 10,
+                lineStyle: {
+                    width: 1,
+                    type: 'solid'
                 }
             },
             itemStyle: {
-                normal: {
-                    borderColor: '#fff',
-                    borderWidth: 1
+                borderColor: '#fff',
+                borderWidth: 1
+            },
+            emphasis: {
+                label: {
+                    fontSize: 20
                 }
             },
             data: [
