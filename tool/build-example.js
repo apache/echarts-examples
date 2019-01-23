@@ -41,7 +41,7 @@ function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-var BUILD_THUMBS = sourceFolder === 'data' && false;
+var BUILD_THUMBS = sourceFolder === 'data' && true;
 var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
 
 (async () => {
