@@ -1,1 +1,1 @@
-gulp build --env-cn
+./node_modules/.bin/gulp build --env-cn
