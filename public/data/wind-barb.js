@@ -60,7 +60,7 @@ $.getJSON('data/asset/data/wind-barb-hobart.json', function (rawData) {
 
     function renderWeather(param, api) {
         var point = api.coord([
-            api.value(dims.time) +  + 3600 * 24 * 1000 / 2,
+            api.value(dims.time) + 3600 * 24 * 1000 / 2,
             0
         ]);
 
