@@ -444,6 +444,9 @@ option = {
             type: 'scatter',
             coordinateSystem: 'geo',
             data: convertData(data),
+            encode: {
+                value: 2
+            },
             symbolSize: function (val) {
                 return val[2] / 10;
             },
@@ -470,6 +473,9 @@ option = {
             data: convertData(data.sort(function (a, b) {
                 return b.value - a.value;
             }).slice(0, 6)),
+            encode: {
+                value: 2
+            },
             symbolSize: function (val) {
                 return val[2] / 10;
             },

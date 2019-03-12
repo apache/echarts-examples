@@ -127,7 +127,7 @@ function makeOption() {
             axisLine: {show: false},
             axisLabel: {show: false},
             min: 0,
-            max: _rawData.parkingApron.data.length - 1
+            max: _rawData.parkingApron.data.length
         },
         series: [{
             id: 'flightData',
