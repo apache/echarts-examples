@@ -1,5 +1,5 @@
 ---
-title: Sankey Diagram
+title: Sankey with Levels Setting
 category: sankey
-titleCN: Sankey Diagram
+titleCN: Sankey with Levels Setting
 ---

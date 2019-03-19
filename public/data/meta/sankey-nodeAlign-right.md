@@ -1,5 +1,5 @@
 ---
-title: Sankey Node Align Right
+title: Node Align Right in Sankey
 category: sankey
-titleCN: Sankey Node Align Right
+titleCN: Node Align Right in Sankey
 ---
