@@ -1,5 +1,9 @@
 
 option ={
+    title: {
+        subtext: '数据来自 GitHub ID: lisachristina1234',
+        x: 'center'
+    },
     backgroundColor: "#FFFFFF",
     series: [
         {
