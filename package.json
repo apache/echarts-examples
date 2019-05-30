@@ -8,6 +8,7 @@
     "browser-sync": "^2.11.0",
     "echarts-stat": "^1.1.0",
     "etpl": "^3.2.0",
+    "event-stream": "^4.0.1",
     "front-matter": "^2.3.0",
     "glob": "^7.1.2",
     "gulp": "~3.9.0",

@@ -574,7 +574,7 @@ function load() {
 
     function loadChart() {
         if (configs.c) {
-            $.ajax('./' + dataRoot + '/' + configs.c + '.js', {
+            $.ajax('../' + dataRoot + '/' + configs.c + '.js', {
                 dataType: 'text',
                 success: function (data) {
                     gb.loadedCode = data;

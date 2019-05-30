@@ -128,7 +128,7 @@
         enableMask();
     }
     if (configs.c) {
-        $.ajax('./data/' + configs.c + '.js', {
+        $.ajax('../data/' + configs.c + '.js', {
             dataType: 'text',
             success: function (data) {
                 run(data);

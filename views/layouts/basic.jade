@@ -5,14 +5,14 @@ html
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1')
 
-        link(rel='stylesheet', type='text/css', href='./vendors/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='../vendors/bootstrap/css/bootstrap.css')
         // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <!--[if lt IE 9]>
         script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
         script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
         <![endif]-->
 
-        link(rel='stylesheet', type='text/css', href='./stylesheets/main.css?_v_=#{buildVersion}')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/main.css?_v_=#{buildVersion}')
 
         title ECharts Demo
 
@@ -22,8 +22,14 @@ html
     body
         block content
 
-        script(type='text/javascript', src='./vendors/jquery/jquery.js')
-        script(type='text/javascript', src='./vendors/bootstrap/js/bootstrap.js')
-        script(type='text/javascript', src='./vendors/lodash.js')
+        script(type='text/javascript', src='../vendors/jquery/jquery.js')
+        script(type='text/javascript', src='../vendors/bootstrap/js/bootstrap.js')
+        script(type='text/javascript', src='../vendors/lodash.js')
+        script(type='text/javascript').
+            function changeLang(lang) {
+                location.href = location.href.replace(
+                    new RegExp('/(zh|en)/', 'g'), '/' + lang + '/'
+                );
+            }
 
         block extra_js
