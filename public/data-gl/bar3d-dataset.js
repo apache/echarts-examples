@@ -1,4 +1,4 @@
-$.get('data/asset/data/life-expectancy-table.json', function (data) {
+$.get(ROOT_PATH + 'data/asset/data/life-expectancy-table.json', function (data) {
     option = {
         grid3D: {},
         tooltip: {},

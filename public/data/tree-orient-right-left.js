@@ -1,6 +1,6 @@
 
 myChart.showLoading();
-$.get('data/asset/data/flare.json', function (data) {
+$.get(ROOT_PATH + 'data/asset/data/flare.json', function (data) {
     myChart.hideLoading();
 
     echarts.util.each(data.children, function (datum, index) {
@@ -28,7 +28,7 @@ $.get('data/asset/data/flare.json', function (data) {
                 symbolSize: 7,
 
                 orient: 'RL',
-            
+
                 label: {
                         position: 'right',
                         verticalAlign: 'middle',

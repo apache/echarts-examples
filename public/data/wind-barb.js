@@ -1,10 +1,10 @@
 
-$.getJSON('data/asset/data/wind-barb-hobart.json', function (rawData) {
+$.getJSON(ROOT_PATH + 'data/asset/data/wind-barb-hobart.json', function (rawData) {
 
     var weatherIcons = {
-        'Showers': './data/asset/img/weather/showers_128.png',
-        'Sunny': './data/asset/img/weather/sunny_128.png',
-        'Cloudy': './data/asset/img/weather/cloudy_128.png'
+        'Showers': ROOT_PATH + 'data/asset/img/weather/showers_128.png',
+        'Sunny': ROOT_PATH + 'data/asset/img/weather/sunny_128.png',
+        'Cloudy': ROOT_PATH + 'data/asset/img/weather/cloudy_128.png'
     };
 
     var directionMap = {};

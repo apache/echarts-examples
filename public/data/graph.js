@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.get('data/asset/data/les-miserables.gexf', function (xml) {
+$.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
     myChart.hideLoading();
 
     var graph = echarts.dataTool.gexf.parse(xml);

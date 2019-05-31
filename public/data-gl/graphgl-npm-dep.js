@@ -1,6 +1,6 @@
 $.when(
-    $.getJSON("data-gl/asset/data/npmdep.json"),
-    $.getScript("vendors/echarts/extension/graph-modularity.js")
+    $.getJSON(ROOT_PATH + "data-gl/asset/data/npmdep.json"),
+    $.getScript(ROOT_PATH + "vendors/echarts/extension/graph-modularity.js")
 ).done(function (res) {
     var data = res[0];
     var nodes = data.nodes.map(function (nodeName, idx) {

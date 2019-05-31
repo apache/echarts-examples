@@ -2,7 +2,7 @@ option = {
     geo3D: {
         map: 'world',
         lambertMaterial: {
-            baseTexture: 'data-gl/asset/woods.jpg',
+            baseTexture: ROOT_PATH + 'data-gl/asset/woods.jpg',
             textureTiling: 10
         },
 
@@ -22,7 +22,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: 'data-gl/asset/canyon.hdr'
+                texture: ROOT_PATH + 'data-gl/asset/canyon.hdr'
             }
         },
         viewControl: {

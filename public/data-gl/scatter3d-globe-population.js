@@ -1,5 +1,5 @@
 
-$.getJSON('data-gl/asset/data/population.json', function (data) {
+$.getJSON(ROOT_PATH + 'data-gl/asset/data/population.json', function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
@@ -18,9 +18,9 @@ $.getJSON('data-gl/asset/data/population.json', function (data) {
         },
         globe: {
 
-            environment: 'data-gl/asset/starfield.jpg',
+            environment: ROOT_PATH + 'data-gl/asset/starfield.jpg',
 
-            heightTexture: 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+            heightTexture: ROOT_PATH + 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
             displacementScale: 0.05,
             displacementQuality: 'high',
@@ -55,7 +55,7 @@ $.getJSON('data-gl/asset/data/population.json', function (data) {
                     shadow: false
                 },
                 ambientCubemap: {
-                    texture: 'data-gl/asset/lake.hdr',
+                    texture: ROOT_PATH + 'data-gl/asset/lake.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5,
                     specularIntensity: 2

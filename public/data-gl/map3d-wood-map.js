@@ -1,4 +1,4 @@
-$.getJSON('data-gl/asset/data/alcohol.json', function (data) {
+$.getJSON(ROOT_PATH + 'data-gl/asset/data/alcohol.json', function (data) {
     var regionData = data.map(function (item) {
         return {
             name: item[0],
@@ -11,9 +11,9 @@ $.getJSON('data-gl/asset/data/alcohol.json', function (data) {
             map: 'world',
             shading: 'realistic',
             realisticMaterial: {
-                roughness: "data-gl/asset/wood/roughness.jpg",
-                normalTexture: "data-gl/asset/wood/normal.jpg",
-                detailTexture: "data-gl/asset/wood/diffuse.jpg",
+                roughness: ROOT_PATH + "data-gl/asset/wood/roughness.jpg",
+                normalTexture: ROOT_PATH + "data-gl/asset/wood/normal.jpg",
+                detailTexture: ROOT_PATH + "data-gl/asset/wood/diffuse.jpg",
                 textureTiling: [2, 2]
             },
             postEffect: {
@@ -39,7 +39,7 @@ $.getJSON('data-gl/asset/data/alcohol.json', function (data) {
                 ambientCubemap: {
                     diffuseIntensity: 2,
                     specularIntensity: 2,
-                    texture: 'data-gl/asset/canyon.hdr'
+                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr'
                 }
             },
             viewControl: {
@@ -52,9 +52,9 @@ $.getJSON('data-gl/asset/data/alcohol.json', function (data) {
                 show: true,
                 color: '#333',
                 realisticMaterial: {
-                    roughness: "data-gl/asset/redbricks/roughness.jpg",
-                    normalTexture: "data-gl/asset/redbricks/normal.jpg",
-                    detailTexture: "data-gl/asset/redbricks/diffuse.jpg",
+                    roughness: ROOT_PATH + "data-gl/asset/redbricks/roughness.jpg",
+                    normalTexture: ROOT_PATH + "data-gl/asset/redbricks/normal.jpg",
+                    detailTexture: ROOT_PATH + "data-gl/asset/redbricks/diffuse.jpg",
                     textureTiling: [8, 4]
                 }
             },

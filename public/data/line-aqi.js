@@ -1,4 +1,4 @@
-$.get('data/asset/data/aqi-beijing.json', function (data) {
+$.get(ROOT_PATH + 'data/asset/data/aqi-beijing.json', function (data) {
     myChart.setOption(option = {
         title: {
             text: 'Beijing AQI'

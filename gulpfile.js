@@ -84,7 +84,8 @@ gulp.task('jade', function() {
                     mainSitePath: config.mainSitePath
                 }
             }))
-            .pipe(gulp.dest('public/zh')),
+            .pipe(gulp.dest('public/zh'))
+            .pipe(gulp.dest('public')),
 
         gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
             .pipe(jade({

@@ -1,4 +1,4 @@
-$.getScript('vendors/simplex.js').done(function () {
+$.getScript(ROOT_PATH + 'vendors/simplex.js').done(function () {
 
 
 var simplex = new SimplexNoise();
@@ -167,7 +167,7 @@ myChart.setOption(option = {
                 intensity: 0
             },
             ambientCubemap: {
-                texture: 'data-gl/asset/pisa.hdr',
+                texture: ROOT_PATH + 'data-gl/asset/pisa.hdr',
                 exposure: 2,
                 diffuseIntensity: 1,
                 specularIntensity: 1

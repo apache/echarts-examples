@@ -1,7 +1,7 @@
 (function () {
 
     var lang = ({
-        cn: {
+        zh: {
             editDemo: '编辑示例',
             reset: '重置',
             enableInteraction: '开启交互',

@@ -1,4 +1,4 @@
-$.getJSON('data-gl/asset/data/flights.json', function(data) {
+$.getJSON(ROOT_PATH + 'data-gl/asset/data/flights.json', function(data) {
     function getAirportCoord(idx) {
         return [data.airports[idx][3], data.airports[idx][4]];
     }
@@ -14,7 +14,7 @@ $.getJSON('data-gl/asset/data/flights.json', function(data) {
             map: 'world',
             shading: 'color',
 
-            environment: 'data-gl/asset/starfield.jpg',
+            environment: ROOT_PATH + 'data-gl/asset/starfield.jpg',
 
             silent: true,
 

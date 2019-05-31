@@ -1,7 +1,7 @@
 
 var weatherIcons = {
-    up: './data/asset/img/arrow-up.png',
-    down: './data/asset/img/arrow-down.png'
+    up: ROOT_PATH + 'data/asset/img/arrow-up.png',
+    down: ROOT_PATH + 'data/asset/img/arrow-down.png'
 };
 
 option = {

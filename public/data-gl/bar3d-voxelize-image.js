@@ -83,7 +83,7 @@ option = {
                 intensity: 2
             },
             ambientCubemap: {
-                texture: 'data-gl/asset/pisa.hdr',
+                texture: ROOT_PATH + 'data-gl/asset/pisa.hdr',
                 exposure: 2,
                 diffuseIntensity: 0.2,
                 specularIntensity: 1.5
@@ -161,4 +161,4 @@ img.onload = function() {
     loadImage(img);
     currentImg = img;
 };
-img.src = "./data-gl/asset/bitcoin.png";
+img.src = ROOT_PATH + 'data-gl/asset/bitcoin.png';

@@ -109,7 +109,7 @@ app.configParameters = {};
     };
 });
 
-$.getJSON('data/asset/data/nutrients.json', function (_data) {
+$.getJSON(ROOT_PATH + 'data/asset/data/nutrients.json', function (_data) {
     data = _data;
 
     var max = getMaxOnExtent(data);

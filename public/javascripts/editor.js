@@ -1,5 +1,5 @@
 var lang = ({
-    cn: {
+    zh: {
         errorInEditor: '编辑器内容有误！',
         chartOK: '图表已生成, '
     },
@@ -565,7 +565,7 @@ function load() {
         script.onload = function () {
             loadChart();
         };
-        script.src = './vendors/echarts-gl/echarts-gl.js';
+        script.src = '../vendors/echarts-gl/echarts-gl.js';
         document.body.appendChild(script);
     }
     else {
@@ -574,6 +574,7 @@ function load() {
 
     function loadChart() {
         if (configs.c) {
+            console.log(configs.c);
             $.ajax('../' + dataRoot + '/' + configs.c + '.js', {
                 dataType: 'text',
                 success: function (data) {

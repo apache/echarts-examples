@@ -1,4 +1,4 @@
-var uploadedDataURL = "/asset/get/s/data-1495284690309-Bk9Ro3Te-.json";
+var uploadedDataURL = ROOT_PATH + 'asset/get/s/data-1495284690309-Bk9Ro3Te-.json';
 mapboxgl.accessToken = mapboxglToken;
 
 myChart.showLoading();
@@ -47,7 +47,7 @@ $.getJSON(uploadedDataURL, function(linedata) {
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: 'data-gl/asset/canyon.hdr',
+                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5
                 }
