@@ -5,6 +5,7 @@ var prefix      = require('gulp-autoprefixer');
 var jade        = require('gulp-jade');
 var uglify      = require('gulp-uglify');
 var copy        = require('gulp-copy');
+var clean       = require('gulp-clean');
 var rename      = require('gulp-rename');
 var yargs       = require('yargs');
 var config      = require('./config/env');
@@ -84,8 +85,7 @@ gulp.task('jade', function() {
                     mainSitePath: config.mainSitePath
                 }
             }))
-            .pipe(gulp.dest('public/zh'))
-            .pipe(gulp.dest('public')),
+            .pipe(gulp.dest('public/zh')),
 
         gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
             .pipe(jade({
@@ -135,10 +135,15 @@ gulp.task('watch', function() {
 //         .pipe(gulp.dest('fecs'));;
 // });
 
+gulp.task('clean', function () {
+    return gulp.src(['public/**/*.html', 'release'])
+        .pipe(clean());
+});
+
 /**
  * Build files into release directory
  */
-gulp.task('release-copy', ['jade', 'sass'], function() {
+gulp.task('release-copy', ['clean', 'jade', 'sass'], function() {
     // copy source files
     return gulp.src(['public/**/*', '!public/stylesheets/scss/**/*'], {
             base: 'public'
