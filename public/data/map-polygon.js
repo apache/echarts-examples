@@ -431,7 +431,7 @@ function renderItem(params, api) {
 }
 
 option = {
-    // backgroundColor: '#404a59',
+    backgroundColor: 'transparent',
     title: {
         text: '全国主要城市空气质量',
         subtext: 'data from PM25.in',
