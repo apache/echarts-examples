@@ -98,7 +98,7 @@ gulp.task('jade-en', ['clean'], function () {
         .pipe(gulp.dest('public/en'));
 });
 
-gulp.task('jade-misc', ['clean'], function () {
+gulp.task('jade-redirect', ['clean'], function () {
     return gulp.src('views/redirect.jade')
         .pipe(jade({
             data: {
@@ -110,10 +110,22 @@ gulp.task('jade-misc', ['clean'], function () {
         .pipe(gulp.dest('public'));
 });
 
+gulp.task('jade-misc', ['clean'], function () {
+    // 404 for https://ecomfe.github.io/echarts-examples
+    return gulp.src('views/404.jade')
+        .pipe(jade({
+            data: {
+                buildVersion: date,
+                host: config.host
+            }
+        }))
+        .pipe(gulp.dest('.'));
+});
+
 /**
  * Generate site using Jade
  */
-gulp.task('jade', ['jade-zh', 'jade-en', 'jade-misc']);
+gulp.task('jade', ['jade-zh', 'jade-en', 'jade-redirect', 'jade-misc']);
 
 /**
  * Watch scss files for changes & recompile
