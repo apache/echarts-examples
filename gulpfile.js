@@ -99,14 +99,13 @@ gulp.task('jade-en', ['clean'], function () {
 });
 
 gulp.task('jade-redirect', ['clean'], function () {
-    return gulp.src('views/redirect.jade')
+    return gulp.src(['views/old-redirect/index.jade', 'views/old-redirect/editor.jade', 'views/old-redirect/view.jade'])
         .pipe(jade({
             data: {
                 buildVersion: date,
                 host: config.host
             }
         }))
-        .pipe(rename('index.html'))
         .pipe(gulp.dest('public'));
 });
 
