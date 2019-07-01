@@ -1,6 +1,7 @@
 var graphData = [
     [
-        1485878400000,
+        // Consider timeoffset, add two days to avoid overflow.
+        1485878400000 + 3600 * 24 * 1000 * 2,
         260
     ],
     [
