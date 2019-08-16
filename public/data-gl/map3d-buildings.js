@@ -1,5 +1,5 @@
 
-$.getJSON('data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
+$.getJSON(ROOT_PATH + 'data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
 
     echarts.registerMap('buildings', buildingsGeoJSON);
 
@@ -57,7 +57,7 @@ $.getJSON('data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: 'data-gl/asset/pisa.hdr',
+                    texture: ROOT_PATH + 'data-gl/asset/pisa.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5,
                     specularIntensity: 1

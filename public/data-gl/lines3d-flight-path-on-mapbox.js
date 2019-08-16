@@ -3,10 +3,10 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 
-$.get('/asset/get/s/data-1497886591658-rJOKkdH7W.txt', function (text) {
-    
+$.get(ROOT_PATH + 'asset/get/s/data-1497886591658-rJOKkdH7W.txt', function (text) {
+
     var data = decodeFlightPathData(text);
-    
+
     var dataAll = [];
     for (var i = 0; i < 4; i++) {
         dataAll = dataAll.concat(data.map(function (item) {
@@ -18,7 +18,7 @@ $.get('/asset/get/s/data-1497886591658-rJOKkdH7W.txt', function (text) {
             };
         }));
     }
-    
+
     myChart.setOption({
         mapbox: {
             center: [0, 51.5],
@@ -153,7 +153,7 @@ function decodeFlightPathData(text) {
                     prevPt1 = coords1[i][j - 1],
                     currPt0 = coords0[i][j],
                     currPt1 = coords1[i][j];
-                
+
                 coords.push(
                     [prevPt0[0], prevPt0[1], prevPt1[0]],
                     [currPt0[0], currPt0[1], currPt1[0]]

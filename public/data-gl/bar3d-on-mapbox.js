@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 
-$.getJSON('data-gl/asset/data/population.json', function (data) {
+$.getJSON(ROOT_PATH + 'data-gl/asset/data/population.json', function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
@@ -46,7 +46,7 @@ $.getJSON('data-gl/asset/data/population.json', function (data) {
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: 'asset/canyon.hdr',
+                    texture: ROOT_PATH + 'asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.5
                 }

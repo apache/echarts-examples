@@ -1,6 +1,6 @@
 app.title = '热力图与百度地图扩展';
 
-$.get('data/asset/data/hangzhou-tracks.json', function (data) {
+$.get(ROOT_PATH + 'data/asset/data/hangzhou-tracks.json', function (data) {
 
     var points = [].concat.apply([], data.map(function (track) {
         return track.map(function (seg) {

@@ -5,7 +5,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext();
 
 var oReq = new XMLHttpRequest();
-oReq.open('GET', 'data/asset/sound/roll-it-up.mp3', true);
+oReq.open('GET', ROOT_PATH + 'data/asset/sound/roll-it-up.mp3', true);
 oReq.responseType = 'arraybuffer';
 
 oReq.onload = function(e) {
@@ -129,7 +129,7 @@ option = {
                 quality: 'high'
             },
             ambientCubemap: {
-                texture: 'data-gl/asset/canyon.hdr',
+                texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
                 exposure: 0,
                 diffuseIntensity: 0.2
             }

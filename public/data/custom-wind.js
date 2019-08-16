@@ -1,4 +1,4 @@
-$.getJSON('data-gl/asset/data/winds.json', function (windData) {
+$.getJSON(ROOT_PATH + 'data-gl/asset/data/winds.json', function (windData) {
     var p = 0;
     var maxMag = 0;
     var minMag = Infinity;

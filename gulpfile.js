@@ -5,10 +5,24 @@ var prefix      = require('gulp-autoprefixer');
 var jade        = require('gulp-jade');
 var uglify      = require('gulp-uglify');
 var copy        = require('gulp-copy');
+var clean       = require('gulp-clean');
 var rename      = require('gulp-rename');
 var yargs       = require('yargs');
 var config      = require('./config/env');
+var eventStream = require('event-stream');
 
+const date = +new Date();
+
+var argv = require('yargs').argv;
+var isDebug = (argv.debug === undefined) ? false : true;
+if (isDebug) {
+    console.warn('==========================');
+    console.warn('!!! THIS IS DEBUG MODE !!!');
+    console.warn('==========================');
+
+    config.host = config.debugHost;
+    config.mainSitePath = config.debugMainSitePath;
+}
 
 // Usage: gulp build --env-cn
 var lang = 'en';
@@ -56,22 +70,61 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('public/stylesheets'));
 });
 
-/**
- * Generate site using Jade
- */
-gulp.task('jade', function() {
+gulp.task('jade-zh', ['clean'], function () {
     return gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
         .pipe(jade({
             data: {
-                buildVersion: +new Date(),
-                lang: lang,
+                buildVersion: date,
+                lang: 'zh',
                 host: config.host,
-                blogPath: config.blogPath
+                blogPath: config.blogPath,
+                mainSitePath: config.mainSitePath
             }
         }))
-        .pipe(gulp.dest('public/'))
-        .pipe(browserSync.reload({stream:true}));
+        .pipe(gulp.dest('public/zh'));
 });
+
+gulp.task('jade-en', ['clean'], function () {
+    return gulp.src(['views/view.jade', 'views/editor.jade', 'views/index.jade'])
+        .pipe(jade({
+            data: {
+                buildVersion: date,
+                lang: 'en',
+                host: config.host,
+                blogPath: config.blogPath,
+                mainSitePath: config.mainSitePath
+            }
+        }))
+        .pipe(gulp.dest('public/en'));
+});
+
+gulp.task('jade-redirect', ['clean'], function () {
+    return gulp.src(['views/old-redirect/index.jade', 'views/old-redirect/editor.jade', 'views/old-redirect/view.jade'])
+        .pipe(jade({
+            data: {
+                buildVersion: date,
+                host: config.host
+            }
+        }))
+        .pipe(gulp.dest('public'));
+});
+
+gulp.task('jade-misc', ['clean'], function () {
+    // 404 for https://ecomfe.github.io/echarts-examples
+    return gulp.src('views/404.jade')
+        .pipe(jade({
+            data: {
+                buildVersion: date,
+                host: config.host
+            }
+        }))
+        .pipe(gulp.dest('.'));
+});
+
+/**
+ * Generate site using Jade
+ */
+gulp.task('jade', ['jade-zh', 'jade-en', 'jade-redirect', 'jade-misc']);
 
 /**
  * Watch scss files for changes & recompile
@@ -96,39 +149,26 @@ gulp.task('watch', function() {
 //         .pipe(gulp.dest('fecs'));;
 // });
 
+gulp.task('clean', function () {
+    return gulp.src(['public/**/*.html', 'release'])
+        .pipe(clean());
+});
+
 /**
  * Build files into release directory
  */
-gulp.task('release-copy', ['release-jade'], function() {
+gulp.task('release-copy', ['jade', 'sass'], function() {
     // copy source files
-    return gulp.src(['public/data/**', 'public/fonts/**', 'public/images/**',
-        'public/stylesheets/*.css',
-        'public/vendors/**', 'public/javascripts/chart-list.js',
-        'public/javascripts/editor.js','public/javascripts/view.js', 'public/javascripts/hm.js', 'public/*.html'])
-        .pipe(copy('release'));
-});
-
-gulp.task('release-jade', function() {
-    var env = {
-        buildVersion: +new Date()
-    };
-    gulp.src('views/explore.jade')
-        .pipe(jade({
-            data: env
-        }))
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest('public'));
-    return gulp.src('views/editor.jade')
-        .pipe(jade({
-            data: env
-        }))
-        .pipe(gulp.dest('public'));
+    return gulp.src(['public/**/*', '!public/stylesheets/scss/**/*'], {
+            base: 'public'
+        })
+        .pipe(gulp.dest('../incubator-echarts-website/examples'));
 });
 
 gulp.task('release', ['release-copy'], function() {
-    return gulp.src(['release/public/javascripts/*.js'])
+    return gulp.src(['public/javascripts/*.js'])
         .pipe(uglify())
-        .pipe(gulp.dest('release/public/javascripts'));
+        .pipe(gulp.dest('../incubator-echarts-website/examples/javascripts'));
 });
 
 /**

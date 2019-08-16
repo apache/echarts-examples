@@ -57,14 +57,14 @@ img.onload = function () {
             },
             boxDepth: 100,
             boxHeight: 20,
-            environment: 'data-gl/asset/starfield.jpg',
+            environment: ROOT_PATH + 'data-gl/asset/starfield.jpg',
             light: {
                 main: {
                     shadow: true,
                     intensity: 2
                 },
                 ambientCubemap: {
-                    texture: 'data-gl/asset/canyon.hdr',
+                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.2
                 }
@@ -93,4 +93,4 @@ img.onload = function () {
     });
 }
 
-img.src = 'data-gl/asset/sample.jpg';
+img.src = ROOT_PATH + 'data-gl/asset/sample.jpg';

@@ -35,7 +35,7 @@ function calculateMA(dayCount, data) {
     return result;
 }
 
-$.get('data/asset/data/stock-DJI.json', function (rawData) {
+$.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
 
     var data = splitData(rawData);
 

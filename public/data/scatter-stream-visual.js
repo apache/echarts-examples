@@ -2,7 +2,7 @@
 // http://gallery.echartsjs.com/explore.html?u=bd-16906679
 // http://gallery.echartsjs.com/editor.html?c=xHJw-hVqjW
 
-$.getJSON('data/asset/data/house-price-area2.json', function (data) {
+$.getJSON(ROOT_PATH + 'data/asset/data/house-price-area2.json', function (data) {
 
     var option = {
         title: {

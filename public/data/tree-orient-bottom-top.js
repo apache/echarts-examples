@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.get('data/asset/data/flare.json', function (data) {
+$.get(ROOT_PATH + 'data/asset/data/flare.json', function (data) {
     myChart.hideLoading();
 
     myChart.setOption(option = {

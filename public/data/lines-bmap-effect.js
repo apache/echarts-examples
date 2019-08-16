@@ -1,6 +1,6 @@
 app.title = '北京公交路线 - 线特效';
 
-$.get('data/asset/data/lines-bus.json', function(data) {
+$.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
     var hStep = 300 / (data.length - 1);
     var busLines = [].concat.apply([], data.map(function (busLine, idx) {
         var prevPt;

@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>ECharts</title><script>var fromRedirect = 'fromRedirect=true';
+if (location.search.indexOf(fromRedirect) > -1) {
+    // Example home page from apache
+    location.href = 'http://echarts.apache.org/examples.html';
+}
+else {
+    var search = location.search.indexOf('?') > -1
+        ? location.search + '&' + fromRedirect
+        : '?' + fromRedirect;
+
+    var pathname = location.pathname;
+    var prefix = '/echarts-examples/public';
+    if (pathname.indexOf(prefix) === 0) {
+        var lang = navigator.language || navigator.userLanguage;
+        lang = lang.indexOf('zh') > -1 ? 'zh' : 'en';
+        pathname = 'https://echarts.apache.org/examples/' + lang + pathname.substr(prefix.length);
+        location.href = pathname + search;
+    }
+    else {
+        location.href = 'http://echarts.apache.org/examples.html';
+    }
+}</script></head></html>

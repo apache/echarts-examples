@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.get('data/asset/data/webkit-dep.json', function (webkitDep) {
+$.get(ROOT_PATH + 'data/asset/data/webkit-dep.json', function (webkitDep) {
     myChart.hideLoading();
 
     option = {

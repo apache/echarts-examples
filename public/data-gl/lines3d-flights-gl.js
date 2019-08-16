@@ -1,4 +1,4 @@
-var uploadedDataURL = "data-gl/asset/data/flights.json";
+var uploadedDataURL = ROOT_PATH + "data-gl/asset/data/flights.json";
 
 app.title = '65k+ 飞机航线';
 

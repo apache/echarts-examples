@@ -3,12 +3,12 @@ extends basic
 block content
 
     nav(class='navbar navbar-default navbar-fixed-top')
-        if lang == 'cn'
+        if lang == 'zh'
             include ../../../echarts-www/_jade/components/nav-mixin
-            +nav('http://www.echartsjs.com')
+            +nav(mainSitePath)
         else
             include ../../../echarts-www/_jade/en/nav-mixin
-            +nav('https://ecomfe.github.io/echarts-doc/public/en')
+            +nav(mainSitePath)
 
     script(type='text/javascript').
         var selector = window.EC_DEMO_LANG === 'en' ? 'nav-start' : 'nav-examples';

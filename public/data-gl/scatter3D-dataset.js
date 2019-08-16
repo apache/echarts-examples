@@ -1,4 +1,4 @@
-$.get('data/asset/data/life-expectancy-table.json', function (data) {
+$.get(ROOT_PATH + 'data/asset/data/life-expectancy-table.json', function (data) {
     var symbolSize = 2.5;
     option = {
         grid3D: {},

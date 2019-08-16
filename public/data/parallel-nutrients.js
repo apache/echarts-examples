@@ -26,7 +26,7 @@ var schema = [
 var groupCategories = [];
 var groupColors = [];
 
- $.get('./data/asset/data/nutrients.json', function (data) {
+ $.get(ROOT_PATH + 'data/asset/data/nutrients.json', function (data) {
     normalizeData(data);
 
     myChart.setOption(option = getOption(data));

@@ -2,7 +2,7 @@ app.title = '65k+ 飞机航线';
 
 myChart.showLoading();
 
-$.get('data/asset/data/flights.json', function(data) {
+$.get(ROOT_PATH + 'data/asset/data/flights.json', function(data) {
 
     myChart.hideLoading();
 

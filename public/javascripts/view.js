@@ -1,7 +1,7 @@
 (function () {
 
     var lang = ({
-        cn: {
+        zh: {
             editDemo: '编辑示例',
             reset: '重置',
             enableInteraction: '开启交互',
@@ -128,7 +128,7 @@
         enableMask();
     }
     if (configs.c) {
-        $.ajax('./data/' + configs.c + '.js', {
+        $.ajax('../data/' + configs.c + '.js', {
             dataType: 'text',
             success: function (data) {
                 run(data);
