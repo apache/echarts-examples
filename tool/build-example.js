@@ -42,7 +42,7 @@ function waitTime(time) {
 }
 
 var BUILD_THUMBS = sourceFolder === 'data' && true;
-var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
+var BASE_URL = 'http://localhost/echarts-examples/public';
 
 (async () => {
     // https://github.com/GoogleChrome/puppeteer/issues/1260
@@ -115,7 +115,7 @@ var BASE_URL = 'http://127.0.0.1/echarts-examples/public';
                     page.on('pageerror', function (err) {
                         console.log(err.toString());
                     });
-                    // page.on('console', function (msg) {
+                    // page.on('console', msg => {
                     //     console.log(msg.text);
                     // });
                     console.log(`Generating ${theme} thumbs.....${basename}`);
