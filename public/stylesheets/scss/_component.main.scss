@@ -35,6 +35,7 @@ $handler-width: 5px;
         background-color: $clr-secondary;
         border-radius: 6px;
         color: #fff;
+        padding: 10px;
 
         &:hover {
             box-shadow: none;
@@ -43,12 +44,39 @@ $handler-width: 5px;
 
     .close-btn {
         position: absolute;
-        right: 20px;
-        top: 20px;
+        padding: 5px;
+        right: 15px;
+        top: 15px;
         color: #fff;
 
         &:hover {
             text-decoration: none;
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    #apache-banner {
+        padding: 15px;
+
+        .txt {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .btn {
+            width: 100%;
+            height: auto;
+            display: block;
+            top: 0;
+            padding: 10px;
+        }
+
+        .close-btn {
+            top: 10px;
         }
     }
 }
