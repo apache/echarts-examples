@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log('common');
     if (location.host !== 'echarts.apache.org'
         && location.pathname.indexOf('editor.html') === -1)
     {
@@ -26,7 +25,7 @@ function closeApacheBanner(isManualClose) {
     }
 }
 
-function visitApache() {
+function logApache() {
     _hmt.push(['_trackEvent', 'apacheBanner', 'visit']);
 }
 
