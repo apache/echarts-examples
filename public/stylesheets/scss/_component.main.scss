@@ -1,6 +1,57 @@
 $handler-width: 5px;
 
+#apache-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 40px 0;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: none;
 
+    .txt {
+        width: 80%;
+        height: 100%;
+        display: inline-block;
+    }
+
+        p {
+            margin: 5px 0;
+
+            a {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+
+    .btn {
+        position: relative;
+        top: -40px;
+        width: 20%;
+        height: 100%;
+        display: inline-block;
+        background-color: $clr-secondary;
+        border-radius: 6px;
+        color: #fff;
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        color: #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
 
 #main-container {
     position: absolute;
