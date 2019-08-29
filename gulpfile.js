@@ -1,36 +1,49 @@
-var gulp        = require('gulp');
+var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var sass        = require('gulp-sass');
-var prefix      = require('gulp-autoprefixer');
-var jade        = require('gulp-jade');
-var uglify      = require('gulp-uglify');
-var copy        = require('gulp-copy');
-var clean       = require('gulp-clean');
-var rename      = require('gulp-rename');
-var yargs       = require('yargs');
-var config      = require('./config/env');
-var eventStream = require('event-stream');
-
-const date = +new Date();
-
+var sass = require('gulp-sass');
+var prefix = require('gulp-autoprefixer');
+var jade = require('gulp-jade');
+var uglify = require('gulp-uglify');
+// var copy = require('gulp-copy');
+var clean = require('gulp-clean');
+// var rename = require('gulp-rename');
+// var eventStream = require('event-stream');
 var argv = require('yargs').argv;
-var isDebug = (argv.debug === undefined) ? false : true;
-if (isDebug) {
-    console.warn('==========================');
-    console.warn('!!! THIS IS DEBUG MODE !!!');
-    console.warn('==========================');
 
-    config.host = config.debugHost;
-    config.mainSitePath = config.debugMainSitePath;
-}
+/**
+ * ------------------------------------------------------------------------
+ * Usage:
+ *
+ * ```shell
+ * ./nodule_modules/.bin/gulp release --env asf
+ * ./nodule_modules/.bin/gulp release --env echartsjs
+ * ./nodule_modules/.bin/gulp release --env dev # the same as "debug"
+ * # Check `./config` to see the available env
+ * ```
+ * ------------------------------------------------------------------------
+ */
 
-// Usage: gulp build --env-cn
-var lang = 'en';
-for (var envArg of Object.keys(yargs.argv)) {
-    if (envArg.indexOf('env-') === 0) {
-        lang = envArg.replace('env-', '');
+function initEnv() {
+    var envType = argv.env;
+    var isDev = argv.dev != null || argv.debug != null || envType === 'debug';
+
+    if (isDev) {
+        console.warn('=============================');
+        console.warn('!!! THIS IS IN DEV MODE !!!');
+        console.warn('=============================');
+        envType = 'dev';
     }
+
+    if (!envType) {
+        throw new Error('--env MUST be specified');
+    }
+
+    return require('./config/env.' + envType);
 }
+
+var config = initEnv();
+
+var date = +new Date();
 
 /**
  * Launch the Server
@@ -134,21 +147,6 @@ gulp.task('watch', function() {
     gulp.watch('public/stylesheets/scss/*.scss', ['sass']);
 });
 
-/**
- * Use fecs to test code style
- */
-// gulp.task('fecs', function() {
-//     return gulp.src(['public/javascript/*'])
-//         .pipe(fecs.check())
-//         .pipe(fecs.reporter('baidu', {
-//             color: true,
-//             rule: true,
-//             sort: true
-//         }))
-//         .pipe(fecs.format())
-//         .pipe(gulp.dest('fecs'));;
-// });
-
 gulp.task('clean', function () {
     return gulp.src(['public/**/*.html', 'release'])
         .pipe(clean());
@@ -162,13 +160,13 @@ gulp.task('release-copy', ['jade', 'sass'], function() {
     return gulp.src(['public/**/*', '!public/stylesheets/scss/**/*'], {
             base: 'public'
         })
-        .pipe(gulp.dest('../incubator-echarts-website/examples'));
+        .pipe(gulp.dest(config.releaseDestDir));
 });
 
 gulp.task('release', ['release-copy'], function() {
     return gulp.src(['public/javascripts/*.js'])
         .pipe(uglify())
-        .pipe(gulp.dest('../incubator-echarts-website/examples/javascripts'));
+        .pipe(gulp.dest(config.releaseDestDir + '/javascripts'));
 });
 
 /**
