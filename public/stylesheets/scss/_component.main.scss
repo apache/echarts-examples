@@ -1,6 +1,85 @@
 $handler-width: 5px;
 
+#apache-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 40px 0;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: none;
 
+    .txt {
+        width: 80%;
+        height: 100%;
+        display: inline-block;
+    }
+
+        p {
+            margin: 5px 0;
+
+            a {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+
+    .btn {
+        position: relative;
+        top: -40px;
+        width: 20%;
+        height: 100%;
+        display: inline-block;
+        background-color: $clr-secondary;
+        border-radius: 6px;
+        color: #fff;
+        padding: 10px;
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        padding: 5px;
+        right: 15px;
+        top: 15px;
+        color: #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    #apache-banner {
+        padding: 15px;
+
+        .txt {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .btn {
+            width: 100%;
+            height: auto;
+            display: block;
+            top: 0;
+            padding: 10px;
+        }
+
+        .close-btn {
+            top: 10px;
+        }
+    }
+}
 
 #main-container {
     position: absolute;

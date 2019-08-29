@@ -1,4 +1,4 @@
-var uploadedDataURL = "data/asset/data/ec-option-doc-statistics-201604.json";
+var uploadedDataURL = ROOT_PATH + 'data/asset/data/ec-option-doc-statistics-201604.json';
 
 myChart.showLoading();
 
