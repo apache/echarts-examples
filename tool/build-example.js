@@ -106,10 +106,10 @@ var BASE_URL = 'http://localhost/echarts-examples/public';
                     var thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
                     var page = await browser.newPage();
                     await page.setViewport({
-                        // width: 600,
-                        // height: 450
-                        width: 700,
-                        height: 525
+                        width: 600,
+                        height: 450
+                        // width: 700,
+                        // height: 525
                     });
                     var url = `${BASE_URL}/screenshot.html?c=${basename}&s=${sourceFolder}&t=${theme}`;
                     page.on('pageerror', function (err) {
@@ -123,7 +123,11 @@ var BASE_URL = 'http://localhost/echarts-examples/public';
                     try {
                         await page.goto(url, {'waitUntil' : 'networkidle0'});
                         await waitTime(200);
-                        await page.screenshot({path: `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.png` });
+                        await page.screenshot({
+                            path: `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.jpg`,
+                            type: 'jpeg',
+                            quality: 70
+                        });
                     }
                     catch (e) {
                         console.error(e.toString());
