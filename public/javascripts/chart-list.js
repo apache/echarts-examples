@@ -183,14 +183,14 @@ $(document).ready(function() {
                 hash.push('theme=' + exampleTheme);
             }
 
-            $link = $('<a target="_blank" class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
+            var $link = $('<a target="_blank" class="chart-link" href="./editor.html?' + hash.join('&') + '"></a>');
             $chart.append($link);
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
             var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
 
             // load chart image
-            $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg" data-original="../' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
+            var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg" data-original="../' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
                 + exampleItem.id + '.jpg" />');
             $link.append($chartArea);
         }

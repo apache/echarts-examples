@@ -1001,14 +1001,6 @@ var EXAMPLES = [
     "category": [
       "map"
     ],
-    "id": "map-HK",
-    "title": "Population Density of HongKong (2011)",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-labels",
     "title": "Rich Text Labels on Map",
     "difficulty": 10
