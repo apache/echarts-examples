@@ -1,10 +1,13 @@
 
-var dataURL = 'data/asset/data/fake-nebula.bin';
+var dataURL = ROOT_PATH + 'data/asset/data/fake-nebula.bin';
 var xhr = new XMLHttpRequest();
 xhr.open('GET', dataURL, true);
 xhr.responseType = 'arraybuffer';
 
+myChart.showLoading();
+
 xhr.onload = function (e) {
+    myChart.hideLoading();
     var rawData = new Float32Array(this.response);
 
     option = {
