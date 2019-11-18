@@ -148,7 +148,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function () {
-    return gulp.src(['public/**/*.html', 'release'])
+    return gulp.src(['public/**/*.html', '!public/screenshot.html', 'release'])
         .pipe(clean());
 });
 
