@@ -117,14 +117,15 @@ var SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
                     var url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
                     // console.log(url);
                     await page.evaluateOnNewDocument(function (BASE_PATH) {
-                        window.ROOT_PATH = BASE_PATH + '/';
+                        window.ROOT_PATH = BASE_PATH + '/public/';
                     }, BASE_PATH);
                     // page.on('console', msg => {
-                    //     for (let i = 0; i < msg.args().length; ++i) {
-                    //         console.log(`${i}: ${msg.args()[i]}`);
-                    //     }
+                    //     var args = msg.args();
+                    //     var msg = ['[pageconsole]'].concat(args.map(v => v + ''));
+                    //     console.log.apply(console, msg);
                     // });
                     page.on('pageerror', function (err) {
+                        console.error('[pageerror in]', url);
                         console.log(err.toString());
                     });
                     // page.on('console', msg => {
@@ -142,6 +143,7 @@ var SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
                         });
                     }
                     catch (e) {
+                        console.error(url);
                         console.error(e.toString());
                     }
                     await page.close();
