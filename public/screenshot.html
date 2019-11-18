@@ -37,7 +37,10 @@
 </script>
 <script>
     if (params.c) {
-        window.ROOT_PATH = 'http://localhost/echarts-examples/'
+        if (!window.ROOT_PATH) {
+            throw new Error('No ROOT_PATH');
+        }
+        console.log('ROOT_PATH', window.ROOT_PATH);
         var sourceFolder = params.s || 'data';
         var scriptTag = document.createElement('script');
         scriptTag.async = false;
