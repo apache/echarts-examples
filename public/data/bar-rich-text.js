@@ -15,7 +15,7 @@ var seriesLabel = {
 
 option = {
     title: {
-        text: 'Wheater Statistics'
+        text: 'Weather Statistics'
     },
     tooltip: {
         trigger: 'axis',
