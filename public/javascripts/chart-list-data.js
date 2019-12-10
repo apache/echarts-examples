@@ -505,7 +505,7 @@ var EXAMPLES = [
       "drag"
     ],
     "id": "custom-gantt-flight",
-    "title": "Gautt Chart of Ariport Flights",
+    "title": "Gantt Chart of Airport Flights",
     "difficulty": 10
   },
   {
@@ -1001,6 +1001,14 @@ var EXAMPLES = [
     "category": [
       "map"
     ],
+    "id": "map-HK",
+    "title": "Population Density of HongKong (2011)",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
     "id": "map-labels",
     "title": "Rich Text Labels on Map",
     "difficulty": 10
@@ -1300,8 +1308,24 @@ var EXAMPLES = [
     "category": [
       "sankey"
     ],
+    "id": "sankey-itemstyle",
+    "title": "Specify ItemStyle for Each Node in Sankey",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "sankey"
+    ],
+    "id": "sankey-levels",
+    "title": "Sankey with Levels Setting",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "sankey"
+    ],
     "id": "sankey-nodeAlign-left",
-    "title": "Sankey Node Align Left",
+    "title": "Node Align Left in Sankey",
     "difficulty": 10
   },
   {
@@ -1309,15 +1333,7 @@ var EXAMPLES = [
       "sankey"
     ],
     "id": "sankey-nodeAlign-right",
-    "title": "Sankey Node Align Right",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "sankey"
-    ],
-    "id": "sankey-product",
-    "title": "Sankey Diagram",
+    "title": "Node Align Right in Sankey",
     "difficulty": 10
   },
   {

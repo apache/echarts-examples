@@ -2,6 +2,9 @@
   "name": "echarts-examples",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "dev": "./node_modules/.bin/gulp release --env dev"
+  },
   "devDependencies": {
     "app-module-path": "^2.2.0",
     "argparse": "^1.0.9",

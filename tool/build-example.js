@@ -42,7 +42,10 @@ function waitTime(time) {
 }
 
 var BUILD_THUMBS = sourceFolder === 'data' && true;
-var BASE_URL = 'http://localhost/echarts-examples/public';
+// var BASE_PATH = 'http://localhost:8000/echarts/echarts-examples';
+var BASE_PATH = 'http://localhost/echarts-examples/';
+var SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
+
 
 (async () => {
     // https://github.com/GoogleChrome/puppeteer/issues/1260
@@ -111,8 +114,18 @@ var BASE_URL = 'http://localhost/echarts-examples/public';
                         // width: 700,
                         // height: 525
                     });
-                    var url = `${BASE_URL}/screenshot.html?c=${basename}&s=${sourceFolder}&t=${theme}`;
+                    var url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
+                    // console.log(url);
+                    await page.evaluateOnNewDocument(function (BASE_PATH) {
+                        window.ROOT_PATH = BASE_PATH + '/public/';
+                    }, BASE_PATH);
+                    // page.on('console', msg => {
+                    //     var args = msg.args();
+                    //     var msg = ['[pageconsole]'].concat(args.map(v => v + ''));
+                    //     console.log.apply(console, msg);
+                    // });
                     page.on('pageerror', function (err) {
+                        console.error('[pageerror in]', url);
                         console.log(err.toString());
                     });
                     // page.on('console', msg => {
@@ -130,6 +143,7 @@ var BASE_URL = 'http://localhost/echarts-examples/public';
                         });
                     }
                     catch (e) {
+                        console.error(url);
                         console.error(e.toString());
                     }
                     await page.close();

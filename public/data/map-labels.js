@@ -44,6 +44,9 @@ option = {
                 normal: {
                     show: true,
                     formatter: function (params) {
+                        if (!params.data) {
+                            return;
+                        }
                         var icon = params.data.value[1] ? 'up' : 'down';
                         var valueType = params.data.value[1] ? 'valueUp' : 'valueDown';
                         return params.name
