@@ -14,7 +14,7 @@
     "event-stream": "^4.0.1",
     "front-matter": "^2.3.0",
     "glob": "^7.1.2",
-    "gulp": "~3.9.0",
+    "gulp": "~3.9.1",
     "gulp-autoprefixer": "~3.0.0",
     "gulp-callback": "~0.0.3",
     "gulp-clean": "^0.4.0",
@@ -22,15 +22,15 @@
     "gulp-if": "~2.0.0",
     "gulp-jade": "~1.1.0",
     "gulp-rename": "~1.2.2",
-    "gulp-sass": "~2.0.4",
+    "gulp-sass": "~4.0.1",
     "gulp-uglify": "~1.4.1",
     "lodash": "^4.17.4",
     "node-gyp": "^3.6.1",
-    "node-sass": "^4.5.3",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "xmldom": "^0.1.27",
-    "yargs": "^6.6.0"
+    "yargs": "^6.6.0",
+    "natives": "^1.1.6"
   },
   "dependencies": {
     "marked": "^0.3.12"
