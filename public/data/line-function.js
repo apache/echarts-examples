@@ -3,10 +3,9 @@ function func(x) {
     return Math.sin(x) * Math.cos(x * 2 + 1) * Math.sin(x * 3 + 2) * 50;
 }
 
-
 function generateData() {
     let data = [];
-    for (let i = -100; i <= 100; i += 0.1) {
+    for (let i = -200; i <= 200; i += 0.1) {
         data.push([i, func(i)]);
     }
     return data;
@@ -16,14 +15,12 @@ option = {
     animation: false,
     grid: {
         top: 40,
-        left: 40,
+        left: 50,
         right: 40,
-        bottom: 40
+        bottom: 50
     },
     xAxis: {
         name: 'x',
-        min: -100,
-        max: 100,
         minorTick: {
             show: true
         },
@@ -63,15 +60,15 @@ option = {
         type: 'inside',
         filterMode: 'none',
         xAxisIndex: [0],
-        startValue: -10,
-        endValue: 10
+        startValue: -20,
+        endValue: 20
     }, {
         show: true,
         type: 'inside',
         filterMode: 'none',
         yAxisIndex: [0],
-        startValue: -10,
-        endValue: 10
+        startValue: -20,
+        endValue: 20
     }],
     series: [
         {
