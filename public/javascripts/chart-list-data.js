@@ -827,6 +827,14 @@ var EXAMPLES = [
     "category": [
       "line"
     ],
+    "id": "line-function",
+    "title": "Function Plot",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "line"
+    ],
     "id": "line-gradient",
     "title": "Line Gradient",
     "difficulty": 10
@@ -1188,6 +1196,14 @@ var EXAMPLES = [
     ],
     "id": "pictorialBar-velocity",
     "title": "Velocity of Christmas Reindeers",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-alignTo",
+    "title": "Pie Align",
     "difficulty": 10
   },
   {
@@ -1640,6 +1656,14 @@ var EXAMPLES = [
     ],
     "id": "tree-orient-right-left",
     "title": "From Right to Left Tree",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "tree"
+    ],
+    "id": "tree-polyline",
+    "title": "Tree with Polyline Edge",
     "difficulty": 10
   },
   {
