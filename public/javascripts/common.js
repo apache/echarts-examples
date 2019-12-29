@@ -1,7 +1,8 @@
 $(document).ready(function () {
     if (location.host !== 'echarts.apache.org'
-        && location.pathname.indexOf('editor.html') === -1)
-    {
+		&& location.pathname.indexOf('editor.html') === -1
+		&& location.pathname.indexOf('view.html') === -1
+	) {
         var banner = document.getElementById('apache-banner');
         banner.style.display = 'block';
 

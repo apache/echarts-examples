@@ -4,7 +4,7 @@ option = {
     title : {
         text: '同名数量统计',
         subtext: '纯属虚构',
-        x:'center'
+        left:'center'
     },
     tooltip : {
         trigger: 'item',
@@ -48,7 +48,7 @@ function genData(count) {
     var legendData = [];
     var seriesData = [];
     var selected = {};
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < count; i++) {
         name = Math.random() > 0.65
             ? makeWord(4, 1) + '·' + makeWord(3, 0)
             : makeWord(2, 1);

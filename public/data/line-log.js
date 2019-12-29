@@ -25,7 +25,13 @@ option = {
     },
     yAxis: {
         type: 'log',
-        name: 'y'
+        name: 'y',
+        minorTick: {
+            show: true
+        },
+        minorSplitLine: {
+            show: true
+        }
     },
     series: [
         {
