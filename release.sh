@@ -24,5 +24,5 @@ basePath=$(cd `dirname $0`; pwd)
 currPath=$(pwd)
 
 cd ${basePath}
-node ./node_modules/.bin/gulp release --env ${envType}
+node ${basePath}/build.js --env ${envType}
 cd ${currPath}
