@@ -107,7 +107,7 @@ async function buildCSS(config) {
     });
 
     let destDir = path.resolve(config.releaseDestDir, 'stylesheets');
-    fse.ensureDir(destDir);
+    fse.ensureDirSync(destDir);
     let destPath = path.resolve(destDir, 'main.css');
     fs.writeFileSync(destPath, result.css, 'utf8');
     console.log(chalk.green(`generated: ${destPath}`));
@@ -134,7 +134,7 @@ async function buildHTML(config) {
             });
 
             let destDir = path.resolve(config.releaseDestDir, lang);
-            fse.ensureDir(destDir);
+            fse.ensureDirSync(destDir);
             let destPath = path.resolve(destDir, patternName.replace('.jade', '.html'));
             fs.writeFileSync(destPath, html, 'utf8');
 
@@ -158,7 +158,7 @@ async function buildJS(config) {
         let content = fs.readFileSync(srcPath, 'utf8');
         let code = uglify.minify(content).code;
         let destDir = path.resolve(config.releaseDestDir, 'javascripts');
-        fse.ensureDir(destDir);
+        fse.ensureDirSync(destDir);
         let destPath = path.resolve(destDir, filePath);
         fs.writeFileSync(destPath, code, 'utf8');
 
@@ -183,12 +183,6 @@ async function buildJS(config) {
 
 //     console.log('clean done.');
 // }
-
-// gulp.task('release', ['release-copy'], function() {
-//     return gulp.src(['public/javascripts/*.js'])
-//         .pipe(uglify())
-//         .pipe(gulp.dest(config.releaseDestDir + '/javascripts'));
-// });
 
 
 async function run() {
