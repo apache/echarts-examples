@@ -820,7 +820,7 @@ var EXAMPLES = [
       "line"
     ],
     "id": "line-easing",
-    "title": "Line Easing",
+    "title": "Line Easing Visualizing",
     "difficulty": 10
   },
   {
@@ -1203,7 +1203,7 @@ var EXAMPLES = [
       "pie"
     ],
     "id": "pie-alignTo",
-    "title": "Pie Align",
+    "title": "Pie Label Align",
     "difficulty": 10
   },
   {
