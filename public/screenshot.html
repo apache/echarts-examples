@@ -14,6 +14,7 @@
     <script type="text/javascript" src="./vendors/echarts/extension/dataTool.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"></script>
     <script type="text/javascript" src="./vendors/echarts/extension/bmap.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="../tool/seedrandom.js"></script>
     <style>
         html, body, #viewport {
             margin: 0;
@@ -36,6 +37,11 @@
     var app = {};
 </script>
 <script>
+    var myrng = new Math.seedrandom('echarts');
+    Math.random = function () {
+        return myrng();
+    };
+
     if (params.c) {
         if (!window.ROOT_PATH) {
             // When visiting `screenshot.html` In browser.

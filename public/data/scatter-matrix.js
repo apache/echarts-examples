@@ -269,9 +269,7 @@ var option = {
                 show: false
             },
             axisLabel: {
-                textStyle: {
-                    color: '#555'
-                }
+                color: '#555'
             }
         }
     },
@@ -284,10 +282,8 @@ var option = {
             type: 'parallel',
             smooth: true,
             lineStyle: {
-                normal: {
-                    width: 1,
-                    opacity: 0.3
-                }
+                width: 1,
+                opacity: 0.3
             },
             data: rawData
         }

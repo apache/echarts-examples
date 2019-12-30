@@ -59,32 +59,30 @@ option = {
 };
 
 
-if (!app.inNode) {
-    setTimeout(function () {
-        // Add shadow circles (which is not visible) to enable drag.
-        myChart.setOption({
-            graphic: echarts.util.map(data, function (item, dataIndex) {
-                return {
-                    type: 'circle',
-                    position: myChart.convertToPixel('grid', item),
-                    shape: {
-                        cx: 0,
-                        cy: 0,
-                        r: symbolSize / 2
-                    },
-                    invisible: true,
-                    draggable: true,
-                    ondrag: echarts.util.curry(onPointDragging, dataIndex),
-                    onmousemove: echarts.util.curry(showTooltip, dataIndex),
-                    onmouseout: echarts.util.curry(hideTooltip, dataIndex),
-                    z: 100
-                };
-            })
-        });
-    }, 0);
+setTimeout(function () {
+    // Add shadow circles (which is not visible) to enable drag.
+    myChart.setOption({
+        graphic: echarts.util.map(data, function (item, dataIndex) {
+            return {
+                type: 'circle',
+                position: myChart.convertToPixel('grid', item),
+                shape: {
+                    cx: 0,
+                    cy: 0,
+                    r: symbolSize / 2
+                },
+                invisible: true,
+                draggable: true,
+                ondrag: echarts.util.curry(onPointDragging, dataIndex),
+                onmousemove: echarts.util.curry(showTooltip, dataIndex),
+                onmouseout: echarts.util.curry(hideTooltip, dataIndex),
+                z: 100
+            };
+        })
+    });
+}, 0);
 
-    window.addEventListener('resize', updatePosition);
-}
+window.addEventListener('resize', updatePosition);
 
 myChart.on('dataZoom', updatePosition);
 

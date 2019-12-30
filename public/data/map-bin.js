@@ -82,8 +82,8 @@ option = {
             coordinateSystem: 'bmap',
             renderItem: renderItem,
             animation: false,
-            itemStyle: {
-                emphasis: {
+            emphasis: {
+                itemStyle: {
                     color: 'yellow'
                 }
             },

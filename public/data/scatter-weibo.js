@@ -43,19 +43,17 @@ $.get(ROOT_PATH + 'data/asset/data/weibo.json', function (weiboData) {
         geo: {
             map: 'china',
             roam: true,
-            label: {
-                emphasis: {
+            emphasis: {
+                label: {
                     show: false
+                },
+                itemStyle: {
+                    areaColor: '#2a333d'
                 }
             },
             itemStyle: {
-                normal: {
-                    areaColor: '#323c48',
-                    borderColor: '#111'
-                },
-                emphasis: {
-                    areaColor: '#2a333d'
-                }
+                areaColor: '#323c48',
+                borderColor: '#111'
             }
         },
         series: [{
@@ -65,11 +63,9 @@ $.get(ROOT_PATH + 'data/asset/data/weibo.json', function (weiboData) {
             symbolSize: 1,
             large: true,
             itemStyle: {
-                normal: {
-                    shadowBlur: 2,
-                    shadowColor: 'rgba(37, 140, 249, 0.8)',
-                    color: 'rgba(37, 140, 249, 0.8)'
-                }
+                shadowBlur: 2,
+                shadowColor: 'rgba(37, 140, 249, 0.8)',
+                color: 'rgba(37, 140, 249, 0.8)'
             },
             data: weiboData[0]
         }, {
@@ -79,11 +75,9 @@ $.get(ROOT_PATH + 'data/asset/data/weibo.json', function (weiboData) {
             symbolSize: 1,
             large: true,
             itemStyle: {
-                normal: {
-                    shadowBlur: 2,
-                    shadowColor: 'rgba(14, 241, 242, 0.8)',
-                    color: 'rgba(14, 241, 242, 0.8)'
-                }
+                shadowBlur: 2,
+                shadowColor: 'rgba(14, 241, 242, 0.8)',
+                color: 'rgba(14, 241, 242, 0.8)'
             },
             data: weiboData[1]
         }, {
@@ -93,11 +87,9 @@ $.get(ROOT_PATH + 'data/asset/data/weibo.json', function (weiboData) {
             symbolSize: 1,
             large: true,
             itemStyle: {
-                normal: {
-                    shadowBlur: 2,
-                    shadowColor: 'rgba(255, 255, 255, 0.8)',
-                    color: 'rgba(255, 255, 255, 0.8)'
-                }
+                shadowBlur: 2,
+                shadowColor: 'rgba(255, 255, 255, 0.8)',
+                color: 'rgba(255, 255, 255, 0.8)'
             },
             data: weiboData[2]
         }]

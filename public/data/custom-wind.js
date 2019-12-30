@@ -49,17 +49,14 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/winds.json', function (windData) {
             silent: true,
             roam: true,
             itemStyle: {
-                normal: {
-                    areaColor: '#323c48',
-                    borderColor: '#111'
-                }
+                areaColor: '#323c48',
+                borderColor: '#111'
             }
         },
         series: {
             type: 'custom',
             coordinateSystem: 'geo',
             data: data,
-            // silent: true,
             encode: {
                 x: 0,
                 y: 0
@@ -78,7 +75,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/winds.json', function (windData) {
                         lineWidth: 0.5,
                         stroke: api.visual('color')
                     }
-                }
+                };
             },
             progressive: 2000
         }

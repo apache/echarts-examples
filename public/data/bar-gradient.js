@@ -50,27 +50,27 @@ option = {
         { // For shadow
             type: 'bar',
             itemStyle: {
-                normal: {color: 'rgba(0,0,0,0.05)'}
+                color: 'rgba(0,0,0,0.05)'
             },
-            barGap:'-100%',
-            barCategoryGap:'40%',
+            barGap: '-100%',
+            barCategoryGap: '40%',
             data: dataShadow,
             animation: false
         },
         {
             type: 'bar',
             itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(
-                        0, 0, 0, 1,
-                        [
-                            {offset: 0, color: '#83bff6'},
-                            {offset: 0.5, color: '#188df0'},
-                            {offset: 1, color: '#188df0'}
-                        ]
-                    )
-                },
-                emphasis: {
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                        {offset: 0, color: '#83bff6'},
+                        {offset: 0.5, color: '#188df0'},
+                        {offset: 1, color: '#188df0'}
+                    ]
+                )
+            },
+            emphasis: {
+                itemStyle: {
                     color: new echarts.graphic.LinearGradient(
                         0, 0, 0, 1,
                         [

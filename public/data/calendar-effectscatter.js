@@ -27,13 +27,13 @@ option = {
             color: '#fff'
         }
     },
-    tooltip : {
+    tooltip: {
         trigger: 'item'
     },
     legend: {
         top: '30',
         left: '100',
-        data:['步数', 'Top 12'],
+        data: ['步数', 'Top 12'],
         textStyle: {
             color: '#fff'
         }
@@ -57,11 +57,9 @@ option = {
             }
         },
         itemStyle: {
-            normal: {
-                color: '#323c48',
-                borderWidth: 1,
-                borderColor: '#111'
-            }
+            color: '#323c48',
+            borderWidth: 1,
+            borderColor: '#111'
         }
     }, {
         top: 340,
@@ -82,14 +80,12 @@ option = {
             }
         },
         itemStyle: {
-            normal: {
-                color: '#323c48',
-                borderWidth: 1,
-                borderColor: '#111'
-            }
+            color: '#323c48',
+            borderWidth: 1,
+            borderColor: '#111'
         }
     }],
-    series : [
+    series: [
         {
             name: '步数',
             type: 'scatter',
@@ -99,9 +95,7 @@ option = {
                 return val[1] / 500;
             },
             itemStyle: {
-                normal: {
-                    color: '#ddb926'
-                }
+                color: '#ddb926'
             }
         },
         {
@@ -114,9 +108,7 @@ option = {
                 return val[1] / 500;
             },
             itemStyle: {
-                normal: {
-                    color: '#ddb926'
-                }
+                color: '#ddb926'
             }
         },
         {
@@ -136,11 +128,9 @@ option = {
             },
             hoverAnimation: true,
             itemStyle: {
-                normal: {
-                    color: '#f4e925',
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
+                color: '#f4e925',
+                shadowBlur: 10,
+                shadowColor: '#333'
             },
             zlevel: 1
         },
@@ -160,11 +150,9 @@ option = {
             },
             hoverAnimation: true,
             itemStyle: {
-                normal: {
-                    color: '#f4e925',
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
+                color: '#f4e925',
+                shadowBlur: 10,
+                shadowColor: '#333'
             },
             zlevel: 1
         }

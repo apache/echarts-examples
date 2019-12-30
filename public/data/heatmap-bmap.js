@@ -1,5 +1,3 @@
-app.title = '热力图与百度地图扩展';
-
 $.get(ROOT_PATH + 'data/asset/data/hangzhou-tracks.json', function (data) {
 
     var points = [].concat.apply([], data.map(function (track) {
@@ -33,9 +31,7 @@ $.get(ROOT_PATH + 'data/asset/data/hangzhou-tracks.json', function (data) {
             blurSize: 6
         }]
     });
-    if (!app.inNode) {
-        // 添加百度地图插件
-        var bmap = myChart.getModel().getComponent('bmap').getBMap();
-        bmap.addControl(new BMap.MapTypeControl());
-    }
+    // 添加百度地图插件
+    var bmap = myChart.getModel().getComponent('bmap').getBMap();
+    bmap.addControl(new BMap.MapTypeControl());
 });

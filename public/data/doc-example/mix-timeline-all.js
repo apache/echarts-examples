@@ -108,7 +108,6 @@ dataMap.dataFinancial = dataFormatter({
 option = {
     baseOption: {
         timeline: {
-            // y: 0,
             axisType: 'category',
             // realtime: false,
             // loop: false,
@@ -151,7 +150,7 @@ option = {
         },
         tooltip: {},
         legend: {
-            x: 'right',
+            left: 'right',
             data: ['第一产业', '第二产业', '第三产业'],
             selected: {
                 'GDP': false, '金融': false, '房地产': false

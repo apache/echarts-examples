@@ -43,7 +43,7 @@ var option = {
         {
             type: 'category',
             scale: true,
-            boundaryGap : false,
+            boundaryGap: false,
             // inverse: true,
             axisLine: {onZero: false},
             splitLine: {show: false},
@@ -55,7 +55,7 @@ var option = {
             type: 'category',
             gridIndex: 1,
             scale: true,
-            boundaryGap : false,
+            boundaryGap: false,
             axisLine: {onZero: false},
             axisTick: {show: false},
             splitLine: {show: false},
@@ -160,7 +160,6 @@ function generateOHLC(count) {
         }
         boxVals.sort();
 
-        var idxRandom = Math.random();
         var openIdx = Math.round(Math.random() * 3);
         var closeIdx = Math.round(Math.random() * 2);
         if (closeIdx === openIdx) {

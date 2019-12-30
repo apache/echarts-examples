@@ -54,9 +54,7 @@ $.get(ROOT_PATH + 'data/asset/data/product.json', function (data) {
                     }
                 }],
                 lineStyle: {
-                    normal: {
-                        curveness: 0.5
-                    }
+                    curveness: 0.5
                 }
             }
         ]

@@ -44,7 +44,7 @@ $.get(ROOT_PATH + 'data/asset/geo/USA.json', function (usaJson) {
             inRange: {
                 color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
             },
-            text:['High','Low'],           // 文本，默认为数值文本
+            text: ['High', 'Low'],           // 文本，默认为数值文本
             calculable: true
         },
         toolbox: {
@@ -64,8 +64,10 @@ $.get(ROOT_PATH + 'data/asset/geo/USA.json', function (usaJson) {
                 type: 'map',
                 roam: true,
                 map: 'USA',
-                itemStyle:{
-                    emphasis:{label:{show:true}}
+                emphasis: {
+                    label: {
+                        show: true
+                    }
                 },
                 // 文本位置修正
                 textFixed: {

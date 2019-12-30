@@ -25,10 +25,8 @@ option = {
         axisLine: {show: false},
         axisLabel: {
             margin: 10,
-            textStyle: {
-                color: '#999',
-                fontSize: 16
-            }
+            color: '#999',
+            fontSize: 16
         }
     },
     grid: {
@@ -50,18 +48,14 @@ option = {
         markLine: {
             symbol: 'none',
             label: {
-                normal: {
-                    formatter: 'max: {c}',
-                    position: 'start'
-                }
+                formatter: 'max: {c}',
+                position: 'start'
             },
             lineStyle: {
-                normal: {
-                    color: 'green',
-                    type: 'dotted',
-                    opacity: 0.2,
-                    width: 2
-                }
+                color: 'green',
+                type: 'dotted',
+                opacity: 0.2,
+                width: 2
             },
             data: [{
                 type: 'max'
@@ -77,18 +71,14 @@ option = {
             }
         },
         label: {
-            normal: {
-                show: true,
-                formatter: function (params) {
-                    return (params.value / maxData * 100).toFixed(1) + ' %';
-                },
-                position: 'right',
-                offset: [10, 0],
-                textStyle: {
-                    color: 'green',
-                    fontSize: 18
-                }
-            }
+            show: true,
+            formatter: function (params) {
+                return (params.value / maxData * 100).toFixed(1) + ' %';
+            },
+            position: 'right',
+            offset: [10, 0],
+            color: 'green',
+            fontSize: 18
         },
         animationDuration: 0,
         symbolRepeat: 'fixed',

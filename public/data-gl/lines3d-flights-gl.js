@@ -1,7 +1,5 @@
 var uploadedDataURL = ROOT_PATH + "data-gl/asset/data/flights.json";
 
-app.title = '65k+ 飞机航线';
-
 myChart.showLoading();
 
 $.getJSON(uploadedDataURL, function(data) {

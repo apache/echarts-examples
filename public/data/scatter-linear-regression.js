@@ -241,14 +241,12 @@ option = {
     series: [{
         name: 'scatter',
         type: 'scatter',
-        label: {
-            emphasis: {
+        emphasis: {
+            label: {
                 show: true,
                 position: 'left',
-                textStyle: {
-                    color: 'blue',
-                    fontSize: 16
-                }
+                color: 'blue',
+                fontSize: 16
             }
         },
         data: data
@@ -259,20 +257,14 @@ option = {
         data: myRegression.points,
         markPoint: {
             itemStyle: {
-                normal: {
-                    color: 'transparent'
-                }
+                color: 'transparent'
             },
             label: {
-                normal: {
-                    show: true,
-                    position: 'left',
-                    formatter: myRegression.expression,
-                    textStyle: {
-                        color: '#333',
-                        fontSize: 14
-                    }
-                }
+                show: true,
+                position: 'left',
+                formatter: myRegression.expression,
+                color: '#333',
+                fontSize: 14
             },
             data: [{
                 coord: myRegression.points[myRegression.points.length - 1]

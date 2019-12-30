@@ -27,18 +27,18 @@ $.get(ROOT_PATH + 'data/asset/data/flare.json', function (data) {
                 expandAndCollapse: true,
 
                 label: {
-                        position: 'bottom',
-                        rotate: 90,
-                        verticalAlign: 'middle',
-                        align: 'right'
+                    position: 'bottom',
+                    rotate: 90,
+                    verticalAlign: 'middle',
+                    align: 'right'
                 },
 
                 leaves: {
                     label: {
-                            position: 'top',
-                            rotate: 90,
-                            verticalAlign: 'middle',
-                            align: 'left'
+                        position: 'top',
+                        rotate: 90,
+                        verticalAlign: 'middle',
+                        align: 'left'
                     }
                 },
 

@@ -4,7 +4,7 @@ option = {
     },
     title: {
         text: '某站点用户访问来源',
-        x: 'center'
+        left: 'center'
     },
     series: [
         {

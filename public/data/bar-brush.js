@@ -1,5 +1,3 @@
-app.title = '柱状图框选';
-
 var xAxisData = [];
 var data1 = [];
 var data2 = [];
@@ -14,10 +12,8 @@ for (var i = 0; i < 10; i++) {
     data4.push((Math.random() + 0.3).toFixed(2));
 }
 
-var itemStyle = {
-    normal: {
-    },
-    emphasis: {
+var emphasisStyle = {
+    itemStyle: {
         barBorderWidth: 1,
         shadowBlur: 10,
         shadowOffsetX: 0,
@@ -30,7 +26,6 @@ option = {
     backgroundColor: '#eee',
     legend: {
         data: ['bar', 'bar2', 'bar3', 'bar4'],
-        align: 'left',
         left: 10
     },
     brush: {
@@ -49,7 +44,6 @@ option = {
     xAxis: {
         data: xAxisData,
         name: 'X Axis',
-        silent: false,
         axisLine: {onZero: true},
         splitLine: {show: false},
         splitArea: {show: false}
@@ -89,28 +83,28 @@ option = {
             name: 'bar',
             type: 'bar',
             stack: 'one',
-            itemStyle: itemStyle,
+            emphasis: emphasisStyle,
             data: data1
         },
         {
             name: 'bar2',
             type: 'bar',
             stack: 'one',
-            itemStyle: itemStyle,
+            emphasis: emphasisStyle,
             data: data2
         },
         {
             name: 'bar3',
             type: 'bar',
             stack: 'two',
-            itemStyle: itemStyle,
+            emphasis: emphasisStyle,
             data: data3
         },
         {
             name: 'bar4',
             type: 'bar',
             stack: 'two',
-            itemStyle: itemStyle,
+            emphasis: emphasisStyle,
             data: data4
         }
     ]

@@ -2,7 +2,7 @@
 option ={
     title: {
         subtext: '数据来自 GitHub ID: lisachristina1234',
-        x: 'center'
+        left: 'center'
     },
     backgroundColor: "#FFFFFF",
     series: [
@@ -1453,25 +1453,17 @@ option ={
                 }
             ],
             lineStyle: {
-                normal: {
-                    color: "source",
-                    curveness: 0.5
-                }
+                color: "source",
+                curveness: 0.5
             },
             itemStyle: {
-                normal: {
-                    color: "#1f77b4",
-                    borderColor: "#1f77b4"
-                }
+                color: "#1f77b4",
+                borderColor: "#1f77b4"
             },
             label: {
-                normal: {
-                    textStyle: {
-                        color: "rgba(0,0,0,0.7)",
-                        fontFamily: "Arial",
-                        fontSize: 10
-                    }
-                }
+                color: "rgba(0,0,0,0.7)",
+                fontFamily: "Arial",
+                fontSize: 10
             }
         }],
     tooltip: {

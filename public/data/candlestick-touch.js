@@ -181,10 +181,10 @@ option = {
         xAxisIndex: 1,
         yAxisIndex: 1,
         itemStyle: {
-            normal: {
-                color: '#7fbe9e'
-            },
-            emphasis: {
+            color: '#7fbe9e'
+        },
+        emphasis: {
+            itemStyle: {
                 color: '#140'
             }
         },
@@ -194,13 +194,13 @@ option = {
         name: '日K',
         data: data,
         itemStyle: {
-            normal: {
-                color: '#ef232a',
-                color0: '#14b143',
-                borderColor: '#ef232a',
-                borderColor0: '#14b143'
-            },
-            emphasis: {
+            color: '#ef232a',
+            color0: '#14b143',
+            borderColor: '#ef232a',
+            borderColor0: '#14b143'
+        },
+        emphasis: {
+            itemStyle: {
                 color: 'black',
                 color0: '#444',
                 borderColor: 'black',
@@ -214,9 +214,7 @@ option = {
         smooth: true,
         showSymbol: false,
         lineStyle: {
-            normal: {
-                width: 1
-            }
+            width: 1
         }
     }, {
         name: 'MA10',
@@ -225,9 +223,7 @@ option = {
         smooth: true,
         showSymbol: false,
         lineStyle: {
-            normal: {
-                width: 1
-            }
+            width: 1
         }
     }, {
         name: 'MA20',
@@ -236,9 +232,7 @@ option = {
         smooth: true,
         showSymbol: false,
         lineStyle: {
-            normal: {
-                width: 1
-            }
+            width: 1
         }
     }]
 };

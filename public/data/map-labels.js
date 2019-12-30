@@ -41,88 +41,83 @@ option = {
             mapType: 'china',
             roam: true,
             label: {
-                normal: {
-                    show: true,
-                    formatter: function (params) {
-                        if (!params.data) {
-                            return;
-                        }
-                        var icon = params.data.value[1] ? 'up' : 'down';
-                        var valueType = params.data.value[1] ? 'valueUp' : 'valueDown';
-                        return params.name
-                            + '：{' + valueType + '|' + params.value + '} {' + icon + '|}';
+                show: true,
+                formatter: function (params) {
+                    if (!params.data) {
+                        return;
+                    }
+                    var icon = params.data.value[1] ? 'up' : 'down';
+                    var valueType = params.data.value[1] ? 'valueUp' : 'valueDown';
+                    return params.name
+                        + '：{' + valueType + '|' + params.value + '} {' + icon + '|}';
+                },
+                position: 'inside',
+                backgroundColor: '#fff',
+                padding: [4, 5],
+                borderRadius: 3,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.5)',
+                color: '#777',
+                rich: {
+                    valueUp: {
+                        color: '#019D2D',
+                        fontSize: 14
                     },
-                    position: 'inside',
-                    backgroundColor: '#fff',
-                    padding: [4, 5],
-                    borderRadius: 3,
-                    borderWidth: 1,
-                    borderColor: 'rgba(0,0,0,0.5)',
-                    color: '#777',
-                    rich: {
-                        valueUp: {
-                            color: '#019D2D',
-                            fontSize: 14
-                        },
-                        valueDown: {
-                            color: 'red',
-                            fontSize: 14
-                        },
-                        up: {
-                            height: 14,
-                            align: 'center',
-                            backgroundColor: {
-                                image: weatherIcons.up
-                            }
-                        },
-                        down: {
-                            height: 14,
-                            align: 'center',
-                            backgroundColor: {
-                                image: weatherIcons.down
-                            }
+                    valueDown: {
+                        color: 'red',
+                        fontSize: 14
+                    },
+                    up: {
+                        height: 14,
+                        align: 'center',
+                        backgroundColor: {
+                            image: weatherIcons.up
+                        }
+                    },
+                    down: {
+                        height: 14,
+                        align: 'center',
+                        backgroundColor: {
+                            image: weatherIcons.down
                         }
                     }
-                },
-                emphasis: {
-                    show: true
                 }
             },
             data: [
-                {name: '北京',value: randomData() },
-                {name: '天津',value: randomData() },
-                {name: '上海',value: randomData() },
-                {name: '重庆',value: randomData() },
-                {name: '河北',value: randomData() },
-                {name: '河南',value: randomData() },
-                {name: '云南',value: randomData() },
-                {name: '辽宁',value: randomData() },
-                {name: '黑龙江',value: randomData() },
-                {name: '湖南',value: randomData() },
-                {name: '安徽',value: randomData() },
-                {name: '山东',value: randomData() },
-                {name: '新疆',value: randomData() },
-                {name: '江苏',value: randomData() },
-                {name: '浙江',value: randomData() },
-                {name: '江西',value: randomData() },
-                {name: '湖北',value: randomData() },
-                {name: '广西',value: randomData() },
-                {name: '甘肃',value: randomData() },
-                {name: '山西',value: randomData() },
-                {name: '内蒙古',value: randomData() },
-                {name: '陕西',value: randomData() },
-                {name: '吉林',value: randomData() },
-                {name: '福建',value: randomData() },
-                {name: '贵州',value: randomData() },
-                {name: '广东',value: randomData() },
-                {name: '青海',value: randomData() },
-                {name: '西藏',value: randomData() },
-                {name: '四川',value: randomData() },
-                {name: '宁夏',value: randomData() },
-                {name: '海南',value: randomData() },
-                {name: '台湾',value: randomData() },
-                {name: '香港',value: randomData() },
-                {name: '澳门',value: randomData() }
+                {name: '北京', value: randomData() },
+                {name: '天津', value: randomData() },
+                {name: '上海', value: randomData() },
+                {name: '重庆', value: randomData() },
+                {name: '河北', value: randomData() },
+                {name: '河南', value: randomData() },
+                {name: '云南', value: randomData() },
+                {name: '辽宁', value: randomData() },
+                {name: '黑龙江', value: randomData() },
+                {name: '湖南', value: randomData() },
+                {name: '安徽', value: randomData() },
+                {name: '山东', value: randomData() },
+                {name: '新疆', value: randomData() },
+                {name: '江苏', value: randomData() },
+                {name: '浙江', value: randomData() },
+                {name: '江西', value: randomData() },
+                {name: '湖北', value: randomData() },
+                {name: '广西', value: randomData() },
+                {name: '甘肃', value: randomData() },
+                {name: '山西', value: randomData() },
+                {name: '内蒙古', value: randomData() },
+                {name: '陕西', value: randomData() },
+                {name: '吉林', value: randomData() },
+                {name: '福建', value: randomData() },
+                {name: '贵州', value: randomData() },
+                {name: '广东', value: randomData() },
+                {name: '青海', value: randomData() },
+                {name: '西藏', value: randomData() },
+                {name: '四川', value: randomData() },
+                {name: '宁夏', value: randomData() },
+                {name: '海南', value: randomData() },
+                {name: '台湾', value: randomData() },
+                {name: '香港', value: randomData() },
+                {name: '澳门', value: randomData() }
             ]
         }
     ]

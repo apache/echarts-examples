@@ -7,7 +7,7 @@ option = {
     },
     tooltip: {
         trigger: 'item',
-        backgroundColor : 'rgba(0,0,250,0.2)'
+        backgroundColor: 'rgba(0,0,250,0.2)'
     },
     legend: {
         type: 'scroll',
@@ -27,19 +27,19 @@ option = {
         calculable: true
     },
     radar: {
-       indicator : [
-           { text: 'IE8-', max: 400},
-           { text: 'IE9+', max: 400},
-           { text: 'Safari', max: 400},
-           { text: 'Firefox', max: 400},
-           { text: 'Chrome', max: 400}
+        indicator: [
+            { text: 'IE8-', max: 400},
+            { text: 'IE9+', max: 400},
+            { text: 'Safari', max: 400},
+            { text: 'Firefox', max: 400},
+            { text: 'Chrome', max: 400}
         ]
     },
-    series : (function (){
+    series: (function (){
         var series = [];
         for (var i = 1; i <= 28; i++) {
             series.push({
-                name:'浏览器（数据纯属虚构）',
+                name: '浏览器（数据纯属虚构）',
                 type: 'radar',
                 symbol: 'none',
                 lineStyle: {
@@ -50,9 +50,8 @@ option = {
                         color: 'rgba(0,250,0,0.3)'
                     }
                 },
-                data:[
-                  {
-                    value:[
+                data: [{
+                    value: [
                         (40 - i) * 10,
                         (38 - i) * 4 + 60,
                         i * 5 + 10,
@@ -60,8 +59,7 @@ option = {
                         i * i /2
                     ],
                     name: i + 2000 + ''
-                  }
-                ]
+                }]
             });
         }
         return series;

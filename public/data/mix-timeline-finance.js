@@ -10,9 +10,9 @@ function dataFormatter(obj) {
             max = Math.max(max, temp[i]);
             sum += temp[i];
             obj[year][i] = {
-                name : pList[i],
-                value : temp[i]
-            }
+                name: pList[i],
+                value: temp[i]
+            };
         }
         obj[year + 'max'] = Math.floor(max / 100) * 100;
         obj[year + 'sum'] = sum;
@@ -108,7 +108,6 @@ dataMap.dataFinancial = dataFormatter({
 option = {
     baseOption: {
         timeline: {
-            // y: 0,
             axisType: 'category',
             // realtime: false,
             // loop: false,
@@ -152,7 +151,7 @@ option = {
         tooltip: {
         },
         legend: {
-            x: 'right',
+            left: 'right',
             data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],
             selected: {
                 'GDP': false, '金融': false, '房地产': false

@@ -117,20 +117,16 @@ $.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.json', function (o
             levels: [
                 {
                     itemStyle: {
-                        normal: {
-                            borderWidth: 3,
-                            borderColor: '#333',
-                            gapWidth: 3
-                        }
+                        borderWidth: 3,
+                        borderColor: '#333',
+                        gapWidth: 3
                     }
                 },
                 {
                     color: ['#942e38', '#aaa', '#269f3c'],
                     colorMappingBy: 'value',
                     itemStyle: {
-                        normal: {
-                            gapWidth: 1
-                        }
+                        gapWidth: 1
                     }
                 }
             ],

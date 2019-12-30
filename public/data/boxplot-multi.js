@@ -1,6 +1,6 @@
 
 // Generate data.
-data = [];
+var data = [];
 for (var seriesIndex = 0; seriesIndex < 5; seriesIndex++) {
     var seriesData = [];
     for (var i = 0; i < 18; i++) {
@@ -20,7 +20,7 @@ option = {
         left: 'center',
     },
     legend: {
-        y: '10%',
+        top: '10%',
         data: ['category0', 'category1', 'category2', 'category3']
     },
     tooltip: {
@@ -105,5 +105,5 @@ function formatter(param) {
         'median: ' + param.data[2],
         'Q3: ' + param.data[3],
         'lower: ' + param.data[4]
-    ].join('<br/>')
+    ].join('<br/>');
 }

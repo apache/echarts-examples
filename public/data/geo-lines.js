@@ -210,12 +210,10 @@ var series = [];
             symbolSize: 15
         },
         lineStyle: {
-            normal: {
-                color: color[i],
-                width: 1,
-                opacity: 0.6,
-                curveness: 0.2
-            }
+            color: color[i],
+            width: 1,
+            opacity: 0.6,
+            curveness: 0.2
         },
         data: convertData(item[1])
     },
@@ -228,19 +226,15 @@ var series = [];
             brushType: 'stroke'
         },
         label: {
-            normal: {
-                show: true,
-                position: 'right',
-                formatter: '{b}'
-            }
+            show: true,
+            position: 'right',
+            formatter: '{b}'
         },
         symbolSize: function (val) {
             return val[2] / 8;
         },
         itemStyle: {
-            normal: {
-                color: color[i]
-            }
+            color: color[i]
         },
         data: item[1].map(function (dataItem) {
             return {
@@ -257,18 +251,18 @@ option = {
         text: '模拟迁徙',
         subtext: '数据纯属虚构',
         left: 'center',
-        textStyle : {
+        textStyle: {
             color: '#fff'
         }
     },
-    tooltip : {
+    tooltip: {
         trigger: 'item'
     },
     legend: {
         orient: 'vertical',
         top: 'bottom',
         left: 'right',
-        data:['北京 Top10', '上海 Top10', '广州 Top10'],
+        data: ['北京 Top10', '上海 Top10', '广州 Top10'],
         textStyle: {
             color: '#fff'
         },
@@ -277,17 +271,19 @@ option = {
     geo: {
         map: 'china',
         label: {
-            emphasis: {
-                show: false
-            }
+            show: false
         },
         roam: true,
         itemStyle: {
-            normal: {
-                areaColor: '#323c48',
-                borderColor: '#404a59'
+            areaColor: '#323c48',
+            borderColor: '#404a59'
+        },
+
+        emphasis: {
+            label: {
+                show: true
             },
-            emphasis: {
+            itemStyle: {
                 areaColor: '#2a333d'
             }
         }

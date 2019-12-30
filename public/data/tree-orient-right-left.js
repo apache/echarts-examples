@@ -30,16 +30,16 @@ $.get(ROOT_PATH + 'data/asset/data/flare.json', function (data) {
                 orient: 'RL',
 
                 label: {
-                        position: 'right',
-                        verticalAlign: 'middle',
-                        align: 'left'
+                    position: 'right',
+                    verticalAlign: 'middle',
+                    align: 'left'
                 },
 
                 leaves: {
                     label: {
-                            position: 'left',
-                            verticalAlign: 'middle',
-                            align: 'right'
+                        position: 'left',
+                        verticalAlign: 'middle',
+                        align: 'right'
                     }
                 },
 

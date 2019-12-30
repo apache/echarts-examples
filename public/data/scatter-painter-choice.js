@@ -50,10 +50,8 @@ $.get(ROOT_PATH + 'data/asset/data/masterPainterColorChoice.json', function (jso
                 return json[0].marker.size[param.dataIndex] / json[0].marker.sizeref;
             },
             itemStyle: {
-                normal: {
-                    color: function (param) {
-                        return json[0].marker.color[param.dataIndex];
-                    }
+                color: function (param) {
+                    return json[0].marker.color[param.dataIndex];
                 }
             },
             data: data

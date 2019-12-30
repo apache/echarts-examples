@@ -1,5 +1,5 @@
 ---
-title: Line Easing
+title: Line Easing Visualizing
 category: line
-titleCN: Line Easing
+titleCN: 缓动函数可视化
 ---

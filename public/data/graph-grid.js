@@ -29,18 +29,14 @@ option = {
             coordinateSystem: 'cartesian2d',
             symbolSize: 40,
             label: {
-                normal: {
-                    show: true
-                }
+                show: true
             },
             edgeSymbol: ['circle', 'arrow'],
             edgeSymbolSize: [4, 10],
             data: data,
             links: links,
             lineStyle: {
-                normal: {
-                    color: '#2f4554'
-                }
+                color: '#2f4554'
             }
         }
     ]

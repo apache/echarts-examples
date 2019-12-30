@@ -1,5 +1,3 @@
-app.title = '力引导布局';
-
 myChart.showLoading();
 $.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
     myChart.hideLoading();
@@ -45,9 +43,7 @@ $.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
                 categories: categories,
                 roam: true,
                 label: {
-                    normal: {
-                        position: 'right'
-                    }
+                    position: 'right'
                 },
                 force: {
                     repulsion: 100

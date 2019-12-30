@@ -4,14 +4,14 @@ option = {
         subtext: 'From ExcelHome',
         sublink: 'http://e.weibo.com/1341556070/Aj1J2x5a5'
     },
-    tooltip : {
+    tooltip: {
         trigger: 'axis',
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         },
         formatter: function (params) {
             var tar;
-            if (params[1].value != '-') {
+            if (params[1].value !== '-') {
                 tar = params[1];
             }
             else {
@@ -21,7 +21,7 @@ option = {
         }
     },
     legend: {
-        data:['支出','收入']
+        data: ['支出', '收入']
     },
     grid: {
         left: '3%',
@@ -30,9 +30,9 @@ option = {
         containLabel: true
     },
     xAxis: {
-        type : 'category',
-        splitLine: {show:false},
-        data :  function (){
+        type: 'category',
+        splitLine: {show: false},
+        data: function () {
             var list = [];
             for (var i = 1; i <= 11; i++) {
                 list.push('11月' + i + '日');
@@ -41,7 +41,7 @@ option = {
         }()
     },
     yAxis: {
-        type : 'value'
+        type: 'value'
     },
     series: [
         {
@@ -49,11 +49,11 @@ option = {
             type: 'bar',
             stack: '总量',
             itemStyle: {
-                normal: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(0,0,0,0)'
-                },
-                emphasis: {
+                barBorderColor: 'rgba(0,0,0,0)',
+                color: 'rgba(0,0,0,0)'
+            },
+            emphasis: {
+                itemStyle: {
                     barBorderColor: 'rgba(0,0,0,0)',
                     color: 'rgba(0,0,0,0)'
                 }
@@ -65,10 +65,8 @@ option = {
             type: 'bar',
             stack: '总量',
             label: {
-                normal: {
-                    show: true,
-                    position: 'top'
-                }
+                show: true,
+                position: 'top'
             },
             data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
         },
@@ -77,10 +75,8 @@ option = {
             type: 'bar',
             stack: '总量',
             label: {
-                normal: {
-                    show: true,
-                    position: 'bottom'
-                }
+                show: true,
+                position: 'bottom'
             },
             data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
         }

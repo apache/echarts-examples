@@ -19,7 +19,7 @@ option = {
         left: 'center',
         text: '2016年某人每天的步数'
     },
-    tooltip : {},
+    tooltip: {},
     visualMap: {
         min: 0,
         max: 10000,
@@ -38,7 +38,7 @@ option = {
         cellSize: ['auto', 13],
         range: '2016',
         itemStyle: {
-            normal: {borderWidth: 0.5}
+            borderWidth: 0.5
         },
         yearLabel: {show: false}
     },

@@ -62,16 +62,14 @@ option = {
         type: 'bar',
         barWidth: 10,
         itemStyle: {
-            normal: {
-                barBorderRadius: 5,
-                color: new echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
-                    [
-                        {offset: 0, color: '#14c8d4'},
-                        {offset: 1, color: '#43eec6'}
-                    ]
-                )
-            }
+            barBorderRadius: 5,
+            color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [
+                    {offset: 0, color: '#14c8d4'},
+                    {offset: 1, color: '#43eec6'}
+                ]
+            )
         },
         data: barData
     }, {
@@ -80,16 +78,14 @@ option = {
         barGap: '-100%',
         barWidth: 10,
         itemStyle: {
-            normal: {
-                color: new echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
-                    [
-                        {offset: 0, color: 'rgba(20,200,212,0.5)'},
-                        {offset: 0.2, color: 'rgba(20,200,212,0.2)'},
-                        {offset: 1, color: 'rgba(20,200,212,0)'}
-                    ]
-                )
-            }
+            color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [
+                    {offset: 0, color: 'rgba(20,200,212,0.5)'},
+                    {offset: 0.2, color: 'rgba(20,200,212,0.2)'},
+                    {offset: 1, color: 'rgba(20,200,212,0)'}
+                ]
+            )
         },
         z: -12,
         data: lineData
@@ -98,9 +94,7 @@ option = {
         type: 'pictorialBar',
         symbol: 'rect',
         itemStyle: {
-            normal: {
-                color: '#0f375f'
-            }
+            color: '#0f375f'
         },
         symbolRepeat: true,
         symbolSize: [12, 4],

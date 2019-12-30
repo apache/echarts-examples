@@ -55,11 +55,9 @@ option = {
         roam: true,
         silent: true,
         itemStyle: {
-            normal: {
-                color: 'transparent',
-                borderColor: 'rgba(255,255,255,0.1)',
-                borderWidth: 1
-            }
+            color: 'transparent',
+            borderColor: 'rgba(255,255,255,0.1)',
+            borderWidth: 1
         }
     },
     series: [{
@@ -81,6 +79,6 @@ option = {
             opacity: 0.3
         }
     }]
-}
+};
 
 fetchData(0);

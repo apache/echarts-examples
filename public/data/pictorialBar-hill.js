@@ -34,15 +34,11 @@ option = {
         name: 'all',
         hoverAnimation: true,
         label: {
-            normal: {
-                show: true,
-                position: 'top',
-                formatter: '{c} m',
-                textStyle: {
-                    fontSize: 16,
-                    color: '#e54035'
-                }
-            }
+            show: true,
+            position: 'top',
+            formatter: '{c} m',
+            fontSize: 16,
+            color: '#e54035'
         },
         data: [{
             value: 13000,
@@ -72,13 +68,11 @@ option = {
         markLine: {
             symbol: ['none', 'none'],
             label: {
-                normal: {show: false}
+                show: false
             },
             lineStyle: {
-                normal: {
-                    color: '#e54035',
-                    width: 2
-                }
+                color: '#e54035',
+                width: 2
             },
             data: [{
                 yAxis: 8844
@@ -90,9 +84,7 @@ option = {
         barGap: '-100%',
         symbol: 'circle',
         itemStyle: {
-            normal: {
-                color: '#185491'
-            }
+            color: '#185491'
         },
         silent: true,
         symbolOffset: [0, '50%'],

@@ -292,32 +292,21 @@ option = {
     geo: {
         map: 'world',
         silent: true,
-        label: {
-            emphasis: {
+        emphasis: {
+            label: {
                 show: false,
                 areaColor: '#eee'
             }
         },
         itemStyle: {
-            normal: {
-                borderWidth: 0.2,
-                borderColor: '#404a59'
-            }
+            borderWidth: 0.2,
+            borderColor: '#404a59'
         },
         left: '6%',
         top: 40,
         bottom: '54%',
         right: '14%',
         roam: true
-        // itemStyle: {
-        //     normal: {
-        //         areaColor: '#323c48',
-        //         borderColor: '#111'
-        //     },
-        //     emphasis: {
-        //         areaColor: '#2a333d'
-        //     }
-        // }
     },
     parallelAxis: makeParallelAxis(schema),
     grid: [{
@@ -392,23 +381,21 @@ option = {
             data: makeMapData(rawData),
             activeOpacity: 1,
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: false
-                },
-                emphasis: {
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right',
+                show: false
             },
             symbolSize: 10,
             // symbolSize: function (data) {
             //     return Math.max(5, data[2] / 5);
             // },
             itemStyle: {
-                normal: {
-                    borderColor: '#fff',
-                    color: '#577ceb',
+                borderColor: '#fff',
+                color: '#577ceb',
+            },
+            emphasis: {
+                label: {
+                    show: true
                 }
             }
         },
@@ -417,11 +404,9 @@ option = {
             type: 'parallel',
             smooth: true,
             lineStyle: {
-                normal: {
-                    color: '#577ceb',
-                    width: 0.5,
-                    opacity: 0.6
-                }
+                color: '#577ceb',
+                width: 0.5,
+                opacity: 0.6
             },
             z: 100,
             blendMode: 'lighter',

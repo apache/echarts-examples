@@ -179,14 +179,10 @@ option = {
             data: dataBJ,
             symbol: 'none',
             itemStyle: {
-                normal: {
-                    color: '#F9713C'
-                }
+                color: '#F9713C'
             },
             areaStyle: {
-                normal: {
-                    opacity: 0.1
-                }
+                opacity: 0.1
             }
         },
         {
@@ -196,14 +192,10 @@ option = {
             data: dataSH,
             symbol: 'none',
             itemStyle: {
-                normal: {
-                    color: '#B3E4A1'
-                }
+                color: '#B3E4A1'
             },
             areaStyle: {
-                normal: {
-                    opacity: 0.05
-                }
+                opacity: 0.05
             }
         },
         {
@@ -213,14 +205,10 @@ option = {
             data: dataGZ,
             symbol: 'none',
             itemStyle: {
-                normal: {
-                    color: 'rgb(238, 197, 102)'
-                }
+                color: 'rgb(238, 197, 102)'
             },
             areaStyle: {
-                normal: {
-                    opacity: 0.05
-                }
+                opacity: 0.05
             }
         }
     ]

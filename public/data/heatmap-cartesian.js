@@ -1,5 +1,3 @@
-app.title = '笛卡尔坐标系上的热力图';
-
 var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
         '7a', '8a', '9a','10a','11a',
         '12p', '1p', '2p', '3p', '4p', '5p',
@@ -20,7 +18,7 @@ option = {
     animation: false,
     grid: {
         height: '50%',
-        y: '10%'
+        top: '10%'
     },
     xAxis: {
         type: 'category',
@@ -49,12 +47,10 @@ option = {
         type: 'heatmap',
         data: data,
         label: {
-            normal: {
-                show: true
-            }
+            show: true
         },
-        itemStyle: {
-            emphasis: {
+        emphasis: {
+            itemStyle: {
                 shadowBlur: 10,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
             }

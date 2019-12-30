@@ -9,10 +9,7 @@ $.getJSON(uploadedDataURL, function (rawData) {
     function convert(source, target, basePath) {
         for (var key in source) {
             var path = basePath ? (basePath + '.' + key) : key;
-            if (key.match(/^\$/)) {
-
-            }
-            else {
+            if (!key.match(/^\$/)) {
                 target.children = target.children || [];
                 var child = {
                     name: path
@@ -53,30 +50,24 @@ $.getJSON(uploadedDataURL, function (rawData) {
             levels: [
                 {
                     itemStyle: {
-                        normal: {
-                            borderColor: '#555',
-                            borderWidth: 4,
-                            gapWidth: 4
-                        }
+                        borderColor: '#555',
+                        borderWidth: 4,
+                        gapWidth: 4
                     }
                 },
                 {
                     colorSaturation: [0.3, 0.6],
                     itemStyle: {
-                        normal: {
-                            borderColorSaturation: 0.7,
-                            gapWidth: 2,
-                            borderWidth: 2
-                        }
+                        borderColorSaturation: 0.7,
+                        gapWidth: 2,
+                        borderWidth: 2
                     }
                 },
                 {
                     colorSaturation: [0.3, 0.5],
                     itemStyle: {
-                        normal: {
-                            borderColorSaturation: 0.6,
-                            gapWidth: 1
-                        }
+                        borderColorSaturation: 0.6,
+                        gapWidth: 1
                     }
                 },
                 {
@@ -84,5 +75,5 @@ $.getJSON(uploadedDataURL, function (rawData) {
                 }
             ]
         }]
-    })
+    });
 });

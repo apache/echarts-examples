@@ -132,12 +132,10 @@ option = {
             smooth: true,
             barCategoryGap: 25,
             lineStyle: {
-                normal: {
-                    width: 3,
-                    shadowColor: 'rgba(0,0,0,0.4)',
-                    shadowBlur: 10,
-                    shadowOffsetY: 10
-                }
+                width: 3,
+                shadowColor: 'rgba(0,0,0,0.4)',
+                shadowBlur: 10,
+                shadowOffsetY: 10
             },
             data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
         }

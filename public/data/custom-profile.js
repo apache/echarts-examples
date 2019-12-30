@@ -94,7 +94,7 @@ option = {
         filterMode: 'weakFilter'
     }],
     grid: {
-        height:300
+        height: 300
     },
     xAxis: {
         min: startTime,
@@ -112,9 +112,7 @@ option = {
         type: 'custom',
         renderItem: renderItem,
         itemStyle: {
-            normal: {
-                opacity: 0.8
-            }
+            opacity: 0.8
         },
         encode: {
             x: [1, 2],

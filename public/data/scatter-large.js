@@ -42,7 +42,7 @@ option = {
         type: 'slider'
     }],
     animation: false,
-    series : [{
+    series: [{
         name: 'A',
         type: 'scatter',
         data: data1,

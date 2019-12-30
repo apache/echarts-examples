@@ -591,18 +591,15 @@ option = {
                 return val[2] / 10;
             },
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: false
-                },
-                emphasis: {
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right'
             },
             itemStyle: {
-                normal: {
-                    color: '#ddb926'
+                color: '#ddb926'
+            },
+            emphasis: {
+                label: {
+                    show: true
                 }
             }
         },
@@ -622,18 +619,14 @@ option = {
             },
             hoverAnimation: true,
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right',
+                show: true
             },
             itemStyle: {
-                normal: {
-                    color: '#f4e925',
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
+                color: '#f4e925',
+                shadowBlur: 10,
+                shadowColor: '#333'
             },
             zlevel: 1
         },
@@ -642,9 +635,7 @@ option = {
             coordinateSystem: 'bmap',
             renderItem: renderItem,
             itemStyle: {
-                normal: {
-                    opacity: 0.5
-                }
+                opacity: 0.5
             },
             animation: false,
             silent: true,

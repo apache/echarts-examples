@@ -18,26 +18,20 @@ $.get(ROOT_PATH + 'data/asset/data/disk.tree.json', function (diskData) {
         return [
             {
                 itemStyle: {
-                    normal: {
-                        borderWidth: 0,
-                        gapWidth: 5
-                    }
+                    borderWidth: 0,
+                    gapWidth: 5
                 }
             },
             {
                 itemStyle: {
-                    normal: {
-                        gapWidth: 1
-                    }
+                    gapWidth: 1
                 }
             },
             {
                 colorSaturation: [0.35, 0.5],
                 itemStyle: {
-                    normal: {
-                        gapWidth: 1,
-                        borderColorSaturation: 0.6
-                    }
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
                 }
             }
         ];
@@ -69,17 +63,15 @@ $.get(ROOT_PATH + 'data/asset/data/disk.tree.json', function (diskData) {
 
         series: [
             {
-                name:'Disk Usage',
-                type:'treemap',
+                name: 'Disk Usage',
+                type: 'treemap',
                 visibleMin: 300,
                 label: {
                     show: true,
                     formatter: '{b}'
                 },
                 itemStyle: {
-                    normal: {
-                        borderColor: '#fff'
-                    }
+                    borderColor: '#fff'
                 },
                 levels: getLevelOption(),
                 data: diskData

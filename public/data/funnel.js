@@ -17,7 +17,7 @@ option = {
     legend: {
         data: ['展现','点击','访问','咨询','订单']
     },
-    calculable: true,
+
     series: [
         {
             name:'漏斗图',
