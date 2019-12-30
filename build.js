@@ -9,16 +9,6 @@ const jade = require('jade');
 const path = require('path');
 const uglify = require('uglify-js');
 
-// var gulp = require('gulp');
-// var sass = require('gulp-sass');
-// var copy = require('gulp-copy');
-// var rename = require('gulp-rename');
-// var eventStream = require('event-stream');
-
-// var prefix = require('gulp-autoprefixer');
-// var jade = require('gulp-jade');
-// var uglify = require('gulp-uglify');
-// var clean = require('gulp-clean');
 const argv = require('yargs').argv;
 const projectDir = __dirname;
 
@@ -36,8 +26,8 @@ const projectDir = __dirname;
  */
 
 function initEnv() {
-    var envType = argv.env;
-    var isDev = argv.dev != null || argv.debug != null || envType === 'debug' || envType === 'dev';
+    let envType = argv.env;
+    let isDev = argv.dev != null || argv.debug != null || envType === 'debug' || envType === 'dev';
 
     if (isDev) {
         console.warn('====================================================================');
@@ -51,7 +41,7 @@ function initEnv() {
         throw new Error('--env MUST be specified');
     }
 
-    var config = require('./config/env.' + envType);
+    let config = require('./config/env.' + envType);
 
     if (isDev) {
         console.warn('====================================================================');
