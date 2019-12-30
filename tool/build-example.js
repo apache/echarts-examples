@@ -182,4 +182,4 @@ var SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
         var code = 'var EXAMPLES' + (sourceFolder === 'data' ? ' = ' : '_GL = ') + JSON.stringify(exampleList, null, 2);
         fs.writeFileSync(`../public/javascripts/chart-list-${sourceFolder}.js`, code, 'utf-8');
     });
-})()
+})();
