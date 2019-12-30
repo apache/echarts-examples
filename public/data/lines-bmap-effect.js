@@ -1,5 +1,3 @@
-app.title = '北京公交路线 - 线特效';
-
 $.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
     var hStep = 300 / (data.length - 1);
     var busLines = [].concat.apply([], data.map(function (busLine, idx) {
@@ -162,12 +160,10 @@ $.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
             data: busLines,
             silent: true,
             lineStyle: {
-                normal: {
-                    // color: '#c23531',
-                    // color: 'rgb(200, 35, 45)',
-                    opacity: 0.2,
-                    width: 1
-                }
+                // color: '#c23531',
+                // color: 'rgb(200, 35, 45)',
+                opacity: 0.2,
+                width: 1
             },
             progressiveThreshold: 500,
             progressive: 200
@@ -177,9 +173,7 @@ $.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
             polyline: true,
             data: busLines,
             lineStyle: {
-                normal: {
-                    width: 0
-                }
+                width: 0
             },
             effect: {
                 constantSpeed: 20,

@@ -24,9 +24,7 @@ option = {
         axisTick: {show: false},
         axisLine: {show: false},
         axisLabel: {
-            textStyle: {
-                color: '#e54035'
-            }
+            color: '#e54035'
         }
     },
     yAxis: {
@@ -43,10 +41,10 @@ option = {
         // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
         symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
         itemStyle: {
-            normal: {
-                opacity: 0.5
-            },
-            emphasis: {
+            opacity: 0.5
+        },
+        emphasis: {
+            itemStyle: {
                 opacity: 1
             }
         },

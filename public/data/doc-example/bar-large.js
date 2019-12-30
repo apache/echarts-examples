@@ -16,7 +16,6 @@ option = {
         align: 'left'
     },
     toolbox: {
-        // y: 'bottom',
         feature: {
             magicType: {
                 type: ['stack', 'tiled']

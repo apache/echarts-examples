@@ -1,6 +1,6 @@
 option = {
-    tooltip : {
-        formatter: "{a} <br/>{b} : {c}%"
+    tooltip: {
+        formatter: '{a} <br/>{b} : {c}%'
     },
     toolbox: {
         feature: {
@@ -12,7 +12,7 @@ option = {
         {
             name: '业务指标',
             type: 'gauge',
-            detail: {formatter:'{value}%'},
+            detail: {formatter: '{value}%'},
             data: [{value: 50, name: '完成率'}]
         }
     ]

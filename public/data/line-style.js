@@ -12,18 +12,14 @@ option = {
         symbol: 'triangle',
         symbolSize: 20,
         lineStyle: {
-            normal: {
-                color: 'green',
-                width: 4,
-                type: 'dashed'
-            }
+            color: 'green',
+            width: 4,
+            type: 'dashed'
         },
         itemStyle: {
-            normal: {
-                borderWidth: 3,
-                borderColor: 'yellow',
-                color: 'blue'
-            }
+            borderWidth: 3,
+            borderColor: 'yellow',
+            color: 'blue'
         }
     }]
 };

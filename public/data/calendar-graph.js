@@ -55,7 +55,7 @@ function getVirtulData(year) {
 
 
 option = {
-    tooltip : {},
+    tooltip: {},
     calendar: {
         top: 'middle',
         left: 'center',
@@ -101,20 +101,16 @@ option = {
         symbolSize: 15,
         calendarIndex: 0,
         itemStyle: {
-            normal: {
-                color: 'yellow',
-                shadowBlue: 9,
-                shadowOffsetX: 1.5,
-                shadowOffsetY: 3,
-                shadowColor: '#555'
-            }
+            color: 'yellow',
+            shadowBlue: 9,
+            shadowOffsetX: 1.5,
+            shadowOffsetY: 3,
+            shadowColor: '#555'
         },
         lineStyle: {
-            normal: {
-                color: '#D10E00',
-                width: 1,
-                opacity: 1
-            }
+            color: '#D10E00',
+            width: 1,
+            opacity: 1
         },
         data: graphData,
         z: 20

@@ -36,26 +36,20 @@ option = {
         selectedOffset: 30,
         clockwise: true,
         label: {
-            normal: {
-                textStyle: {
-                    fontSize: 18,
-                    color: '#235894'
-                }
-            }
+            fontSize: 18,
+            color: '#235894'
         },
         labelLine: {
-            normal: {
-                lineStyle: {
-                    color: '#235894'
-                }
+            lineStyle: {
+                color: '#235894'
             }
         },
-        data:[
-            {value:335, name:'直接访问'},
-            {value:310, name:'邮件营销'},
-            {value:234, name:'联盟广告'},
-            {value:135, name:'视频广告'},
-            {value:1548, name:'搜索引擎'}
+        data: [
+            {value: 335, name: '直接访问'},
+            {value: 310, name: '邮件营销'},
+            {value: 234, name: '联盟广告'},
+            {value: 135, name: '视频广告'},
+            {value: 1548, name: '搜索引擎'}
         ],
         itemStyle: itemStyle
     }]

@@ -12,7 +12,7 @@ option = {
     title: [
         {
             text: 'Michelson-Morley Experiment',
-            x: 'center',
+            left: 'center',
         },
         {
             text: 'upper: Q3 + 1.5 * IRQ \nlower: Q1 - 1.5 * IRQ',

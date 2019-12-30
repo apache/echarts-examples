@@ -7,7 +7,7 @@ function randomData() {
             [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
             Math.round(value)
         ]
-    }
+    };
 }
 
 var data = [];

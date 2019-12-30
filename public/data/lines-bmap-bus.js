@@ -1,5 +1,3 @@
-app.title = '北京公交路线 - 百度地图';
-
 $.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
     var busLines = [].concat.apply([], data.map(function (busLine, idx) {
         var prevPt;
@@ -132,12 +130,9 @@ $.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
             data: busLines,
             silent: true,
             lineStyle: {
-                normal: {
-                    color: '#c23531',
-                    color: 'rgb(200, 35, 45)',
-                    opacity: 0.2,
-                    width: 1
-                }
+                color: 'rgb(200, 35, 45)',
+                opacity: 0.2,
+                width: 1
             },
             progressiveThreshold: 500,
             progressive: 200

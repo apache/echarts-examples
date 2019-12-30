@@ -4,7 +4,7 @@ $.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.list.json', functi
     myChart.hideLoading();
 
     option = {
-        tooltip : {
+        tooltip: {
             trigger: 'axis',
             axisPointer: {
                 type: 'shadow',
@@ -14,18 +14,18 @@ $.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.list.json', functi
             }
         },
         toolbox: {
-            show : true,
-            feature : {
-                mark : {show: true},
-                dataView : {show: true, readOnly: false},
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
                 magicType: {show: true, type: ['line', 'bar']},
-                restore : {show: true},
-                saveAsImage : {show: true}
+                restore: {show: true},
+                saveAsImage: {show: true}
             }
         },
-        calculable : true,
+        calculable: true,
         legend: {
-            data:['Growth', 'Budget 2011', 'Budget 2012'],
+            data: ['Growth', 'Budget 2011', 'Budget 2012'],
             itemGap: 5
         },
         grid: {
@@ -36,14 +36,14 @@ $.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.list.json', functi
         },
         xAxis: [
             {
-                type : 'category',
-                data : obama_budget_2012.names
+                type: 'category',
+                data: obama_budget_2012.names
             }
         ],
         yAxis: [
             {
-                type : 'value',
-                name : 'Budget (million USD)',
+                type: 'value',
+                name: 'Budget (million USD)',
                 axisLabel: {
                     formatter: function (a) {
                         a = +a;
@@ -75,7 +75,7 @@ $.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.list.json', functi
                 left: '93%'
             }
         ],
-        series : [
+        series: [
             {
                 name: 'Budget 2011',
                 type: 'bar',

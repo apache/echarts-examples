@@ -1,5 +1,3 @@
-app.title = '水印 - ECharts 下载统计'
-
 var builderJson = {
   "all": 10887,
   "charts": {
@@ -76,22 +74,22 @@ option = {
     title: [{
         text: '在线构建',
         subtext: '总计 ' + builderJson.all,
-        x: '25%',
+        left: '25%',
         textAlign: 'center'
     }, {
         text: '各版本下载',
         subtext: '总计 ' + Object.keys(downloadJson).reduce(function (all, key) {
             return all + downloadJson[key];
         }, 0),
-        x: '75%',
+        left: '75%',
         textAlign: 'center'
     }, {
         text: '主题下载',
         subtext: '总计 ' + Object.keys(themeJson).reduce(function (all, key) {
             return all + themeJson[key];
         }, 0),
-        x: '75%',
-        y: '50%',
+        left: '75%',
+        top: '50%',
         textAlign: 'center'
     }],
     grid: [{
@@ -215,7 +213,7 @@ option = {
             return {
                 name: key.replace('.js', ''),
                 value: themeJson[key]
-            }
+            };
         })
     }]
-}
+};

@@ -68,19 +68,17 @@ app.config = {
 
 
 var labelOption = {
-    normal: {
-        show: true,
-        position: app.config.position,
-        distance: app.config.distance,
-        align: app.config.align,
-        verticalAlign: app.config.verticalAlign,
-        rotate: app.config.rotate,
-        formatter: '{c}  {name|{a}}',
-        fontSize: 16,
-        rich: {
-            name: {
-                textBorderColor: '#fff'
-            }
+    show: true,
+    position: app.config.position,
+    distance: app.config.distance,
+    align: app.config.align,
+    verticalAlign: app.config.verticalAlign,
+    rotate: app.config.rotate,
+    formatter: '{c}  {name|{a}}',
+    fontSize: 16,
+    rich: {
+        name: {
+            textBorderColor: '#fff'
         }
     }
 };
@@ -109,7 +107,6 @@ option = {
             saveAsImage: {show: true}
         }
     },
-    calculable: true,
     xAxis: [
         {
             type: 'category',

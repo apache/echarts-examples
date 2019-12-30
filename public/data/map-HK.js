@@ -30,11 +30,11 @@ $.get(ROOT_PATH + 'data/asset/geo/HK.json', function (geoJson) {
         visualMap: {
             min: 800,
             max: 50000,
-            text:['High','Low'],
+            text: ['High', 'Low'],
             realtime: false,
             calculable: true,
             inRange: {
-                color: ['lightskyblue','yellow', 'orangered']
+                color: ['lightskyblue', 'yellow', 'orangered']
             }
         },
         series: [
@@ -42,11 +42,10 @@ $.get(ROOT_PATH + 'data/asset/geo/HK.json', function (geoJson) {
                 name: '香港18区人口密度',
                 type: 'map',
                 mapType: 'HK', // 自定义扩展图表类型
-                itemStyle:{
-                    normal:{label:{show:true}},
-                    emphasis:{label:{show:true}}
+                label: {
+                    show: true
                 },
-                data:[
+                data: [
                     {name: '中西区', value: 20057.34},
                     {name: '湾仔', value: 15477.48},
                     {name: '东区', value: 31686.1},

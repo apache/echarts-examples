@@ -59,7 +59,6 @@ function renderTrendItem(params, api) {
 }
 
 function renderAverageItem(param, api) {
-    var categoryIndex = api.value(0);
     var bandWidth = api.size([0, 0])[0] * 0.85;
     var point = api.coord([api.value(0), api.value(1)]);
 

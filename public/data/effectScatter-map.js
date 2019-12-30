@@ -413,8 +413,8 @@ option = {
     },
     legend: {
         orient: 'vertical',
-        y: 'bottom',
-        x:'right',
+        top: 'bottom',
+        left: 'right',
         data:['pm2.5'],
         textStyle: {
             color: '#fff'
@@ -422,18 +422,16 @@ option = {
     },
     geo: {
         map: 'china',
-        label: {
-            emphasis: {
-                show: false
-            }
-        },
         roam: true,
+        label: {
+            show: false
+        },
         itemStyle: {
-            normal: {
-                areaColor: '#323c48',
-                borderColor: '#111'
-            },
-            emphasis: {
+            areaColor: '#323c48',
+            borderColor: '#111'
+        },
+        emphasis: {
+            itemStyle: {
                 areaColor: '#2a333d'
             }
         }
@@ -451,18 +449,16 @@ option = {
                 return val[2] / 10;
             },
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: false
-                },
-                emphasis: {
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right',
+                show: false
             },
             itemStyle: {
-                normal: {
-                    color: '#ddb926'
+                color: '#ddb926'
+            },
+            emphasis: {
+                label: {
+                    show: true
                 }
             }
         },
@@ -485,18 +481,14 @@ option = {
             },
             hoverAnimation: true,
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right',
+                show: true
             },
             itemStyle: {
-                normal: {
-                    color: '#f4e925',
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
+                color: '#f4e925',
+                shadowBlur: 10,
+                shadowColor: '#333'
             },
             zlevel: 1
         }

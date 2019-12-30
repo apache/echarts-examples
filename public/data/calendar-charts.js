@@ -83,15 +83,13 @@ option = {
                 color: '#ccc'
             }
         },
-        calculable: true,
         seriesIndex: [1],
         orient: 'horizontal',
         left: '10%',
         bottom: 20
     }],
 
-    calendar: [
-    {
+    calendar: [{
         orient: 'vertical',
         yearLabel: {
             margin: 40

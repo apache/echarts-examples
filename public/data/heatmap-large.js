@@ -1,5 +1,3 @@
-app.title = '热力图 - 2w 数据';
-
 var noise = getNoiseHelper();
 var xData = [];
 var yData = [];
@@ -45,8 +43,8 @@ option = {
         name: 'Gaussian',
         type: 'heatmap',
         data: data,
-        itemStyle: {
-            emphasis: {
+        emphasis: {
+            itemStyle: {
                 borderColor: '#333',
                 borderWidth: 1
             }

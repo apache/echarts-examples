@@ -1,7 +1,7 @@
 option = {
     series: {
         type: 'sankey',
-        layout:'none',
+        layout: 'none',
         focusNodeAdjacency: 'allEdges',
         data: [{
             name: 'a'

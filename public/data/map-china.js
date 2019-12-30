@@ -8,17 +8,12 @@ option = {
             name: '中国',
             type: 'map',
             mapType: 'china',
-            selectedMode : 'multiple',
+            selectedMode: 'multiple',
             label: {
-                normal: {
-                    show: true
-                },
-                emphasis: {
-                    show: true
-                }
+                show: true
             },
-            data:[
-                {name:'广东', selected:true}
+            data: [
+                {name: '广东', selected: true}
             ]
         }
     ]

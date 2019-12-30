@@ -1,10 +1,10 @@
 option = {
     legend: {
-        data:['高度(km)与气温(°C)变化关系']
+        data: ['高度(km)与气温(°C)变化关系']
     },
     tooltip: {
         trigger: 'axis',
-        formatter: "Temperature : <br/>{b}km : {c}°C"
+        formatter: 'Temperature : <br/>{b}km : {c}°C'
     },
     grid: {
         left: '3%',
@@ -33,12 +33,10 @@ option = {
             type: 'line',
             smooth: true,
             lineStyle: {
-                normal: {
-                    width: 3,
-                    shadowColor: 'rgba(0,0,0,0.4)',
-                    shadowBlur: 10,
-                    shadowOffsetY: 10
-                }
+                width: 3,
+                shadowColor: 'rgba(0,0,0,0.4)',
+                shadowBlur: 10,
+                shadowOffsetY: 10
             },
             data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
         }

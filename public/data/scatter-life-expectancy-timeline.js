@@ -5,13 +5,11 @@ $.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
     myChart.hideLoading();
 
     var itemStyle = {
-        normal: {
-            opacity: 0.8,
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowOffsetY: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-        }
+        opacity: 0.8,
+        shadowBlur: 10,
+        shadowOffsetX: 0,
+        shadowOffsetY: 0,
+        shadowColor: 'rgba(0, 0, 0, 0.5)'
     };
 
     var sizeFunction = function (x) {
@@ -41,16 +39,7 @@ $.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
                 width: 55,
                 height: null,
                 label: {
-                    normal: {
-                        textStyle: {
-                            color: '#999'
-                        }
-                    },
-                    emphasis: {
-                        textStyle: {
-                            color: '#fff'
-                        }
-                    }
+                    color: '#999'
                 },
                 symbol: 'none',
                 lineStyle: {
@@ -64,11 +53,14 @@ $.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
                 controlStyle: {
                     showNextBtn: false,
                     showPrevBtn: false,
-                    normal: {
-                        color: '#666',
-                        borderColor: '#666'
+                    color: '#666',
+                    borderColor: '#666'
+                },
+                emphasis: {
+                    label: {
+                        color: '#fff'
                     },
-                    emphasis: {
+                    controlStyle: {
                         color: '#aaa',
                         borderColor: '#aaa'
                     }

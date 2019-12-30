@@ -42,9 +42,7 @@ option = {
         axisTick: {show: false},
         axisLabel: {
             margin: 30,
-            textStyle: {
-                fontSize: 14
-            }
+            fontSize: 14
         },
         axisPointer: {
             label: {

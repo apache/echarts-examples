@@ -35,7 +35,7 @@ var data;
 // zlevel 为 1 的层开启尾迹特效
 myChart.getZr().configLayer(1, {
     motionBlur: 0.5
-})
+});
 
  $.get(ROOT_PATH + 'data/asset/data/nutrients.json', function (originData) {
     data = normalizeData(originData).slice(0, 1000);
@@ -97,9 +97,7 @@ function getOption(data) {
                 }
             },
             axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
+                color: '#fff'
             },
             axisTick: {
                 lineStyle: {
@@ -116,9 +114,7 @@ function getOption(data) {
                 }
             },
             axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
+                color: '#fff'
             },
             axisTick: {
                 lineStyle: {

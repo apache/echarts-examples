@@ -1,16 +1,16 @@
 option = {
-    title : {
+    title: {
         text: '订单量',
         subtext: '纯属虚构',
-        x:'center'
+        left: 'center'
     },
-    tooltip : {
+    tooltip: {
         trigger: 'item'
     },
     legend: {
         orient: 'vertical',
-        x:'left',
-        data:['订单量']
+        left: 'left',
+        data: ['订单量']
     },
     visualMap: {
         type: 'piecewise',
@@ -28,41 +28,34 @@ option = {
     },
     toolbox: {
         show: true,
-        orient : 'vertical',
-        x: 'right',
-        y: 'center',
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            restore : {show: true},
-            saveAsImage : {show: true}
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
         }
     },
     roamController: {
         show: true,
-        x: 'right',
+        left: 'right',
         mapTypeControl: {
             'china': true
         }
     },
-    series : [
+    series: [
         {
             name: '订单量',
             type: 'map',
             mapType: 'china',
             roam: false,
-            itemStyle:{
-                normal:{
-                    label:{
-                        show:true,
-                        textStyle: {
-                           color: "rgb(249, 249, 249)"
-                        }
-                    }
-                },
-                emphasis:{label:{show:true}}
+            label: {
+                show: true,
+                color: 'rgb(249, 249, 249)'
             },
-            data:[
+            data: [
                 {name: '北京',value: 5},
                 {name: '天津',value: Math.round(Math.random()*2000)},
                 {name: '上海',value: Math.round(Math.random()*2000)},

@@ -33,10 +33,8 @@ option = {
                 position: 'top'
             },
             lineStyle: {
-                normal: {
-                    color: 'source',
-                    curveness: 0.5
-                }
+                color: 'source',
+                curveness: 0.5
             }
         }
     ]

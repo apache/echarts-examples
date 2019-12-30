@@ -25,21 +25,17 @@ $.get(ROOT_PATH + 'data/asset/data/flare.json', function (data) {
                 symbolSize: 7,
 
                 label: {
-                    normal: {
-                        position: 'left',
-                        verticalAlign: 'middle',
-                        align: 'right',
-                        fontSize: 9
-                    }
+                    position: 'left',
+                    verticalAlign: 'middle',
+                    align: 'right',
+                    fontSize: 9
                 },
 
                 leaves: {
                     label: {
-                        normal: {
-                            position: 'right',
-                            verticalAlign: 'middle',
-                            align: 'left'
-                        }
+                        position: 'right',
+                        verticalAlign: 'middle',
+                        align: 'left'
                     }
                 },
 

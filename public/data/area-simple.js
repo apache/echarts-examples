@@ -58,9 +58,9 @@ option = {
     }],
     series: [
         {
-            name:'模拟数据',
-            type:'line',
-            smooth:true,
+            name: '模拟数据',
+            type: 'line',
+            smooth: true,
             symbol: 'none',
             sampling: 'average',
             itemStyle: {

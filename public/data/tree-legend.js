@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-var data1 = {
+var data = {
     "name": "flare",
     "children": [
         {
@@ -168,7 +168,7 @@ myChart.setOption(option = {
         data: [{
             name: 'tree1',
             icon: 'rectangle'
-        } ,
+        },
         {
             name: 'tree2',
             icon: 'rectangle'
@@ -181,7 +181,7 @@ myChart.setOption(option = {
 
             name: 'tree1',
 
-            data: [data1],
+            data: [data],
 
             top: '5%',
             left: '7%',
@@ -191,20 +191,16 @@ myChart.setOption(option = {
             symbolSize: 7,
 
             label: {
-                normal: {
-                    position: 'left',
-                    verticalAlign: 'middle',
-                    align: 'right'
-                }
+                position: 'left',
+                verticalAlign: 'middle',
+                align: 'right'
             },
 
             leaves: {
                 label: {
-                    normal: {
-                        position: 'right',
-                        verticalAlign: 'middle',
-                        align: 'left'
-                    }
+                    position: 'right',
+                    verticalAlign: 'middle',
+                    align: 'left'
                 }
             },
 
@@ -227,20 +223,16 @@ myChart.setOption(option = {
             symbolSize: 7,
 
             label: {
-                normal: {
-                    position: 'left',
-                    verticalAlign: 'middle',
-                    align: 'right'
-                }
+                position: 'left',
+                verticalAlign: 'middle',
+                align: 'right'
             },
 
             leaves: {
                 label: {
-                    normal: {
-                        position: 'right',
-                        verticalAlign: 'middle',
-                        align: 'left'
-                    }
+                    position: 'right',
+                    verticalAlign: 'middle',
+                    align: 'left'
                 }
             },
 

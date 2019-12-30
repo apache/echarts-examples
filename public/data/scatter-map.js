@@ -224,8 +224,8 @@ option = {
     },
     legend: {
         orient: 'vertical',
-        y: 'bottom',
-        x:'right',
+        top: 'bottom',
+        left: 'right',
         data:['pm2.5'],
         textStyle: {
             color: '#fff'
@@ -244,18 +244,16 @@ option = {
     },
     geo: {
         map: 'china',
-        label: {
-            emphasis: {
-                show: false
-            }
-        },
         itemStyle: {
-            normal: {
-                areaColor: '#323c48',
-                borderColor: '#111'
-            },
-            emphasis: {
+            areaColor: '#323c48',
+            borderColor: '#111'
+        },
+        emphasis: {
+            itemStyle: {
                 areaColor: '#2a333d'
+            },
+            label: {
+                show: false
             }
         }
     },
@@ -457,16 +455,8 @@ option = {
                 {name: "大庆", value: 279}
             ]),
             symbolSize: 12,
-            label: {
-                normal: {
-                    show: false
-                },
-                emphasis: {
-                    show: false
-                }
-            },
-            itemStyle: {
-                emphasis: {
+            emphasis: {
+                itemStyle: {
                     borderColor: '#fff',
                     borderWidth: 1
                 }

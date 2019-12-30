@@ -29,14 +29,13 @@ $.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
         },
         tooltip: {},
         legend: [{
-            // selectedMode: 'single',
             data: categories.map(function (a) {
                 return a.name;
             })
         }],
         animationDurationUpdate: 1500,
         animationEasingUpdate: 'quinticInOut',
-        series : [
+        series: [
             {
                 name: 'Les Miserables',
                 type: 'graph',
@@ -49,16 +48,12 @@ $.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
                 categories: categories,
                 roam: true,
                 label: {
-                    normal: {
-                        position: 'right',
-                        formatter: '{b}'
-                    }
+                    position: 'right',
+                    formatter: '{b}'
                 },
                 lineStyle: {
-                    normal: {
-                        color: 'source',
-                        curveness: 0.3
-                    }
+                    color: 'source',
+                    curveness: 0.3
                 }
             }
         ]

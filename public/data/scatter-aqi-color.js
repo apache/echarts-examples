@@ -112,13 +112,11 @@ var schema = [
 
 
 var itemStyle = {
-    normal: {
-        opacity: 0.8,
-        shadowBlur: 10,
-        shadowOffsetX: 0,
-        shadowOffsetY: 0,
-        shadowColor: 'rgba(0, 0, 0, 0.5)'
-    }
+    opacity: 0.8,
+    shadowBlur: 10,
+    shadowOffsetX: 0,
+    shadowOffsetY: 0,
+    shadowColor: 'rgba(0, 0, 0, 0.5)'
 };
 
 option = {
@@ -127,7 +125,7 @@ option = {
         '#dd4444', '#fec42c', '#80F1BE'
     ],
     legend: {
-        y: 'top',
+        top: 10,
         data: ['北京', '上海', '广州'],
         textStyle: {
             color: '#fff',
@@ -135,10 +133,10 @@ option = {
         }
     },
     grid: {
-        x: '10%',
-        x2: 150,
-        y: '18%',
-        y2: '10%'
+        left: '10%',
+        right: 150,
+        top: '18%',
+        bottom: '10%'
     },
     tooltip: {
         padding: 10,
@@ -234,7 +232,7 @@ option = {
             min: 0,
             max: 50,
             itemHeight: 120,
-            calculable: true,
+
             precision: 0.1,
             text: ['明暗：二氧化硫'],
             textGap: 30,

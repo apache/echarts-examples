@@ -20,12 +20,7 @@ option = {
             mapType: 'china',
             selectedMode : 'multiple',
             label: {
-                normal: {
-                    show: true
-                },
-                emphasis: {
-                    show: true
-                }
+                show: true
             }
         }
     ]
@@ -37,8 +32,11 @@ setInterval(function () {
         series: [{
             center: locations[currentLoc].coord,
             zoom: 4,
-            data:[
-                {name: locations[currentLoc].name, selected: true}
+            data: [
+                {
+                    name: locations[currentLoc].name,
+                    selected: true
+                }
             ],
             animationDurationUpdate: 1000,
             animationEasingUpdate: 'cubicInOut'

@@ -119,7 +119,7 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 type: 'category',
                 data: data.categoryData,
                 scale: true,
-                boundaryGap : false,
+                boundaryGap: false,
                 axisLine: {onZero: false},
                 splitLine: {show: false},
                 splitNumber: 20,
@@ -134,7 +134,7 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 gridIndex: 1,
                 data: data.categoryData,
                 scale: true,
-                boundaryGap : false,
+                boundaryGap: false,
                 axisLine: {onZero: false},
                 axisTick: {show: false},
                 splitLine: {show: false},
@@ -142,18 +142,6 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 splitNumber: 20,
                 min: 'dataMin',
                 max: 'dataMax'
-                // axisPointer: {
-                //     label: {
-                //         formatter: function (params) {
-                //             var seriesValue = (params.seriesData[0] || {}).value;
-                //             return params.value
-                //             + (seriesValue != null
-                //                 ? '\n' + echarts.format.addCommas(seriesValue)
-                //                 : ''
-                //             );
-                //         }
-                //     }
-                // }
             }
         ],
         yAxis: [
@@ -195,12 +183,10 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 type: 'candlestick',
                 data: data.values,
                 itemStyle: {
-                    normal: {
-                        color: upColor,
-                        color0: downColor,
-                        borderColor: null,
-                        borderColor0: null
-                    }
+                    color: upColor,
+                    color0: downColor,
+                    borderColor: null,
+                    borderColor0: null
                 },
                 tooltip: {
                     formatter: function (param) {
@@ -221,7 +207,7 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 data: calculateMA(5, data),
                 smooth: true,
                 lineStyle: {
-                    normal: {opacity: 0.5}
+                    opacity: 0.5
                 }
             },
             {
@@ -230,7 +216,7 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 data: calculateMA(10, data),
                 smooth: true,
                 lineStyle: {
-                    normal: {opacity: 0.5}
+                    opacity: 0.5
                 }
             },
             {
@@ -239,7 +225,7 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 data: calculateMA(20, data),
                 smooth: true,
                 lineStyle: {
-                    normal: {opacity: 0.5}
+                    opacity: 0.5
                 }
             },
             {
@@ -248,7 +234,7 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
                 data: calculateMA(30, data),
                 smooth: true,
                 lineStyle: {
-                    normal: {opacity: 0.5}
+                    opacity: 0.5
                 }
             },
             {
@@ -260,31 +246,6 @@ $.get(ROOT_PATH + 'data/asset/data/stock-DJI.json', function (rawData) {
             }
         ]
     }, true);
-
-    // myChart.on('brushSelected', renderBrushed);
-
-    // function renderBrushed(params) {
-    //     var sum = 0;
-    //     var min = Infinity;
-    //     var max = -Infinity;
-    //     var countBySeries = [];
-    //     var brushComponent = params.brushComponents[0];
-
-    //     var rawIndices = brushComponent.series[0].rawIndices;
-    //     for (var i = 0; i < rawIndices.length; i++) {
-    //         var val = data.values[rawIndices[i]][1];
-    //         sum += val;
-    //         min = Math.min(val, min);
-    //         max = Math.max(val, max);
-    //     }
-
-    //     panel.innerHTML = [
-    //         '<h3>STATISTICS:</h3>',
-    //         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
-    //         'MIN of open: ' + min.toFixed(4) + '<br>',
-    //         'MAX of open: ' + max.toFixed(4) + '<br>'
-    //     ].join(' ');
-    // }
 
     myChart.dispatchAction({
         type: 'brush',

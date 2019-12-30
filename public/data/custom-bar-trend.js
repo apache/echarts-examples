@@ -21,7 +21,6 @@ for (var i = 0; i < categoryCount; i++) {
     var customVal = [i];
     customData.push(customVal);
 
-    var data = dataList[0];
     for (var j = 0; j < dataList.length; j++) {
         var value = j === 0
             ? echarts.number.round(val, 2)
@@ -87,9 +86,7 @@ option = {
         name: 'trend',
         renderItem: renderItem,
         itemStyle: {
-            normal: {
-                borderWidth: 2
-            }
+            borderWidth: 2
         },
         encode: {
             x: 0,
@@ -103,9 +100,7 @@ option = {
             animation: false,
             name: legendData[index + 1],
             itemStyle: {
-                normal: {
-                    opacity: 0.5
-                }
+                opacity: 0.5
             },
             data: data
         };

@@ -1,4 +1,4 @@
-var option = {
+option = {
     dataset: {
         source: [
             ['score', 'amount', 'product'],

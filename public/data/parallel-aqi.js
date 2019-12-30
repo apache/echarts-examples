@@ -203,9 +203,7 @@ option = {
                 show: false
             },
             axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
+                color: '#fff'
             }
         }
     },

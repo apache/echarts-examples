@@ -17,16 +17,12 @@ $.get(ROOT_PATH + 'data/asset/data/energy.json', function (data) {
                 links: data.links,
                 focusNodeAdjacency: 'allEdges',
                 itemStyle: {
-                    normal: {
-                        borderWidth: 1,
-                        borderColor: '#aaa'
-                    }
+                    borderWidth: 1,
+                    borderColor: '#aaa'
                 },
                 lineStyle: {
-                    normal: {
-                        color: 'source',
-                        curveness: 0.5
-                    }
+                    color: 'source',
+                    curveness: 0.5
                 }
             }
         ]

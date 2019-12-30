@@ -189,18 +189,16 @@ option = {
             type: 'map',
             map: 'world',
             roam: true,
-            selectedMode : 'single',
-            label:{
-                normal: {
-                    show:false,
-                    formatter: function (params) {
-                        return nameMap[params.name];
-                    }
-                },
-                emphasis: {
-                    label:{
-                        show:true
-                    }
+            selectedMode: 'single',
+            label: {
+                show: false,
+                formatter: function (params) {
+                    return nameMap[params.name];
+                }
+            },
+            emphasis: {
+                label: {
+                    show: true
                 }
             }
         }

@@ -151,7 +151,7 @@ option = {
         type: 'category',
         data: data0.categoryData,
         scale: true,
-        boundaryGap : false,
+        boundaryGap: false,
         axisLine: {onZero: false},
         splitLine: {show: false},
         splitNumber: 20,
@@ -173,7 +173,7 @@ option = {
         {
             show: true,
             type: 'slider',
-            y: '90%',
+            top: '90%',
             start: 50,
             end: 100
         }
@@ -184,12 +184,10 @@ option = {
             type: 'candlestick',
             data: data0.values,
             itemStyle: {
-                normal: {
-                    color: upColor,
-                    color0: downColor,
-                    borderColor: upBorderColor,
-                    borderColor0: downBorderColor
-                }
+                color: upColor,
+                color0: downColor,
+                borderColor: upBorderColor,
+                borderColor0: downBorderColor
             },
             markPoint: {
                 label: {
@@ -205,7 +203,7 @@ option = {
                         coord: ['2013/5/31', 2300],
                         value: 2300,
                         itemStyle: {
-                            normal: {color: 'rgb(41,60,85)'}
+                            color: 'rgb(41,60,85)'
                         }
                     },
                     {
@@ -241,8 +239,12 @@ option = {
                             symbol: 'circle',
                             symbolSize: 10,
                             label: {
-                                normal: {show: false},
-                                emphasis: {show: false}
+                                show: false
+                            },
+                            emphasis: {
+                                label: {
+                                    show: false
+                                }
                             }
                         },
                         {
@@ -251,8 +253,12 @@ option = {
                             symbol: 'circle',
                             symbolSize: 10,
                             label: {
-                                normal: {show: false},
-                                emphasis: {show: false}
+                                show: false
+                            },
+                            emphasis: {
+                                label: {
+                                    show: false
+                                }
                             }
                         }
                     ],
@@ -275,7 +281,7 @@ option = {
             data: calculateMA(5),
             smooth: true,
             lineStyle: {
-                normal: {opacity: 0.5}
+                opacity: 0.5
             }
         },
         {
@@ -284,7 +290,7 @@ option = {
             data: calculateMA(10),
             smooth: true,
             lineStyle: {
-                normal: {opacity: 0.5}
+                opacity: 0.5
             }
         },
         {
@@ -293,7 +299,7 @@ option = {
             data: calculateMA(20),
             smooth: true,
             lineStyle: {
-                normal: {opacity: 0.5}
+                opacity: 0.5
             }
         },
         {
@@ -302,7 +308,7 @@ option = {
             data: calculateMA(30),
             smooth: true,
             lineStyle: {
-                normal: {opacity: 0.5}
+                opacity: 0.5
             }
         },
 

@@ -5,25 +5,19 @@ option = {
     tooltip: {},
     animationDurationUpdate: 1500,
     animationEasingUpdate: 'quinticInOut',
-    series : [
+    series: [
         {
             type: 'graph',
             layout: 'none',
             symbolSize: 50,
             roam: true,
             label: {
-                normal: {
-                    show: true
-                }
+                show: true
             },
             edgeSymbol: ['circle', 'arrow'],
             edgeSymbolSize: [4, 10],
             edgeLabel: {
-                normal: {
-                    textStyle: {
-                        fontSize: 20
-                    }
-                }
+                fontSize: 20
             },
             data: [{
                 name: '节点1',
@@ -48,26 +42,20 @@ option = {
                 target: 1,
                 symbolSize: [5, 20],
                 label: {
-                    normal: {
-                        show: true
-                    }
+                    show: true
                 },
                 lineStyle: {
-                    normal: {
-                        width: 5,
-                        curveness: 0.2
-                    }
+                    width: 5,
+                    curveness: 0.2
                 }
             }, {
                 source: '节点2',
                 target: '节点1',
                 label: {
-                    normal: {
-                        show: true
-                    }
+                    show: true
                 },
                 lineStyle: {
-                    normal: { curveness: 0.2 }
+                    curveness: 0.2
                 }
             }, {
                 source: '节点1',
@@ -83,11 +71,9 @@ option = {
                 target: '节点4'
             }],
             lineStyle: {
-                normal: {
-                    opacity: 0.9,
-                    width: 2,
-                    curveness: 0
-                }
+                opacity: 0.9,
+                width: 2,
+                curveness: 0
             }
         }
     ]

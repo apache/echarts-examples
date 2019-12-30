@@ -23,9 +23,8 @@ $.get(ROOT_PATH + 'data/asset/data/confidence-band.json', function (data) {
                     shadowBlur: 0,
                     shadowOffsetX: 0,
                     shadowOffsetY: 0,
-                    textStyle: {
-                        color: '#222'
-                    }
+
+                    color: '#222'
                 }
             },
             formatter: function (params) {
@@ -79,9 +78,7 @@ $.get(ROOT_PATH + 'data/asset/data/confidence-band.json', function (data) {
                 return item.l + base;
             }),
             lineStyle: {
-                normal: {
-                    opacity: 0
-                }
+                opacity: 0
             },
             stack: 'confidence-band',
             symbol: 'none'
@@ -92,14 +89,10 @@ $.get(ROOT_PATH + 'data/asset/data/confidence-band.json', function (data) {
                 return item.u - item.l;
             }),
             lineStyle: {
-                normal: {
-                    opacity: 0
-                }
+                opacity: 0
             },
             areaStyle: {
-                normal: {
-                    color: '#ccc'
-                }
+                color: '#ccc'
             },
             stack: 'confidence-band',
             symbol: 'none'
@@ -111,9 +104,7 @@ $.get(ROOT_PATH + 'data/asset/data/confidence-band.json', function (data) {
             hoverAnimation: false,
             symbolSize: 6,
             itemStyle: {
-                normal: {
-                    color: '#c23531'
-                }
+                color: '#c23531'
             },
             showSymbol: false
         }]

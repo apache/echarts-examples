@@ -19,9 +19,7 @@ var itemStyle = {
 var data = [{
     name: '虚构',
     itemStyle: {
-        normal: {
-            color: colors[1]
-        }
+        color: colors[1]
     },
     children: [{
         name: '小说',

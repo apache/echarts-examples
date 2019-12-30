@@ -456,19 +456,17 @@ option = {
         type: 'map',
         map: 'world',
         roam: true,
-        label: {
-            emphasis: {
+        emphasis: {
+            label: {
                 show: false
+            },
+            itemStyle: {
+                areaColor: '#2a333d'
             }
         },
         itemStyle: {
-            normal: {
-                areaColor: '#323c48',
-                borderColor: '#111'
-            },
-            emphasis: {
-                areaColor: '#2a333d'
-            }
+            areaColor: '#323c48',
+            borderColor: '#111'
         }
     },
     series : [
@@ -483,16 +481,14 @@ option = {
                         latlong[itemOpt.code].latitude,
                         itemOpt.value
                     ],
-                    label: {
-                        emphasis: {
+                    emphasis: {
+                        label: {
                             position: 'right',
                             show: true
                         }
                     },
                     itemStyle: {
-                        normal: {
-                            color: itemOpt.color
-                        }
+                        color: itemOpt.color
                     }
                 };
             })

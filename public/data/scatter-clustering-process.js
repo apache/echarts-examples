@@ -79,9 +79,7 @@ option = {
         axisType: 'category',
         autoPlay: true,
         label: {
-            normal: {
-                show: false
-            }
+            show: false
         },
         data: []
     },
@@ -127,24 +125,20 @@ function getOption(result, k) {
             markPoint: {
                 symbolSize: 29,
                 label: {
-                    normal: {
-                        show: false
-                    },
-                    emphasis: {
+                    show: false
+                },
+                itemStyle: {
+                    opacity: 0.7
+                },
+                emphasis: {
+                    label: {
                         show: true,
                         position: 'top',
                         formatter: function (params) {
                             return Math.round(params.data.coord[0] * 100) / 100 + '  ' +
                                 Math.round(params.data.coord[1] * 100) / 100 + ' ';
                         },
-                        textStyle: {
-                            color: '#000'
-                        }
-                    }
-                },
-                itemStyle: {
-                    normal: {
-                        opacity: 0.7
+                        color: '#000'
                     }
                 },
                 data: [{

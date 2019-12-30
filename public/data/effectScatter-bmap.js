@@ -521,18 +521,16 @@ option = {
                 return val[2] / 10;
             },
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: false
-                },
-                emphasis: {
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right',
+                show: false
             },
             itemStyle: {
-                normal: {
-                    color: 'purple'
+                color: 'purple'
+            },
+            emphasis: {
+                label: {
+                    show: true
                 }
             }
         },
@@ -552,18 +550,14 @@ option = {
             },
             hoverAnimation: true,
             label: {
-                normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: true
-                }
+                formatter: '{b}',
+                position: 'right',
+                show: true
             },
             itemStyle: {
-                normal: {
-                    color: 'purple',
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
+                color: 'purple',
+                shadowBlur: 10,
+                shadowColor: '#333'
             },
             zlevel: 1
         }

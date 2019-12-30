@@ -76,11 +76,11 @@ option = {
     ],
     series: [
         {
-            name:'预购队列',
-            type:'bar',
+            name: '预购队列',
+            type: 'bar',
             xAxisIndex: 1,
             yAxisIndex: 1,
-            data:(function (){
+            data: (function (){
                 var res = [];
                 var len = 10;
                 while (len--) {
@@ -90,9 +90,9 @@ option = {
             })()
         },
         {
-            name:'最新成交价',
-            type:'line',
-            data:(function (){
+            name: '最新成交价',
+            type: 'line',
+            data: (function (){
                 var res = [];
                 var len = 0;
                 while (len < 10) {
@@ -107,7 +107,7 @@ option = {
 
 app.count = 11;
 setInterval(function (){
-    axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+    var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
 
     var data0 = option.series[0].data;
     var data1 = option.series[1].data;
