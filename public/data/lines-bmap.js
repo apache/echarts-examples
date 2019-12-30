@@ -1,5 +1,3 @@
-app.title = '杭州热门步行路线 - 百度地图';
-
 $.get(ROOT_PATH + 'data/asset/data/hangzhou-tracks.json', function(data) {
     var lines = data.map(function (track) {
         return {
@@ -119,11 +117,9 @@ $.get(ROOT_PATH + 'data/asset/data/hangzhou-tracks.json', function(data) {
             data: lines,
             polyline: true,
             lineStyle: {
-                normal: {
-                    color: 'purple',
-                    opacity: 0.6,
-                    width: 1
-                }
+                color: 'purple',
+                opacity: 0.6,
+                width: 1
             }
         }]
     });

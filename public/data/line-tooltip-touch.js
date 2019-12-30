@@ -27,7 +27,7 @@ option = {
     },
     legend: {
         top: 'bottom',
-        data:['意向']
+        data: ['意向']
     },
     tooltip: {
         triggerOn: 'none',
@@ -99,54 +99,46 @@ option = {
     }],
     series: [
         {
-            name:'模拟数据',
-            type:'line',
+            name: '模拟数据',
+            type: 'line',
             smooth: true,
             symbol: 'circle',
             symbolSize: 5,
             sampling: 'average',
             itemStyle: {
-                normal: {
-                    color: '#8ec6ad'
-                }
+                color: '#8ec6ad'
             },
             stack: 'a',
             areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
-                        color: '#8ec6ad'
-                    }, {
-                        offset: 1,
-                        color: '#ffe'
-                    }])
-                }
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#8ec6ad'
+                }, {
+                    offset: 1,
+                    color: '#ffe'
+                }])
             },
             data: data
         },
         {
-            name:'模拟数据',
-            type:'line',
-            smooth:true,
+            name: '模拟数据',
+            type: 'line',
+            smooth: true,
             stack: 'a',
             symbol: 'circle',
             symbolSize: 5,
             sampling: 'average',
             itemStyle: {
-                normal: {
-                    color: '#d68262'
-                }
+                color: '#d68262'
             },
             areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
-                        color: '#d68262'
-                    }, {
-                        offset: 1,
-                        color: '#ffe'
-                    }])
-                }
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#d68262'
+                }, {
+                    offset: 1,
+                    color: '#ffe'
+                }])
             },
             data: data2
         }

@@ -20,9 +20,7 @@ $.getJSON(ROOT_PATH + 'data/asset/data/npmdepgraph.min10.json', function (json) 
                         name: node.label,
                         symbolSize: node.size,
                         itemStyle: {
-                            normal: {
-                                color: node.color
-                            }
+                            color: node.color
                         }
                     };
                 }),
@@ -32,8 +30,8 @@ $.getJSON(ROOT_PATH + 'data/asset/data/npmdepgraph.min10.json', function (json) 
                         target: edge.targetID
                     };
                 }),
-                label: {
-                    emphasis: {
+                emphasis: {
+                    label: {
                         position: 'right',
                         show: true
                     }
@@ -41,11 +39,9 @@ $.getJSON(ROOT_PATH + 'data/asset/data/npmdepgraph.min10.json', function (json) 
                 roam: true,
                 focusNodeAdjacency: true,
                 lineStyle: {
-                    normal: {
-                        width: 0.5,
-                        curveness: 0.3,
-                        opacity: 0.7
-                    }
+                    width: 0.5,
+                    curveness: 0.3,
+                    opacity: 0.7
                 }
             }
         ]

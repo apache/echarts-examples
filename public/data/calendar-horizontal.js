@@ -28,8 +28,7 @@ option = {
         top: 'top'
     },
 
-    calendar: [
-    {
+    calendar: [{
         range: '2017',
         cellSize: ['auto', 20]
     },

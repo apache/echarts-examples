@@ -68,9 +68,7 @@ option = {
         type: 'themeRiver',
         data: data,
         label: {
-            normal: {
-                show: false
-            }
+            show: false
         }
     }]
 };

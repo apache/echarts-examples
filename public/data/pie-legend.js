@@ -1,14 +1,14 @@
 var data = genData(50);
 
 option = {
-    title : {
+    title: {
         text: '同名数量统计',
         subtext: '纯属虚构',
-        left:'center'
+        left: 'center'
     },
-    tooltip : {
+    tooltip: {
         trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
     },
     legend: {
         type: 'scroll',
@@ -20,15 +20,15 @@ option = {
 
         selected: data.selected
     },
-    series : [
+    series: [
         {
             name: '姓名',
             type: 'pie',
-            radius : '55%',
+            radius: '55%',
             center: ['40%', '50%'],
             data: data.seriesData,
-            itemStyle: {
-                emphasis: {
+            emphasis: {
+                itemStyle: {
                     shadowBlur: 10,
                     shadowOffsetX: 0,
                     shadowColor: 'rgba(0, 0, 0, 0.5)'

@@ -12,8 +12,7 @@ option = {
         text: '柱状图动画延迟'
     },
     legend: {
-        data: ['bar', 'bar2'],
-        align: 'left'
+        data: ['bar', 'bar2']
     },
     toolbox: {
         // y: 'bottom',
@@ -30,7 +29,6 @@ option = {
     tooltip: {},
     xAxis: {
         data: xAxisData,
-        silent: false,
         splitLine: {
             show: false
         }

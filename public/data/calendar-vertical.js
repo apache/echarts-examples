@@ -31,8 +31,7 @@ option = {
         top: 'center'
     },
 
-    calendar: [
-    {
+    calendar: [{
         orient: 'vertical',
         range: '2015'
     },

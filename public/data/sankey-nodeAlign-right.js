@@ -19,10 +19,8 @@ $.get(ROOT_PATH + 'data/asset/data/energy.json', function (data) {
                 data: data.nodes,
                 links: data.links,
                 lineStyle: {
-                    normal: {
-                        color: 'source',
-                        curveness: 0.5
-                    }
+                    color: 'source',
+                    curveness: 0.5
                 }
             }
         ]

@@ -11,10 +11,8 @@ $.get(ROOT_PATH + 'data/asset/data/webkit-dep.json', function (webkitDep) {
             layout: 'force',
             animation: false,
             label: {
-                normal: {
-                    position: 'right',
-                    formatter: '{b}'
-                }
+                position: 'right',
+                formatter: '{b}'
             },
             draggable: true,
             data: webkitDep.nodes.map(function (node, idx) {
@@ -23,8 +21,6 @@ $.get(ROOT_PATH + 'data/asset/data/webkit-dep.json', function (webkitDep) {
             }),
             categories: webkitDep.categories,
             force: {
-                // initLayout: 'circular'
-                // repulsion: 20,
                 edgeLength: 5,
                 repulsion: 20,
                 gravity: 0.2

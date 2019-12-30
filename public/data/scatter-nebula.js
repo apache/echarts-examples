@@ -93,7 +93,7 @@ xhr.onload = function (e) {
             }
         }],
         animation: false,
-        series : [{
+        series: [{
             type: 'scatter',
             data: rawData,
             dimensions: ['x', 'y'],

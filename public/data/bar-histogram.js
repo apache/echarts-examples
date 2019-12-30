@@ -7,7 +7,7 @@ var interval;
 var min = Infinity;
 var max = -Infinity;
 
-data = echarts.util.map(bins.data, function (item, index) {
+var data = echarts.util.map(bins.data, function (item, index) {
     var x0 = bins.bins[index].x0;
     var x1 = bins.bins[index].x1;
     interval = x1 - x0;
@@ -61,10 +61,8 @@ option = {
         type: 'custom',
         renderItem: renderItem,
         label: {
-            normal: {
-                show: true,
-                position: 'insideTop'
-            }
+            show: true,
+            position: 'insideTop'
         },
         encode: {
             x: [0, 1],

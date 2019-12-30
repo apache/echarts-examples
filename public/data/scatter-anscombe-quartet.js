@@ -56,17 +56,11 @@ var dataAll = [
 var markLineOpt = {
     animation: false,
     label: {
-        normal: {
-            formatter: 'y = 0.5 * x + 3',
-            textStyle: {
-                align: 'right'
-            }
-        }
+        formatter: 'y = 0.5 * x + 3',
+        align: 'right'
     },
     lineStyle: {
-        normal: {
-            type: 'solid'
-        }
+        type: 'solid'
     },
     tooltip: {
         formatter: 'y = 0.5 * x + 3'
@@ -83,8 +77,8 @@ var markLineOpt = {
 option = {
     title: {
         text: 'Anscombe\'s quartet',
-        x: 'center',
-        y: 0
+        left: 'center',
+        top: 0
     },
     grid: [
         {x: '7%', y: '7%', width: '38%', height: '38%'},

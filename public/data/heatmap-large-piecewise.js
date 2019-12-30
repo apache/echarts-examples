@@ -1,5 +1,3 @@
-app.title = '热力图 - 颜色的离散映射';
-
 var noise = getNoiseHelper();
 var xData = [];
 var yData = [];
@@ -51,8 +49,8 @@ option = {
         name: 'Gaussian',
         type: 'heatmap',
         data: data,
-        itemStyle: {
-            emphasis: {
+        emphasis: {
+            itemStyle: {
                 borderColor: '#333',
                 borderWidth: 1
             }

@@ -1,5 +1,3 @@
-app.title = '65k+ 飞机航线';
-
 myChart.showLoading();
 
 $.get(ROOT_PATH + 'data/asset/data/flights.json', function(data) {
@@ -38,10 +36,8 @@ $.get(ROOT_PATH + 'data/asset/data/flights.json', function(data) {
             silent: true,
             roam: true,
             itemStyle: {
-                normal: {
-                    borderColor: '#003',
-                    color: '#005'
-                }
+                borderColor: '#003',
+                color: '#005'
             }
         },
         series: [{
@@ -51,11 +47,9 @@ $.get(ROOT_PATH + 'data/asset/data/flights.json', function(data) {
             large: true,
             largeThreshold: 100,
             lineStyle: {
-                normal: {
-                    opacity: 0.05,
-                    width: 0.5,
-                    curveness: 0.3
-                }
+                opacity: 0.05,
+                width: 0.5,
+                curveness: 0.3
             },
             // 设置混合模式为叠加
             blendMode: 'lighter'

@@ -126,9 +126,7 @@ option = {
             itemName: 0
         },
         itemStyle: {
-            normal: {
-                color: '#77bef7'
-            }
+            color: '#77bef7'
         }
     }, {
         type: 'custom',

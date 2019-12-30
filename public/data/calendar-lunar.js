@@ -350,7 +350,7 @@ var dateList = [
     ['2017-12-15', '廿八'],
     ['2017-12-16', '廿九'],
     ['2017-12-17', '三十'],
-    ['2017-12-18', '十一月',],
+    ['2017-12-18', '十一月'],
     ['2017-12-19', '初二'],
     ['2017-12-20', '初三'],
     ['2017-12-21', '初四'],
@@ -430,16 +430,12 @@ option = {
         coordinateSystem: 'calendar',
         symbolSize: 1,
         label: {
-            normal: {
-                show: true,
-                formatter: function (params) {
-                    var d = echarts.number.parseDate(params.value[0]);
-                    return d.getDate() + '\n\n' + params.value[2] + '\n\n';
-                },
-                textStyle: {
-                    color: '#000'
-                }
-            }
+            show: true,
+            formatter: function (params) {
+                var d = echarts.number.parseDate(params.value[0]);
+                return d.getDate() + '\n\n' + params.value[2] + '\n\n';
+            },
+            color: '#000'
         },
         data: lunarData
     }, {
@@ -447,17 +443,13 @@ option = {
         coordinateSystem: 'calendar',
         symbolSize: 1,
         label: {
-            normal: {
-                show: true,
-                formatter: function (params) {
-                    return '\n\n\n' + (params.value[3] || '');
-                },
-                textStyle: {
-                    fontSize: 14,
-                    fontWeight: 700,
-                    color: '#a00'
-                }
-            }
+            show: true,
+            formatter: function (params) {
+                return '\n\n\n' + (params.value[3] || '');
+            },
+            fontSize: 14,
+            fontWeight: 700,
+            color: '#a00'
         },
         data: lunarData
     }, {

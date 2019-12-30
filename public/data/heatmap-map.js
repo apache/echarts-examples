@@ -226,18 +226,16 @@ option = {
     },
     geo: {
         map: 'china',
-        label: {
-            emphasis: {
-                show: false
-            }
-        },
         roam: true,
         itemStyle: {
-            normal: {
-                areaColor: '#323c48',
-                borderColor: '#111'
+            areaColor: '#323c48',
+            borderColor: '#111'
+        },
+        emphasis: {
+            label: {
+                show: false
             },
-            emphasis: {
+            itemStyle: {
                 areaColor: '#2a333d'
             }
         }

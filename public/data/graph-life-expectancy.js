@@ -1,42 +1,40 @@
-option = {
-    grid: {
-        left: 0,
-        bottom: 0,
-        containLabel: true,
-        top: 80
-    },
-    xAxis: {
-        type: 'value'
-    },
-    yAxis: {
-        type: 'value',
-        scale: true
-    },
-    toolbox: {
-        feature: {
-            dataZoom: {}
-        }
-    },
-    dataZoom: {
-        type: 'inside'
-    },
-    series: []
-};
 
 $.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
     var series = data.series;
-
-    option.visualMap = {
-        show: false,
-        min: 0,
-        max: 100,
-        dimension: 1
-    };
-
-    option.legend = {
-        data: data.counties,
-        selectedMode: 'single',
-        right: 100
+    option = {
+        visualMap: {
+            show: false,
+            min: 0,
+            max: 100,
+            dimension: 1
+        },
+        legend: {
+            data: data.counties,
+            selectedMode: 'single',
+            right: 100
+        },
+        grid: {
+            left: 0,
+            bottom: 0,
+            containLabel: true,
+            top: 80
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'value',
+            scale: true
+        },
+        toolbox: {
+            feature: {
+                dataZoom: {}
+            }
+        },
+        dataZoom: {
+            type: 'inside'
+        },
+        series: []
     };
 
     data.counties.forEach(function (country) {
@@ -46,11 +44,11 @@ $.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
             })[0];
             return {
                 label: {
-                    normal: {
-                        show: item[4] % 20 === 0 && item[4] > 1940
-                    },
-                    emphasis: {
-                        position: 'top',
+                    show: item[4] % 20 === 0 && item[4] > 1940,
+                    position: 'top'
+                },
+                emphasis: {
+                    label: {
                         show: true
                     }
                 },
@@ -76,23 +74,15 @@ $.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
             edgeSymbolSize: 5,
             legendHoverLink: false,
             lineStyle: {
-                normal: {
-                    color: '#333'
-                }
+                color: '#333'
             },
             itemStyle: {
-                normal: {
-                    borderWidth: 1,
-                    borderColor: '#333'
-                }
+                borderWidth: 1,
+                borderColor: '#333'
             },
             label: {
-                normal: {
-                    textStyle: {
-                        color: '#333'
-                    },
-                    position: 'right'
-                }
+                color: '#333',
+                position: 'right'
             },
             symbolSize: 10,
             animationDelay: function (idx) {

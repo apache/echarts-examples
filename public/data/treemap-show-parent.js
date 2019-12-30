@@ -18,26 +18,22 @@ $.get(ROOT_PATH + 'data/asset/data/disk.tree.json', function (diskData) {
         return [
             {
                 itemStyle: {
-                    normal: {
-                        borderColor: '#777',
-                        borderWidth: 0,
-                        gapWidth: 1
-                    }
+                    borderColor: '#777',
+                    borderWidth: 0,
+                    gapWidth: 1
                 },
                 upperLabel: {
-                    normal: {
-                        show: false
-                    }
+                    show: false
                 }
             },
             {
                 itemStyle: {
-                    normal: {
-                        borderColor: '#555',
-                        borderWidth: 5,
-                        gapWidth: 1
-                    },
-                    emphasis: {
+                    borderColor: '#555',
+                    borderWidth: 5,
+                    gapWidth: 1
+                },
+                emphasis: {
+                    itemStyle: {
                         borderColor: '#ddd'
                     }
                 }
@@ -45,11 +41,9 @@ $.get(ROOT_PATH + 'data/asset/data/disk.tree.json', function (diskData) {
             {
                 colorSaturation: [0.35, 0.5],
                 itemStyle: {
-                    normal: {
-                        borderWidth: 5,
-                        gapWidth: 1,
-                        borderColorSaturation: 0.6
-                    }
+                    borderWidth: 5,
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
                 }
             }
         ];
@@ -81,23 +75,19 @@ $.get(ROOT_PATH + 'data/asset/data/disk.tree.json', function (diskData) {
 
         series: [
             {
-                name:'Disk Usage',
-                type:'treemap',
+                name: 'Disk Usage',
+                type: 'treemap',
                 visibleMin: 300,
                 label: {
                     show: true,
                     formatter: '{b}'
                 },
                 upperLabel: {
-                    normal: {
-                        show: true,
-                        height: 30
-                    }
+                    show: true,
+                    height: 30
                 },
                 itemStyle: {
-                    normal: {
-                        borderColor: '#fff'
-                    }
+                    borderColor: '#fff'
                 },
                 levels: getLevelOption(),
                 data: diskData

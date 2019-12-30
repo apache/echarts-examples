@@ -29,11 +29,11 @@ option = {
     visualMap: {
         min: 0,
         max: 1000000,
-        text:['High','Low'],
+        text: ['High', 'Low'],
         realtime: false,
         calculable: true,
         inRange: {
-            color: ['lightskyblue','yellow', 'orangered']
+            color: ['lightskyblue', 'yellow', 'orangered']
         }
     },
     series: [
@@ -42,8 +42,10 @@ option = {
             type: 'map',
             mapType: 'world',
             roam: true,
-            itemStyle:{
-                emphasis:{label:{show:true}}
+            emphasis: {
+                label: {
+                    show: true
+                }
             },
             data:[
                 {name: 'Afghanistan', value: 28397.812},

@@ -99,20 +99,18 @@ option = {
     }]
 };
 
-if (!app.inNode) {
-    var pieInitialized;
-    setTimeout(function () {
-        pieInitialized = true;
-        myChart.setOption({
-            series: getPieSeries(scatterData, myChart)
-        });
-    }, 10);
+var pieInitialized;
+setTimeout(function () {
+    pieInitialized = true;
+    myChart.setOption({
+        series: getPieSeries(scatterData, myChart)
+    });
+}, 10);
 
-    app.onresize = function () {
-        if (pieInitialized) {
-            myChart.setOption({
-                series: getPieSeriesUpdate(scatterData, myChart)
-            });
-        }
-    };
-}
+app.onresize = function () {
+    if (pieInitialized) {
+        myChart.setOption({
+            series: getPieSeriesUpdate(scatterData, myChart)
+        });
+    }
+};

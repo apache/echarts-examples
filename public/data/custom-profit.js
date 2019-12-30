@@ -5,9 +5,7 @@ data = echarts.util.map(data, function (item, index) {
     return {
         value: item,
         itemStyle: {
-            normal: {
-                color: colorList[index]
-            }
+            color: colorList[index]
         }
     };
 });
@@ -46,10 +44,8 @@ option = {
         type: 'custom',
         renderItem: renderItem,
         label: {
-            normal: {
-                show: true,
-                position: 'top'
-            }
+            show: true,
+            position: 'top'
         },
         dimensions: ['from', 'to', 'profit'],
         encode: {

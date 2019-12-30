@@ -133,8 +133,8 @@ option = {
         symbolSize: function(data) {
             return Math.sqrt(data[2]) / 5e2;
         },
-        label: {
-            emphasis: {
+        emphasis: {
+            label: {
                 show: true,
                 formatter: function(param) {
                     return param.data[3];
@@ -143,18 +143,16 @@ option = {
             }
         },
         itemStyle: {
-            normal: {
-                shadowBlur: 10,
-                shadowColor: 'rgba(120, 36, 50, 0.5)',
-                shadowOffsetY: 5,
-                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                    offset: 0,
-                    color: 'rgb(251, 118, 123)'
-                }, {
-                    offset: 1,
-                    color: 'rgb(204, 46, 72)'
-                }])
-            }
+            shadowBlur: 10,
+            shadowColor: 'rgba(120, 36, 50, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(251, 118, 123)'
+            }, {
+                offset: 1,
+                color: 'rgb(204, 46, 72)'
+            }])
         },
         data: data0
     }, {
@@ -163,8 +161,8 @@ option = {
         symbolSize: function(data) {
             return Math.sqrt(data[2]) / 5e2;
         },
-        label: {
-            emphasis: {
+        emphasis: {
+            label: {
                 show: true,
                 formatter: function(param) {
                     return param.data[3];
@@ -173,18 +171,16 @@ option = {
             }
         },
         itemStyle: {
-            normal: {
-                shadowBlur: 10,
-                shadowColor: 'rgba(25, 100, 150, 0.5)',
-                shadowOffsetY: 5,
-                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                    offset: 0,
-                    color: 'rgb(129, 227, 238)'
-                }, {
-                    offset: 1,
-                    color: 'rgb(25, 183, 207)'
-                }])
-            }
+            shadowBlur: 10,
+            shadowColor: 'rgba(25, 100, 150, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(129, 227, 238)'
+            }, {
+                offset: 1,
+                color: 'rgb(25, 183, 207)'
+            }])
         },
         data: data1
     }, {
@@ -200,20 +196,14 @@ option = {
         data: myRegression.points,
         markPoint: {
             itemStyle: {
-                normal: {
-                    color: 'transparent'
-                }
+                color: 'transparent'
             },
             label: {
-                normal: {
-                    show: true,
-                    position: 'left',
-                    formatter: myRegression.expression,
-                    textStyle: {
-                        color: '#333',
-                        fontSize: 14
-                    }
-                }
+                show: true,
+                position: 'left',
+                formatter: myRegression.expression,
+                color: '#333',
+                fontSize: 14
             },
             data: [{
                 coord: myRegression.points[myRegression.points.length - 1]

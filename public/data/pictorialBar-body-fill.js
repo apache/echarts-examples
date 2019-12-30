@@ -26,23 +26,17 @@ var labelSetting = {
 var markLineSetting = {
     symbol: 'none',
     lineStyle: {
-        normal: {
-            opacity: 0.3
-        }
+        opacity: 0.3
     },
     data: [{
         type: 'max',
         label: {
-            normal: {
-                formatter: 'max: {c}'
-            }
+            formatter: 'max: {c}'
         }
     }, {
         type: 'min',
         label: {
-            normal: {
-                formatter: 'min: {c}'
-            }
+            formatter: 'min: {c}'
         }
     }]
 };
@@ -126,9 +120,7 @@ option = {
         symbolBoundingData: bodyMax,
         animationDuration: 0,
         itemStyle: {
-            normal: {
-                color: '#ccc'
-            }
+            color: '#ccc'
         },
         data: [{
             value: 1,

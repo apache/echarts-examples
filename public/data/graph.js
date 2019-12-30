@@ -14,9 +14,7 @@ $.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
         node.value = node.symbolSize;
         node.symbolSize /= 1.5;
         node.label = {
-            normal: {
-                show: node.symbolSize > 30
-            }
+            show: node.symbolSize > 30
         };
         node.category = node.attributes.modularity_class;
     });
@@ -47,12 +45,10 @@ $.get(ROOT_PATH + 'data/asset/data/les-miserables.gexf', function (xml) {
                 roam: true,
                 focusNodeAdjacency: true,
                 itemStyle: {
-                    normal: {
-                        borderColor: '#fff',
-                        borderWidth: 1,
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(0, 0, 0, 0.3)'
-                    }
+                    borderColor: '#fff',
+                    borderWidth: 1,
+                    shadowBlur: 10,
+                    shadowColor: 'rgba(0, 0, 0, 0.3)'
                 },
                 label: {
                     position: 'right',

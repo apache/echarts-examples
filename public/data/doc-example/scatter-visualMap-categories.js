@@ -127,7 +127,7 @@ option = {
         '#dd4444', '#fec42c', '#80F1BE'
     ],
     legend: {
-        y: 'top',
+        top: 10,
         data: ['北京', '上海', '广州']
     },
     grid: {

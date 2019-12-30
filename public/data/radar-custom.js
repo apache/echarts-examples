@@ -20,16 +20,16 @@ option = {
             splitNumber: 4,
             shape: 'circle',
             name: {
-                formatter:'【{value}】',
+                formatter: '【{value}】',
                 textStyle: {
-                    color:'#72ACD1'
+                    color: '#72ACD1'
                 }
             },
             splitArea: {
                 areaStyle: {
                     color: ['rgba(114, 172, 209, 0.2)',
-                    'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
-                    'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
+                        'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
+                        'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
                     shadowColor: 'rgba(0, 0, 0, 0.3)',
                     shadowBlur: 10
                 }
@@ -62,12 +62,9 @@ option = {
         {
             name: '雷达图',
             type: 'radar',
-            itemStyle: {
-                emphasis: {
-                    // color: 各异,
-                    lineStyle: {
-                        width: 4
-                    }
+            emphasis: {
+                lineStyle: {
+                    width: 4
                 }
             },
             data: [
@@ -77,18 +74,14 @@ option = {
                     symbol: 'rect',
                     symbolSize: 5,
                     lineStyle: {
-                        normal: {
-                            type: 'dashed'
-                        }
+                        type: 'dashed'
                     }
                 },
                 {
                     value: [60, 5, 0.30, -100, 1500],
                     name: '图二',
                     areaStyle: {
-                        normal: {
-                            color: 'rgba(255, 255, 255, 0.5)'
-                        }
+                        color: 'rgba(255, 255, 255, 0.5)'
                     }
                 }
             ]
@@ -102,11 +95,9 @@ option = {
                     value: [120, 118, 130, 100, 99, 70],
                     name: '张三',
                     label: {
-                        normal: {
-                            show: true,
-                            formatter:function(params) {
-                                return params.value;
-                            }
+                        show: true,
+                        formatter: function(params) {
+                            return params.value;
                         }
                     }
                 },
@@ -114,19 +105,17 @@ option = {
                     value: [90, 113, 140, 30, 70, 60],
                     name: '李四',
                     areaStyle: {
-                        normal: {
-                            opacity: 0.9,
-                            color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
-                                {
-                                    color: '#B8D3E4',
-                                    offset: 0
-                                },
-                                {
-                                    color: '#72ACD1',
-                                    offset: 1
-                                }
-                            ])
-                        }
+                        opacity: 0.9,
+                        color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+                            {
+                                color: '#B8D3E4',
+                                offset: 0
+                            },
+                            {
+                                color: '#72ACD1',
+                                offset: 1
+                            }
+                        ])
                     }
                 }
             ]

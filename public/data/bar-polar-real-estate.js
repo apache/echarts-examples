@@ -1,5 +1,3 @@
-app.title = '极坐标系下的堆叠柱状图';
-
 var data = [
     [5000, 10000, 6785.71],
     [4000, 10000, 6825],
@@ -54,9 +52,7 @@ option = {
     series: [{
         type: 'bar',
         itemStyle: {
-            normal: {
-                color: 'transparent'
-            }
+            color: 'transparent'
         },
         data: data.map(function (d) {
             return d[0];
@@ -75,9 +71,7 @@ option = {
     }, {
         type: 'bar',
         itemStyle: {
-            normal: {
-                color: 'transparent'
-            }
+            color: 'transparent'
         },
         data: data.map(function (d) {
             return d[2] - barHeight;
@@ -89,16 +83,12 @@ option = {
     }, {
         type: 'bar',
         data: data.map(function (d) {
-            return barHeight * 2
+            return barHeight * 2;
         }),
         coordinateSystem: 'polar',
         name: '均值',
         stack: '均值',
         barGap: '-100%',
         z: 10
-    }],
-    legend: {
-        show: true,
-        data: ['A', 'B', 'C']
-    }
+    }]
 };

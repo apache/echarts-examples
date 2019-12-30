@@ -7,7 +7,7 @@ option = {
     },
     tooltip: {
         trigger: 'item',
-        formatter: "{a} <br/>{b} : {c}%"
+        formatter: '{a} <br/>{b} : {c}%'
     },
     toolbox: {
         show: true,
@@ -22,9 +22,9 @@ option = {
     legend: {
         orient: 'vertical',
         left: 'left',
-        data: ['产品A','产品B','产品C','产品D','产品E']
+        data: ['产品A', '产品B', '产品C', '产品D', '产品E']
     },
-    calculable: true,
+
     series: [
         {
             name: '漏斗图',
@@ -37,17 +37,17 @@ option = {
 
             center: ['25%', '25%'],  // for pie
 
-            data:[
-                {value:60, name:'产品C'},
-                {value:30, name:'产品D'},
-                {value:10, name:'产品E'},
-                {value:80, name:'产品B'},
-                {value:100, name:'产品A'}
+            data: [
+                {value: 60, name: '产品C'},
+                {value: 30, name: '产品D'},
+                {value: 10, name: '产品E'},
+                {value: 80, name: '产品B'},
+                {value: 100, name: '产品A'}
             ]
         },
         {
             name: '金字塔',
-            type:'funnel',
+            type: 'funnel',
             width: '40%',
             height: '45%',
             left: '5%',
@@ -57,17 +57,17 @@ option = {
 
             center: ['25%', '75%'],  // for pie
 
-            data:[
-                {value:60, name:'产品C'},
-                {value:30, name:'产品D'},
-                {value:10, name:'产品E'},
-                {value:80, name:'产品B'},
-                {value:100, name:'产品A'}
+            data: [
+                {value: 60, name: '产品C'},
+                {value: 30, name: '产品D'},
+                {value: 10, name: '产品E'},
+                {value: 80, name: '产品B'},
+                {value: 100, name: '产品A'}
             ]
         },
         {
-            name:'漏斗图',
-            type:'funnel',
+            name: '漏斗图',
+            type: 'funnel',
             width: '40%',
             height: '45%',
             left: '55%',
@@ -86,7 +86,7 @@ option = {
         },
         {
             name: '金字塔',
-            type:'funnel',
+            type: 'funnel',
             width: '40%',
             height: '45%',
             left: '55%',

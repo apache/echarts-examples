@@ -1,5 +1,5 @@
 ---
 title: Beijing AQI
 category: line
-titleCN: Beijing AQI
+titleCN: 北京 AQI 可视化
 ---
