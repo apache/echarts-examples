@@ -8,6 +8,7 @@ const postcss = require('postcss');
 const jade = require('jade');
 const path = require('path');
 const uglify = require('uglify-js');
+const assert = require('assert');
 
 const argv = require('yargs').argv;
 const projectDir = __dirname;
@@ -49,6 +50,8 @@ function initEnv() {
         console.warn(config.host);
         console.warn('====================================================================');
     }
+
+    assert(path.isAbsolute(config.releaseDestDir));
 
     return config;
 }
