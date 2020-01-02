@@ -160,11 +160,18 @@ async function buildJS(config) {
     for (filePath of filePaths) {
         let srcPath = path.resolve(srcBaseDir, filePath);
         let content = fs.readFileSync(srcPath, 'utf8');
-        let code = uglify.minify(content).code;
+
+        let result = uglify.minify(content);
+        if (result.error) {
+            console.log(chalk.red(srcPath));
+            console.error(result.error);
+            process.exit(1);
+        }
+
         let destDir = path.resolve(config.releaseDestDir, 'javascripts');
         fse.ensureDirSync(destDir);
         let destPath = path.resolve(destDir, filePath);
-        fs.writeFileSync(destPath, code, 'utf8');
+        fs.writeFileSync(destPath, result.code, 'utf8');
 
         console.log(chalk.green(`generated: ${destPath}`));
     }
