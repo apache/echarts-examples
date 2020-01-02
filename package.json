@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node build.js --env dev"
+    "dev": "node build.js --env dev",
+    "localsite": "node build.js --env localsite"
   },
   "devDependencies": {
     "argparse": "^1.0.9",
