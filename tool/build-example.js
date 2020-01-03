@@ -6,7 +6,7 @@ var marked = require('marked');
 var fm = require('front-matter');
 var puppeteer = require('puppeteer');
 var argparse = require('argparse');
-var minimatch = require("minimatch");
+var minimatch = require('minimatch');
 
 var parser = new argparse.ArgumentParser({
     addHelp: true
@@ -19,6 +19,10 @@ parser.addArgument(['-t', '--theme'], {
 });
 parser.addArgument(['-p', '--pattern'], {
     help: 'Glob match patterns for generating thumb. https://github.com/isaacs/minimatch Mutiple match pattens can be splitted with ,'
+});
+parser.addArgument(['--no-thumb'], {
+    help: 'If not generate thumbs',
+    action: 'storeTrue'
 });
 
 var args = parser.parseArgs();
@@ -41,7 +45,7 @@ function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-var BUILD_THUMBS = sourceFolder === 'data' && true;
+var BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
 // var BASE_PATH = 'http://localhost:8000/echarts/echarts-examples';
 var BASE_PATH = 'http://localhost/echarts-examples/';
 var SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;

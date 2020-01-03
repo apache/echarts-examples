@@ -1274,6 +1274,14 @@ var EXAMPLES = [
   },
   {
     "category": [
+      "bar"
+    ],
+    "id": "polar-roundCap",
+    "title": "Rounded Bar on Polar",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "radar"
     ],
     "id": "radar",
