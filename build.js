@@ -122,28 +122,47 @@ async function buildCSS(config) {
 async function buildHTML(config) {
     let langs = ['zh', 'en'];
 
+    const srcFilePathList = [
+        ['views/view.jade', 'view.html'],
+        ['views/editor.jade', 'editor.html'],
+        ['views/index.jade', 'index.html'],
+        ['views/404.jade', '404.html']
+    ];
     for (let lang of langs) {
-        let patternNames = ['view.jade', 'editor.jade', 'index.jade'];
-
-        for (let patternName of patternNames) {
-            let filePath = path.resolve(projectDir, 'views', patternName);
-            let compiledFunction = jade.compileFile(filePath);
-
-            let html = compiledFunction({
-                buildVersion: config.buildVersion,
-                lang: lang,
-                host: config.host,
-                blogPath: config.blogPath,
-                mainSitePath: config.mainSitePath
-            });
-
-            let destDir = path.resolve(config.releaseDestDir, lang);
-            fse.ensureDirSync(destDir);
-            let destPath = path.resolve(destDir, patternName.replace('.jade', '.html'));
-            fs.writeFileSync(destPath, html, 'utf8');
-
-            console.log(chalk.green(`generated: ${destPath}`));
+        for (let item of srcFilePathList) {
+            let html = doCompile(item[0], lang);
+            doWrite(`${lang}/${item[1]}`, html);
         }
+    }
+
+    // Redirect old links like https://echarts.apache.com/examples/editor.html?c=pie-legend
+    const srcOldFilePathList = [
+        ['views/old-redirect/view.jade', 'view.html'],
+        ['views/old-redirect/editor.jade', 'editor.html'],
+        ['views/old-redirect/index.jade', 'index.html']
+    ];
+    for (let item of srcOldFilePathList) {
+        let html = doCompile(item[0], 'en');
+        doWrite(item[1], html);
+    }
+
+    function doCompile(srcRelativePath, lang) {
+        let srcAbsolutePath = path.resolve(projectDir, srcRelativePath);
+        let compiledFunction = jade.compileFile(srcAbsolutePath);
+        return compiledFunction({
+            buildVersion: config.buildVersion,
+            lang: lang,
+            host: config.host,
+            blogPath: config.blogPath,
+            mainSitePath: config.mainSitePath
+        });
+    }
+
+    function doWrite(destRelativePath, html) {
+        let destPath = path.resolve(config.releaseDestDir, destRelativePath);
+        fse.ensureDirSync(path.dirname(destPath));
+        fs.writeFileSync(destPath, html, 'utf8');
+        console.log(chalk.green(`generated: ${destPath}`));
     }
 
     console.log('buildHTML done.');
