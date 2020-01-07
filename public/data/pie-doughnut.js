@@ -15,22 +15,18 @@ option = {
             radius: ['50%', '70%'],
             avoidLabelOverlap: false,
             label: {
-                normal: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
                     show: true,
-                    textStyle: {
-                        fontSize: '30',
-                        fontWeight: 'bold'
-                    }
+                    fontSize: '30',
+                    fontWeight: 'bold'
                 }
             },
             labelLine: {
-                normal: {
-                    show: false
-                }
+                show: false
             },
             data: [
                 {value: 335, name: '直接访问'},
