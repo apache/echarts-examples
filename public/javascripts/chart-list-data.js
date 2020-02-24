@@ -293,6 +293,14 @@ var EXAMPLES = [
   },
   {
     "category": [
+      "bar"
+    ],
+    "id": "bar-markline",
+    "title": "Bar Chart Marklines",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "boxplot"
     ],
     "id": "boxplot-light-velocity",
