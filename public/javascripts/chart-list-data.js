@@ -295,8 +295,16 @@ var EXAMPLES = [
     "category": [
       "bar"
     ],
+    "id": "bar-background",
+    "title": "Bar Chart with Background",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "bar"
+    ],
     "id": "bar-markline",
-    "title": "Bar Chart Marklines",
+    "title": "Bar Chart with Marklines",
     "difficulty": 10
   },
   {
