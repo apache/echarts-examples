@@ -115,6 +115,15 @@ var EXAMPLES = [
   },
   {
     "category": [
+      "line",
+      "visualMap"
+    ],
+    "id": "area-pieces",
+    "title": "Area Pieces",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "area-rainfall",
