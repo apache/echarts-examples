@@ -54,6 +54,8 @@ function initEnv() {
 
     assert(path.isAbsolute(config.releaseDestDir));
 
+    config.envType = envType;
+
     return config;
 }
 
@@ -154,7 +156,8 @@ async function buildHTML(config) {
             lang: lang,
             host: config.host,
             blogPath: config.blogPath,
-            mainSitePath: config.mainSitePath
+            mainSitePath: config.mainSitePath,
+            envType: config.envType
         });
     }
 
