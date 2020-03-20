@@ -199,14 +199,6 @@ var EXAMPLES = [
     "category": [
       "bar"
     ],
-    "id": "bar-markline",
-    "title": "Bar with Marklines",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
     "id": "bar-negative",
     "title": "正负条形图",
     "difficulty": 10
@@ -894,6 +886,14 @@ var EXAMPLES = [
     ],
     "id": "line-marker",
     "title": "Temperature Change in the coming week",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-markline",
+    "title": "Line with Marklines",
     "difficulty": 10
   },
   {
