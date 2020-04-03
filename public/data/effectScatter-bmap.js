@@ -520,6 +520,9 @@ option = {
             symbolSize: function (val) {
                 return val[2] / 10;
             },
+            encode: {
+                value: 2
+            },
             label: {
                 formatter: '{b}',
                 position: 'right',
@@ -543,6 +546,9 @@ option = {
             }).slice(0, 6)),
             symbolSize: function (val) {
                 return val[2] / 10;
+            },
+            encode: {
+                value: 2
             },
             showEffectOn: 'render',
             rippleEffect: {
