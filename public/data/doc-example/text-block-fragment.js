@@ -11,8 +11,8 @@ option = {
                     formatter: [
                         'The whole box is a {term|Text Block}, with',
                         'red border and grey background.',
-                        '{fregment1|A Text Fregment} {fregment2|Another Text Fregment}',
-                        'Text fregments can be customized.'
+                        '{fragment1|A Text Fragment} {fragment2|Another Text Fragment}',
+                        'Text fragments can be customized.'
                     ].join('\n'),
                     backgroundColor: '#eee',
                     // borderColor: '#333',
@@ -32,12 +32,12 @@ option = {
                             fontSize: 18,
                             color: 'rgb(199,86,83)'
                         },
-                        fregment1: {
+                        fragment1: {
                             backgroundColor: '#000',
                             color: 'yellow',
                             padding: 5
                         },
-                        fregment2: {
+                        fragment2: {
                             backgroundColor: '#339911',
                             color: '#fff',
                             borderRadius: 15,
