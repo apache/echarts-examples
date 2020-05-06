@@ -190,7 +190,7 @@ $(document).ready(function() {
             var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
 
             // load chart image
-            var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg" data-original="../' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
+            var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg" data-original="' + CDN_ROOT_PATH + '/' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
                 + exampleItem.id + '.jpg" />');
             $link.append($chartArea);
         }

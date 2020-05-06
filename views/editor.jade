@@ -33,18 +33,18 @@ block inner_content
         }
 block extra_js
 
-    script(type='text/javascript', src='#{host}/vendors/dat.gui.min.js')
-    script(type='text/javascript', src='#{host}/vendors/echarts/echarts.min.js?_v_=#{buildVersion}')
-    script(type='text/javascript', src='#{host}/vendors/echarts-stat/ecStat.min.js?_v_=#{buildVersion}')
-    script(type='text/javascript', src='#{host}/vendors/echarts/map/js/china.js?_v_=#{buildVersion}')
-    script(type='text/javascript', src='#{host}/vendors/echarts/map/js/world.js?_v_=#{buildVersion}')
-    script(type='text/javascript', src='#{host}/vendors/echarts/extension/dataTool.js?_v_=#{buildVersion}')
-    script(type='text/javascript', src='#{host}/vendors/ace/src/ace.js')
-    script(type='text/javascript', src='#{host}/vendors/ace/src/ext-language_tools.js')
-    script(type='text/javascript', src='#{host}/javascripts/editor.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/dat.gui.min.js')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/echarts/echarts.min.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/echarts-stat/ecStat.min.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/echarts/map/js/china.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/echarts/map/js/world.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/echarts/extension/dataTool.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/ace/src/ace.js')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/ace/src/ext-language_tools.js')
+    script(type='text/javascript', src='#{cdnRoot}/javascripts/editor.js?_v_=#{buildVersion}')
 
     script(type='text/javascript', src='https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&__ec_v__=20190126')
-    script(type='text/javascript', src='#{host}/vendors/echarts/extension/bmap.js?_v_=#{buildVersion}')
+    script(type='text/javascript', src='#{cdnRoot}/vendors/echarts/extension/bmap.js?_v_=#{buildVersion}')
 
     script(type='text/javascript').
         document.getElementById('nav-examples').className = 'active';
