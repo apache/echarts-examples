@@ -28,7 +28,7 @@ $.get(ROOT_PATH + 'data/asset/data/confidence-band.json', function (data) {
                 }
             },
             formatter: function (params) {
-                return params[2].name + '<br />' + params[2].value;
+                return params[2].name + '<br />' + ((params[2].value - base) * 100).toFixed(1) + '%';
             }
         },
         grid: {
