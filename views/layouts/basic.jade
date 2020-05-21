@@ -60,8 +60,20 @@ html
                 );
             }
 
+            window.EC_EXAMPLE_IS_GL = (function () {
+                var urlParams = (location.search || '').replace(/^\?/, '').split('&');
+                for (var i = 0; i < urlParams.length; i++) {
+                    var kv = urlParams[i].split('=');
+                    if (kv[0] === 'gl' && kv[1] && kv[1] !== '0') {
+                        return true;
+                    }
+                }
+                return false;
+            })();
+
             // ROOT_PATH is also used in example js. So we also use #{cdnRoot}.
-            window.ROOT_PATH = '#{cdnRoot}/';
+            // But echarts-gl do not support CORS yet, still use same origin.
+            window.ROOT_PATH = EC_EXAMPLE_IS_GL ? '#{host}/' : '#{cdnRoot}/';
             window.CDN_ROOT_PATH = '#{cdnRoot}/';
 
         block extra_js
