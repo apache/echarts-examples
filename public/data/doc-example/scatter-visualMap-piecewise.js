@@ -448,6 +448,9 @@ option = {
                 {name: "武汉", value: 273},
                 {name: "大庆", value: 279}
             ]),
+            encode: {
+                value: 2
+            },
             symbolSize: 12,
             label: {
                 normal: {
