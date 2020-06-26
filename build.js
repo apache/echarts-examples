@@ -151,7 +151,8 @@ async function buildHTML(config) {
     function doCompile(srcRelativePath, lang) {
         let srcAbsolutePath = path.resolve(projectDir, srcRelativePath);
         let compiledFunction = jade.compileFile(srcAbsolutePath);
-        return compiledFunction({
+
+        const compileCfg = {
             buildVersion: config.buildVersion,
             lang: lang,
             host: config.host,
@@ -160,7 +161,16 @@ async function buildHTML(config) {
             mainSitePath: config.mainSitePath,
             mainSiteCDNRoot: config.mainSiteCDNRoot,
             envType: config.envType
-        });
+        };
+
+        if (config.mainSiteCDNRootMap) {
+            compileCfg.mainSiteCDNRoot = config.mainSiteCDNRootMap[lang];
+        }
+        if (config.cdnRootMap) {
+            compileCfg.cdnRoot = config.cdnRootMap[lang];
+        }
+
+        return compiledFunction(compileCfg);
     }
 
     function doWrite(destRelativePath, html) {
