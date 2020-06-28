@@ -11,7 +11,8 @@ Object.assign(config, {
     mainSitePath: 'https://echarts.apache.org',
     // mainSiteCDNRoot: 'https://echarts.cdn.apache.org',
     mainSiteCDNRootMap: {
-        zh: 'https://echarts-www.bj.bcebos.com',
+        // zh: 'https://echarts-www.bj.bcebos.com',
+        zh: 'https://echarts-www.cdn.bcebos.com',
         en: 'https://echarts.cdn.apache.org'
     },
 
