@@ -160,7 +160,8 @@ async function buildHTML(config) {
             blogPath: config.blogPath,
             mainSitePath: config.mainSitePath,
             mainSiteCDNRoot: config.mainSiteCDNRoot,
-            envType: config.envType
+            envType: config.envType,
+            cdnThirdParty: config.cdnThirdParty
         };
 
         if (config.mainSiteCDNRootMap) {

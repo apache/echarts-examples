@@ -5,7 +5,7 @@ html
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1')
 
-        link(rel='stylesheet', type='text/css', href='#{cdnRoot}/vendors/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='#{cdnThirdParty.bootstrapCSS}')
         link(rel='shortcut icon', href='#{cdnRoot}/images/favicon.png')
         // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <!--[if lt IE 9]>
@@ -38,9 +38,9 @@ html
 
         block content
 
-        script(type='text/javascript', src='#{cdnRoot}/vendors/jquery/jquery.js')
-        script(type='text/javascript', src='#{cdnRoot}/vendors/bootstrap/js/bootstrap.js')
-        script(type='text/javascript', src='#{cdnRoot}/vendors/lodash.js')
+        script(type='text/javascript', src='#{cdnThirdParty.jquery_1_11_3}')
+        script(type='text/javascript', src='#{cdnThirdParty.bootstrapJS}')
+        script(type='text/javascript', src='#{cdnThirdParty.lodash}')
         script(type='text/javascript', src='#{cdnRoot}/javascripts/common.js')
         script(type='text/javascript').
             function changeLang(lang) {
@@ -75,6 +75,7 @@ html
             // But echarts-gl do not support CORS yet, still use same origin.
             window.ROOT_PATH = EC_EXAMPLE_IS_GL ? '#{host}/' : '#{cdnRoot}/';
             window.CDN_ROOT_PATH = '#{cdnRoot}/';
+            window.CDN_THIRD_PARTY_ECHARTS_GL = '#{cdnThirdParty.echartsGLMinJS}'
 
         block extra_js
 

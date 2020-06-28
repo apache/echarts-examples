@@ -565,7 +565,7 @@ function load() {
         script.onload = function () {
             loadChart();
         };
-        script.src = '../vendors/echarts-gl/echarts-gl.js';
+        script.src = window.CDN_THIRD_PARTY_ECHARTS_GL;
         document.body.appendChild(script);
     }
     else {
