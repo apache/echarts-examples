@@ -5,7 +5,8 @@ Object.assign(config, {
     host: 'https://echarts.apache.org/examples',
     // cdnRoot: 'https://echarts.cdn.apache.org/examples',
     cdnRootMap: {
-        zh: 'https://echarts-www.bj.bcebos.com/examples',
+        // zh: 'https://echarts-www.bj.bcebos.com/examples',
+        zh: 'https://echarts-www.cdn.bcebos.com/examples',
         en: 'https://echarts.cdn.apache.org/examples'
     },
     mainSitePath: 'https://echarts.apache.org',
