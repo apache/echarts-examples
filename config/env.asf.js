@@ -3,11 +3,11 @@ const config = require('./common');
 
 Object.assign(config, {
     host: 'https://echarts.apache.org/examples',
-    cdnRootMap: {
+    cdnPayRootMap: {
         zh: 'https://echarts-www.cdn.bcebos.com/examples',
         en: 'https://echarts.apache.org/examples'
     },
-    mainSiteCDNRootMap: {
+    mainSiteCDNPayRootMap: {
         zh: 'https://echarts-www.cdn.bcebos.com',
         en: 'https://echarts.apache.org'
     },

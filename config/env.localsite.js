@@ -6,12 +6,12 @@ Object.assign(config, {
     host: 'http://localhost/incubator-echarts-website/examples',
     // host: 'http://localhost:8000/echarts/incubator-echarts-website/examples',
 
-    cdnRootMap: {
+    cdnPayRootMap: {
         zh: 'http://localhost/incubator-echarts-website/examples',
         en: 'http://127.0.0.1:8000/echarts/incubator-echarts-website/examples'
     },
 
-    mainSiteCDNRootMap: {
+    mainSiteCDNPayRootMap: {
         zh: 'http://localhost/incubator-echarts-website/examples',
         // zh: 'http://127.0.0.1:8000/echarts/incubator-echarts-website',
         en: 'http://127.0.0.1:8000/echarts/incubator-echarts-website'

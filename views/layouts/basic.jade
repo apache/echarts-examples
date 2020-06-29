@@ -6,14 +6,14 @@ html
         meta(name='viewport', content='width=device-width, initial-scale=1')
 
         link(rel='stylesheet', type='text/css', href='#{cdnThirdParty.bootstrapCSS}')
-        link(rel='shortcut icon', href='#{cdnRoot}/images/favicon.png')
+        link(rel='shortcut icon', href='#{cdnPayRoot}/images/favicon.png')
         // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <!--[if lt IE 9]>
         script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
         script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
         <![endif]-->
 
-        link(rel='stylesheet', type='text/css', href='#{cdnRoot}/stylesheets/main.css?_v_=#{buildVersion}')
+        link(rel='stylesheet', type='text/css', href='#{cdnPayRoot}/stylesheets/main.css?_v_=#{buildVersion}')
 
         title Examples - Apache ECharts (incubating)
 
@@ -41,7 +41,7 @@ html
         script(type='text/javascript', src='#{cdnThirdParty.jquery_1_11_3}')
         script(type='text/javascript', src='#{cdnThirdParty.bootstrapJS}')
         script(type='text/javascript', src='#{cdnThirdParty.lodash}')
-        script(type='text/javascript', src='#{cdnRoot}/javascripts/common.js')
+        script(type='text/javascript', src='#{cdnPayRoot}/javascripts/common.js')
         script(type='text/javascript').
             function changeLang(lang) {
                 if (lang === 'en') {
@@ -71,10 +71,10 @@ html
                 return false;
             })();
 
-            // ROOT_PATH is also used in example js. So we also use #{cdnRoot}.
+            // ROOT_PATH is also used in example js. So we also use #{cdnPayRoot}.
             // But echarts-gl do not support CORS yet, still use same origin.
-            window.ROOT_PATH = EC_EXAMPLE_IS_GL ? '#{host}/' : '#{cdnRoot}/';
-            window.CDN_ROOT_PATH = '#{cdnRoot}/';
+            window.ROOT_PATH = EC_EXAMPLE_IS_GL ? '#{host}/' : '#{cdnPayRoot}/';
+            window.CDN_PAY_ROOT_PATH = '#{cdnPayRoot}/';
             window.CDN_THIRD_PARTY_ECHARTS_GL = '#{cdnThirdParty.echartsGLMinJS}'
 
         block extra_js

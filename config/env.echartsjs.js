@@ -4,12 +4,12 @@ const config = require('./common');
 Object.assign(config, {
     host: 'https://www.echartsjs.com/examples',
 
-    cdnRootMap: {
+    cdnPayRootMap: {
         zh: 'https://www.echartsjs.com/examples',
         en: 'https://www.echartsjs.com/examples',
     },
 
-    mainSiteCDNRootMap: {
+    mainSiteCDNPayRootMap: {
         zh: 'https://www.echartsjs.com',
         en: 'https://www.echartsjs.com',
     },

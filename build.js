@@ -158,16 +158,16 @@ async function buildHTML(config) {
             host: config.host,
             blogPath: config.blogPath,
             mainSiteHost: config.mainSiteHost,
-            mainSiteCDNRoot: config.mainSiteCDNRoot,
+            mainSiteCDNPayRoot: config.mainSiteCDNPayRoot,
             envType: config.envType,
             cdnThirdParty: config.cdnThirdParty
         };
 
-        if (config.mainSiteCDNRootMap) {
-            compileCfg.mainSiteCDNRoot = config.mainSiteCDNRootMap[lang];
+        if (config.mainSiteCDNPayRootMap) {
+            compileCfg.mainSiteCDNPayRoot = config.mainSiteCDNPayRootMap[lang];
         }
-        if (config.cdnRootMap) {
-            compileCfg.cdnRoot = config.cdnRootMap[lang];
+        if (config.cdnPayRootMap) {
+            compileCfg.cdnPayRoot = config.cdnPayRootMap[lang];
         }
 
         return compiledFunction(compileCfg);
