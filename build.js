@@ -156,9 +156,8 @@ async function buildHTML(config) {
             buildVersion: config.buildVersion,
             lang: lang,
             host: config.host,
-            cdnRoot: config.cdnRoot,
             blogPath: config.blogPath,
-            mainSitePath: config.mainSitePath,
+            mainSiteHost: config.mainSiteHost,
             mainSiteCDNRoot: config.mainSiteCDNRoot,
             envType: config.envType,
             cdnThirdParty: config.cdnThirdParty

@@ -3,14 +3,28 @@ const config = require('./common');
 
 Object.assign(config, {
     host: 'http://localhost/incubator-echarts-website/examples',
-    cdnRoot: 'http://localhost/incubator-echarts-website/examples',
-    mainSitePath: 'http://localhost/incubator-echarts-website',
-    mainSiteCDNRoot: 'http://localhost/incubator-echarts-website',
+
+    cdnRootMap: {
+        zh: 'http://localhost/incubator-echarts-website/examples',
+        en: 'http://localhost/incubator-echarts-website/examples'
+    },
+    mainSiteCDNRootMap: {
+        zh: 'http://localhost/incubator-echarts-website',
+        en: 'http://localhost/incubator-echarts-website'
+    },
+
+    mainSiteHost: 'http://localhost/incubator-echarts-website',
 
     // host: 'http://localhost:8000/echarts/incubator-echarts-website/examples',
-    // cdnRoot: 'http://localhost:8000/echarts/incubator-echarts-website/examples',
-    // mainSitePath: 'http://127.0.0.1:8000/echarts/incubator-echarts-website',
-    // mainSiteCDNRoot: 'http://127.0.0.1:8000/echarts/incubator-echarts-website',
+    // cdnRootMap: {
+    //     zh: 'http://localhost:8000/echarts/incubator-echarts-website/examples',
+    //     en: 'http://localhost:8000/echarts/incubator-echarts-website/examples'
+    // },
+    // mainSiteCDNRootMap: {
+    //     zh: 'http://127.0.0.1:8000/echarts/incubator-echarts-website',
+    //     en: 'http://127.0.0.1:8000/echarts/incubator-echarts-website'
+    // },
+    // mainSiteHost: 'http://127.0.0.1:8000/echarts/incubator-echarts-website',
 
     blogPath: 'http://efe.baidu.com/tags/ECharts/',
     releaseDestDir: path.resolve(__dirname, '../../incubator-echarts-website/examples')
