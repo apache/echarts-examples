@@ -73,8 +73,8 @@ html
 
             // ROOT_PATH is also used in example js. So we also use #{cdnPayRoot}.
             // But echarts-gl do not support CORS yet, still use same origin.
-            window.ROOT_PATH = EC_EXAMPLE_IS_GL ? '#{host}/' : '#{cdnPayRoot}/';
-            window.CDN_PAY_ROOT_PATH = '#{cdnPayRoot}/';
+            window.ROOT_PATH = EC_EXAMPLE_IS_GL ? '#{host}' : '#{cdnPayRoot}';
+            window.CDN_PAY_ROOT_PATH = '#{cdnPayRoot}';
             window.CDN_THIRD_PARTY_ECHARTS_GL = '#{cdnThirdParty.echartsGLMinJS}'
 
         block extra_js

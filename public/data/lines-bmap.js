@@ -1,4 +1,4 @@
-$.get(ROOT_PATH + 'data/asset/data/hangzhou-tracks.json', function(data) {
+$.get(ROOT_PATH + '/data/asset/data/hangzhou-tracks.json', function(data) {
     var lines = data.map(function (track) {
         return {
             coords: track.map(function (seg, idx) {

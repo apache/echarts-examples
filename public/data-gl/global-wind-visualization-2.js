@@ -1,4 +1,4 @@
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/gfs.json', function(windData) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/gfs.json', function(windData) {
     buildGrid(windData, function(header, grid) {
         var data = [];
         var p = 0;

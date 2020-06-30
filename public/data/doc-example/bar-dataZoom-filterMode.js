@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.list.json', function (obama_budget_2012) {
+$.get(ROOT_PATH + '/data/asset/data/obama_budget_proposal_2012.list.json', function (obama_budget_2012) {
     myChart.hideLoading();
 
     option = {

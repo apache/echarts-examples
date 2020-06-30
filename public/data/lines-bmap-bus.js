@@ -1,4 +1,4 @@
-$.get(ROOT_PATH + 'data/asset/data/lines-bus.json', function(data) {
+$.get(ROOT_PATH + '/data/asset/data/lines-bus.json', function(data) {
     var busLines = [].concat.apply([], data.map(function (busLine, idx) {
         var prevPt;
         var points = [];

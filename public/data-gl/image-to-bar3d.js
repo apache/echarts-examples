@@ -52,7 +52,7 @@ img.onload = function () {
                     intensity: 2
                 },
                 ambientCubemap: {
-                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
+                    texture: ROOT_PATH + '/data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.2,
                     specularIntensity: 1

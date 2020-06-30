@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/data/flights.json', function(data) {
+$.get(ROOT_PATH + '/data/asset/data/flights.json', function(data) {
 
     myChart.hideLoading();
 

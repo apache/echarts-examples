@@ -1,5 +1,5 @@
 
-var dataURL = ROOT_PATH + 'data/asset/data/fake-nebula.bin';
+var dataURL = ROOT_PATH + '/data/asset/data/fake-nebula.bin';
 var xhr = new XMLHttpRequest();
 xhr.open('GET', dataURL, true);
 xhr.responseType = 'arraybuffer';

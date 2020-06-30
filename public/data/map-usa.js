@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/geo/USA.json', function (usaJson) {
+$.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
     myChart.hideLoading();
 
     echarts.registerMap('USA', usaJson, {

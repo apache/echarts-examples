@@ -20,7 +20,7 @@ var _cartesianYBounds = [];
 var _rawData;
 var _autoDataZoomAnimator;
 
-$.get(ROOT_PATH + 'data/asset/data/airport-schedule.json', function (rawData) {
+$.get(ROOT_PATH + '/data/asset/data/airport-schedule.json', function (rawData) {
     _rawData = rawData;
     myChart.setOption(option = makeOption());
     initDrag();

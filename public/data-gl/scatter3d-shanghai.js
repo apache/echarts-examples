@@ -1,4 +1,4 @@
-var uploadedDataURL = ROOT_PATH + "asset/get/s/data-1495284690309-Bk9Ro3Te-.json";
+var uploadedDataURL = ROOT_PATH + "/asset/get/s/data-1495284690309-Bk9Ro3Te-.json";
 mapboxgl.accessToken = mapboxglToken;
 
 myChart.showLoading();

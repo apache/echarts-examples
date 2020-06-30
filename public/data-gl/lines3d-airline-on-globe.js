@@ -1,4 +1,4 @@
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/flights.json', function(data) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/flights.json', function(data) {
 
     function getAirportCoord(idx) {
         return [data.airports[idx][3], data.airports[idx][4]];
@@ -13,8 +13,8 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/flights.json', function(data) {
     myChart.setOption({
         backgroundColor: '#000',
         globe: {
-            baseTexture: ROOT_PATH + 'data-gl/asset/world.topo.bathy.200401.jpg',
-            heightTexture: ROOT_PATH + 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+            baseTexture: ROOT_PATH + '/data-gl/asset/world.topo.bathy.200401.jpg',
+            heightTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
             shading: 'lambert',
 

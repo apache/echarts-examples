@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.get(ROOT_PATH + 'data/asset/data/confidence-band.json', function (data) {
+$.get(ROOT_PATH + '/data/asset/data/confidence-band.json', function (data) {
     myChart.hideLoading();
 
     var base = -data.reduce(function (min, val) {

@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.get(ROOT_PATH + 'data/asset/data/energy.json', function (data) {
+$.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
     myChart.hideLoading();
 
     myChart.setOption(option = {

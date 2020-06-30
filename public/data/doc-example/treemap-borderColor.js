@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/data/disk.tree.json', function (diskData) {
+$.get(ROOT_PATH + '/data/asset/data/disk.tree.json', function (diskData) {
     myChart.hideLoading();
 
     function colorMappingChange(value) {

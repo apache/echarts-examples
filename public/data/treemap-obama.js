@@ -1,7 +1,7 @@
 myChart.showLoading();
 
 var household_america_2012 = 113616229;
-$.get(ROOT_PATH + 'data/asset/data/obama_budget_proposal_2012.json', function (obama_budget_2012) {
+$.get(ROOT_PATH + '/data/asset/data/obama_budget_proposal_2012.json', function (obama_budget_2012) {
     myChart.hideLoading();
 
     var formatUtil;

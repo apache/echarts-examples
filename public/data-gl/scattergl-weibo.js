@@ -1,5 +1,5 @@
 
-$.getJSON(ROOT_PATH + 'data/asset/data/weibo.json', function (weiboData) {
+$.getJSON(ROOT_PATH + '/data/asset/data/weibo.json', function (weiboData) {
 
     weiboData = weiboData.map(function (serieData, idx) {
         var px = serieData[0] / 1000;

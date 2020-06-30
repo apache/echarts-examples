@@ -17,12 +17,12 @@ context.fillStyle = config.color;
 context.shadowColor = config.color;
 
 $.when(
-    $.getScript(ROOT_PATH + 'vendors/d3/d3-contour.js'),
-    $.getScript(ROOT_PATH + 'vendors/d3/d3-geo.js'),
-    $.getScript(ROOT_PATH + 'vendors/d3/d3-timer.js')
+    $.getScript(ROOT_PATH + '/vendors/d3/d3-contour.js'),
+    $.getScript(ROOT_PATH + '/vendors/d3/d3-geo.js'),
+    $.getScript(ROOT_PATH + '/vendors/d3/d3-timer.js')
 ).done(function () {
 
-image(ROOT_PATH + 'data-gl/asset/bathymetry_bw_composite_4k.jpg').then(function(image) {
+image(ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg').then(function(image) {
     var m = image.height,
         n = image.width,
         values = new Array(n * m),
@@ -116,9 +116,9 @@ function initCharts(opt) {
         backgroundColor: '#000',
         globe: {
 
-            environment: ROOT_PATH + 'data-gl/asset/starfield.jpg',
+            environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
 
-            heightTexture: ROOT_PATH + 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+            heightTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
             displacementScale: 0.05,
             displacementQuality: 'high',
@@ -146,7 +146,7 @@ function initCharts(opt) {
                     shadow: false
                 },
                 ambientCubemap: {
-                    texture: ROOT_PATH + 'data-gl/asset/lake.hdr',
+                    texture: ROOT_PATH + '/data-gl/asset/lake.hdr',
                     exposure: 1,
                     diffuseIntensity: 0.5,
                     specularIntensity: 2

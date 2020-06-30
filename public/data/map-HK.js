@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/geo/HK.json', function (geoJson) {
+$.get(ROOT_PATH + '/data/asset/geo/HK.json', function (geoJson) {
 
     myChart.hideLoading();
 

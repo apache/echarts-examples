@@ -1,6 +1,6 @@
 mapboxgl.accessToken = mapboxglToken;
 
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/alcohol.json', function (data) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/alcohol.json', function (data) {
     var regionData = data.map(function (item) {
         return {
             name: item[0],
@@ -35,7 +35,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/alcohol.json', function (data) {
                     diffuseIntensity: 1,
                     specularIntensity: 1,
                     exposure: 2,
-                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr'
+                    texture: ROOT_PATH + '/data-gl/asset/canyon.hdr'
                 }
             }
         },
@@ -49,9 +49,9 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/alcohol.json', function (data) {
                 areaColor: '#fff'
             },
             realisticMaterial: {
-                roughness: ROOT_PATH + "asset/get/s/data-1497191796671-B16_H05G-.png",
-                normalTexture: ROOT_PATH + "asset/get/s/data-1497191771850-rJ4DrAqf-.jpg",
-                detailTexture: ROOT_PATH + "asset/get/s/data-1497191756633-SJr8HRqzW.jpg",
+                roughness: ROOT_PATH + "/asset/get/s/data-1497191796671-B16_H05G-.png",
+                normalTexture: ROOT_PATH + "/asset/get/s/data-1497191771850-rJ4DrAqf-.jpg",
+                detailTexture: ROOT_PATH + "/asset/get/s/data-1497191756633-SJr8HRqzW.jpg",
                 textureTiling: [4, 4]
             },
             data: regionData

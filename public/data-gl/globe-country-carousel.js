@@ -33,7 +33,7 @@ mapChart.setOption({
 option = {
     globe: {
         baseTexture: mapChart,
-        heightTexture: ROOT_PATH + 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+        heightTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
         displacementScale: 0.1,
 
@@ -58,7 +58,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: ROOT_PATH + 'data-gl/asset/lake.hdr',
+                texture: ROOT_PATH + '/data-gl/asset/lake.hdr',
                 exposure: 1,
                 diffuseIntensity: 0.2
             }

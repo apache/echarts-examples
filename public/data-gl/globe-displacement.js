@@ -1,6 +1,6 @@
 option = {
     globe: {
-        displacementTexture: ROOT_PATH + 'data-gl/asset/bathymetry_bw_composite_4k.jpg',
+        displacementTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
 
         displacementScale: 0.1,
         displacementQuality: 'ultra',
@@ -32,7 +32,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: ROOT_PATH + 'data-gl/asset/pisa.hdr',
+                texture: ROOT_PATH + '/data-gl/asset/pisa.hdr',
                 exposure: 1,
                 diffuseIntensity: 0.2
             }

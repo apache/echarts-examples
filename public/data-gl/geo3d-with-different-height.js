@@ -1,5 +1,5 @@
 
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/world-population.json', function (populationData) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/world-population.json', function (populationData) {
 
     var max = -Infinity;
     var min = Infinity;
@@ -22,7 +22,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/world-population.json', function (popu
             shading: 'lambert',
 
             lambertMaterial: {
-                detailTexture: ROOT_PATH + 'data-gl/asset/woods.jpg',
+                detailTexture: ROOT_PATH + '/data-gl/asset/woods.jpg',
                 textureTiling: 20
             },
 
@@ -48,7 +48,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/world-population.json', function (popu
                     intensity: 0
                 },
                 ambientCubemap: {
-                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
+                    texture: ROOT_PATH + '/data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.3
                 }

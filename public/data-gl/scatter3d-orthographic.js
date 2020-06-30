@@ -1,4 +1,4 @@
-$.getScript(ROOT_PATH + 'vendors/simplex.js').done(function () {
+$.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 
 var noise = new SimplexNoise(Math.random);

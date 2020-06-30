@@ -3,7 +3,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 
-$.get(ROOT_PATH + 'asset/get/s/data-1497886591658-rJOKkdH7W.txt', function (text) {
+$.get(ROOT_PATH + '/asset/get/s/data-1497886591658-rJOKkdH7W.txt', function (text) {
 
     var data = decodeFlightPathData(text);
 

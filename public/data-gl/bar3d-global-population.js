@@ -1,5 +1,5 @@
 
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/population.json', function (data) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/population.json', function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;

@@ -1,7 +1,7 @@
 mapboxgl.accessToken = mapboxglToken;
 
 
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/population.json', function (data) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/population.json', function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
@@ -51,7 +51,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/population.json', function (data) {
                     intensity: 0.
                 },
                 ambientCubemap: {
-                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
+                    texture: ROOT_PATH + '/data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 0.5
                 }

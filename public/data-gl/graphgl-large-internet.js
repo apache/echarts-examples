@@ -1,5 +1,5 @@
 
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/internet.graph.json', function (graph) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/internet.graph.json', function (graph) {
     var edges = graph.edges.map(function (edge) {
         return {
             source: edge[0],

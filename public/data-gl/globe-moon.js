@@ -1,12 +1,12 @@
 option = {
     globe: {
-        baseTexture: ROOT_PATH + 'data-gl/asset/moon-base.jpg',
-        heightTexture: ROOT_PATH + 'data-gl/asset/moon-bump.jpg',
+        baseTexture: ROOT_PATH + '/data-gl/asset/moon-base.jpg',
+        heightTexture: ROOT_PATH + '/data-gl/asset/moon-bump.jpg',
 
         displacementScale: 0.05,
         displacementQuality: 'medium',
 
-        environment: ROOT_PATH + 'data-gl/asset/starfield.jpg',
+        environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
 
         shading: 'realistic',
         realisticMaterial: {
@@ -35,7 +35,7 @@ option = {
                 shadow: true
             },
             ambientCubemap: {
-                texture: ROOT_PATH + 'data-gl/asset/pisa.hdr',
+                texture: ROOT_PATH + '/data-gl/asset/pisa.hdr',
                 exposure: 0,
                 diffuseIntensity: 0.02
             }

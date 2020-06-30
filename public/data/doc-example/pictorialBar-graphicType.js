@@ -34,7 +34,7 @@ option = {
         }, {
             value: 60,
             // Image link.
-            symbol: 'image://' + ROOT_PATH + 'data/asset/img/hill-Qomolangma.png',
+            symbol: 'image://' + ROOT_PATH + '/data/asset/img/hill-Qomolangma.png',
         }, {
             value: 60,
             // Image dataURI.

@@ -31,7 +31,7 @@ var geoJSON = {
 };
 var regions = [];
 var readShp = new Promise(function (resolve, reject) {
-    shapefile.open(ROOT_PATH + 'asset/get/s/data-1498751177695-rkzAeiGEb.shp', ROOT_PATH + 'asset/get/s/data-1498751184605-rJYAxjMVW.dbf')
+    shapefile.open(ROOT_PATH + '/asset/get/s/data-1498751177695-rkzAeiGEb.shp', ROOT_PATH + '/asset/get/s/data-1498751184605-rJYAxjMVW.dbf')
         .then(source => source.read()
             .then(function append(result) {
                 if (result.done) {
@@ -53,7 +53,7 @@ var readShp = new Promise(function (resolve, reject) {
 
 myChart.showLoading();
 
-Promise.all([$.getJSON(ROOT_PATH + 'asset/get/s/data-1498751206824-HkkgZsfEW.json'), readShp])
+Promise.all([$.getJSON(ROOT_PATH + '/asset/get/s/data-1498751206824-HkkgZsfEW.json'), readShp])
     .then(function ([data, lastFeature]) {
 
         var lines = data.map(function (track) {
@@ -96,7 +96,7 @@ Promise.all([$.getJSON(ROOT_PATH + 'asset/get/s/data-1498751206824-HkkgZsfEW.jso
                         intensity: 0.
                     },
                     ambientCubemap: {
-                        texture: ROOT_PATH + 'data-gl/asset/pisa.hdr',
+                        texture: ROOT_PATH + '/data-gl/asset/pisa.hdr',
                         exposure: 1,
                         diffuseIntensity: 0.5,
                         specularIntensity: 2

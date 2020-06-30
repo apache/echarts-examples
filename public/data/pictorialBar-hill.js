@@ -55,13 +55,13 @@ option = {
             symbol: 'none',
         }, {
             value: 8844,
-            symbol: 'image://' + ROOT_PATH + 'data/asset/img/hill-Qomolangma.png',
+            symbol: 'image://' + ROOT_PATH + '/data/asset/img/hill-Qomolangma.png',
             symbolSize: ['200%', '105%'],
             symbolPosition: 'end',
             z: 10
         }, {
             value: 5895,
-            symbol: 'image://' + ROOT_PATH + 'data/asset/img/hill-Kilimanjaro.png',
+            symbol: 'image://' + ROOT_PATH + '/data/asset/img/hill-Kilimanjaro.png',
             symbolSize: ['200%', '105%'],
             symbolPosition: 'end'
         }],

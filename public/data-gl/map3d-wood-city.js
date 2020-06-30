@@ -1,5 +1,5 @@
 
-$.getJSON(ROOT_PATH + 'data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
+$.getJSON(ROOT_PATH + '/data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
 
     echarts.registerMap('buildings', buildingsGeoJSON);
 
@@ -20,7 +20,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/buildings.json', function (buildingsGe
             realisticMaterial: {
                 roughness: 0.6,
                 textureTiling: 20,
-                detailTexture: ROOT_PATH + 'data-gl/asset/woods.jpg'
+                detailTexture: ROOT_PATH + '/data-gl/asset/woods.jpg'
             },
             postEffect: {
                 enable: true,
@@ -55,7 +55,7 @@ $.getJSON(ROOT_PATH + 'data-gl/asset/data/buildings.json', function (buildingsGe
                     intensity: 0
                 },
                 ambientCubemap: {
-                    texture: ROOT_PATH + 'data-gl/asset/canyon.hdr',
+                    texture: ROOT_PATH + '/data-gl/asset/canyon.hdr',
                     exposure: 2,
                     diffuseIntensity: 1,
                     specularIntensity: 1

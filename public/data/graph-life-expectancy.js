@@ -1,5 +1,5 @@
 
-$.get(ROOT_PATH + 'data/asset/data/life-expectancy.json', function (data) {
+$.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
     var series = data.series;
     option = {
         visualMap: {

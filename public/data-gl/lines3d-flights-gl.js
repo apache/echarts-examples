@@ -1,4 +1,4 @@
-var uploadedDataURL = ROOT_PATH + "data-gl/asset/data/flights.json";
+var uploadedDataURL = ROOT_PATH + "/data-gl/asset/data/flights.json";
 
 myChart.showLoading();
 

@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.getJSON(ROOT_PATH + 'data/asset/data/npmdepgraph.min10.json', function (json) {
+$.getJSON(ROOT_PATH + '/data/asset/data/npmdepgraph.min10.json', function (json) {
     myChart.hideLoading();
     myChart.setOption(option = {
         title: {

@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/data/weibo.json', function (weiboData) {
+$.get(ROOT_PATH + '/data/asset/data/weibo.json', function (weiboData) {
     myChart.hideLoading();
 
     weiboData = weiboData.map(function (serieData, idx) {

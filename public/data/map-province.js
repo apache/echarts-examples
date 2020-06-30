@@ -6,7 +6,7 @@ function showProvince() {
 
     // myChart.showLoading();
 
-    $.get(ROOT_PATH + 'vendors/echarts/map/json/province/' + name + '.json', function (geoJson) {
+    $.get(ROOT_PATH + '/vendors/echarts/map/json/province/' + name + '.json', function (geoJson) {
 
         // myChart.hideLoading();
 

@@ -1,4 +1,4 @@
-$.getJSON(ROOT_PATH + "data-gl/asset/data/population.json", function (data) {
+$.getJSON(ROOT_PATH + "/data-gl/asset/data/population.json", function (data) {
 
     data = data.filter(function (dataItem) {
         return dataItem[2] > 0;
@@ -9,10 +9,10 @@ $.getJSON(ROOT_PATH + "data-gl/asset/data/population.json", function (data) {
     option = {
         backgroundColor: '#000',
         globe: {
-            baseTexture: ROOT_PATH + "data-gl/asset/world.topo.bathy.200401.jpg",
-            heightTexture: ROOT_PATH + "data-gl/asset/world.topo.bathy.200401.jpg",
+            baseTexture: ROOT_PATH + "/data-gl/asset/world.topo.bathy.200401.jpg",
+            heightTexture: ROOT_PATH + "/data-gl/asset/world.topo.bathy.200401.jpg",
             shading: 'lambert',
-            environment: ROOT_PATH + 'data-gl/asset/starfield.jpg',
+            environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
             light: {
                 main: {
                     intensity: 2

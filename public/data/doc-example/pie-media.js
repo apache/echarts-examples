@@ -1,6 +1,6 @@
 $.when(
-    $.getScript(ROOT_PATH + 'data/asset/data/timelineGDP.js'),
-    $.getScript(ROOT_PATH + 'data/asset/data/draggable.js')
+    $.getScript(ROOT_PATH + '/data/asset/data/timelineGDP.js'),
+    $.getScript(ROOT_PATH + '/data/asset/data/draggable.js')
 ).done(function () {
 
     draggable.init(

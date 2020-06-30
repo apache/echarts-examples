@@ -1,6 +1,6 @@
 myChart.showLoading();
 
-$.get(ROOT_PATH + 'data/asset/data/masterPainterColorChoice.json', function (json) {
+$.get(ROOT_PATH + '/data/asset/data/masterPainterColorChoice.json', function (json) {
     myChart.hideLoading();
 
     var data = json[0].x.map(function (x, idx) {

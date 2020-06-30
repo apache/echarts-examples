@@ -37,7 +37,7 @@ myChart.getZr().configLayer(1, {
     motionBlur: 0.5
 });
 
- $.get(ROOT_PATH + 'data/asset/data/nutrients.json', function (originData) {
+ $.get(ROOT_PATH + '/data/asset/data/nutrients.json', function (originData) {
     data = normalizeData(originData).slice(0, 1000);
 
     myChart.setOption(option = getOption(data));

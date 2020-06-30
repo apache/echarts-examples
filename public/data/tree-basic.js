@@ -1,5 +1,5 @@
 myChart.showLoading();
-$.get(ROOT_PATH + 'data/asset/data/flare.json', function (data) {
+$.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
     myChart.hideLoading();
 
     echarts.util.each(data.children, function (datum, index) {

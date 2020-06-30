@@ -55,8 +55,8 @@ function hexBinStatistics(points, r) {
 
 
 $.when(
-    $.getJSON(ROOT_PATH + 'data/asset/data/kawhi-leonard-16-17-regular.json'),
-    $.getJSON(ROOT_PATH + 'data/asset/data/nba-court.json')
+    $.getJSON(ROOT_PATH + '/data/asset/data/kawhi-leonard-16-17-regular.json'),
+    $.getJSON(ROOT_PATH + '/data/asset/data/nba-court.json')
 ).done(function (shotData, nbaCourt) {
     shotData = shotData[0];
     nbaCourt = nbaCourt[0];
