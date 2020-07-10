@@ -575,7 +575,7 @@ function load() {
     function loadChart() {
         if (configs.c) {
             console.log(configs.c);
-            $.ajax(window.CDN_PAY_ROOT_PATH + '/' + dataRoot + '/' + configs.c + '.js', {
+            $.ajax(window.CDN_PAY_ROOT_PATH + '/' + dataRoot + '/' + configs.c + '.js?_v_=' + CDN_PAY_VERSION, {
                 dataType: 'text',
                 success: function (data) {
                     gb.loadedCode = data;

@@ -5,10 +5,10 @@ block content
     nav(class='navbar navbar-default navbar-fixed-top')
         if lang == 'zh'
             include ../../../echarts-www/_jade/components/nav-mixin
-            +nav(mainSiteHost, mainSiteCDNPayRoot)
+            +nav(mainSiteHost, mainSiteCDNPayRoot, mainSiteCDNPayVersion)
         else
             include ../../../echarts-www/_jade/en/nav-mixin
-            +nav(mainSiteHost, mainSiteCDNPayRoot)
+            +nav(mainSiteHost, mainSiteCDNPayRoot, mainSiteCDNPayVersion)
 
     script(type='text/javascript').
         var selector = window.EC_DEMO_LANG === 'en' ? 'nav-start' : 'nav-examples';

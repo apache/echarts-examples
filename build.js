@@ -158,7 +158,8 @@ async function buildHTML(config) {
             host: config.host,
             blogPath: config.blogPath,
             mainSiteHost: config.mainSiteHost,
-            mainSiteCDNPayRoot: config.mainSiteCDNPayRoot,
+            mainSiteCDNPayVersion: config.mainSiteCDNPayVersion,
+            cdnPayVersion: config.cdnPayVersion,
             envType: config.envType,
             cdnThirdParty: config.cdnThirdParty
         };
@@ -233,6 +234,9 @@ async function buildJS(config) {
 async function run() {
     let config = initEnv();
     config.buildVersion = +new Date();
+    // Temp: give a fixed version until need to update.
+    config.cdnPayVersion = '20200710';
+    config.mainSiteCDNPayVersion = '20200710';
 
     // await clean(config);
 

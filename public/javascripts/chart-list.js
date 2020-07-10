@@ -190,8 +190,9 @@ $(document).ready(function() {
             var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
 
             // load chart image
-            var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg" data-original="' + CDN_PAY_ROOT_PATH + '/' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
-                + exampleItem.id + '.jpg" />');
+            var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg?_v_=' + CDN_PAY_VERSION
+                + '" data-original="' + CDN_PAY_ROOT_PATH + '/' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
+                + exampleItem.id + '.jpg?_v_=' + CDN_PAY_VERSION + '" />');
             $link.append($chartArea);
         }
     }

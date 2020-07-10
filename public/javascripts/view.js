@@ -128,7 +128,7 @@
         enableMask();
     }
     if (configs.c) {
-        $.ajax(window.CDN_PAY_ROOT_PATH + '/data/' + configs.c + '.js', {
+        $.ajax(window.CDN_PAY_ROOT_PATH + '/data/' + configs.c + '.js?_v_=' + CDN_PAY_VERSION, {
             dataType: 'text',
             success: function (data) {
                 run(data);
