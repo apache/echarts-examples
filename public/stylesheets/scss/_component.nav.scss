@@ -45,10 +45,11 @@ $nav-height: 51px;
             .iconfont {
                 font-size: 12px;
             }
+
             .new {
                 display: inline-block;
                 padding: 2px 5px;
-                background-color: #a9334c;
+                background-color: $clr-secondary;
                 color: #fff;
                 font-size: 12px;
                 border-radius: 3px;
@@ -61,7 +62,7 @@ $nav-height: 51px;
             &>a {
                 &:focus, &:hover {
                     color: $clr-lighter;
-                    background-color: $clr-primary-dark;
+                    background-color: $clr-primary-dark;;
                 }
             }
         }
@@ -141,6 +142,10 @@ $nav-height: 51px;
     }
 }
 
+.container-fluid {
+    padding-left: 25px;
+}
+
 
 #menu-btn {
     display: none;
@@ -154,7 +159,14 @@ $nav-height: 51px;
 }
 
 .navbar-bg {
-    background-color: rgba(41, 60, 85, 0.4);
+    background-color: rgba(41, 60, 85, 0.3);
+    transition-duration: 0.3s;
+    transition-property: background-color, opacity;
+
+    &:hover {
+        background-color: rgba(41, 60, 85, 0.8);
+    }
+
     .navbar-nav {
         li {
             a {
@@ -167,23 +179,28 @@ $nav-height: 51px;
                 background-color: transparent;
             }
         }
-        #nav-github {
+        #nav-apache {
             opacity: 1;
         }
     }
 }
 
-#nav-github {
-    opacity: 0.4;
-    transition: 0.5s;
-
-    img {
-        position: relative;
-        top: -1px;
-    }
+#nav-apache {
+    margin-left: 10px;
+    margin-right: 10px;
+    opacity: 0.6;
 
     &:hover {
         opacity: 1;
+    }
+
+    a {
+        padding: 10px 15px;
+
+        img {
+            width: 127px;
+            height: 30px;
+        }
     }
 }
 
