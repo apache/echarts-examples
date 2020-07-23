@@ -99,7 +99,7 @@ if (params.theme === 'dark') {
 $('#theme a').popover({
     html: true,
     content: function () {
-        var theme = $(this).data('original-title').trim();
+        var theme = $(this).data('theme');
         return '<div class="theme-palette ' + theme + '">'
             + COLORS[theme].map(function (color) {
                 return '<span style="background-color:' + color + '"></span>'
