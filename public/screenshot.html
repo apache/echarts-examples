@@ -6,21 +6,25 @@
     <script type="text/javascript" src="./vendors/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="./vendors/lodash.js"></script>
     <script type="text/javascript" src="./vendors/dat.gui.min.js"></script>
-    <script type="text/javascript" src="./vendors/echarts/echarts.js?_v_=1510583857922"></script>
-    <script type="text/javascript" src="./vendors/echarts-gl/echarts-gl.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.1/dist/echarts.min.js"></script>
     <script type="text/javascript" src="./vendors/echarts-stat/ecStat.min.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="./vendors/echarts/map/js/china.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="./vendors/echarts/map/js/world.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="./vendors/echarts/extension/dataTool.js?_v_=1510583857922"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"></script>
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"></script> -->
     <script type="text/javascript" src="./vendors/echarts/extension/bmap.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="../tool/seedrandom.js"></script>
     <style>
-        html, body, #viewport {
+        html, body {
             margin: 0;
-            height: 100%;
-            width: 100%;
             overflow: hidden;
+        }
+        #viewport {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
         }
     </style>
 </head>
@@ -41,6 +45,31 @@
     Math.random = function () {
         return myrng();
     };
+
+    $.getJSON = function (url, cb) {
+        const deferred = $.Deferred();
+        readLocalFile(url).then(data => {
+            data = JSON.parse(data);
+            cb && cb(data);
+
+            deferred.resolve([data]);
+        });
+        return deferred;
+    }
+
+    $.get = function (url, cb) {
+        const deferred = $.Deferred();
+        readLocalFile(url).then(data => {
+            try {
+                data = JSON.parse(data);
+            }
+            catch(e) {}
+
+            cb(data);
+            deferred.resolve([data]);
+        });
+        return deferred;
+    }
 
     if (params.c) {
         if (!window.ROOT_PATH) {
@@ -71,7 +100,6 @@
                 }
                 option.animation = false;
                 option.textStyle = {
-                    fontFamily: 'noto-thin',
                     fontSize: 14
                 };
                 myChart.setOption(option);
