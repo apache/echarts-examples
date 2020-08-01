@@ -1,6 +1,7 @@
 #explore-container {
     margin-left: $chart-nav-width;
     padding: $nav-height $pd-lg;
+    background-color: $clr-bg;
 }
 
 @media (max-width: 768px) {

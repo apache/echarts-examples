@@ -36,12 +36,15 @@ $control-panel-height: 50px;
     #chart-panel {
         position: absolute;
         // top: $control-panel-height;
-        top: 0;
-        right: 0;
-        bottom: 50px;
-        left: 0;
-        padding: 10px;
+        top: 15px;
+        right: 15px;
+        bottom: 60px;
+        left: 15px;
         box-sizing: border-box;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+        border-radius: 5px;
+        background: #fff;
+        overflow: hidden;
     }
 
 #tool-panel {

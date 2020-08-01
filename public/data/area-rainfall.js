@@ -127,7 +127,6 @@ option = {
         {
             name: '流量',
             type: 'line',
-            animation: false,
             areaStyle: {},
             lineStyle: {
                 width: 1
@@ -137,6 +136,9 @@ option = {
             },
             markArea: {
                 silent: true,
+                itemStyle: {
+                    opacity: 0.3
+                },
                 data: [[{
                     xAxis: '2009/9/12\n7:00'
                 }, {
@@ -151,7 +153,6 @@ option = {
             name: '降雨量',
             type: 'line',
             yAxisIndex: 1,
-            animation: false,
             areaStyle: {},
             lineStyle: {
                 width: 1
@@ -161,6 +162,9 @@ option = {
             },
             markArea: {
                 silent: true,
+                itemStyle: {
+                    opacity: 0.3
+                },
                 data: [
                     [{
                         xAxis: '2009/9/10\n7:00'
