@@ -13,19 +13,28 @@ option = {
         data: [1, 2, 3, 4],
         coordinateSystem: 'polar',
         name: 'A',
-        stack: 'a'
+        stack: 'a',
+        emphasis: {
+            focus: 'series'
+        }
     }, {
         type: 'bar',
         data: [2, 4, 6, 8],
         coordinateSystem: 'polar',
         name: 'B',
-        stack: 'a'
+        stack: 'a',
+        emphasis: {
+            focus: 'series'
+        }
     }, {
         type: 'bar',
         data: [1, 2, 3, 4],
         coordinateSystem: 'polar',
         name: 'C',
-        stack: 'a'
+        stack: 'a',
+        emphasis: {
+            focus: 'series'
+        }
     }],
     legend: {
         show: true,

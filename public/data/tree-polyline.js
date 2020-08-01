@@ -161,6 +161,10 @@ var option = {
                 }
             },
 
+            emphasis: {
+                focus: 'descendant'
+            },
+
             expandAndCollapse: true,
             animationDuration: 550,
             animationDurationUpdate: 750

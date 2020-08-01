@@ -11,11 +11,7 @@ $.get(ROOT_PATH + '/data/asset/data/aqi-beijing.json', function (data) {
                 return item[0];
             })
         },
-        yAxis: {
-            splitLine: {
-                show: false
-            }
-        },
+        yAxis: {},
         toolbox: {
             left: 'center',
             feature: {

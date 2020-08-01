@@ -84,7 +84,6 @@ var labelOption = {
 };
 
 option = {
-    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -125,24 +124,36 @@ option = {
             type: 'bar',
             barGap: 0,
             label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
             data: [320, 332, 301, 334, 390]
         },
         {
             name: 'Steppe',
             type: 'bar',
             label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
             data: [220, 182, 191, 234, 290]
         },
         {
             name: 'Desert',
             type: 'bar',
             label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
             data: [150, 232, 201, 154, 190]
         },
         {
             name: 'Wetland',
             type: 'bar',
             label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
             data: [98, 77, 101, 99, 40]
         }
     ]

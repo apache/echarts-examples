@@ -132,6 +132,9 @@ option = {
             lineStyle: {
                 width: 1
             },
+            emphasis: {
+                focus: 'series'
+            },
             markArea: {
                 silent: true,
                 data: [[{
@@ -152,6 +155,9 @@ option = {
             areaStyle: {},
             lineStyle: {
                 width: 1
+            },
+            emphasis: {
+                focus: 'series'
             },
             markArea: {
                 silent: true,

@@ -39,6 +39,10 @@ $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
                     }
                 },
 
+                emphasis: {
+                    focus: 'descendant'
+                },
+
                 expandAndCollapse: true,
                 animationDuration: 550,
                 animationDurationUpdate: 750

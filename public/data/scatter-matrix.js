@@ -220,7 +220,7 @@ var option = {
         top: 0,
         left: 'center',
         inRange: {
-            color: ['#c23531','#2f4554', '#61a0a8']
+            color: ['#51689b', '#ce5c5c', '#fbc357']
         },
         outOfRange: {
             color: '#ddd'

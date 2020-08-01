@@ -15,7 +15,9 @@ $.get(ROOT_PATH + '/data/asset/data/product.json', function (data) {
                 type: 'sankey',
                 data: data.nodes,
                 links: data.links,
-                focusNodeAdjacency: true,
+                emphasis: {
+                    focus: 'adjacency'
+                },
                 levels: [{
                     depth: 0,
                     itemStyle: {

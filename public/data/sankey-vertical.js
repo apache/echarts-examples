@@ -11,7 +11,9 @@ option = {
         {
             type: 'sankey',
             bottom: '10%',
-            focusNodeAdjacency: 'allEdges',
+            emphasis: {
+                focus: 'adjacency'
+            },
             data: [
                 {name: 'a'},
                 {name: 'b'},

@@ -39,6 +39,9 @@ option = {
         name: 'bar',
         type: 'bar',
         data: data1,
+        emphasis: {
+            focus: 'series'
+        },
         animationDelay: function (idx) {
             return idx * 10;
         }
@@ -46,6 +49,9 @@ option = {
         name: 'bar2',
         type: 'bar',
         data: data2,
+        emphasis: {
+            focus: 'series'
+        },
         animationDelay: function (idx) {
             return idx * 10 + 100;
         }

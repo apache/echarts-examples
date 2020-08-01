@@ -45,9 +45,7 @@ option = {
         gridIndex: 1
     }],
     yAxis: [{
-        splitLine: {show: false}
     }, {
-        splitLine: {show: false},
         gridIndex: 1
     }],
     grid: [{

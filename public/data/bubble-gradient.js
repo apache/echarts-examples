@@ -41,6 +41,7 @@ option = {
             return Math.sqrt(data[2]) / 5e2;
         },
         emphasis: {
+            focus: 'series',
             label: {
                 show: true,
                 formatter: function (param) {
@@ -69,6 +70,7 @@ option = {
             return Math.sqrt(data[2]) / 5e2;
         },
         emphasis: {
+            focus: 'series',
             label: {
                 show: true,
                 formatter: function (param) {

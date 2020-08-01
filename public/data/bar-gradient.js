@@ -47,18 +47,9 @@ option = {
         }
     ],
     series: [
-        { // For shadow
-            type: 'bar',
-            itemStyle: {
-                color: 'rgba(0,0,0,0.05)'
-            },
-            barGap: '-100%',
-            barCategoryGap: '40%',
-            data: dataShadow,
-            animation: false
-        },
         {
             type: 'bar',
+            showBackground: true,
             itemStyle: {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,

@@ -152,7 +152,9 @@ option = {
         radius: ['15%', '80%'],
         type: 'sunburst',
         sort: null,
-        highlightPolicy: 'ancestor',
+        emphasis: {
+            focus: 'ancestor'
+        },
         data: data,
         label: {
             rotate: 'radial'

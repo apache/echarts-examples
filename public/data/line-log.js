@@ -26,9 +26,6 @@ option = {
     yAxis: {
         type: 'log',
         name: 'y',
-        minorTick: {
-            show: true
-        },
         minorSplitLine: {
             show: true
         }

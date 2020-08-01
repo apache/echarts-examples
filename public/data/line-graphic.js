@@ -15,9 +15,6 @@ option = {
     },
     xAxis: {
         type: 'value',
-        splitLine: {
-            show: false
-        },
         axisLabel: {
             formatter: '{value} °C'
         }

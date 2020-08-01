@@ -58,7 +58,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
     var data = splitData(rawData);
 
     myChart.setOption(option = {
-        backgroundColor: '#eee',
         animation: false,
         legend: {
             bottom: 10,
@@ -70,25 +69,14 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
             axisPointer: {
                 type: 'cross'
             },
-            backgroundColor: 'rgba(245, 245, 245, 0.8)',
-            borderWidth: 1,
-            borderColor: '#ccc',
-            padding: 10,
-            textStyle: {
-                color: '#000'
-            },
             position: function (pos, params, el, elRect, size) {
                 var obj = {top: 10};
                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
                 return obj;
-            },
-            extraCssText: 'width: 170px'
+            }
         },
         axisPointer: {
-            link: {xAxisIndex: 'all'},
-            label: {
-                backgroundColor: '#777'
-            }
+            link: {xAxisIndex: 'all'}
         },
         toolbox: {
             feature: {

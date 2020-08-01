@@ -20,15 +20,16 @@ setTimeout(function () {
         yAxis: {gridIndex: 0},
         grid: {top: '55%'},
         series: [
-            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
             {
                 type: 'pie',
                 id: 'pie',
                 radius: '30%',
                 center: ['50%', '25%'],
+                emphasis: {focus: 'data'},
                 label: {
                     formatter: '{b}: {@2012} ({d}%)'
                 },

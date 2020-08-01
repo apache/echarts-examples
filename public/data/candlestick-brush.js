@@ -52,7 +52,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
             axisPointer: {
                 type: 'cross'
             },
-            backgroundColor: 'rgba(245, 245, 245, 0.8)',
             borderWidth: 1,
             borderColor: '#ccc',
             padding: 10,

@@ -37,7 +37,9 @@ $.getJSON(ROOT_PATH + '/data/asset/data/npmdepgraph.min10.json', function (json)
                     }
                 },
                 roam: true,
-                focusNodeAdjacency: true,
+                emphasis: {
+                    focus: 'adjacency'
+                },
                 lineStyle: {
                     width: 0.5,
                     curveness: 0.3,

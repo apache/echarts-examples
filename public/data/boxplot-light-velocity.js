@@ -17,7 +17,9 @@ option = {
             borderColor: '#999',
             borderWidth: 1,
             textStyle: {
-                fontSize: 14
+                fontWeight: 'normal',
+                fontSize: 14,
+                lineHeight: 20
             },
             left: '10%',
             top: '90%'

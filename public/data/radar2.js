@@ -6,8 +6,7 @@ option = {
         left: 10
     },
     tooltip: {
-        trigger: 'item',
-        backgroundColor: 'rgba(0,0,250,0.2)'
+        trigger: 'item'
     },
     legend: {
         type: 'scroll',

@@ -675,10 +675,15 @@ option = {
     },
     series: {
         type: 'sunburst',
-        highlightPolicy: 'ancestor',
+
         data: data,
         radius: [0, '95%'],
         sort: null,
+
+        emphasis: {
+            focus: 'ancestor'
+        },
+
         levels: [{}, {
             r0: '15%',
             r: '35%',

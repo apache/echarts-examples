@@ -2,7 +2,9 @@ option = {
     series: {
         type: 'sankey',
         layout: 'none',
-        focusNodeAdjacency: 'allEdges',
+        emphasis: {
+            focus: 'adjacency'
+        },
         data: [{
             name: 'a'
         }, {

@@ -15,7 +15,9 @@ $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
                 type: 'sankey',
                 data: data.nodes,
                 links: data.links,
-                focusNodeAdjacency: 'allEdges',
+                emphasis: {
+                    focus: 'adjacency'
+                },
                 itemStyle: {
                     borderWidth: 1,
                     borderColor: '#aaa'

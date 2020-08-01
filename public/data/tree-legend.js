@@ -204,6 +204,10 @@ myChart.setOption(option = {
                 }
             },
 
+            emphasis: {
+                focus: 'descendant'
+            },
+
             expandAndCollapse: true,
 
             animationDuration: 550,
@@ -237,6 +241,10 @@ myChart.setOption(option = {
             },
 
             expandAndCollapse: true,
+
+            emphasis: {
+                focus: 'descendant'
+            },
 
             animationDuration: 550,
             animationDurationUpdate: 750

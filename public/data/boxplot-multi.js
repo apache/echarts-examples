@@ -67,7 +67,6 @@ option = {
         },
         {
             show: true,
-            height: 20,
             type: 'slider',
             top: '90%',
             xAxisIndex: [0],

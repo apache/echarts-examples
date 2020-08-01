@@ -48,9 +48,6 @@ $.get(ROOT_PATH + '/data/asset/data/confidence-band.json', function (data) {
                     return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
                 }
             },
-            splitLine: {
-                show: false
-            },
             boundaryGap: false
         },
         yAxis: {
@@ -66,10 +63,7 @@ $.get(ROOT_PATH + '/data/asset/data/confidence-band.json', function (data) {
                     }
                 }
             },
-            splitNumber: 3,
-            splitLine: {
-                show: false
-            }
+            splitNumber: 3
         },
         series: [{
             name: 'L',

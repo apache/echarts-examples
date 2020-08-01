@@ -5,11 +5,7 @@ $.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
     myChart.hideLoading();
 
     var itemStyle = {
-        opacity: 0.8,
-        shadowBlur: 10,
-        shadowOffsetX: 0,
-        shadowOffsetY: 0,
-        shadowColor: 'rgba(0, 0, 0, 0.5)'
+        opacity: 0.8
     };
 
     var sizeFunction = function (x) {
@@ -38,59 +34,35 @@ $.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
                 bottom: 20,
                 width: 55,
                 height: null,
-                label: {
-                    color: '#999'
-                },
                 symbol: 'none',
-                lineStyle: {
-                    color: '#555'
-                },
                 checkpointStyle: {
-                    color: '#bbb',
-                    borderColor: '#777',
                     borderWidth: 2
                 },
                 controlStyle: {
                     showNextBtn: false,
-                    showPrevBtn: false,
-                    color: '#666',
-                    borderColor: '#666'
-                },
-                emphasis: {
-                    label: {
-                        color: '#fff'
-                    },
-                    controlStyle: {
-                        color: '#aaa',
-                        borderColor: '#aaa'
-                    }
+                    showPrevBtn: false
                 },
                 data: []
             },
-            backgroundColor: '#404a59',
             title: [{
                 text: data.timeline[0],
                 textAlign: 'center',
                 left: '63%',
                 top: '55%',
                 textStyle: {
-                    fontSize: 100,
-                    color: 'rgba(255, 255, 255, 0.7)'
+                    fontSize: 100
                 }
             }, {
                 text: '各国人均寿命与GDP关系演变',
                 left: 'center',
                 top: 10,
                 textStyle: {
-                    color: '#aaa',
                     fontWeight: 'normal',
                     fontSize: 20
                 }
             }],
             tooltip: {
                 padding: 5,
-                backgroundColor: '#222',
-                borderColor: '#777',
                 borderWidth: 1,
                 formatter: function (obj) {
                     var value = obj.value;
@@ -119,11 +91,6 @@ $.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
                 splitLine: {
                     show: false
                 },
-                axisLine: {
-                    lineStyle: {
-                        color: '#ccc'
-                    }
-                },
                 axisLabel: {
                     formatter: '{value} $'
                 }
@@ -133,13 +100,7 @@ $.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
                 name: '平均寿命',
                 max: 100,
                 nameTextStyle: {
-                    color: '#ccc',
                     fontSize: 18
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: '#ccc'
-                    }
                 },
                 splitLine: {
                     show: false
@@ -153,15 +114,9 @@ $.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
                     show: false,
                     dimension: 3,
                     categories: data.counties,
-                    calculable: true,
-                    precision: 0.1,
-                    textGap: 30,
-                    textStyle: {
-                        color: '#ccc'
-                    },
                     inRange: {
                         color: (function () {
-                            var colors = ['#bcd3bb', '#e88f70', '#edc1a5', '#9dc5c8', '#e1e8c8', '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8', '#bda29a'];
+                            var colors = ['#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090', '#91c4c5', '#6890ba'];
                             return colors.concat(colors);
                         })()
                     }

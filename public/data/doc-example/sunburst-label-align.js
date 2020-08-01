@@ -22,7 +22,9 @@ option = {
         radius: ['20%', '90%'],
         type: 'sunburst',
         sort: null,
-        highlightPolicy: 'none',
+        emphasis: {
+            focus: 'none'
+        },
         data: data,
         label: {
             fontSize: 14

@@ -528,9 +528,6 @@ option = {
                 position: 'right',
                 show: false
             },
-            itemStyle: {
-                color: 'purple'
-            },
             emphasis: {
                 label: {
                     show: true
@@ -561,7 +558,6 @@ option = {
                 show: true
             },
             itemStyle: {
-                color: 'purple',
                 shadowBlur: 10,
                 shadowColor: '#333'
             },

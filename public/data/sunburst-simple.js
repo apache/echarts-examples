@@ -45,7 +45,9 @@ var data = [{
 option = {
     series: {
         type: 'sunburst',
-        // highlightPolicy: 'ancestor',
+        // emphasis: {
+        //     focus: 'ancestor'
+        // },
         data: data,
         radius: [0, '90%'],
         label: {

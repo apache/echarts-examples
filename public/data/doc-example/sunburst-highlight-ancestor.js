@@ -5,7 +5,9 @@ option = {
         center: ['50%', '60%'],
         type: 'sunburst',
         sort: null,
-        highlightPolicy: 'ancestor',
+        emphasis: {
+            focus: 'ancestor'
+        },
         data: [{
             value: 10,
             children: [{

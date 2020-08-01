@@ -13,12 +13,6 @@ $.get(ROOT_PATH + '/data/asset/data/masterPainterColorChoice.json', function (js
             subtext: 'Data From Plot.ly',
             left: 'right'
         },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross'
-            }
-        },
         xAxis: {
             type: 'value',
             splitLine: {
