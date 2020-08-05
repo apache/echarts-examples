@@ -24,16 +24,8 @@ option = {
         minorTick: {
             show: true
         },
-        splitLine: {
-            lineStyle: {
-                color: '#999'
-            }
-        },
         minorSplitLine: {
-            show: true,
-            lineStyle: {
-                color: '#ddd'
-            }
+            show: true
         }
     },
     yAxis: {
@@ -43,16 +35,8 @@ option = {
         minorTick: {
             show: true
         },
-        splitLine: {
-            lineStyle: {
-                color: '#999'
-            }
-        },
         minorSplitLine: {
-            show: true,
-            lineStyle: {
-                color: '#ddd'
-            }
+            show: true
         }
     },
     dataZoom: [{

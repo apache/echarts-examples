@@ -15,3 +15,15 @@ Git clone [echarts-www](https://github.com/ecomfe/echarts-www) and put it on the
 ```shell
 npm run dev
 ```
+
+## Update example snapshots
+
+```shell
+node tool/build-example.js
+```
+
+Only for default theme
+
+```shell
+node tool/build-example.js -t default
+```

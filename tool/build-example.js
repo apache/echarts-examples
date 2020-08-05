@@ -6,7 +6,8 @@ var marked = require('marked');
 var fm = require('front-matter');
 var puppeteer = require('puppeteer');
 var argparse = require('argparse');
-var minimatch = require('minimatch')
+var minimatch = require('minimatch');
+const { example } = require('yargs');
 
 var parser = new argparse.ArgumentParser({
     addHelp: true
@@ -158,6 +159,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
             buckets.push(bucket);
         }
 
+
         for (let theme of themeList) {
             for (let bucket of buckets) {
                 const promises = [];
@@ -194,13 +196,15 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                         var category = fmResult.attributes.category.split(',').map(name => {
                             return name.trim();
                         });
-                        exampleList.push({
-                            category: category,
-                            id: basename,
-                            theme: fmResult.attributes.theme,
-                            title: fmResult.attributes.title,
-                            difficulty: +difficulty
-                        });
+                        if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
+                            exampleList.push({
+                                category: category,
+                                id: basename,
+                                theme: fmResult.attributes.theme,
+                                title: fmResult.attributes.title,
+                                difficulty: +difficulty
+                            });
+                        }
                     }
                     catch (e) {
                         throw new Error(e.toString());
