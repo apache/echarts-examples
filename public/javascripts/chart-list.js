@@ -200,7 +200,7 @@ $(document).ready(function() {
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
             var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
-            var ext = canUseWebP ? 'webp' : 'png';
+            var ext = isGL ? 'jpg' : canUseWebP ? 'webp' : 'png';
 
             // load chart image
             var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg?_v_=' + CDN_PAY_VERSION
