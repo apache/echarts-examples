@@ -7,7 +7,7 @@ module.exports = {
         bootstrapJS: 'https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js',
         lodash: 'https://cdn.jsdelivr.net/npm/lodash@3.10.1/index.min.js',
         echartsMinJS: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.1/dist/echarts.min.js',
-        echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.1/',
+        echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.1',
         echartsStatMinJS: 'https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js',
         echartsGLMinJS: 'https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js',
         datGUIMinJS: 'https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js',

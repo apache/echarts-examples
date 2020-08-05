@@ -9,6 +9,7 @@
     "argparse": "^1.0.9",
     "autoprefixer": "^9.7.3",
     "chalk": "^3.0.0",
+    "cwebp-bin": "^6.1.1",
     "etpl": "^3.2.0",
     "front-matter": "^2.3.0",
     "fs-extra": "^8.1.0",

@@ -1,15 +1,17 @@
-var fs = require('fs');
-var etpl = require('etpl');
-var glob = require('glob');
-var path = require('path');
-var marked = require('marked');
-var fm = require('front-matter');
-var puppeteer = require('puppeteer');
-var argparse = require('argparse');
-var minimatch = require('minimatch');
-const { example } = require('yargs');
+const fs = require('fs');
+const etpl = require('etpl');
+const glob = require('glob');
+const path = require('path');
+const marked = require('marked');
+const fm = require('front-matter');
+const puppeteer = require('puppeteer');
+const argparse = require('argparse');
+const minimatch = require('minimatch');
+const {execFile} = require('child_process');
+const cwebpBin = require('cwebp-bin');
+const util = require('util');
 
-var parser = new argparse.ArgumentParser({
+const parser = new argparse.ArgumentParser({
     addHelp: true
 });
 parser.addArgument(['-s', '--source'], {
@@ -26,16 +28,16 @@ parser.addArgument(['--no-thumb'], {
     action: 'storeTrue'
 });
 
-var args = parser.parseArgs();
-var sourceFolder = args.source || 'data';
-var themeList = args.theme || 'default,light,dark';
-var matchPattern = args.pattern;
+const args = parser.parseArgs();
+const sourceFolder = args.source || 'data';
+let themeList = args.theme || 'default,light,dark';
+let matchPattern = args.pattern;
 if (matchPattern) {
     matchPattern = matchPattern.split(',');
 }
 themeList = themeList.split(',');
 
-var tpl = fs.readFileSync(path.join(__dirname, '../public/javascripts/chart-list.tpl.js'), 'utf-8');
+const tpl = fs.readFileSync(path.join(__dirname, '../public/javascripts/chart-list.tpl.js'), 'utf-8');
 
 etpl.config({
     commandOpen: '/**',
@@ -46,17 +48,21 @@ function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-var BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
-// var BASE_PATH = 'http://localhost:8000/echarts/echarts-examples';
-// var BASE_PATH = 'http://localhost/echarts-examples-next/';
-// var SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
-var BASE_PATH = 'file://' + __dirname;
-var SCREENSHOT_PAGE_URL = path.join(BASE_PATH, `../public/screenshot.html`);
+const BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
+// const BASE_PATH = 'http://localhost:8000/echarts/echarts-examples';
+// const BASE_PATH = 'http://localhost/echarts-examples-next/';
+// const SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
+const BASE_PATH = 'file://' + __dirname;
+const SCREENSHOT_PAGE_URL = path.join(BASE_PATH, `../public/screenshot.html`);
 
+
+async function convertToWebP(filePath) {
+    return util.promisify(execFile)(cwebpBin, [filePath, '-o', filePath.replace(/\.png$/, '.webp')]);
+}
 
 async function takeScreenshot(browser, theme, rootDir, basename) {
-    var thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
-    var page = await browser.newPage();
+    const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
+    const page = await browser.newPage();
     page.exposeFunction('readLocalFile', async (filePath) => {
         filePath = filePath.replace(/^file:\/*?/, '');
         return new Promise((resolve, reject) => {
@@ -76,15 +82,15 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
         // width: 700,
         // height: 525
     });
-    var url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
+    const url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
     const resourceRootPath = path.join(BASE_PATH, '../public/');
     // console.log(url);
     await page.evaluateOnNewDocument(function (resourceRootPath) {
         window.ROOT_PATH = resourceRootPath;
     }, resourceRootPath);
     // page.on('console', msg => {
-    //     var args = msg.args();
-    //     var msg = ['[pageconsole]'].concat(args.map(v => v + ''));
+    //     const args = msg.args();
+    //     const msg = ['[pageconsole]'].concat(args.map(v => v + ''));
     //     console.log.apply(console, msg);
     // });
     page.on('pageerror', function (err) {
@@ -95,14 +101,16 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
     console.log(`Generating ${theme} thumbs.....${basename}`);
     // https://stackoverflow.com/questions/46160929/puppeteer-wait-for-all-images-to-load-then-take-screenshot
     try {
-        await page.goto(url, {'waitUntil' : 'networkidle0'});
+        await page.goto(url, {waitUntil: 'networkidle0'});
         await waitTime(200);
-        console.log(`${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.jpg`);
+        const filePath = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.png`;
+        console.log(filePath);
         await page.screenshot({
-            path: `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.jpg`,
-            type: 'jpeg',
-            quality: 80
+            path: filePath,
+            type: 'png',
+            // quality: 80
         });
+        await convertToWebP(filePath);
     }
     catch (e) {
         console.error(url);
@@ -112,38 +120,43 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 }
 
 (async () => {
+    const rootDir = path.join(__dirname, '../');
+
+    // await compress(`${rootDir}public/${sourceFolder}/thumb`);
+    // return;
+
+    let browser;
     // https://github.com/GoogleChrome/puppeteer/issues/1260
     if (BUILD_THUMBS) {
-        var browser = await puppeteer.launch({
+        browser = await puppeteer.launch({
             headless: false,
             args: [
               '--headless',
               '--hide-scrollbars',
               '--mute-audio',
-		      "--allow-file-access-from-files"
+		      '--allow-file-access-from-files'
             ]
         });
     }
 
     // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
-    var screenshotBlackList = [];
+    const screenshotBlackList = [];
 
-    var rootDir = path.join(__dirname, '../');
 
     glob(`${rootDir}public/${sourceFolder}/*.js`, async function (err, files) {
 
-        var exampleList = [];
+        const exampleList = [];
 
         const threadNum = 16;
         let buckets = [];
-        for (var i = 0; i < files.length;) {
+        for (let i = 0; i < files.length;) {
             const bucket = [];
             for (let k = 0; k < threadNum; k++) {
                 const fileName = files[i++];
                 if (!fileName) {
                     continue;
                 }
-                var basename = path.basename(fileName, '.js');
+                const basename = path.basename(fileName, '.js');
 
                 if (BUILD_THUMBS
                     && screenshotBlackList.indexOf(basename) < 0
@@ -164,7 +177,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
             for (let bucket of buckets) {
                 const promises = [];
 
-                for (var {basename} of bucket) {
+                for (const {basename} of bucket) {
 
                     // Remove mapbox temporary
                     if (basename.indexOf('mapbox') >= 0
@@ -176,24 +189,25 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                         continue;
                     }
 
+                    let fmResult;
                     try {
-                        var mdText = fs.readFileSync(`${rootDir}public/${sourceFolder}/meta/${basename}.md`, 'utf-8');
-                        var fmResult = fm(mdText);
+                        const mdText = fs.readFileSync(`${rootDir}public/${sourceFolder}/meta/${basename}.md`, 'utf-8');
+                        fmResult = fm(mdText);
                     }
                     catch (e) {
-                        var fmResult = {
+                        fmResult = {
                             attributes: {}
                         };
                     }
 
-                    // var descHTML = marked(fmResult.body);
+                    // const descHTML = marked(fmResult.body);
 
                     // Do screenshot
                     promises.push(takeScreenshot(browser, theme, rootDir, basename));
 
                     try {
-                        var difficulty = fmResult.attributes.difficulty != null ? fmResult.attributes.difficulty : 10;
-                        var category = fmResult.attributes.category.split(',').map(name => {
+                        const difficulty = fmResult.attributes.difficulty != null ? fmResult.attributes.difficulty : 10;
+                        const category = fmResult.attributes.category.split(',').map(name => {
                             return name.trim();
                         });
                         if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
@@ -227,7 +241,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
             return a.difficulty - b.difficulty;
         });
 
-        var code = 'var EXAMPLES' + (sourceFolder === 'data' ? ' = ' : '_GL = ') + JSON.stringify(exampleList, null, 2);
+        const code = 'var EXAMPLES' + (sourceFolder === 'data' ? ' = ' : '_GL = ') + JSON.stringify(exampleList, null, 2);
         fs.writeFileSync(path.join(__dirname, `../public/javascripts/chart-list-${sourceFolder}.js`), code, 'utf-8');
     });
 })();
