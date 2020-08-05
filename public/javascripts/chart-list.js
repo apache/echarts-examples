@@ -1,6 +1,18 @@
 var lang = window.EC_DEMO_LANG;
 var isCN = lang !== 'en';
 
+var canUseWebP = (function () {
+    var elem = document.createElement('canvas');
+    elem.width = elem.height = 1;
+    if (!!(elem.getContext && elem.getContext('2d'))) {
+        // was able or not to get WebP representation
+        return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    }
+    // very old browser like IE 8, canvas not supported
+    return false;
+})();
+
+
 var CHART_TYPES = {
     line: ['折线图', 'Line'],
     bar: ['柱状图', 'Bar'],
@@ -188,11 +200,12 @@ $(document).ready(function() {
             $link.append('<h4 class="chart-title">' + title + '</h4>');
 
             var themePostfix = (isGL || !params.theme) ? '' : ('-' + params.theme);
+            var ext = canUseWebP ? 'webp' : 'png';
 
             // load chart image
             var $chartArea = $('<img class="chart-area" src="../images/placeholder.jpg?_v_=' + CDN_PAY_VERSION
                 + '" data-original="' + CDN_PAY_ROOT_PATH + '/' + (isGL ? 'data-gl' : 'data') + '/thumb' + themePostfix + '/'
-                + exampleItem.id + '.jpg?_v_=' + CDN_PAY_VERSION + '" />');
+                + exampleItem.id + '.' + ext + '?_v_=' + CDN_PAY_VERSION + '" />');
             $link.append($chartArea);
         }
     }
