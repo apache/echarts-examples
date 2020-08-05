@@ -45,7 +45,6 @@ option = {
         radius: '25%',
         center: ['50%', '50%'],
         data: data,
-        animation: false,
         label: {
             position: 'outer',
             alignTo: 'none',
@@ -60,7 +59,6 @@ option = {
         radius: '25%',
         center: ['50%', '50%'],
         data: data,
-        animation: false,
         label: {
             position: 'outer',
             alignTo: 'labelLine',
@@ -75,7 +73,6 @@ option = {
         radius: '25%',
         center: ['50%', '50%'],
         data: data,
-        animation: false,
         label: {
             position: 'outer',
             alignTo: 'edge',

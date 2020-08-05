@@ -26,26 +26,30 @@ $control-panel-height: 50px;
 
     .right-panel {
         padding: $pd-basic;
-        padding-left: $handler-width + $pd-basic;
+
+        canvas {
+            border-radius: 5px;
+        }
     }
 }
-            #fork-btn, #reset-btn {
-                display: none;
-            }
 
-    #chart-panel {
-        position: absolute;
-        // top: $control-panel-height;
-        top: 15px;
-        right: 15px;
-        bottom: 60px;
-        left: 15px;
-        box-sizing: border-box;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
-        border-radius: 5px;
-        background: #fff;
-        overflow: hidden;
-    }
+#fork-btn, #reset-btn {
+    display: none;
+}
+
+#chart-panel {
+    position: absolute;
+    // top: $control-panel-height;
+    top: 15px;
+    right: 15px;
+    bottom: 60px;
+    left: 15px;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+    border-radius: 5px;
+    background: #fff;
+    overflow: hidden;
+}
 
 #tool-panel {
     position: absolute;
