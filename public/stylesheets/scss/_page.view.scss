@@ -4,6 +4,7 @@
     right: 0;
     top: 0;
     bottom: 0;
+    background-color: #fff;
 
     .control-panel {
         position: absolute;
@@ -11,16 +12,13 @@
         height: 30px;
         padding-right: 10px;
         width: 100%;
-        background: #F3F3F3;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
         .btn {
             float: right;
             margin: 3px 5px;
             padding: 3px 5px;
-            background: #337ab7;
             border: none;
-            color: white;
+            color: #333;
         }
         .btn:hover {
             // background-color: #3FA7DC;
