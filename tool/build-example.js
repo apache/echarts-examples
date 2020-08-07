@@ -30,7 +30,7 @@ parser.addArgument(['--no-thumb'], {
 
 const args = parser.parseArgs();
 const sourceFolder = args.source || 'data';
-let themeList = args.theme || 'default,light,dark';
+let themeList = args.theme || 'default,dark';
 let matchPattern = args.pattern;
 if (matchPattern) {
     matchPattern = matchPattern.split(',');

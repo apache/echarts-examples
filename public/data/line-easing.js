@@ -163,7 +163,6 @@ echarts.util.each(easingFuncs, function (easingFunc, name) {
     grids.push({
         show: true,
         borderWidth: 0,
-        backgroundColor: '#fff',
         shadowColor: 'rgba(0, 0, 0, 0.3)',
         shadowBlur: 2
     });

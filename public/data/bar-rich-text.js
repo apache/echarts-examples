@@ -7,9 +7,7 @@ var weatherIcons = {
 
 var seriesLabel = {
     normal: {
-        show: true,
-        textBorderColor: '#333',
-        textBorderWidth: 2
+        show: true
     }
 }
 

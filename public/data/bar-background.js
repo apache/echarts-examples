@@ -11,7 +11,7 @@ option = {
         type: 'bar',
         showBackground: true,
         backgroundStyle: {
-            color: 'rgba(220, 220, 220, 0.8)'
+            color: 'rgba(180, 180, 180, 0.2)'
         }
     }]
 };

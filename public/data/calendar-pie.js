@@ -90,7 +90,6 @@ option = {
                 },
                 offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
                 textStyle: {
-                    color: '#000',
                     fontSize: 14
                 }
             }

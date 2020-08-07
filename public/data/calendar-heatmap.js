@@ -26,10 +26,7 @@ option = {
         type: 'piecewise',
         orient: 'horizontal',
         left: 'center',
-        top: 65,
-        textStyle: {
-            color: '#000'
-        }
+        top: 65
     },
     calendar: {
         top: 120,

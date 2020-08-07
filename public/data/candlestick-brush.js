@@ -40,7 +40,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
     var data = splitData(rawData);
 
     myChart.setOption(option = {
-        backgroundColor: '#fff',
         animation: false,
         legend: {
             bottom: 10,
