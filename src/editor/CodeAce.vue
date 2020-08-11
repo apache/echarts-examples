@@ -6,12 +6,14 @@
 
 import {keywords, fullKeywordsList} from '../data/option-keywords';
 import {loadScriptsAsync} from '../common/helper';
+import {store} from '../common/store';
+import {SCRIPT_URLS} from '../common/config';
 
 function ensureACE() {
     if (typeof ace === 'undefined') {
         return loadScriptsAsync([
-            '//cdn.jsdelivr.net/npm/ace-builds@1.2.5/src-noconflict/ace.js',
-            '//cdn.jsdelivr.net/npm/ace-builds@1.2.5/src-noconflict/ext-language_tools.js'
+            SCRIPT_URLS.aceDir + '/ace.js',
+            SCRIPT_URLS.aceDir + '/ext-language_tools.js'
         ]).then(function () {
             const lnTools = ace.require('ace/ext/language_tools');
 
@@ -36,13 +38,17 @@ function ensureACE() {
 }
 
 export default {
-    props: ['code'],
+
+    data() {
+        return {
+            shared: store
+        }
+    },
 
     mounted() {
         ensureACE().then(() => {
-            const editor = ace.edit(this.$el, {
-                mode: 'ace/mode/javascript'
-            });
+            const editor = ace.edit(this.$el);
+            editor.getSession().setMode('ace/mode/javascript');
             editor.setOptions({
                 enableBasicAutocompletion: true,
                 enableSnippets: true,
@@ -51,27 +57,37 @@ export default {
 
             this._editor = editor;
 
-            editor.setValue(this.code || '');
-
             editor.on('change', () => {
-                this.$emit('change', editor.getValue());
+                store.code = editor.getValue();
             });
+
+            this.setCode(store.code);
         });
     },
 
-    watch: {
-        code(val) {
-            this._editor.setValue(val || '');
-
-            this._editor.selection.setSelectionRange({
-                start: {
-                    row:1,
-                    column: 4
-                }, end: {
-                    row:1,
-                    column: 4
+    methods: {
+        setCode(code) {
+            if (this._editor) {
+                const oldCode = this._editor.getValue();
+                if (oldCode !== code) {
+                    this._editor.setValue(code || '');
+                    this._editor.selection.setSelectionRange({
+                        start: {
+                            row:1,
+                            column: 4
+                        }, end: {
+                            row:1,
+                            column: 4
+                        }
+                    });
                 }
-            });
+            }
+        }
+    },
+
+    watch: {
+        "shared.code"(val) {
+            this.setCode(val);
         }
     }
 }

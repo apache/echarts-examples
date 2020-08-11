@@ -1,22 +1,24 @@
 <template>
 <div id="main-container">
-    <div id="code-container">
+    <div id="code-container" :style="{width: leftContainerSize + '%'}">
         <div id="control-panel">
-            <div id="code-info"></div>
+            <div id="code-info">
+                <template v-if="shared.editorStatus.message">
+                    <span class="code-info-time">{{currentTime}}</span>
+                    <span :class="'code-info-type-' + shared.editorStatus.type">{{shared.editorStatus.message}}</span>
+                </template>
+            </div>
             <div class="control-btn-panel">
                 <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
             </div>
         </div>
-        <CodeAce></CodeAce>
+        <CodeAce id="code-panel"></CodeAce>
     </div>
-    <div class="handler" id="h-handler"></div>
-    <div class="right-container">
-        <div class="right-panel" id="chart-panel"></div>
-        <div id="tool-panel">
-            <ToggleButton></ToggleButton>
-            <button id="download" class="btn btn-sm">Download</button>
-        </div>
-    </div>
+    <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
+    <Preview class="right-container" :style="{
+        width: (100 - leftContainerSize) + '%',
+        left: leftContainerSize + '%'
+    }"></Preview>
 </div>
 </template>
 
@@ -24,11 +26,72 @@
 
 import { ToggleButton } from 'vue-js-toggle-button';
 import CodeAce from './CodeAce.vue';
+import Preview from './Preview.vue';
+import {URL_PARAMS} from '../common/config';
+import {store} from '../common/store';
 
 export default {
     components: {
         ToggleButton,
-        CodeAce
+        CodeAce,
+        Preview
+    },
+
+    data() {
+        return {
+            mousedown: false,
+            leftContainerSize: 40,
+            shared: store
+        };
+    },
+
+    computed: {
+        currentTime() {
+            // Update time when message updated.
+            const message = this.shared.message;
+
+            const time = new Date();
+            const digits = [time.getHours(), time.getMinutes(), time.getSeconds()];
+            let timeStr = '';
+            for (let i = 0, len = digits.length; i < len; ++i) {
+                timeStr += (digits[i] < 10 ? '0' : '') + digits[i];
+                if (i < len - 1) {
+                    timeStr += ':';
+                }
+            }
+            return timeStr;
+        }
+    },
+
+    mounted() {
+        const dataRoot = URL_PARAMS.gl ? 'data-gl' : 'data';
+        $.ajax(`${store.cdnRoot}/${dataRoot}/${URL_PARAMS.c}.js?_v_${store.version}`, {
+            dataType: 'text',
+            success(data) {
+                store.code = data;
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (this.mousedown) {
+                let percentage = e.clientX / window.innerWidth;
+                percentage = Math.min(0.9, Math.max(0.1, percentage));
+                this.leftContainerSize = percentage * 100;
+            }
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            this.mousedown = false;
+        });
+    },
+
+    methods: {
+        onSplitterDragStart() {
+            this.mousedown = true;
+        },
+        disposeAndRun() {
+
+        }
     }
 }
 </script>
@@ -38,7 +101,7 @@ export default {
 @import '../style/color.scss';
 
 $code-info-height: 25px;
-$control-panel-height: 50px;
+$control-panel-height: 30px;
 $pd-basic: 10px;
 $handler-width: 5px;
 
@@ -169,23 +232,6 @@ $handler-width: 5px;
     }
 }
 
-.dg.main * {
-    box-sizing: content-box;
-}
-.dg.main input {
-    line-height: normal;
-}
-
-.dg.main.a {
-    overflow-x: visible;
-}
-
-.dg.main .c {
-    select {
-        color: #000;
-    }
-}
-
 .right-container {
     position: absolute;
     right: 0;
@@ -208,43 +254,5 @@ $handler-width: 5px;
     }
 }
 
-#fork-btn, #reset-btn {
-    display: none;
-}
-
-#chart-panel {
-    position: absolute;
-    // top: $control-panel-height;
-    top: 15px;
-    right: 15px;
-    bottom: 60px;
-    left: 15px;
-    box-sizing: border-box;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
-    border-radius: 5px;
-    background: #fff;
-    overflow: hidden;
-}
-
-#tool-panel {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    #theme {
-        margin-bottom: 10px;
-        float: right;
-
-        a {
-            cursor: pointer;
-        }
-    }
-
-    #download {
-        float: right;
-        margin-right: 10px;
-    }
-}
 
 </style>

@@ -6,5 +6,13 @@ export const store = {
     version: '',
     locale: '',
 
-    theme: URL_PARAMS.theme || ''
+    theme: URL_PARAMS.theme || '',
+    renderer: URL_PARAMS.renderer || 'canvas',
+
+    code: '',
+
+    editorStatus: {
+        type: '',
+        message: ''
+    }
 };
