@@ -1,0 +1,48 @@
+import Vue from 'vue';
+import VueI18n from 'vue-i18n';
+import messages from './common/i18n';
+import EditorPage from './editor/Editor.vue';
+import ExplorePage from './explore/Explore.vue';
+import {store} from './common/store';
+
+/**
+ *
+ * @param {*} el
+ * @param {Object} option
+ * @param {string} [option.cdnRoot]
+ * @param {string} [option.page] editor | explore
+ * @param {string} [option.locale] zh | en
+ * @param {string} [option.version]
+ */
+export function init(el, option) {
+    const i18n = new VueI18n({
+        locale: option.locale,
+        fallbackLocale: 'en',
+        messages
+    });
+    store.cdnRoot = option.cdnRoot;
+    store.version = option.version;
+    store.locale = option.locale || 'en';
+
+
+    if (typeof el === 'string') {
+        el = document.querySelector(el);
+    }
+    if (!el) {
+        throw new Error('Can\'t find el.');
+    }
+
+    const container = document.createElement('div');
+    el.appendChild(container);
+
+    new Vue({
+        i18n,
+        el: container,
+        render: h => {
+            return h(({
+                editor: EditorPage,
+                explore: ExplorePage
+            })[option.page] || ExplorePage);
+        }
+    });
+}

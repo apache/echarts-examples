@@ -61,20 +61,14 @@ $chart-list-title-height: 90px;
 
     a.default {
         span {
-            @include themeGradientColor(#c23531, #2f4554)
-        }
-    }
-
-    a.light {
-        span {
-            @include themeGradientColor(#37A2DA, #ffd85c)
+            @include themeGradientColor(#5470c6, #91cc75)
         }
     }
 
     a.dark {
         background: #333;
         span {
-            @include themeGradientColor(#dd6b66, #759aa0)
+            @include themeGradientColor(#4992ff, #7cffb2)
         }
     }
 }

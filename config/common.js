@@ -6,11 +6,12 @@ module.exports = {
         bootstrapCSS: 'https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css',
         bootstrapJS: 'https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js',
         lodash: 'https://cdn.jsdelivr.net/npm/lodash@3.10.1/index.min.js',
-        echartsMinJS: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.1/dist/echarts.min.js',
+        echartsMinJS: 'http://localhost/echarts-next/dist/echarts.js',
         echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.1',
         echartsStatMinJS: 'https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js',
         echartsGLMinJS: 'https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js',
         datGUIMinJS: 'https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js',
+        monacoDir: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.20.0/min/vs',
         aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.2.5/src-noconflict',
         waypoints: 'https://cdn.jsdelivr.net/npm/waypoints@4.0.0/lib/jquery.waypoints.min.js',
         jqueryLazyLoad: 'https://cdn.jsdelivr.net/npm/jquery-lazyload@1.9.7/jquery.lazyload.min.js'

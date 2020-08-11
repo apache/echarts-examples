@@ -3,6 +3,12 @@ release
 public/vendors/echarts/map/tool
 public/vendors/echarts/map/raw
 .DS_Store
-public.zip
-build/config.gypi
-public-gh
+/public.zip
+/build/config.gypi
+/public-gh
+
+
+# Built file
+/public/js
+/public/css
+/public/asset

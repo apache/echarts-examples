@@ -31,16 +31,22 @@ block inner_content
             nav.parentNode.removeChild(nav);
             document.getElementById('main-container').style.top = 0;
         }
+
+block extra_css
+    link(rel="stylesheet" data-name="vs/editor/editor.main" href="#{cdnThirdParty.monacoDir}/editor/editor.main.css")
+
 block extra_js
 
     script(type='text/javascript', src='#{cdnThirdParty.datGUIMinJS}')
     script(type='text/javascript', src='#{cdnThirdParty.echartsMinJS}?_v_=#{buildVersion}')
     script(type='text/javascript', src='#{cdnThirdParty.echartsStatMinJS}')
-    script(type='text/javascript', src='#{cdnThirdParty.echartsDir}/map/js/china.js?_v_=#{buildVersion}')
-    script(type='text/javascript', src='#{cdnThirdParty.echartsDir}/map/js/world.js?_v_=#{buildVersion}')
+    //- script(type='text/javascript', src='#{cdnThirdParty.echartsDir}/map/js/china.js?_v_=#{buildVersion}')
+    //- script(type='text/javascript', src='#{cdnThirdParty.echartsDir}/map/js/world.js?_v_=#{buildVersion}')
     script(type='text/javascript', src='#{cdnThirdParty.echartsDir}/dist/extension/dataTool.js?_v_=#{buildVersion}')
     script(type='text/javascript', src='#{cdnThirdParty.aceDir}/ace.js')
     script(type='text/javascript', src='#{cdnThirdParty.aceDir}/ext-language_tools.js')
+
+    scrip(type="text/javascript", src="#{cdnThirdParty.monacoDir}/editor/loader.js")
     script(type='text/javascript', src='#{cdnPayRoot}/javascripts/editor.js?_v_=#{buildVersion}')
 
     script(type='text/javascript', src='https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&__ec_v__=20190126')

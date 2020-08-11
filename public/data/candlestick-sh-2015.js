@@ -80,7 +80,6 @@ var option = {
     }, {
         type: 'inside'
     }],
-    animation: false,
     series: [
         {
             type: 'candlestick',

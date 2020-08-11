@@ -70,9 +70,28 @@ var gb = {
 };
 
 var COLORS = {
-    default: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
-    light: ['#37A2DA', '#32C5E9', '#67E0E3', '#9FE6B8', '#FFDB5C','#ff9f7f', '#fb7293', '#E062AE', '#E690D1', '#e7bcf3', '#9d96f5', '#8378EA', '#96BFFF'],
-    dark: ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42']
+    default: [
+        '#5470c6',
+        '#91cc75',
+        '#fac858',
+        '#ee6666',
+        '#73c0de',
+        '#3ba272',
+        '#fc8452',
+        '#9a60b4',
+        '#ea7ccc'
+    ],
+    dark: [
+        '#4992ff',
+        '#7cffb2',
+        '#fddd60',
+        '#ff6e76',
+        '#58d9f9',
+        '#05c091',
+        '#ff8a45',
+        '#8d48e3',
+        '#dd79ff'
+    ]
 };
 
 $('#theme .' + (configs.theme || 'default')).addClass('selected');
@@ -476,11 +495,6 @@ function updateEchartsVersion() {
     }
 
 }
-
-
-
-
-
 
 // save chart to localStorage
 function localSave() {

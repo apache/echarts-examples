@@ -1,5 +1,4 @@
 const fs = require('fs');
-const etpl = require('etpl');
 const glob = require('glob');
 const path = require('path');
 const marked = require('marked');
@@ -36,13 +35,6 @@ if (matchPattern) {
     matchPattern = matchPattern.split(',');
 }
 themeList = themeList.split(',');
-
-const tpl = fs.readFileSync(path.join(__dirname, '../public/javascripts/chart-list.tpl.js'), 'utf-8');
-
-etpl.config({
-    commandOpen: '/**',
-    commandClose: '*/'
-});
 
 function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -241,7 +233,10 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
             return a.difficulty - b.difficulty;
         });
 
-        const code = 'var EXAMPLES' + (sourceFolder === 'data' ? ' = ' : '_GL = ') + JSON.stringify(exampleList, null, 2);
-        fs.writeFileSync(path.join(__dirname, `../public/javascripts/chart-list-${sourceFolder}.js`), code, 'utf-8');
+        const code = `
+/* eslint-disable */
+// THIS FILE IS GENERATED, DON'T MODIFY */
+export default ${JSON.stringify(exampleList, null, 2)}`;
+        fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
     });
 })();
