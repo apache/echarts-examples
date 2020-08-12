@@ -12,7 +12,7 @@
                 <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
             </div>
         </div>
-        <CodeAce id="code-panel"></CodeAce>
+        <CodeAce id="code-panel" :initialCode="initialCode"></CodeAce>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
     <Preview class="right-container" :style="{
@@ -41,7 +41,8 @@ export default {
         return {
             mousedown: false,
             leftContainerSize: 40,
-            shared: store
+            shared: store,
+            initialCode: ''
         };
     },
 
@@ -67,8 +68,8 @@ export default {
         const dataRoot = URL_PARAMS.gl ? 'data-gl' : 'data';
         $.ajax(`${store.cdnRoot}/${dataRoot}/${URL_PARAMS.c}.js?_v_${store.version}`, {
             dataType: 'text',
-            success(data) {
-                store.code = data;
+            success: (data) => {
+                this.initialCode = data;
             }
         });
 

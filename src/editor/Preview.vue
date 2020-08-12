@@ -13,7 +13,9 @@
 import {store} from '../common/store';
 import {SCRIPT_URLS, URL_PARAMS} from '../common/config';
 import {loadScriptsAsync} from '../common/helper';
-import debounce from 'lodash.debounce';
+import {createSandbox} from './sandbox';
+import debounce from 'lodash/debounce';
+
 
 function ensureECharts() {
     if (typeof ace === 'undefined') {
@@ -30,55 +32,6 @@ function ensureECharts() {
 }
 
 
-let appEnv = {};
-let gui;
-
-let _intervalIdList = [];
-let _timeoutIdList = [];
-
-const _oldSetTimeout = window.setTimeout;
-const _oldSetInterval = window.setInterval;
-
-window.setTimeout = function (func, delay) {
-    var id = _oldSetTimeout(func, delay);
-    _timeoutIdList.push(id);
-    return id;
-};
-window.setInterval = function (func, gap) {
-    var id = _oldSetInterval(func, gap);
-    _intervalIdList.push(id);
-    return id;
-};
-function _clearTimeTickers() {
-    for (var i = 0; i < _intervalIdList.length; i++) {
-        clearInterval(_intervalIdList[i]);
-    }
-    for (var i = 0; i < _timeoutIdList.length; i++) {
-        clearTimeout(_timeoutIdList[i]);
-    }
-    _intervalIdList = [];
-    _timeoutIdList = [];
-}
-var _events = [];
-function _wrapOnMethods(chart) {
-    var oldOn = chart.on;
-    chart.on = function (eventName) {
-        var res = oldOn.apply(chart, arguments);
-        _events.push(eventName);
-        return res;
-    };
-}
-
-function _clearChartEvents(chart) {
-    _events.forEach(function (eventName) {
-        if (chart) {
-            chart.off(eventName);
-        }
-    });
-
-    _events.length = 0;
-}
-
 function log(text, type) {
     if (type !== 'warn' && type !== 'error') {
         type = 'info';
@@ -86,107 +39,37 @@ function log(text, type) {
     store.editorStatus.message = text;
     store.editorStatus.type = type;
 }
+
+
 function run() {
     if (typeof echarts === 'undefined') {
         return;
     }
-
-    if (!this.chart) {
-        this.chart = echarts.init(this.$el.querySelector('#chart-panel'), store.theme, {
-            renderer: store.renderer
-        });
-        _wrapOnMethods(this.chart);
+    if (!this.sandbox) {
+        this.sandbox = createSandbox(log);
     }
 
-    // if (this.hasEditorError()) {
-    //     log(this.$t('editor.errorInEditor'), 'error');
-    //     return;
-    // }
-
-    // TODO Scope the variables in component.
-    _clearTimeTickers();
-    _clearChartEvents(this.chart);
-    // Reset
-    appEnv.config = null;
-
-    // run the code
     try {
+        const updateTime = this.sandbox.run(this.$el.querySelector('#chart-panel'), store);
 
-        const myChart = this.chart;
-        // FIXME
-        const app = appEnv;
+        log(this.$t('editor.chartOK') + updateTime + 'ms');
 
-        // Reset option
-        let option = null;
-        let ROOT_PATH = store.cdnRoot;
-        eval(store.code);
-
-        if (option && typeof option === 'object') {
-            const startTime = +new Date();
-            myChart.setOption(option, true);
-            const endTime = +new Date();
-            const updateTime = endTime - startTime;
-
-            if (updateTime > 1000) {
-                // Disable auto run
-                this.autoRun = false;
-            }
-
-            log(this.$t('editor.chartOK') + updateTime + 'ms');
-        }
-
-        if (gui) {
-            $(gui.domElement).remove();
-            gui.destroy();
-            gui = null;
-        }
-
-        if (app.config) {
-            gui = new dat.GUI({
-                autoPlace: false
-            });
-            $(gui.domElement).css({
-                position: 'absolute',
-                right: 5,
-                top: 0,
-                zIndex: 1000
-            });
-            $('.right-container').append(gui.domElement);
-
-            var configParameters = app.configParameters || {};
-            for (var name in app.config) {
-                var value = app.config[name];
-                if (name !== 'onChange' && name !== 'onFinishChange') {
-                    var isColor = false;
-                    // var value = obj;
-                    var controller;
-                    if (configParameters[name]) {
-                        if (configParameters[name].options) {
-                            controller = gui.add(app.config, name, configParameters[name].options);
-                        }
-                        else if (configParameters[name].min != null) {
-                            controller = gui.add(app.config, name, configParameters[name].min, configParameters[name].max);
-                        }
-                    }
-                    if (typeof obj === 'string') {
-                        try {
-                            var colorArr = echarts.color.parse(value);
-                            isColor = !!colorArr;
-                            if (isColor) {
-                                value = echarts.color.stringify(colorArr, 'rgba');
-                            }
-                        }
-                        catch (e) {}
-                    }
-                    if (!controller) {
-                        controller = gui[isColor ? 'addColor' : 'add'](app.config, name);
-                    }
-                    app.config.onChange && controller.onChange(app.config.onChange);
-                    app.config.onFinishChange && controller.onFinishChange(app.config.onFinishChange);
-                }
+        // Find the appropriate throttle time
+        const debounceTime = 500;
+        const debounceTimeQuantities = [0, 500, 2000, 5000, 10000];
+        for (let i = debounceTimeQuantities.length - 1; i >= 0; i--) {
+            const quantity = debounceTimeQuantities[i];
+            const preferredDebounceTime = debounceTimeQuantities[i + 1] || 1000000;
+            if (updateTime >= quantity && this.debouncedTime !== preferredDebounceTime) {
+                this.debouncedRun = debounce(run, preferredDebounceTime, {
+                    trailing: true
+                });
+                this.debouncedTime = preferredDebounceTime;
+                break;
             }
         }
-    } catch(e) {
+    }
+    catch (e) {
         log(this.$t('editor.errorInEditor'), 'error');
         console.error(e);
     }
@@ -197,7 +80,8 @@ export default {
     data() {
         return {
             shared: store,
-            autoRun: false
+            debouncedTime: undefined,
+            autoRun: true
         }
     },
 
@@ -211,8 +95,9 @@ export default {
 
     watch: {
         "shared.code"(val) {
-            if (this.autoRun || !this.chart) {
-                this.debouncedRun();
+            if (this.autoRun || !this.sandbox) {
+                console.log(this.debouncedRun);
+                this.debouncedRun && this.debouncedRun();
             }
         },
         "shared.renderer"() {
@@ -225,7 +110,8 @@ export default {
 
     methods: {
         run,
-        debouncedRun: debounce(run, 500),
+        // debouncedRun will be created at first run
+        // debouncedRun: null,
         refreshAll() {
             this.dispose();
             this.run();

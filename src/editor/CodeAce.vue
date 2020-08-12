@@ -39,6 +39,8 @@ function ensureACE() {
 
 export default {
 
+    props: ['initialCode'],
+
     data() {
         return {
             shared: store
@@ -61,33 +63,32 @@ export default {
                 store.code = editor.getValue();
             });
 
-            this.setCode(store.code);
+            if (this.initialCode) {
+                this.setInitialCode(this.initialCode);
+            }
         });
     },
 
     methods: {
-        setCode(code) {
-            if (this._editor) {
-                const oldCode = this._editor.getValue();
-                if (oldCode !== code) {
-                    this._editor.setValue(code || '');
-                    this._editor.selection.setSelectionRange({
-                        start: {
-                            row:1,
-                            column: 4
-                        }, end: {
-                            row:1,
-                            column: 4
-                        }
-                    });
-                }
+        setInitialCode(code) {
+            if (this._editor && code) {
+                this._editor.setValue(code || '');
+                this._editor.selection.setSelectionRange({
+                    start: {
+                        row:1,
+                        column: 4
+                    }, end: {
+                        row:1,
+                        column: 4
+                    }
+                });
             }
         }
     },
 
     watch: {
-        "shared.code"(val) {
-            this.setCode(val);
+        initialCode(newVal) {
+            this.setInitialCode(newVal);
         }
     }
 }
