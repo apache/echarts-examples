@@ -108,7 +108,7 @@ export default {
             // Container should be the scroll viewport.
             // container: this.$el.querySelector('#explore-container .example-list-panel'),
             elements_selector: 'img.chart-area',
-            load_delay: 500
+            load_delay: 300
         });
     }
 }

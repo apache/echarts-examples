@@ -5,8 +5,8 @@ export default {
             errorInEditor: 'Errors exist in code!',
             chartOK: 'Chart has been generated successfully, ',
 
-            darkMode: 'Dark',
-            lightMode: 'Light',
+            darkMode: 'Dark Mode',
+            lightMode: 'Light Mode',
             renderer: 'Renderer',
             download: 'Download'
         },

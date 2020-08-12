@@ -8,7 +8,7 @@
                 v-model="shared.darkMode"
                 active-color="#181432"
                 :active-text="$t('editor.darkMode')"
-                :inactive-text="$t('editor.lightMode')">
+                :inactive-text="''">
             </el-switch>
 
             <label class="tool-label">{{ $t('editor.renderer') }}</label>
@@ -178,6 +178,7 @@ export default {
 
     .el-switch__label * {
         font-size: 12px;
+        text-transform: uppercase;
     }
 
     label {

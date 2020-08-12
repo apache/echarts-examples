@@ -155,7 +155,7 @@ $handler-width: 5px;
         .btn {
             color: #FFF;
             border-radius: 0;
-            background-color: #3FA7DC;
+            background-color: #409eff;
             margin-left: $pd-basic;
             border: none;
             height: 30px;

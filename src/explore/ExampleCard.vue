@@ -19,7 +19,7 @@ export default {
 
         exampleTheme() {
             const example = this.example;
-            return example.isGL ? '' : (example.theme || store.theme);
+            return example.isGL ? '' : (example.theme || (store.darkMode ? 'dark' : ''));
         },
 
         exampleLink() {
