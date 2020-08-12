@@ -95,5 +95,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+#code-panel {
+    font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+    font-size: 12px;
+}
 </style>

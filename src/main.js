@@ -4,6 +4,9 @@ import messages from './common/i18n';
 import EditorPage from './editor/Editor.vue';
 import ExplorePage from './explore/Explore.vue';
 import {store} from './common/store';
+import VueScrollactive from 'vue-scrollactive';
+
+Vue.use(VueScrollactive);
 
 /**
  *

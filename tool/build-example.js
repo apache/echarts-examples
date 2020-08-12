@@ -201,12 +201,12 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 
                     try {
                         const difficulty = fmResult.attributes.difficulty != null ? fmResult.attributes.difficulty : 10;
-                        const category = fmResult.attributes.category.split(/\w*,\w*/g).filter(a => !!a);
+                        const category = fmResult.attributes.category.split(/,/g).map(a => a.trim()).filter(a => !!a);
                         if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
                             exampleList.push({
                                 category: category,
                                 id: basename,
-                                tags: (fmResult.attributes.tags || '').split(/\w*,\w*/g).filter(a => !!a),
+                                tags: (fmResult.attributes.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
                                 theme: fmResult.attributes.theme,
                                 title: fmResult.attributes.title,
                                 difficulty: +difficulty

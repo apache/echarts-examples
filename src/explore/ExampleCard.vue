@@ -1,8 +1,8 @@
 <template>
 <div class="example-list-item">
     <a target="_blank" class="example-link" :href="exampleLink">
-        <h4 class="example-title">{{example.title || ''}}</h4>
         <img class="chart-area" src="../asset/placeholder.jpg" :data-src="screenshotURL" />
+        <h4 class="example-title">{{example.title || ''}}</h4>
     </a>
 </div>
 </template>
@@ -53,7 +53,6 @@ export default {
 .example-list-item {
     width: 100%;
     max-width: 350px;
-    margin: 0 auto;
     margin-bottom: 30px;
 
     border-radius: 2px;
@@ -79,7 +78,7 @@ export default {
             padding: 10px 10px 2px 10px;
             margin: 0;
             font-weight: normal;
-            font-size: 16px;
+            font-size: 14px;
             text-align: center;
         }
     }

@@ -1,28 +1,30 @@
 <template>
-<div>
+<div id="example-explore">
     <div id="left-chart-nav">
-        <ul>
-            <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
-                <a class="left-chart-nav-link" :id="'left-chart-nav-' + category"
-                    :href="'#chart-type-' + category"
-                >
-                    <span class="chart-icon"></span>
-                    <span class="chart-name">{{$t('chartTypes.' + category)}}</span>
-                </a>
-            </li>
-        </ul>
+        <scrollactive active-class="active" :offset="80" :duration="500" bezier-easing-value=".5,0,.35,1">
+            <ul>
+                <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
+                    <a class="left-chart-nav-link scrollactive-item" :id="'left-chart-nav-' + category"
+                        :href="'#chart-type-' + category"
+                    >
+                        <span class="chart-icon"></span>
+                        <span class="chart-name">{{$t('chartTypes.' + category)}}</span>
+                    </a>
+                </li>
+            </ul>
+        </scrollactive>
     </div>
     <div id="explore-container">
         <div class="example-list-panel">
-            <div v-for="category in EXAMPLE_CATEGORIES" :key="category" v-if="exampleListByCategory[category] && exampleListByCategory[category].examples.length > 0">
-                <h3 class="chart-type-head" :id="'chart-type-' + category">
-                    {{$t('chartTypes.' + category)}}
-                    <span>{{category}}</span>
+            <div v-for="categoryObj in exampleList" :key="categoryObj.category">
+                <h3 class="chart-type-head" :id="'chart-type-' + categoryObj.category">
+                    {{$t('chartTypes.' + categoryObj.category)}}
+                    <span>{{categoryObj.category}}</span>
                 </h3>
 
-                <div class="row" :id="'chart-row-' + category">
+                <div class="row" :id="'chart-row-' + categoryObj.category">
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6"
-                        v-for="exampleItem in exampleListByCategory[category].examples"
+                        v-for="exampleItem in categoryObj.examples"
                         :key="exampleItem.id"
                     >
                         <ExampleCard :example="exampleItem"></ExampleCard>
@@ -62,6 +64,9 @@ export default {
                     if (BLACK_MAP.hasOwnProperty(example.id)) {
                         continue;
                     }
+                    if (typeof example.category === 'string') {
+                        example.category = [example.category];
+                    }
 
                     const categoryStr = (example.category || [])[categoryOrder];
                     if (categoryStr) {
@@ -70,7 +75,6 @@ export default {
                         if (!categoryObj) {
                             categoryObj = {
                                 category: categoryStr,
-                                isGL,
                                 examples: []
                             }
                             exampleListByCategory[categoryStr] = categoryObj;
@@ -103,12 +107,29 @@ export default {
         }
     },
 
+    computed: {
+        exampleList() {
+            const list = [];
+            for (let i = 0; i < EXAMPLE_CATEGORIES.length; i++) {
+                const category = EXAMPLE_CATEGORIES[i];
+                const categoryObj = this.exampleListByCategory[category];
+                if (categoryObj && categoryObj.examples.length > 0) {
+                    list.push({
+                        category,
+                        examples: categoryObj.examples
+                    });
+                }
+            }
+            return list;
+        }
+    },
+
     mounted() {
         this._lazyload = new LazyLoad({
             // Container should be the scroll viewport.
             // container: this.$el.querySelector('#explore-container .example-list-panel'),
             elements_selector: 'img.chart-area',
-            load_delay: 300
+            load_delay: 400
         });
     }
 }
@@ -119,19 +140,25 @@ export default {
 @import "../style/color.scss";
 @import "../style/config.xl.scss";
 
-$chart-nav-width: 180px;
-$chart-icon-width: 32px;
+$chart-nav-width: 170px;
+$chart-icon-width: 25px;
 $chart-icon-border: 1px;
-$nav-height: 50;
+
+$nav-height: 50px;
+$nav-bg: #252839;
 
 $pd-basic: 10px;
 $pd-sm: 6px;
 $pd-lg: 20px;
 
+#example-explore {
+    background: $clr-bg;
+}
+
 #explore-container {
-    margin-left: $chart-nav-width;
-    padding: $nav-height $pd-lg;
-    background-color: $clr-bg;
+    margin-left: $chart-nav-width + 20px;
+    padding: 10px 10px;
+    // background-color: $clr-bg;
 }
 
 
@@ -140,26 +167,29 @@ $pd-lg: 20px;
 
     h3 {
         margin-bottom: 20px;
+        border-bottom: 1px solid #ccd3e8;
+        font-weight: normal;
+        color: #252839;
     }
     .chart-type-head span {
-        font-size: 20px;
-        padding-left: 10px;
+        font-size: 18px;
+        padding-left: 5px;
         color: #999;
-        font-weight: normal;
+        font-weight: 200;
     }
 }
 
 #left-chart-nav {
     position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-
-    // padding-top: $nav-height;
+    top: 50px;
+    bottom: 20px;
+    left: 10px;
     width: $chart-nav-width;
-
-    background-color: $clr-primary;
+    background-color: $nav-bg;
     overflow-y: hidden;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
 
     &:hover {
         overflow-y: auto;
@@ -170,21 +200,21 @@ $pd-lg: 20px;
     }
 
     li {
-        height: 54px;
-        padding: 10px 0 10px 20px;
         transition: 0.5s;
+        cursor: pointer;
 
         a {
-            color: $clr-gray;
-            position: relative;
+            height: 45px;
+            padding: 10px 0 10px 10px;
             display: block;
             transition: 0.5s;
             text-decoration: none;
+            color: inherit;
 
             .chart-name {
                 display: inline-block;
                 position: relative;
-                top: -12px;
+                vertical-align: middle;
                 margin-left: 10px;
             }
 
@@ -197,24 +227,17 @@ $pd-lg: 20px;
                 background-size: $chart-icon-width;
                 background-repeat: no-repeat;
                 border-radius: 50%;
-                border: $chart-icon-border solid $clr-gray-dark;
+                border: $chart-icon-border solid #fff;
+                vertical-align: middle;
             }
-        }
-
-        &.active {
-            background-color: $clr-contrast;
-
-            a {
-                color: $clr-gray-light;
+            &.active {
+                background-color: $clr-contrast;
             }
 
-            .chart-icon {
-                border-color: $clr-gray-light;
-            }
         }
 
         &:hover {
-            background-color: $clr-primary-dark;
+            background-color: darken($nav-bg, 10);
         }
     }
 }

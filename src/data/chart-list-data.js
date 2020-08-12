@@ -31,7 +31,8 @@ export default [
   },
   {
     "category": [
-      " bar"
+      "dataset",
+      "bar"
     ],
     "id": "dataset-simple0",
     "tags": [],
@@ -40,7 +41,8 @@ export default [
   },
   {
     "category": [
-      " bar"
+      "dataset",
+      "bar"
     ],
     "id": "dataset-simple1",
     "tags": [],
@@ -76,7 +78,8 @@ export default [
   },
   {
     "category": [
-      " pie"
+      "dataset",
+      "pie"
     ],
     "id": "dataset-default",
     "tags": [],
@@ -85,7 +88,8 @@ export default [
   },
   {
     "category": [
-      " bar"
+      "dataset",
+      "bar"
     ],
     "id": "dataset-encode0",
     "tags": [],
@@ -94,7 +98,8 @@ export default [
   },
   {
     "category": [
-      " bar"
+      "dataset",
+      "bar"
     ],
     "id": "dataset-series-layout-by",
     "tags": [],
@@ -121,8 +126,9 @@ export default [
   },
   {
     "category": [
-      " ",
-      " pie"
+      "dataset",
+      "line",
+      "pie"
     ],
     "id": "dataset-link",
     "tags": [],
@@ -131,7 +137,8 @@ export default [
   },
   {
     "category": [
-      " visualMap"
+      "line",
+      "visualMap"
     ],
     "id": "area-pieces",
     "tags": [],
@@ -149,7 +156,8 @@ export default [
   },
   {
     "category": [
-      " dataZoom"
+      "line",
+      "dataZoom"
     ],
     "id": "area-simple",
     "tags": [],
@@ -275,7 +283,8 @@ export default [
   },
   {
     "category": [
-      " rich"
+      "bar",
+      "rich"
     ],
     "id": "bar-rich-text",
     "tags": [],
@@ -392,7 +401,8 @@ export default [
   },
   {
     "category": [
-      " scatter"
+      "calendar",
+      "scatter"
     ],
     "id": "calendar-charts",
     "tags": [],
@@ -410,7 +420,8 @@ export default [
   },
   {
     "category": [
-      " graph"
+      "calendar",
+      "graph"
     ],
     "id": "calendar-graph",
     "tags": [],
@@ -419,7 +430,8 @@ export default [
   },
   {
     "category": [
-      " heatmap"
+      "calendar",
+      "heatmap"
     ],
     "id": "calendar-heatmap",
     "tags": [],
@@ -446,7 +458,8 @@ export default [
   },
   {
     "category": [
-      " pie"
+      "calendar",
+      "pie"
     ],
     "id": "calendar-pie",
     "tags": [],
@@ -464,7 +477,8 @@ export default [
   },
   {
     "category": [
-      " heatmap"
+      "calendar",
+      "heatmap"
     ],
     "id": "calendar-vertical",
     "tags": [],
@@ -545,7 +559,8 @@ export default [
   },
   {
     "category": [
-      " calendar"
+      "custom",
+      "calendar"
     ],
     "id": "custom-calendar-icon",
     "tags": [],
@@ -572,7 +587,8 @@ export default [
   },
   {
     "category": [
-      " dataZoom"
+      "custom",
+      "dataZoom"
     ],
     "id": "custom-error-scatter",
     "tags": [],
@@ -581,8 +597,9 @@ export default [
   },
   {
     "category": [
-      " ",
-      " drag"
+      "custom",
+      "dataZoom",
+      "drag"
     ],
     "id": "custom-gantt-flight",
     "tags": [],
@@ -591,7 +608,8 @@ export default [
   },
   {
     "category": [
-      " map"
+      "custom",
+      "map"
     ],
     "id": "custom-hexbin",
     "tags": [],
@@ -672,7 +690,8 @@ export default [
   },
   {
     "category": [
-      " map"
+      "scatter",
+      "map"
     ],
     "id": "effectScatter-bmap",
     "tags": [
@@ -928,7 +947,8 @@ export default [
   },
   {
     "category": [
-      " drag"
+      "line",
+      "drag"
     ],
     "id": "line-draggable",
     "tags": [],
@@ -1063,7 +1083,8 @@ export default [
   },
   {
     "category": [
-      " dataZoom"
+      "line",
+      "dataZoom"
     ],
     "id": "line-tooltip-touch",
     "tags": [],
@@ -1081,7 +1102,8 @@ export default [
   },
   {
     "category": [
-      " lines"
+      "map",
+      "lines"
     ],
     "id": "lines-airline",
     "tags": [],
@@ -1090,7 +1112,8 @@ export default [
   },
   {
     "category": [
-      " lines"
+      "map",
+      "lines"
     ],
     "id": "lines-bmap",
     "tags": [
@@ -1101,7 +1124,8 @@ export default [
   },
   {
     "category": [
-      " lines"
+      "map",
+      "lines"
     ],
     "id": "lines-bmap-bus",
     "tags": [
@@ -1112,7 +1136,8 @@ export default [
   },
   {
     "category": [
-      " lines"
+      "map",
+      "lines"
     ],
     "id": "lines-bmap-effect",
     "tags": [
@@ -1123,7 +1148,8 @@ export default [
   },
   {
     "category": [
-      " lines"
+      "map",
+      "lines"
     ],
     "id": "lines-ny",
     "tags": [],
@@ -1186,7 +1212,8 @@ export default [
   },
   {
     "category": [
-      " map"
+      "parallel",
+      "map"
     ],
     "id": "map-parallel-prices",
     "tags": [],
@@ -1411,7 +1438,8 @@ export default [
   },
   {
     "category": [
-      " rich"
+      "pie",
+      "rich"
     ],
     "id": "pie-nest",
     "tags": [],
@@ -1429,7 +1457,8 @@ export default [
   },
   {
     "category": [
-      " rich"
+      "pie",
+      "rich"
     ],
     "id": "pie-rich-text",
     "tags": [],
@@ -1672,7 +1701,8 @@ export default [
   },
   {
     "category": [
-      " scatter"
+      "parallel",
+      "scatter"
     ],
     "id": "scatter-matrix",
     "tags": [],
@@ -1987,7 +2017,8 @@ export default [
   },
   {
     "category": [
-      " dataZoom"
+      "custom",
+      "dataZoom"
     ],
     "id": "wind-barb",
     "tags": [],

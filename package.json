@@ -32,9 +32,10 @@
     "yargs": "^6.6.0"
   },
   "dependencies": {
-    "resize-detector": "^0.2.2",
     "lodash": "^4.17.19",
+    "resize-detector": "^0.2.2",
     "vanilla-lazyload": "^12.5.1",
-    "vue-i18n": "^8.18.2"
+    "vue-i18n": "^8.18.2",
+    "vue-scrollactive": "^0.9.3"
   }
 }

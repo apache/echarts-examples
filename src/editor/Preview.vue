@@ -182,7 +182,7 @@ export default {
 #chart-panel {
     position: absolute;
     // top: $control-panel-height;
-    top: 50px;
+    top: 42px;
     right: 15px;
     bottom: 15px;
     left: 15px;
@@ -205,6 +205,13 @@ export default {
     .el-switch__label * {
         font-size: 12px;
         text-transform: uppercase;
+    }
+    .el-radio-group {
+        text-transform: uppercase;
+    }
+
+    .el-switch__label.is-active {
+        color: #181432;
     }
 
     label {
