@@ -78,7 +78,6 @@ var labelOption = {
     fontSize: 16,
     rich: {
         name: {
-            textBorderColor: '#fff'
         }
     }
 };

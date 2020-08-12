@@ -1,4 +1,4 @@
-export function createSandbox() {
+export function createSandbox(optionUpdated) {
     let appEnv = {};
     let gui;
 
@@ -30,10 +30,16 @@ export function createSandbox() {
     }
     const _events = [];
     function _wrapOnMethods(chart) {
-        var oldOn = chart.on;
+        const oldOn = chart.on;
+        const oldSetOption = chart.setOption;
         chart.on = function (eventName) {
-            var res = oldOn.apply(chart, arguments);
+            const res = oldOn.apply(chart, arguments);
             _events.push(eventName);
+            return res;
+        };
+        chart.setOption = function () {
+            const res = oldSetOption.apply(this, arguments);
+            optionUpdated && optionUpdated(chart);
             return res;
         };
     }
@@ -88,7 +94,7 @@ export function createSandbox() {
 
             const func = new Function(
                 'myChart', 'app', 'setTimeout', 'setInterval', 'ROOT_PATH',
-                store.code + '\n' + 'return option'
+                'var option;\n' + store.code + '\nreturn option;'
             );
             const option = func(chartInstance, appEnv, setTimeout, setInterval, store.cdnRoot);
             let updateTime = 0;

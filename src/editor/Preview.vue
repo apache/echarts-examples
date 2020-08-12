@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="right-panel" id="chart-panel"></div>
+    <div class="right-panel" id="chart-panel" :style="{background: backgroundColor}"></div>
     <div id="tool-panel">
         <div class="left-panel">
             <label class="tool-label"></label>
@@ -30,17 +30,32 @@ import {loadScriptsAsync} from '../common/helper';
 import {createSandbox} from './sandbox';
 import debounce from 'lodash/debounce';
 import { addListener, removeListener } from 'resize-detector';
+import CHART_LIST from '../data/chart-list-data';
+
+const example = CHART_LIST.find(item => URL_PARAMS.c === item.id);
 
 function ensureECharts() {
-    if (typeof ace === 'undefined') {
+    if (typeof echarts === 'undefined') {
+
+        const hasBmap = example && example.tags.indexOf('bmap') >= 0;
+
+        // Code from https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu
+        if (hasBmap) {
+            window.HOST_TYPE = "2";
+            window.BMap_loadScriptTime = (new Date).getTime();
+        }
+
         return loadScriptsAsync([
             SCRIPT_URLS.datGUIMinJS,
             SCRIPT_URLS.echartsMinJS,
             SCRIPT_URLS.echartsDir + '/dist/extension/dataTool.js',
             SCRIPT_URLS.echartsStatMinJS,
-            ...URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []
-        ]).then(function () {
-        })
+            ...URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : [],
+            ...hasBmap ? [
+                'https://api.map.baidu.com/getscript?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
+                SCRIPT_URLS.echartsDir + '/dist/extension/bmap.js'
+            ] : []
+        ]);
     }
     return Promise.resolve();
 }
@@ -60,7 +75,15 @@ function run() {
         return;
     }
     if (!this.sandbox) {
-        this.sandbox = createSandbox(log);
+        this.sandbox = createSandbox((chart) => {
+            const option = chart.getOption();
+            if (typeof option.backgroundColor === 'string' && option.backgroundColor !== 'transparent') {
+                this.backgroundColor = option.backgroundColor;
+            }
+            else {
+                this.backgroundColor = '#fff';
+            }
+        });
     }
 
     try {
@@ -95,6 +118,7 @@ export default {
         return {
             shared: store,
             debouncedTime: undefined,
+            backgroundColor: '',
             autoRun: true
         }
     },
@@ -167,6 +191,8 @@ export default {
     border-radius: 5px;
     background: #fff;
     overflow: hidden;
+
+    padding: 10px;
 }
 
 #tool-panel {

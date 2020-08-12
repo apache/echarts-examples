@@ -163,6 +163,10 @@ $pd-lg: 20px;
 
     &:hover {
         overflow-y: auto;
+
+        a {
+            text-decoration: none;
+        }
     }
 
     li {
@@ -175,6 +179,7 @@ $pd-lg: 20px;
             position: relative;
             display: block;
             transition: 0.5s;
+            text-decoration: none;
 
             .chart-name {
                 display: inline-block;

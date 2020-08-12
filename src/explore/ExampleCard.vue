@@ -32,7 +32,7 @@ export default {
             if (exampleTheme) {
                 hash.push('theme=' + exampleTheme);
             }
-            return './editor.html?' + hash.join('%');
+            return './editor.html?' + hash.join('&');
         },
 
         screenshotURL() {

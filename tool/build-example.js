@@ -195,17 +195,18 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                     // const descHTML = marked(fmResult.body);
 
                     // Do screenshot
-                    promises.push(takeScreenshot(browser, theme, rootDir, basename));
+                    if (BUILD_THUMBS) {
+                        promises.push(takeScreenshot(browser, theme, rootDir, basename));
+                    }
 
                     try {
                         const difficulty = fmResult.attributes.difficulty != null ? fmResult.attributes.difficulty : 10;
-                        const category = fmResult.attributes.category.split(',').map(name => {
-                            return name.trim();
-                        });
+                        const category = fmResult.attributes.category.split(/\w*,\w*/g).filter(a => !!a);
                         if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
                             exampleList.push({
                                 category: category,
                                 id: basename,
+                                tags: (fmResult.attributes.tags || '').split(/\w*,\w*/g).filter(a => !!a),
                                 theme: fmResult.attributes.theme,
                                 title: fmResult.attributes.title,
                                 difficulty: +difficulty

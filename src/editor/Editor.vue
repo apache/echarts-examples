@@ -243,14 +243,6 @@ $handler-width: 5px;
     z-index: 30;
 
     background: $clr-bg;
-
-    .right-panel {
-        padding: $pd-basic;
-
-        canvas {
-            border-radius: 5px;
-        }
-    }
 }
 
 
