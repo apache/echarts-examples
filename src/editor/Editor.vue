@@ -15,7 +15,7 @@
         <CodeAce id="code-panel" :initialCode="initialCode"></CodeAce>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
-    <Preview class="right-container" :style="{
+    <Preview class="right-container" ref="preview" :style="{
         width: (100 - leftContainerSize) + '%',
         left: leftContainerSize + '%'
     }"></Preview>
@@ -24,7 +24,6 @@
 
 <script>
 
-import { ToggleButton } from 'vue-js-toggle-button';
 import CodeAce from './CodeAce.vue';
 import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
@@ -32,7 +31,6 @@ import {store} from '../common/store';
 
 export default {
     components: {
-        ToggleButton,
         CodeAce,
         Preview
     },
@@ -91,7 +89,7 @@ export default {
             this.mousedown = true;
         },
         disposeAndRun() {
-
+            this.$refs.preview.refreshAll();
         }
     }
 }

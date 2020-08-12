@@ -51,10 +51,23 @@ export function createSandbox() {
     let chartInstance;
 
     return {
+        resize() {
+            if (chartInstance) {
+                chartInstance.resize();
+            }
+        },
+
+        dispose() {
+            if (chartInstance) {
+                chartInstance.dispose();
+                chartInstance = null;
+            }
+        },
+
         run(el, store) {
 
             if (!chartInstance) {
-                chartInstance = echarts.init(el, store.theme, {
+                chartInstance = echarts.init(el, store.darkMode ? 'dark' : '', {
                     renderer: store.renderer
                 });
                 _wrapOnMethods(chartInstance);

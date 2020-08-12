@@ -2,8 +2,22 @@
 <div>
     <div class="right-panel" id="chart-panel"></div>
     <div id="tool-panel">
-        <ToggleButton></ToggleButton>
-        <button id="download" class="btn btn-sm">Download</button>
+        <div class="left-panel">
+            <label class="tool-label"></label>
+            <el-switch
+                v-model="shared.darkMode"
+                active-color="#181432"
+                :active-text="$t('editor.darkMode')"
+                :inactive-text="$t('editor.lightMode')">
+            </el-switch>
+
+            <label class="tool-label">{{ $t('editor.renderer') }}</label>
+            <el-radio-group v-model="shared.renderer" size="mini">
+                <el-radio-button label="svg"></el-radio-button>
+                <el-radio-button label="canvas"></el-radio-button>
+            </el-radio-group>
+        </div>
+        <button id="download" class="btn btn-sm">{{ $t('editor.download') }}</button>
     </div>
 </div>
 </template>
@@ -15,7 +29,7 @@ import {SCRIPT_URLS, URL_PARAMS} from '../common/config';
 import {loadScriptsAsync} from '../common/helper';
 import {createSandbox} from './sandbox';
 import debounce from 'lodash/debounce';
-
+import { addListener, removeListener } from 'resize-detector';
 
 function ensureECharts() {
     if (typeof ace === 'undefined') {
@@ -91,19 +105,24 @@ export default {
                 this.run();
             }
         });
+
+        addListener(this.$el, () => {
+            if (this.sandbox) {
+                this.sandbox.resize();
+            }
+        })
     },
 
     watch: {
         "shared.code"(val) {
             if (this.autoRun || !this.sandbox) {
-                console.log(this.debouncedRun);
                 this.debouncedRun && this.debouncedRun();
             }
         },
         "shared.renderer"() {
             this.refreshAll();
         },
-        "shared.theme"() {
+        "shared.darkMode"() {
             this.refreshAll();
         }
     },
@@ -117,10 +136,9 @@ export default {
             this.run();
         },
         dispose() {
-            if (this.chart) {
-                this.chart.dispose();
+            if (this.sandbox) {
+                this.sandbox.dispose();
             }
-            this.chart = null;
         }
         // hasEditorError() {
         //     const annotations = this.editor.getSession().getAnnotations();
@@ -140,9 +158,9 @@ export default {
 #chart-panel {
     position: absolute;
     // top: $control-panel-height;
-    top: 15px;
+    top: 50px;
     right: 15px;
-    bottom: 60px;
+    bottom: 15px;
     left: 15px;
     box-sizing: border-box;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
@@ -153,22 +171,38 @@ export default {
 
 #tool-panel {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 0;
     right: 0;
+    left: 0;
+    padding-top: 5px;
 
-    #theme {
-        margin-bottom: 10px;
-        float: right;
+    .el-switch__label * {
+        font-size: 12px;
+    }
 
-        a {
-            cursor: pointer;
-        }
+    label {
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+
+    .left-panel {
+        float: left;
+    }
+
+    .left-panel>* {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .tool-label {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-left: 20px;
     }
 
     #download {
         float: right;
-        margin-right: 10px;
+        margin-right: 20px;
     }
 }
 

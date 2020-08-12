@@ -6,7 +6,7 @@ export const store = {
     version: '',
     locale: '',
 
-    theme: URL_PARAMS.theme || '',
+    darkMode: URL_PARAMS.theme === 'dark',
     renderer: URL_PARAMS.renderer || 'canvas',
 
     code: '',

@@ -1,10 +1,14 @@
 export default {
     en: {
-
         editor: {
             run: 'Run',
             errorInEditor: 'Errors exist in code!',
-            chartOK: 'Chart has been generated successfully, '
+            chartOK: 'Chart has been generated successfully, ',
+
+            darkMode: 'Dark',
+            lightMode: 'Light',
+            renderer: 'Renderer',
+            download: 'Download'
         },
 
         chartTypes: {
@@ -53,7 +57,13 @@ export default {
         editor: {
             run: '运行',
             errorInEditor: '编辑器内容有误！',
-            chartOK: '图表已生成, '
+            chartOK: '图表已生成, ',
+
+            darkMode: '深色模式',
+            lightMode: '浅色模式',
+
+            renderer: '渲染模式',
+            download: '下载示例'
         },
 
         chartTypes: {
