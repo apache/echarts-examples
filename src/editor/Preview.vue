@@ -48,7 +48,8 @@ function ensureECharts() {
 
         return loadScriptsAsync([
             SCRIPT_URLS.datGUIMinJS,
-            SCRIPT_URLS.echartsMinJS,
+            URL_PARAMS.local
+                ? SCRIPT_URLS.localEChartsMinJS : SCRIPT_URLS.echartsMinJS,
             SCRIPT_URLS.echartsDir + '/dist/extension/dataTool.js',
             SCRIPT_URLS.echartsDir + '/map/js/world.js',
             SCRIPT_URLS.echartsStatMinJS,

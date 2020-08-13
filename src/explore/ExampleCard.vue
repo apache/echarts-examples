@@ -10,7 +10,7 @@
 <script>
 
 import {store} from '../common/store';
-import {SUPPORT_WEBP} from '../common/config';
+import {SUPPORT_WEBP, URL_PARAMS} from '../common/config';
 
 export default {
     props: ['example'],
@@ -31,6 +31,9 @@ export default {
             }
             if (exampleTheme) {
                 hash.push('theme=' + exampleTheme);
+            }
+            if (URL_PARAMS.local) {
+                hash.push('local=' + 1);
             }
             return './editor.html?' + hash.join('&');
         },
