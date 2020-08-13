@@ -14,6 +14,7 @@
                 active-class="active"
                 :offset="80"
                 :duration="500"
+                :scroll-container-selector="'#example-explore'"
                 bezier-easing-value=".5,0,.35,1"
                 @itemchanged="onActiveNavChanged"
             >
@@ -203,6 +204,14 @@ $pd-lg: 20px;
 
 #example-explore {
     background: $clr-bg;
+
+    // Use this as scrollable viewport insteadof window because echarts-www has a viewport.
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
 }
 
 #explore-container {

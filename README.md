@@ -1,20 +1,24 @@
 # Examples of ECharts
 
-[http://ecomfe.github.io/echarts-examples/public/](http://ecomfe.github.io/echarts-examples/public/)
-
 ## Install
 
 ```shell
 npm install
 ```
 
-## Build
-
-Git clone [echarts-www](https://github.com/ecomfe/echarts-www) and put it on the same level as `echarts-examples`.
+## Dev
 
 ```shell
 npm run dev
 ```
+
+## Release
+
+```shell
+npm run release
+```
+
+It will copy all the build resources to incubator-echarts-website/next/examples
 
 ## Update example snapshots
 

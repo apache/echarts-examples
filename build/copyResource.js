@@ -38,7 +38,7 @@ function initEnv() {
         throw new Error('--env MUST be specified');
     }
 
-    let config = require('./config/env.' + envType);
+    let config = require('../config/env.' + envType);
 
     if (isDev) {
         console.warn('====================================================================');
@@ -55,10 +55,12 @@ function initEnv() {
 }
 
 async function copyResourcesToDest(config) {
-    let basePath = path.resolve(projectDir, 'public');
+    let basePath = path.resolve(projectDir, '../public');
     const filePaths = await globby([
         '**/*',
-        '!stylesheets/scss/**/*'
+        // Use jade in echarts-www
+        '!zh/*',
+        '!en/*'
     ], {
         cwd: basePath
     });
@@ -85,11 +87,6 @@ async function copyResourcesToDest(config) {
 
 async function run() {
     let config = initEnv();
-    config.buildVersion = +new Date();
-    // Temp: give a fixed version until need to update.
-    config.cdnPayVersion = '20200710_1';
-    config.mainSiteCDNPayVersion = '20200710_1';
-
     await copyResourcesToDest(config);
 
     console.log('All done.');
