@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "build": "npx webpack --config build/webpack.config.js --mode production",
-    "dev": "npx webpack --config build/webpack.config.js --mode development --devtool sourcemap --watch",
+    "watch": "npx webpack --config build/webpack.config.js --mode development --devtool sourcemap --watch",
     "release": "npm run build && node build/copyResource.js --env asf",
+    "dev": "npx concurrently --kill-others \"npm run watch\" \"node build/server.js\"",
     "build:example": "node tool/build-example.js"
   },
   "devDependencies": {
@@ -14,6 +15,7 @@
     "argparse": "^1.0.9",
     "babel-loader": "^8.1.0",
     "chalk": "^3.0.0",
+    "concurrently": "^5.3.0",
     "css-loader": "^3.5.3",
     "cwebp-bin": "^6.1.1",
     "dts-bundle-generator": "^5.3.0",
@@ -23,6 +25,8 @@
     "globby": "^10.0.1",
     "marked": "^0.3.12",
     "mini-css-extract-plugin": "^0.8.2",
+    "node-static": "^0.7.11",
+    "open": "^7.1.0",
     "sass.js": "^0.11.1",
     "sassjs-loader": "^2.0.0",
     "style-loader": "^1.2.1",
