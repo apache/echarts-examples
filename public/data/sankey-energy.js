@@ -18,12 +18,8 @@ $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
                 emphasis: {
                     focus: 'adjacency'
                 },
-                itemStyle: {
-                    borderWidth: 1,
-                    borderColor: '#aaa'
-                },
                 lineStyle: {
-                    color: 'source',
+                    color: 'gradient',
                     curveness: 0.5
                 }
             }

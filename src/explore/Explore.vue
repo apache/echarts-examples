@@ -88,7 +88,7 @@ export default {
                 if (!added) {
                     break;
                 }
-            } while (categoryOrder++ && categoryOrder < 4)  // At most 4 category
+            } while (++categoryOrder && categoryOrder < 4)  // At most 4 category
         }
 
         addExamples(CHART_LIST, false);

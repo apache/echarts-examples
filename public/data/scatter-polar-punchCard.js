@@ -28,11 +28,7 @@ option = {
         data: hours,
         boundaryGap: false,
         splitLine: {
-            show: true,
-            lineStyle: {
-                color: '#999',
-                type: 'dashed'
-            }
+            show: true
         },
         axisLine: {
             show: false

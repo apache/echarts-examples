@@ -23,8 +23,8 @@ var data = generateData(2, -5, 5);
 option = {
     tooltip: {},
     grid: {
-        right: 10,
-        left: 140
+        right: 140,
+        left: 40
     },
     xAxis: {
         type: 'category',
@@ -38,6 +38,8 @@ option = {
         type: 'piecewise',
         min: 0,
         max: 1,
+        left: 'right',
+        top: 'center',
         calculable: true,
         realtime: false,
         splitNumber: 8,

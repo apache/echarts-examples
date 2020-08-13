@@ -193,9 +193,7 @@ $.get(ROOT_PATH + '/data/asset/data/obama_budget_proposal_2012.json', function (
             top: 5,
             left: 'center',
             text: 'How $3.7 Trillion is Spent',
-            subtext: 'Obama’s 2012 Budget Proposal',
-            backgroundColor: 'rgb(243,243,243)',
-            borderRadius: [5, 5, 0, 0]
+            subtext: 'Obama’s 2012 Budget Proposal'
         },
 
         legend: {
@@ -203,7 +201,6 @@ $.get(ROOT_PATH + '/data/asset/data/obama_budget_proposal_2012.json', function (
             selectedMode: 'single',
             top: 55,
             itemGap: 5,
-            backgroundColor: 'rgb(243,243,243)',
             borderRadius: 5
         },
 
