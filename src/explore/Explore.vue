@@ -1,18 +1,34 @@
 <template>
 <div id="example-explore">
-    <div id="left-chart-nav">
-        <scrollactive active-class="active" :offset="80" :duration="500" bezier-easing-value=".5,0,.35,1">
-            <ul>
-                <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
-                    <a class="left-chart-nav-link scrollactive-item" :id="'left-chart-nav-' + category"
-                        :href="'#chart-type-' + category"
-                    >
-                        <span class="chart-icon"></span>
-                        <span class="chart-name">{{$t('chartTypes.' + category)}}</span>
-                    </a>
-                </li>
-            </ul>
-        </scrollactive>
+    <div id="left-container">
+        <div id="left-toolbar">
+            <el-switch
+                v-model="shared.darkMode"
+                active-color="#181432"
+                :active-text="$t('editor.darkMode')"
+                :inactive-text="''">
+            </el-switch>
+        </div>
+        <div id="left-chart-nav">
+            <scrollactive
+                active-class="active"
+                :offset="80"
+                :duration="500"
+                bezier-easing-value=".5,0,.35,1"
+                @itemchanged="onActiveNavChanged"
+            >
+                <ul>
+                    <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
+                        <a class="left-chart-nav-link scrollactive-item" :id="'left-chart-nav-' + category"
+                            :href="'#chart-type-' + category"
+                        >
+                            <span class="chart-icon"></span>
+                            <span class="chart-name">{{$t('chartTypes.' + category)}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </scrollactive>
+        </div>
     </div>
     <div id="explore-container">
         <div class="example-list-panel">
@@ -44,6 +60,9 @@ import {EXAMPLE_CATEGORIES, BLACK_MAP, URL_PARAMS} from '../common/config';
 import {store} from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
+import scrollIntoView from 'scroll-into-view';
+
+const LAZY_LOADED_CLASS = 'ec-shot-loaded';
 
 export default {
 
@@ -107,6 +126,18 @@ export default {
         }
     },
 
+    watch: {
+        "shared.darkMode"() {
+            const imgs = this.$el.querySelectorAll('img.chart-area');
+            for (let i = 0; i < imgs.length; i++) {
+                // Force lazyload to update
+                imgs[i].classList.remove(LAZY_LOADED_CLASS);
+                imgs[i].setAttribute('data-was-processed', 'false');
+            }
+            this._lazyload.update();
+        }
+    },
+
     computed: {
         exampleList() {
             const list = [];
@@ -129,8 +160,25 @@ export default {
             // Container should be the scroll viewport.
             // container: this.$el.querySelector('#explore-container .example-list-panel'),
             elements_selector: 'img.chart-area',
-            load_delay: 400
+            load_delay: 400,
+            class_loaded: LAZY_LOADED_CLASS
         });
+    },
+
+    methods: {
+        onActiveNavChanged(event, currentItem, lastActiveItem) {
+            // currentItem && currentItem.scrollIntoView && currentItem.parentNode.scrollIntoView({
+            //     // behavior: "smooth"
+            // });
+            // scrollIntoView(currentItem, {
+            //     time: 300,
+            //     cancellable: false,
+            //     align: {
+            //         top: 0,
+            //         topOffset: 50
+            //     }
+            // });
+        }
     }
 }
 </script>
@@ -143,6 +191,8 @@ export default {
 $chart-nav-width: 170px;
 $chart-icon-width: 25px;
 $chart-icon-border: 1px;
+
+$left-toolbar-height: 30px;
 
 $nav-height: 50px;
 $nav-bg: #252839;
@@ -161,7 +211,6 @@ $pd-lg: 20px;
     // background-color: $clr-bg;
 }
 
-
 .example-list-panel {
     margin: 30px 15px 30px 15px;
 
@@ -179,12 +228,43 @@ $pd-lg: 20px;
     }
 }
 
-#left-chart-nav {
+#left-container {
     position: fixed;
-    top: 50px;
-    bottom: 20px;
+    top: 10px;
+    bottom: 10px;
     left: 10px;
     width: $chart-nav-width;
+}
+
+#left-toolbar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: $left-toolbar-height;
+    top: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    // color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding-left: 5px;
+    padding-top: 4px;
+
+    .el-switch__label * {
+        font-size: 12px;
+        // color: #fff;
+        text-transform: uppercase;
+    }
+    .el-switch__label.is-active {
+        color: #181432;
+    }
+}
+
+#left-chart-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: $left-toolbar-height + 10px;
     background-color: $nav-bg;
     overflow-y: hidden;
     border-radius: 10px;
@@ -243,7 +323,7 @@ $pd-lg: 20px;
 }
 
 @media (max-width: 768px) {
-    #left-chart-nav {
+    #left-container {
         display: none;
     }
     #explore-container {

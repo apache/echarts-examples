@@ -36,6 +36,7 @@
     "resize-detector": "^0.2.2",
     "vanilla-lazyload": "^12.5.1",
     "vue-i18n": "^8.18.2",
+    "scroll-into-view": "^1.14.2",
     "vue-scrollactive": "^0.9.3"
   }
 }

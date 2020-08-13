@@ -12,12 +12,12 @@ var option = {
     },
     series: [{
         type: 'pie',
-        radius: 60,
+        radius: '20%',
         center: ['25%', '30%']
         // No encode specified, by default, it is '2012'.
     }, {
         type: 'pie',
-        radius: 60,
+        radius: '20%',
         center: ['75%', '30%'],
         encode: {
             itemName: 'product',
@@ -25,7 +25,7 @@ var option = {
         }
     }, {
         type: 'pie',
-        radius: 60,
+        radius: '20%',
         center: ['25%', '75%'],
         encode: {
             itemName: 'product',
@@ -33,7 +33,7 @@ var option = {
         }
     }, {
         type: 'pie',
-        radius: 60,
+        radius: '20%',
         center: ['75%', '75%'],
         encode: {
             itemName: 'product',

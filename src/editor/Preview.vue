@@ -49,6 +49,7 @@ function ensureECharts() {
             SCRIPT_URLS.datGUIMinJS,
             SCRIPT_URLS.echartsMinJS,
             SCRIPT_URLS.echartsDir + '/dist/extension/dataTool.js',
+            SCRIPT_URLS.echartsDir + '/map/js/world.js',
             SCRIPT_URLS.echartsStatMinJS,
             ...URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : [],
             ...hasBmap ? [

@@ -47,6 +47,10 @@ const BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
 const BASE_PATH = 'file://' + __dirname;
 const SCREENSHOT_PAGE_URL = path.join(BASE_PATH, `../public/screenshot.html`);
 
+const IGNORE_LOG = [
+    'A cookie associated with a cross-site resource at',
+    'A parser-blocking, cross site'
+];
 
 async function convertToWebP(filePath) {
     return util.promisify(execFile)(cwebpBin, [filePath, '-o', filePath.replace(/\.png$/, '.webp')]);
@@ -89,7 +93,12 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
         console.error('[pageerror in]', url);
         console.log(err.toString());
     });
-    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+    page.on('console', msg => {
+        const text = msg.text();
+        if (!IGNORE_LOG.find(a => text.indexOf(a) >= 0)) {
+            console.log('PAGE LOG:', text);
+        }
+    });
     console.log(`Generating ${theme} thumbs.....${basename}`);
     // https://stackoverflow.com/questions/46160929/puppeteer-wait-for-all-images-to-load-then-take-screenshot
     try {
@@ -238,6 +247,8 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 /* eslint-disable */
 // THIS FILE IS GENERATED, DON'T MODIFY */
 export default ${JSON.stringify(exampleList, null, 2)}`;
-        fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
+        if (!matchPattern) {
+            fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
+        }
     });
 })();
