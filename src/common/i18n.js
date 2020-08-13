@@ -8,7 +8,9 @@ export default {
             darkMode: 'Dark Mode',
             lightMode: 'Light Mode',
             renderer: 'Renderer',
-            download: 'Download'
+            download: 'Download',
+
+            edit: 'Edit'
         },
 
         chartTypes: {
@@ -63,7 +65,9 @@ export default {
             lightMode: '浅色模式',
 
             renderer: '渲染模式',
-            download: '下载示例'
+            download: '下载示例',
+
+            edit: '编辑'
         },
 
         chartTypes: {

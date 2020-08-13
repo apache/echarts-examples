@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="right-panel" id="chart-panel" :style="{background: backgroundColor}"></div>
+    <div :class="['right-panel', inEditor ? '' : 'full']" id="chart-panel" :style="{background: backgroundColor}"></div>
     <div id="tool-panel">
         <div class="left-panel">
             <label class="tool-label"></label>
@@ -17,7 +17,8 @@
                 <el-radio-button label="canvas"></el-radio-button>
             </el-radio-group>
         </div>
-        <button id="download" class="btn btn-sm">{{ $t('editor.download') }}</button>
+        <button v-if="inEditor" class="download btn btn-sm">{{ $t('editor.download') }}</button>
+        <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
     </div>
 </div>
 </template>
@@ -115,6 +116,8 @@ function run() {
 
 export default {
 
+    props: ['inEditor'],
+
     data() {
         return {
             shared: store,
@@ -136,6 +139,19 @@ export default {
                 this.sandbox.resize();
             }
         })
+    },
+
+    computed: {
+        editLink() {
+            const params = ['c=' + URL_PARAMS.c];
+            if (URL_PARAMS.theme) {
+                params.push(['theme=' + URL_PARAMS.theme]);
+            }
+            if (URL_PARAMS.gl) {
+                params.push(['gl=' + URL_PARAMS.gl]);
+            }
+            return './editor.html?' + params.join('&');
+        }
     },
 
     watch: {
@@ -196,6 +212,14 @@ export default {
     padding: 10px;
 }
 
+#chart-panel.full {
+    top: 40px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px;
+}
+
 #tool-panel {
     position: absolute;
     top: 0;
@@ -235,7 +259,7 @@ export default {
         margin-left: 20px;
     }
 
-    #download {
+    .download, .edit {
         float: right;
         margin-right: 20px;
     }

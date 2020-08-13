@@ -3,6 +3,7 @@ import VueI18n from 'vue-i18n';
 import messages from './common/i18n';
 import EditorPage from './editor/Editor.vue';
 import ExplorePage from './explore/Explore.vue';
+import ViewPage from './editor/View.vue';
 import {store} from './common/store';
 import VueScrollactive from 'vue-scrollactive';
 
@@ -44,7 +45,8 @@ export function init(el, option) {
         render: h => {
             return h(({
                 editor: EditorPage,
-                explore: ExplorePage
+                explore: ExplorePage,
+                view: ViewPage
             })[option.page] || ExplorePage);
         }
     });

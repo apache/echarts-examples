@@ -15,7 +15,7 @@
         <CodeAce id="code-panel" :initialCode="initialCode"></CodeAce>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
-    <Preview class="right-container" ref="preview" :style="{
+    <Preview inEditor="true" class="right-container" ref="preview" :style="{
         width: (100 - leftContainerSize) + '%',
         left: leftContainerSize + '%'
     }"></Preview>
@@ -27,7 +27,7 @@
 import CodeAce from './CodeAce.vue';
 import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
-import {store} from '../common/store';
+import {store, loadExampleCode} from '../common/store';
 
 export default {
     components: {
@@ -63,12 +63,10 @@ export default {
     },
 
     mounted() {
-        const dataRoot = URL_PARAMS.gl ? 'data-gl' : 'data';
-        $.ajax(`${store.cdnRoot}/${dataRoot}/${URL_PARAMS.c}.js?_v_${store.version}`, {
-            dataType: 'text',
-            success: (data) => {
-                this.initialCode = data;
-            }
+
+        loadExampleCode().then(code => {
+            // Only set the code in editor. editor will sync to the store.
+            this.initialCode = code;
         });
 
         window.addEventListener('mousemove', (e) => {
