@@ -17,7 +17,7 @@
                 <el-radio-button label="canvas"></el-radio-button>
             </el-radio-group>
         </div>
-        <button v-if="inEditor" class="download btn btn-sm">{{ $t('editor.download') }}</button>
+        <button v-if="inEditor" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
         <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
     </div>
 </div>
@@ -32,6 +32,7 @@ import {createSandbox} from './sandbox';
 import debounce from 'lodash/debounce';
 import { addListener, removeListener } from 'resize-detector';
 import CHART_LIST from '../data/chart-list-data';
+import {download} from './downloadExample';
 
 const example = CHART_LIST.find(item => URL_PARAMS.c === item.id);
 
@@ -181,6 +182,9 @@ export default {
             if (this.sandbox) {
                 this.sandbox.dispose();
             }
+        },
+        downloadExample() {
+            download();
         }
         // hasEditorError() {
         //     const annotations = this.editor.getSession().getAnnotations();
@@ -238,6 +242,10 @@ export default {
 
     .el-switch__label.is-active {
         color: #181432;
+    }
+
+    .el-radio-button--mini .el-radio-button__inner {
+        padding: 5px 8px;
     }
 
     label {
