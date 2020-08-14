@@ -1,4 +1,6 @@
 
+const promisesCache = {};
+
 export function loadScriptsAsync(scripts) {
     return Promise.all(scripts.map(function (scriptUrl) {
         if (typeof scriptUrl === 'string') {
@@ -8,7 +10,10 @@ export function loadScriptsAsync(scripts) {
                 type: scriptUrl.match(/\.css$/) ? 'css' : 'js'
             };
         }
-        return new Promise((resolve, reject) => {
+        if (promisesCache[scriptUrl.url]) {
+            return promisesCache[scriptUrl.url];
+        }
+        const promise = new Promise((resolve, reject) => {
             if (scriptUrl.type === 'js') {
                 const script = document.createElement('script');
                 script.src = scriptUrl.url;
@@ -34,5 +39,7 @@ export function loadScriptsAsync(scripts) {
                 document.body.appendChild(link);
             }
         });
+        promisesCache[scriptUrl.url] = promise;
+        return promise;
     }));
 }

@@ -12,7 +12,8 @@
                 <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
             </div>
         </div>
-        <CodeAce id="code-panel" :initialCode="initialCode"></CodeAce>
+        <CodeMonaco v-if="shared.useMonaco" id="code-panel" :initialCode="initialCode"></CodeMonaco>
+        <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
     <Preview inEditor="true" class="right-container" ref="preview" :style="{
@@ -25,6 +26,7 @@
 <script>
 
 import CodeAce from './CodeAce.vue';
+import CodeMonaco from './CodeMonaco.vue';
 import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode} from '../common/store';
@@ -32,6 +34,7 @@ import {store, loadExampleCode} from '../common/store';
 export default {
     components: {
         CodeAce,
+        CodeMonaco,
         Preview
     },
 
@@ -172,9 +175,6 @@ $handler-width: 5px;
     bottom: 0;
     left: 0;
     right: 0;
-
-    padding: $pd-basic;
-
     ::-webkit-scrollbar {
         height:8px;
         width:8px;

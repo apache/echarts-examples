@@ -11,7 +11,7 @@ module.exports = {
         filename: 'example-bundle.js',
         path: path.join(distPath, 'js'),
         library: 'echartsExample',
-        libraryTarget: 'umd'
+        libraryTarget: 'var'
     },
     stats: 'minimal',
     module: {

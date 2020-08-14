@@ -36,7 +36,7 @@ import {download} from './downloadExample';
 
 const example = CHART_LIST.find(item => URL_PARAMS.c === item.id);
 
-function ensureECharts() {
+export function ensureECharts() {
     if (typeof echarts === 'undefined') {
 
         const hasBmap = example && example.tags.indexOf('bmap') >= 0;
@@ -159,7 +159,13 @@ export default {
     watch: {
         "shared.code"(val) {
             if (this.autoRun || !this.sandbox) {
-                this.debouncedRun && this.debouncedRun();
+                if (!this.debouncedRun) {
+                    // First run
+                    this.run();
+                }
+                else {
+                    this.debouncedRun();
+                }
             }
         },
         "shared.renderer"() {
