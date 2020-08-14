@@ -100,7 +100,13 @@ export default {
                 // Should also be a file path so it can resolve the lib.
                 monaco.Uri.parse('file:///main.ts')
             );
-            const editor = monaco.editor.create(this.$el, { model });
+            const editor = monaco.editor.create(this.$el, {
+                model,
+                minimap: {
+                    enabled: false
+                },
+                automaticLayout: true
+            });
 
             this._editor = editor;
 
