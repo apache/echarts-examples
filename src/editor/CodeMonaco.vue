@@ -27,10 +27,11 @@ function loadTypes() {
             });
 
             for (let i = 0; i < res.length; i++) {
+                // console.log('file:///node_modules/@types/' + res[i].path);
                 monaco.languages.typescript.typescriptDefaults.addExtraLib(
                     res[i].code,
                     // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
-                    'file:///node_modules/@types/echarts/' + res[i].path
+                    'file:///node_modules/@types/' + res[i].path
                 );
             }
 
@@ -39,15 +40,12 @@ function loadTypes() {
 import {init, EChartsOption} from 'echarts';
 // Declare to global namespace.
 declare global {
+    declare $: any;
     declare var myChart: ReturnType<typeof init>;
     declare var option: EChartsOption;
 }
 `,
-                'file:///example/example.d.ts'
-            );
-            monaco.languages.typescript.typescriptDefaults.addExtraLib(
-                `/// <reference path="example.d.ts" />`,
-                'ts:index.d.ts'
+                'file:///example.d.ts'
             );
             resolve();
         });
@@ -97,7 +95,7 @@ export default {
                 this.initialCode || '',
                 'typescript',
                 // Should also be a file path so it can resolve the lib.
-                monaco.Uri.parse('file:///example/main.ts')
+                monaco.Uri.parse('file:///main.ts')
             );
             const editor = monaco.editor.create(this.$el, { model });
 
