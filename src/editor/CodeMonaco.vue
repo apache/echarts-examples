@@ -1,5 +1,5 @@
 <template>
-<div class="monaco-editor-main"></div>
+<div class="monaco-editor-main" v-loading="loading"></div>
 </template>
 
 <script>
@@ -85,12 +85,15 @@ export default {
 
     data() {
         return {
-            shared: store
+            shared: store,
+            loading: false
         }
     },
 
     mounted() {
+        this.loading = true;
         ensureMonaco().then(() => {
+            this.loading = false;
             const model = monaco.editor.createModel(
                 this.initialCode || '',
                 'typescript',
@@ -108,6 +111,13 @@ export default {
                 store.code = editor.getValue();
             });
         });
+    },
+
+    destroyed() {
+        if (this._editor) {
+            this._editor.getModel().dispose();
+            this._editor.dispose();
+        }
     },
 
     methods: {

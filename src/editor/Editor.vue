@@ -9,6 +9,10 @@
                 </template>
             </div>
             <div class="control-btn-panel">
+                <el-switch v-model="shared.useMonaco"
+                    :active-text="$t('editor.monacoMode')"
+                    :inactive-text="''"
+                ></el-switch>
                 <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
             </div>
         </div>
@@ -152,6 +156,13 @@ $handler-width: 5px;
 
     .control-btn-panel  {
         float: right;
+
+        .el-switch__label {
+            margin-top: -3px;
+        }
+        .el-switch__label * {
+            font-size: 12px;
+        }
 
         .btn {
             color: #FFF;

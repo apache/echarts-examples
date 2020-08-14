@@ -10,7 +10,8 @@ export default {
             renderer: 'Renderer',
             download: 'Download',
 
-            edit: 'Edit'
+            edit: 'Edit',
+            monacoMode: 'Enable Type Checking'
         },
 
         chartTypes: {
@@ -67,7 +68,8 @@ export default {
             renderer: '渲染模式',
             download: '下载示例',
 
-            edit: '编辑'
+            edit: '编辑',
+            monacoMode: '开启类型检查'
         },
 
         chartTypes: {

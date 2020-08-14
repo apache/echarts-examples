@@ -1,6 +1,10 @@
 <template>
 <div>
-    <div :class="['right-panel', inEditor ? '' : 'full']" id="chart-panel" :style="{background: backgroundColor}"></div>
+    <div v-loading="loading"
+        :class="['right-panel', inEditor ? '' : 'full']"
+        id="chart-panel"
+        :style="{background: backgroundColor}"
+    ></div>
     <div id="tool-panel">
         <div class="left-panel">
             <label class="tool-label"></label>
@@ -125,12 +129,15 @@ export default {
             shared: store,
             debouncedTime: undefined,
             backgroundColor: '',
-            autoRun: true
+            autoRun: true,
+            loading: false
         }
     },
 
     mounted() {
+        this.loading = true;
         ensureECharts().then(() => {
+            this.loading = false;
             if (store.code) {
                 this.run();
             }

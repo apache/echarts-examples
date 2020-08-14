@@ -1,5 +1,5 @@
 <template>
-<div class="ace-editor-main"></div>
+<div class="ace-editor-main" v-loading="loading"></div>
 </template>
 
 <script>
@@ -43,12 +43,15 @@ export default {
 
     data() {
         return {
-            shared: store
+            shared: store,
+            loading: false
         }
     },
 
     mounted() {
+        this.loading = true;
         ensureACE().then(() => {
+            this.loading = false;
             const editor = ace.edit(this.$el);
             editor.getSession().setMode('ace/mode/javascript');
             editor.setOptions({
