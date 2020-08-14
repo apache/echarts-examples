@@ -1,6 +1,5 @@
 import {store} from '../common/store';
-import {URL_PARAMS} from '../common/config';
-
+import {URL_PARAMS, SCRIPT_URLS} from '../common/config';
 
 const hasRootPath = store.code.indexOf('ROOT_PATH') >= 0;
 const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}'` : '';
@@ -14,23 +13,23 @@ export function download() {
     <body style="height: 100%; margin: 0">
         <div id="container" style="height: 100%"></div>
 
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsMinJS}"></script>
         <!-- Uncomment this line if you want to dataTool extension
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/dist/extension/dataTool.min.js"></script>
         -->
         <!-- Uncomment this line if you want to use gl extension
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsGLMinJS}"></script>
         -->
         <!-- Uncomment this line if you want to echarts-stat extension
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsStatMinJS}"></script>
         -->
         <!-- Uncomment this line if you want to use map
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/map/js/china.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/map/js/world.js"></script>
         -->
         <!-- Uncomment these two lines if you want to use bmap extension
         <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/dist/extension/bmap.min.js"></script>
         -->
 
         <script type="text/javascript">
