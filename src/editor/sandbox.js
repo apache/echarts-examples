@@ -92,9 +92,11 @@ export function createSandbox(optionUpdated) {
 
             // run the code
 
+            const compiledCode = store.runCode;
+
             const func = new Function(
                 'myChart', 'app', 'setTimeout', 'setInterval', 'ROOT_PATH',
-                'var option;\n' + store.code + '\nreturn option;'
+                'var option;\n' + compiledCode + '\nreturn option;'
             );
             const option = func(chartInstance, appEnv, setTimeout, setInterval, store.cdnRoot);
             let updateTime = 0;

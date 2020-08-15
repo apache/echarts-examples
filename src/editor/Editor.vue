@@ -9,14 +9,14 @@
                 </template>
             </div>
             <div class="control-btn-panel">
-                <el-switch v-model="shared.useMonaco"
+                <el-switch v-model="shared.typeCheck"
                     :active-text="$t('editor.monacoMode')"
                     :inactive-text="''"
                 ></el-switch>
                 <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
             </div>
         </div>
-        <CodeMonaco v-if="shared.useMonaco" id="code-panel" :initialCode="initialCode"></CodeMonaco>
+        <CodeMonaco v-if="shared.typeCheck" id="code-panel" :initialCode="initialCode"></CodeMonaco>
         <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
@@ -99,9 +99,9 @@ export default {
     },
 
     watch: {
-        'shared.useMonaco'() {
+        'shared.typeCheck'(enableTypeCheck) {
             // Update initialCode to avoid code changed when switching editor
-            this.initialCode = store.code;
+            this.initialCode = store.sourceCode;
         }
     }
 }

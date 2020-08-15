@@ -14,7 +14,7 @@ export default {
 
     mounted() {
         loadExampleCode().then(code => {
-            store.code = code;
+            store.runCode = code;
         });
     }
 }

@@ -38,6 +38,10 @@ module.exports = {
                     name: '[name].[ext]'
                 }
             }]
+        }, {
+            test: /\.mjs$/,
+            include: /node_modules/,
+            type: 'javascript/auto'
         }]
     },
     externals: {
