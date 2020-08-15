@@ -96,6 +96,13 @@ export default {
         disposeAndRun() {
             this.$refs.preview.refreshAll();
         }
+    },
+
+    watch: {
+        'shared.useMonaco'() {
+            // Update initialCode to avoid code changed when switching editor
+            this.initialCode = store.code;
+        }
     }
 }
 </script>
