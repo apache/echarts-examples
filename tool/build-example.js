@@ -148,7 +148,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 
         const exampleList = [];
 
-        const threadNum = 16;
+        const threadNum = BUILD_THUMBS ? 16 : 1;
         let buckets = [];
         for (let i = 0; i < files.length;) {
             const bucket = [];
@@ -159,13 +159,13 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                 }
                 const basename = path.basename(fileName, '.js');
 
-                if (BUILD_THUMBS
-                    && screenshotBlackList.indexOf(basename) < 0
-                    && (!matchPattern || matchPattern.some(function (pattern) {
+                if (
+                    !matchPattern || matchPattern.some(function (pattern) {
                         return minimatch(basename, pattern);
-                    }))
+                    })
                 ) {
                     bucket.push({
+                        buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
                         basename
                     });
                 }
@@ -173,12 +173,11 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
             buckets.push(bucket);
         }
 
-
         for (let theme of themeList) {
             for (let bucket of buckets) {
                 const promises = [];
 
-                for (const {basename} of bucket) {
+                for (const {basename, buildThumb} of bucket) {
 
                     // Remove mapbox temporary
                     if (basename.indexOf('mapbox') >= 0
@@ -204,7 +203,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                     // const descHTML = marked(fmResult.body);
 
                     // Do screenshot
-                    if (BUILD_THUMBS) {
+                    if (buildThumb) {
                         promises.push(takeScreenshot(browser, theme, rootDir, basename));
                     }
 
