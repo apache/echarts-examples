@@ -9,6 +9,7 @@ import {loadScriptsAsync} from '../common/helper';
 import {store} from '../common/store';
 import {SCRIPT_URLS} from '../common/config';
 import { ensureECharts } from './Preview.vue';
+import transformTs from './transformTs';
 
 function loadTypes() {
     return new Promise(resolve => {
@@ -111,10 +112,12 @@ export default {
             this._editor = editor;
 
             if (this.initialCode) {
-                store.code = this.initialCode;
+                store.sourceCode = this.initialCode;
+                store.runCode = transformTs(store.sourceCode);
             }
             editor.onDidChangeModelContent(() => {
-                store.code = editor.getValue();
+                store.sourceCode = editor.getValue();
+                store.runCode = transformTs(store.sourceCode);
             });
         });
     },

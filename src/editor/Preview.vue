@@ -138,7 +138,7 @@ export default {
         this.loading = true;
         ensureECharts().then(() => {
             this.loading = false;
-            if (store.code) {
+            if (store.runCode) {
                 this.run();
             }
         });
@@ -164,7 +164,7 @@ export default {
     },
 
     watch: {
-        "shared.code"(val) {
+        "shared.runCode"(val) {
             if (this.autoRun || !this.sandbox) {
                 if (!this.debouncedRun) {
                     // First run

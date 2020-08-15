@@ -9,9 +9,12 @@ export const store = {
     darkMode: URL_PARAMS.theme === 'dark',
     renderer: URL_PARAMS.renderer || 'canvas',
 
-    useMonaco: URL_PARAMS.editor === 'monaco',
+    typeCheck: URL_PARAMS.editor === 'monaco',
 
     code: '',
+
+    runCode: '',
+    sourceCode: '',
 
     editorStatus: {
         type: '',

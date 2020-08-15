@@ -63,7 +63,8 @@ export default {
             this._editor = editor;
 
             editor.on('change', () => {
-                store.code = editor.getValue();
+                store.sourceCode =
+                    store.runCode = editor.getValue();
             });
 
             if (this.initialCode) {
