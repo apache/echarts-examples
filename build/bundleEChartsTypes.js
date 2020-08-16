@@ -26,6 +26,8 @@ async function bundle() {
             code: fs.readFileSync(file, 'utf-8')
         });
     }
+    // For consistent output to avoid diff changes too much.
+    dtsBundle.sort((a, b) => a.path.localeCompare(b.path));
 
     fs.writeFileSync(outFile, JSON.stringify(dtsBundle, null, 2), 'utf-8');
 }

@@ -48,4 +48,4 @@ $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
     };
 
     myChart.setOption(option);
-}, 'xml');
+});

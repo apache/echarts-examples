@@ -9,7 +9,6 @@ import {loadScriptsAsync} from '../common/helper';
 import {store} from '../common/store';
 import {SCRIPT_URLS} from '../common/config';
 import { ensureECharts } from './Preview.vue';
-import transformTs from './transformTs';
 
 function loadTypes() {
     return new Promise(resolve => {
@@ -41,8 +40,24 @@ function loadTypes() {
 import {init, EChartsOption} from 'echarts';
 // Declare to global namespace.
 declare global {
-    declare $: any;
-    declare var myChart: ReturnType<typeof init>;
+    declare const $: any;
+    declare const ROOT_PATH: string;
+    declare const app: {
+        configParameters: {
+            [key: string]: ({
+                options: { [key: string]: string
+            }) | ({
+                min?: number
+                max?: number
+            })
+        }
+        config: {
+            onChange: () => void
+            [key: string]: string | number | function
+        }
+        [key: string]: any
+    };
+    declare const myChart: ReturnType<typeof init>;
     declare var option: EChartsOption;
 }
 `,
@@ -53,13 +68,13 @@ declare global {
     });
 }
 
-function ensureMonaco() {
+function ensureMonacoAndTsTransformer() {
     function loadMonaco() {
         if (typeof monaco === 'undefined') {
             return loadScriptsAsync([
-                SCRIPT_URLS.monacoDir + '/loader.js'
-                // SCRIPT_URLS.monacoDir + '/editor/editor.main.nls.js',
-                // SCRIPT_URLS.monacoDir + '/editor/editor.main.js'
+                SCRIPT_URLS.monacoDir + '/loader.js',
+                // Prebuilt TS transformer with surcrase
+                store.cdnRoot + '/js/example-transform-ts-bundle.js'
             ]).then(function () {
                 window.require.config({ paths: { 'vs': SCRIPT_URLS.monacoDir }});
                 return new Promise(resolve => {
@@ -93,7 +108,7 @@ export default {
 
     mounted() {
         this.loading = true;
-        ensureMonaco().then(() => {
+        ensureMonacoAndTsTransformer().then(() => {
             this.loading = false;
             const model = monaco.editor.createModel(
                 this.initialCode || '',
@@ -113,11 +128,11 @@ export default {
 
             if (this.initialCode) {
                 store.sourceCode = this.initialCode;
-                store.runCode = transformTs(store.sourceCode);
+                store.runCode = echartsExampleTransformTs(store.sourceCode);
             }
             editor.onDidChangeModelContent(() => {
                 store.sourceCode = editor.getValue();
-                store.runCode = transformTs(store.sourceCode);
+                store.runCode = echartsExampleTransformTs(store.sourceCode);
             });
         });
     },
