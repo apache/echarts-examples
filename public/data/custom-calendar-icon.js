@@ -49,7 +49,7 @@ function renderItem(params, api) {
 
     var group = {
         type: 'group',
-        children: echarts.util.map(layouts[events.length - 1], function (itemLayout, index) {
+        children: (layouts[events.length - 1] || []).map(function (itemLayout, index) {
             return {
                 type: 'path',
                 shape: {

@@ -148,7 +148,7 @@ function makeOption() {
                 x: -1, // Then this series will not controlled by x.
                 y: 0
             },
-            data: echarts.util.map(_rawData.parkingApron.data, function (item, index) {
+            data: _rawData.parkingApron.data.map(function (item, index) {
                 return [index].concat(item);
             })
         }]

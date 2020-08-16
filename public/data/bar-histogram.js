@@ -7,7 +7,7 @@ var interval;
 var min = Infinity;
 var max = -Infinity;
 
-var data = echarts.util.map(bins.data, function (item, index) {
+var data = bins.data.map(function (item, index) {
     var x0 = bins.bins[index].x0;
     var x1 = bins.bins[index].x1;
     interval = x1 - x0;

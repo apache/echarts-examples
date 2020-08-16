@@ -16,7 +16,7 @@ function getVirtulData() {
 }
 
 function getPieSeries(scatterData, chart) {
-    return echarts.util.map(scatterData, function (item, index) {
+    return scatterData.map(function (item, index) {
         var center = chart.convertToPixel('calendar', item);
         return {
             id: index + 'pie',
@@ -39,7 +39,7 @@ function getPieSeries(scatterData, chart) {
 }
 
 function getPieSeriesUpdate(scatterData, chart) {
-    return echarts.util.map(scatterData, function (item, index) {
+    return scatterData.map(function (item, index) {
         var center = chart.convertToPixel('calendar', item);
         return {
             id: index + 'pie',

@@ -89,7 +89,7 @@ function addDescriptions() {
     ];
 
     myChart.setOption({
-        graphic: echarts.util.map(option.xAxis.data, function (itemName, index) {
+        graphic: option.xAxis.data.map(function (itemName, index) {
             return {
                 type: 'group',
                 position: myChart.convertToPixel('grid', [index, 70]),

@@ -8,17 +8,16 @@ $.getJSON(ROOT_PATH + '/data/asset/data/wind-barb-hobart.json', function (rawDat
     };
 
     var directionMap = {};
-    echarts.util.each(
-        ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'],
+    ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'].forEach(
         function (name, index) {
             directionMap[name] = Math.PI / 8 * index;
         }
     );
 
-    var data = echarts.util.map(rawData.data, function (entry) {
+    var data = rawData.data.map(function (entry) {
         return [entry.time, entry.windSpeed, entry.R, entry.waveHeight];
     });
-    var weatherData = echarts.util.map(rawData.forecast, function (entry) {
+    var weatherData = rawData.forecast.map(function (entry) {
         return [entry.localDate, 0, weatherIcons[entry.skyIcon], entry.minTemp, entry.maxTemp];
     });
 

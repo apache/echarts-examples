@@ -94,7 +94,7 @@ option = {
         },
         data: customData,
         z: 100
-    }].concat(echarts.util.map(dataList, function (data, index) {
+    }].concat(dataList.map(function (data, index) {
         return {
             type: 'bar',
             animation: false,

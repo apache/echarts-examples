@@ -30,7 +30,7 @@ function hexBinStatistics(points, r) {
             }
         }
 
-        var id = pi + "-" + pj;
+        var id = pi + '-' + pj;
         var bin = binsById[id];
         if (bin) {
             bin.points.push(point);
@@ -67,21 +67,21 @@ $.when(
     var hexagonRadiusInGeo = 1;
 
     var hexBinResult = hexBinStatistics(
-        echarts.util.map(shotData.data, function (item) {
+        shotData.data.map(function (item) {
             // "shot_made_flag" made missed
-            var made = item[echarts.util.indexOf(shotData.schema, 'shot_made_flag')];
+            var made = item[shotData.schema.indexOf('shot_made_flag')];
             return [
-                item[echarts.util.indexOf(shotData.schema, 'loc_x')],
-                item[echarts.util.indexOf(shotData.schema, 'loc_y')],
+                item[shotData.schema.indexOf('loc_x')],
+                item[shotData.schema.indexOf('loc_y')],
                 made === 'made' ? 1 : 0
             ];
         }),
         hexagonRadiusInGeo
     );
 
-    var data = echarts.util.map(hexBinResult.bins, function (bin) {
+    var data = hexBinResult.bins.map(function (bin) {
         var made = 0;
-        echarts.util.each(bin.points, function (point) {
+        bin.points.forEach(function (point) {
             made += point[2];
         });
         return [bin.x, bin.y, bin.points.length, (made / bin.points.length * 100).toFixed(2)];
@@ -143,7 +143,7 @@ $.when(
     function renderItemNBACourt(param, api) {
         return {
             type: 'group',
-            children: echarts.util.map(nbaCourt.geometry, function (item) {
+            children: nbaCourt.geometry.map(function (item) {
                 return {
                     type: item.type,
                     style: {
@@ -152,7 +152,7 @@ $.when(
                         lineWidth: 1.5
                     },
                     shape: {
-                        points: echarts.util.map(item.points, api.coord)
+                        points: item.points.map(api.coord)
                     }
                 };
             })

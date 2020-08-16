@@ -13,7 +13,7 @@ var types = [
 ];
 
 // Generate mock data
-echarts.util.each(categories, function (category, index) {
+categories.forEach(function (category, index) {
     var baseTime = startTime;
     for (var i = 0; i < dataCount; i++) {
         var typeItem = types[Math.round(Math.random() * (types.length - 1))];

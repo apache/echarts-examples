@@ -62,7 +62,7 @@ option = {
 setTimeout(function () {
     // Add shadow circles (which is not visible) to enable drag.
     myChart.setOption({
-        graphic: echarts.util.map(data, function (item, dataIndex) {
+        graphic: data.map(function (item, dataIndex) {
             return {
                 type: 'circle',
                 position: myChart.convertToPixel('grid', item),
@@ -73,9 +73,15 @@ setTimeout(function () {
                 },
                 invisible: true,
                 draggable: true,
-                ondrag: echarts.util.curry(onPointDragging, dataIndex),
-                onmousemove: echarts.util.curry(showTooltip, dataIndex),
-                onmouseout: echarts.util.curry(hideTooltip, dataIndex),
+                ondrag: function (dx, dy) {
+                    onPointDragging(dataIndex, [this.x, this.y]);
+                },
+                onmousemove: function () {
+                    showTooltip(dataIndex);
+                },
+                onmouseout: function () {
+                    hideTooltip(dataIndex);
+                },
                 z: 100
             };
         })
@@ -88,7 +94,7 @@ myChart.on('dataZoom', updatePosition);
 
 function updatePosition() {
     myChart.setOption({
-        graphic: echarts.util.map(data, function (item, dataIndex) {
+        graphic: data.map(function (item, dataIndex) {
             return {
                 position: myChart.convertToPixel('grid', item)
             };
@@ -110,8 +116,8 @@ function hideTooltip(dataIndex) {
     });
 }
 
-function onPointDragging(dataIndex, dx, dy) {
-    data[dataIndex] = myChart.convertFromPixel('grid', this.position);
+function onPointDragging(dataIndex, pos) {
+    data[dataIndex] = myChart.convertFromPixel('grid', pos);
 
     // Update data
     myChart.setOption({

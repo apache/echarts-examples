@@ -183,7 +183,7 @@ function addDescriptions() {
     ];
 
     myChart.setOption({
-        graphic: echarts.util.map(descriptions, function (item, index) {
+        graphic: descriptions.map(function (item, index) {
             var pos = myChart.convertToPixel('grid', [Math.max(index - 1, 0), -1000]);
 
             return {

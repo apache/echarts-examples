@@ -145,7 +145,7 @@ function makeSeries(xLeftOrRight, yTopOrBottom) {
 }
 
 function makeDataZoom(opt) {
-    return echarts.util.extend({
+    return Object.assign({
         type: 'slider',
         fillerColor: 'rgba(255,255,255,0.1)',
         borderColor: '#777',
@@ -166,7 +166,7 @@ function tooltipFormatter(params) {
     // Remove duplicate by data name.
     var mapByDataName = {};
     var mapOnDim = {x: {}, y: {}, xy: {}};
-    echarts.util.each(params, function (item) {
+    params.forEach(function (item) {
         var data = item.data;
         var dataName = data[3];
         var mapItem = mapByDataName[dataName] || (mapByDataName[dataName] = {});
@@ -174,23 +174,24 @@ function tooltipFormatter(params) {
         mapItem[data[5]] = data[1];
         mapOnDim[item.axisDim][dataName] = mapItem;
     });
-    echarts.util.each(mapByDataName, function (mapItem, dataName) {
+    Object.keys(mapByDataName).forEach(function (dataName) {
         if (mapOnDim.x[dataName] && mapOnDim.y[dataName]) {
-            mapOnDim.xy[dataName] = mapItem;
+            mapOnDim.xy[dataName] = mapByDataName[dataName];
             delete mapOnDim.x[dataName];
             delete mapOnDim.y[dataName];
         }
     });
     var resultHTML = [];
-    echarts.util.each([['xy', 'CROSS'], ['x', 'V LINE'], ['y', 'H LINE']], function (dimDefine) {
+    [['xy', 'CROSS'], ['x', 'V LINE'], ['y', 'H LINE']].forEach(function (dimDefine) {
         var html = [];
-        echarts.util.each(mapOnDim[dimDefine[0]], function (mapItem, dataName) {
+        Object.keys(mapOnDim[dimDefine[0]]).forEach(function (dataName) {
+            var mapItem = mapOnDim[dimDefine[0]][dataName];
             var valuesHTML = [];
-            echarts.util.each(mapItem, function (value, dataName) {
+            Object.keys(mapItem).forEach(function (dataName) {
                 valuesHTML.push(
                     '<span style="color:' + colorBySchema[dataName] + '">'
                         + dataName
-                    + '</span>: ' + value
+                    + '</span>: ' + mapItem[dataName]
                 );
             });
             html.push('<div style="margin: 10px 0">' + dataName + '<br/>' + valuesHTML.join('<br/>') + '</div>');

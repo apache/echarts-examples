@@ -25,7 +25,7 @@ app.configParameters = {
         }
     },
     position: {
-        options: echarts.util.reduce(posList, function (map, pos) {
+        options: posList.reduce(function (map, pos) {
             map[pos] = pos;
             return map;
         }, {})

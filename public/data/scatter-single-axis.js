@@ -16,7 +16,7 @@ option = {
     series: []
 };
 
-echarts.util.each(days, function (day, idx) {
+days.forEach(function (day, idx) {
     option.title.push({
         textBaseline: 'middle',
         top: (idx + 0.5) * 100 / 7 + '%',
@@ -44,6 +44,6 @@ echarts.util.each(days, function (day, idx) {
     });
 });
 
-echarts.util.each(data, function (dataItem) {
+data.forEach(function (dataItem) {
     option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
 });

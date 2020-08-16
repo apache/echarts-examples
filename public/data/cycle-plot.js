@@ -15,8 +15,8 @@ var rawData = [
 
 var dataByMonth = [];
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-echarts.util.each(rawData, function (entry, yearIndex) {
-    echarts.util.each(entry, function (value, index) {
+rawData.forEach(function (entry, yearIndex) {
+    entry.forEach(function (value, index) {
         if (index) {
             var monthIndex = index - 1;
             var monthItem = dataByMonth[monthIndex] = dataByMonth[monthIndex] || [];
@@ -26,9 +26,9 @@ echarts.util.each(rawData, function (entry, yearIndex) {
     });
 });
 var averageByMonth = [];
-echarts.util.each(dataByMonth, function (entry, index) {
+dataByMonth.forEach(function (entry, index) {
     var sum = 0;
-    echarts.util.each(entry, function (value, index) {
+    entry.forEach(function (value, index) {
         index && (sum += value);
     });
     averageByMonth.push([index, sum / (entry.length - 1)]);
@@ -38,7 +38,7 @@ function renderTrendItem(params, api) {
     var categoryIndex = api.value(0);
     var unitBandWidth = api.size([0, 0])[0] * 0.85 / (rawData.length - 1);
 
-    var points = echarts.util.map(rawData, function (entry, index) {
+    var points = rawData.map(function (entry, index) {
         var value = api.value(index + 1);
         var point = api.coord([categoryIndex, value]);
         point[0] += unitBandWidth * (index - rawData.length / 2);
@@ -121,7 +121,7 @@ option = {
         renderItem: renderTrendItem,
         encode: {
             x: 0,
-            y: echarts.util.map(rawData, function (entry, index) {
+            y: rawData.map(function (entry, index) {
                 return index + 1;
             })
         },

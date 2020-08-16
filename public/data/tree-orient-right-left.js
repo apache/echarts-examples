@@ -3,7 +3,7 @@ myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
     myChart.hideLoading();
 
-    echarts.util.each(data.children, function (datum, index) {
+    data.children.forEach(function (datum, index) {
         index % 2 === 0 && (datum.collapsed = true);
     });
 
