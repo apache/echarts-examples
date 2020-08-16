@@ -118,6 +118,7 @@ export default {
             );
             const editor = monaco.editor.create(this.$el, {
                 model,
+                fontFamily: `'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace`,
                 minimap: {
                     enabled: false
                 },

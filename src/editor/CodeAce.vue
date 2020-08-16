@@ -102,6 +102,7 @@ export default {
 .ace-editor-main {
     font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
     font-size: 12px;
+    line-height: 18px;
     padding: 10px;
 }
 </style>

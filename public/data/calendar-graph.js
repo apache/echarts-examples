@@ -74,10 +74,8 @@ option = {
         monthLabel: {
             nameMap: 'cn',
             margin: 15,
-            textStyle: {
-                fontSize: 20,
-                color: '#999'
-            }
+            fontSize: 20,
+            color: '#999'
         },
         range: ['2017-02', '2017-03-31']
     },
@@ -102,7 +100,7 @@ option = {
         calendarIndex: 0,
         itemStyle: {
             color: 'yellow',
-            shadowBlue: 9,
+            shadowBlur: 9,
             shadowOffsetX: 1.5,
             shadowOffsetY: 3,
             shadowColor: '#555'

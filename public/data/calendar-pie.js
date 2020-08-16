@@ -63,9 +63,7 @@ option = {
         cellSize: cellSize,
         yearLabel: {
             show: false,
-            textStyle: {
-                fontSize: 30
-            }
+            fontSize: 30
         },
         dayLabel: {
             margin: 20,
@@ -83,15 +81,13 @@ option = {
         coordinateSystem: 'calendar',
         symbolSize: 1,
         label: {
-            normal: {
-                show: true,
-                formatter: function (params) {
-                    return echarts.format.formatTime('dd', params.value[0]);
-                },
-                offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
-                textStyle: {
-                    fontSize: 14
-                }
+            show: true,
+            formatter: function (params) {
+                return echarts.format.formatTime('dd', params.value[0]);
+            },
+            offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
+            textStyle: {
+                fontSize: 14
             }
         },
         data: scatterData

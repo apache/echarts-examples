@@ -146,10 +146,8 @@ option = {
         stack: 'chart',
         z: 3,
         label: {
-            normal: {
-                position: 'right',
-                show: true
-            }
+            position: 'right',
+            show: true
         },
         data: Object.keys(builderJson.charts).map(function (key) {
             return builderJson.charts[key];
@@ -159,9 +157,7 @@ option = {
         stack: 'chart',
         silent: true,
         itemStyle: {
-            normal: {
-                color: '#eee'
-            }
+            color: '#eee'
         },
         data: Object.keys(builderJson.charts).map(function (key) {
             return builderJson.all - builderJson.charts[key];
@@ -173,10 +169,8 @@ option = {
         yAxisIndex: 1,
         z: 3,
         label: {
-            normal: {
-                position: 'right',
-                show: true
-            }
+            position: 'right',
+            show: true
         },
         data: Object.keys(builderJson.components).map(function (key) {
             return builderJson.components[key];
@@ -188,9 +182,7 @@ option = {
         xAxisIndex: 1,
         yAxisIndex: 1,
         itemStyle: {
-            normal: {
-                color: '#eee'
-            }
+            color: '#eee'
         },
         data: Object.keys(builderJson.components).map(function (key) {
             return builderJson.all - builderJson.components[key];
@@ -203,7 +195,7 @@ option = {
             return {
                 name: key.replace('.js', ''),
                 value: downloadJson[key]
-            }
+            };
         })
     }, {
         type: 'pie',

@@ -49,7 +49,7 @@ function genData(count) {
     var seriesData = [];
     var selected = {};
     for (var i = 0; i < count; i++) {
-        name = Math.random() > 0.65
+        var name = Math.random() > 0.65
             ? makeWord(4, 1) + '·' + makeWord(3, 0)
             : makeWord(2, 1);
         legendData.push(name);

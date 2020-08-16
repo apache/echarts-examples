@@ -18,10 +18,6 @@ option = {
         feature: {
             mark: {show: true},
             dataView: {show: true, readOnly: false},
-            magicType: {
-                show: true,
-                type: ['pie', 'funnel']
-            },
             restore: {show: true},
             saveAsImage: {show: true}
         }
