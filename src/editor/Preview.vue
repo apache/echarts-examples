@@ -275,7 +275,7 @@ export default {
 
     .download, .edit {
         float: right;
-        margin-right: 20px;
+        margin-right: 15px;
     }
 }
 
@@ -285,10 +285,13 @@ export default {
         right: 5px;
         bottom: 5px;
         left: 5px;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
     }
     #tool-panel {
         padding-left: 5px;
+        .download, .edit {
+            margin-right: 5px;
+        }
     }
 }
 
