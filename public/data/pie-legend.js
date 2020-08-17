@@ -47,7 +47,6 @@ function genData(count) {
     ];
     var legendData = [];
     var seriesData = [];
-    var selected = {};
     for (var i = 0; i < count; i++) {
         var name = Math.random() > 0.65
             ? makeWord(4, 1) + '·' + makeWord(3, 0)
@@ -57,13 +56,11 @@ function genData(count) {
             name: name,
             value: Math.round(Math.random() * 100000)
         });
-        selected[name] = i < 6;
     }
 
     return {
         legendData: legendData,
-        seriesData: seriesData,
-        selected: selected
+        seriesData: seriesData
     };
 
     function makeWord(max, min) {

@@ -1,13 +1,12 @@
 <template>
-<div>
+<div :class="[inEditor ? '' : 'full']">
     <div v-loading="loading"
-        :class="['right-panel', inEditor ? '' : 'full']"
+        class="right-panel"
         id="chart-panel"
         :style="{background: backgroundColor}"
     ></div>
     <div id="tool-panel">
         <div class="left-panel">
-            <label class="tool-label"></label>
             <el-switch
                 v-model="shared.darkMode"
                 active-color="#181432"
@@ -230,20 +229,13 @@ export default {
     padding: 10px;
 }
 
-#chart-panel.full {
-    top: 40px;
-    right: 5px;
-    bottom: 5px;
-    left: 5px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px;
-}
-
 #tool-panel {
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
     padding-top: 5px;
+    padding-left: 15px;
 
     .el-switch__label * {
         font-size: 12px;
@@ -284,6 +276,19 @@ export default {
     .download, .edit {
         float: right;
         margin-right: 20px;
+    }
+}
+
+.full {
+    #chart-panel {
+        top: 40px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px;
+    }
+    #tool-panel {
+        padding-left: 5px;
     }
 }
 
