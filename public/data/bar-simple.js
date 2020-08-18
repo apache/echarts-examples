@@ -1,3 +1,8 @@
+/*
+title: Bar Simple
+category: bar
+*/
+
 option = {
     xAxis: {
         type: 'category',

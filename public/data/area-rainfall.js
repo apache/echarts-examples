@@ -1,3 +1,9 @@
+/*
+title: Rainfall
+titleCN: 雨量流量关系图
+category: line
+*/
+
 option = {
     title: {
         text: '雨量流量关系图',

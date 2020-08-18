@@ -1,3 +1,9 @@
+/*
+title: Large Scale Candlestick
+category: candlestick
+titleCN: 大数据量K线图
+*/
+
 var upColor = '#ec0000';
 var upBorderColor = '#8A0000';
 var downColor = '#00da3c';

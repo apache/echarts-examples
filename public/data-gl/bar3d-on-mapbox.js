@@ -1,3 +1,9 @@
+/*
+title: Bar3D on Mapbox
+category: bar3D
+titleCN: Bar3D on Mapbox
+*/
+
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 

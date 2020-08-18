@@ -1,3 +1,9 @@
+/*
+title: Pie Label Align
+category: pie
+titleCN: 饼图标签对齐
+*/
+
 var data = [{
     name: 'Apples',
     value: 70

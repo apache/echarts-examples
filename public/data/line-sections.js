@@ -1,3 +1,9 @@
+/*
+title: Distribution of Electricity
+category: line
+titleCN: 一天用电量分布
+*/
+
 option = {
     title: {
         text: '一天用电量分布',

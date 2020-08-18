@@ -1,3 +1,10 @@
+/*
+title: Flights
+category: lines3D
+titleCN: Flights
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/flights.json', function (data) {
     var airports = data.airports.map(function (item) {

@@ -1,3 +1,9 @@
+/*
+title: Doughnut Chart
+category: pie
+titleCN: 环形图
+*/
+
 option = {
     tooltip: {
         trigger: 'item',

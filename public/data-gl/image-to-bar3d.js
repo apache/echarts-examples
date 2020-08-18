@@ -1,3 +1,10 @@
+/*
+title: Image to Bar3D
+category: bar3D
+titleCN: Image to Bar3D
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 var img = new Image();
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');

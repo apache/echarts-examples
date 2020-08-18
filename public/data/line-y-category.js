@@ -1,3 +1,9 @@
+/*
+title: Line Y Category
+category: line
+titleCN: Line Y Category
+*/
+
 option = {
     legend: {
         data: ['高度(km)与气温(°C)变化关系']

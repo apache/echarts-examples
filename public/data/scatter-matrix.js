@@ -1,3 +1,9 @@
+/*
+title: Scatter Matrix
+category: 'parallel, scatter'
+titleCN: Scatter Matrix
+*/
+
 // Schema:
 // date,AQIindex,PM2.5,PM10,CO,NO2,SO2
 var schema = [

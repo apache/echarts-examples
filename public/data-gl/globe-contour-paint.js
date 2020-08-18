@@ -1,3 +1,9 @@
+/*
+title: Contour Paint
+category: globe
+titleCN: Contour Paint
+*/
+
 
 var config = {
     color: '#c0101a',

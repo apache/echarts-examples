@@ -1,3 +1,9 @@
+/*
+title: Scatter Nutrients
+category: scatter
+titleCN: Scatter Nutrients
+*/
+
 var indices = {
     name: 0,
     group: 1,

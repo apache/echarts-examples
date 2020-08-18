@@ -1,3 +1,9 @@
+/*
+title: Function Plot
+category: line
+titleCN: 函数绘图
+*/
+
 function func(x) {
     x /= 10;
     return Math.sin(x) * Math.cos(x * 2 + 1) * Math.sin(x * 3 + 2) * 50;

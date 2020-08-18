@@ -1,3 +1,8 @@
+/*
+title: 阶梯瀑布图
+category: bar
+*/
+
 option = {
     title: {
         text: '阶梯瀑布图',

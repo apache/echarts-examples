@@ -1,3 +1,9 @@
+/*
+title: Rounded Bar on Polar
+category: bar
+titleCN: 圆角环形图
+*/
+
 option = {
     angleAxis: {
         max: 2,

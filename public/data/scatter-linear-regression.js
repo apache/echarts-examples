@@ -1,3 +1,9 @@
+/*
+title: Linear Regression
+category: scatter
+titleCN: Linear Regression
+*/
+
 var data = [
     [0.067732, 3.176513],
     [0.42781, 3.816464],

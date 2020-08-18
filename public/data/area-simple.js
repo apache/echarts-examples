@@ -1,3 +1,9 @@
+/*
+title: Large scale area chart
+titleCN: 大数据量面积图
+category: 'line, dataZoom'
+*/
+
 var base = +new Date(1968, 9, 3);
 var oneDay = 24 * 3600 * 1000;
 var date = [];

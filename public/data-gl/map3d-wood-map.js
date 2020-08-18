@@ -1,3 +1,9 @@
+/*
+title: 木质世界地图
+category: map3D
+titleCN: 木质世界地图
+*/
+
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/alcohol.json', function (data) {
     var regionData = data.map(function (item) {
         return {

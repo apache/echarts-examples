@@ -1,3 +1,9 @@
+/*
+title: Multiple Categories
+category: boxplot
+titleCN: Multiple Categories
+*/
+
 
 // Generate data.
 function makeData() {

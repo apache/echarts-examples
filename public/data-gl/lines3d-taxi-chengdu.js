@@ -1,3 +1,9 @@
+/*
+title: 成都市出租车运行轨迹图 - GL 版
+category: lines3D
+titleCN: 成都市出租车运行轨迹图 - GL 版
+*/
+
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 var szRoad = {
     success: true,

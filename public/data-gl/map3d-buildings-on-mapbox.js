@@ -1,3 +1,9 @@
+/*
+title: Buildings on Mapbox
+category: map3D
+titleCN: Buildings on Mapbox
+*/
+
 mapboxgl.accessToken = mapboxglToken;
 
 

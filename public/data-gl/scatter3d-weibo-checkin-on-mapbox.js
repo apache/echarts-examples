@@ -1,3 +1,9 @@
+/*
+title: Weibo checkin on Mapbox
+category: scatter3D
+titleCN: Weibo checkin on Mapbox
+*/
+
 
 mapboxgl.accessToken = mapboxglToken;
 

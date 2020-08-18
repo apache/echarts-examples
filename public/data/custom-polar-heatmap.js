@@ -1,3 +1,9 @@
+/*
+title: Polar Heatmap
+category: custom
+titleCN: Polar Heatmap
+*/
+
 
 function renderItem(params, api) {
     var values = [api.value(0), api.value(1)];

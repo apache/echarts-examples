@@ -1,3 +1,9 @@
+/*
+title: Candlestick Brush
+category: candlestick
+titleCN: 日力图刷选
+*/
+
 var upColor = '#00da3c';
 var downColor = '#ec0000';
 

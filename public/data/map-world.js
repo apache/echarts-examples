@@ -1,3 +1,9 @@
+/*
+title: Map World
+category: map
+titleCN: Map World
+*/
+
 var nameMap = {
     'Afghanistan':'阿富汗',
     'Angola':'安哥拉',

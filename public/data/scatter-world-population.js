@@ -1,3 +1,9 @@
+/*
+title: World Population (2011)
+category: scatter
+titleCN: World Population (2011)
+*/
+
 
 var latlong = {};
 latlong.AD = {'latitude':42.5, 'longitude':1.5};

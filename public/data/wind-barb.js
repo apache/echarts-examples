@@ -1,3 +1,9 @@
+/*
+title: Wind Barb
+category: 'custom, dataZoom'
+titleCN: 风向图
+*/
+
 
 $.getJSON(ROOT_PATH + '/data/asset/data/wind-barb-hobart.json', function (rawData) {
 

@@ -1,3 +1,10 @@
+/*
+title: Encode and Matrix
+category: dataset
+titleCN: 指定数据到坐标轴的映射
+difficulty: 3
+*/
+
 $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json', function (data) {
 
     var sizeValue = '57%';

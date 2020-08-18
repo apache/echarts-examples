@@ -1,3 +1,9 @@
+/*
+title: Force Layout
+category: graph
+titleCN: 力引导布局
+*/
+
 function createNodes(count) {
     var nodes = [];
     for (var i = 0; i < count; i++) {

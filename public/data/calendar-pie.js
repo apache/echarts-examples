@@ -1,3 +1,9 @@
+/*
+title: Calendar Pie
+category: 'calendar, pie'
+titleCN: 日历饼图
+*/
+
 var cellSize = [80, 80];
 var pieRadius = 30;
 

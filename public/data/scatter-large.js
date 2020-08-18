@@ -1,3 +1,9 @@
+/*
+title: Large Scatter
+category: scatter
+titleCN: 大规模散点图
+*/
+
 function genData(len, offset) {
     var lngRange = [-10.781327, 131.48];
     var latRange = [18.252847, 52.33];

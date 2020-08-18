@@ -1,3 +1,9 @@
+/*
+title: Geo3D with Different Height
+category: geo3D
+titleCN: Geo3D with Different Height
+*/
+
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/world-population.json', function (populationData) {
 

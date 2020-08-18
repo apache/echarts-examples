@@ -1,3 +1,9 @@
+/*
+title: Global Wind Visualization 2
+category: flowGL
+titleCN: Global Wind Visualization 2
+*/
+
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/gfs.json', function(windData) {
     buildGrid(windData, function(header, grid) {
         var data = [];

@@ -1,3 +1,9 @@
+/*
+title: Funnel (align)
+category: funnel
+titleCN: 漏斗图(对比)
+*/
+
 option = {
     title: {
         text: '漏斗图(对比)',

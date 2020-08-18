@@ -1,3 +1,9 @@
+/*
+title: Parallel Nutrients
+category: parallel
+titleCN: Parallel Nutrients
+*/
+
 var indices = {
     name: 0,
     group: 1,

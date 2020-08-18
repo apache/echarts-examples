@@ -1,3 +1,9 @@
+/*
+title: Plastic material style buildings on Mapbox
+category: map3D
+titleCN: Plastic material style buildings on Mapbox
+*/
+
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 myChart.showLoading();

@@ -1,3 +1,10 @@
+/*
+title: 1w 节点 2w7 边的NPM 依赖图
+category: graphGL
+theme: dark
+titleCN: 1w 节点 2w7 边的NPM 依赖图
+*/
+
 $.when(
     $.getJSON(ROOT_PATH + "/data-gl/asset/data/npmdep.json"),
     $.getScript(ROOT_PATH + "/vendors/echarts/extension/graph-modularity.js")

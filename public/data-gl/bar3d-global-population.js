@@ -1,3 +1,9 @@
+/*
+title: Bar3D - Global Population
+category: bar3D
+titleCN: Bar3D - Global Population
+*/
+
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/population.json', function (data) {
 

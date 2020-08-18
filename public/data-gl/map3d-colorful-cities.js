@@ -1,3 +1,9 @@
+/*
+title: 五彩的城市建筑
+category: map3D
+titleCN: 五彩的城市建筑
+*/
+
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';
 
 myChart.showLoading();

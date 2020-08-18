@@ -1,3 +1,9 @@
+/*
+title: Population Density of HongKong (2011)
+category: map
+titleCN: 香港18区人口密度 （2011）
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/geo/HK.json', function (geoJson) {

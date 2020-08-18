@@ -1,3 +1,9 @@
+/*
+title: Calendar Charts
+category: 'calendar, scatter'
+titleCN: 日力图
+*/
+
 function getVirtulData(year) {
     year = year || '2017';
     var date = +echarts.number.parseDate(year + '-01-01');

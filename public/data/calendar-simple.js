@@ -1,3 +1,9 @@
+/*
+title: Simple Calendar
+titleCN: 基础日历图
+category: calendar
+*/
+
 function getVirtulData(year) {
     year = year || '2017';
     var date = +echarts.number.parseDate(year + '-01-01');

@@ -1,3 +1,8 @@
+/*
+title: Scatter Nebula
+category: scatter
+*/
+
 
 var dataURL = ROOT_PATH + '/data/asset/data/fake-nebula.bin';
 var xhr = new XMLHttpRequest();

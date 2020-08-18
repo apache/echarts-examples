@@ -1,9 +1,9 @@
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
-const marked = require('marked');
-const fm = require('front-matter');
+// const marked = require('marked');
 const puppeteer = require('puppeteer');
+const matter = require('gray-matter');
 const argparse = require('argparse');
 const minimatch = require('minimatch');
 const {execFile} = require('child_process');
@@ -191,12 +191,14 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 
                     let fmResult;
                     try {
-                        const mdText = fs.readFileSync(`${rootDir}public/${sourceFolder}/meta/${basename}.md`, 'utf-8');
-                        fmResult = fm(mdText);
+                        const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
+                        fmResult = matter(code, {
+                            delimiters: ['/*', '*/']
+                        });
                     }
                     catch (e) {
                         fmResult = {
-                            attributes: {}
+                            data: {}
                         };
                     }
 
@@ -208,15 +210,15 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                     }
 
                     try {
-                        const difficulty = fmResult.attributes.difficulty != null ? fmResult.attributes.difficulty : 10;
-                        const category = fmResult.attributes.category.split(/,/g).map(a => a.trim()).filter(a => !!a);
+                        const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
+                        const category = fmResult.data.category.split(/,/g).map(a => a.trim()).filter(a => !!a);
                         if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
                             exampleList.push({
                                 category: category,
                                 id: basename,
-                                tags: (fmResult.attributes.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
-                                theme: fmResult.attributes.theme,
-                                title: fmResult.attributes.title,
+                                tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
+                                theme: fmResult.data.theme,
+                                title: fmResult.data.title,
                                 difficulty: +difficulty
                             });
                         }

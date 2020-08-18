@@ -1,3 +1,9 @@
+/*
+title: From Left to Right Tree
+category: tree
+titleCN: 从左到右树状图
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
     myChart.hideLoading();

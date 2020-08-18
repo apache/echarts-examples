@@ -1,3 +1,9 @@
+/*
+title: Binning on Map
+category: map
+titleCN: Binning on Map
+*/
+
 var COLORS = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
 var lngExtent = [39.5, 40.6];
 var latExtent = [115.9, 116.8];

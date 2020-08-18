@@ -1,3 +1,9 @@
+/*
+title: Sign in of weibo
+category: scatter
+titleCN: 微博签到数据点亮中国
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/data/weibo.json', function (weiboData) {

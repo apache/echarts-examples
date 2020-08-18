@@ -1,3 +1,9 @@
+/*
+title: Step Line
+category: line
+titleCN: Step Line
+*/
+
 option = {
     title: {
         text: 'Step Line'

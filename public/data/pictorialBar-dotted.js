@@ -1,3 +1,9 @@
+/*
+title: Dotted bar
+category: pictorialBar
+titleCN: 虚线柱状图效果
+*/
+
 // Generate data
 var category = [];
 var dottedBase = +new Date();

@@ -1,3 +1,9 @@
+/*
+title: Drink Flavors
+category: sunburst
+titleCN: Drink Flavors
+*/
+
 var data = [{
     name: 'Flora',
     itemStyle: {

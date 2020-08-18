@@ -1,3 +1,10 @@
+/*
+title: 微博签到数据点亮中国
+category: scatterGL
+theme: dark
+titleCN: 微博签到数据点亮中国
+*/
+
 
 $.getJSON(ROOT_PATH + '/data/asset/data/weibo.json', function (weiboData) {
 

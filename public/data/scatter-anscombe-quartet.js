@@ -1,3 +1,9 @@
+/*
+title: 'Anscombe&#39;s quartet'
+category: scatter
+titleCN: 'Anscombe&#39;s quartet'
+*/
+
 var dataAll = [
     [
         [10.0, 8.04],

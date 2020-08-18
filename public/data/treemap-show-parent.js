@@ -1,3 +1,9 @@
+/*
+title: Show Parent Labels
+category: treemap
+titleCN: Show Parent Labels
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/data/disk.tree.json', function (diskData) {

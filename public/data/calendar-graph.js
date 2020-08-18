@@ -1,3 +1,9 @@
+/*
+title: Calendar Graph
+category: 'calendar, graph'
+titleCN: 日历关系图
+*/
+
 var graphData = [
     [
         // Consider timeoffset, add two days to avoid overflow.

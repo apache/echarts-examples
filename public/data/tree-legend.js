@@ -1,3 +1,9 @@
+/*
+title: Multiple Trees
+category: tree
+titleCN: 多棵树
+*/
+
 myChart.showLoading();
 
 var data = {

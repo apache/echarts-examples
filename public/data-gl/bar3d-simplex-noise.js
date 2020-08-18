@@ -1,3 +1,10 @@
+/*
+title: Bar3D - Simplex Noise
+category: bar3D
+titleCN: Bar3D - Simplex Noise
+theme: dark
+*/
+
 $.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 

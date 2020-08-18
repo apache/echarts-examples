@@ -1,3 +1,9 @@
+/*
+title: Error Scatter on Catesian
+category: 'custom, dataZoom'
+titleCN: Error Scatter on Catesian
+*/
+
 // Prime Costs and Prices for ACME Fashion\nCollection "Spring-Summer, 2016"
 // Data from https://playground.anychart.com/gallery/7.12.0/Error_Charts/Marker_Chart
 var dimensions = [

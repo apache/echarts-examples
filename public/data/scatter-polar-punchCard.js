@@ -1,3 +1,9 @@
+/*
+title: Punch Card of Github
+category: scatter
+titleCN: Punch Card of Github
+*/
+
 
 var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
         '7a', '8a', '9a','10a','11a',

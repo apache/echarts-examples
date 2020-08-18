@@ -1,3 +1,9 @@
+/*
+title: Multiple X Axes
+category: line
+titleCN: Multiple X Axes
+*/
+
 var colors = ['#5793f3', '#d14a61', '#675bba'];
 
 

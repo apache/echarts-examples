@@ -1,3 +1,9 @@
+/*
+title: Large Scale Bar Chart
+category: bar
+titleCN: 大数据量柱图
+*/
+
 
 var dataCount = 5e5;
 var data = generateData(dataCount);

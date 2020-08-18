@@ -1,3 +1,9 @@
+/*
+title: Multiple Radar
+category: radar
+titleCN: 多雷达图
+*/
+
 option = {
     title: {
         text: '多雷达图'

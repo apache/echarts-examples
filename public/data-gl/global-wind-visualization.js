@@ -1,3 +1,9 @@
+/*
+title: Global wind visualization
+category: flowGL
+titleCN: Global wind visualization
+*/
+
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/winds.json', function (windData) {
 
     var data = [];

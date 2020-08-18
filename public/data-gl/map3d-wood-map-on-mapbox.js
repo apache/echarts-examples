@@ -1,3 +1,9 @@
+/*
+title: 木质地图 on mapbox
+category: map3D
+titleCN: 木质地图 on mapbox
+*/
+
 mapboxgl.accessToken = mapboxglToken;
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/alcohol.json', function (data) {

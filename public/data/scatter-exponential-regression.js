@@ -1,3 +1,9 @@
+/*
+title: Exponential Regression
+category: scatter
+titleCN: Exponential Regression
+*/
+
 var data = [
     [1, 4862.4],
     [2, 5294.7],

@@ -1,3 +1,9 @@
+/*
+title: Dynamic Data
+category: bar
+titleCN: 动态数据
+*/
+
 option = {
     title: {
         text: '动态数据',

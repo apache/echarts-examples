@@ -1,3 +1,9 @@
+/*
+title: Node Align Right in Sankey
+category: sankey
+titleCN: Node Align Right in Sankey
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
     myChart.hideLoading();

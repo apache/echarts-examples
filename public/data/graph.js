@@ -1,3 +1,9 @@
+/*
+title: Les Miserables
+category: graph
+titleCN: Les Miserables
+*/
+
 myChart.showLoading();
 $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
     myChart.hideLoading();

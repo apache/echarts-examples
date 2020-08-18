@@ -1,3 +1,9 @@
+/*
+title: Sankey with Levels Setting
+category: sankey
+titleCN: Sankey with Levels Setting
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/product.json', function (data) {
     myChart.hideLoading();

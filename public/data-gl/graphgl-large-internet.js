@@ -1,3 +1,11 @@
+/*
+title: GraphGL - Large Internet
+category: graphGL
+theme: dark
+titleCN: GraphGL - Large Internet
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/internet.graph.json', function (graph) {
     var edges = graph.edges.map(function (edge) {

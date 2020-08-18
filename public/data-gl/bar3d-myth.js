@@ -1,3 +1,9 @@
+/*
+title: 星云
+category: bar3D
+titleCN: 星云
+*/
+
 var img = new Image();
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');

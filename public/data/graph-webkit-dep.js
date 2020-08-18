@@ -1,3 +1,9 @@
+/*
+title: Graph Webkit Dep
+category: graph
+titleCN: Graph Webkit Dep
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/webkit-dep.json', function (webkitDep) {
     myChart.hideLoading();

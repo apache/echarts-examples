@@ -1,3 +1,9 @@
+/*
+title: Gauge
+category: gauge
+titleCN: Gauge
+*/
+
 option = {
     tooltip: {
         formatter: '{a} <br/>{b} : {c}%'

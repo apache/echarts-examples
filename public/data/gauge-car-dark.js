@@ -1,3 +1,9 @@
+/*
+title: Gauge Car Dark
+category: gauge
+titleCN: Gauge Car Dark
+*/
+
 option = {
     backgroundColor: '#1b1b1b',
     tooltip: {

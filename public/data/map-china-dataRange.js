@@ -1,3 +1,9 @@
+/*
+title: Sales of iphone
+category: map
+titleCN: iphone销量
+*/
+
 function randomData() {
     return Math.round(Math.random()*1000);
 }

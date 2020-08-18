@@ -1,3 +1,9 @@
+/*
+title: Monochrome Sunburst
+category: sunburst
+titleCN: Monochrome Sunburst
+*/
+
 var item1 = {
     color: '#F54F4A'
 };

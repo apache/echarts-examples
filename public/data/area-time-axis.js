@@ -1,3 +1,10 @@
+/*
+title: Area Chart with Time Axis
+titleCN: 时间轴折线图
+category: line
+difficulty: 2
+*/
+
 var base = +new Date(1988, 9, 3);
 var oneDay = 24 * 3600 * 1000;
 

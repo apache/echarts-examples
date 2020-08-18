@@ -1,3 +1,9 @@
+/*
+title: Tooltip and DataZoom on Mobile
+category: 'line, dataZoom'
+titleCN: Tooltip and DataZoom on Mobile
+*/
+
 var base = +new Date(2016, 9, 3);
 var oneDay = 24 * 3600 * 1000;
 var valueBase = Math.random() * 300;

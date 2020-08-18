@@ -1,3 +1,8 @@
+/*
+title: Bar Label Rotation
+category: bar
+*/
+
 var posList = [
     'left', 'right', 'top', 'bottom',
     'inside',

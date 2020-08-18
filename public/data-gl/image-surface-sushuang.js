@@ -1,3 +1,10 @@
+/*
+title: Image Surface Sushuang
+category: surface
+titleCN: Image Surface Sushuang
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 var img = new Image();
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');

@@ -1,3 +1,10 @@
+/*
+title: Air Quality - Baidu Map
+category: 'scatter, map'
+tags: bmap
+titleCN: 全国主要城市空气质量 - 百度地图
+*/
+
 var data = [
      {name: '海门', value: 9},
      {name: '鄂尔多斯', value: 12},

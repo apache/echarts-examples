@@ -1,3 +1,9 @@
+/*
+title: Try Dragging these Points
+category: 'line, drag'
+titleCN: 可拖拽点
+*/
+
 var symbolSize = 20;
 var data = [[15, 0], [-50, 10], [-56.5, 20], [-46.5, 30], [-22.1, 40]];
 

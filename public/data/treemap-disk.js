@@ -1,3 +1,9 @@
+/*
+title: Disk Usage
+category: treemap
+titleCN: Disk Usage
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/data/disk.tree.json', function (diskData) {

@@ -1,3 +1,10 @@
+/*
+title: Transparent Bar3D
+category: bar3D
+titleCN: Transparent Bar3D
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 
 var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
         '7a', '8a', '9a','10a','11a',

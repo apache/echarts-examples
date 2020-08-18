@@ -1,3 +1,9 @@
+/*
+title: 上海房价可视化三维散点图
+category: scatter3D
+titleCN: 上海房价可视化三维散点图
+*/
+
 var uploadedDataURL = ROOT_PATH + "/asset/get/s/data-1495284690309-Bk9Ro3Te-.json";
 mapboxgl.accessToken = mapboxglToken;
 

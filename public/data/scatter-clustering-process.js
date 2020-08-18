@@ -1,3 +1,9 @@
+/*
+title: Clustering Process
+category: scatter
+titleCN: Clustering Process
+*/
+
 var data = [
     [3.275154, 2.957587],
     [-3.344465, 2.603513],

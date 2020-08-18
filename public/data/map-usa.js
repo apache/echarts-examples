@@ -1,3 +1,9 @@
+/*
+title: USA Population Estimates (2012)
+category: map
+titleCN: USA Population Estimates (2012)
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {

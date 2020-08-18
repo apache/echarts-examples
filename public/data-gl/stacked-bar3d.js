@@ -1,3 +1,9 @@
+/*
+title: Stacked Bar3D
+category: bar3D
+titleCN: Stacked Bar3D
+*/
+
 $.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 

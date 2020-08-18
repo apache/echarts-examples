@@ -1,3 +1,9 @@
+/*
+title: Gantt Chart of Airport Flights
+category: 'custom, dataZoom, drag'
+titleCN: 机场航班甘特图
+*/
+
 var HEIGHT_RATIO = 0.6;
 var DIM_CATEGORY_INDEX = 0;
 var DIM_TIME_ARRIVAL = 1;

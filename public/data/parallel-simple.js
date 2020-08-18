@@ -1,3 +1,9 @@
+/*
+title: Basic Parallel
+category: parallel
+titleCN: Basic Parallel
+*/
+
 option = {
     parallelAxis: [
         {dim: 0, name: 'Price'},

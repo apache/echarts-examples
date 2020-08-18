@@ -1,3 +1,9 @@
+/*
+title: Master Painter Color Choices Throughout History
+category: scatter
+titleCN: Master Painter Color Choices Throughout History
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/data/masterPainterColorChoice.json', function (json) {

@@ -1,3 +1,9 @@
+/*
+title: Sunburst VisualMap
+category: sunburst
+titleCN: Sunburst VisualMap
+*/
+
 var data = [{
     name: 'Grandpa',
     children: [{

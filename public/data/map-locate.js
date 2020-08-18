@@ -1,3 +1,9 @@
+/*
+title: Map Locate
+category: map
+titleCN: Map Locate
+*/
+
 var locations = [{
     name: '上海',
     coord: [121.472644, 31.231706]

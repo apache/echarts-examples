@@ -1,3 +1,9 @@
+/*
+title: Prices and Earnings 2012
+category: 'parallel, map'
+titleCN: Prices and Earnings 2012
+*/
+
 
 var geoCoordMap = {
     "Amsterdam": [4.895168,52.370216],

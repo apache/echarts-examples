@@ -1,3 +1,9 @@
+/*
+title: Custom Bar Trend
+category: custom
+titleCN: Custom Bar Trend
+*/
+
 
 var yearCount = 7;
 var categoryCount = 30;

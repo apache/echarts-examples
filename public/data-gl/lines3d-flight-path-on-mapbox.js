@@ -1,3 +1,9 @@
+/*
+title: Flight path on Mapbox
+category: lines3D
+titleCN: Flight path on Mapbox
+*/
+
 // 数据来自 https://uber.github.io/deck.gl/#/examples/core-layers/line-layer
 
 mapboxgl.accessToken = 'pk.eyJ1IjoicGlzc2FuZyIsImEiOiJjaXBnaGYxcW8wMDFodWNtNDc4NzdqMWR2In0.4XUWeduDltiCbsIiS-U8Lg';

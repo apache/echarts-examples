@@ -1,3 +1,9 @@
+/*
+title: Dynamic Data + Time Axis
+category: line
+titleCN: 动态数据 + 时间坐标轴
+*/
+
 function randomData() {
     now = new Date(+now + oneDay);
     value = value + Math.random() * 21 - 10;

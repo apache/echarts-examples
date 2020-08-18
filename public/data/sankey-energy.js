@@ -1,3 +1,9 @@
+/*
+title: Sankey Diagram
+category: sankey
+titleCN: Sankey Diagram
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
     myChart.hideLoading();

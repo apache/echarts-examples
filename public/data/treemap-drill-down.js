@@ -1,3 +1,9 @@
+/*
+title: ECharts Option Query
+category: treemap
+titleCN: ECharts 配置项查询分布
+*/
+
 var uploadedDataURL = ROOT_PATH + '/data/asset/data/ec-option-doc-statistics-201604.json';
 
 myChart.showLoading();

@@ -1,3 +1,9 @@
+/*
+title: Metal Bar3D
+category: bar3D
+titleCN: Metal Bar3D
+*/
+
 $.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 

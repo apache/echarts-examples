@@ -1,3 +1,9 @@
+/*
+title: Map3D - Alcohol Consumption
+category: map3D
+titleCN: Map3D - Alcohol Consumption
+*/
+
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/alcohol.json', function (data) {
     var regionData = data.map(function (item) {
         return {

@@ -1,3 +1,10 @@
+/*
+title: Wood City
+category: map3D
+titleCN: Wood City
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/buildings.json', function (buildingsGeoJSON) {
 

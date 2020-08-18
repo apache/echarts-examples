@@ -1,3 +1,9 @@
+/*
+title: Scatter Map Brush
+category: scatter
+titleCN: Scatter Map Brush
+*/
+
 
 var geoCoordMap = {
     "海门":[121.15,31.89],

@@ -1,3 +1,8 @@
+/*
+title: 柱状图框选
+category: bar
+*/
+
 var xAxisData = [];
 var data1 = [];
 var data2 = [];

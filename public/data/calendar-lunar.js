@@ -1,3 +1,9 @@
+/*
+title: Calendar Lunar
+category: calendar
+titleCN: Calendar Lunar
+*/
+
 var dateList = [
     ['2017-1-1', '初四'],
     ['2017-1-2', '初五'],

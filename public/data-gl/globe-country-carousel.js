@@ -1,3 +1,9 @@
+/*
+title: Country Carousel
+category: globe
+titleCN: Country Carousel
+*/
+
 var canvas = document.createElement('canvas');
 var mapChart = echarts.init(canvas, null, {
     width: 2048,

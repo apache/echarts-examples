@@ -1,3 +1,9 @@
+/*
+title: OHLC Chart
+category: candlestick
+titleCN: OHLC Chart
+*/
+
 
 function splitData(rawData) {
     var categoryData = [];

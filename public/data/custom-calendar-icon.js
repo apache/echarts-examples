@@ -1,3 +1,9 @@
+/*
+title: Custom Calendar Icon
+category: 'custom, calendar'
+titleCN: Custom Calendar Icon
+*/
+
 
 var layouts = [
     [[0, 0]],

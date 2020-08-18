@@ -1,3 +1,9 @@
+/*
+title: NPM Dependencies
+category: graph
+titleCN: NPM Dependencies
+*/
+
 myChart.showLoading();
 $.getJSON(ROOT_PATH + '/data/asset/data/npmdepgraph.min10.json', function (json) {
     myChart.hideLoading();

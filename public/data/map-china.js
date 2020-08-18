@@ -1,3 +1,9 @@
+/*
+title: Map China
+category: map
+titleCN: Map China
+*/
+
 option = {
     tooltip: {
         trigger: 'item',

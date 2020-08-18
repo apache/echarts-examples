@@ -1,3 +1,8 @@
+/*
+title: Wheater Statistics
+category: 'bar, rich'
+*/
+
 
 var weatherIcons = {
     'Sunny': ROOT_PATH + '/data/asset/img/weather/sunny_128.png',

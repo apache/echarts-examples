@@ -1,3 +1,10 @@
+/*
+title: Smoothed Line Chart
+category: line
+titleCN: Smoothed Line Chart
+difficulty: 1
+*/
+
 option = {
     xAxis: {
         type: 'category',

@@ -1,3 +1,9 @@
+/*
+title: Use custom series to draw wind vectors
+titleCN: 使用自定义系列绘制风场
+category: custom
+*/
+
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/winds.json', function (windData) {
     var p = 0;
     var maxMag = 0;

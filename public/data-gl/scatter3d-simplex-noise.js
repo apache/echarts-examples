@@ -1,3 +1,10 @@
+/*
+title: Scatter3D - Simplex Noise
+category: scatter3D
+theme: dark
+titleCN: Scatter3D - Simplex Noise
+*/
+
 $.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 

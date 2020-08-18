@@ -1,3 +1,9 @@
+/*
+title: Hexagonal Binning
+category: 'custom, map'
+titleCN: Hexagonal Binning
+*/
+
 // Hexbin statistics code based on [d3-hexbin](https://github.com/d3/d3-hexbin)
 function hexBinStatistics(points, r) {
     var dx = r * 2 * Math.sin(Math.PI / 3);

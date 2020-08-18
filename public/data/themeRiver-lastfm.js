@@ -1,3 +1,9 @@
+/*
+title: ThemeRiver Lastfm
+category: themeRiver
+titleCN: ThemeRiver Lastfm
+*/
+
 
 // From https://github.com/jsundram/streamgraph.js/blob/master/examples/data/lastfm.js
 var rawData = [

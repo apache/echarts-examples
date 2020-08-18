@@ -1,3 +1,9 @@
+/*
+title: Gauge Car
+category: gauge
+titleCN: Gauge Car
+*/
+
 option = {
     tooltip: {
         formatter: "{a} <br/>{c} {b}"

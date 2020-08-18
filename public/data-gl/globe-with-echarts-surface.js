@@ -1,3 +1,9 @@
+/*
+title: Globe with ECharts Surface
+category: globe
+titleCN: Globe with ECharts Surface
+*/
+
 var canvas = document.createElement('canvas');
 var mapChart = echarts.init(canvas, null, {
     width: 4096,

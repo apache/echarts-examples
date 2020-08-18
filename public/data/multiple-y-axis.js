@@ -1,3 +1,9 @@
+/*
+title: Multiple Y Axes
+category: bar
+titleCN: 多 Y 轴示例
+*/
+
 var colors = ['#5793f3', '#d14a61', '#675bba'];
 
 option = {

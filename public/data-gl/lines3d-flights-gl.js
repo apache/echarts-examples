@@ -1,3 +1,9 @@
+/*
+title: Flights GL
+category: lines3D
+titleCN: Flights GL
+*/
+
 var uploadedDataURL = ROOT_PATH + "/data-gl/asset/data/flights.json";
 
 myChart.showLoading();

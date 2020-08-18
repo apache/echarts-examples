@@ -1,3 +1,10 @@
+/*
+title: A Hiking Trail in Hangzhou - Baidu Map
+category: 'map, lines'
+tags: bmap
+titleCN: 杭州热门步行路线 - 百度地图
+*/
+
 $.get(ROOT_PATH + '/data/asset/data/hangzhou-tracks.json', function(data) {
     var lines = data.map(function (track) {
         return {

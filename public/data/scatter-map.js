@@ -1,3 +1,9 @@
+/*
+title: Air Quality
+category: scatter
+titleCN: 全国主要城市空气质量
+*/
+
 var geoCoordMap = {
     "海门":[121.15,31.89],
     "鄂尔多斯":[109.781327,39.608266],

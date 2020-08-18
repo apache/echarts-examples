@@ -1,3 +1,9 @@
+/*
+title: Cycle Plot
+category: custom
+titleCN: Cycle Plot
+*/
+
 
 var rawData = [
     [2002, 14, 21, 25, 21, 26, 32, 27, 20, 10, 11, 5, 5],

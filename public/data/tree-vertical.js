@@ -1,3 +1,9 @@
+/*
+title: From Top to Bottom Tree
+category: tree
+titleCN: 从上到下树状图
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
     myChart.hideLoading();

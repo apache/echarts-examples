@@ -1,3 +1,9 @@
+/*
+title: Polynomial Regression
+category: scatter
+titleCN: Polynomial Regression
+*/
+
 var data = [
     [96.24, 11.35],
     [33.09, 85.11],

@@ -1,3 +1,10 @@
+/*
+title: Music Visualization
+category: bar3D
+titleCN: Music Visualization
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 var UPDATE_DURATION = 100;
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;

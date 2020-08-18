@@ -1,3 +1,9 @@
+/*
+title: Funnel Chart
+category: funnel
+titleCN: 漏斗图
+*/
+
 option = {
     title: {
         text: '漏斗图',

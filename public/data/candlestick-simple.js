@@ -1,3 +1,9 @@
+/*
+title: Basic Candlestick
+category: candlestick
+titleCN: Basic Candlestick
+*/
+
 option = {
     xAxis: {
         data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27']

@@ -1,3 +1,9 @@
+/*
+title: Customized Pie
+category: pie
+titleCN: Customized Pie
+*/
+
 option = {
     backgroundColor: '#2c343c',
 

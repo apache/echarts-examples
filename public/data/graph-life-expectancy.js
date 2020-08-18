@@ -1,3 +1,9 @@
+/*
+title: Graph Life Expectancy
+category: graph
+titleCN: Graph Life Expectancy
+*/
+
 
 $.get(ROOT_PATH + '/data/asset/data/life-expectancy.json', function (data) {
     var series = data.series;

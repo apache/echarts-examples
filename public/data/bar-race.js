@@ -1,3 +1,9 @@
+/*
+title: Bar Race
+titleCN: 动态排序柱状图
+category: bar
+*/
+
 var data = [];
 for (let i = 0; i < 5; ++i) {
     data.push(Math.round(Math.random() * 200));

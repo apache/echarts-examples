@@ -1,3 +1,10 @@
+/*
+title: Flow on the cartesian
+category: flowGL
+titleCN: 直角坐标系上的向量场
+theme: dark
+*/
+
 $.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 var noise = new SimplexNoise(Math.random);

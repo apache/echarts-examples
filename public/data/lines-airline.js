@@ -1,3 +1,9 @@
+/*
+title: 65k+ Airline
+category: 'map, lines'
+titleCN: 65k+ 飞机航线
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/data/flights.json', function(data) {

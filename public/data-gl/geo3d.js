@@ -1,3 +1,9 @@
+/*
+title: Geo3D
+category: geo3D
+titleCN: Geo3D
+*/
+
 option = {
     geo3D: {
         map: 'world',

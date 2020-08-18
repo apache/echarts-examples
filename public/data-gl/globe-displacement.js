@@ -1,3 +1,10 @@
+/*
+title: Globe Displacement
+category: globe
+titleCN: Globe Displacement
+scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+*/
+
 option = {
     globe: {
         displacementTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',

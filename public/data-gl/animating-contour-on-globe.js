@@ -1,3 +1,9 @@
+/*
+title: Animating Contour on Globe
+category: globe
+titleCN: Animating Contour on Globe
+*/
+
 
 var config = {
     color: '#c0101a',

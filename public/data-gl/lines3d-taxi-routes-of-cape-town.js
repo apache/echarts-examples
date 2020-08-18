@@ -1,3 +1,9 @@
+/*
+title: Taxi routes of Cape Town
+category: lines3D
+titleCN: Taxi routes of Cape Town
+*/
+
 mapboxgl.accessToken = mapboxglToken;
 
 var ENCODE_SCALE = 1e6;

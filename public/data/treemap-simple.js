@@ -1,3 +1,9 @@
+/*
+title: Basic Treemap
+category: treemap
+titleCN: Basic Treemap
+*/
+
 option = {
     series: [{
         type: 'treemap',

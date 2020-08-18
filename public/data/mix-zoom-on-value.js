@@ -1,3 +1,9 @@
+/*
+title: Mix Zoom On Value
+category: bar
+titleCN: Mix Zoom On Value
+*/
+
 myChart.showLoading();
 
 $.get(ROOT_PATH + '/data/asset/data/obama_budget_proposal_2012.list.json', function (obama_budget_2012) {

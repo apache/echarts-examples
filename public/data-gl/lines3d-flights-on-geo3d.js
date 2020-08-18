@@ -1,3 +1,9 @@
+/*
+title: Flights on Geo3D
+category: lines3D
+titleCN: Flights on Geo3D
+*/
+
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/flights.json', function(data) {
     function getAirportCoord(idx) {
         return [data.airports[idx][3], data.airports[idx][4]];

@@ -1,3 +1,9 @@
+/*
+title: Beijing AQI
+category: line
+titleCN: 北京 AQI 可视化
+*/
+
 $.get(ROOT_PATH + '/data/asset/data/aqi-beijing.json', function (data) {
     myChart.setOption(option = {
         title: {

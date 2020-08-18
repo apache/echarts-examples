@@ -1,3 +1,9 @@
+/*
+title: 上海房价可视化 GL 版
+category: bar3D
+titleCN: 上海房价可视化 GL 版
+*/
+
 var uploadedDataURL = ROOT_PATH + '/asset/get/s/data-1495284690309-Bk9Ro3Te-.json';
 mapboxgl.accessToken = mapboxglToken;
 

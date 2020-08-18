@@ -1,3 +1,9 @@
+/*
+title: Mapbox 视角切换
+category: bar3D
+titleCN: Mapbox 视角切换
+*/
+
 mapboxgl.accessToken = mapboxglToken;
 
 

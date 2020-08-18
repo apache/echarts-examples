@@ -1,3 +1,9 @@
+/*
+title: Noise modified from marpi's demo
+category: bar3D
+titleCN: Noise modified from marpi's demo
+*/
+
 $.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
 
 

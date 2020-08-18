@@ -1,3 +1,9 @@
+/*
+title: World Population (2010)
+category: map
+titleCN: World Population (2010)
+*/
+
 option = {
     title: {
         text: 'World Population (2010)',

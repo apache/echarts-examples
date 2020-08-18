@@ -1,3 +1,9 @@
+/*
+title: Confidence Band
+category: line
+titleCN: Confidence Band
+*/
+
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/confidence-band.json', function (data) {
     myChart.hideLoading();

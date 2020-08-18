@@ -1,3 +1,9 @@
+/*
+title: Pie Special Label
+category: 'pie, rich'
+titleCN: 富文本标签
+*/
+
 var weatherIcons = {
     'Sunny': ROOT_PATH + '/data/asset/img/weather/sunny_128.png',
     'Cloudy': ROOT_PATH + '/data/asset/img/weather/cloudy_128.png',
