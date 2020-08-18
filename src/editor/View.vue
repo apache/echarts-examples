@@ -5,7 +5,7 @@
 <script>
 
 import Preview from './Preview.vue';
-import {store, loadExampleCode} from '../common/store';
+import {store, loadExampleCode, parseSourceCode} from '../common/store';
 
 export default {
     components: {
@@ -14,7 +14,7 @@ export default {
 
     mounted() {
         loadExampleCode().then(code => {
-            store.runCode = code;
+            store.runCode = parseSourceCode(code);
         });
     }
 }

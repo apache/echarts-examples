@@ -33,7 +33,7 @@ import CodeAce from './CodeAce.vue';
 import CodeMonaco from './CodeMonaco.vue';
 import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
-import {store, loadExampleCode} from '../common/store';
+import {store, loadExampleCode, parseSourceCode} from '../common/store';
 
 export default {
     components: {
@@ -73,7 +73,7 @@ export default {
 
         loadExampleCode().then(code => {
             // Only set the code in editor. editor will sync to the store.
-            this.initialCode = code;
+            this.initialCode = parseSourceCode(code);
         });
 
         window.addEventListener('mousemove', (e) => {

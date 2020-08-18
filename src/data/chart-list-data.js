@@ -1649,6 +1649,24 @@ export default [
     "category": [
       "scatter"
     ],
+    "id": "scatter-label-align-right",
+    "tags": [],
+    "title": "Align Label on the Top",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-label-align-top",
+    "tags": [],
+    "title": "Align Label on the Top",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "scatter"
+    ],
     "id": "scatter-large",
     "tags": [],
     "title": "Large Scatter",

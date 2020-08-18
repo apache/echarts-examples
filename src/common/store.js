@@ -1,4 +1,5 @@
 
+// import * as matter from 'gray-matter';
 import {URL_PARAMS} from '../common/config';
 
 export const store = {
@@ -32,4 +33,8 @@ export function loadExampleCode() {
             }
         });
     });
+}
+
+export function parseSourceCode(code) {
+    return code.replace(/\/\*[\w\W]*?\*\//, '').trim();
 }

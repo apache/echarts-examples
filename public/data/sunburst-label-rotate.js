@@ -6,7 +6,7 @@ titleCN: Sunburst Label Rotate
 
 option = {
     silent: true,
-    series: {
+    series: [{
         radius: ['15%', '80%'],
         type: 'sunburst',
         sort: null,
@@ -92,5 +92,5 @@ option = {
                 rotate: 0
             }
         }]
-    }
+    }]
 };
