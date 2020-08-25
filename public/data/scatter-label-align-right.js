@@ -18,7 +18,8 @@ option = {
         scale: true
     },
     grid: {
-        left: 100
+        left: 40,
+        right: 130
     },
     series: [{
         name: '1990',

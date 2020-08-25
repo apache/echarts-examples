@@ -32,6 +32,10 @@ $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
                 labelLayout: {
                     hideOverlap: true
                 },
+                scaleLimit: {
+                    min: 0.4,
+                    max: 2
+                },
                 lineStyle: {
                     color: 'source',
                     curveness: 0.3
