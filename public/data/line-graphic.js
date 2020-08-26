@@ -5,7 +5,6 @@ category: line
 */
 
 option = {
-    color: ['#8EC9EB'],
     legend: {
         data:['高度(km)与气温(°C)变化关系']
     },
@@ -101,11 +100,11 @@ option = {
                     style: {
                         fill: '#fff',
                         stroke: '#555',
-                        lineWidth: 2,
+                        lineWidth: 1,
                         shadowBlur: 8,
                         shadowOffsetX: 3,
                         shadowOffsetY: 3,
-                        shadowColor: 'rgba(0,0,0,0.3)'
+                        shadowColor: 'rgba(0,0,0,0.2)'
                     }
                 },
                 {
@@ -116,8 +115,8 @@ option = {
                     style: {
                         fill: '#333',
                         text: [
-                            '横轴表示温度，单位是°C',
-                            '纵轴表示高度，单位是km',
+                            '横轴表示温度，单位是 °C',
+                            '纵轴表示高度，单位是 km',
                             '右上角有一个图片做的水印',
                             '这个文本块可以放在图中各',
                             '种位置'
@@ -134,12 +133,6 @@ option = {
             type: 'bar',
             smooth: true,
             barCategoryGap: 25,
-            lineStyle: {
-                width: 3,
-                shadowColor: 'rgba(0,0,0,0.4)',
-                shadowBlur: 10,
-                shadowOffsetY: 10
-            },
             data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
         }
     ]

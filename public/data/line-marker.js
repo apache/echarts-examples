@@ -42,7 +42,7 @@ option = {
         {
             name: '最高气温',
             type: 'line',
-            data: [11, 11, 15, 13, 12, 13, 10],
+            data: [10, 11, 13, 11, 12, 12, 9],
             markPoint: {
                 data: [
                     {type: 'max', name: '最大值'},

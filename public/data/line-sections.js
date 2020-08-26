@@ -65,6 +65,9 @@ option = {
             smooth: true,
             data: [300, 280, 250, 260, 270, 300, 550, 500, 400, 390, 380, 390, 400, 500, 600, 750, 800, 700, 600, 400],
             markArea: {
+                itemStyle: {
+                    color: '#FFADB1'
+                },
                 data: [ [{
                     name: '早高峰',
                     xAxis: '07:30'

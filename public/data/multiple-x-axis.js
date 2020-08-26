@@ -4,8 +4,7 @@ category: line
 titleCN: Multiple X Axes
 */
 
-var colors = ['#5793f3', '#d14a61', '#675bba'];
-
+var colors = ['#5470C6', '#EE6666'];
 
 option = {
     color: colors,

@@ -64,12 +64,12 @@ var option = {
         markLine: {
             data: markLine,
             label: {
-                distance: [10, 8]
+                distance: [20, 8]
             }
         }
     }],
     grid: {
-        top: 20,
+        top: 30,
         left: 60,
         right: 60,
         bottom: 40

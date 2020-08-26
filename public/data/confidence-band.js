@@ -104,7 +104,7 @@ $.get(ROOT_PATH + '/data/asset/data/confidence-band.json', function (data) {
             hoverAnimation: false,
             symbolSize: 6,
             itemStyle: {
-                color: '#c23531'
+                color: '#333'
             },
             showSymbol: false
         }]

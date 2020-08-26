@@ -5,11 +5,12 @@ titleCN: 可拖拽点
 */
 
 var symbolSize = 20;
-var data = [[15, 0], [-50, 10], [-56.5, 20], [-46.5, 30], [-22.1, 40]];
+var data = [[40, -10], [-30, -5], [-76.5, 20], [-63.5, 40], [-22.1, 50]];
 
 option = {
     title: {
-        text: 'Try Dragging these Points'
+        text: 'Try Dragging these Points',
+        left: 'center'
     },
     tooltip: {
         triggerOn: 'none',
@@ -17,11 +18,13 @@ option = {
             return 'X: ' + params.data[0].toFixed(2) + '<br>Y: ' + params.data[1].toFixed(2);
         }
     },
-    grid: {
+    grid: {  
+        top: '8%',
+        bottom: '12%',
     },
     xAxis: {
         min: -100,
-        max: 80,
+        max: 70,
         type: 'value',
         axisLine: {onZero: false}
     },
