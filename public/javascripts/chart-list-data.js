@@ -1056,15 +1056,6 @@ var EXAMPLES = [
   },
   {
     "category": [
-      "parallel",
-      "map"
-    ],
-    "id": "map-parallel-prices",
-    "title": "Prices and Earnings 2012",
-    "difficulty": 10
-  },
-  {
-    "category": [
       "map"
     ],
     "id": "map-polygon",
