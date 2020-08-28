@@ -32,7 +32,7 @@ option = {
         // Map the score column to color
         dimension: 0,
         inRange: {
-            color: ['#D7DA8B', '#E15457']
+            color: ['#65B581', '#FFCE34', '#FD665F']
         }
     },
     series: [

@@ -4,7 +4,7 @@ category: bar
 titleCN: 多 Y 轴示例
 */
 
-var colors = ['#5793f3', '#d14a61', '#675bba'];
+var colors = ['#5470C6', '#91CC75', '#EE6666'];
 
 option = {
     color: colors,
