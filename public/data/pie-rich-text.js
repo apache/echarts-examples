@@ -21,8 +21,6 @@ option = {
         formatter: '{a} <br/>{b} : {c} ({d}%)'
     },
     legend: {
-        // orient: 'vertical',
-        // top: 'middle',
         bottom: 10,
         left: 'center',
         data: ['西凉', '益州', '兖州', '荆州', '幽州']
@@ -119,10 +117,10 @@ option = {
                         }
                     }
                 },
-                {value: 535, name: '荆州'},
+                {value: 735, name: '荆州'},
                 {value: 510, name: '兖州'},
-                {value: 634, name: '益州'},
-                {value: 735, name: '西凉'}
+                {value: 434, name: '益州'},
+                {value: 335, name: '西凉'}
             ],
             emphasis: {
                 itemStyle: {

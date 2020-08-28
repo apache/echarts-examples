@@ -20,7 +20,6 @@ option = {
             type: 'pie',
             selectedMode: 'single',
             radius: [0, '30%'],
-
             label: {
                 position: 'inner'
             },
@@ -28,9 +27,9 @@ option = {
                 show: false
             },
             data: [
-                {value: 335, name: '直达', selected: true},
-                {value: 679, name: '营销广告'},
-                {value: 1548, name: '搜索引擎'}
+                {value: 1548, name: '搜索引擎'},
+                {value: 775, name: '直达'},
+                {value: 679, name: '营销广告', selected: true}
             ]
         },
         {
@@ -39,41 +38,30 @@ option = {
             radius: ['40%', '55%'],
             label: {
                 formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
-                backgroundColor: '#eee',
-                borderColor: '#aaa',
+                backgroundColor: '#F6F8FC',
+                borderColor: '#9c9c9c',
                 borderWidth: 1,
                 borderRadius: 4,
-                // shadowBlur:3,
-                // shadowOffsetX: 2,
-                // shadowOffsetY: 2,
-                // shadowColor: '#999',
-                // padding: [0, 7],
                 rich: {
                     a: {
-                        color: '#999',
+                        color: '#9c9c9c',
                         lineHeight: 22,
                         align: 'center'
                     },
-                    // abg: {
-                    //     backgroundColor: '#333',
-                    //     width: '100%',
-                    //     align: 'right',
-                    //     height: 22,
-                    //     borderRadius: [4, 4, 0, 0]
-                    // },
                     hr: {
-                        borderColor: '#aaa',
+                        borderColor: '#9c9c9c',
                         width: '100%',
-                        borderWidth: 0.5,
+                        borderWidth: 1,
                         height: 0
                     },
                     b: {
-                        fontSize: 16,
+                        color: '#4C5058',
+                        fontSize: 14,
                         lineHeight: 33
                     },
                     per: {
-                        color: '#eee',
-                        backgroundColor: '#334455',
+                        color: '#fff',
+                        backgroundColor: '#4C5058',
                         padding: [2, 4],
                         borderRadius: 2
                     }

@@ -82,7 +82,7 @@ option = {
         label: {
             position: 'outer',
             alignTo: 'edge',
-            distanceToLabelLine: 20
+            margin: 20
         },
         left: '66.6667%',
         right: 0,
