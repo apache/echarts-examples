@@ -2,6 +2,7 @@
 title: 'Anscombe&#39;s quartet'
 category: scatter
 titleCN: 'Anscombe&#39;s quartet'
+difficulty: 0
 */
 
 var dataAll = [
@@ -88,7 +89,7 @@ option = {
     },
     grid: [
         {left: '7%', top: '7%', width: '38%', height: '38%'},
-        {right: '7%', bottom: '7%', width: '38%', height: '38%'},
+        {right: '7%', top: '7%', width: '38%', height: '38%'},
         {left: '7%', bottom: '7%', width: '38%', height: '38%'},
         {right: '7%', bottom: '7%', width: '38%', height: '38%'}
     ],

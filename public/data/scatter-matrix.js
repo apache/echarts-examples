@@ -115,7 +115,7 @@ var rawData = [
 ];
 
 var CATEGORY_DIM_COUNT = 6;
-var GAP = 1;
+var GAP = 2;
 var BASE_LEFT = 5;
 var BASE_TOP = 10;
 // var GRID_WIDTH = 220;
@@ -123,7 +123,7 @@ var BASE_TOP = 10;
 var GRID_WIDTH = (100 - BASE_LEFT - GAP) / CATEGORY_DIM_COUNT - GAP;
 var GRID_HEIGHT = (100 - BASE_TOP - GAP) / CATEGORY_DIM_COUNT - GAP;
 var CATEGORY_DIM = 7;
-var SYMBOL_SIZE = 3;
+var SYMBOL_SIZE = 4;
 
 function retrieveScatterData(data, dimX, dimY) {
     var result = [];
@@ -249,8 +249,8 @@ var option = {
     ],
     parallel: {
         bottom: '5%',
-        left: '5%',
-        height: '31%',
+        left: '2%',
+        height: '30%',
         width: '55%',
         parallelAxisDefault: {
             type: 'value',

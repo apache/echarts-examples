@@ -237,7 +237,7 @@ option = {
     },
     yAxis: {
         type: 'value',
-        min: 1.5,
+        min: 3,
         splitLine: {
             lineStyle: {
                 type: 'dashed'
