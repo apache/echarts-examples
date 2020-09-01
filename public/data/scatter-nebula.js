@@ -17,24 +17,14 @@ xhr.onload = function (e) {
     var rawData = new Float32Array(this.response);
 
     option = {
-        backgroundColor: '#191919',
         title: {
             left: 'center',
             text: echarts.format.addCommas(Math.round(rawData.length / 2)) + ' Points',
-            subtext: 'Fake data',
-            textStyle: {
-                color: '#eee'
-            },
-            subtextStyle: {
-                color: '#999'
-            }
+            subtext: 'Fake data'
         },
         tooltip: {},
         toolbox: {
             right: 20,
-            iconStyle: {
-                borderColor: '#eee'
-            },
             feature: {
                 dataZoom: {}
             }
@@ -46,26 +36,14 @@ xhr.onload = function (e) {
         xAxis: [{
             scalse: false,
             axisLabel: {
-                color: '#ccc',
                 fontSize: 16
             },
-            splitLine: {
-                lineStyle: {
-                    color: '#555'
-                }
-            }
         }],
         yAxis: [{
             scalse: false,
             axisLabel: {
-                color: '#ccc',
                 fontSize: 16
             },
-            splitLine: {
-                lineStyle: {
-                    color: '#555'
-                }
-            }
         }],
         dataZoom: [{
             type: 'inside'
@@ -91,10 +69,9 @@ xhr.onload = function (e) {
             dimensions: ['x', 'y'],
             symbolSize: 3,
             itemStyle: {
-                color: '#128de3',
                 opacity: 0.4
             },
-            blendMode: 'lighter',
+            blendMode: 'source-over',
             large: true,
             largeThreshold: 500
         }]
