@@ -2,6 +2,7 @@
 title: Bubble Chart
 category: scatter
 titleCN: 气泡图
+difficulty: 1
 */
 
 var data = [

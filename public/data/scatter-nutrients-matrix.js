@@ -153,16 +153,6 @@ function makeSeries(xLeftOrRight, yTopOrBottom) {
 function makeDataZoom(opt) {
     return Object.assign({
         type: 'slider',
-        fillerColor: 'rgba(255,255,255,0.1)',
-        borderColor: '#777',
-        handleIcon: 'path://M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-        handleSize: '60%',
-        handleStyle: {
-            color: '#aaa'
-        },
-        textStyle: {
-            color: '#aaa'
-        },
         filterMode: 'empty',
         realtime: false
     }, opt);
@@ -221,17 +211,14 @@ function getOption(data) {
     var gridBottom = 80;
 
     return {
-        backgroundColor: '#2c343c',
         tooltip: {
             trigger: 'none',
             padding: [10, 20, 10, 20],
-            backgroundColor: 'rgba(44,52,60,0.7)',
-            borderColor: '#ccc',
-            borderWidth: 2,
-            borderRadius: 4,
+            backgroundColor: 'rgba(0,0,0,0.7)',
             transitionDuration: 0,
             extraCssText: 'width: 300px; white-space: normal',
             textStyle: {
+                color: '#fff',
                 fontSize: 12
             },
             position: function (pos, params, el, elRect, size) {

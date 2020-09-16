@@ -2,6 +2,7 @@
 title: Clustering Process
 category: scatter
 titleCN: Clustering Process
+difficulty: 0
 */
 
 var data = [

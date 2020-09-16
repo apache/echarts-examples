@@ -31,13 +31,9 @@ var data = rawData.map(function (item) {
     return [+item[1], +item[2], +item[5], +item[6]];
 });
 var option = {
-    backgroundColor: '#21202D',
     legend: {
         data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30'],
         inactiveColor: '#777',
-        textStyle: {
-            color: '#fff'
-        }
     },
     tooltip: {
         trigger: 'axis',
