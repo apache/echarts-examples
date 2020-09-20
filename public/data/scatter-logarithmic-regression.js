@@ -208,7 +208,6 @@ option = {
                 show: true,
                 position: 'left',
                 formatter: myRegression.expression,
-                color: '#333',
                 fontSize: 14
             },
             data: [{
