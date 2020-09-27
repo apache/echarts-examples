@@ -11,7 +11,7 @@ module.exports = {
         echartsStatMinJS: 'https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js',
         echartsGLMinJS: 'https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js',
         datGUIMinJS: 'https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js',
-        aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.2.5/src-noconflict',
+        aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-min-noconflict',
         waypoints: 'https://cdn.jsdelivr.net/npm/waypoints@4.0.0/lib/jquery.waypoints.min.js',
         jqueryLazyLoad: 'https://cdn.jsdelivr.net/npm/jquery-lazyload@1.9.7/jquery.lazyload.min.js'
     }
