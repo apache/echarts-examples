@@ -6,13 +6,13 @@ titleCN: 男性女性身高体重分布
 
 option = {
     title: {
-        text: '男性女性身高体重分布',
-        subtext: '抽样调查来自: Heinz  2003'
+        text: 'Male and female height and weight distribution',
+        subtext: 'Data from: Heinz 2003'
     },
     grid: {
         left: '3%',
         right: '7%',
-        bottom: '3%',
+        bottom: '7%',
         containLabel: true
     },
     tooltip: {
@@ -50,8 +50,9 @@ option = {
     brush: {
     },
     legend: {
-        data: ['女性', '男性'],
-        left: 'center'
+        data: ['Female', 'Male'],
+        left: 'center',
+        bottom: 10
     },
     xAxis: [
         {
@@ -79,7 +80,7 @@ option = {
     ],
     series: [
         {
-            name: '女性',
+            name: 'Female',
             type: 'scatter',
             emphasis: {
                 focus: 'series'
@@ -145,7 +146,7 @@ option = {
                     borderType: 'dashed'
                 },
                 data: [[{
-                    name: '女性分布区间',
+                    name: 'Female Data Range',
                     xAxis: 'min',
                     yAxis: 'min'
                 }, {
@@ -155,8 +156,8 @@ option = {
             },
             markPoint: {
                 data: [
-                    {type: 'max', name: '最大值'},
-                    {type: 'min', name: '最小值'}
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
                 ]
             },
             markLine: {
@@ -170,7 +171,7 @@ option = {
             }
         },
         {
-            name: '男性',
+            name: 'Male',
             type: 'scatter',
             emphasis: {
                 focus: 'series'
@@ -234,7 +235,7 @@ option = {
                     borderType: 'dashed'
                 },
                 data: [[{
-                    name: '男性分布区间',
+                    name: 'Male Data Range',
                     xAxis: 'min',
                     yAxis: 'min'
                 }, {
@@ -244,8 +245,8 @@ option = {
             },
             markPoint: {
                 data: [
-                    {type: 'max', name: '最大值'},
-                    {type: 'min', name: '最小值'}
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
                 ]
             },
             markLine: {
@@ -253,7 +254,7 @@ option = {
                     type: 'solid'
                 },
                 data: [
-                    {type: 'average', name: '平均值'},
+                    {type: 'average', name: 'Average'},
                     { xAxis: 170 }
                 ]
             }
