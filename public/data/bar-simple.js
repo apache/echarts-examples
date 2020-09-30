@@ -1,6 +1,7 @@
 /*
 title: Bar Simple
 category: bar
+difficulty: 0
 */
 
 option = {

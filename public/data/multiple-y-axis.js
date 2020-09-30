@@ -2,6 +2,7 @@
 title: Multiple Y Axes
 category: bar
 titleCN: 多 Y 轴示例
+difficulty: 4
 */
 
 var colors = ['#5470C6', '#91CC75', '#EE6666'];

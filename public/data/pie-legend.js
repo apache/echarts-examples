@@ -2,6 +2,7 @@
 title: Pie with Scrollable Legend
 category: pie
 titleCN: 可滚动的图例
+difficulty: 2
 */
 
 var data = genData(50);

@@ -2,6 +2,7 @@
 title: Customized Pie
 category: pie
 titleCN: Customized Pie
+difficulty: 1
 */
 
 option = {

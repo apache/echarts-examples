@@ -2,6 +2,7 @@
 title: Bar Race
 titleCN: 动态排序柱状图
 category: bar
+difficulty: 3
 */
 
 var data = [];

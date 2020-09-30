@@ -2,6 +2,7 @@
 title: Watermark - ECharts Download
 category: bar
 titleCN: 水印 - ECharts 下载统计
+difficulty: 4
 */
 
 var builderJson = {

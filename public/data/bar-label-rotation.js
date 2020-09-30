@@ -1,6 +1,7 @@
 /*
 title: Bar Label Rotation
 category: bar
+difficulty: 3
 */
 
 var posList = [

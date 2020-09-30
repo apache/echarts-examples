@@ -2,7 +2,7 @@
 title: Smoothed Line Chart
 category: line
 titleCN: Smoothed Line Chart
-difficulty: 1
+difficulty: 0
 */
 
 option = {

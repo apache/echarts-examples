@@ -2,6 +2,7 @@
 title: Calendar Pie
 category: 'calendar, pie'
 titleCN: 日历饼图
+difficulty: 4
 */
 
 var cellSize = [80, 80];

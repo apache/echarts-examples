@@ -1,6 +1,7 @@
 /*
 title: 正负条形图
 category: bar
+difficulty: 2
 */
 
 option = {

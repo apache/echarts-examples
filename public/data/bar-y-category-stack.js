@@ -1,6 +1,7 @@
 /*
 title: 堆叠条形图
 category: bar
+difficulty: 3
 */
 
 option = {
