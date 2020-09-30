@@ -1,18 +1,18 @@
 /*
-title: 堆叠条形图
+title: Stacked Horizontal Bar
+titleCN: 堆叠条形图
 category: bar
 difficulty: 3
 */
-
 option = {
     tooltip: {
         trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {            // Use axis to trigger tooltip
+            type: 'shadow'        // 'shadow' as default; can also be 'line' or 'shadow'
         }
     },
     legend: {
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        data: ['Direct', 'Mail Ad', 'Affiliate Ad', 'Video Ad', 'Search Engine']
     },
     grid: {
         left: '3%',
@@ -25,13 +25,13 @@ option = {
     },
     yAxis: {
         type: 'category',
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
     series: [
         {
-            name: '直接访问',
+            name: 'Direct',
             type: 'bar',
-            stack: '总量',
+            stack: 'total',
             label: {
                 show: true
             },
@@ -41,9 +41,9 @@ option = {
             data: [320, 302, 301, 334, 390, 330, 320]
         },
         {
-            name: '邮件营销',
+            name: 'Mail Ad',
             type: 'bar',
-            stack: '总量',
+            stack: 'total',
             label: {
                 show: true
             },
@@ -53,9 +53,9 @@ option = {
             data: [120, 132, 101, 134, 90, 230, 210]
         },
         {
-            name: '联盟广告',
+            name: 'Affiliate Ad',
             type: 'bar',
-            stack: '总量',
+            stack: 'total',
             label: {
                 show: true
             },
@@ -65,9 +65,9 @@ option = {
             data: [220, 182, 191, 234, 290, 330, 310]
         },
         {
-            name: '视频广告',
+            name: 'Video Ad',
             type: 'bar',
-            stack: '总量',
+            stack: 'total',
             label: {
                 show: true
             },
@@ -77,9 +77,9 @@ option = {
             data: [150, 212, 201, 154, 190, 330, 410]
         },
         {
-            name: '搜索引擎',
+            name: 'Search Engine',
             type: 'bar',
-            stack: '总量',
+            stack: 'total',
             label: {
                 show: true
             },

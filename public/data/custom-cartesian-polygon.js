@@ -30,12 +30,7 @@ function renderItem(params, api) {
     return {
         type: 'polygon',
         shape: {
-            points: echarts.graphic.clipPointsByRect(points, {
-                x: params.coordSys.x,
-                y: params.coordSys.y,
-                width: params.coordSys.width,
-                height: params.coordSys.height
-            })
+            points: points
         },
         style: api.style({
             fill: color,
@@ -63,6 +58,7 @@ option = {
     series: [{
         type: 'custom',
         renderItem: renderItem,
+        clip: true,
         data: data
     }]
 };

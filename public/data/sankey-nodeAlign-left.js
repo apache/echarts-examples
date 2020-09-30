@@ -16,7 +16,6 @@ $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
             trigger: 'item',
             triggerOn: 'mousemove'
         },
-        animation: false,
         series: [
             {
                 type: 'sankey',

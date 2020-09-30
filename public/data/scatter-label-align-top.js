@@ -28,6 +28,7 @@ option = {
         labelLayout: {
             y: 20,
             align: 'center',
+            hideOverlap: true,
             moveOverlap: 'shiftX'
         },
         labelLine: {

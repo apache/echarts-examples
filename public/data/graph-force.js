@@ -8,9 +8,7 @@ myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
     myChart.hideLoading();
     graph.nodes.forEach(function (node) {
-        node.label = {
-            show: node.symbolSize > 30
-        };
+        node.symbolSize = 5;
     });
     option = {
         title: {
@@ -26,7 +24,6 @@ $.get(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
                 return a.name;
             })
         }],
-        animation: false,
         series : [
             {
                 name: 'Les Miserables',

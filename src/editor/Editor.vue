@@ -181,7 +181,7 @@ $handler-width: 5px;
             width: 50px;
         }
         .btn:hover {
-            background-color: #277EAB;
+            background-color: lighten($color: #409eff, $amount: 5);
         }
     }
 }

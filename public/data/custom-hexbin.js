@@ -175,8 +175,8 @@ $.when(
         },
         animation: false,
         title: {
-            text: 'Kawhi Leonard',
-            subtext: '2016-2017 NBA Regular Season',
+            text: 'Some Player',
+            subtext: 'Regular Season',
             backgroundColor: backgroundColor,
             top: 10,
             left: 10,

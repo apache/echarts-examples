@@ -9,6 +9,7 @@ const minimatch = require('minimatch');
 const {execFile} = require('child_process');
 const cwebpBin = require('cwebp-bin');
 const util = require('util');
+const chalk = require('chalk');
 
 const parser = new argparse.ArgumentParser({
     addHelp: true
@@ -59,7 +60,7 @@ async function convertToWebP(filePath) {
 async function takeScreenshot(browser, theme, rootDir, basename) {
     const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
     const page = await browser.newPage();
-    page.exposeFunction('readLocalFile', async (filePath) => {
+    await page.exposeFunction('readLocalFile', async (filePath) => {
         filePath = filePath.replace(/^file:\/*?/, '');
         return new Promise((resolve, reject) => {
             fs.readFile(filePath, 'utf8', (err, text) => {
@@ -90,8 +91,8 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
     //     console.log.apply(console, msg);
     // });
     page.on('pageerror', function (err) {
-        console.error('[pageerror in]', url);
-        console.log(err.toString());
+        console.error(chalk.red('[pageerror in]', url));
+        console.error(chalk.red(err.toString()));
     });
     page.on('console', msg => {
         const text = msg.text();

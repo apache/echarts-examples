@@ -25,7 +25,6 @@ for (var i = 1; i < 10; i++) {
 }
 
 option = {
-    animation: false,
     title: {
         left: 'center',
         text: '触屏 tooltip 和 dataZoom 示例',
