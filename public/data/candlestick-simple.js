@@ -2,6 +2,7 @@
 title: Basic Candlestick
 category: candlestick
 titleCN: Basic Candlestick
+difficulty: 0
 */
 
 option = {
@@ -12,10 +13,10 @@ option = {
     series: [{
         type: 'k',
         data: [
-            [20, 30, 10, 35],
-            [40, 35, 30, 55],
-            [33, 38, 33, 40],
-            [40, 40, 32, 42]
+            [20, 34, 10,38],
+            [40, 35, 30, 50],
+            [31, 38, 33, 44],
+            [38, 15, 5, 42]
         ]
     }]
 };

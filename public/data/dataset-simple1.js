@@ -2,7 +2,7 @@
 title: Dataset in Object Array
 category: 'dataset, bar'
 titleCN: 对象数组的输入格式
-difficulty: 2
+difficulty: 5
 */
 
 option = {

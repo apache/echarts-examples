@@ -2,6 +2,7 @@
 title: Sankey Orient Vertical
 category: sankey
 titleCN: Sankey Orient Vertical
+difficulty: 1
 */
 
 option = {

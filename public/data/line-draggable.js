@@ -2,6 +2,7 @@
 title: Try Dragging these Points
 category: 'line, drag'
 titleCN: 可拖拽点
+difficulty: 10
 */
 
 var symbolSize = 20;

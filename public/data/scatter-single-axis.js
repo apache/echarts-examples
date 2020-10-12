@@ -2,6 +2,7 @@
 title: Scatter on Single Axis
 category: scatter
 titleCN: 单轴散点图
+difficulty: 3
 */
 
 var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',

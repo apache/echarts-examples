@@ -2,6 +2,7 @@
 title: Align Label on the Top
 category: scatter
 titleCN: 散点图标签顶部对齐
+difficulty: 4
 */
 
 var data = [

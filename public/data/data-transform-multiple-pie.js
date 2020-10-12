@@ -2,6 +2,7 @@
 title: Partition Data to Pies
 category: dataset, pie, transform
 titleCN: 分割数据到数个饼图
+difficulty: 3
 */
 
 option = {

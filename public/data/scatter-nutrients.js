@@ -2,6 +2,7 @@
 title: Scatter Nutrients
 category: scatter
 titleCN: Scatter Nutrients
+difficulty: 7
 */
 
 var indices = {

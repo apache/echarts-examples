@@ -1,7 +1,7 @@
 /*
 title: Scatter Nebula
 category: scatter
-difficulty: 2
+difficulty: 5
 */
 
 

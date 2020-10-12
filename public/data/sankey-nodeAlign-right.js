@@ -2,6 +2,7 @@
 title: Node Align Right in Sankey
 category: sankey
 titleCN: Node Align Right in Sankey
+difficulty: 3
 */
 
 myChart.showLoading();

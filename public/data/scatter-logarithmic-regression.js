@@ -2,6 +2,7 @@
 title: Logarithmic Regression
 category: scatter
 titleCN: Logarithmic Regression
+difficulty: 16
 */
 
 var data0 = [

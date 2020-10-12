@@ -2,6 +2,7 @@
 title: Log Axis
 category: line
 titleCN: 对数轴示例
+difficulty: 7
 */
 
 option = {

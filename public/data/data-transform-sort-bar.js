@@ -2,7 +2,7 @@
 title: Sort Data in Bar Chart
 category: dataset, bar, transform
 titleCN: 柱状图排序
-difficulty: 1
+difficulty: 0
 */
 
 option = {

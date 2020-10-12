@@ -2,6 +2,7 @@
 title: Cycle Plot
 category: custom
 titleCN: Cycle Plot
+difficulty: 3
 */
 
 

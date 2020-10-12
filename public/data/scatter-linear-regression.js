@@ -2,6 +2,7 @@
 title: Linear Regression
 category: scatter
 titleCN: Linear Regression
+difficulty: 2
 */
 
 var data = [

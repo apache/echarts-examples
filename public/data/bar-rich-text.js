@@ -1,6 +1,7 @@
 /*
 title: Wheater Statistics
 category: 'bar, rich'
+difficulty: 6
 */
 
 

@@ -2,6 +2,7 @@
 title: Basic Radar Chart
 category: radar
 titleCN: 基础雷达图
+difficulty: 0
 */
 
 option = {

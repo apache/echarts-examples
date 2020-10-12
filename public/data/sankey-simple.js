@@ -2,6 +2,7 @@
 title: Basic Sankey
 category: sankey
 titleCN: Basic Sankey
+difficulty: 0
 */
 
 option = {

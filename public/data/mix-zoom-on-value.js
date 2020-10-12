@@ -2,7 +2,7 @@
 title: Mix Zoom On Value
 category: bar
 titleCN: Mix Zoom On Value
-difficulty: 3
+difficulty: 4
 */
 
 myChart.showLoading();

@@ -2,6 +2,7 @@
 title: Calendar Heatmap
 category: 'calendar, heatmap'
 titleCN: 日历热力图
+difficulty: 1
 */
 
 function getVirtulData(year) {

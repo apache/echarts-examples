@@ -2,6 +2,7 @@
 title: Calendar Graph
 category: 'calendar, graph'
 titleCN: 日历关系图
+difficulty: 4
 */
 
 var graphData = [

@@ -2,7 +2,7 @@
 title: Pie Special Label
 category: 'pie, rich'
 titleCN: 富文本标签
-difficulty: 3
+difficulty: 4
 */
 
 var weatherIcons = {

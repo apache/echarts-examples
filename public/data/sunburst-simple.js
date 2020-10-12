@@ -2,6 +2,7 @@
 title: Basic Sunburst
 category: sunburst
 titleCN: Basic Sunburst
+difficulty: 1
 */
 
 var data = [{

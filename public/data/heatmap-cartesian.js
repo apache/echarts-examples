@@ -2,6 +2,7 @@
 title: Heatmap on Cartesian
 category: heatmap
 titleCN: 笛卡尔坐标系上的热力图
+difficulty: 0
 */
 
 var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',

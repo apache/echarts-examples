@@ -2,6 +2,7 @@
 title: Line Easing Visualizing
 category: line
 titleCN: 缓动函数可视化
+difficulty: 8
 */
 
 var easingFuncs = {

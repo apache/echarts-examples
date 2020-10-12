@@ -2,6 +2,7 @@
 title: Polynomial Regression
 category: scatter
 titleCN: Polynomial Regression
+difficulty: 2
 */
 
 var data = [

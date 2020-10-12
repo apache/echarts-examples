@@ -2,6 +2,7 @@
 title: Large Scale Candlestick
 category: candlestick
 titleCN: 大数据量K线图
+difficulty: 3
 */
 
 var upColor = '#ec0000';

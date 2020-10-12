@@ -2,6 +2,7 @@
 title: Sunburst VisualMap
 category: sunburst
 titleCN: Sunburst VisualMap
+difficulty: 4
 */
 
 var data = [{

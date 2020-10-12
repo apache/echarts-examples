@@ -2,6 +2,7 @@
 title: Gantt Chart of Airport Flights
 category: 'custom, dataZoom, drag'
 titleCN: 机场航班甘特图
+difficulty: 4
 */
 
 var HEIGHT_RATIO = 0.6;

@@ -2,6 +2,7 @@
 title: Tooltip and DataZoom on Mobile
 category: 'line, dataZoom'
 titleCN: Tooltip and DataZoom on Mobile
+difficulty: 10
 */
 
 var base = +new Date(2016, 9, 3);

@@ -1,6 +1,7 @@
 /*
 title: 堆叠柱状图
 category: bar
+difficulty: 3
 */
 
 option = {

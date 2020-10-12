@@ -2,6 +2,7 @@
 title: Large Scatter
 category: scatter
 titleCN: 大规模散点图
+difficulty: 5
 */
 
 function genData(len, offset) {

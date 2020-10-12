@@ -2,7 +2,7 @@
 title: Area Chart with Time Axis
 titleCN: 时间轴折线图
 category: line
-difficulty: 2
+difficulty: 5
 */
 
 var base = +new Date(1988, 9, 3);

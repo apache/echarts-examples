@@ -2,6 +2,7 @@
 title: Error Scatter on Catesian
 category: 'custom, dataZoom'
 titleCN: Error Scatter on Catesian
+difficulty: 2
 */
 
 // Prime Costs and Prices for ACME Fashion\nCollection "Spring-Summer, 2016"

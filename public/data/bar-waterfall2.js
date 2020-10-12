@@ -1,7 +1,7 @@
 /*
 title: 阶梯瀑布图
 category: bar
-difficulty: 1
+difficulty: 3
 */
 
 option = {

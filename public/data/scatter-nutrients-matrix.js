@@ -2,6 +2,7 @@
 title: Scatter Nutrients Matrix
 category: scatter
 titleCN: Scatter Nutrients Matrix
+difficulty: 7
 */
 
 var indices = {

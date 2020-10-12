@@ -2,6 +2,7 @@
 title: Multiple X Axes
 category: line
 titleCN: Multiple X Axes
+difficulty: 4
 */
 
 var colors = ['#5470C6', '#EE6666'];

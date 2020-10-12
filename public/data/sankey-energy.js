@@ -2,6 +2,7 @@
 title: Sankey Diagram
 category: sankey
 titleCN: Sankey Diagram
+difficulty: 3
 */
 
 myChart.showLoading();

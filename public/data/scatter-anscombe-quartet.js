@@ -2,7 +2,7 @@
 title: 'Anscombe&#39;s quartet'
 category: scatter
 titleCN: 'Anscombe&#39;s quartet'
-difficulty: 0
+difficulty: 1
 */
 
 var dataAll = [

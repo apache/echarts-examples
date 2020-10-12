@@ -2,6 +2,7 @@
 title: Parallel Aqi
 category: parallel
 titleCN: Parallel Aqi
+difficulty: 2
 */
 
 // Schema:

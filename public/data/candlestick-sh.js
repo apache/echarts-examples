@@ -2,6 +2,7 @@
 title: ShangHai Index
 category: candlestick
 titleCN: 上证指数
+difficulty: 2
 */
 
 var upColor = '#ec0000';

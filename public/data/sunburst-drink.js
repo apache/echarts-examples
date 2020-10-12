@@ -2,6 +2,7 @@
 title: Drink Flavors
 category: sunburst
 titleCN: Drink Flavors
+difficulty: 5
 */
 
 var data = [{

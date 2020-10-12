@@ -2,6 +2,7 @@
 title: Exponential Regression
 category: scatter
 titleCN: Exponential Regression
+difficulty: 1
 */
 
 var data = [

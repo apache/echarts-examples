@@ -3,6 +3,7 @@ title: Heatmap on Baidu Map Extension
 category: heatmap
 tags: bmap
 titleCN: 热力图与百度地图扩展
+difficulty: 3
 */
 
 $.get(ROOT_PATH + '/data/asset/data/hangzhou-tracks.json', function (data) {

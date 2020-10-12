@@ -2,6 +2,7 @@
 title: Beijing AQI
 category: line
 titleCN: 北京 AQI 可视化
+difficulty: 4
 */
 
 $.get(ROOT_PATH + '/data/asset/data/aqi-beijing.json', function (data) {

@@ -2,6 +2,7 @@
 title: Confidence Band
 category: line
 titleCN: Confidence Band
+difficulty: 4
 */
 
 myChart.showLoading();

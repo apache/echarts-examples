@@ -2,6 +2,7 @@
 title: Calendar Lunar
 category: calendar
 titleCN: Calendar Lunar
+difficulty: 4
 */
 
 var dateList = [

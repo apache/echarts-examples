@@ -2,6 +2,7 @@
 title: Function Plot
 category: line
 titleCN: 函数绘图
+difficulty: 5
 */
 
 function func(x) {

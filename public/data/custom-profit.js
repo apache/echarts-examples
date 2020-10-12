@@ -2,6 +2,7 @@
 title: Profit
 category: custom
 titleCN: Profit
+difficulty: 1
 */
 
 var data = [[10, 16, 3, 'A'], [16, 18, 15, 'B'], [18, 26, 12, 'C'], [26, 32, 22, 'D'], [32, 56, 7, 'E'], [56, 62, 17, 'F']];

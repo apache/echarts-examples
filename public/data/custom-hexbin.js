@@ -2,6 +2,7 @@
 title: Hexagonal Binning
 category: 'custom, map'
 titleCN: Hexagonal Binning
+difficulty: 6
 */
 
 // Hexbin statistics code based on [d3-hexbin](https://github.com/d3/d3-hexbin)

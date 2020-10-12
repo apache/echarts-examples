@@ -1,7 +1,7 @@
 /*
 title: 柱状图动画延迟
 category: bar
-difficulty: 2
+difficulty: 5
 */
 
 var xAxisData = [];
