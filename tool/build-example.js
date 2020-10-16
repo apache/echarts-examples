@@ -212,7 +212,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 
                     try {
                         const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
-                        const category = fmResult.data.category.split(/,/g).map(a => a.trim()).filter(a => !!a);
+                        const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
                         if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
                             exampleList.push({
                                 category: category,
@@ -225,6 +225,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                         }
                     }
                     catch (e) {
+                        await browser.close();
                         throw new Error(e.toString());
                     }
                 }

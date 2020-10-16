@@ -32,8 +32,8 @@ export default {
             if (exampleTheme) {
                 hash.push('theme=' + exampleTheme);
             }
-            if (URL_PARAMS.local) {
-                hash.push('local=' + 1);
+            if ('local' in URL_PARAMS) {
+                hash.push('local');
             }
             return './editor.html?' + hash.join('&');
         },

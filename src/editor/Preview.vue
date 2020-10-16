@@ -8,6 +8,7 @@
     <div id="tool-panel">
         <div class="left-panel">
             <el-switch
+                class="dark-mode"
                 v-model="shared.darkMode"
                 active-color="#181432"
                 :active-text="$t('editor.darkMode')"
@@ -19,6 +20,13 @@
                 <el-radio-button label="svg"></el-radio-button>
                 <el-radio-button label="canvas"></el-radio-button>
             </el-radio-group>
+
+            <el-switch
+                v-if="shared.renderer==='canvas'"
+                v-model="shared.useDirtyRect"
+                :active-text="$t('editor.useDirtyRect')"
+                :inactive-text="''">
+            </el-switch>
         </div>
         <button v-if="inEditor" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
         <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
@@ -52,10 +60,11 @@ export function ensureECharts() {
 
         return loadScriptsAsync([
             SCRIPT_URLS.datGUIMinJS,
-            URL_PARAMS.local
+            'local' in URL_PARAMS
                 ? SCRIPT_URLS.localEChartsMinJS : SCRIPT_URLS.echartsMinJS,
             SCRIPT_URLS.echartsDir + '/dist/extension/dataTool.js',
             SCRIPT_URLS.echartsDir + '/map/js/world.js',
+            SCRIPT_URLS.echartsDir + '/map/js/china.js',
             SCRIPT_URLS.echartsStatMinJS,
             ...URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : [],
             ...hasBmap ? [
@@ -163,7 +172,7 @@ export default {
     },
 
     watch: {
-        "shared.runCode"(val) {
+        'shared.runCode'(val) {
             if (this.autoRun || !this.sandbox) {
                 if (!this.debouncedRun) {
                     // First run
@@ -174,10 +183,13 @@ export default {
                 }
             }
         },
-        "shared.renderer"() {
+        'shared.renderer'() {
             this.refreshAll();
         },
-        "shared.darkMode"() {
+        'shared.darkMode'() {
+            this.refreshAll();
+        },
+        'shared.useDirtyRect'() {
             this.refreshAll();
         }
     },
@@ -227,6 +239,18 @@ export default {
     overflow: hidden;
 
     padding: 10px;
+
+    .ec-debug-dirty-rect-container {
+        left: 10px!important;
+        top: 10px!important;
+        right: 10px!important;
+        bottom: 10px!important;
+
+        .ec-debug-dirty-rect {
+            background-color: rgba(255, 0, 0, 0.2)!important;
+            border: 1px solid red!important;
+        }
+    }
 }
 
 #tool-panel {
@@ -255,7 +279,7 @@ export default {
 
     label {
         margin-bottom: 0;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .left-panel {

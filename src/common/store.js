@@ -11,6 +11,7 @@ export const store = {
     renderer: URL_PARAMS.renderer || 'canvas',
 
     typeCheck: URL_PARAMS.editor === 'monaco',
+    useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
     code: '',
 

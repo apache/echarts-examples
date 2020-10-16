@@ -6,7 +6,8 @@ export default {
             chartOK: 'Chart has been generated successfully, ',
 
             darkMode: 'Dark Mode',
-            lightMode: 'Light Mode',
+            // lightMode: 'Light Mode',
+            useDirtyRect: 'Use Dirty Rect',
             renderer: 'Renderer',
             download: 'Download',
 
@@ -63,7 +64,8 @@ export default {
             chartOK: '图表已生成, ',
 
             darkMode: '深色模式',
-            lightMode: '浅色模式',
+            useDirtyRect: '开启脏矩形优化',
+            // lightMode: '浅色模式',
 
             renderer: '渲染模式',
             download: '下载示例',

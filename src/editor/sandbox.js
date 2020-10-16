@@ -1,3 +1,5 @@
+import showDebugDirtyRect from '../dep/showDebugDirtyRect';
+
 export function createSandbox(optionUpdated) {
     let appEnv = {};
     let gui;
@@ -74,8 +76,12 @@ export function createSandbox(optionUpdated) {
 
             if (!chartInstance) {
                 chartInstance = echarts.init(el, store.darkMode ? 'dark' : '', {
-                    renderer: store.renderer
+                    renderer: store.renderer,
+                    useDirtyRect: store.useDirtyRect
                 });
+                if (store.useDirtyRect) {
+                    showDebugDirtyRect(chartInstance.getZr());
+                }
                 _wrapOnMethods(chartInstance);
             }
 

@@ -74,10 +74,6 @@ var option = {
                 color: '#8392A5'
             }
         },
-        handleStyle: {
-            color: '#fff',
-            borderColor: null
-        },
         brushSelect: true
     }, {
         type: 'inside'
