@@ -35,6 +35,9 @@ export default {
             if ('local' in URL_PARAMS) {
                 hash.push('local');
             }
+            if ('useDirtyRect' in URL_PARAMS) {
+                hash.push('useDirtyRect');
+            }
             return './editor.html?' + hash.join('&');
         },
 

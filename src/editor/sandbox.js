@@ -79,8 +79,13 @@ export function createSandbox(optionUpdated) {
                     renderer: store.renderer,
                     useDirtyRect: store.useDirtyRect
                 });
-                if (store.useDirtyRect) {
-                    showDebugDirtyRect(chartInstance.getZr());
+                if (store.useDirtyRect && store.renderer === 'canvas') {
+                    try {
+                        showDebugDirtyRect(chartInstance.getZr());
+                    }
+                    catch (e) {
+                        console.error(e);
+                    }
                 }
                 _wrapOnMethods(chartInstance);
             }
