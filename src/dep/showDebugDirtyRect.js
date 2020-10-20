@@ -30,7 +30,7 @@ var DebugRect = (function () {
         this.dom.style.opacity = '1';
         this._hideTimeout = setTimeout(function () {
             _this.hide();
-        }, 2000);
+        }, 500);
     };
     return DebugRect;
 }());

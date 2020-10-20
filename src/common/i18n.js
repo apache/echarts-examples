@@ -6,9 +6,13 @@ export default {
             chartOK: 'Chart has been generated successfully, ',
 
             darkMode: 'Dark Mode',
+            enableDecal: 'Decal Pattern',
             // lightMode: 'Light Mode',
-            useDirtyRect: 'Use Dirty Rect',
+
+            renderCfgTitle: 'Render',
             renderer: 'Renderer',
+            useDirtyRect: 'Use Dirty Rect',
+
             download: 'Download',
 
             edit: 'Edit',
@@ -64,9 +68,11 @@ export default {
             chartOK: '图表已生成, ',
 
             darkMode: '深色模式',
-            useDirtyRect: '开启脏矩形优化',
+            enableDecal: '贴花图案',
             // lightMode: '浅色模式',
 
+            renderCfgTitle: '渲染设置',
+            useDirtyRect: '开启脏矩形优化',
             renderer: '渲染模式',
             download: '下载示例',
 

@@ -8,6 +8,7 @@ export const store = {
     locale: '',
 
     darkMode: URL_PARAMS.theme === 'dark',
+    enableDecal: 'decal' in URL_PARAMS,
     renderer: URL_PARAMS.renderer || 'canvas',
 
     typeCheck: URL_PARAMS.editor === 'monaco',

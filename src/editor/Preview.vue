@@ -14,19 +14,40 @@
                 :active-text="$t('editor.darkMode')"
                 :inactive-text="''">
             </el-switch>
-
-            <label class="tool-label">{{ $t('editor.renderer') }}</label>
-            <el-radio-group v-model="shared.renderer" size="mini">
-                <el-radio-button label="svg"></el-radio-button>
-                <el-radio-button label="canvas"></el-radio-button>
-            </el-radio-group>
-
             <el-switch
-                v-if="shared.renderer==='canvas'"
-                v-model="shared.useDirtyRect"
-                :active-text="$t('editor.useDirtyRect')"
+                class="enable-decal"
+                v-model="shared.enableDecal"
+                :active-text="$t('editor.enableDecal')"
                 :inactive-text="''">
             </el-switch>
+
+            <el-popover
+                placement="bottom"
+                width="450"
+                trigger="click"
+                style="margin-top:3px;"
+            >
+                <div class="render-config-container">
+                    <el-row :gutter="2" type="flex" align="middle">
+                        <el-col :span="12">
+                            <label class="tool-label">{{ $t('editor.renderer') }}</label>
+                            <el-radio-group v-model="shared.renderer" size="mini" style="text-transform: uppercase">
+                                <el-radio-button label="svg"></el-radio-button>
+                                <el-radio-button label="canvas"></el-radio-button>
+                            </el-radio-group>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-switch
+                                v-if="shared.renderer==='canvas'"
+                                v-model="shared.useDirtyRect"
+                                :active-text="$t('editor.useDirtyRect')"
+                                :inactive-text="''">
+                            </el-switch>
+                        </el-col>
+                    </el-row>
+                </div>
+                <span class="render-config-trigger" slot="reference"><i class="el-icon-setting el-icon--left"></i>{{$t('editor.renderCfgTitle')}}</span>
+            </el-popover>
         </div>
         <button v-if="inEditor" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
         <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
@@ -46,6 +67,15 @@ import CHART_LIST from '../data/chart-list-data';
 import {download} from './downloadExample';
 
 const example = CHART_LIST.find(item => URL_PARAMS.c === item.id);
+
+function addDecalIfNecessary(option) {
+    if (store.enableDecal) {
+        option.aria = option.aria || {};
+        option.aria.decal = option.aria.decal || {};
+        option.aria.decal.show = true;
+        option.aria.show = option.aria.enabled = true;
+    }
+}
 
 export function ensureECharts() {
     if (typeof echarts === 'undefined') {
@@ -71,7 +101,9 @@ export function ensureECharts() {
                 'https://api.map.baidu.com/getscript?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
                 SCRIPT_URLS.echartsDir + '/dist/extension/bmap.js'
             ] : []
-        ]);
+        ]).then(() => {
+            echarts.registerPreprocessor(addDecalIfNecessary)
+        });
     }
     return Promise.resolve();
 }
@@ -127,6 +159,7 @@ function run() {
         console.error(e);
     }
 }
+
 
 export default {
 
@@ -187,6 +220,9 @@ export default {
             this.refreshAll();
         },
         'shared.darkMode'() {
+            this.refreshAll();
+        },
+        'shared.enableDecal'() {
             this.refreshAll();
         },
         'shared.useDirtyRect'() {
@@ -253,6 +289,14 @@ export default {
     }
 }
 
+.render-config-container {
+    .el-radio-group {
+        label {
+            margin-bottom: 0;
+        }
+    }
+}
+
 #tool-panel {
     position: absolute;
     top: 0;
@@ -261,25 +305,14 @@ export default {
     padding-top: 5px;
     padding-left: 15px;
 
-    .el-switch__label * {
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-    .el-radio-group {
-        text-transform: uppercase;
-    }
-
-    .el-switch__label.is-active {
-        color: #181432;
-    }
-
-    .el-radio-button--mini .el-radio-button__inner {
-        padding: 5px 8px;
+    .render-config-trigger {
+        margin-left: 10px;
+        cursor: pointer;
+        font-weight: 500;
     }
 
     label {
         margin-bottom: 0;
-        font-size: 10px;
     }
 
     .left-panel {

@@ -1,6 +1,7 @@
 /*
 title: Binning on Map
 category: map
+tags: bmap
 titleCN: Binning on Map
 */
 

@@ -81,7 +81,9 @@ export function createSandbox(optionUpdated) {
                 });
                 if (store.useDirtyRect && store.renderer === 'canvas') {
                     try {
-                        showDebugDirtyRect(chartInstance.getZr());
+                        showDebugDirtyRect(chartInstance.getZr(), {
+                            autoHideDelay: 500
+                        });
                     }
                     catch (e) {
                         console.error(e);
