@@ -4,11 +4,94 @@
 export default [
   {
     "category": [
+      "bar"
+    ],
+    "id": "bar-simple",
+    "tags": [],
+    "title": "Bar Simple",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-tick-align",
+    "tags": [],
+    "title": "坐标轴刻度与标签对齐",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-waterfall",
+    "tags": [],
+    "title": "深圳月最低生活费组成（单位:元）",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "dataset",
+      "bar",
+      "transform"
+    ],
+    "id": "data-transform-sort-bar",
+    "tags": [],
+    "title": "Sort Data in Bar Chart",
+    "difficulty": 0
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "line-simple",
     "tags": [],
     "title": "Basic Line Chart",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-smooth",
+    "tags": [],
+    "title": "Smoothed Line Chart",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-doughnut",
+    "tags": [],
+    "title": "Doughnut Chart",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-simple",
+    "tags": [],
+    "title": "Referer of a website",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-anscombe-quartet",
+    "tags": [],
+    "title": "Anscombe&#39;s quartet",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-clustering-process",
+    "tags": [],
+    "title": "Clustering Process",
     "difficulty": 0
   },
   {
@@ -31,31 +114,83 @@ export default [
   },
   {
     "category": [
-      "dataset",
       "bar"
     ],
-    "id": "dataset-simple0",
+    "id": "bar-background",
     "tags": [],
-    "title": "Simple Example of Dataset",
+    "title": "Bar with Background",
     "difficulty": 1
   },
   {
     "category": [
-      "dataset",
       "bar"
     ],
-    "id": "dataset-simple1",
+    "id": "bar-gradient",
     "tags": [],
-    "title": "Dataset in Object Array",
+    "title": "特性示例：渐变色 阴影 点击缩放",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-negative2",
+    "tags": [],
+    "title": "交错正负轴标签",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-waterfall2",
+    "tags": [],
+    "title": "阶梯瀑布图",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "bubble-gradient",
+    "tags": [],
+    "title": "Bubble Chart",
     "difficulty": 1
   },
   {
     "category": [
       "line"
     ],
-    "id": "line-smooth",
+    "id": "line-stack",
     "tags": [],
-    "title": "Smoothed Line Chart",
+    "title": "Stacked Line Chart",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-custom",
+    "tags": [],
+    "title": "Customized Pie",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-pattern",
+    "tags": [],
+    "title": "Texture on Pie Chart",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-roseType",
+    "tags": [],
+    "title": "Nightingale's Rose Diagram",
     "difficulty": 1
   },
   {
@@ -74,6 +209,42 @@ export default [
     "id": "area-time-axis",
     "tags": [],
     "title": "Area Chart with Time Axis",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-animation-delay",
+    "tags": [],
+    "title": "柱状图动画延迟",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-negative",
+    "tags": [],
+    "title": "正负条形图",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-y-category",
+    "tags": [],
+    "title": "World Total Population",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar1",
+    "tags": [],
+    "title": "Rainfall and Evaporation",
     "difficulty": 2
   },
   {
@@ -101,19 +272,138 @@ export default [
       "dataset",
       "bar"
     ],
-    "id": "dataset-series-layout-by",
+    "id": "dataset-simple0",
     "tags": [],
-    "title": "Series Layout By Column or Row",
+    "title": "Simple Example of Dataset",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "dataset",
+      "bar"
+    ],
+    "id": "dataset-simple1",
+    "tags": [],
+    "title": "Dataset in Object Array",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "effectScatter-map",
+    "tags": [],
+    "title": "Air Quality",
     "difficulty": 2
   },
   {
     "category": [
       "line"
     ],
-    "id": "line-stack",
+    "id": "line-in-cartesian-coordinate-system",
     "tags": [],
-    "title": "Stacked Line Chart",
+    "title": "Line Chart in Cartesian Coordinate System",
     "difficulty": 2
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-y-category",
+    "tags": [],
+    "title": "Line Y Category",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "mix-line-bar",
+    "tags": [],
+    "title": "Mixed Line and Bar",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-alignTo",
+    "tags": [],
+    "title": "Pie Label Align",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "pie"
+    ],
+    "id": "pie-legend",
+    "tags": [],
+    "title": "Pie with Scrollable Legend",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-nebula",
+    "tags": [],
+    "title": "Scatter Nebula",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "line",
+      "visualMap"
+    ],
+    "id": "area-pieces",
+    "tags": [],
+    "title": "Area Pieces",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "area-stack-gradient",
+    "tags": [],
+    "title": "Gradient Stacked area chart",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-brush",
+    "tags": [],
+    "title": "柱状图框选",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-label-rotation",
+    "tags": [],
+    "title": "Bar Label Rotation",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-race",
+    "tags": [],
+    "title": "Bar Race",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-y-category-stack",
+    "tags": [],
+    "title": "Stacked Horizontal Bar",
+    "difficulty": 3
   },
   {
     "category": [
@@ -133,17 +423,211 @@ export default [
     "id": "dataset-link",
     "tags": [],
     "title": "Share Dataset",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-gradient",
+    "tags": [],
+    "title": "Line Gradient",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-sections",
+    "tags": [],
+    "title": "Distribution of Electricity",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-step",
+    "tags": [],
+    "title": "Step Line",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-style",
+    "tags": [],
+    "title": "Line Style and Item Style",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "mix-zoom-on-value",
+    "tags": [],
+    "title": "Mix Zoom On Value",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "pie",
+      "rich"
+    ],
+    "id": "pie-nest",
+    "tags": [],
+    "title": "Nested Pies",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "pie",
+      "rich"
+    ],
+    "id": "pie-rich-text",
+    "tags": [],
+    "title": "Pie Special Label",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-polar-stack",
+    "tags": [],
+    "title": "极坐标系下的堆叠柱状图",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-polar-stack-radial",
+    "tags": [],
+    "title": "极坐标系下的堆叠柱状图",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "calendar",
+      "pie"
+    ],
+    "id": "calendar-pie",
+    "tags": [],
+    "title": "Calendar Pie",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "confidence-band",
+    "tags": [],
+    "title": "Confidence Band",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "custom-graphic",
+    "tags": [],
+    "title": "Custom Graphic Component",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "dataset",
+      "bar"
+    ],
+    "id": "dataset-series-layout-by",
+    "tags": [],
+    "title": "Series Layout By Column or Row",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "dynamic-data2",
+    "tags": [],
+    "title": "Dynamic Data + Time Axis",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-aqi",
+    "tags": [],
+    "title": "Beijing AQI",
     "difficulty": 4
   },
   {
     "category": [
       "line",
-      "visualMap"
+      "drag"
     ],
-    "id": "area-pieces",
+    "id": "line-draggable",
     "tags": [],
-    "title": "Area Pieces",
-    "difficulty": 10
+    "title": "Try Dragging these Points",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-function",
+    "tags": [],
+    "title": "Function Plot",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-pen",
+    "tags": [],
+    "title": "Click to Add Points",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line",
+      "dataZoom"
+    ],
+    "id": "line-tooltip-touch",
+    "tags": [],
+    "title": "Tooltip and DataZoom on Mobile",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "multiple-x-axis",
+    "tags": [],
+    "title": "Multiple X Axes",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "multiple-y-axis",
+    "tags": [],
+    "title": "Multiple Y Axes",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "watermark",
+    "tags": [],
+    "title": "Watermark - ECharts Download",
+    "difficulty": 4
   },
   {
     "category": [
@@ -152,7 +636,7 @@ export default [
     "id": "area-rainfall",
     "tags": [],
     "title": "Rainfall",
-    "difficulty": 10
+    "difficulty": 5
   },
   {
     "category": [
@@ -162,43 +646,61 @@ export default [
     "id": "area-simple",
     "tags": [],
     "title": "Large scale area chart",
-    "difficulty": 10
+    "difficulty": 5
   },
   {
     "category": [
       "bar"
     ],
-    "id": "bar-animation-delay",
+    "id": "bar-polar-real-estate",
     "tags": [],
-    "title": "柱状图动画延迟",
-    "difficulty": 10
+    "title": "极坐标系下的堆叠柱状图",
+    "difficulty": 5
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "grid-multiple",
+    "tags": [],
+    "title": "Rainfall and Water Flow",
+    "difficulty": 5
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-easing",
+    "tags": [],
+    "title": "Line Easing Visualizing",
+    "difficulty": 5
   },
   {
     "category": [
       "bar"
     ],
-    "id": "bar-background",
+    "id": "polar-roundCap",
     "tags": [],
-    "title": "Bar with Background",
-    "difficulty": 10
+    "title": "Rounded Bar on Polar",
+    "difficulty": 5
   },
   {
     "category": [
-      "bar"
+      "line"
     ],
-    "id": "bar-brush",
+    "id": "line-polar",
     "tags": [],
-    "title": "柱状图框选",
-    "difficulty": 10
+    "title": "Two Value-Axes in Polar",
+    "difficulty": 6
   },
   {
     "category": [
-      "bar"
+      "line"
     ],
-    "id": "bar-gradient",
+    "id": "line-polar2",
     "tags": [],
-    "title": "特性示例：渐变色 阴影 点击缩放",
-    "difficulty": 10
+    "title": "Two Value-Axes in Polar",
+    "difficulty": 6
   },
   {
     "category": [
@@ -213,72 +715,9 @@ export default [
     "category": [
       "bar"
     ],
-    "id": "bar-label-rotation",
-    "tags": [],
-    "title": "Bar Label Rotation",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
     "id": "bar-large",
     "tags": [],
     "title": "Large Scale Bar Chart",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-negative",
-    "tags": [],
-    "title": "正负条形图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-negative2",
-    "tags": [],
-    "title": "交错正负轴标签",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-polar-real-estate",
-    "tags": [],
-    "title": "极坐标系下的堆叠柱状图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-polar-stack",
-    "tags": [],
-    "title": "极坐标系下的堆叠柱状图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-polar-stack-radial",
-    "tags": [],
-    "title": "极坐标系下的堆叠柱状图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-race",
-    "tags": [],
-    "title": "Bar Race",
     "difficulty": 10
   },
   {
@@ -295,72 +734,9 @@ export default [
     "category": [
       "bar"
     ],
-    "id": "bar-simple",
-    "tags": [],
-    "title": "Bar Simple",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
     "id": "bar-stack",
     "tags": [],
     "title": "堆叠柱状图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-tick-align",
-    "tags": [],
-    "title": "坐标轴刻度与标签对齐",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-waterfall",
-    "tags": [],
-    "title": "深圳月最低生活费组成（单位:元）",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-waterfall2",
-    "tags": [],
-    "title": "阶梯瀑布图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-y-category",
-    "tags": [],
-    "title": "World Total Population",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-y-category-stack",
-    "tags": [],
-    "title": "堆叠条形图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar1",
-    "tags": [],
-    "title": "Rainfall and Evaporation",
     "difficulty": 10
   },
   {
@@ -388,15 +764,6 @@ export default [
     "id": "boxplot-multi",
     "tags": [],
     "title": "Multiple Categories",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "bubble-gradient",
-    "tags": [],
-    "title": "Bubble Chart",
     "difficulty": 10
   },
   {
@@ -454,16 +821,6 @@ export default [
     "id": "calendar-lunar",
     "tags": [],
     "title": "Calendar Lunar",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "calendar",
-      "pie"
-    ],
-    "id": "calendar-pie",
-    "tags": [],
-    "title": "Calendar Pie",
     "difficulty": 10
   },
   {
@@ -537,15 +894,6 @@ export default [
     "id": "candlestick-touch",
     "tags": [],
     "title": "Axis Pointer Link and Touch",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "confidence-band",
-    "tags": [],
-    "title": "Confidence Band",
     "difficulty": 10
   },
   {
@@ -672,20 +1020,22 @@ export default [
   },
   {
     "category": [
+      "dataset",
+      "pie",
+      "transform"
+    ],
+    "id": "data-transform-multiple-pie",
+    "tags": [],
+    "title": "Partition Data to Pies",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "bar"
     ],
     "id": "dynamic-data",
     "tags": [],
     "title": "Dynamic Data",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "dynamic-data2",
-    "tags": [],
-    "title": "Dynamic Data + Time Axis",
     "difficulty": 10
   },
   {
@@ -698,15 +1048,6 @@ export default [
       "bmap"
     ],
     "title": "Air Quality - Baidu Map",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "effectScatter-map",
-    "tags": [],
-    "title": "Air Quality",
     "difficulty": 10
   },
   {
@@ -770,6 +1111,33 @@ export default [
     "id": "gauge-car-dark",
     "tags": [],
     "title": "Gauge Car Dark",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "gauge"
+    ],
+    "id": "gauge-level",
+    "tags": [],
+    "title": "Gauge level",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "gauge"
+    ],
+    "id": "gauge-simple",
+    "tags": [],
+    "title": "Simple Gauge",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "gauge"
+    ],
+    "id": "gauge-speed",
+    "tags": [],
+    "title": "Gauge Speed",
     "difficulty": 10
   },
   {
@@ -848,6 +1216,15 @@ export default [
     "category": [
       "graph"
     ],
+    "id": "graph-label-overlap",
+    "tags": [],
+    "title": "Hide Overlapped Label",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "graph"
+    ],
     "id": "graph-life-expectancy",
     "tags": [],
     "title": "Graph Life Expectancy",
@@ -878,15 +1255,6 @@ export default [
     "id": "graph-webkit-dep",
     "tags": [],
     "title": "Graph Webkit Dep",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "grid-multiple",
-    "tags": [],
-    "title": "Rainfall and Water Flow",
     "difficulty": 10
   },
   {
@@ -940,70 +1308,6 @@ export default [
     "category": [
       "line"
     ],
-    "id": "line-aqi",
-    "tags": [],
-    "title": "Beijing AQI",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line",
-      "drag"
-    ],
-    "id": "line-draggable",
-    "tags": [],
-    "title": "Try Dragging these Points",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-easing",
-    "tags": [],
-    "title": "Line Easing Visualizing",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-function",
-    "tags": [],
-    "title": "Function Plot",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-gradient",
-    "tags": [],
-    "title": "Line Gradient",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-graphic",
-    "tags": [],
-    "title": "Custom Graphic Component",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-in-cartesian-coordinate-system",
-    "tags": [],
-    "title": "Line Chart in Cartesian Coordinate System",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
     "id": "line-log",
     "tags": [],
     "title": "Log Axis",
@@ -1025,79 +1329,6 @@ export default [
     "id": "line-markline",
     "tags": [],
     "title": "Line with Marklines",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-pen",
-    "tags": [],
-    "title": "Click to Add Points",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-polar",
-    "tags": [],
-    "title": "Two Value-Axes in Polar",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-polar2",
-    "tags": [],
-    "title": "Two Value-Axes in Polar",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-sections",
-    "tags": [],
-    "title": "Distribution of Electricity",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-step",
-    "tags": [],
-    "title": "Step Line",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-style",
-    "tags": [],
-    "title": "Line Style and Item Style",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line",
-      "dataZoom"
-    ],
-    "id": "line-tooltip-touch",
-    "tags": [],
-    "title": "Tooltip and DataZoom on Mobile",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "line-y-category",
-    "tags": [],
-    "title": "Line Y Category",
     "difficulty": 10
   },
   {
@@ -1212,16 +1443,6 @@ export default [
   },
   {
     "category": [
-      "parallel",
-      "map"
-    ],
-    "id": "map-parallel-prices",
-    "tags": [],
-    "title": "Prices and Earnings 2012",
-    "difficulty": 10
-  },
-  {
-    "category": [
       "map"
     ],
     "id": "map-polygon",
@@ -1269,45 +1490,9 @@ export default [
     "category": [
       "bar"
     ],
-    "id": "mix-line-bar",
-    "tags": [],
-    "title": "Mixed Line and Bar",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
     "id": "mix-timeline-finance",
     "tags": [],
     "title": "Finance Indices 2002",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "mix-zoom-on-value",
-    "tags": [],
-    "title": "Mix Zoom On Value",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "line"
-    ],
-    "id": "multiple-x-axis",
-    "tags": [],
-    "title": "Multiple X Axes",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "multiple-y-axis",
-    "tags": [],
-    "title": "Multiple Y Axes",
     "difficulty": 10
   },
   {
@@ -1398,98 +1583,6 @@ export default [
     "id": "pictorialBar-velocity",
     "tags": [],
     "title": "Velocity of Christmas Reindeers",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-alignTo",
-    "tags": [],
-    "title": "Pie Label Align",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-custom",
-    "tags": [],
-    "title": "Customized Pie",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-doughnut",
-    "tags": [],
-    "title": "Doughnut Chart",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-legend",
-    "tags": [],
-    "title": "Pie with Scrollable Legend",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie",
-      "rich"
-    ],
-    "id": "pie-nest",
-    "tags": [],
-    "title": "Nested Pies",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-pattern",
-    "tags": [],
-    "title": "Texture on Pie Chart",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie",
-      "rich"
-    ],
-    "id": "pie-rich-text",
-    "tags": [],
-    "title": "Pie Special Label",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-roseType",
-    "tags": [],
-    "title": "Nightingale's Rose Diagram",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "pie"
-    ],
-    "id": "pie-simple",
-    "tags": [],
-    "title": "Referer of a website",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "polar-roundCap",
-    "tags": [],
-    "title": "Rounded Bar on Polar",
     "difficulty": 10
   },
   {
@@ -1604,27 +1697,9 @@ export default [
     "category": [
       "scatter"
     ],
-    "id": "scatter-anscombe-quartet",
-    "tags": [],
-    "title": "Anscombe&#39;s quartet",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
     "id": "scatter-aqi-color",
     "tags": [],
     "title": "Scatter Aqi Color",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "scatter-clustering-process",
-    "tags": [],
-    "title": "Clustering Process",
     "difficulty": 10
   },
   {
@@ -1725,15 +1800,6 @@ export default [
     "id": "scatter-matrix",
     "tags": [],
     "title": "Scatter Matrix",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "scatter-nebula",
-    "tags": [],
-    "title": "Scatter Nebula",
     "difficulty": 10
   },
   {
@@ -2022,15 +2088,6 @@ export default [
     "id": "treemap-visual",
     "tags": [],
     "title": "Gradient Mapping",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "watermark",
-    "tags": [],
-    "title": "Watermark - ECharts Download",
     "difficulty": 10
   },
   {

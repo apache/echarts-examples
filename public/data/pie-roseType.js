@@ -2,7 +2,7 @@
 title: Nightingale's Rose Diagram
 category: pie
 titleCN: 南丁格尔玫瑰图
-difficulty: 1
+difficulty: 2
 */
 
 option = {
@@ -33,7 +33,7 @@ option = {
         {
             name: '半径模式',
             type: 'pie',
-            radius: [20, 120],
+            radius: [20, 140],
             center: ['25%', '50%'],
             roseType: 'radius',
             label: {
@@ -45,31 +45,31 @@ option = {
                 }
             },
             data: [
-                {value: 40, name: 'rose1'},
-                {value: 33, name: 'rose2'},
-                {value: 28, name: 'rose3'},
-                {value: 22, name: 'rose4'},
-                {value: 20, name: 'rose5'},
-                {value: 15, name: 'rose6'},
-                {value: 12, name: 'rose7'},
-                {value: 10, name: 'rose8'}
+                {value: 40, name: 'rose 1'},
+                {value: 33, name: 'rose 2'},
+                {value: 28, name: 'rose 3'},
+                {value: 22, name: 'rose 4'},
+                {value: 20, name: 'rose 5'},
+                {value: 15, name: 'rose 6'},
+                {value: 12, name: 'rose 7'},
+                {value: 10, name: 'rose 8'}
             ]
         },
         {
             name: '面积模式',
             type: 'pie',
-            radius: [20, 120],
+            radius: [20, 140],
             center: ['75%', '50%'],
             roseType: 'area',
             data: [
-                {value: 30, name: 'rose1'},
-                {value: 28, name: 'rose2'},
-                {value: 26, name: 'rose3'},
-                {value: 24, name: 'rose4'},
-                {value: 22, name: 'rose5'},
-                {value: 20, name: 'rose6'},
-                {value: 18, name: 'rose7'},
-                {value: 16, name: 'rose8'}
+                {value: 30, name: 'rose 1'},
+                {value: 28, name: 'rose 2'},
+                {value: 26, name: 'rose 3'},
+                {value: 24, name: 'rose 4'},
+                {value: 22, name: 'rose 5'},
+                {value: 20, name: 'rose 6'},
+                {value: 18, name: 'rose 7'},
+                {value: 16, name: 'rose 8'}
             ]
         }
     ]

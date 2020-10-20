@@ -2,14 +2,18 @@
 title: Customized Pie
 category: pie
 titleCN: Customized Pie
-difficulty: 1
+difficulty: 2
 */
 
 option = {
     title: {
-        text: '最喜欢的电影类型',
+        text: '喜欢的电影类型',
         left: 'center',
         top: 20,
+        textStyle: {
+            fontSize: 24,
+        },
+        
     },
     tooltip: {
         trigger: 'item',
@@ -37,6 +41,9 @@ option = {
                 {value: 230, name: '其他'}
             ].sort(function (a, b) { return a.value - b.value; }),
             roseType: 'radius',
+            label: {
+                fontSize: 14,
+            },
             labelLine: {
                 smooth: 0.2,
                 length: 20,

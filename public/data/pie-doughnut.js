@@ -2,7 +2,7 @@
 title: Doughnut Chart
 category: pie
 titleCN: 环形图
-difficulty: 0
+difficulty: 1
 */
 
 option = {
@@ -11,14 +11,14 @@ option = {
         formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: {
-        orient: 'vertical',
-        left: 10,
+        top: '5%',
+        left: 'center',
     },
     series: [
         {
             name: '访问来源',
             type: 'pie',
-            radius: ['50%', '70%'],
+            radius: ['40%', '70%'],
             avoidLabelOverlap: false,
             label: {
                 show: false,
@@ -27,7 +27,7 @@ option = {
             emphasis: {
                 label: {
                     show: true,
-                    fontSize: '30',
+                    fontSize: '40',
                     fontWeight: 'bold'
                 }
             },

@@ -23,8 +23,7 @@ option = {
         {
             name: '访问来源',
             type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
+            radius: '50%',
             data: [
                 {value: 1048, name: '搜索引擎'},
                 {value: 735, name: '直接访问'},

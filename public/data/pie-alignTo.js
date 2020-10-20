@@ -2,7 +2,7 @@
 title: Pie Label Align
 category: pie
 titleCN: 饼图标签对齐
-difficulty: 2
+difficulty: 3
 */
 
 var data = [{
@@ -30,7 +30,8 @@ var data = [{
 
 option = {
     title: [{
-        text: 'Pie label alignTo'
+        text: 'Pie label alignTo',
+        left: 'center',
     }, {
         subtext: 'alignTo: "none" (default)',
         left: '16.67%',
