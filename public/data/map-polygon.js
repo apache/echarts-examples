@@ -1,6 +1,7 @@
 /*
 title: Draw Polygon on Map
 category: map
+tags: bmap
 titleCN: 在地图上绘制多边形
 */
 
