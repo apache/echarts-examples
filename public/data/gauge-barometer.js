@@ -2,7 +2,7 @@
 title: Gauge Barometer chart
 titleCN: 气压表
 category: gauge
-difficulty: 5
+difficulty: 6
 */
 
 option = {
