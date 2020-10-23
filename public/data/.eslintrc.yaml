@@ -1,0 +1,7 @@
+env:
+    browser: true
+globals:
+    myChart: true
+    option: true
+
+extends: '../../.eslintrc.yaml'
