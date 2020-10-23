@@ -7,7 +7,7 @@ difficulty: 1
 
 option = {
     tooltip: {
-        formatter: "{a} <br/>{b} : {c}%"
+        formatter: '{a} <br/>{b} : {c}%'
     },
     series: [{
         name: 'Pressure',

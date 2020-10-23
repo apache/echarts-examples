@@ -21,7 +21,7 @@ option = {
                     [0.25, '#FF6E76'],
                     [0.5, '#FDDD60'],
                     [0.75, '#58D9F9'],
-                    [1, '#7CFFB2'],
+                    [1, '#7CFFB2']
                 ]
             }
         },
@@ -52,15 +52,18 @@ option = {
             color: '#464646',
             fontSize: 20,
             distance: -60,
-            formatter: function(value) {
+            formatter: function (value) {
                 if (value === 0.875) {
-                    return '优'
-                } else if (value === 0.625) {
-                    return '中'
-                } else if (value === 0.375) {
-                    return '良'
-                } else if (value === 0.125) {
-                    return '差'
+                    return '优';
+                }
+                else if (value === 0.625) {
+                    return '中';
+                }
+                else if (value === 0.375) {
+                    return '良';
+                }
+                else if (value === 0.125) {
+                    return '差';
                 }
             }
         },
@@ -72,7 +75,7 @@ option = {
             fontSize: 50,
             offsetCenter: [0, '0%'],
             valueAnimation: true,
-            formatter: function(value) {
+            formatter: function (value) {
                 return Math.round(value * 100) + '分';
             },
             color: 'auto'

@@ -9,10 +9,10 @@ option = {
     series: [{
         type: 'gauge',
         pointer: {
-            show: false,
+            show: false
         },
         progress: {
-            show: true,
+            show: true
         },
         data: [{
             value: 20,
@@ -20,11 +20,11 @@ option = {
         }],
         detail: {
             formatter: '{value}%'
-        },
+        }
     }]
 };
 
-setInterval(function() {
+setInterval(function () {
     option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
     myChart.setOption(option, true);
 }, 2000);

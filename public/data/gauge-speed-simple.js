@@ -46,10 +46,10 @@ option = {
         detail: {
             valueAnimation: true,
             fontSize: 80,
-            offsetCenter: [0, '70%'],
+            offsetCenter: [0, '70%']
         },
         data: [{
-            value: 70,
+            value: 70
         }]
     }]
 };

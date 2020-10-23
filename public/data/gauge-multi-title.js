@@ -32,35 +32,35 @@ option = {
             roundCap: true
         },
         data: [{
-                value: 20,
-                name: '完成率',
-                title: {
-                    offsetCenter: ['-40%', '80%']
-                },
-                detail: {
-                    offsetCenter: ['-40%', '95%']
-                }
+            value: 20,
+            name: '完成率',
+            title: {
+                offsetCenter: ['-40%', '80%']
             },
-            {
-                value: 40,
-                name: '达标率',
-                title: {
-                    offsetCenter: ['0%', '80%']
-                },
-                detail: {
-                    offsetCenter: ['0%', '95%']
-                }
-            },
-            {
-                value: 60,
-                name: '优秀率',
-                title: {
-                    offsetCenter: ['40%', '80%']
-                },
-                detail: {
-                    offsetCenter: ['40%', '95%']
-                }
+            detail: {
+                offsetCenter: ['-40%', '95%']
             }
+        },
+        {
+            value: 40,
+            name: '达标率',
+            title: {
+                offsetCenter: ['0%', '80%']
+            },
+            detail: {
+                offsetCenter: ['0%', '95%']
+            }
+        },
+        {
+            value: 60,
+            name: '优秀率',
+            title: {
+                offsetCenter: ['40%', '80%']
+            },
+            detail: {
+                offsetCenter: ['40%', '95%']
+            }
+        }
         ],
         title: {
             fontSize: 14
@@ -73,11 +73,11 @@ option = {
             backgroundColor: 'auto',
             borderRadius: 3,
             formatter: '{value}%'
-        },
+        }
     }]
 };
 
-setInterval(function() {
+setInterval(function () {
     option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
     option.series[0].data[1].value = (Math.random() * 100).toFixed(2) - 0;
     option.series[0].data[2].value = (Math.random() * 100).toFixed(2) - 0;

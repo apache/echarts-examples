@@ -70,7 +70,7 @@ option = {
             borderRadius: 8,
             offsetCenter: [0, '35%'],
             valueAnimation: true,
-            formatter: function(value) {
+            formatter: function (value) {
                 return '{value|' + value.toFixed(0) + '}{unit|km/h}';
             },
             rich: {
@@ -83,11 +83,11 @@ option = {
                     fontSize: 20,
                     color: '#999',
                     padding: [0, 0, -20, 10]
-                },
+                }
             }
         },
         data: [{
-            value: 100,
+            value: 100
         }]
     }]
 };

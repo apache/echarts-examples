@@ -11,7 +11,7 @@ option = {
         startAngle: 90,
         endAngle: -270,
         pointer: {
-            show: false,
+            show: false
         },
         progress: {
             show: true,
@@ -20,57 +20,57 @@ option = {
             clip: false,
             itemStyle: {
                 borderWidth: 1,
-                borderColor: "#464646"
+                borderColor: '#464646'
             }
         },
         axisLine: {
 
             lineStyle: {
-                width: 40,
+                width: 40
             }
         },
         splitLine: {
             show: false,
             distance: 0,
-            length: 10,
+            length: 10
         },
         axisTick: {
-            show: false,
+            show: false
         },
         axisLabel: {
             show: false,
-            distance: 50,
+            distance: 50
         },
         data: [{
-                value: 20,
-                name: 'Perfect',
-                title: {
-                    offsetCenter: ['0%', '-30%']
-                },
-                detail: {
-                    offsetCenter: ['0%', '-20%']
-                }
+            value: 20,
+            name: 'Perfect',
+            title: {
+                offsetCenter: ['0%', '-30%']
             },
-            {
-                value: 40,
-                name: 'Good',
-                title: {
-                    offsetCenter: ['0%', '0%']
-                },
-                detail: {
-                    offsetCenter: ['0%', '10%']
-                }
-            },
-            {
-                value: 60,
-                name: 'Commonly',
-                title: {
-                    offsetCenter: ['0%', '30%']
-                },
-                detail: {
-                    offsetCenter: ['0%', '40%']
-                }
+            detail: {
+                offsetCenter: ['0%', '-20%']
             }
+        },
+        {
+            value: 40,
+            name: 'Good',
+            title: {
+                offsetCenter: ['0%', '0%']
+            },
+            detail: {
+                offsetCenter: ['0%', '10%']
+            }
+        },
+        {
+            value: 60,
+            name: 'Commonly',
+            title: {
+                offsetCenter: ['0%', '30%']
+            },
+            detail: {
+                offsetCenter: ['0%', '40%']
+            }
+        }
         ],
         title: {
             fontSize: 14
@@ -84,11 +84,11 @@ option = {
             borderRadius: 20,
             borderWidth: 1,
             formatter: '{value}%'
-        },
+        }
     }]
 };
 
-setInterval(function() {
+setInterval(function () {
     option.series[0].pointer.show = false;
     option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
     option.series[0].data[1].value = (Math.random() * 100).toFixed(2) - 0;
