@@ -68,7 +68,7 @@ export default {
             chartOK: '图表已生成, ',
 
             darkMode: '深色模式',
-            enableDecal: '贴花图案',
+            enableDecal: '无障碍花纹',
             // lightMode: '浅色模式',
 
             renderCfgTitle: '渲染设置',
