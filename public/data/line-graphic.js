@@ -35,21 +35,6 @@ option = {
     },
     graphic: [
         {
-            type: 'image',
-            id: 'logo',
-            right: 20,
-            top: 20,
-            z: -10,
-            bounding: 'raw',
-            origin: [75, 75],
-            style: {
-                image: 'http://echarts.baidu.com/images/favicon.png',
-                width: 150,
-                height: 150,
-                opacity: 0.4
-            }
-        },
-        {
             type: 'group',
             rotation: Math.PI / 4,
             bounding: 'raw',
@@ -78,7 +63,7 @@ option = {
                     style: {
                         fill: '#fff',
                         text: 'ECHARTS BAR CHART',
-                        font: 'bold 26px Microsoft YaHei'
+                        font: 'bold 26px sans-serif'
                     }
                 }
             ]
@@ -137,13 +122,3 @@ option = {
         }
     ]
 };
-
-var rotation = 0;
-setInterval(function () {
-    myChart.setOption({
-        graphic: {
-            id: 'logo',
-            rotation: (rotation += Math.PI / 360) % (Math.PI * 2)
-        }
-    });
-}, 30);
