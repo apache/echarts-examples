@@ -2,6 +2,7 @@
 title: Gauge Clock chart
 titleCN: 时钟仪表盘
 category: gauge
+shotWidth: 1000
 difficulty: 7
 */
 
@@ -179,7 +180,7 @@ option = {
                 }
             },
             detail: {
-                
+
                 show: false
             },
             title: {

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
-// const marked = require('marked');
 const puppeteer = require('puppeteer');
 const matter = require('gray-matter');
 const argparse = require('argparse');
@@ -10,6 +9,7 @@ const {execFile} = require('child_process');
 const cwebpBin = require('cwebp-bin');
 const util = require('util');
 const chalk = require('chalk');
+const sharp = require('sharp');
 
 const parser = new argparse.ArgumentParser({
     addHelp: true
@@ -42,11 +42,11 @@ function waitTime(time) {
 }
 
 const BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
-// const BASE_PATH = 'http://localhost:8000/echarts/echarts-examples';
-// const BASE_PATH = 'http://localhost/echarts-examples-next/';
-// const SCREENSHOT_PAGE_URL = `${BASE_PATH}/public/screenshot.html`;
 const BASE_PATH = 'file://' + __dirname;
 const SCREENSHOT_PAGE_URL = path.join(BASE_PATH, `../public/screenshot.html`);
+const DEFAULT_PAGE_WIDTH = 700;
+const DEFAULT_PAGE_RATIO = 0.75;
+const OUTPUT_IMAGE_WIDTH = 600;
 
 const IGNORE_LOG = [
     'A cookie associated with a cross-site resource at',
@@ -57,7 +57,7 @@ async function convertToWebP(filePath) {
     return util.promisify(execFile)(cwebpBin, [filePath, '-o', filePath.replace(/\.png$/, '.webp')]);
 }
 
-async function takeScreenshot(browser, theme, rootDir, basename) {
+async function takeScreenshot(browser, theme, rootDir, basename, pageWidth) {
     const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
     const page = await browser.newPage();
     await page.exposeFunction('readLocalFile', async (filePath) => {
@@ -74,10 +74,8 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
         });
     });
     await page.setViewport({
-        width: 600,
-        height: 450
-        // width: 700,
-        // height: 525
+        width: (pageWidth || DEFAULT_PAGE_WIDTH),
+        height: (pageWidth || DEFAULT_PAGE_WIDTH) * DEFAULT_PAGE_RATIO
     });
     const url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
     const resourceRootPath = path.join(BASE_PATH, '../public/');
@@ -85,11 +83,7 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
     await page.evaluateOnNewDocument(function (resourceRootPath) {
         window.ROOT_PATH = resourceRootPath;
     }, resourceRootPath);
-    // page.on('console', msg => {
-    //     const args = msg.args();
-    //     const msg = ['[pageconsole]'].concat(args.map(v => v + ''));
-    //     console.log.apply(console, msg);
-    // });
+
     page.on('pageerror', function (err) {
         console.error(chalk.red('[pageerror in]', url));
         console.error(chalk.red(err.toString()));
@@ -105,13 +99,18 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
     try {
         await page.goto(url, {waitUntil: 'networkidle0'});
         await waitTime(200);
-        const filePath = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}.png`;
+        const fileBase = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}`;
+        const filePathTmp = `${fileBase}-tmp.png`;
+        const filePath = `${fileBase}.png`;
         console.log(filePath);
         await page.screenshot({
-            path: filePath,
+            path: filePathTmp,
             type: 'png',
             // quality: 80
         });
+        await sharp(filePathTmp).resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
+            .toFile(filePath);
+        fs.unlinkSync(filePathTmp);
         await convertToWebP(filePath);
     }
     catch (e) {
@@ -205,11 +204,6 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
 
                     // const descHTML = marked(fmResult.body);
 
-                    // Do screenshot
-                    if (buildThumb) {
-                        promises.push(takeScreenshot(browser, theme, rootDir, basename));
-                    }
-
                     try {
                         const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
                         const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
@@ -222,6 +216,16 @@ async function takeScreenshot(browser, theme, rootDir, basename) {
                                 title: fmResult.data.title,
                                 difficulty: +difficulty
                             });
+                        }
+                        // Do screenshot
+                        if (buildThumb) {
+                            promises.push(takeScreenshot(
+                                browser,
+                                theme,
+                                rootDir,
+                                basename,
+                                fmResult.data.shotWidth
+                            ));
                         }
                     }
                     catch (e) {

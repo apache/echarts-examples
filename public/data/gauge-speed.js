@@ -2,6 +2,7 @@
 title: Gauge Speed chart
 titleCN: 速度仪表盘
 category: gauge
+shotWidth: 800
 difficulty: 3
 */
 

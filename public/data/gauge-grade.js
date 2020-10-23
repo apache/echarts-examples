@@ -2,6 +2,7 @@
 title: Gauge Grade chart
 titleCN: 等级划分仪表盘
 category: gauge
+shotWidth: 800
 difficulty: 4
 */
 

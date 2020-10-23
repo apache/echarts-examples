@@ -29,6 +29,7 @@
     "open": "^7.1.0",
     "sass.js": "^0.11.1",
     "sassjs-loader": "^2.0.0",
+    "sharp": "^0.26.2",
     "style-loader": "^1.2.1",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
