@@ -1,5 +1,5 @@
 /*
-title: Gauge Clock chart
+title: Clock Gauge
 titleCN: 时钟仪表盘
 category: gauge
 shotWidth: 1000
@@ -36,7 +36,7 @@ option = {
         axisLabel: {
             fontSize: 50,
             distance: 25,
-            formatter: function(value) {
+            formatter: function (value) {
                 if (value === 0) {
                     return '';
                 }
@@ -193,13 +193,13 @@ var timeUpdatedStatus = {
     second: false,
     minute: false,
     hour: false
-}
+};
 
 function updateSeries(time, series, type) {
     var isCritical = (Math.floor(time) === 0) || (type === 'second' && time === 1);
     if (isCritical && timeUpdatedStatus[type] === true) {
         timeUpdatedStatus[type] = false;
-        series.data[0].value = 0
+        series.data[0].value = 0;
         series.clockwise = true;
         option.animationDurationUpdate = 0;
         myChart.setOption(option, true);
@@ -212,7 +212,7 @@ function updateSeries(time, series, type) {
     }
 }
 
-setInterval(function() {
+setInterval(function () {
     var date = new Date();
     var second = date.getSeconds();
     var minute = date.getMinutes() + second / 60;

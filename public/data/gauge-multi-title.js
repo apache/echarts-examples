@@ -1,5 +1,5 @@
 /*
-title: Gauge Multi Title chart
+title: Multi Title Gauge
 titleCN: 多标题仪表盘
 category: gauge
 difficulty: 4

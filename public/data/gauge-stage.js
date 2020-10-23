@@ -1,6 +1,6 @@
 /*
-title: Gauge Stage chart
-titleCN: 阶段仪表盘
+title: Stage Speed Gauge
+titleCN: 阶段速度仪表盘
 category: gauge
 difficulty: 3
 */

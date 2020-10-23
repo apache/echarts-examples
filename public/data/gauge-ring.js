@@ -1,5 +1,5 @@
 /*
-title: Gauge Ring chart
+title: Ring Gauge
 titleCN: 得分环
 category: gauge
 difficulty: 5
