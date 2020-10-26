@@ -1,4 +1,4 @@
-# Examples of ECharts
+# Examples of Apache ECharts(incubating)
 
 ## Install
 
@@ -8,7 +8,7 @@ npm install
 
 ## Build
 
-Git clone [incubator-echarts-www](https://github.com/apache/incubator-echarts-www) and put it on the same level as `echarts-examples`.
+Git clone [incubator-echarts-www](https://github.com/apache/incubator-echarts-www) and put it on the same level as `incubator-echarts-examples`.
 
 ```shell
 npm run dev
