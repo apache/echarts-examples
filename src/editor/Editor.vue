@@ -1,6 +1,6 @@
 <template>
 <div id="main-container">
-    <div id="code-container" :style="{width: leftContainerSize + '%'}">
+    <div id="code-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
         <div id="control-panel">
             <div id="code-info">
                 <template v-if="shared.editorStatus.message">
@@ -19,8 +19,8 @@
         <CodeMonaco v-if="shared.typeCheck" id="code-panel" :initialCode="initialCode"></CodeMonaco>
         <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
     </div>
-    <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}"></div>
-    <Preview inEditor="true" class="right-container" ref="preview" :style="{
+    <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}" v-if="!shared.isMobile"></div>
+    <Preview :inEditor="true" class="right-container" ref="preview" :style="{
         width: (100 - leftContainerSize) + '%',
         left: leftContainerSize + '%'
     }"></Preview>
@@ -46,6 +46,7 @@ export default {
         return {
             mousedown: false,
             leftContainerSize: 40,
+            mobileMode: false,
             shared: store,
             initialCode: ''
         };
@@ -71,22 +72,31 @@ export default {
 
     mounted() {
 
-        loadExampleCode().then(code => {
-            // Only set the code in editor. editor will sync to the store.
-            this.initialCode = parseSourceCode(code);
-        });
+        if (store.isMobile) {
+            this.leftContainerSize = 0;
+            loadExampleCode().then(code => {
+                // No editor available. Set to runCode directly.
+                store.runCode = parseSourceCode(code);
+            });
+        }
+        else {
+            loadExampleCode().then(code => {
+                // Only set the code in editor. editor will sync to the store.
+                this.initialCode = parseSourceCode(code);
+            });
 
-        window.addEventListener('mousemove', (e) => {
-            if (this.mousedown) {
-                let percentage = e.clientX / window.innerWidth;
-                percentage = Math.min(0.9, Math.max(0.1, percentage));
-                this.leftContainerSize = percentage * 100;
-            }
-        });
+            window.addEventListener('mousemove', (e) => {
+                if (this.mousedown) {
+                    let percentage = e.clientX / window.innerWidth;
+                    percentage = Math.min(0.9, Math.max(0.1, percentage));
+                    this.leftContainerSize = percentage * 100;
+                }
+            });
 
-        window.addEventListener('mouseup', (e) => {
-            this.mousedown = false;
-        });
+            window.addEventListener('mouseup', (e) => {
+                this.mousedown = false;
+            });
+        }
     },
 
     methods: {

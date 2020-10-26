@@ -19,6 +19,8 @@ export const store = {
     runCode: '',
     sourceCode: '',
 
+    isMobile: window.innerWidth < 600,
+
     editorStatus: {
         type: '',
         message: ''

@@ -1,5 +1,5 @@
 <template>
-<div :class="[inEditor ? '' : 'full']">
+<div :class="[(inEditor && !shared.isMobile) ? '' : 'full']">
     <div v-loading="loading"
         class="right-panel"
         id="chart-panel"
@@ -49,8 +49,8 @@
                 <span class="render-config-trigger" slot="reference"><i class="el-icon-setting el-icon--left"></i>{{$t('editor.renderCfgTitle')}}</span>
             </el-popover>
         </div>
-        <button v-if="inEditor" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
-        <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
+        <button v-if="inEditor && !shared.isMobile" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
+        <a :href="editLink" target="_blank" v-else-if="!shared.isMobile" class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
     </div>
 </div>
 </template>
