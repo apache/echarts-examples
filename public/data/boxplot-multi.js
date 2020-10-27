@@ -1,7 +1,7 @@
 /*
 title: Multiple Categories
 category: boxplot
-titleCN: Multiple Categories
+titleCN: 多系列盒须图
 */
 
 
@@ -25,7 +25,7 @@ var data2 = makeData();
 option = {
     title: {
         text: 'Multiple Categories',
-        left: 'center',
+        left: 'center'
     },
     dataset: [{
         source: data0

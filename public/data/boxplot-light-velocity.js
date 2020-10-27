@@ -1,7 +1,7 @@
 /*
 title: Boxplot Light Velocity
 category: boxplot
-titleCN: Boxplot Light Velocity
+titleCN: 基础盒须图
 */
 
 option = {

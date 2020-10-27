@@ -1,7 +1,7 @@
 /*
 title: Scatter Aqi Color
 category: scatter
-titleCN: Scatter Aqi Color
+titleCN: AQI 气泡图
 difficulty: 7
 */
 

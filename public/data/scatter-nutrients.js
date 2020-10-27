@@ -1,7 +1,7 @@
 /*
 title: Scatter Nutrients
 category: scatter
-titleCN: Scatter Nutrients
+titleCN: 营养分布散点图
 difficulty: 7
 */
 
@@ -101,10 +101,10 @@ function getOption(data) {
             categories: groupCategories,
             dimension: 2,
             inRange: {
-                color: groupColors 
+                color: groupColors
             },
             outOfRange: {
-                color: ['#ccc'] 
+                color: ['#ccc']
             },
             top: 20,
             textStyle: {

@@ -1,7 +1,7 @@
 /*
 title: Gradient Mapping
 category: treemap
-titleCN: Gradient Mapping
+titleCN: 映射为渐变色
 */
 
 myChart.showLoading();

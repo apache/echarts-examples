@@ -1,7 +1,7 @@
 /*
 title: Disk Usage
 category: treemap
-titleCN: Disk Usage
+titleCN: 磁盘占用
 */
 
 myChart.showLoading();

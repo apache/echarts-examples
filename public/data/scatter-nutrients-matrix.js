@@ -1,7 +1,7 @@
 /*
 title: Scatter Nutrients Matrix
 category: scatter
-titleCN: Scatter Nutrients Matrix
+titleCN: 营养分布散点矩阵
 difficulty: 7
 */
 
