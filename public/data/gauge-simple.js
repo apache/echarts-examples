@@ -1,6 +1,6 @@
 /*
 title: Simple Gauge
-titleCN: 基础仪表盘
+titleCN: 带标签数字动画的基础仪表盘
 category: gauge
 difficulty: 1
 */
@@ -13,6 +13,7 @@ option = {
         name: 'Pressure',
         type: 'gauge',
         detail: {
+            valueAnimation: true,
             formatter: '{value}'
         },
         data: [{

@@ -55,6 +55,10 @@ option = {
                 color: '#000'
             }
         },
+        detail: {
+            valueAnimation: true,
+            precision: 1
+        },
         title: {
             offsetCenter: [0, '-50%']
         },

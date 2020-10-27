@@ -45,6 +45,7 @@ option = {
             fontSize: 20
         },
         detail: {
+            valueAnimation: true,
             formatter: '{value} km/h',
             color: 'auto'
         },

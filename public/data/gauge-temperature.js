@@ -58,6 +58,7 @@ option = {
                 show: false
             },
             detail: {
+                valueAnimation: true,
                 width: '60%',
                 lineHeight: 40,
                 height: '15%',
