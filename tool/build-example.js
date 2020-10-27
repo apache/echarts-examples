@@ -122,8 +122,7 @@ async function takeScreenshot(
         console.log(filePath);
         await page.screenshot({
             path: filePathTmp,
-            type: 'png',
-            // quality: 80
+            type: 'png'
         });
         await sharp(filePathTmp).resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
             .toFile(filePath);

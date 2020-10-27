@@ -72,6 +72,20 @@
         return deferred;
     }
 
+    function addComponentPadding(componentOpt) {
+        if (!componentOpt) {
+            return;
+        }
+        if (!(componentOpt instanceof Array)) {
+            componentOpt = [componentOpt];
+        }
+        componentOpt.forEach(function (opt) {
+            if (!opt.padding) {
+                opt.padding = 15;
+            }
+        });
+    }
+
     echarts.registerPreprocessor(function (option) {
         option.animation = false;
         // option.textStyle = {
@@ -90,6 +104,9 @@
                 seriesOpt.animation = false;
             });
         }
+        addComponentPadding(option.title);
+        addComponentPadding(option.legend);
+        addComponentPadding(option.toolbox);
     });
 
     if (params.c) {
