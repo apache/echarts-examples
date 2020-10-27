@@ -49,8 +49,11 @@
                 <span class="render-config-trigger" slot="reference"><i class="el-icon-setting el-icon--left"></i>{{$t('editor.renderCfgTitle')}}</span>
             </el-popover>
         </div>
-        <button v-if="inEditor && !shared.isMobile" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
-        <a :href="editLink" target="_blank" v-else-if="!shared.isMobile" class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
+        <template v-if="inEditor">
+            <button v-if="!shared.isMobile" class="download btn btn-sm" @click="downloadExample">{{ $t('editor.download') }}</button>
+            <a class="screenshot" @click="screenshot" target="_blank"><i class="el-icon-camera-solid"></i></a>
+        </template>
+        <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{ $t('editor.edit') }}</a>
     </div>
 </div>
 </template>
@@ -245,6 +248,20 @@ export default {
         },
         downloadExample() {
             download();
+        },
+        screenshot() {
+            if (this.sandbox) {
+                const url = this.sandbox.getDataURL();
+                const $a = document.createElement('a');
+                $a.download = URL_PARAMS.c + '.' + store.renderer === 'svg' ? 'svg' : 'png';
+                $a.target = '_blank';
+                $a.href = url;
+                const evt = new MouseEvent('click', {
+                    bubbles: true,
+                    cancelable: false
+                });
+                $a.dispatchEvent(evt);
+            }
         }
         // hasEditorError() {
         //     const annotations = this.editor.getSession().getAnnotations();
@@ -330,9 +347,14 @@ export default {
         margin-left: 20px;
     }
 
-    .download, .edit {
+    .screenshot, .download, .edit {
         float: right;
         margin-right: 15px;
+        cursor: pointer;
+    }
+    .screenshot {
+        font-size: 22px;
+        margin-right: 10px;
     }
 }
 
@@ -342,7 +364,7 @@ export default {
         right: 5px;
         bottom: 5px;
         left: 5px;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
+        box-shadow: rgba(10, 9, 9, 0.1) 0px 0px 5px;
     }
     #tool-panel {
         padding-left: 5px;

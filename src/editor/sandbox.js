@@ -72,6 +72,13 @@ export function createSandbox(optionUpdated) {
             }
         },
 
+        getDataURL() {
+            return chartInstance.getDataURL({
+                pixelRatio: 2,
+                excludeComponents: ['toolbox']
+            });
+        },
+
         run(el, store) {
 
             if (!chartInstance) {
