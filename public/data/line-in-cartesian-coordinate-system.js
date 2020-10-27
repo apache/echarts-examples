@@ -1,7 +1,7 @@
 /*
 title: Line Chart in Cartesian Coordinate System
 category: line
-titleCN: Line Chart in Cartesian Coordinate System
+titleCN: 双数值轴折线图
 difficulty: 7
 */
 

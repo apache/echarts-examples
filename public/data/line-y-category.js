@@ -1,7 +1,7 @@
 /*
 title: Line Y Category
 category: line
-titleCN: Line Y Category
+titleCN: 垂直折线图（Y轴为类目轴）
 difficulty: 8
 */
 

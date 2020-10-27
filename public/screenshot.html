@@ -74,9 +74,9 @@
 
     echarts.registerPreprocessor(function (option) {
         option.animation = false;
-        option.textStyle = {
-            fontSize: 14
-        };
+        // option.textStyle = {
+        //     fontSize: 14
+        // };
         if (option.series) {
             if (!(option.series instanceof Array)) {
                 option.series = [option.series];
@@ -86,7 +86,7 @@
                     seriesOpt.force = seriesOpt.force || {};
                     seriesOpt.force.layoutAnimation = false;
                 }
-                seriesOpt.progressive = 0;
+                seriesOpt.progressive = 1e5;
                 seriesOpt.animation = false;
             });
         }

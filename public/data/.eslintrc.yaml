@@ -4,5 +4,6 @@ globals:
     myChart: true
     option: true
     echarts: true
+    app: true
 
 extends: '../../.eslintrc.yaml'

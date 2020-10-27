@@ -1,7 +1,7 @@
 /*
 title: Les Miserables
 category: graph
-titleCN: Les Miserables
+titleCN: 悲惨世界人物关系图(环形布局)
 */
 
 myChart.showLoading();

@@ -57,13 +57,20 @@ async function convertToWebP(filePath) {
     return util.promisify(execFile)(cwebpBin, [filePath, '-o', filePath.replace(/\.png$/, '.webp')]);
 }
 
-async function takeScreenshot(browser, theme, rootDir, basename, pageWidth) {
+async function takeScreenshot(
+    browser,
+    theme,
+    rootDir,
+    basename,
+    pageWidth,
+    screenshotDelay
+) {
     const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
     const page = await browser.newPage();
-    await page.exposeFunction('readLocalFile', async (filePath) => {
+    await page.exposeFunction('readLocalFile', async (filePath, type) => {
         filePath = filePath.replace(/^file:\/*?/, '');
         return new Promise((resolve, reject) => {
-            fs.readFile(filePath, 'utf8', (err, text) => {
+            fs.readFile(filePath, type || 'utf8', (err, text) => {
                 if (err) {
                     reject(err);
                 }
@@ -97,8 +104,18 @@ async function takeScreenshot(browser, theme, rootDir, basename, pageWidth) {
     console.log(`Generating ${theme} thumbs.....${basename}`);
     // https://stackoverflow.com/questions/46160929/puppeteer-wait-for-all-images-to-load-then-take-screenshot
     try {
-        await page.goto(url, {waitUntil: 'networkidle0'});
+        try {
+            await page.goto(url, {
+                waitUntil: 'networkidle0',
+                timeout: 10000
+            });
+        }
+        catch (e) {
+            console.error(chalk.red(e));
+            // Timeout
+        }
         await waitTime(200);
+        await waitTime(screenshotDelay || 0);
         const fileBase = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}`;
         const filePathTmp = `${fileBase}-tmp.png`;
         const filePath = `${fileBase}.png`;
@@ -214,6 +231,7 @@ async function takeScreenshot(browser, theme, rootDir, basename, pageWidth) {
                                 tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
                                 theme: fmResult.data.theme,
                                 title: fmResult.data.title,
+                                titleCN: fmResult.data.titleCN,
                                 difficulty: +difficulty
                             });
                         }
@@ -224,7 +242,8 @@ async function takeScreenshot(browser, theme, rootDir, basename, pageWidth) {
                                 theme,
                                 rootDir,
                                 basename,
-                                fmResult.data.shotWidth
+                                fmResult.data.shotWidth,
+                                fmResult.data.shotDelay
                             ));
                         }
                     }

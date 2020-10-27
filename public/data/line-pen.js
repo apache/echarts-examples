@@ -1,7 +1,7 @@
 /*
 title: Click to Add Points
 category: line
-titleCN: Click to Add Points
+titleCN: 点击添加折线图拐点
 difficulty: 9
 */
 

@@ -1,7 +1,7 @@
 /*
 title: Step Line
 category: line
-titleCN: Step Line
+titleCN: 阶梯折线图
 difficulty: 7
 */
 
