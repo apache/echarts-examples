@@ -1,7 +1,7 @@
 /*
 title: Default arrangement
 category: 'dataset, pie'
-titleCN: 默认 encode 安排
+titleCN: 默认 encode 设置
 difficulty: 3
 */
 

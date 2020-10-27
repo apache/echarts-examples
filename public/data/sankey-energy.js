@@ -1,7 +1,7 @@
 /*
-title: Sankey Diagram
+title: Gradient Edge
 category: sankey
-titleCN: Sankey Diagram
+titleCN: 桑基图渐变色边
 difficulty: 3
 */
 

@@ -1,7 +1,7 @@
 /*
 title: Multiple X Axes
 category: line
-titleCN: Multiple X Axes
+titleCN: 多 X 轴
 difficulty: 4
 */
 

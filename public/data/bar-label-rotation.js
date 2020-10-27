@@ -1,5 +1,6 @@
 /*
 title: Bar Label Rotation
+titleCN: 柱状图标签旋转
 category: bar
 difficulty: 3
 */

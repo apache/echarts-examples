@@ -1,7 +1,7 @@
 /*
 title: Node Align Left in Sankey
 category: sankey
-titleCN: Node Align Left in Sankey
+titleCN: 桑基图左对齐布局
 difficulty: 3
 */
 

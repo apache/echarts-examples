@@ -1,7 +1,7 @@
 /*
 title: Sankey with Levels Setting
 category: sankey
-titleCN: Sankey with Levels Setting
+titleCN: 桑基图层级自定义样式
 difficulty: 2
 */
 

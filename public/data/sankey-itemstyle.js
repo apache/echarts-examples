@@ -1,7 +1,7 @@
 /*
 title: Specify ItemStyle for Each Node in Sankey
 category: sankey
-titleCN: Specify ItemStyle for Each Node in Sankey
+titleCN: 桑基图节点自定义样式
 difficulty: 2
 */
 
