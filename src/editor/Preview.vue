@@ -253,7 +253,7 @@ export default {
             if (this.sandbox) {
                 const url = this.sandbox.getDataURL();
                 const $a = document.createElement('a');
-                $a.download = URL_PARAMS.c + '.' + store.renderer === 'svg' ? 'svg' : 'png';
+                $a.download = URL_PARAMS.c + '.' + (store.renderer === 'svg' ? 'svg' : 'png');
                 $a.target = '_blank';
                 $a.href = url;
                 const evt = new MouseEvent('click', {
