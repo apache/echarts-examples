@@ -1,7 +1,7 @@
 /*
-title: 'Anscombe&#39;s quartet'
+title: Anscomb's quartet
 category: scatter
-titleCN: 'Anscombe&#39;s quartet'
+titleCN: Anscomb's quartet
 difficulty: 1
 */
 

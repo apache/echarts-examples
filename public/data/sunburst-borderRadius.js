@@ -1,8 +1,8 @@
 /*
-title: Basic Sunburst
+title: Sunburst with Rounded Corner
 category: sunburst
-titleCN: 基础旭日图
-difficulty: 1
+titleCN: 圆角旭日图
+difficulty: 2
 */
 
 var data = [{
@@ -52,13 +52,14 @@ var data = [{
 option = {
     series: {
         type: 'sunburst',
-        // emphasis: {
-        //     focus: 'ancestor'
-        // },
         data: data,
-        radius: [0, '90%'],
+        radius: [60, '90%'],
+        itemStyle: {
+            borderRadius: 7,
+            borderWidth: 2
+        },
         label: {
-            rotate: 'radial'
+            show: false
         }
     }
 };

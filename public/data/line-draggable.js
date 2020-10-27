@@ -19,7 +19,7 @@ option = {
             return 'X: ' + params.data[0].toFixed(2) + '<br>Y: ' + params.data[1].toFixed(2);
         }
     },
-    grid: {  
+    grid: {
         top: '8%',
         bottom: '12%',
     },
@@ -39,22 +39,22 @@ option = {
         {
             type: 'slider',
             xAxisIndex: 0,
-            filterMode: 'empty'
+            filterMode: 'none'
         },
         {
             type: 'slider',
             yAxisIndex: 0,
-            filterMode: 'empty'
+            filterMode: 'none'
         },
         {
             type: 'inside',
             xAxisIndex: 0,
-            filterMode: 'empty'
+            filterMode: 'none'
         },
         {
             type: 'inside',
             yAxisIndex: 0,
-            filterMode: 'empty'
+            filterMode: 'none'
         }
     ],
     series: [

@@ -7,7 +7,7 @@ difficulty: 2
 
 option = {
     legend: {
-        top: 'bottom',
+        top: 'bottom'
     },
     toolbox: {
         show: true,
@@ -25,6 +25,9 @@ option = {
             radius: [50, 250],
             center: ['50%', '50%'],
             roseType: 'area',
+            itemStyle: {
+                borderRadius: 8
+            },
             data: [
                 {value: 40, name: 'rose 1'},
                 {value: 38, name: 'rose 2'},

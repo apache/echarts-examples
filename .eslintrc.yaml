@@ -177,7 +177,6 @@ rules:
     no-const-assign: 2
     # no-dupe-class-members: 2
     no-this-before-super: 0
-    no-var: 2
     no-duplicate-imports: 2
     prefer-rest-params: 0
     unicode-bom: 2

@@ -6,12 +6,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@3.10.1/index.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/dist/echarts.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/china.js?_v_=1510583857922"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/world.js?_v_=1510583857922"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/dist/extension/dataTool.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-beta.2/dist/echarts.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-beta.2/map/js/china.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-beta.2/map/js/world.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-beta.2/dist/extension/dataTool.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/dist/extension/bmap.js?_v_=1510583857922"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-beta.2/dist/extension/bmap.js?_v_=1510583857922"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
     <script type="text/javascript" src="../tool/seedrandom.js"></script>
     <style>
@@ -72,6 +72,26 @@
         return deferred;
     }
 
+    echarts.registerPreprocessor(function (option) {
+        option.animation = false;
+        option.textStyle = {
+            fontSize: 14
+        };
+        if (option.series) {
+            if (!(option.series instanceof Array)) {
+                option.series = [option.series];
+            }
+            option.series.forEach(function (seriesOpt) {
+                if (seriesOpt.type === 'graph') {
+                    seriesOpt.force = seriesOpt.force || {};
+                    seriesOpt.force.layoutAnimation = false;
+                }
+                seriesOpt.progressive = 0;
+                seriesOpt.animation = false;
+            });
+        }
+    });
+
     if (params.c) {
         if (!window.ROOT_PATH) {
             // When visiting `screenshot.html` In browser.
@@ -83,25 +103,9 @@
         scriptTag.async = false;
         scriptTag.src = `./${sourceFolder}/${params.c}.js`
         document.body.appendChild(scriptTag);
+
         scriptTag.onload = function () {
             if (typeof option !== 'undefined' && option) {
-                if (option.series) {
-                    if (!(option.series instanceof Array)) {
-                        option.series = [option.series];
-                    }
-                    option.series.forEach(function (seriesOpt) {
-                        if (seriesOpt.type === 'graph') {
-                            seriesOpt.force = seriesOpt.force || {};
-                            seriesOpt.force.layoutAnimation = false;
-                        }
-                        seriesOpt.progressive = 0;
-                        seriesOpt.animation = false;
-                    });
-                }
-                option.animation = false;
-                option.textStyle = {
-                    fontSize: 14
-                };
                 myChart.setOption(option);
             }
         }

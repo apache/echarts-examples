@@ -36,6 +36,9 @@ option = {
             radius: [20, 140],
             center: ['25%', '50%'],
             roseType: 'radius',
+            itemStyle: {
+                borderRadius: 5
+            },
             label: {
                 show: false
             },
@@ -61,6 +64,9 @@ option = {
             radius: [20, 140],
             center: ['75%', '50%'],
             roseType: 'area',
+            itemStyle: {
+                borderRadius: 5
+            },
             data: [
                 {value: 30, name: 'rose 1'},
                 {value: 28, name: 'rose 2'},
