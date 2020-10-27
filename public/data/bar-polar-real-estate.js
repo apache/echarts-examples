@@ -1,5 +1,5 @@
 /*
-title: 极坐标系下的堆叠柱状图
+title: Bar Chart on Polar
 category: bar
 difficulty: 7
 */

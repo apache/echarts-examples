@@ -1,5 +1,6 @@
 /*
-title: 柱状图框选
+title: Brush Select on Column Chart
+titleCN: 柱状图框选
 category: bar
 difficulty: 4
 */

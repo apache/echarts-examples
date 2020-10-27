@@ -1,5 +1,6 @@
 /*
-title: 坐标轴刻度与标签对齐
+title: Axis Align with Tick
+titleCN: 坐标轴刻度与标签对齐
 category: bar
 difficulty: 0
 */

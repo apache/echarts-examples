@@ -1,5 +1,6 @@
 /*
-title: 柱状图动画延迟
+title: Animation Delay
+titleCN: 柱状图动画延迟
 category: bar
 difficulty: 5
 */

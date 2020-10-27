@@ -1,5 +1,6 @@
 /*
-title: 交错正负轴标签
+title: Bar Chart with Negative Value
+titleCN: 交错正负轴标签
 category: bar
 difficulty: 2
 */

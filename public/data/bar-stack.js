@@ -1,5 +1,6 @@
 /*
-title: 堆叠柱状图
+title: Stacked Column Chart
+titleCN: 堆叠柱状图
 category: bar
 difficulty: 3
 */

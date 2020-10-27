@@ -1,5 +1,6 @@
 /*
-title: 正负条形图
+title: Bar Chart with Negative Value
+titleCN: 正负条形图
 category: bar
 difficulty: 4
 */

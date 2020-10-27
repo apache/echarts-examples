@@ -1,5 +1,6 @@
 /*
-title: '深圳月最低生活费组成（单位:元）'
+title: Waterfall Chart
+titleCN: 瀑布图（柱状图模拟）
 category: bar
 difficulty: 1
 */
