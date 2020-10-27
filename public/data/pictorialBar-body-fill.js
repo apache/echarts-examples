@@ -15,17 +15,15 @@ var symbols = [
 var bodyMax = 150;
 
 var labelSetting = {
-    normal: {
-        show: true,
-        position: 'outside',
-        offset: [0, -20],
-        formatter: function (param) {
-            return (param.value / bodyMax * 100).toFixed(0) + '%';
-        },
-        textStyle: {
-            fontSize: 18,
-            fontFamily: 'Arial'
-        }
+    show: true,
+    position: 'outside',
+    offset: [0, -20],
+    formatter: function (param) {
+        return (param.value / bodyMax * 100).toFixed(0) + '%';
+    },
+    textStyle: {
+        fontSize: 18,
+        fontFamily: 'Arial'
     }
 };
 

@@ -9,10 +9,10 @@
                 </template>
             </div>
             <div class="control-btn-panel">
-                <el-switch v-model="shared.typeCheck"
+                <!-- <el-switch v-model="shared.typeCheck"
                     :active-text="$t('editor.monacoMode')"
                     :inactive-text="''"
-                ></el-switch>
+                ></el-switch> -->
                 <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
             </div>
         </div>
