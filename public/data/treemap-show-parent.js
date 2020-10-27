@@ -1,7 +1,7 @@
 /*
 title: Show Parent Labels
 category: treemap
-titleCN: Show Parent Labels
+titleCN: 显示父层级标签
 */
 
 myChart.showLoading();

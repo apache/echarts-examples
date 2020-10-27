@@ -1,7 +1,7 @@
 /*
 title: Scatter Matrix
 category: 'parallel, scatter'
-titleCN: Scatter Matrix
+titleCN: 散点矩阵和平行坐标
 difficulty: 10
 */
 

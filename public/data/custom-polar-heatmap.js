@@ -1,7 +1,7 @@
 /*
 title: Polar Heatmap
 category: custom
-titleCN: Polar Heatmap
+titleCN: 极坐标热力图（自定义系列）
 difficulty: 4
 */
 

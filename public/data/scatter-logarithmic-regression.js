@@ -1,7 +1,7 @@
 /*
 title: Logarithmic Regression
 category: scatter
-titleCN: Logarithmic Regression
+titleCN: 对数回归（使用统计插件）
 difficulty: 16
 */
 

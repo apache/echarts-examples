@@ -1,7 +1,7 @@
 /*
 title: Punch Card of Github
 category: scatter
-titleCN: Punch Card of Github
+titleCN: GitHub 打卡气泡图（极坐标）
 difficulty: 8
 */
 

@@ -1,5 +1,5 @@
 /*
-title: 1w 节点 2w7 边的NPM 依赖图
+title: NPM Dependencies with graphGL
 category: graphGL
 theme: dark
 titleCN: 1w 节点 2w7 边的NPM 依赖图

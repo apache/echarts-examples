@@ -1,7 +1,7 @@
 /*
 title: Parallel Aqi
 category: parallel
-titleCN: Parallel Aqi
+titleCN: AQI 分布（平行坐标）
 difficulty: 2
 */
 

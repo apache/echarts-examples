@@ -1,7 +1,7 @@
 /*
 title: Basic Treemap
 category: treemap
-titleCN: Basic Treemap
+titleCN: 基础矩形树图
 */
 
 option = {

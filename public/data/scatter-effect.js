@@ -1,7 +1,7 @@
 /*
 title: Effect Scatter Chart
 category: scatter
-titleCN: Effect Scatter Chart
+titleCN: 涟漪特效散点图
 difficulty: 2
 */
 

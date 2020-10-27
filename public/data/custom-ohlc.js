@@ -1,7 +1,7 @@
 /*
 title: OHLC Chart
 category: candlestick
-titleCN: OHLC Chart
+titleCN: OHLC 图（使用自定义系列）
 difficulty: 1
 */
 

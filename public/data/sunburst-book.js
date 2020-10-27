@@ -1,7 +1,7 @@
 /*
 title: Book Records
 category: sunburst
-titleCN: Book Records
+titleCN: 书籍分布
 difficulty: 6
 */
 

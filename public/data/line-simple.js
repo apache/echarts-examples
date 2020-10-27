@@ -1,7 +1,7 @@
 /*
 title: Basic Line Chart
 category: line
-titleCN: Basic Line Chart
+titleCN: 基础折线图
 difficulty: 0
 */
 

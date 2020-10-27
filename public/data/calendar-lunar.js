@@ -1,7 +1,7 @@
 /*
 title: Calendar Lunar
 category: calendar
-titleCN: Calendar Lunar
+titleCN: 农历日历图
 difficulty: 4
 */
 

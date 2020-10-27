@@ -1,7 +1,7 @@
 /*
 title: Clustering Process
 category: scatter
-titleCN: Clustering Process
+titleCN: 聚合过程可视化
 difficulty: 1
 */
 

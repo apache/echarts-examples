@@ -2,7 +2,8 @@
 <div class="example-list-item">
     <a target="_blank" class="example-link" :href="exampleLink">
         <img class="chart-area" src="../asset/placeholder.jpg" :data-src="screenshotURL" />
-        <h4 class="example-title">{{example.title || ''}}</h4>
+        <h4 class="example-title">{{title}}</h4>
+        <h5 class="example-subtitle" v-if="title !== subtitle">{{subtitle}}</h5>
     </a>
 </div>
 </template>
@@ -16,6 +17,15 @@ export default {
     props: ['example'],
 
     computed: {
+
+        title() {
+            return (store.locale === 'zh' ? this.example.titleCN : this.example.title)
+                || this.example.title || '';
+        },
+
+        subtitle() {
+            return this.example.title || '';
+        },
 
         exampleTheme() {
             const example = this.example;
@@ -86,6 +96,15 @@ export default {
             font-weight: normal;
             font-size: 14px;
             text-align: center;
+        }
+
+        .example-subtitle {
+            font-size: 12px;
+            text-align: center;
+            color: #aaa;
+            font-weight: normal;
+            // font-weight: 200;
+            margin: 3px 0 0 0;
         }
     }
 

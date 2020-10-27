@@ -1,7 +1,7 @@
 /*
 title: NPM Dependencies
 category: graph
-titleCN: NPM Dependencies
+titleCN: NPM 依赖关系图
 */
 
 myChart.showLoading();

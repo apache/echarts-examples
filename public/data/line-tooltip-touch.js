@@ -1,7 +1,7 @@
 /*
 title: Tooltip and DataZoom on Mobile
 category: 'line, dataZoom'
-titleCN: Tooltip and DataZoom on Mobile
+titleCN: 移动端上的 dataZoom 和 tooltip
 difficulty: 10
 */
 

@@ -1,7 +1,7 @@
 /*
 title: Basic Candlestick
 category: candlestick
-titleCN: Basic Candlestick
+titleCN: 基础 K 线图
 difficulty: 0
 */
 

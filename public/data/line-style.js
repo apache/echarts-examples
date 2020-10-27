@@ -1,7 +1,7 @@
 /*
 title: Line Style and Item Style
 category: line
-titleCN: Line Style and Item Style
+titleCN: 自定义折线图样式
 difficulty: 6
 */
 

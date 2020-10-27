@@ -1,7 +1,7 @@
 /*
 title: Graph Webkit Dep
 category: graph
-titleCN: Graph Webkit Dep
+titleCN: WebKit 模块关系依赖图
 */
 
 myChart.showLoading();

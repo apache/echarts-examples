@@ -1,7 +1,7 @@
 /*
 title: Polynomial Regression
 category: scatter
-titleCN: Polynomial Regression
+titleCN: 多项式回归（使用统计插件）
 difficulty: 2
 */
 

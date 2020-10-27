@@ -1,6 +1,7 @@
 /*
-title: Girths of Black Cherry Trees
+title: Histogram with Custom Series
 category: custom
+titleCN: 直方图（自定义系列）
 difficulty: 0
 */
 

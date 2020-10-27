@@ -1,7 +1,7 @@
 /*
 title: Parallel Nutrients
 category: parallel
-titleCN: Parallel Nutrients
+titleCN: 营养结构（平行坐标）
 difficulty: 4
 */
 

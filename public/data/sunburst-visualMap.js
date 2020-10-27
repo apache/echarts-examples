@@ -1,7 +1,7 @@
 /*
 title: Sunburst VisualMap
 category: sunburst
-titleCN: Sunburst VisualMap
+titleCN: 旭日图使用视觉编码
 difficulty: 4
 */
 

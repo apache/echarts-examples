@@ -1,7 +1,7 @@
 /*
 title: Sankey Orient Vertical
 category: sankey
-titleCN: Sankey Orient Vertical
+titleCN: 垂直方向的桑基图
 difficulty: 1
 */
 

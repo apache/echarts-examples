@@ -3,5 +3,6 @@ env:
 globals:
     myChart: true
     option: true
+    echarts: true
 
 extends: '../../.eslintrc.yaml'

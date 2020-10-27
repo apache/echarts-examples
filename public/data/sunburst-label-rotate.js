@@ -1,7 +1,7 @@
 /*
 title: Sunburst Label Rotate
 category: sunburst
-titleCN: Sunburst Label Rotate
+titleCN: 旭日图标签旋转
 difficulty: 3
 */
 

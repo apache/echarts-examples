@@ -1,7 +1,7 @@
 /*
 title: Error Bar on Catesian
 category: custom
-titleCN: Error Bar on Catesian
+titleCN: 使用自定系列给柱状图添加误差范围
 difficulty: 3
 */
 

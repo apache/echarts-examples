@@ -1,7 +1,7 @@
 /*
 title: Basic Scatter Chart
 category: scatter
-titleCN: 'Basic Scatter Chart,'
+titleCN: 基础散点图
 difficulty: 0
 */
 

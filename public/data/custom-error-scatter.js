@@ -1,7 +1,7 @@
 /*
 title: Error Scatter on Catesian
 category: 'custom, dataZoom'
-titleCN: Error Scatter on Catesian
+titleCN: 使用自定系列给散点图添加误差范围
 difficulty: 2
 */
 

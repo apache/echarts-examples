@@ -1,7 +1,7 @@
 /*
 title: Profit
 category: custom
-titleCN: Profit
+titleCN: 利润分布直方图
 difficulty: 1
 */
 

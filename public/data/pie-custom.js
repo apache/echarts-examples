@@ -1,7 +1,7 @@
 /*
 title: Customized Pie
 category: pie
-titleCN: Customized Pie
+titleCN: 饼图自定义样式
 difficulty: 2
 */
 
@@ -11,9 +11,9 @@ option = {
         left: 'center',
         top: 20,
         textStyle: {
-            fontSize: 24,
-        },
-        
+            fontSize: 24
+        }
+
     },
     tooltip: {
         trigger: 'item',
@@ -39,10 +39,12 @@ option = {
                 {value: 324, name: '文艺'},
                 {value: 265, name: '喜剧'},
                 {value: 230, name: '其他'}
-            ].sort(function (a, b) { return a.value - b.value; }),
+            ].sort(function (a, b) {
+                return a.value - b.value;
+            }),
             roseType: 'radius',
             label: {
-                fontSize: 14,
+                fontSize: 14
             },
             labelLine: {
                 smooth: 0.2,

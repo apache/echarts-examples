@@ -1,7 +1,7 @@
 /*
 title: Exponential Regression
 category: scatter
-titleCN: Exponential Regression
+titleCN: 指数回归（使用统计插件）
 difficulty: 1
 */
 

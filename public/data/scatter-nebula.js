@@ -1,6 +1,7 @@
 /*
 title: Scatter Nebula
 category: scatter
+titleCN: 大规模星云散点图
 difficulty: 5
 */
 

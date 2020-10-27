@@ -1,7 +1,7 @@
 /*
 title: Custom Bar Trend
 category: custom
-titleCN: Custom Bar Trend
+titleCN: 使用自定义系列添加柱状图趋势
 difficulty: 3
 */
 

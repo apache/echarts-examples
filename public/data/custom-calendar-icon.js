@@ -1,7 +1,7 @@
 /*
 title: Custom Calendar Icon
 category: 'custom, calendar'
-titleCN: Custom Calendar Icon
+titleCN: 日历图自定义图标
 difficulty: 7
 */
 

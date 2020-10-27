@@ -1,7 +1,7 @@
 /*
 title: Basic Parallel
 category: parallel
-titleCN: Basic Parallel
+titleCN: 基础平行坐标
 difficulty: 1
 */
 

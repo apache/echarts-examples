@@ -1,7 +1,7 @@
 /*
 title: Linear Regression
 category: scatter
-titleCN: Linear Regression
+titleCN: 线性回归（使用统计插件）
 difficulty: 2
 */
 

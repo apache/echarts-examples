@@ -1,7 +1,7 @@
 /*
 title: Basic Sankey
 category: sankey
-titleCN: Basic Sankey
+titleCN: 基础桑基图
 difficulty: 0
 */
 

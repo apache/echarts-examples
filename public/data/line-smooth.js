@@ -1,7 +1,7 @@
 /*
 title: Smoothed Line Chart
 category: line
-titleCN: Smoothed Line Chart
+titleCN: 基础平滑折线图
 difficulty: 0
 */
 

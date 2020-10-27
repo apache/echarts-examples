@@ -1,7 +1,7 @@
 /*
 title: Mix Zoom On Value
 category: bar
-titleCN: Mix Zoom On Value
+titleCN: 多数值轴轴缩放
 difficulty: 4
 */
 
