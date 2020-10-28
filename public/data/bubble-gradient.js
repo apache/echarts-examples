@@ -2,7 +2,7 @@
 title: Bubble Chart
 category: scatter
 titleCN: 气泡图
-difficulty: 1
+difficulty: 6
 */
 
 var data = [
@@ -19,11 +19,18 @@ option = {
         color: '#cdd0d5'
     }]),
     title: {
-        text: '1990 与 2015 年各国家人均寿命与 GDP'
+        text: '1990 与 2015 年各国家人均寿命与 GDP' ,
+        left: '5%',
+        top: '3%'
     },
     legend: {
-        right: 10,
+        right: '10%',
+        top: '3%',
         data: ['1990', '2015']
+    },
+    grid: {
+        left: '8%',
+        top: '10%'
     },
     xAxis: {
         splitLine: {

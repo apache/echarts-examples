@@ -2,6 +2,7 @@
 title: Custom Graphic Component
 titleCN: 自定义图形组件
 category: line
+difficulty: 9
 */
 
 option = {
@@ -62,7 +63,7 @@ option = {
                     z: 100,
                     style: {
                         fill: '#fff',
-                        text: 'ECHARTS BAR CHART',
+                        text: 'ECHARTS LINE CHART',
                         font: 'bold 26px sans-serif'
                     }
                 }
@@ -115,7 +116,7 @@ option = {
     series: [
         {
             name: '高度(km)与气温(°C)变化关系',
-            type: 'bar',
+            type: 'line',
             smooth: true,
             barCategoryGap: 25,
             data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]

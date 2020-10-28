@@ -2,6 +2,7 @@
 title: Simple Calendar
 titleCN: 基础日历图
 category: calendar
+difficulty: 0
 */
 
 function getVirtulData(year) {
