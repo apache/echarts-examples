@@ -5,7 +5,8 @@ titleCN: 聚合过程可视化
 difficulty: 1
 */
 
-var data = [
+
+var originalData = [
     [3.275154, 2.957587],
     [-3.344465, 2.603513],
     [0.355083, -3.376585],
@@ -68,34 +69,157 @@ var data = [
     [0.639276, -3.41284]
 ];
 
-var clusterNumber = 6;
+
+var DIM_CLUSTER_INDEX = 2;
+var DATA_DIM_IDX = [0, 1];
+var CENTER_DIM_IDX = [3, 4];
+
 // See https://github.com/ecomfe/echarts-stat
-var step = ecStat.clustering.hierarchicalKMeans(data, clusterNumber, true);
-var result;
+var step = ecStat.clustering.hierarchicalKMeans(originalData, {
+    clusterCount: 6,
+    outputType: 'single',
+    outputClusterIndexDimension: DIM_CLUSTER_INDEX,
+    outputCentroidDimensions: CENTER_DIM_IDX,
+    stepByStep: true
+});
+
+var colorAll = [
+    '#bbb', '#37A2DA', '#e06343', '#37a354', '#b55dba', '#b5bd48', '#8378EA', '#96BFFF'
+];
+var ANIMATION_DURATION_UPDATE = 1500;
+
+function renderItemPoint(params, api) {
+    var coord = api.coord([api.value(0), api.value(1)]);
+    var clusterIdx = api.value(2);
+    if (clusterIdx == null || isNaN(clusterIdx)) {
+        clusterIdx = 0;
+    }
+    var isNewCluster = clusterIdx === api.value(3);
+
+    var extra = {
+        transition: []
+    };
+    var contentColor = colorAll[clusterIdx];
+
+    return {
+        type: 'circle',
+        x: coord[0],
+        y: coord[1],
+        shape: {
+            cx: 0,
+            cy: 0,
+            r: 10
+        },
+        extra: extra,
+        style: {
+            fill: contentColor,
+            stroke: '#333',
+            lineWidth: 1,
+            shadowColor: contentColor,
+            shadowBlur: isNewCluster ? 12 : 0,
+            transition: ['shadowBlur', 'fill']
+        }
+    };
+}
+
+function renderBoundary(params, api) {
+    var xVal = api.value(0);
+    var yVal = api.value(1);
+    var maxDist = api.value(2);
+    var center = api.coord([xVal, yVal]);
+    var size = api.size([maxDist, maxDist]);
+
+    return {
+        type: 'ellipse',
+        shape: {
+            cx: isNaN(center[0]) ? 0 : center[0],
+            cy: isNaN(center[1]) ? 0 : center[1],
+            rx: isNaN(size[0]) ? 0 : size[0] + 15,
+            ry: isNaN(size[1]) ? 0 : size[1] + 15
+        },
+        extra: {
+            renderProgress: ++targetRenderProgress,
+            enterFrom: {
+                renderProgress: 0
+            },
+            transition: 'renderProgress'
+        },
+        style: {
+            fill: null,
+            stroke: 'rgba(0,0,0,0.2)',
+            lineDash: [4, 4],
+            lineWidth: 4
+        }
+    };
+}
+
+function makeStepOption(option, data, centroids) {
+    var newCluIdx = centroids ? centroids.length - 1 : -1;
+    var maxDist = 0;
+    for (var i = 0; i < data.length; i++) {
+        var line = data[i];
+        if (line[DIM_CLUSTER_INDEX] === newCluIdx) {
+            var dist0 = Math.pow(line[DATA_DIM_IDX[0]] - line[CENTER_DIM_IDX[0]], 2);
+            var dist1 = Math.pow(line[DATA_DIM_IDX[1]] - line[CENTER_DIM_IDX[1]], 2);
+            maxDist = Math.max(maxDist, dist0 + dist1);
+        }
+    }
+    var boundaryData = centroids
+        ? [
+            [
+                centroids[newCluIdx][0],
+                centroids[newCluIdx][1],
+                Math.sqrt(maxDist)
+            ]
+        ]
+        : [];
+
+    option.options.push({
+        series: [{
+            type: 'custom',
+            encode: {
+                tooltip: [0, 1]
+            },
+            renderItem: renderItemPoint,
+            data: data
+        }, {
+            type: 'custom',
+            renderItem: renderBoundary,
+            animationDuration: 3000,
+            silent: true,
+            data: boundaryData
+        }]
+    });
+}
+
+var targetRenderProgress = 0;
 
 option = {
     timeline: {
         top: 'center',
-        right: 35,
+        right: 50,
         height: 300,
         width: 10,
         inverse: true,
+        autoPlay: false,
         playInterval: 2500,
         symbol: 'none',
         orient: 'vertical',
         axisType: 'category',
-        autoPlay: true,
         label: {
-            show: false
+            formatter: 'step {value}',
+            position: 10
+        },
+        checkpointStyle: {
+            color: '#555',
+            borderWidth: 0,
+            animationDuration: ANIMATION_DURATION_UPDATE
         },
         data: []
     },
     baseOption: {
-        title: {
-            text: 'Process of Clustering',
-            subtext: 'By ecStat.hierarchicalKMeans',
-            sublink: 'https://github.com/ecomfe/echarts-stat',
-            left: 'center'
+        animationDurationUpdate: ANIMATION_DURATION_UPDATE,
+        tooltip: {
         },
         xAxis: {
             type: 'value'
@@ -110,59 +234,13 @@ option = {
     options: []
 };
 
-for (var i = 0; !(result = step.next()).isEnd; i++) {
-
-    option.options.push(getOption(result, clusterNumber));
+makeStepOption(option, originalData);
+option.timeline.data.push('0');
+for (var i = 1, stepResult; !(stepResult = step.next()).isEnd; i++) {
+    makeStepOption(
+        option,
+        echarts.util.clone(stepResult.data),
+        echarts.util.clone(stepResult.centroids)
+    );
     option.timeline.data.push(i + '');
-
-}
-
-function getOption(result, k) {
-    var clusterAssment = result.clusterAssment;
-    var centroids = result.centroids;
-    var ptsInCluster = result.pointsInCluster;
-    var color = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
-    var series = [];
-    for (i = 0; i < k; i++) {
-        series.push({
-            name: 'scatter' + i,
-            type: 'scatter',
-            animation: false,
-            data: ptsInCluster[i],
-            markPoint: {
-                symbolSize: 29,
-                label: {
-                    show: false
-                },
-                itemStyle: {
-                    opacity: 0.7
-                },
-                emphasis: {
-                    label: {
-                        show: true,
-                        position: 'top',
-                        formatter: function (params) {
-                            return Math.round(params.data.coord[0] * 100) / 100 + '  ' +
-                                Math.round(params.data.coord[1] * 100) / 100 + ' ';
-                        },
-                        color: '#000'
-                    }
-                },
-                data: [{
-                    coord: centroids[i]
-                }]
-            }
-        });
-    }
-
-    return {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross'
-            }
-        },
-        series: series,
-        color: color
-    };
 }

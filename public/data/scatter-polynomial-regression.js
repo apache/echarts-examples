@@ -5,6 +5,9 @@ titleCN: 多项式回归（使用统计插件）
 difficulty: 2
 */
 
+// See https://github.com/ecomfe/echarts-stat
+echarts.registerTransform(ecStat.transform.regression);
+
 var data = [
     [96.24, 11.35],
     [33.09, 85.11],
@@ -26,21 +29,15 @@ var data = [
     [81.31, 108.68]
 ];
 
-// See https://github.com/ecomfe/echarts-stat
-var myRegression = ecStat.regression('polynomial', data, 3);
-
-myRegression.points.sort(function(a, b) {
-    return a[0] - b[0];
-});
-
 option = {
-
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'cross'
+    dataset: [{
+        source: data
+    }, {
+        transform: {
+            type: 'ecStat:regression',
+            config: { method: 'polynomial', order: 3 }
         }
-    },
+    }],
     title: {
         text: '18 companies net profit and main business income (million)',
         subtext: 'By ecStat.regression',
@@ -48,8 +45,13 @@ option = {
         left: 'center',
         top: 16
     },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
     xAxis: {
-        type: 'value',
         splitLine: {
             lineStyle: {
                 type: 'dashed'
@@ -58,7 +60,6 @@ option = {
         splitNumber: 20
     },
     yAxis: {
-        type: 'value',
         min: -40,
         splitLine: {
             lineStyle: {
@@ -66,41 +67,18 @@ option = {
             }
         }
     },
-    grid: {
-        top: 90
-    },
     series: [{
         name: 'scatter',
-        type: 'scatter',
-        emphasis: {
-            label: {
-                show: true,
-                position: 'right',
-                color: 'blue',
-                fontSize: 16
-            }
-        },
-        data: data
-    }, {
+        type: 'scatter'
+        }, {
         name: 'line',
         type: 'line',
         smooth: true,
-        showSymbol: false,
-        data: myRegression.points,
-        markPoint: {
-            itemStyle: {
-                color: 'transparent'
-            },
-            label: {
-                show: true,
-                position: 'left',
-                formatter: myRegression.expression,
-                color: '#333',
-                fontSize: 14
-            },
-            data: [{
-                coord: myRegression.points[myRegression.points.length - 1]
-            }]
-        }
+        datasetIndex: 1,
+        symbolSize: 0.1,
+        symbol: 'circle',
+        label: { show: true, fontSize: 16 },
+        labelLayout: { dx: -20 },
+        encode: { label: 2, tooltip: 1 }
     }]
 };

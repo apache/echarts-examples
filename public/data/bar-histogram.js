@@ -5,78 +5,122 @@ titleCN: 直方图（自定义系列）
 difficulty: 0
 */
 
-var girth = [8.3, 8.6, 8.8, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, 11.4, 11.4, 11.7, 12.0, 12.9, 12.9, 13.3, 13.7, 13.8, 14.0, 14.2, 14.5, 16.0, 16.3, 17.3, 17.5, 17.9, 18.0, 18.0, 20.6];
-
 // See https://github.com/ecomfe/echarts-stat
-var bins = ecStat.histogram(girth);
-
-var interval;
-var min = Infinity;
-var max = -Infinity;
-
-var data = bins.data.map(function (item, index) {
-    var x0 = bins.bins[index].x0;
-    var x1 = bins.bins[index].x1;
-    interval = x1 - x0;
-    min = Math.min(min, x0);
-    max = Math.max(max, x1);
-    return [x0, x1, item[1]];
-});
-
-function renderItem(params, api) {
-    var yValue = api.value(2);
-    var start = api.coord([api.value(0), yValue]);
-    var size = api.size([api.value(1) - api.value(0), yValue]);
-    var style = api.style();
-
-    return {
-        type: 'rect',
-        shape: {
-            x: start[0] + 1,
-            y: start[1],
-            width: size[0] - 2,
-            height: size[1]
-        },
-        style: style
-    };
-}
+echarts.registerTransform(ecStat.transform.histogram);
 
 option = {
-    title: {
-        text: 'Girths of Black Cherry Trees',
-        subtext: 'By ecStat.histogram',
-        sublink: 'https://github.com/ecomfe/echarts-stat',
-        left: 'center',
-        top: 10
+    dataset: [{
+        source: [
+            [8.3, 143],
+            [8.6, 214],
+            [8.8, 251],
+            [10.5, 26],
+            [10.7, 86],
+            [10.8, 93],
+            [11.0, 176],
+            [11.0, 39],
+            [11.1, 221],
+            [11.2, 188],
+            [11.3, 57],
+            [11.4, 91],
+            [11.4, 191],
+            [11.7, 8],
+            [12.0, 196],
+            [12.9, 177],
+            [12.9, 153],
+            [13.3, 201],
+            [13.7, 199],
+            [13.8, 47],
+            [14.0, 81],
+            [14.2, 98],
+            [14.5, 121],
+            [16.0, 37],
+            [16.3, 12],
+            [17.3, 105],
+            [17.5, 168],
+            [17.9, 84],
+            [18.0, 197],
+            [18.0, 155],
+            [20.6, 125]
+        ]
+    }, {
+        transform: {
+            type: 'ecStat:histogram'
+        }
+    }, {
+        transform: {
+            type: 'ecStat:histogram',
+            print: true,
+            config: { dimensions: [1] }
+        }
+    }],
+    tooltip: {
     },
-    color: ['rgb(25, 183, 207)'],
-    grid: {
-        top: 80,
-        containLabel: true
-    },
+    grid: [{
+        top: '50%',
+        right: '50%'
+    }, {
+        bottom: '52%',
+        right: '50%',
+    }, {
+        top: '50%',
+        left: '52%'
+    }],
     xAxis: [{
-        type: 'value',
-        min: min,
-        max: max,
-        interval: interval
+        scale: true,
+        gridIndex: 0
+    }, {
+        type: 'category',
+        scale: true,
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        axisLine: { show: false },
+        gridIndex: 1
+    }, {
+        scale: true,
+        gridIndex: 2
     }],
     yAxis: [{
-        type: 'value',
+        gridIndex: 0
+    }, {
+        gridIndex: 1
+    }, {
+        type: 'category',
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        axisLine: { show: false },
+        gridIndex: 2
     }],
     series: [{
-        name: 'height',
-        type: 'custom',
-        renderItem: renderItem,
+        name: 'origianl scatter',
+        type: 'scatter',
+        xAxisIndex: 0,
+        yAxisIndex: 0,
+        encode: { tooltip: [0, 1] },
+        datasetIndex: 0
+    }, {
+        name: 'histogram',
+        type: 'bar',
+        xAxisIndex: 1,
+        yAxisIndex: 1,
+        barWidth: '99.3%',
         label: {
             show: true,
-            position: 'insideTop'
+            position: 'top'
         },
-        encode: {
-            x: [0, 1],
-            y: 2,
-            tooltip: 2,
-            label: 2
+        encode: { x: 0, y: 1, itemName: 4 },
+        datasetIndex: 1
+    }, {
+        name: 'histogram',
+        type: 'bar',
+        xAxisIndex: 2,
+        yAxisIndex: 2,
+        barWidth: '99.3%',
+        label: {
+            show: true,
+            position: 'right'
         },
-        data: data
+        encode: { x: 1, y: 0, itemName: 4 },
+        datasetIndex: 2
     }]
 };

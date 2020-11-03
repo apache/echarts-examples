@@ -5,6 +5,9 @@ titleCN: 线性回归（使用统计插件）
 difficulty: 2
 */
 
+// See https://github.com/ecomfe/echarts-stat
+echarts.registerTransform(ecStat.transform.regression);
+
 var data = [
     [0.067732, 3.176513],
     [0.42781, 3.816464],
@@ -208,20 +211,24 @@ var data = [
     [0.116163, 3.129283]
 ];
 
-// See https://github.com/ecomfe/echarts-stat
-var myRegression = ecStat.regression('linear', data);
-
-myRegression.points.sort(function(a, b) {
-    return a[0] - b[0];
-});
 
 option = {
+    dataset: [{
+        source: data
+    }, {
+        transform: {
+            type: 'ecStat:regression'
+            // 'linear' by default.
+            // config: { method: 'linear', formulaOn: 'end'}
+        }
+    }],
     title: {
         text: 'Linear Regression',
         subtext: 'By ecStat.regression',
         sublink: 'https://github.com/ecomfe/echarts-stat',
         left: 'center'
     },
+    legend: {},
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -229,7 +236,6 @@ option = {
         }
     },
     xAxis: {
-        type: 'value',
         splitLine: {
             lineStyle: {
                 type: 'dashed'
@@ -237,8 +243,6 @@ option = {
         },
     },
     yAxis: {
-        type: 'value',
-        min: 3,
         splitLine: {
             lineStyle: {
                 type: 'dashed'
@@ -247,35 +251,15 @@ option = {
     },
     series: [{
         name: 'scatter',
-        type: 'scatter',
-        emphasis: {
-            label: {
-                show: true,
-                position: 'left',
-                color: 'blue',
-                fontSize: 16
-            }
-        },
-        data: data
+        type: 'scatter'
     }, {
         name: 'line',
         type: 'line',
-        showSymbol: false,
-        data: myRegression.points,
-        markPoint: {
-            itemStyle: {
-                color: 'transparent'
-            },
-            label: {
-                show: true,
-                position: 'left',
-                formatter: myRegression.expression,
-                color: '#333',
-                fontSize: 14
-            },
-            data: [{
-                coord: myRegression.points[myRegression.points.length - 1]
-            }]
-        }
+        datasetIndex: 1,
+        symbolSize: 0.1,
+        symbol: 'circle',
+        label: { show: true, fontSize: 16 },
+        labelLayout: { dx: -20 },
+        encode: { label: 2, tooltip: 1 }
     }]
 };
