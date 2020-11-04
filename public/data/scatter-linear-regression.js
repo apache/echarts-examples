@@ -228,7 +228,9 @@ option = {
         sublink: 'https://github.com/ecomfe/echarts-stat',
         left: 'center'
     },
-    legend: {},
+    legend: {
+        bottom: 5
+    },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
