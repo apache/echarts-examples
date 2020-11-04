@@ -51,3 +51,51 @@ category: 'line, visualMap'
 ```
 
 describes the meta info of this example.
+
+
+## Some built-in features available in examples
+
+### Controller panel
+
+Use this code to enable controller panel for a example:
+```js
+app.config = {
+    aNameForTheSelectWidget: 'This is the initial value'
+    aNameForTheRangeWidget: 45,
+    aNameForTheButtonWidget: function () {
+        // Do something.
+    },
+    onChange: function () {
+        // Do something.
+    }
+};
+app.configParameters = {
+    aNameForTheSelectWidget: {
+        options: [
+            'This is the initial value',
+            'This is another value',
+            'This is the third value'
+        ]
+    },
+    aNameForTheRangeWidget: {
+        min: -90,
+        max: 90
+    }
+};
+```
+
+### Resize
+
+```js
+app.onresize = function () {
+    // Do something.
+}
+```
+
+### Get width and height of the chart area
+
+```js
+var width = myChart.getWidth();
+var height = myChart.getHeight();
+```
+

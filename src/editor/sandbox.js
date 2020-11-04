@@ -152,7 +152,7 @@ export function createSandbox(optionUpdated) {
                     if (name !== 'onChange' && name !== 'onFinishChange') {
                         var isColor = false;
                         // var value = obj;
-                        var controller;
+                        var controller = null;
                         if (configParameters[name]) {
                             if (configParameters[name].options) {
                                 controller = gui.add(appEnv.config, name, configParameters[name].options);
