@@ -18,9 +18,8 @@ option = {
     },
     series: [
         // left
-        // 0
         {
-            name: 'PORSCHE',
+            name: 'gauge 0',
             type: 'gauge',
             min: -200,
             max: 250,
@@ -71,9 +70,8 @@ option = {
                 name: 'km/h'
             }]
         },
-        // 1
         {
-            name: 'PORSCHE',
+            name: 'gauge 1',
             type: 'gauge',
             min: 0,
             max: 250,
@@ -140,11 +138,9 @@ option = {
                 name: '当前位置：\n \n 中科路'
             }]
         },
-
         // middle
-        // 2
         {
-            name: 'PORSCHE',
+            name: 'gauge 2',
             type: 'gauge',
             min: 0,
             max: 8,
@@ -221,9 +217,8 @@ option = {
                 show: false
             }
         },
-        // 3
         {
-            name: 'PORSCHE',
+            name: 'gauge 3',
             type: 'gauge',
             min: 0,
             max: 8,
@@ -283,9 +278,8 @@ option = {
             }]
         },
         // right
-        // 4
         {
-            name: 'PORSCHE',
+            name: 'gauge 4',
             type: 'gauge',
             min: 0,
             max: 8,
@@ -354,9 +348,8 @@ option = {
                 name: ''
             }]
         },
-        // 5
         {
-            name: 'PORSCHE',
+            name: 'gauge 5',
             type: 'gauge',
             min: 0,
             max: 1,
@@ -446,9 +439,8 @@ option = {
                 name: ''
             }]
         },
-        // 6
         {
-            name: 'PORSCHE',
+            name: 'gauge 6',
             type: 'gauge',
             min: -120,
             max: -60,
