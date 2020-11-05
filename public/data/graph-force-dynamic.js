@@ -3,7 +3,7 @@ title: Graph Dynamic
 category: graph
 shotDelay: 5000
 titleCN: 动态增加图节点
-difficulty: 5
+difficulty: 6
 */
 
 var data = [{

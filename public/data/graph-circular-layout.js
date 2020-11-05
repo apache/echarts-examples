@@ -3,7 +3,7 @@ title: Les Miserables
 category: graph
 titleCN: 悲惨世界人物关系图(环形布局)
 shotWidth: 900
-difficulty: 2
+difficulty: 5
 */
 
 myChart.showLoading();

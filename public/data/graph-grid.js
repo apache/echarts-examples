@@ -2,7 +2,7 @@
 title: Graph on Cartesian
 category: graph
 titleCN: 笛卡尔坐标系上的 Graph
-difficulty: 4
+difficulty: 2
 */
 
 var axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日'];

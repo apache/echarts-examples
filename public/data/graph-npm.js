@@ -2,7 +2,7 @@
 title: NPM Dependencies
 category: graph
 titleCN: NPM 依赖关系图
-difficulty: 6
+difficulty: 9
 */
 
 myChart.showLoading();
