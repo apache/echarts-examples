@@ -104,8 +104,8 @@ option = {
                 }
             },
             axisLabel: {
-                distance: 20,
-                fontSize: 20,
+                distance: 14,
+                fontSize: 18,
                 fontWeight: 800,
                 fontFamily: "Arial",
                 color: '#fff'
@@ -125,7 +125,7 @@ option = {
             },
             title: {
                 color: '#fff',
-                fontSize: 15,
+                fontSize: 14,
                 fontWeight: 800,
                 fontFamily: "Arial",
                 offsetCenter: [0, 0]
@@ -384,8 +384,8 @@ option = {
                 }
             },
             axisLabel: {
-                distance: 20,
-                fontSize: 20,
+                distance: 12,
+                fontSize: 18,
                 fontWeight: 800,
                 fontFamily: "Arial",
                 color: '#fff',
@@ -476,8 +476,8 @@ option = {
                 }
             },
             axisLabel: {
-                distance: 20,
-                fontSize: 20,
+                distance: 14,
+                fontSize: 18,
                 fontWeight: 800,
                 fontFamily: "Arial",
                 color: '#fff',
