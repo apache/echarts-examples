@@ -2,7 +2,7 @@
 title: Sunburst Label Rotate
 category: sunburst
 titleCN: 旭日图标签旋转
-difficulty: 3
+difficulty: 2
 */
 
 option = {
@@ -53,11 +53,9 @@ option = {
             }]
         }],
         label: {
-            color: '#fff',
-            textBorderColor: '#666',
+            color: '#000',
+            textBorderColor: '#fff',
             textBorderWidth: 2,
-            borderColor: '#999',
-            borderWidth: 1,
             formatter: function (param) {
                 var depth = param.treePathInfo.length;
                 if (depth === 2) {
@@ -73,21 +71,21 @@ option = {
         },
         levels: [{}, {
             itemStyle: {
-                color: 'red'
+                color: '#CD4949'
             },
             label: {
                 rotate: 'radial'
             }
         }, {
             itemStyle: {
-                color: 'orange'
+                color: '#F47251'
             },
             label: {
                 rotate: 'tangential'
             }
         }, {
             itemStyle: {
-                color: 'yellow'
+                color: '#FFC75F'
             },
             label: {
                 rotate: 0

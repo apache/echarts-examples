@@ -2,6 +2,7 @@
 title: Drink Flavors
 category: sunburst
 titleCN: Drink Flavors
+shotWidth: 1000
 difficulty: 5
 */
 
