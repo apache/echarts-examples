@@ -2,6 +2,7 @@
 title: Force Layout
 category: graph
 titleCN: 力引导布局
+difficulty: 2
 */
 
 myChart.showLoading();

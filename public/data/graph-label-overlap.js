@@ -2,6 +2,7 @@
 title: Hide Overlapped Label
 category: graph
 titleCN: 关系图自动隐藏重叠标签
+difficulty: 3
 */
 
 myChart.showLoading();

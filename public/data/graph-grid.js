@@ -2,9 +2,10 @@
 title: Graph on Cartesian
 category: graph
 titleCN: 笛卡尔坐标系上的 Graph
+difficulty: 4
 */
 
-var axisData = ['周一','周二','周三','很长很长的周四','周五','周六','周日'];
+var axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日'];
 var data = axisData.map(function (item, i) {
     return Math.round(Math.random() * 1000 * (i + 1));
 });
@@ -21,12 +22,12 @@ option = {
     },
     tooltip: {},
     xAxis: {
-        type : 'category',
-        boundaryGap : false,
-        data : axisData
+        type: 'category',
+        boundaryGap: false,
+        data: axisData
     },
     yAxis: {
-        type : 'value'
+        type: 'value'
     },
     series: [
         {
