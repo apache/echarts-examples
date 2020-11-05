@@ -12,7 +12,10 @@ import { ensureECharts } from './Preview.vue';
 
 function loadTypes() {
     return new Promise(resolve => {
-        $.getJSON(store.cdnRoot + '/types/echarts-type-bundle.json', function (res) {
+        fetch(store.cdnRoot + '/types/echarts.d.ts', {
+            mode: 'cors'
+        }).then(response => response.text()).then(code => {
+
             // validation settings
             monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
                 noSemanticValidation: false,
@@ -26,14 +29,12 @@ function loadTypes() {
                 noResolve: false
             });
 
-            for (let i = 0; i < res.length; i++) {
-                // console.log('file:///node_modules/@types/' + res[i].path);
-                monaco.languages.typescript.typescriptDefaults.addExtraLib(
-                    res[i].code,
-                    // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
-                    'file:///node_modules/@types/' + res[i].path
-                );
-            }
+            // console.log('file:///node_modules/@types/' + res[i].path);
+            monaco.languages.typescript.typescriptDefaults.addExtraLib(
+                code,
+                // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
+                'file:///node_modules/@types/echarts/index.d.ts'
+            );
 
             monaco.languages.typescript.typescriptDefaults.addExtraLib(
                 `
