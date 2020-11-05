@@ -2,6 +2,7 @@
 title: Nightingale's Rose Diagram
 category: pie
 titleCN: 基础南丁格尔玫瑰图
+shotWidth: 800
 difficulty: 2
 */
 
