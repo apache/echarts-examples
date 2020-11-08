@@ -322,10 +322,15 @@ export default {
     padding-top: 5px;
     padding-left: 15px;
 
+    // .el-switch__label * {
+    //     font-size: 12px;
+    // }
+
     .render-config-trigger {
         margin-left: 10px;
         cursor: pointer;
         font-weight: 500;
+        // font-size: 12px;
     }
 
     label {

@@ -2,7 +2,7 @@
 title: Monochrome Sunburst
 category: sunburst
 titleCN: Monochrome Sunburst
-difficulty: 2
+difficulty: 3
 */
 
 var item1 = {

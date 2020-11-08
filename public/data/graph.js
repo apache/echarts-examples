@@ -2,6 +2,7 @@
 title: Les Miserables
 category: graph
 titleCN: 悲惨世界人物关系图
+difficulty: 4
 */
 
 myChart.showLoading();

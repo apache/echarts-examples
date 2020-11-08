@@ -8,10 +8,16 @@ difficulty: 4
 $.get(ROOT_PATH + '/data/asset/data/aqi-beijing.json', function (data) {
     myChart.setOption(option = {
         title: {
-            text: 'Beijing AQI'
+            text: 'Beijing AQI',
+            left: '1%'
         },
         tooltip: {
             trigger: 'axis'
+        },
+        grid: {
+            left: '5%',
+            right: '15%',
+            bottom: '10%'
         },
         xAxis: {
             data: data.map(function (item) {
@@ -20,7 +26,7 @@ $.get(ROOT_PATH + '/data/asset/data/aqi-beijing.json', function (data) {
         },
         yAxis: {},
         toolbox: {
-            left: 'center',
+            right: 10,
             feature: {
                 dataZoom: {
                     yAxisIndex: 'none'
@@ -35,7 +41,7 @@ $.get(ROOT_PATH + '/data/asset/data/aqi-beijing.json', function (data) {
             type: 'inside'
         }],
         visualMap: {
-            top: 10,
+            top: 50,
             right: 10,
             pieces: [{
                 gt: 0,

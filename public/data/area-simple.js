@@ -58,9 +58,8 @@ option = {
         {
             name: '模拟数据',
             type: 'line',
-            smooth: true,
             symbol: 'none',
-            sampling: 'average',
+            sampling: 'lttb',
             itemStyle: {
                 color: 'rgb(255, 70, 131)'
             },

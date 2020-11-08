@@ -2,6 +2,7 @@
 title: Bar Chart on Polar
 category: bar
 difficulty: 7
+shotWidth: 800
 */
 
 var data = [

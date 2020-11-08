@@ -2,6 +2,7 @@
 title: Force Layout
 category: graph
 titleCN: 力引导布局
+difficulty: 3
 */
 
 myChart.showLoading();
@@ -24,7 +25,7 @@ $.get(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
                 return a.name;
             })
         }],
-        series : [
+        series: [
             {
                 name: 'Les Miserables',
                 type: 'graph',

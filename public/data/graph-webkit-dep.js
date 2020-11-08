@@ -2,7 +2,11 @@
 title: Graph Webkit Dep
 category: graph
 titleCN: WebKit 模块关系依赖图
+shotWidth: 900
+difficulty: 8
 */
+
+myChart.showLoading();
 
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/webkit-dep.json', function (webkitDep) {

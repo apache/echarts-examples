@@ -2,10 +2,11 @@
 title: Book Records
 category: sunburst
 titleCN: 书籍分布
+shotWidth: 820
 difficulty: 6
 */
 
- var colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+var colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
 var bgColor = '#2E2733';
 
 var itemStyle = {
@@ -114,7 +115,7 @@ var data = [{
             }, {
                 name: '进化'
             }, {
-                name: '后物欲时代的来临',
+                name: '后物欲时代的来临'
             }]
         }, {
             name: '3☆',
@@ -137,7 +138,7 @@ var data = [{
                 name: '受伤的人'
             }]
         }, {
-            name: '3☆',
+            name: '3☆'
         }, {
             name: '2☆',
             children: [{
@@ -209,18 +210,18 @@ for (var j = 0; j < data.length; ++j) {
         for (var star = 0; star < block.length; ++star) {
             var style = (function (name) {
                 switch (name) {
-                    case '5☆':
-                        bookScoreId = 0;
-                        return itemStyle.star5;
-                    case '4☆':
-                        bookScoreId = 1;
-                        return itemStyle.star4;
-                    case '3☆':
-                        bookScoreId = 2;
-                        return itemStyle.star3;
-                    case '2☆':
-                        bookScoreId = 3;
-                        return itemStyle.star2;
+                case '5☆':
+                    bookScoreId = 0;
+                    return itemStyle.star5;
+                case '4☆':
+                    bookScoreId = 1;
+                    return itemStyle.star4;
+                case '3☆':
+                    bookScoreId = 2;
+                    return itemStyle.star3;
+                case '2☆':
+                    bookScoreId = 3;
+                    return itemStyle.star2;
                 }
             })(block[star].name);
 
@@ -323,7 +324,7 @@ option = {
             label: {
                 position: 'outside',
                 textShadowBlur: 5,
-                textShadowColor: '#333',
+                textShadowColor: '#333'
             },
             downplay: {
                 label: {
