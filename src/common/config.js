@@ -123,7 +123,7 @@ export const SCRIPT_URLS = {
     echartsMinJS: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-rc.1/dist/echarts.min.js',
     echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0-rc.1',
     echartsStatMinJS: 'https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js',
-    echartsGLMinJS: 'https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js',
+    echartsGLMinJS: 'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.0-rc.1/dist/echarts-gl.min.js',
     datGUIMinJS: 'https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js',
     monacoDir: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs',
     aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-min-noconflict'
