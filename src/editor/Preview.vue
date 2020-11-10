@@ -96,6 +96,7 @@ export function ensureECharts() {
             'local' in URL_PARAMS
                 ? SCRIPT_URLS.localEChartsMinJS : SCRIPT_URLS.echartsMinJS,
             SCRIPT_URLS.echartsDir + '/dist/extension/dataTool.js',
+            'https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js',
             SCRIPT_URLS.echartsStatMinJS,
             ...URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : [],
             ...hasBmap ? [
