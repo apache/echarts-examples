@@ -93,9 +93,7 @@ option = {
                 return echarts.format.formatTime('dd', params.value[0]);
             },
             offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
-            textStyle: {
-                fontSize: 14
-            }
+            fontSize: 14
         },
         data: scatterData
     }]

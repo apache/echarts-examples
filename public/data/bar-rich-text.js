@@ -13,9 +13,7 @@ var weatherIcons = {
 };
 
 var seriesLabel = {
-    normal: {
-        show: true
-    }
+    show: true
 }
 
 option = {

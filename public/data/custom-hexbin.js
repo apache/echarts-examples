@@ -196,10 +196,8 @@ $.when(
             roam: true,
             silent: true,
             itemStyle: {
-                normal: {
-                    color: backgroundColor,
-                    borderWidth: 0
-                }
+                color: backgroundColor,
+                borderWidth: 0
             },
             map: 'nbaCourt'
         },

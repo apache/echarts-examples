@@ -11,61 +11,58 @@ import {SCRIPT_URLS} from '../common/config';
 import { ensureECharts } from './Preview.vue';
 
 function loadTypes() {
-    return new Promise(resolve => {
-        fetch(store.cdnRoot + '/types/echarts.d.ts', {
-            mode: 'cors'
-        }).then(response => response.text()).then(code => {
+    return fetch(store.cdnRoot + '/types/echarts.d.ts', {
+        mode: 'cors'
+    }).then(response => response.text()).then(code => {
 
-            // validation settings
-            monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
-                noSemanticValidation: false,
-                noSyntaxValidation: false
-            });
+        // validation settings
+        monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+            noSemanticValidation: false,
+            noSyntaxValidation: false
+        });
 
-            // compiler options
-            monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-                target: monaco.languages.typescript.ScriptTarget.ES6,
-                allowNonTsExtensions: true,
-                noResolve: false
-            });
+        // compiler options
+        monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+            target: monaco.languages.typescript.ScriptTarget.ES6,
+            allowNonTsExtensions: true,
+            noResolve: false
+        });
 
-            // console.log('file:///node_modules/@types/' + res[i].path);
-            monaco.languages.typescript.typescriptDefaults.addExtraLib(
-                code,
-                // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
-                'file:///node_modules/@types/echarts/index.d.ts'
-            );
+        // console.log('file:///node_modules/@types/' + res[i].path);
+        monaco.languages.typescript.typescriptDefaults.addExtraLib(
+            code,
+            // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
+            'file:///node_modules/@types/echarts/index.d.ts'
+        );
 
-            monaco.languages.typescript.typescriptDefaults.addExtraLib(
-                `
-import {init, EChartsOption} from 'echarts';
+        monaco.languages.typescript.typescriptDefaults.addExtraLib(
+`import {init, EChartsOption} from 'echarts';
 // Declare to global namespace.
 declare global {
-    declare const $: any;
-    declare const ROOT_PATH: string;
-    declare const app: {
-        configParameters: {
-            [key: string]: ({
-                options: { [key: string]: string
-            }) | ({
-                min?: number
-                max?: number
-            })
-        }
-        config: {
-            onChange: () => void
-            [key: string]: string | number | function
-        }
-        [key: string]: any
-    };
-    declare const myChart: ReturnType<typeof init>;
-    declare var option: EChartsOption;
+declare const $: any;
+declare const ROOT_PATH: string;
+declare const app: {
+    configParameters: {
+        [key: string]: ({
+            options: { [key: string]: string
+        }) | ({
+            min?: number
+            max?: number
+        })
+    }
+    config: {
+        onChange: () => void
+        [key: string]: string | number | function
+    }
+    [key: string]: any
+};
+declare const myChart: ReturnType<typeof init>;
+declare var option: EChartsOption;
 }
 `,
-                'file:///example.d.ts'
-            );
-            resolve();
-        });
+            'file:///example.d.ts'
+        );
+        return;
     });
 }
 

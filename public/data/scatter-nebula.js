@@ -35,16 +35,8 @@ xhr.onload = function (e) {
             bottom: 70
         },
         xAxis: [{
-            scalse: false,
-            axisLabel: {
-                fontSize: 16
-            },
         }],
         yAxis: [{
-            scalse: false,
-            axisLabel: {
-                fontSize: 16
-            },
         }],
         dataZoom: [{
             type: 'inside'

@@ -23,892 +23,694 @@ option = {
                 {
                     'name': 'Werne',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#f18bbf',
-                            'borderColor': '#f18bbf'
-                        }
+                        'color': '#f18bbf',
+                        'borderColor': '#f18bbf'
                     }
                 },
                 {
                     'name': 'Duesseldorf',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#0078D7',
-                            'borderColor': '#0078D7'
-                        }
+                        'color': '#0078D7',
+                        'borderColor': '#0078D7'
                     }
                 },
                 {
                     'name': 'Cambridge',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#3891A7',
-                            'borderColor': '#3891A7'
-                        }
+                        'color': '#3891A7',
+                        'borderColor': '#3891A7'
                     }
                 },
                 {
                     'name': 'Colma',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#0037DA',
-                            'borderColor': '#0037DA'
-                        }
+                        'color': '#0037DA',
+                        'borderColor': '#0037DA'
                     }
                 },
                 {
                     'name': 'W. York',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#C0BEAF',
-                            'borderColor': '#C0BEAF'
-                        }
+                        'color': '#C0BEAF',
+                        'borderColor': '#C0BEAF'
                     }
                 },
                 {
                     'name': 'Frankfurt am Main',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#EA005E',
-                            'borderColor': '#EA005E'
-                        }
+                        'color': '#EA005E',
+                        'borderColor': '#EA005E'
                     }
                 },
                 {
                     'name': 'Metz',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#D13438',
-                            'borderColor': '#D13438'
-                        }
+                        'color': '#D13438',
+                        'borderColor': '#D13438'
                     }
                 },
                 {
                     'name': 'Orleans',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#567C73',
-                            'borderColor': '#567C73'
-                        }
+                        'color': '#567C73',
+                        'borderColor': '#567C73'
                     }
                 },
                 {
                     'name': 'Saint-Denis',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#9ed566',
-                            'borderColor': '#9ed566'
-                        }
+                        'color': '#9ed566',
+                        'borderColor': '#9ed566'
                     }
                 },
                 {
                     'name': 'Hof',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#2BCC7F',
-                            'borderColor': '#2BCC7F'
-                        }
+                        'color': '#2BCC7F',
+                        'borderColor': '#2BCC7F'
                     }
                 },
                 {
                     'name': 'Cliffside',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#809B48',
-                            'borderColor': '#809B48'
-                        }
+                        'color': '#809B48',
+                        'borderColor': '#809B48'
                     }
                 },
                 {
                     'name': 'Leeds',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#9B2D1F',
-                            'borderColor': '#9B2D1F'
-                        }
+                        'color': '#9B2D1F',
+                        'borderColor': '#9B2D1F'
                     }
                 },
                 {
                     'name': 'Victoria',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#604878',
-                            'borderColor': '#604878'
-                        }
+                        'color': '#604878',
+                        'borderColor': '#604878'
                     }
                 },
                 {
                     'name': 'Erlangen',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#A5644E',
-                            'borderColor': '#A5644E'
-                        }
+                        'color': '#A5644E',
+                        'borderColor': '#A5644E'
                     }
                 },
                 {
                     'name': 'Saint Germain en Laye',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#2D3F3A',
-                            'borderColor': '#2D3F3A'
-                        }
+                        'color': '#2D3F3A',
+                        'borderColor': '#2D3F3A'
                     }
                 },
                 {
                     'name': 'Roissy en Brie',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#761721',
-                            'borderColor': '#761721'
-                        }
+                        'color': '#761721',
+                        'borderColor': '#761721'
                     }
                 },
                 {
                     'name': 'Wokingham',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#B1BADD',
-                            'borderColor': '#B1BADD'
-                        }
+                        'color': '#B1BADD',
+                        'borderColor': '#B1BADD'
                     }
                 },
                 {
                     'name': 'Runcorn',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#B0CCB0',
-                            'borderColor': '#B0CCB0'
-                        }
+                        'color': '#B0CCB0',
+                        'borderColor': '#B0CCB0'
                     }
                 },
                 {
                     'name': 'Newton',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#8164A3',
-                            'borderColor': '#8164A3'
-                        }
+                        'color': '#8164A3',
+                        'borderColor': '#8164A3'
                     }
                 },
                 {
                     'name': 'Morangis',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#8E562E',
-                            'borderColor': '#8E562E'
-                        }
+                        'color': '#8E562E',
+                        'borderColor': '#8E562E'
                     }
                 },
                 {
                     'name': 'Metchosin',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#C1504D',
-                            'borderColor': '#C1504D'
-                        }
+                        'color': '#C1504D',
+                        'borderColor': '#C1504D'
                     }
                 },
                 {
                     'name': 'Kirkby',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#CCAF0A',
-                            'borderColor': '#CCAF0A'
-                        }
+                        'color': '#CCAF0A',
+                        'borderColor': '#CCAF0A'
                     }
                 },
                 {
                     'name': 'London',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#956251',
-                            'borderColor': '#956251'
-                        }
+                        'color': '#956251',
+                        'borderColor': '#956251'
                     }
                 },
                 {
                     'name': 'Offenbach',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#C17529',
-                            'borderColor': '#C17529'
-                        }
+                        'color': '#C17529',
+                        'borderColor': '#C17529'
                     }
                 },
                 {
                     'name': 'Warrington',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#CEC597',
-                            'borderColor': '#CEC597'
-                        }
+                        'color': '#CEC597',
+                        'borderColor': '#CEC597'
                     }
                 },
                 {
                     'name': 'Vancouver',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#9F2936',
-                            'borderColor': '#9F2936'
-                        }
+                        'color': '#9F2936',
+                        'borderColor': '#9F2936'
                     }
                 },
                 {
                     'name': 'SuperiorCard',
                     'itemStyle': {
-                        'normal': {
-                            'color': 'rgba(128,155,72,255)',
-                            'borderColor': 'rgba(128,155,72,255)'
-                        }
+                        'color': 'rgba(128,155,72,255)',
+                        'borderColor': 'rgba(128,155,72,255)'
                     }
                 },
                 {
                     'name': 'Lille',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#ac7430',
-                            'borderColor': '#ac7430'
-                        }
+                        'color': '#ac7430',
+                        'borderColor': '#ac7430'
                     }
                 },
                 {
                     'name': 'Hamburg',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#00BCF2',
-                            'borderColor': '#00BCF2'
-                        }
+                        'color': '#00BCF2',
+                        'borderColor': '#00BCF2'
                     }
                 },
                 {
                     'name': 'Langley',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#CD7B38',
-                            'borderColor': '#CD7B38'
-                        }
+                        'color': '#CD7B38',
+                        'borderColor': '#CD7B38'
                     }
                 },
                 {
                     'name': 'Les Ulis',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#424242',
-                            'borderColor': '#424242'
-                        }
+                        'color': '#424242',
+                        'borderColor': '#424242'
                     }
                 },
                 {
                     'name': 'Saarbrücken',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#f63185',
-                            'borderColor': '#f63185'
-                        }
+                        'color': '#f63185',
+                        'borderColor': '#f63185'
                     }
                 },
                 {
                     'name': 'N. Vancouver',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#9CBC59',
-                            'borderColor': '#9CBC59'
-                        }
+                        'color': '#9CBC59',
+                        'borderColor': '#9CBC59'
                     }
                 },
                 {
                     'name': 'Chalk Riber',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4F4BD9',
-                            'borderColor': '#4F4BD9'
-                        }
+                        'color': '#4F4BD9',
+                        'borderColor': '#4F4BD9'
                     }
                 },
                 {
                     'name': 'Esher-Molesey',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#3EC562',
-                            'borderColor': '#3EC562'
-                        }
+                        'color': '#3EC562',
+                        'borderColor': '#3EC562'
                     }
                 },
                 {
                     'name': 'Chatou',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#F06F2E',
-                            'borderColor': '#F06F2E'
-                        }
+                        'color': '#F06F2E',
+                        'borderColor': '#F06F2E'
                     }
                 },
                 {
                     'name': 'Hannover',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#C3986D',
-                            'borderColor': '#C3986D'
-                        }
+                        'color': '#C3986D',
+                        'borderColor': '#C3986D'
                     }
                 },
                 {
                     'name': 'Roncq',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4D291C',
-                            'borderColor': '#4D291C'
-                        }
+                        'color': '#4D291C',
+                        'borderColor': '#4D291C'
                     }
                 },
                 {
                     'name': 'Ingolstadt',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#009c7a',
-                            'borderColor': '#009c7a'
-                        }
+                        'color': '#009c7a',
+                        'borderColor': '#009c7a'
                     }
                 },
                 {
                     'name': 'Drancy',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#986F0B',
-                            'borderColor': '#986F0B'
-                        }
+                        'color': '#986F0B',
+                        'borderColor': '#986F0B'
                     }
                 },
                 {
                     'name': 'Langford',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#3C8EA4',
-                            'borderColor': '#3C8EA4'
-                        }
+                        'color': '#3C8EA4',
+                        'borderColor': '#3C8EA4'
                     }
                 },
                 {
                     'name': 'Lebanon',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4F82BE',
-                            'borderColor': '#4F82BE'
-                        }
+                        'color': '#4F82BE',
+                        'borderColor': '#4F82BE'
                     }
                 },
                 {
                     'name': 'Maidenhead',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#D38017',
-                            'borderColor': '#D38017'
-                        }
+                        'color': '#D38017',
+                        'borderColor': '#D38017'
                     }
                 },
                 {
                     'name': 'Stoke-on-Trent',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#A8CDD7',
-                            'borderColor': '#A8CDD7'
-                        }
+                        'color': '#A8CDD7',
+                        'borderColor': '#A8CDD7'
                     }
                 },
                 {
                     'name': 'Peterborough',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#7A072D',
-                            'borderColor': '#7A072D'
-                        }
+                        'color': '#7A072D',
+                        'borderColor': '#7A072D'
                     }
                 },
                 {
                     'name': 'Suresnes',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#859599',
-                            'borderColor': '#859599'
-                        }
+                        'color': '#859599',
+                        'borderColor': '#859599'
                     }
                 },
                 {
                     'name': 'Versailles',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#84AA33',
-                            'borderColor': '#84AA33'
-                        }
+                        'color': '#84AA33',
+                        'borderColor': '#84AA33'
                     }
                 },
                 {
                     'name': 'Neunkirchen',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#ff8b67',
-                            'borderColor': '#ff8b67'
-                        }
+                        'color': '#ff8b67',
+                        'borderColor': '#ff8b67'
                     }
                 },
                 {
                     'name': 'Vista',
                     'itemStyle': {
-                        'normal': {
-                            'color': 'rgba(106,82,134,255)',
-                            'borderColor': 'rgba(106,82,134,255)'
-                        }
+                        'color': 'rgba(106,82,134,255)',
+                        'borderColor': 'rgba(106,82,134,255)'
                     }
                 },
                 {
                     'name': 'Westminster',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#1B587C',
-                            'borderColor': '#1B587C'
-                        }
+                        'color': '#1B587C',
+                        'borderColor': '#1B587C'
                     }
                 },
                 {
                     'name': 'Kiel',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#A19574',
-                            'borderColor': '#A19574'
-                        }
+                        'color': '#A19574',
+                        'borderColor': '#A19574'
                     }
                 },
                 {
                     'name': 'Newcastle upon Tyne',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#918485',
-                            'borderColor': '#918485'
-                        }
+                        'color': '#918485',
+                        'borderColor': '#918485'
                     }
                 },
                 {
                     'name': 'Oxon',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#FFA98C',
-                            'borderColor': '#FFA98C'
-                        }
+                        'color': '#FFA98C',
+                        'borderColor': '#FFA98C'
                     }
                 },
                 {
                     'name': 'West Sussex',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#B0E3C0',
-                            'borderColor': '#B0E3C0'
-                        }
+                        'color': '#B0E3C0',
+                        'borderColor': '#B0E3C0'
                     }
                 },
                 {
                     'name': 'Oak Bay',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4BADC7',
-                            'borderColor': '#4BADC7'
-                        }
+                        'color': '#4BADC7',
+                        'borderColor': '#4BADC7'
                     }
                 },
                 {
                     'name': 'Milton Keynes',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#BA144C',
-                            'borderColor': '#BA144C'
-                        }
+                        'color': '#BA144C',
+                        'borderColor': '#BA144C'
                     }
                 },
                 {
                     'name': 'Eilenburg',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#F0A22E',
-                            'borderColor': '#F0A22E'
-                        }
+                        'color': '#F0A22E',
+                        'borderColor': '#F0A22E'
                     }
                 },
                 {
                     'name': 'ColonialVoice',
                     'itemStyle': {
-                        'normal': {
-                            'color': 'rgba(64,105,157,255)',
-                            'borderColor': 'rgba(64,105,157,255)'
-                        }
+                        'color': 'rgba(64,105,157,255)',
+                        'borderColor': 'rgba(64,105,157,255)'
                     }
                 },
                 {
                     'name': 'Liverpool',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#A28E6A',
-                            'borderColor': '#A28E6A'
-                        }
+                        'color': '#A28E6A',
+                        'borderColor': '#A28E6A'
                     }
                 },
                 {
                     'name': 'Calgary',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#9F413E',
-                            'borderColor': '#9F413E'
-                        }
+                        'color': '#9F413E',
+                        'borderColor': '#9F413E'
                     }
                 },
                 {
                     'name': 'CAD',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#40699D',
-                            'borderColor': '#40699D'
-                        }
+                        'color': '#40699D',
+                        'borderColor': '#40699D'
                     }
                 },
                 {
                     'name': 'Paris La Defense',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#989391',
-                            'borderColor': '#989391'
-                        }
+                        'color': '#989391',
+                        'borderColor': '#989391'
                     }
                 },
                 {
                     'name': 'Villeneuve-d\'Ascq',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#886CE4',
-                            'borderColor': '#886CE4'
-                        }
+                        'color': '#886CE4',
+                        'borderColor': '#886CE4'
                     }
                 },
                 {
                     'name': 'Gloucestershire',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#964305',
-                            'borderColor': '#964305'
-                        }
+                        'color': '#964305',
+                        'borderColor': '#964305'
                     }
                 },
                 {
                     'name': 'Gateshead',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#485FB5',
-                            'borderColor': '#485FB5'
-                        }
+                        'color': '#485FB5',
+                        'borderColor': '#485FB5'
                     }
                 },
                 {
                     'name': 'Salzgitter',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#87a0c7',
-                            'borderColor': '#87a0c7'
-                        }
+                        'color': '#87a0c7',
+                        'borderColor': '#87a0c7'
                     }
                 },
                 {
                     'name': 'Woolston',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#FFE2C5',
-                            'borderColor': '#FFE2C5'
-                        }
+                        'color': '#FFE2C5',
+                        'borderColor': '#FFE2C5'
                     }
                 },
                 {
                     'name': 'Frankfurt',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#40699D',
-                            'borderColor': '#40699D'
-                        }
+                        'color': '#40699D',
+                        'borderColor': '#40699D'
                     }
                 },
                 {
                     'name': 'Münster',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#7e7eb2',
-                            'borderColor': '#7e7eb2'
-                        }
+                        'color': '#7e7eb2',
+                        'borderColor': '#7e7eb2'
                     }
                 },
                 {
                     'name': 'York',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#587C7D',
-                            'borderColor': '#587C7D'
-                        }
+                        'color': '#587C7D',
+                        'borderColor': '#587C7D'
                     }
                 },
                 {
                     'name': 'High Wycombe',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#F07F09',
-                            'borderColor': '#F07F09'
-                        }
+                        'color': '#F07F09',
+                        'borderColor': '#F07F09'
                     }
                 },
                 {
                     'name': 'Stuttgart',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#E3008C',
-                            'borderColor': '#E3008C'
-                        }
+                        'color': '#E3008C',
+                        'borderColor': '#E3008C'
                     }
                 },
                 {
                     'name': 'Sooke',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4E8542',
-                            'borderColor': '#4E8542'
-                        }
+                        'color': '#4E8542',
+                        'borderColor': '#4E8542'
                     }
                 },
                 {
                     'name': 'Essen',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#B58B80',
-                            'borderColor': '#B58B80'
-                        }
+                        'color': '#B58B80',
+                        'borderColor': '#B58B80'
                     }
                 },
                 {
                     'name': 'München',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4dc0a6',
-                            'borderColor': '#4dc0a6'
-                        }
+                        'color': '#4dc0a6',
+                        'borderColor': '#4dc0a6'
                     }
                 },
                 {
                     'name': 'Haney',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#6A5286',
-                            'borderColor': '#6A5286'
-                        }
+                        'color': '#6A5286',
+                        'borderColor': '#6A5286'
                     }
                 },
                 {
                     'name': 'Port Hammond',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#F89746',
-                            'borderColor': '#F89746'
-                        }
+                        'color': '#F89746',
+                        'borderColor': '#F89746'
                     }
                 },
                 {
                     'name': 'Saint Ouen',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#744DA9',
-                            'borderColor': '#744DA9'
-                        }
+                        'color': '#744DA9',
+                        'borderColor': '#744DA9'
                     }
                 },
                 {
                     'name': 'Watford',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#E8B7B7',
-                            'borderColor': '#E8B7B7'
-                        }
+                        'color': '#E8B7B7',
+                        'borderColor': '#E8B7B7'
                     }
                 },
                 {
                     'name': 'GBP',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#C32D2E',
-                            'borderColor': '#C32D2E'
-                        }
+                        'color': '#C32D2E',
+                        'borderColor': '#C32D2E'
                     }
                 },
                 {
                     'name': 'Paderborn',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#F0C42E',
-                            'borderColor': '#F0C42E'
-                        }
+                        'color': '#F0C42E',
+                        'borderColor': '#F0C42E'
                     }
                 },
                 {
                     'name': 'Dunkerque',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#881798',
-                            'borderColor': '#881798'
-                        }
+                        'color': '#881798',
+                        'borderColor': '#881798'
                     }
                 },
                 {
                     'name': 'Colomiers',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#efa835',
-                            'borderColor': '#efa835'
-                        }
+                        'color': '#efa835',
+                        'borderColor': '#efa835'
                     }
                 },
                 {
                     'name': 'Oxford',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#D8B25C',
-                            'borderColor': '#D8B25C'
-                        }
+                        'color': '#D8B25C',
+                        'borderColor': '#D8B25C'
                     }
                 },
                 {
                     'name': 'Bury',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#FEB80A',
-                            'borderColor': '#FEB80A'
-                        }
+                        'color': '#FEB80A',
+                        'borderColor': '#FEB80A'
                     }
                 },
                 {
                     'name': 'Royal Oak',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#009DD9',
-                            'borderColor': '#009DD9'
-                        }
+                        'color': '#009DD9',
+                        'borderColor': '#009DD9'
                     }
                 },
                 {
                     'name': 'Shawnee',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#F07F09',
-                            'borderColor': '#F07F09'
-                        }
+                        'color': '#F07F09',
+                        'borderColor': '#F07F09'
                     }
                 },
                 {
                     'name': 'Lancaster',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#D34817',
-                            'borderColor': '#D34817'
-                        }
+                        'color': '#D34817',
+                        'borderColor': '#D34817'
                     }
                 },
                 {
                     'name': 'DEM',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#4E342E',
-                            'borderColor': '#4E342E'
-                        }
+                        'color': '#4E342E',
+                        'borderColor': '#4E342E'
                     }
                 },
                 {
                     'name': 'Grevenbroich',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#FFA836',
-                            'borderColor': '#FFA836'
-                        }
+                        'color': '#FFA836',
+                        'borderColor': '#FFA836'
                     }
                 },
                 {
                     'name': 'Distinguish',
                     'itemStyle': {
-                        'normal': {
-                            'color': 'rgba(159,65,62,255)',
-                            'borderColor': 'rgba(159,65,62,255)'
-                        }
+                        'color': 'rgba(159,65,62,255)',
+                        'borderColor': 'rgba(159,65,62,255)'
                     }
                 },
                 {
                     'name': 'Cheltenham',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#FF6551',
-                            'borderColor': '#FF6551'
-                        }
+                        'color': '#FF6551',
+                        'borderColor': '#FF6551'
                     }
                 },
                 {
                     'name': 'Reading',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#72A376',
-                            'borderColor': '#72A376'
-                        }
+                        'color': '#72A376',
+                        'borderColor': '#72A376'
                     }
                 },
                 {
                     'name': 'Pantin',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#69797E',
-                            'borderColor': '#69797E'
-                        }
+                        'color': '#69797E',
+                        'borderColor': '#69797E'
                     }
                 },
                 {
                     'name': 'Kassel',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#e65e20',
-                            'borderColor': '#e65e20'
-                        }
+                        'color': '#e65e20',
+                        'borderColor': '#e65e20'
                     }
                 },
                 {
                     'name': 'Orly',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#6E6A68',
-                            'borderColor': '#6E6A68'
-                        }
+                        'color': '#6E6A68',
+                        'borderColor': '#6E6A68'
                     }
                 },
                 {
                     'name': 'FRF',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#5ba33b',
-                            'borderColor': '#5ba33b'
-                        }
+                        'color': '#5ba33b',
+                        'borderColor': '#5ba33b'
                     }
                 },
                 {
                     'name': 'Cergy',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#B4009E',
-                            'borderColor': '#B4009E'
-                        }
+                        'color': '#B4009E',
+                        'borderColor': '#B4009E'
                     }
                 },
                 {
                     'name': 'Paris',
                     'itemStyle': {
-                        'normal': {
-                            'color': '#666666',
-                            'borderColor': '#666666'
-                        }
+                        'color': '#666666',
+                        'borderColor': '#666666'
                     }
                 }
             ],
