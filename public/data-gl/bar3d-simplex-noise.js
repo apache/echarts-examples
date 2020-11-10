@@ -5,7 +5,7 @@ titleCN: Bar3D - Simplex Noise
 theme: dark
 */
 
-$.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
+$.getScript('https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js').done(function () {
 
 
 var noise = new SimplexNoise(Math.random);

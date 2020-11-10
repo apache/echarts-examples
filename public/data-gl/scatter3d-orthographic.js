@@ -5,7 +5,7 @@ theme: dark
 titleCN: 三维散点图正交投影
 */
 
-$.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
+$.getScript('https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js').done(function () {
 
 
 var noise = new SimplexNoise(Math.random);

@@ -5,7 +5,7 @@ titleCN: 直角坐标系上的向量场
 theme: dark
 */
 
-$.getScript(ROOT_PATH + '/vendors/simplex.js').done(function () {
+$.getScript('https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js').done(function () {
 
 var noise = new SimplexNoise(Math.random);
 var noise2 = new SimplexNoise(Math.random);
