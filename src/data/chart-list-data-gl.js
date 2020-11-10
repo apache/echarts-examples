@@ -20,15 +20,15 @@ export default [
     "title": "3D Bar with Dataset",
     "difficulty": 10
   },
-  {
-    "category": [
-      "bar3D"
-    ],
-    "id": "bar3d-global-population",
-    "tags": [],
-    "title": "Bar3D - Global Population",
-    "difficulty": 10
-  },
+  // {
+  //   "category": [
+  //     "bar3D"
+  //   ],
+  //   "id": "bar3d-global-population",
+  //   "tags": [],
+  //   "title": "Bar3D - Global Population",
+  //   "difficulty": 10
+  // },
   {
     "category": [
       "bar3D"
