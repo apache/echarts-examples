@@ -55,6 +55,21 @@ describes the meta info of this example.
 
 ## Some built-in features available in examples
 
+
+### Import third-party library
+
+For example:
+```js
+$.when(
+    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js'),
+    $.getScript('https://cdn.jsdelivr.net/npm/d3-contour@2.0.0/dist/d3-contour.jXs'),
+).done(function () {
+    // ...
+});
+```
+
+
+
 ### Controller panel
 
 Use this code to enable controller panel for a example:

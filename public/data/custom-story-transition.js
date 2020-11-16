@@ -5,13 +5,13 @@ titleCN: 极简场景变换示例
 difficulty: 11
 */
 
-const _global = {};
-$.get(ROOT_PATH + '/data/asset/js/myTransform.js', function (aggregateJS) {
-    (new Function(aggregateJS)).call(_global);
+const _global = window;
 
-    $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json', function (_rawData) {
-        run(_rawData);
-    });
+$.when(
+    $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
+    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js')
+).done(function (res) {
+    run(res[0]);
 });
 
 let _optionList;

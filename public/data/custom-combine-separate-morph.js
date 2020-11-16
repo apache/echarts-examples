@@ -451,16 +451,15 @@ console.log(app.config);
 
 
 
-var _global = {};
-$.get(ROOT_PATH + '/data/asset/js/myTransform.js', function (aggregateJS) {
-    (new Function(aggregateJS)).call(_global);
+var _global = window;
 
-    $.get(ROOT_PATH + '/data/asset/js/transitionPlayer.js', function (transitionPlayerJS) {
-        (new Function(transitionPlayerJS)).call(_global);
-
-        run();
-    });
+$.when(
+    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js'),
+    $.getScript(ROOT_PATH + '/data/asset/js/transitionPlayer.js'),
+).done(function () {
+    run();
 });
+
 
 function run() {
 
