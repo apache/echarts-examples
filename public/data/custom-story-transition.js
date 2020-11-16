@@ -21,14 +21,11 @@ function run(_rawData) {
     echarts.registerTransform(_global.myTransform.id);
 
 
-    const COLORS = [
-        '#37A2DA', '#e06343', '#37a354', '#b55dba', '#b5bd48', '#8378EA', '#96BFFF'
-    ];
     const COUNTRY_A = 'Germany';
     const COUNTRY_B = 'France';
     const CONTENT_COLORS = {
-        [COUNTRY_A]: '#37a354',
-        [COUNTRY_B]: '#e06343'
+        [COUNTRY_A]: '#5470c6',
+        [COUNTRY_B]: '#91cc75'
     };
     const Z2 = {
         [COUNTRY_A]: 1,

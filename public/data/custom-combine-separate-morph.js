@@ -14,8 +14,15 @@ var CLUSTER_COLORS = [
     '#cc5664', '#9bd6ec', '#ea946e', '#8acaaa', '#f1ec64', '#ee8686', '#a48dc1', '#5da6bc', '#b9dcae'
 ];
 var Z_TAG_COLORS = [
-    '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83',
-    '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'
+    '#5470c6',
+    '#91cc75',
+    '#fac858',
+    '#ee6666',
+    '#73c0de',
+    '#3ba272',
+    '#fc8452',
+    '#9a60b4',
+    '#ea7ccc'
 ];
 var Z_TAG_COLORS_2 = [
     '#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090',
@@ -220,8 +227,8 @@ var optionCreators = {
                 api.value('ATA')
             ]);
             var zTagVal = api.value('Z_TAG');
-            var color1 = getFromPalette(zTagVal, Z_TAG_COLORS);
-            var color2 = getFromPalette(zTagVal, Z_TAG_COLORS_2);
+            var color1 = '#aaa';
+            var color2 = getFromPalette(zTagVal, Z_TAG_COLORS);
             return {
                 type: 'group',
                 x: pos[0],
@@ -231,9 +238,9 @@ var optionCreators = {
                     morph: true,
                     shape: {
                         points: [
-                            [-40, -2],
-                            [40, -2],
-                            [0, -35]
+                            [-35, -2],
+                            [35, -2],
+                            [0, -25]
                         ]
                     },
                     style: {
@@ -247,7 +254,7 @@ var optionCreators = {
                         x: -20,
                         y: 0,
                         width: 40,
-                        height: 30
+                        height: 25
                     },
                     style: {
                         fill: color2
