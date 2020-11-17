@@ -12,8 +12,6 @@ $.when(
     run(res[0]);
 });
 
-var _doReset;
-
 function run(rawData) {
 
     var dataWrap = prepareData(rawData);
@@ -212,12 +210,10 @@ function initChart(seriesData, maxDepth) {
         });
     }
 
-    _doReset = drillDown;
+    // Reset: click on the blank area.
+    myChart.getZr().on('click', function (event) {
+        if (!event.target) {
+            drillDown();
+        }
+    });
 }
-
-// Control panel.
-app.config = {
-    'Reset': function () {
-        _doReset && _doReset();
-    }
-};
