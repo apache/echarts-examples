@@ -211,8 +211,6 @@ option = {
             position: 10
         },
         checkpointStyle: {
-            color: '#555',
-            borderWidth: 0,
             animationDuration: ANIMATION_DURATION_UPDATE
         },
         data: []
