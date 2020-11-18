@@ -17,17 +17,13 @@ option = {
     yAxis: {
         type: 'category',
         data: ['A', 'B', 'C', 'D', 'E'],
-        sort: true,
-        realtimeSort: true,
-        sortSeriesIndex: 0,
         inverse: true,
-        axisLabel: {
-        },
         animationDuration: 300,
         animationDurationUpdate: 300,
         max: 2 // only the largest 3 bars will be displayed
     },
     series: [{
+        realtimeSort: true,
         name: 'X',
         type: 'bar',
         data: data,
