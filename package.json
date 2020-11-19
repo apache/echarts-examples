@@ -7,8 +7,9 @@
     "watch": "npx webpack --config build/webpack.config.js --mode development --devtool sourcemap --watch",
     "localsite": "npm run build && node build/copyResource.js --env localsite",
     "release": "npm run build && node build/copyResource.js --env asf",
-    "dev": "npx concurrently --kill-others \"npm run watch\" \"node build/server.js\"",
-    "build:example": "node tool/build-example.js"
+    "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
+    "build:example": "node tool/build-example.js",
+    "server": "node build/server.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
