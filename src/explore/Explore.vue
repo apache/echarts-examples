@@ -225,6 +225,7 @@ $pd-lg: 20px;
 
     h3 {
         margin-bottom: 20px;
+        padding-bottom: 10px;
         border-bottom: 1px solid #ccd3e8;
         font-weight: normal;
         color: #252839;
