@@ -1,8 +1,8 @@
 /*
 title: Data Transform Simple Aggregate
-category: bar
+category: boxplot
 titleCN: 简单的数据聚合
-difficulty: 3
+difficulty: 4
 */
 
 $.when(
@@ -21,14 +21,18 @@ function run(_rawData) {
             id: 'raw',
             source: _rawData
         }, {
-            id: 'income_aggregate',
+            id: 'since_year',
             fromDatasetId: 'raw',
             transform: [{
                 type: 'filter',
                 config: {
                     dimension: 'Year', gte: 1950
                 }
-            }, {
+            }]
+        }, {
+            id: 'income_aggregate',
+            fromDatasetId: 'since_year',
+            transform: [{
                 type: 'myTransform:aggregate',
                 config: {
                     resultDimensions: [
@@ -44,7 +48,7 @@ function run(_rawData) {
             }, {
                 type: 'sort',
                 config: {
-                    dimension: 'max',
+                    dimension: 'Q3',
                     order: 'asc'
                 }
             }]
@@ -53,17 +57,32 @@ function run(_rawData) {
             text: 'Income since 1950'
         },
         tooltip: {
-            trigger: 'axis'
+            trigger: 'axis',
+            confine: true
         },
         xAxis: {
             name: 'Income',
             nameLocation: 'middle',
-            nameGap: 30
+            nameGap: 30,
+            scale: true,
         },
         yAxis: {
             type: 'category'
         },
-        series: {
+        grid: {
+            bottom: 100
+        },
+        legend: {
+            selected: { detail: false }
+        },
+        dataZoom: [{
+            type: 'inside'
+        }, {
+            type: 'slider',
+            height: 20,
+        }],
+        series: [{
+            name: 'boxplot',
             type: 'boxplot',
             datasetId: 'income_aggregate',
             encode: {
@@ -72,7 +91,33 @@ function run(_rawData) {
                 itemName: ['Country'],
                 tooltip: ['min', 'Q1', 'median', 'Q3', 'max']
             }
-        }
+        }, {
+            name: 'detail',
+            type: 'scatter',
+            datasetId: 'since_year',
+            symbolSize: 6,
+            tooltip: {
+                trigger: 'item'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                align: 'left',
+                verticalAlign: 'middle',
+                rotate: 90,
+                fontSize: 12
+            },
+            itemStyle: {
+                color: '#d00000'
+            },
+            encode: {
+                x: 'Income',
+                y: 'Country',
+                label: 'Year',
+                itemName: 'Year',
+                tooltip: ['Country', 'Year', 'Income']
+            }
+        }]
     };
 
     myChart.setOption(option);
