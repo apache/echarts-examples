@@ -6,14 +6,6 @@ difficulty: 9
 */
 
 
-var _datasourceList = [
-    [[1, 156]],
-    [[1, 54]],
-    [[1, 131]],
-    [[1, 32]],
-    [[1, 103]],
-    [[1, 66]],
-];
 var _panelImageURL = ROOT_PATH + '/data/asset/img/custom-gauge-panel.png';
 var _animationDuration = 1000;
 var _animationDurationUpdate = 1000;
@@ -142,7 +134,7 @@ option = {
     animationDurationUpdate: _animationDurationUpdate,
     animationEasingUpdate: _animationEasingUpdate,
     dataset: {
-        source: _datasourceList[_currentDataIndex]
+        source: [[1, 156]]
     },
     tooltip: {},
     angleAxis: {
@@ -170,16 +162,11 @@ option = {
     }]
 };
 
-// --------------
-// Control Panel
-app.config = {
-    'Click Me ...': function () {
-        _currentDataIndex++;
-        _currentDataIndex >= _datasourceList.length && (_currentDataIndex = 0);
-        myChart.setOption({
-            dataset: {
-                source: _datasourceList[_currentDataIndex]
-            }
-        });
-    }
-};
+setInterval(function () {
+    var nextSource = [[1, Math.round(Math.random() * _valOnRadianMax)]];
+    myChart.setOption({
+        dataset: {
+            source: nextSource
+        }
+    });
+}, 3000);

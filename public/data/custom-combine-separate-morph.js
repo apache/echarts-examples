@@ -6,7 +6,6 @@ difficulty: 11
 */
 
 
-
 var PIE_COLORS = [
     '#e06343', '#37a354', '#b55dba', '#b5bd48', '#8378EA', '#96BFFF'
 ];
@@ -227,8 +226,8 @@ var optionCreators = {
                 api.value('ATA')
             ]);
             var zTagVal = api.value('Z_TAG');
-            var color1 = '#aaa';
-            var color2 = getFromPalette(zTagVal, Z_TAG_COLORS);
+            var color1 = getFromPalette(zTagVal, Z_TAG_COLORS);
+            var color2 = '#aaa';
             return {
                 type: 'group',
                 x: pos[0],
@@ -238,9 +237,9 @@ var optionCreators = {
                     morph: true,
                     shape: {
                         points: [
-                            [-35, -2],
-                            [35, -2],
-                            [0, -25]
+                            [-25, -1],
+                            [25, -1],
+                            [0, -20]
                         ]
                     },
                     style: {
@@ -251,13 +250,15 @@ var optionCreators = {
                     type: 'rect',
                     morph: true,
                     shape: {
-                        x: -20,
+                        x: -15,
                         y: 0,
-                        width: 40,
-                        height: 25
+                        width: 30,
+                        height: 20
                     },
                     style: {
-                        fill: color2
+                        fill: color2,
+                        stroke: '#fff',
+                        lineWidth: 1
                     },
                     transition: ['shape', 'style']
                 }]
@@ -506,6 +507,4 @@ function run() {
     _player.go('Glyph');
 
 }
-
-
 

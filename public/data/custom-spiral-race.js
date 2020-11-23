@@ -18,10 +18,11 @@ var _valOnRadiusStep = 4;
 var _startRadian = Math.PI / 2;
 
 var _colors = [
-    { border: 'green', inner: 'rgba(0,152,0,0.6)' },
-    { border: 'red', inner: 'rgba(152,0,0,0.6)' },
-    { border: 'blue', inner: 'rgba(0,0, 152,0.6)' },
+    {fill: '#5470c6', text: '#2747a5'},
+    {fill: '#91cc75', text: '#447f27'},
+    {fill: '#fac858', text: '#a0761c'}
 ];
+
 var _currentDataIndex = 0;
 var _datasourceList = [
     [ [1, 3], [2, 6], [3, 9] ], // datasource 0
@@ -86,9 +87,7 @@ function addPolygon(params, children, widthRadius, startRadius, endRadian, color
             transition: ['widthRadius', 'startRadius', 'endRadian']
         },
         style: {
-            lineWidth: 1,
-            fill: color.inner,
-            stroke: color.border
+            fill: color.fill
         },
         during: function (apiDuring) {
             apiDuring.setShape('points', makeShapePoints(
@@ -145,7 +144,7 @@ function addLabel(params, children, widthRadius, startRadius, endRadian, color) 
         },
         style: {
             text: makeText(endRadian),
-            fill: color.inner,
+            fill: color.text,
             stroke: '#fff',
             lineWidth: 3,
             fontSize: 16,
@@ -254,4 +253,3 @@ function next() {
 }
 
 setTimeout(next, 1000);
-
