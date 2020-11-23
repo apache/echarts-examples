@@ -9,12 +9,12 @@ difficulty: 9
 var _panelImageURL = ROOT_PATH + '/data/asset/img/custom-gauge-panel.png';
 var _animationDuration = 1000;
 var _animationDurationUpdate = 1000;
-var _animationEasingUpdate = 'elasticOut';
+var _animationEasingUpdate = 'quarticInOut';
 var _valOnRadianMax = 200;
-var _outerRadius = 100;
-var _innerRadius = 85;
+var _outerRadius = 200;
+var _innerRadius = 170;
 var _pointerInnerRadius = 40;
-var _insidePanelRadius = 65;
+var _insidePanelRadius = 140;
 var _currentDataIndex = 0;
 
 function renderItem(params, api) {
@@ -53,7 +53,7 @@ function renderItem(params, api) {
             clipPath: {
                 type: 'polygon',
                 shape: {
-                    points: makePionterPoints(params, polarEndRadian),
+                    points: makePionterPoints(params, polarEndRadian)
                 },
                 extra: {
                     polarEndRadian: polarEndRadian,
@@ -66,7 +66,7 @@ function renderItem(params, api) {
                         makePionterPoints(params, apiDuring.getExtra('polarEndRadian'))
                     );
                 }
-            },
+            }
         }, {
             type: 'circle',
             shape: {
@@ -79,7 +79,7 @@ function renderItem(params, api) {
                 shadowBlur: 25,
                 shadowOffsetX: 0,
                 shadowOffsetY: 0,
-                shadowColor: 'rgb(0,0,50)'
+                shadowColor: 'rgba(76,107,167,0.4)'
             }
         }, {
             type: 'text',
@@ -90,7 +90,8 @@ function renderItem(params, api) {
             },
             style: {
                 text: makeText(valOnRadian),
-                fontSize: 40,
+                fontSize: 50,
+                fontWeight: 700,
                 x: params.coordSys.cx,
                 y: params.coordSys.cy,
                 fill: 'rgb(0,50,190)',
@@ -125,7 +126,7 @@ function makeText(valOnRadian) {
     if (valOnRadian < -10) {
         alert('illegal during val: ' + valOnRadian);
     }
-    return (valOnRadian / _valOnRadianMax * 100).toFixed(0) + '%'
+    return (valOnRadian / _valOnRadianMax * 100).toFixed(0) + '%';
 }
 
 option = {
