@@ -15,23 +15,69 @@ option = {
             var width = 50 + Math.random() * 150;
             var height = 50 + Math.random() * 150;
             var r = Math.random() * 40;
+            var fill = echarts.color.random();
+            var stroke = '#000';
+            var lineWidth = 2 + Math.round(Math.random() * 20);
+
             return {
-                type: 'rect',
-                x: pos[0],
-                y: pos[1],
-                shape: {
-                    x: -width / 2,
-                    y: -height / 2,
-                    width: width,
-                    height: height,
-                    r: r
-                },
-                style: {
-                    fill: echarts.color.random(),
-                    stroke: '#000',
-                    lineWidth: 2 + Math.round(Math.random() * 20)
-                },
-                transition: ['shape', 'style', 'x', 'y']
+                type: 'group',
+                children: [{
+                    type: 'rect',
+                    x: pos[0] / 2,
+                    y: pos[1],
+                    shape: {
+                        x: -width / 2,
+                        y: -height / 2,
+                        width: width,
+                        height: height,
+                        r: r
+                    },
+                    style: {
+                        fill: fill,
+                        stroke: stroke,
+                        lineWidth: lineWidth
+                    },
+                    textContent: {
+                        style: {
+                            text: 'Has transition',
+                            fontSize: 20
+                        }
+                    },
+                    textConfig: {
+                        position: 'bottom'
+                    },
+                    silent: true,
+                    // Has transition
+                    transition: ['shape', 'style', 'x', 'y']
+                }, {
+                    type: 'rect',
+                    x: pos[0] / 2 + params.coordSys.width / 2,
+                    y: pos[1],
+                    shape: {
+                        x: -width / 2,
+                        y: -height / 2,
+                        width: width,
+                        height: height,
+                        r: r
+                    },
+                    style: {
+                        fill: fill,
+                        stroke: stroke,
+                        lineWidth: lineWidth
+                    },
+                    textContent: {
+                        style: {
+                            text: 'No transition',
+                            fontSize: 20
+                        }
+                    },
+                    textConfig: {
+                        position: 'bottom'
+                    },
+                    silent: true,
+                    // No transition
+                    transition: []
+                }]
             };
         },
         data: [[Math.random(), Math.random()]]
