@@ -1,11 +1,15 @@
 import {store} from '../common/store';
 import {URL_PARAMS, SCRIPT_URLS} from '../common/config';
+import {downloadBlob} from '../common/helper';
 
-const hasRootPath = store.code.indexOf('ROOT_PATH') >= 0;
+const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') >= 0;
 const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}'` : '';
 
 export function download() {
-    const code = `<!DOCTYPE html>
+    const code = `<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM ${window.location.href}
+-->
+<!DOCTYPE html>
 <html style="height: 100%">
     <head>
         <meta charset="utf-8">
@@ -41,7 +45,7 @@ var option;
 
 ${rootPathCode}
 
-${store.code}
+${store.sourceCode}
 
 if (option && typeof option === 'object') {
     myChart.setOption(option);
@@ -55,8 +59,6 @@ if (option && typeof option === 'object') {
         type: 'text/html;charset=UTF-8',
         encoding: 'UTF-8'
     });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(file);
-    a.download = URL_PARAMS.c + '.html';
-    a.click();
+    // download the blob
+    downloadBlob(file, URL_PARAMS.c + '.html');
 }

@@ -43,3 +43,18 @@ export function loadScriptsAsync(scripts) {
         return promise;
     }));
 }
+
+export function downloadBlob(blob, fileName) {
+    // for IE
+    if (typeof window.navigator.msSaveBlob === 'function') {
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+    }
+    else {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = fileName;
+        a.click();
+        // should revoke the blob url after the download
+        URL.revokeObjectURL(a.href);
+    }
+}
