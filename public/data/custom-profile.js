@@ -63,6 +63,7 @@ function renderItem(params, api) {
 
     return rectShape && {
         type: 'rect',
+        transition: ['shape'],
         shape: rectShape,
         style: api.style()
     };

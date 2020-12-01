@@ -54,6 +54,7 @@ function renderTrendItem(params, api) {
 
     return {
         type: 'polyline',
+        transition: ['shape'],
         shape: {
             points: points
         },
@@ -71,6 +72,7 @@ function renderAverageItem(param, api) {
 
     return {
         type: 'line',
+        transition: ['shape'],
         shape: {
             x1: point[0] - bandWidth / 2,
             x2: point[0] + bandWidth / 2,
@@ -105,7 +107,7 @@ option = {
     }],
     grid: {
         bottom: 70,
-        top: 120,
+        top: 120
     },
     xAxis: {
         data: months

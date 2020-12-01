@@ -53,6 +53,7 @@ function renderItem(params, api) {
 
         children.push({
             type: 'line',
+            transition: ['shape'],
             shape: makeShape(
                 baseDimIdx,
                 highPoint[baseDimIdx] - halfWidth, highPoint[otherDimIdx],
@@ -61,6 +62,7 @@ function renderItem(params, api) {
             style: style
         }, {
             type: 'line',
+            transition: ['shape'],
             shape: makeShape(
                 baseDimIdx,
                 highPoint[baseDimIdx], highPoint[otherDimIdx],
@@ -69,6 +71,7 @@ function renderItem(params, api) {
             style: style
         }, {
             type: 'line',
+            transition: ['shape'],
             shape: makeShape(
                 baseDimIdx,
                 lowPoint[baseDimIdx] - halfWidth, lowPoint[otherDimIdx],

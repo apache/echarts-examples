@@ -30,6 +30,7 @@ function renderItem(params, api) {
 
     return {
         type: 'polygon',
+        transition: ['shape'],
         shape: {
             points: points
         },
