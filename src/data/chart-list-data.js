@@ -1090,6 +1090,16 @@ export default [
   },
   {
     "category": [
+      "boxplot"
+    ],
+    "id": "data-transform-aggregate",
+    "tags": [],
+    "title": "Data Transform Simple Aggregate",
+    "titleCN": "简单的数据聚合",
+    "difficulty": 4
+  },
+  {
+    "category": [
       "gauge"
     ],
     "id": "gauge-grade",
@@ -1382,6 +1392,16 @@ export default [
     "tags": [],
     "title": "Function Plot",
     "titleCN": "函数绘图",
+    "difficulty": 5
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-race",
+    "tags": [],
+    "title": "Line Race",
+    "titleCN": "动态排序折线图",
     "difficulty": 5
   },
   {
@@ -1873,6 +1893,12 @@ export default [
     "tags": [],
     "title": "ShangHai Index, 2015",
     "titleCN": "2015 年上证指数",
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "covid-america",
+    "tags": [],
     "difficulty": 10
   },
   {
@@ -2455,6 +2481,16 @@ export default [
     "tags": [],
     "title": "Calendar Charts",
     "titleCN": "日力图",
+    "difficulty": 11
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "circle-packing-with-d3",
+    "tags": [],
+    "title": "Circle Packing with d3",
+    "titleCN": "Circle Packing with d3",
     "difficulty": 11
   },
   {
