@@ -47,7 +47,21 @@
         return myrng();
     };
 
+    var jqOriginal = {
+        getScript: $.getScript,
+        getJSON: $.getJSON,
+        get: $.get
+    };
+
+    function isRemoteURL(url) {
+        return url && url.indexOf('http') === 0;
+    }
+
     $.getJSON = function (url, cb) {
+        if (isRemoteURL(url)) {
+            return jqOriginal.getJSON.call($, url, cb);
+        }
+
         const deferred = $.Deferred();
         readLocalFile(url).then(data => {
             data = JSON.parse(data);
@@ -59,6 +73,10 @@
     }
 
     $.get = function (url, cb) {
+        if (isRemoteURL(url)) {
+            return jqOriginal.get.call($, url, cb);
+        }
+
         const deferred = $.Deferred();
         readLocalFile(url).then(data => {
             try {
@@ -66,10 +84,22 @@
             }
             catch(e) {}
 
-            cb(data);
+            cb && cb(data);
             deferred.resolve([data]);
         });
         return deferred;
+    }
+
+    $.getScript = function (url, cb) {
+        if (isRemoteURL(url)) {
+            return jqOriginal.getScript.call($, url, cb);
+        }
+
+        return $.get(url).then(data => {
+            const scriptContent = data[0];
+            (new Function('window', scriptContent))(window);
+            cb && cb(data);
+        });
     }
 
     function addComponentPadding(componentOpt) {
