@@ -50,7 +50,7 @@ option = {
     }, {
         transform: {
             type: 'ecStat:histogram',
-            print: true,
+            // print: true,
             config: { dimensions: [1] }
         }
     }],

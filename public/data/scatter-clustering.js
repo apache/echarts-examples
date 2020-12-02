@@ -91,7 +91,7 @@ option = {
     }, {
         transform: {
             type: 'ecStat:clustering',
-            print: true,
+            // print: true,
             config: {
                 clusterCount: CLUSTER_COUNT,
                 outputType: 'single',

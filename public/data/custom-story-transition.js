@@ -5,8 +5,6 @@ titleCN: 极简场景变换示例
 difficulty: 11
 */
 
-const _global = window;
-
 $.when(
     $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
     $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js')
@@ -17,8 +15,8 @@ $.when(
 let _optionList;
 
 function run(_rawData) {
-    echarts.registerTransform(_global.myTransform.aggregate);
-    echarts.registerTransform(_global.myTransform.id);
+    echarts.registerTransform(myTransform.aggregate);
+    echarts.registerTransform(myTransform.id);
 
 
     const COUNTRY_A = 'Germany';

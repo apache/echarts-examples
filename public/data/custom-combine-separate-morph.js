@@ -92,7 +92,7 @@ var baseOption = {
         fromDatasetId: 'raw',
         transform: {
             type: 'ecStat:clustering',
-            print: true,
+            // print: true,
             config: {
                 clusterCount: 4,
                 dimensions: ['ATA', 'STE'],
@@ -114,7 +114,7 @@ var baseOption = {
         fromDatasetId: 'rawClusters',
         transform: {
             type: 'myTransform:aggregate',
-            print: true,
+            // print: true,
             config: {
                 resultDimensions: [
                     { name: 'COUNT', from: 'ATA', method: 'count' },
@@ -459,8 +459,6 @@ console.log(app.config);
 
 
 
-var _global = window;
-
 $.when(
     $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js'),
     $.getScript(ROOT_PATH + '/data/asset/js/transitionPlayer.js'),
@@ -471,10 +469,10 @@ $.when(
 
 function run() {
 
-    echarts.registerTransform(_global.myTransform.aggregate);
+    echarts.registerTransform(myTransform.aggregate);
     echarts.registerTransform(ecStat.transform.clustering);
 
-    _player = _global.transitionPlayer.create({
+    _player = transitionPlayer.create({
         chart: function () {
             return myChart;
         },
