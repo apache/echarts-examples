@@ -34,6 +34,7 @@ function run(_rawData) {
             type: 'line',
             datasetId: datasetId,
             showSymbol: false,
+            name: country,
             endLabel: {
                 show: true,
                 formatter: function (params) {
@@ -42,6 +43,9 @@ function run(_rawData) {
             },
             labelLayout: {
                 moveOverlap: 'shiftY'
+            },
+            emphasis: {
+                focus: 'series'
             },
             encode: {
                 x: 'Year',
@@ -63,6 +67,7 @@ function run(_rawData) {
             text: 'Income of Germany and France since 1950'
         },
         tooltip: {
+            order: 'valueDesc',
             trigger: 'axis'
         },
         xAxis: {
