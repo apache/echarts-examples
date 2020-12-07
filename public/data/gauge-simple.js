@@ -12,6 +12,9 @@ option = {
     series: [{
         name: 'Pressure',
         type: 'gauge',
+        progress: {
+            show: true
+        },
         detail: {
             valueAnimation: true,
             formatter: '{value}'
