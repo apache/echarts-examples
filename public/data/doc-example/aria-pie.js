@@ -1,6 +1,6 @@
 option = {
     aria: {
-        show: true
+        enabled: true
     },
     title: {
         text: '某站点用户访问来源',
