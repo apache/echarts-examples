@@ -12,3 +12,6 @@ public/vendors/echarts/map/raw
 /public/js
 /public/css
 /public/asset
+/public/data/option
+
+tmp

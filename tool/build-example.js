@@ -1,5 +1,5 @@
 const fs = require('fs');
-const glob = require('glob');
+const globby = require('globby');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const matter = require('gray-matter');
@@ -10,6 +10,20 @@ const cwebpBin = require('cwebp-bin');
 const util = require('util');
 const chalk = require('chalk');
 const sharp = require('sharp');
+const fse = require('fs-extra');
+
+function optionToJson(obj, prop) {
+    let json = JSON.stringify(obj, function(key, value) {
+        if (typeof value === 'function') {
+            return 'expr: ' + value.toString();
+        }
+        return value;
+    }, 2);
+    return json;
+};
+function codeSize(code) {
+    return Buffer.byteLength(code, 'utf-8');
+}
 
 const parser = new argparse.ArgumentParser({
     addHelp: true
@@ -119,7 +133,22 @@ async function takeScreenshot(
         const fileBase = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}`;
         const filePathTmp = `${fileBase}-tmp.png`;
         const filePath = `${fileBase}.png`;
+
+        // Save option for further tests.
+        const option = await page.evaluate(() => {
+            return _$getEChartsOption()
+        });
+        const optionStr = optionToJson(option);
+        if (codeSize(optionStr) > 300 * 1024) {
+            console.log(`${basename} excceeds 300kb. Not save to option json`);
+        }
+        else {
+            fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
+            fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
+        }
+
         console.log(filePath);
+
         await page.screenshot({
             path: filePathTmp,
             type: 'png'
@@ -143,7 +172,6 @@ async function takeScreenshot(
     // return;
 
     let browser;
-    // https://github.com/GoogleChrome/puppeteer/issues/1260
     if (BUILD_THUMBS) {
         browser = await puppeteer.launch({
             headless: false,
@@ -159,121 +187,119 @@ async function takeScreenshot(
     // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
     const screenshotBlackList = [];
 
+    const files = await globby(`${rootDir}public/${sourceFolder}/*.js`);
 
-    glob(`${rootDir}public/${sourceFolder}/*.js`, async function (err, files) {
+    const exampleList = [];
 
-        const exampleList = [];
+    const threadNum = BUILD_THUMBS ? 16 : 1;
+    let buckets = [];
+    for (let i = 0; i < files.length;) {
+        const bucket = [];
+        for (let k = 0; k < threadNum; k++) {
+            const fileName = files[i++];
+            if (!fileName) {
+                continue;
+            }
+            const basename = path.basename(fileName, '.js');
 
-        const threadNum = BUILD_THUMBS ? 16 : 1;
-        let buckets = [];
-        for (let i = 0; i < files.length;) {
-            const bucket = [];
-            for (let k = 0; k < threadNum; k++) {
-                const fileName = files[i++];
-                if (!fileName) {
+            if (
+                !matchPattern || matchPattern.some(function (pattern) {
+                    return minimatch(basename, pattern);
+                })
+            ) {
+                bucket.push({
+                    buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
+                    basename
+                });
+            }
+        }
+        buckets.push(bucket);
+    }
+
+    for (let theme of themeList) {
+        for (let bucket of buckets) {
+            const promises = [];
+
+            for (const {basename, buildThumb} of bucket) {
+
+                // Remove mapbox temporary
+                if (basename.indexOf('mapbox') >= 0
+                    || basename.indexOf('shanghai') >= 0
+                    || basename === 'lines3d-taxi-routes-of-cape-town'
+                    || basename === 'lines3d-taxi-chengdu'
+                    || basename === 'map3d-colorful-cities'
+                ) {
                     continue;
                 }
-                const basename = path.basename(fileName, '.js');
 
-                if (
-                    !matchPattern || matchPattern.some(function (pattern) {
-                        return minimatch(basename, pattern);
-                    })
-                ) {
-                    bucket.push({
-                        buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
-                        basename
+                let fmResult;
+                try {
+                    const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
+                    fmResult = matter(code, {
+                        delimiters: ['/*', '*/']
                     });
                 }
-            }
-            buckets.push(bucket);
-        }
+                catch (e) {
+                    fmResult = {
+                        data: {}
+                    };
+                }
 
-        for (let theme of themeList) {
-            for (let bucket of buckets) {
-                const promises = [];
+                // const descHTML = marked(fmResult.body);
 
-                for (const {basename, buildThumb} of bucket) {
-
-                    // Remove mapbox temporary
-                    if (basename.indexOf('mapbox') >= 0
-                        || basename.indexOf('shanghai') >= 0
-                        || basename === 'lines3d-taxi-routes-of-cape-town'
-                        || basename === 'lines3d-taxi-chengdu'
-                        || basename === 'map3d-colorful-cities'
-                    ) {
-                        continue;
-                    }
-
-                    let fmResult;
-                    try {
-                        const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
-                        fmResult = matter(code, {
-                            delimiters: ['/*', '*/']
+                try {
+                    const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
+                    const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
+                    if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
+                        exampleList.push({
+                            category: category,
+                            id: basename,
+                            tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
+                            theme: fmResult.data.theme,
+                            title: fmResult.data.title,
+                            titleCN: fmResult.data.titleCN,
+                            difficulty: +difficulty
                         });
                     }
-                    catch (e) {
-                        fmResult = {
-                            data: {}
-                        };
-                    }
-
-                    // const descHTML = marked(fmResult.body);
-
-                    try {
-                        const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
-                        const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
-                        if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
-                            exampleList.push({
-                                category: category,
-                                id: basename,
-                                tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
-                                theme: fmResult.data.theme,
-                                title: fmResult.data.title,
-                                titleCN: fmResult.data.titleCN,
-                                difficulty: +difficulty
-                            });
-                        }
-                        // Do screenshot
-                        if (buildThumb) {
-                            promises.push(takeScreenshot(
-                                browser,
-                                theme,
-                                rootDir,
-                                basename,
-                                fmResult.data.shotWidth,
-                                fmResult.data.shotDelay
-                            ));
-                        }
-                    }
-                    catch (e) {
-                        await browser.close();
-                        throw new Error(e.toString());
+                    // Do screenshot
+                    if (buildThumb) {
+                        promises.push(takeScreenshot(
+                            browser,
+                            theme,
+                            rootDir,
+                            basename,
+                            fmResult.data.shotWidth,
+                            fmResult.data.shotDelay
+                        ));
                     }
                 }
-                if (promises.length) {
-                    await Promise.all(promises);
+                catch (e) {
+                    await browser.close();
+                    throw new Error(e.toString());
                 }
             }
-        }
-
-        if (BUILD_THUMBS) {
-            await browser.close();
-        }
-
-        exampleList.sort(function (a, b) {
-            if (a.difficulty === b.difficulty) {
-                return a.id.localeCompare(b.id);
+            if (promises.length) {
+                await Promise.all(promises);
             }
-            return a.difficulty - b.difficulty;
-        });
+        }
+    }
 
-        const code = `
+    if (BUILD_THUMBS) {
+        await browser.close();
+    }
+
+    exampleList.sort(function (a, b) {
+        if (a.difficulty === b.difficulty) {
+            return a.id.localeCompare(b.id);
+        }
+        return a.difficulty - b.difficulty;
+    });
+
+    const code = `
 /* eslint-disable */
 // THIS FILE IS GENERATED, DON'T MODIFY */
 export default ${JSON.stringify(exampleList, null, 2)}`;
-        if (!matchPattern) {
-            fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
-        }
-    });
+    if (!matchPattern) {
+        fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
+    }
 })();
