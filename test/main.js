@@ -20,6 +20,25 @@ const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
 
+const TEMPLATE_CODE = `
+echarts.registerPreprocessor(function (option) {
+    option.animation = false;
+    if (option.series) {
+        if (!(option.series instanceof Array)) {
+            option.series = [option.series];
+        }
+        option.series.forEach(function (seriesOpt) {
+            if (seriesOpt.type === 'graph') {
+                seriesOpt.force = seriesOpt.force || {};
+                seriesOpt.force.layoutAnimation = false;
+            }
+            seriesOpt.progressive = 1e5;
+            seriesOpt.animation = false;
+        });
+    }
+});
+`
+
 async function prepare() {
     fse.removeSync(TMP_DIR);
     fse.removeSync(RUN_CODE_DIR);
@@ -49,8 +68,15 @@ async function buildRunCode() {
             'CanvasRenderer'
         ]);
 
+        if (deps.includes('MapChart') || deps.includes('GeoComponent')) {
+            console.warn(chalk.yellow('Ignored map tests.'));
+        }
+
         const legacyCode = `
 ${buildLegacyPartialImportCode(deps, true)}
+
+${TEMPLATE_CODE}
+
 const ROOT_PATH = 'public';
 const app = {};
 
@@ -59,11 +85,14 @@ var option;
 
 ${jsCode}
 
-myChart.setOption(option);
+option && myChart.setOption(option);
 `;
         // TODO: TS is mainly for type checking of option currently.
         const tsCode = `
 ${buildPartialImportCode(deps, true)}
+
+${TEMPLATE_CODE}
+
 const ROOT_PATH = 'public';
 const app: any = {};
 
@@ -72,7 +101,7 @@ var option: ECOption;
 
 ${jsCode}
 
-myChart.setOption(option);
+option && myChart.setOption(option);
 `;
         const testName = nodePath.basename(fileName, '.json');
         const tsFile = nodePath.join(RUN_CODE_DIR, testName + '.ts');
@@ -184,7 +213,7 @@ function webpackBundle(entry, result) {
     })
 }
 
-function esbuildBundle(entry, result) {
+function esbuildBundle(entry, result, minify) {
 
     const echartsResolvePlugin = {
         name: 'echarts-resolver',
@@ -202,10 +231,10 @@ function esbuildBundle(entry, result) {
     return esbuild.build({
         entryPoints: entry,
         bundle: true,
-        minify: true,
+        minify: minify,
         plugins: [echartsResolvePlugin],
         define: {
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify(minify ? 'production' : 'development')
         },
         outdir: BUNDLE_DIR
     });
@@ -218,7 +247,7 @@ async function bundle(entryFiles, result) {
     // }
     // await bundleSingle(entry, result);
     for (let file of entryFiles) {
-        await esbuildBundle([file], result);
+        await esbuildBundle([file], result, false);
         console.log(chalk.green(`Bundled ${file}`));
     }
 }
