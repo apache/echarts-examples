@@ -52,6 +52,32 @@ const CHARTS_MAP = {
     custom: 'CustomChart'
 }
 
+const COMPONENTS_MAP_REVERSE = {};
+const CHARTS_MAP_REVERSE = {};
+const RENDERERS_MAP_REVERSE = {
+    'SVGRenderer': 'svg',
+    'CanvasRenderer': 'canvas'
+}
+
+const EXCLUDES = [
+    'xAxis', 'yAxis', 'angleAxis', 'radiusAxis'
+];
+
+Object.keys(COMPONENTS_MAP).forEach(key => {
+    // Exclude dependencies.
+    if (EXCLUDES.includes(key)) {
+        return;
+    }
+    COMPONENTS_MAP_REVERSE[COMPONENTS_MAP[key]] = key;
+});
+Object.keys(CHARTS_MAP).forEach(key => {
+    // Exclude dependencies.
+    if (EXCLUDES.includes(key)) {
+        return;
+    }
+    CHARTS_MAP_REVERSE[CHARTS_MAP[key]] = key;
+});
+
 module.exports.collectDeps = function collectDeps(option) {
     let deps = [];
     if (option.options) {
@@ -63,7 +89,8 @@ module.exports.collectDeps = function collectDeps(option) {
             deps = deps.concat(collectDeps(option.baseOption))
         }
 
-        return deps;
+        // Remove duplicates
+        return Array.from(new Set(deps));
     }
 
     Object.keys(option).forEach((key) => {
@@ -154,18 +181,18 @@ module.exports.buildLegacyPartialImportCode = function (deps, isESM) {
     const modules = [];
     deps.forEach(function (dep) {
         if (dep.endsWith('Renderers')) {
-            modules.push(`zrender/${rootFolder}/${dep}/${dep}`);
+            modules.push(`zrender/${rootFolder}/${RENDERERS_MAP_REVERSE[dep]}/${RENDERERS_MAP_REVERSE[dep]}`);
         }
         else if (dep.endsWith('Chart')) {
-            modules.push(`echarts/${rootFolder}/chart/${dep}`);
+            modules.push(`echarts/${rootFolder}/chart/${CHARTS_MAP_REVERSE[dep]}`);
         }
         else if (dep.endsWith('Component')) {
-            modules.push(`echarts/${rootFolder}/component/${dep}`);
+            modules.push(`echarts/${rootFolder}/component/${COMPONENTS_MAP_REVERSE[dep]}`);
         }
     });
 
     return isESM ? `
-import * as echarts from 'echarts/${rootFolder}/echarts';
+import * as echarts from 'echarts/echarts.blank';
 ${modules.map(mod => {
     return `import '${mod}';`;
 }).join('\n')}

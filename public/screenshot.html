@@ -50,7 +50,7 @@
             _$finalOption = echarts.util.merge(_$finalOption, option);
         }
 
-        _$oldSetOption.apply(this, arguments);
+        return _$oldSetOption.apply(this, arguments);
     }
     var _$getEChartsOption = function () {
         return _$finalOption;

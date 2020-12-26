@@ -139,13 +139,13 @@ async function takeScreenshot(
             return _$getEChartsOption()
         });
         const optionStr = optionToJson(option);
-        if (codeSize(optionStr) > 300 * 1024) {
-            console.log(`${basename} excceeds 300kb. Not save to option json`);
-        }
-        else {
-            fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
-            fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
-        }
+        // if (codeSize(optionStr) > 300 * 1024) {
+        //     console.log(`${basename} excceeds 300kb. Not save to option json`);
+        // }
+        // else {
+        fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
+        fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
+        // }
 
         console.log(filePath);
 

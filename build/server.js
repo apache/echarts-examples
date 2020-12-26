@@ -12,3 +12,9 @@ require('http').createServer(function (request, response) {
 setTimeout(() => {
     open('http://127.0.0.1:3002/en/index.html');
 }, 3000);
+
+process.on('SIGINT', function() {
+    console.log('Closing');
+    // Close through ctrl + c;
+    process.exit();
+});
