@@ -68,13 +68,15 @@ async function buildRunCode() {
             'CanvasRenderer'
         ]);
 
+        const hasECStat = jsCode.indexOf('ecStat') >= 0;
+
         if (deps.includes('MapChart') || deps.includes('GeoComponent')) {
             console.warn(chalk.yellow('Ignored map tests.'));
         }
 
         const legacyCode = `
 ${buildLegacyPartialImportCode(deps, true)}
-
+${hasECStat ? `import ecStat from 'echarts-stat';` : ''}
 ${TEMPLATE_CODE}
 
 const ROOT_PATH = 'public';
@@ -90,7 +92,7 @@ option && myChart.setOption(option);
         // TODO: TS is mainly for type checking of option currently.
         const tsCode = `
 ${buildPartialImportCode(deps, true)}
-
+${hasECStat ? `import ecStat from 'echarts-stat';` : ''}
 ${TEMPLATE_CODE}
 
 const ROOT_PATH = 'public';
@@ -218,7 +220,7 @@ function esbuildBundle(entry, result, minify) {
     const echartsResolvePlugin = {
         name: 'echarts-resolver',
         setup(build) {
-            build.onResolve({ filter: /^echarts/ }, args => {
+            build.onResolve({ filter: /^(echarts\/|echarts$)/ }, args => {
                 return {
                     path: args.path.replace(
                         /^echarts/, nodePath.join(__dirname, '../../echarts-next')
@@ -282,19 +284,20 @@ async function runExamples(jsFiles, result) {
                 '--mute-audio'
             ]
         });
-        for (let file of jsFiles) {
+
+        await runTasks(jsFiles, async (file) => {
             const page = await browser.newPage();
             const basename = nodePath.basename(file, '.js');
             await page.setViewport({ width: 800, height: 600 });
 
             page.on('pageerror', function (err) {
-                console.error(chalk.red('[pageerror in]', basename));
+                console.error(chalk.red(`[PAGE ERROR] [${basename}]`));
                 console.error(chalk.red(err.toString()));
             });
             page.on('console', msg => {
                 const text = msg.text();
                 if (!IGNORE_LOG.find(a => text.indexOf(a) >= 0)) {
-                    console.log('PAGE LOG:', text);
+                    console.log(chalk.gray(`[PAGE LOG] [${basename}]: ${text}`));
                 }
             });
 
@@ -312,8 +315,10 @@ async function runExamples(jsFiles, result) {
                 path: nodePath.resolve(SCREENSHOTS_DIR, basename + '.png')
             });
 
+            await page.close();
+
             console.log(chalk.green(`Rendered ${file}`));
-        }
+        }, 8);
     }
     catch (e) {
         server.close();
