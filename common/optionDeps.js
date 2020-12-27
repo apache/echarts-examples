@@ -62,7 +62,10 @@ const RENDERERS_MAP_REVERSE = {
 // Component that will be injected automatically in preprocessor
 // These should be excluded util find they were used explicitly.
 const MARKERS = ['markLine', 'markArea', 'markPoint'];
-const INJECTED_COMPONENTS = [...MARKERS, 'grid'];
+const INJECTED_COMPONENTS = [
+    ...MARKERS, 'grid', 'axisPointer',
+    'aria'  // TODO aria
+];
 
 // Component that was dependent.
 const DEPENDENT_COMPONENTS = [
@@ -101,6 +104,11 @@ module.exports.collectDeps = function collectDeps(option) {
 
     Object.keys(option).forEach((key) => {
         if (INJECTED_COMPONENTS.includes(key)) {
+            return;
+        }
+        const val = option[key];
+
+        if (Array.isArray(val) && !val.length) {
             return;
         }
 
@@ -170,13 +178,10 @@ type ECOption = echarts.ComposeOption<
 
     return `
 import * as echarts from 'echarts/core';
-
 import {${getImportsPartCode(componentsImports)}
 } from 'echarts/components';
-
 import {${getImportsPartCode(chartsImports)}
 } from 'echarts/charts';
-
 import {${getImportsPartCode(renderersImports)}
 } from 'echarts/renderers';
 

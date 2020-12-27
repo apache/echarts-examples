@@ -114,18 +114,21 @@ async function buildRunCode() {
         await fse.writeFile(
             nodePath.join(RUN_CODE_DIR, testName + '.ts'),
             prettier.format(fullTsCode, {
+                singleQuote: true,
                 parser: 'typescript'
             }), 'utf-8'
         );
         await fse.writeFile(
             nodePath.join(RUN_CODE_DIR, testName + '.minimal.ts'),
             prettier.format(minimalTsCode, {
+                singleQuote: true,
                 parser: 'typescript'
             }), 'utf-8'
         );
         await fse.writeFile(
             nodePath.join(RUN_CODE_DIR, testName + '.minimal.legacy.js'),
             prettier.format(legacyCode, {
+                singleQuote: true,
                 parser: 'babel'
             }), 'utf-8'
         );
