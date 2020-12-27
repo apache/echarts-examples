@@ -59,20 +59,27 @@ const RENDERERS_MAP_REVERSE = {
     'CanvasRenderer': 'canvas'
 }
 
-const EXCLUDES = [
+
+// Component that will be injected automatically in preprocessor
+// These should be excluded util find they were used explicitly.
+const MARKERS = ['markLine', 'markArea', 'markPoint'];
+const INJECTED_COMPONENTS = [...MARKERS, 'grid'];
+
+// Component that was dependent.
+const DEPENDENT_COMPONENTS = [
     'xAxis', 'yAxis', 'angleAxis', 'radiusAxis'
 ];
 
 Object.keys(COMPONENTS_MAP).forEach(key => {
     // Exclude dependencies.
-    if (EXCLUDES.includes(key)) {
+    if (DEPENDENT_COMPONENTS.includes(key)) {
         return;
     }
     COMPONENTS_MAP_REVERSE[COMPONENTS_MAP[key]] = key;
 });
 Object.keys(CHARTS_MAP).forEach(key => {
     // Exclude dependencies.
-    if (EXCLUDES.includes(key)) {
+    if (DEPENDENT_COMPONENTS.includes(key)) {
         return;
     }
     CHARTS_MAP_REVERSE[CHARTS_MAP[key]] = key;
@@ -94,6 +101,10 @@ module.exports.collectDeps = function collectDeps(option) {
     }
 
     Object.keys(option).forEach((key) => {
+        if (INJECTED_COMPONENTS.includes(key)) {
+            return;
+        }
+
         if (COMPONENTS_MAP[key]) {
             deps.push(COMPONENTS_MAP[key]);
         }
@@ -108,7 +119,7 @@ module.exports.collectDeps = function collectDeps(option) {
         if (CHARTS_MAP[seriesOpt.type]) {
             deps.push(CHARTS_MAP[seriesOpt.type]);
         }
-        ['markLine', 'markArea', 'markPoint'].forEach(markerType => {
+        MARKERS.forEach(markerType => {
             if (seriesOpt[markerType]) {
                 deps.push(COMPONENTS_MAP[markerType]);
             }

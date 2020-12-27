@@ -39,21 +39,21 @@
     });
 
     var myChart = echarts.init(document.getElementById('viewport'), params.t || null);
-    var _$oldSetOption = myChart.setOption;
-    var _$finalOption;
-    myChart.setOption = function (option, notMerge) {
-        if (!_$finalOption || notMerge === true || (notMerge && notMerge.notMerge)) {
-            _$finalOption = option;
-        }
-        else {
-            // TODO Should be same logic with echarts merge.
-            _$finalOption = echarts.util.merge(_$finalOption, option);
-        }
+    // var _$oldSetOption = myChart.setOption;
+    // var _$finalOption;
+    // myChart.setOption = function (option, notMerge) {
+    //     if (!_$finalOption || notMerge === true || (notMerge && notMerge.notMerge)) {
+    //         _$finalOption = option;
+    //     }
+    //     else {
+    //         // TODO Should be same logic with echarts merge.
+    //         _$finalOption = echarts.util.merge(_$finalOption, option);
+    //     }
 
-        return _$oldSetOption.apply(this, arguments);
-    }
+    //     return _$oldSetOption.apply(this, arguments);
+    // }
     var _$getEChartsOption = function () {
-        return _$finalOption;
+        return myChart.getOption();
     }
     var app = {};
 </script>

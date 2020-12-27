@@ -2,7 +2,8 @@
 
 const fs = require('fs');
 const globby = require('globby');
-const {collectDeps, buildMinimalImportCode, buildLegacyMinimalImportCode} = require('../common/optionDeps');
+const {collectDeps} = require('../common/optionDeps');
+const {buildExampleCode} = require('../common/buildCode');
 const nodePath = require('path');
 const { runTasks } = require('../common/task');
 const fse = require('fs-extra');
@@ -13,6 +14,7 @@ const nStatic = require('node-static');
 const webpack = require('webpack');
 const esbuild = require('esbuild');
 const puppeteer = require('puppeteer');
+const pixelmatch = require('pixelmatch');
 
 const EXAMPLE_DIR =  `${__dirname}/../public/`;
 const TMP_DIR = `${__dirname}/tmp`;
@@ -41,6 +43,19 @@ echarts.registerPreprocessor(function (option) {
     }
 });
 `
+
+function buildPrepareCode(isESM) {
+    return `
+${isESM ? `import _seedrandom from 'seedrandom';`
+    : `const _seedrandom = require('seedrandom');`
+}
+const _myrng = _seedrandom('echarts');
+Math.random = function () {
+    return _myrng();
+};
+${TEMPLATE_CODE}
+`;
+}
 
 async function prepare() {
     fse.removeSync(TMP_DIR);
@@ -71,55 +86,30 @@ async function buildRunCode() {
             'CanvasRenderer'
         ]);
 
-        const hasECStat = jsCode.indexOf('ecStat') >= 0;
-
         if (deps.includes('MapChart') || deps.includes('GeoComponent')) {
             console.warn(chalk.yellow('Ignored map tests.'));
+            return;
         }
 
-        const COMMON_CODE = `
-${hasECStat ? `import ecStat from 'echarts-stat';` : ''}
-${TEMPLATE_CODE}
-
-const ROOT_PATH = 'public';
-        `
-
-        const legacyCode = `
-${buildLegacyMinimalImportCode(deps, LEGACY_ESM)}
-${COMMON_CODE}
-
-const app = {};
-
-const myChart = echarts.init(document.getElementById('main'));
-var option;
-
-${jsCode}
-
-option && myChart.setOption(option);
-`;
-
-        const COMMON_TS_CODE = `
-${COMMON_CODE}
-const app: any = {};
-
-const myChart = echarts.init(document.getElementById('main'));
-var option: ECOption;
-
-${jsCode}
-option && myChart.setOption(option);`
-
-        // TODO: TS is mainly for type checking of option currently.
-        const minimalTsCode = `
-${buildMinimalImportCode(deps, true)}
-${COMMON_TS_CODE}
-`;
-        const fullTsCode = `
-import * as echarts from 'echarts';
-type ECOption = echarts.EChartsOption;
-${COMMON_TS_CODE}
-`;
-
         const testName = nodePath.basename(fileName, '.json');
+        const ROOT_PATH = 'public';
+
+        const fullTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
+            minimal: false,
+            ts: true,
+            ROOT_PATH
+        });
+        const minimalTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
+            minimal: true,
+            ts: true,
+            ROOT_PATH
+        });
+        const legacyCode = buildExampleCode(buildPrepareCode(false) + jsCode, deps, {
+            minimal: true,
+            legacy: true,
+            ts: false,
+            ROOT_PATH
+        });
 
         await fse.writeFile(
             nodePath.join(RUN_CODE_DIR, testName + '.ts'),
@@ -375,14 +365,16 @@ async function main() {
         };
     }
 
-    console.log(chalk.gray('Compiling TypeScript'));
+    console.log('Compiling TypeScript');
     await compileTs(tsFiles, result);
 
-    console.log(chalk.gray('Bundling'));
+    console.log('Bundling');
     await bundle(await globby(nodePath.join(RUN_CODE_DIR, '*.js')), result);
 
-    console.log(chalk.gray('Running examples'));
+    console.log('Running examples');
     await runExamples(await globby(nodePath.join(BUNDLE_DIR, '*.js')), result);
+
+    console.log('Comparing Results');
 
     fs.writeFileSync(__dirname + '/tmp/result.json', JSON.stringify(
         result, null, 2
