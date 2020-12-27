@@ -59,7 +59,6 @@ const RENDERERS_MAP_REVERSE = {
     'CanvasRenderer': 'canvas'
 }
 
-
 // Component that will be injected automatically in preprocessor
 // These should be excluded util find they were used explicitly.
 const MARKERS = ['markLine', 'markArea', 'markPoint'];

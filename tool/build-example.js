@@ -11,6 +11,7 @@ const util = require('util');
 const chalk = require('chalk');
 const sharp = require('sharp');
 const fse = require('fs-extra');
+const { compareImage } = require('../common/compareImage');
 
 function optionToJson(obj, prop) {
     let json = JSON.stringify(obj, function(key, value) {
@@ -131,6 +132,7 @@ async function takeScreenshot(
         await waitTime(200);
         await waitTime(screenshotDelay || 0);
         const fileBase = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}`;
+        const filePathTmpRaw = `${fileBase}-tmp-raw.png`;
         const filePathTmp = `${fileBase}-tmp.png`;
         const filePath = `${fileBase}.png`;
 
@@ -147,16 +149,34 @@ async function takeScreenshot(
         fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
         // }
 
-        console.log(filePath);
-
         await page.screenshot({
-            path: filePathTmp,
+            path: filePathTmpRaw,
             type: 'png'
         });
-        await sharp(filePathTmp).resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
-            .toFile(filePath);
+
+        await sharp(filePathTmpRaw)
+            .resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
+            .toFile(filePathTmp);
+
+        const {diffRatio} = await compareImage(filePath, filePathTmp, 0.1);
+
+        console.log(filePath);
+        if (diffRatio < 0.01) {
+            console.log('Not changed');
+        }
+        else {
+            console.log(diffRatio);
+            fs.copyFileSync(filePathTmp, filePath);
+            await convertToWebP(filePath);
+        }
+
+        try {
+            fs.unlinkSync(filePathOld);
+        }
+        catch (e) {}
+
+        fs.unlinkSync(filePathTmpRaw);
         fs.unlinkSync(filePathTmp);
-        await convertToWebP(filePath);
     }
     catch (e) {
         console.error(url);
