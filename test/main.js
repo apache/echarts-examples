@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const globby = require('globby');
-const {collectDeps, buildPartialImportCode, buildLegacyPartialImportCode} = require('../common/optionDeps');
+const {collectDeps, buildMinimalImportCode, buildLegacyMinimalImportCode} = require('../common/optionDeps');
 const nodePath = require('path');
 const { runTasks } = require('../common/task');
 const fse = require('fs-extra');
@@ -19,6 +19,9 @@ const TMP_DIR = `${__dirname}/tmp`;
 const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
+
+const MINIFY_BUNDLE = true;
+const LEGACY_ESM = false;
 
 const TEMPLATE_CODE = `
 echarts.registerPreprocessor(function (option) {
@@ -54,7 +57,7 @@ async function prepare() {
 async function buildRunCode() {
     const files = await globby(`${EXAMPLE_DIR}/data/option/*.json`);
 
-    const testsList = await runTasks(files, async (fileName) => {
+    await runTasks(files, async (fileName) => {
         const optionCode = await fse.readFile(fileName, 'utf-8');
         const option = JSON.parse(optionCode);
         const jsCode = await fse.readFile(nodePath.join(
@@ -74,12 +77,17 @@ async function buildRunCode() {
             console.warn(chalk.yellow('Ignored map tests.'));
         }
 
-        const legacyCode = `
-${buildLegacyPartialImportCode(deps, true)}
+        const COMMON_CODE = `
 ${hasECStat ? `import ecStat from 'echarts-stat';` : ''}
 ${TEMPLATE_CODE}
 
 const ROOT_PATH = 'public';
+        `
+
+        const legacyCode = `
+${buildLegacyMinimalImportCode(deps, LEGACY_ESM)}
+${COMMON_CODE}
+
 const app = {};
 
 const myChart = echarts.init(document.getElementById('main'));
@@ -89,33 +97,44 @@ ${jsCode}
 
 option && myChart.setOption(option);
 `;
-        // TODO: TS is mainly for type checking of option currently.
-        const tsCode = `
-${buildPartialImportCode(deps, true)}
-${hasECStat ? `import ecStat from 'echarts-stat';` : ''}
-${TEMPLATE_CODE}
 
-const ROOT_PATH = 'public';
+        const COMMON_TS_CODE = `
+${COMMON_CODE}
 const app: any = {};
 
 const myChart = echarts.init(document.getElementById('main'));
 var option: ECOption;
 
 ${jsCode}
+option && myChart.setOption(option);`
 
-option && myChart.setOption(option);
+        // TODO: TS is mainly for type checking of option currently.
+        const minimalTsCode = `
+${buildMinimalImportCode(deps, true)}
+${COMMON_TS_CODE}
 `;
+        const fullTsCode = `
+import * as echarts from 'echarts';
+type ECOption = echarts.EChartsOption;
+${COMMON_TS_CODE}
+`;
+
         const testName = nodePath.basename(fileName, '.json');
-        const tsFile = nodePath.join(RUN_CODE_DIR, testName + '.ts');
 
         await fse.writeFile(
-            tsFile,
-            prettier.format(tsCode, {
+            nodePath.join(RUN_CODE_DIR, testName + '.ts'),
+            prettier.format(fullTsCode, {
                 parser: 'typescript'
             }), 'utf-8'
         );
         await fse.writeFile(
-            nodePath.join(RUN_CODE_DIR, testName + '.legacy.js'),
+            nodePath.join(RUN_CODE_DIR, testName + '.minimal.ts'),
+            prettier.format(minimalTsCode, {
+                parser: 'typescript'
+            }), 'utf-8'
+        );
+        await fse.writeFile(
+            nodePath.join(RUN_CODE_DIR, testName + '.minimal.legacy.js'),
             prettier.format(legacyCode, {
                 parser: 'babel'
             }), 'utf-8'
@@ -123,10 +142,7 @@ option && myChart.setOption(option);
         console.log(
             chalk.green('Generated: ', nodePath.join(RUN_CODE_DIR, testName + '.ts'))
         );
-        return tsFile;
     }, 20);
-
-    return testsList;
 }
 
 async function compileTs(tsTestFiles, result) {
@@ -159,6 +175,10 @@ async function compileTs(tsTestFiles, result) {
             const basename = nodePath.basename(diagnostic.file.fileName, '.ts');
             // console.log(chalk.red(`${diagnostic.file.fileName} (${line + 1},${character + 1})`));
             // console.log(chalk.gray(message));
+
+            if (!result[basename]) {
+                console.log(diagnostic.file.fileName);
+            }
 
             result[basename].compileErrors.push({
                 location: [line + 1, character + 1],
@@ -221,11 +241,23 @@ function esbuildBundle(entry, result, minify) {
         name: 'echarts-resolver',
         setup(build) {
             build.onResolve({ filter: /^(echarts\/|echarts$)/ }, args => {
+                const path = args.path.replace(
+                    /^echarts/, nodePath.join(__dirname, '../../echarts-next')
+                );
                 return {
-                    path: args.path.replace(
-                        /^echarts/, nodePath.join(__dirname, '../../echarts-next')
-                    ) + '.js'
+                    path: args.path === 'echarts' ? (path + '/index.js') : (path + '.js')
                 };
+            });
+        }
+    }
+    const zrenderResolverPlugin = {
+        name: 'zrender-resolver',
+        setup(build) {
+            build.onResolve({ filter: /^zrender/ }, args => {
+                const path = args.path.replace(
+                    /^zrender/, nodePath.join(__dirname, '../../zrender-next')
+                ) + '.js';
+                return { path };
             });
         }
     }
@@ -234,7 +266,7 @@ function esbuildBundle(entry, result, minify) {
         entryPoints: entry,
         bundle: true,
         minify: minify,
-        plugins: [echartsResolvePlugin],
+        plugins: [echartsResolvePlugin, zrenderResolverPlugin],
         define: {
             'process.env.NODE_ENV': JSON.stringify(minify ? 'production' : 'development')
         },
@@ -249,7 +281,7 @@ async function bundle(entryFiles, result) {
     // }
     // await bundleSingle(entry, result);
     for (let file of entryFiles) {
-        await esbuildBundle([file], result, false);
+        await esbuildBundle([file], result, MINIFY_BUNDLE);
         console.log(chalk.green(`Bundled ${file}`));
     }
 }

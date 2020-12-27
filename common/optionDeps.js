@@ -119,7 +119,7 @@ module.exports.collectDeps = function collectDeps(option) {
     return Array.from(new Set(deps));
 }
 
-module.exports.buildPartialImportCode = function (deps, includeType) {
+module.exports.buildMinimalImportCode = function (deps, includeType) {
     const componentsImports = [];
     const chartsImports = [];
     const renderersImports = [];
@@ -176,11 +176,11 @@ echarts.use(
 ` + (includeType ? ECOptionTypeCode : '')
 }
 
-module.exports.buildLegacyPartialImportCode = function (deps, isESM) {
+module.exports.buildLegacyMinimalImportCode = function (deps, isESM) {
     const rootFolder = isESM ? 'esm' : 'lib';
     const modules = [];
     deps.forEach(function (dep) {
-        if (dep.endsWith('Renderers')) {
+        if (dep.endsWith('Renderer')) {
             modules.push(`zrender/${rootFolder}/${RENDERERS_MAP_REVERSE[dep]}/${RENDERERS_MAP_REVERSE[dep]}`);
         }
         else if (dep.endsWith('Chart')) {
@@ -192,12 +192,12 @@ module.exports.buildLegacyPartialImportCode = function (deps, isESM) {
     });
 
     return isESM ? `
-import * as echarts from 'echarts/echarts.blank';
+import * as echarts from 'echarts/index.blank';
 ${modules.map(mod => {
     return `import '${mod}';`;
 }).join('\n')}
 ` : `
-const echarts = require('echarts/${rootFolder}/echarts');
+const echarts = require('echarts/lib/echarts.blank');
 ${modules.map(mod => {
     return `require('${mod}');`;
 }).join('\n')}
