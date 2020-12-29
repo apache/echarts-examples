@@ -79,6 +79,10 @@ export function createSandbox(optionUpdated) {
             });
         },
 
+        getOption() {
+            return chartInstance.getOption();
+        },
+
         run(el, store) {
 
             if (!chartInstance) {

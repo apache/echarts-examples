@@ -261,6 +261,9 @@ export default {
                 });
                 $a.dispatchEvent(evt);
             }
+        },
+        getOption() {
+            return this.sandbox.getOption();
         }
         // hasEditorError() {
         //     const annotations = this.editor.getSession().getAnnotations();

@@ -1,23 +1,33 @@
 <template>
 <div id="main-container">
-    <div id="code-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
-        <div id="control-panel">
-            <div id="code-info">
-                <template v-if="shared.editorStatus.message">
-                    <span class="code-info-time">{{currentTime}}</span>
-                    <span :class="'code-info-type-' + shared.editorStatus.type">{{shared.editorStatus.message}}</span>
-                </template>
-            </div>
-            <div class="control-btn-panel">
-                <!-- <el-switch v-model="shared.typeCheck"
-                    :active-text="$t('editor.monacoMode')"
-                    :inactive-text="''"
-                ></el-switch> -->
-                <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
-            </div>
-        </div>
-        <CodeMonaco v-if="shared.typeCheck" id="code-panel" :initialCode="initialCode"></CodeMonaco>
-        <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
+    <div id="editor-left-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
+        <el-tabs v-model="currentTab" type="border-card">
+            <el-tab-pane label="示例编辑" name="code-editor">
+                <div id="control-panel">
+                    <div id="code-info">
+                        <template v-if="shared.editorStatus.message">
+                            <span class="code-info-time">{{currentTime}}</span>
+                            <span :class="'code-info-type-' + shared.editorStatus.type">{{shared.editorStatus.message}}</span>
+                        </template>
+                    </div>
+                    <div class="control-btn-panel">
+                        <!-- <el-switch v-model="shared.typeCheck"
+                            :active-text="$t('editor.monacoMode')"
+                            :inactive-text="''"
+                        ></el-switch> -->
+                        <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
+                    </div>
+                </div>
+                <CodeMonaco v-if="shared.typeCheck" id="code-panel" :initialCode="initialCode"></CodeMonaco>
+                <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
+            </el-tab-pane>
+
+            <el-tab-pane label="完整代码" name="full-code" :lazy="true">
+                <FullCodePreview :code="fullCode"></FullCodePreview>
+            </el-tab-pane>
+            <el-tab-pane label="配置项" name="full-option" :lazy="true">
+            </el-tab-pane>
+        </el-tabs>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}" v-if="!shared.isMobile"></div>
     <Preview :inEditor="true" class="right-container" ref="preview" :style="{
@@ -31,14 +41,17 @@
 
 import CodeAce from './CodeAce.vue';
 import CodeMonaco from './CodeMonaco.vue';
+import FullCodePreview from './FullCodePreview.vue';
 import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
+import {collectDeps, buildExampleCode} from '../../common/buildCode';
 
 export default {
     components: {
         CodeAce,
         CodeMonaco,
+        FullCodePreview,
         Preview
     },
 
@@ -48,7 +61,11 @@ export default {
             leftContainerSize: 40,
             mobileMode: false,
             shared: store,
-            initialCode: ''
+            initialCode: '',
+
+            currentTab: 'code-editor',
+
+            fullCode: ''
         };
     },
 
@@ -112,6 +129,18 @@ export default {
         'shared.typeCheck'(enableTypeCheck) {
             // Update initialCode to avoid code changed when switching editor
             this.initialCode = store.sourceCode;
+        },
+        'currentTab'(tab) {
+            if (tab === 'full-code') {
+                const option = this.$refs.preview.getOption();
+                const deps = collectDeps(option);
+                deps.push('CanvasRenderer');
+                this.fullCode = buildExampleCode(store.sourceCode, deps, {
+                    minimal: true,
+                    ts: false,
+                    ROOT_PATH: store.cdnRoot
+                });
+            }
         }
     }
 }
@@ -144,13 +173,38 @@ $handler-width: 5px;
 
 }
 
-#code-container {
+#editor-left-container {
     position: absolute;
     left: 0;
     bottom: 0;
     top: 0;
 
     width: 50%;
+
+    .el-tab-pane {
+        height: 100%;
+    }
+
+    .el-tabs {
+        box-shadow: none;
+    }
+
+    .el-tabs--border-card>.el-tabs__header {
+        border-bottom: none;
+    }
+
+    .el-tabs__content {
+        position: absolute;
+        top: 34px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .el-tabs__item {
+        height: 34px;
+        line-height: 34px;
+    }
 }
 
 #control-panel {

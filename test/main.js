@@ -2,8 +2,7 @@
 
 const fs = require('fs');
 const globby = require('globby');
-const {collectDeps} = require('../common/optionDeps');
-const {buildExampleCode} = require('../common/buildCode');
+const {buildExampleCode, collectDeps} = require('../common/buildCode');
 const nodePath = require('path');
 const { runTasks } = require('../common/task');
 const fse = require('fs-extra');
@@ -23,7 +22,7 @@ const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
 
 const MINIFY_BUNDLE = true;
-const LEGACY_ESM = false;
+const TEST_THEME = 'dark-blue';
 
 const TEMPLATE_CODE = `
 echarts.registerPreprocessor(function (option) {
@@ -46,9 +45,17 @@ echarts.registerPreprocessor(function (option) {
 
 function buildPrepareCode(isESM) {
     return `
-${isESM ? `import _seedrandom from 'seedrandom';`
+${isESM
+    ? `import _seedrandom from 'seedrandom';`
     : `const _seedrandom = require('seedrandom');`
 }
+
+// Check if i18n will break the minimal imports.
+${isESM
+    ? `import 'echarts/i18n/langJA';`
+    : `require('echarts/i18n/langJA');`
+}
+
 const _myrng = _seedrandom('echarts');
 Math.random = function () {
     return _myrng();
@@ -97,17 +104,22 @@ async function buildRunCode() {
         const fullTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
             minimal: false,
             ts: true,
+            // Check if theme will break the minimal imports.
+            theme: TEST_THEME,
             ROOT_PATH
         });
         const minimalTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
             minimal: true,
             ts: true,
+            theme: TEST_THEME,
             ROOT_PATH
         });
         const legacyCode = buildExampleCode(buildPrepareCode(false) + jsCode, deps, {
             minimal: true,
             legacy: true,
+            esm: false,
             ts: false,
+            theme: TEST_THEME,
             ROOT_PATH
         });
 
