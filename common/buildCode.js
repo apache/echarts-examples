@@ -241,10 +241,10 @@ module.exports.buildExampleCode = function (
         esm = true;
     }
 
-    if (minimal && !esm) {
-        // Only legacy mode can be used when use require in mimimal bundle.
-        legacy = true;
-    }
+    // if (minimal && !esm) {
+    //     // Only legacy mode can be used when use require in mimimal bundle.
+    //     legacy = true;
+    // }
 
     if (ts) {
         esm = true;

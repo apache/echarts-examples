@@ -38,6 +38,12 @@
                             :active-text="$t('editor.minimalImport')"
                             :inactive-text="''">
                         </el-switch>
+                        <el-switch
+                            class="enable-decal"
+                            v-model="fullCodeConfig.esm"
+                            active-text="ES Modules"
+                            :inactive-text="''">
+                        </el-switch>
                     </el-header>
                     <el-main>
                         <FullCodePreview :code="fullCode"></FullCodePreview>
@@ -88,7 +94,7 @@ export default {
 
             fullCodeConfig: {
                 mimimal: false,
-                module: 'esm',   // esm, cjs, plain
+                esm: true,
                 node: false // If is in node
             }
         };
@@ -155,7 +161,9 @@ export default {
             this.fullCode = buildExampleCode(store.sourceCode, deps, {
                 minimal: this.fullCodeConfig.minimal,
                 ts: false,
-                esm: this.fullCodeConfig.module === 'esm',
+                esm: this.fullCodeConfig.esm,
+                // Only legacy mode can be used when use require in mimimal bundle.
+                legacy: !this.fullCodeConfig.esm && this.fullCodeConfig.minimal,
                 theme: store.darkMode ? 'dark' : '',
                 ROOT_PATH: store.cdnRoot
             });
@@ -299,6 +307,10 @@ $handler-width: 5px;
         line-height: $control-panel-height;
         vertical-align: middle;
         margin: 0 0 0 20px;
+    }
+
+    .el-switch__label * {
+        font-size: 12px;
     }
 }
 
