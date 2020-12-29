@@ -2,7 +2,7 @@
 <div id="main-container">
     <div id="editor-left-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
         <el-tabs v-model="currentTab" type="border-card">
-            <el-tab-pane label="示例编辑" name="code-editor">
+            <el-tab-pane :label="$t('editor.tabEditor')" name="code-editor">
                 <el-container>
                     <el-header id="editor-control-panel">
                         <div id="code-info">
@@ -26,11 +26,11 @@
                 </el-container>
             </el-tab-pane>
 
-            <el-tab-pane label="完整代码" name="full-code" :lazy="true">
+            <el-tab-pane :label="$t('editor.tabFullCodePreview')" name="full-code" :lazy="true">
                 <el-container style="width: 100%; height: 100%">
                     <el-header id="full-code-generate-config">
                         <span class="full-code-generate-config-label">
-                            <i class="el-icon-setting"></i> 配置
+                            <!-- <i class="el-icon-setting"></i> 配置 -->
                         </span>
                         <el-switch
                             class="enable-decal"
@@ -44,7 +44,7 @@
                     </el-main>
                 </el-container>
             </el-tab-pane>
-            <el-tab-pane label="配置项" name="full-option" :lazy="true">
+            <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option" :lazy="true">
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -298,7 +298,7 @@ $handler-width: 5px;
         height: $control-panel-height;
         line-height: $control-panel-height;
         vertical-align: middle;
-        margin: 0 20px;
+        margin: 0 0 0 20px;
     }
 }
 

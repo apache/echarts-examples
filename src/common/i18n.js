@@ -18,6 +18,9 @@ export default {
             edit: 'Edit',
             monacoMode: 'Enable Type Checking',
 
+            tabEditor: 'Edit Example',
+            tabFullCodePreview: 'Full Code',
+            tabOptionPreview: 'Option Preview',
             minimalImport: 'Minimal Import'
         },
 
@@ -81,6 +84,9 @@ export default {
             edit: '编辑',
             monacoMode: '开启类型检查',
 
+            tabEditor: '示例编辑',
+            tabFullCodePreview: '完整代码',
+            tabOptionPreview: '配置项',
             minimalImport: '最少引入'
         },
 
