@@ -1,4 +1,5 @@
 $nav-height: 51px;
+$collapse-break-point: 768px;
 
 .navbar-default {
     border: none;
@@ -204,7 +205,7 @@ $nav-height: 51px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $collapse-break-point) {
     .navbar-default {
         .navbar-nav {
             background-color: $clr-primary;
@@ -233,10 +234,34 @@ $nav-height: 51px;
     }
 }
 
-@media (max-width: 992px) and (min-width: 768px) {
+@media (max-width: 1280px) and (min-width: 1192px) {
     .navbar-default {
         .navbar-nav li a {
             padding: 15px 15px;
         }
     }
 }
+
+@media (max-width: 1192px) and (min-width: 900px) {
+    .navbar-default {
+        .navbar-nav li a {
+            padding: 15px 8px;
+        }
+    }
+}
+
+@media (max-width: 900px) and (min-width: $collapse-break-point) {
+    .navbar-default {
+        .navbar-nav li a {
+            padding: 15px 3px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media (max-width: 1065px) {
+    #nav-apache {
+        display: none;
+    }
+}
+
