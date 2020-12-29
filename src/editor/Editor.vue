@@ -186,7 +186,7 @@ export default {
             }
             else if (tab === 'full-option') {
                 mount(
-                    this.$refs.preview.getOption(),
+                    Object.freeze(this.$refs.preview.getOption()),
                     this.$el.querySelector('#option-outline'),
                     {
                         expandOnCreatedAndUpdated: (path) => {
