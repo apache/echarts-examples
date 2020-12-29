@@ -72,9 +72,9 @@ import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
-import { mount } from "object-visualizer";
+import { mount } from "@lang/object-visualizer";
 
-import 'object-visualizer/dist/index.css';
+import './object-visualizer.css';
 
 export default {
     components: {
@@ -189,7 +189,15 @@ export default {
                     Object.freeze(this.$refs.preview.getOption()),
                     this.$el.querySelector('#option-outline'),
                     {
-                        expandOnCreatedAndUpdated: (path) => {
+                        getKeys(object, path) {
+                            return Object.keys(object).filter(key => {
+                                if (Array.isArray(object[key]) && !object[key].length) {
+                                    return false;
+                                }
+                                return true;
+                            });
+                        },
+                        expandOnCreatedAndUpdated(path) {
                             return path.length === 0
                                 || (path[0] === 'series' && path.length <= 1);
                         },
@@ -221,10 +229,6 @@ $code-info-height: 25px;
 $control-panel-height: 30px;
 $pd-basic: 10px;
 $handler-width: 5px;
-
-html {
-    font-size: 16px;
-}
 
 #main-container {
     .handler {
@@ -323,6 +327,9 @@ html {
 
 #option-outline {
     height: 100%;
+    font-size: 13px;
+
+    font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
 }
 
 #full-code-generate-config {
@@ -388,10 +395,12 @@ html {
         color: $clr-text;
         display: inline-block;
         margin-right: 10px;
+        font-size: 12px;
     }
 
     .code-info-type-info {
         color: $clr-text;
+        font-size: 12px;
     }
 
     .code-info-type-warn {
