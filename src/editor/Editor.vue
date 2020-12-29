@@ -160,6 +160,9 @@ export default {
         },
         updateFullCode() {
             const option = this.$refs.preview.getOption();
+            if (!option) {
+                return;
+            }
             const deps = collectDeps(option);
             deps.push(store.renderer === 'svg' ? 'SVGRenderer' : 'CanvasRenderer');
             this.fullCode = buildExampleCode(store.sourceCode, deps, {
@@ -171,6 +174,38 @@ export default {
                 theme: store.darkMode ? 'dark' : '',
                 ROOT_PATH: store.cdnRoot
             });
+        },
+        updateOptionOutline() {
+            const option = Object.freeze(this.$refs.preview.getOption());
+            if (!option) {
+                return;
+            }
+            mount(
+                option,
+                this.$el.querySelector('#option-outline'),
+                {
+                    getKeys(object, path) {
+                        return Object.keys(object).filter(key => {
+                            if (Array.isArray(object[key]) && !object[key].length) {
+                                return false;
+                            }
+                            return true;
+                        });
+                    },
+                    expandOnCreatedAndUpdated(path) {
+                        return path.length === 0
+                            || (path[0] === 'series' && path.length <= 1);
+                    },
+                }
+            );
+        },
+        updateTabContent(tab) {
+            if (tab === 'full-code') {
+                this.updateFullCode();
+            }
+            else if (tab === 'full-option') {
+                this.updateOptionOutline();
+            }
         }
     },
 
@@ -181,35 +216,10 @@ export default {
             this.updateFullCode();
         },
         'currentTab'(tab) {
-            if (tab === 'full-code') {
-                this.updateFullCode();
-            }
-            else if (tab === 'full-option') {
-                mount(
-                    Object.freeze(this.$refs.preview.getOption()),
-                    this.$el.querySelector('#option-outline'),
-                    {
-                        getKeys(object, path) {
-                            return Object.keys(object).filter(key => {
-                                if (Array.isArray(object[key]) && !object[key].length) {
-                                    return false;
-                                }
-                                return true;
-                            });
-                        },
-                        expandOnCreatedAndUpdated(path) {
-                            return path.length === 0
-                                || (path[0] === 'series' && path.length <= 1);
-                        },
-                    }
-                );
-            }
+            this.updateTabContent(tab);
         },
-        'shared.darkMode'(enableTypeCheck) {
-            this.updateFullCode();
-        },
-        'shared.renderer'(enableTypeCheck) {
-            this.updateFullCode();
+        'shared.runHash'() {
+            this.updateTabContent(this.currentTab);
         },
         fullCodeConfig: {
             deep: true,
@@ -340,6 +350,14 @@ $handler-width: 5px;
         margin: 0 0 0 20px;
     }
 
+    .el-switch {
+        margin-right: 10px;
+    }
+
+    .el-switch__label {
+        margin-left: 8px;
+        margin-top: -2px;
+    }
     .el-switch__label * {
         font-size: 12px;
     }

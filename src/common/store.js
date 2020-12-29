@@ -19,6 +19,8 @@ export const store = {
     runCode: '',
     sourceCode: '',
 
+    runHash: '',
+
     isMobile: window.innerWidth < 600,
 
     editorStatus: {
@@ -41,4 +43,9 @@ export function loadExampleCode() {
 
 export function parseSourceCode(code) {
     return code.replace(/\/\*[\w\W]*?\*\//, '').trim();
+}
+
+let hashId = 123;
+export function updateRunHash() {
+    store.runHash = hashId++;
 }

@@ -60,7 +60,7 @@
 
 <script>
 
-import {store} from '../common/store';
+import {store, updateRunHash} from '../common/store';
 import {SCRIPT_URLS, URL_PARAMS} from '../common/config';
 import {loadScriptsAsync} from '../common/helper';
 import {createSandbox} from './sandbox';
@@ -121,6 +121,7 @@ function log(text, type) {
 
 
 function run() {
+
     if (typeof echarts === 'undefined') {
         return;
     }
@@ -155,6 +156,10 @@ function run() {
                 break;
             }
         }
+
+        // Update run hash to let others known chart has been changed.
+        updateRunHash();
+
     }
     catch (e) {
         log(this.$t('editor.errorInEditor'), 'error');
@@ -263,7 +268,7 @@ export default {
             }
         },
         getOption() {
-            return this.sandbox.getOption();
+            return this.sandbox && this.sandbox.getOption();
         }
         // hasEditorError() {
         //     const annotations = this.editor.getSession().getAnnotations();
