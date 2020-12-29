@@ -224,7 +224,7 @@ module.exports.buildExampleCode = function (
         minimal,
         // If is ESM module or CommonJS module
         // Force to be true in ts mode or minimal mode.
-        esm,
+        esm = true,
         // If use legacy minimal import, like:
         // import 'echarts/lib/chart/bar';
         // Only available when minimal is true.
@@ -236,18 +236,18 @@ module.exports.buildExampleCode = function (
         ROOT_PATH
     }
 ) {
-    if (minimal && !legacy) {
-        // ESM must be used when use the new minimal import
-        esm = true;
-    }
-
-    // if (minimal && !esm) {
-    //     // Only legacy mode can be used when use require in mimimal bundle.
-    //     legacy = true;
+    // if (minimal && !legacy) {
+    //     // ESM must be used when use the new minimal import
+    //     esm = true;
     // }
 
     if (ts) {
         esm = true;
+    }
+
+    if (minimal && !esm) {
+        // Only legacy mode can be used when use require in mimimal bundle.
+        legacy = true;
     }
 
 

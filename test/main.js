@@ -116,7 +116,6 @@ async function buildRunCode() {
         });
         const legacyCode = buildExampleCode(buildPrepareCode(false) + jsCode, deps, {
             minimal: true,
-            legacy: true,
             esm: false,
             ts: false,
             theme: TEST_THEME,

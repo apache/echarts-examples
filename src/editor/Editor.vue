@@ -162,8 +162,8 @@ export default {
                 minimal: this.fullCodeConfig.minimal,
                 ts: false,
                 esm: this.fullCodeConfig.esm,
-                // Only legacy mode can be used when use require in mimimal bundle.
-                legacy: !this.fullCodeConfig.esm && this.fullCodeConfig.minimal,
+                // TODO Enabled when new version is published.
+                legacy: true,
                 theme: store.darkMode ? 'dark' : '',
                 ROOT_PATH: store.cdnRoot
             });
