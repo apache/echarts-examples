@@ -237,11 +237,19 @@ module.exports.buildExampleCode = function (
     }
 ) {
     if (minimal && !legacy) {
+        // ESM must be used when use the new minimal import
         esm = true;
     }
+
+    if (minimal && !esm) {
+        // Only legacy mode can be used when use require in mimimal bundle.
+        legacy = true;
+    }
+
     if (ts) {
         esm = true;
     }
+
 
     const hasECStat = jsCode.indexOf('ecStat') >= 0;
     const usedRootPath = jsCode.indexOf('ROOT_PATH') >= 0;
@@ -250,7 +258,7 @@ module.exports.buildExampleCode = function (
     const DEP_CODE = `
 ${hasECStat ?
     esm ? `import ecStat from 'echarts-stat';`
-        : `const ecStat = require('echarts-stat');`
+        : `var ecStat = require('echarts-stat');`
     : ''
 }
 `;
@@ -258,7 +266,7 @@ ${hasECStat ?
         !minimal
             ? esm
                 ? `import * as echarts from 'echarts';`
-                : `const echarts = require('echarts');`
+                : `var echarts = require('echarts');`
             : legacy
                 ? buildLegacyMinimalImportCode(deps, esm)
                 : buildMinimalImportCode(deps, ts),
@@ -270,8 +278,8 @@ ${hasECStat ?
     ].filter(a => !!a).join('\n');
 
     const ENV_CODE = [
-        usedRootPath ? `const ROOT_PATH = '${ROOT_PATH}'` : '',
-        usedApp ? `const app${ts ? ': any' : ''} = {};` : '',
+        usedRootPath ? `var ROOT_PATH = '${ROOT_PATH}'` : '',
+        usedApp ? `var app${ts ? ': any' : ''} = {};` : '',
         ts && !minimal ? 'type ECOption = echarts.EChartsOption' : ''
     ].filter(a => !!a).join('\n');
 
@@ -281,7 +289,7 @@ ${hasECStat ?
 
     return `${PREPARE_CODE}
 
-const myChart = echarts.init(document.getElementById('main')${theme ? `, '${theme}'` : ''});
+var myChart = echarts.init(document.getElementById('main')${theme ? `, '${theme}'` : ''});
 var option${ts ? ': ECOption' : ''};
 
 ${jsCode.trim()}

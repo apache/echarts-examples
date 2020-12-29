@@ -37,11 +37,11 @@ export default {
             // https://stackoverflow.com/questions/32806060/is-there-a-programmatic-way-to-hide-the-cursor-in-ace-editor
             editor.setOptions({
                 readOnly: true,
-                showLineNumbers: false,
+                // showLineNumbers: false,
                 highlightActiveLine: false,
                 highlightGutterLine: false
             });
-            editor.renderer.setShowGutter(false);
+            // editor.renderer.setShowGutter(false);
             editor.renderer.$cursorLayer.element.style.display = 'none';
 
             this._editor = editor;

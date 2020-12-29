@@ -104,5 +104,6 @@ export default {
     font-size: 12px;
     line-height: 18px;
     padding: 10px;
+    height: 100%;
 }
 </style>

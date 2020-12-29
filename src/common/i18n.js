@@ -16,7 +16,9 @@ export default {
             download: 'Download',
 
             edit: 'Edit',
-            monacoMode: 'Enable Type Checking'
+            monacoMode: 'Enable Type Checking',
+
+            minimalImport: 'Minimal Import'
         },
 
         chartTypes: {
@@ -77,7 +79,9 @@ export default {
             download: '下载示例',
 
             edit: '编辑',
-            monacoMode: '开启类型检查'
+            monacoMode: '开启类型检查',
+
+            minimalImport: '最少引入'
         },
 
         chartTypes: {

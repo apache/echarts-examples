@@ -3,27 +3,46 @@
     <div id="editor-left-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
         <el-tabs v-model="currentTab" type="border-card">
             <el-tab-pane label="示例编辑" name="code-editor">
-                <div id="control-panel">
-                    <div id="code-info">
-                        <template v-if="shared.editorStatus.message">
-                            <span class="code-info-time">{{currentTime}}</span>
-                            <span :class="'code-info-type-' + shared.editorStatus.type">{{shared.editorStatus.message}}</span>
-                        </template>
-                    </div>
-                    <div class="control-btn-panel">
-                        <!-- <el-switch v-model="shared.typeCheck"
-                            :active-text="$t('editor.monacoMode')"
-                            :inactive-text="''"
-                        ></el-switch> -->
-                        <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
-                    </div>
-                </div>
-                <CodeMonaco v-if="shared.typeCheck" id="code-panel" :initialCode="initialCode"></CodeMonaco>
-                <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
+                <el-container>
+                    <el-header id="editor-control-panel">
+                        <div id="code-info">
+                            <template v-if="shared.editorStatus.message">
+                                <span class="code-info-time">{{currentTime}}</span>
+                                <span :class="'code-info-type-' + shared.editorStatus.type">{{shared.editorStatus.message}}</span>
+                            </template>
+                        </div>
+                        <div class="editor-controls">
+                            <!-- <el-switch v-model="shared.typeCheck"
+                                :active-text="$t('editor.monacoMode')"
+                                :inactive-text="''"
+                            ></el-switch> -->
+                            <a href="javascript:;" class='btn btn-default btn-sm' @click='disposeAndRun'>{{$t('editor.run')}}</a>
+                        </div>
+                    </el-header>
+                    <el-main>
+                        <CodeMonaco v-if="shared.typeCheck" id="code-panel" :initialCode="initialCode"></CodeMonaco>
+                        <CodeAce v-else id="code-panel" :initialCode="initialCode"></CodeAce>
+                    </el-main>
+                </el-container>
             </el-tab-pane>
 
             <el-tab-pane label="完整代码" name="full-code" :lazy="true">
-                <FullCodePreview :code="fullCode"></FullCodePreview>
+                <el-container style="width: 100%; height: 100%">
+                    <el-header id="full-code-generate-config">
+                        <span class="full-code-generate-config-label">
+                            <i class="el-icon-setting"></i> 配置
+                        </span>
+                        <el-switch
+                            class="enable-decal"
+                            v-model="fullCodeConfig.minimal"
+                            :active-text="$t('editor.minimalImport')"
+                            :inactive-text="''">
+                        </el-switch>
+                    </el-header>
+                    <el-main>
+                        <FullCodePreview :code="fullCode"></FullCodePreview>
+                    </el-main>
+                </el-container>
             </el-tab-pane>
             <el-tab-pane label="配置项" name="full-option" :lazy="true">
             </el-tab-pane>
@@ -65,7 +84,13 @@ export default {
 
             currentTab: 'code-editor',
 
-            fullCode: ''
+            fullCode: '',
+
+            fullCodeConfig: {
+                mimimal: false,
+                module: 'esm',   // esm, cjs, plain
+                node: false // If is in node
+            }
         };
     },
 
@@ -122,6 +147,18 @@ export default {
         },
         disposeAndRun() {
             this.$refs.preview.refreshAll();
+        },
+        updateFullCode() {
+            const option = this.$refs.preview.getOption();
+            const deps = collectDeps(option);
+            deps.push(store.renderer === 'svg' ? 'SVGRenderer' : 'CanvasRenderer');
+            this.fullCode = buildExampleCode(store.sourceCode, deps, {
+                minimal: this.fullCodeConfig.minimal,
+                ts: false,
+                esm: this.fullCodeConfig.module === 'esm',
+                theme: store.darkMode ? 'dark' : '',
+                ROOT_PATH: store.cdnRoot
+            });
         }
     },
 
@@ -129,17 +166,23 @@ export default {
         'shared.typeCheck'(enableTypeCheck) {
             // Update initialCode to avoid code changed when switching editor
             this.initialCode = store.sourceCode;
+            this.updateFullCode();
         },
         'currentTab'(tab) {
             if (tab === 'full-code') {
-                const option = this.$refs.preview.getOption();
-                const deps = collectDeps(option);
-                deps.push('CanvasRenderer');
-                this.fullCode = buildExampleCode(store.sourceCode, deps, {
-                    minimal: true,
-                    ts: false,
-                    ROOT_PATH: store.cdnRoot
-                });
+                this.updateFullCode();
+            }
+        },
+        'shared.darkMode'(enableTypeCheck) {
+            this.updateFullCode();
+        },
+        'shared.renderer'(enableTypeCheck) {
+            this.updateFullCode();
+        },
+        fullCodeConfig: {
+            deep: true,
+            handler() {
+                this.updateFullCode();
             }
         }
     }
@@ -183,6 +226,44 @@ $handler-width: 5px;
 
     .el-tab-pane {
         height: 100%;
+
+        .el-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .el-header {
+            height: $control-panel-height!important;
+            position: relative;
+            z-index: 10;
+            padding: 0;
+        }
+        .el-main {
+            padding: 0;
+            position: relative;
+
+            ::-webkit-scrollbar {
+                height:8px;
+                width:8px;
+                transition:all 0.3s ease-in-out;
+                border-radius:2px;
+            }
+
+            ::-webkit-scrollbar-button {
+                display:none;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                width:8px;
+                min-height:15px;
+                background:rgba(50, 50, 50, 0.6) !important;
+                transition:all 0.3s ease-in-out;border-radius:2px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background:rgba(0, 0, 0, 0.5) !important;
+            }
+        }
     }
 
     .el-tabs {
@@ -199,6 +280,7 @@ $handler-width: 5px;
         left: 0;
         right: 0;
         bottom: 0;
+        padding: 0;
     }
 
     .el-tabs__item {
@@ -207,16 +289,20 @@ $handler-width: 5px;
     }
 }
 
-#control-panel {
-    height: $control-panel-height;
-    position: absolute;;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 20;
-    padding: 0;
+#editor-control-panel, #full-code-generate-config {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
+#full-code-generate-config {
+    .full-code-generate-config-label {
+        height: $control-panel-height;
+        line-height: $control-panel-height;
+        vertical-align: middle;
+        margin: 0 20px;
+    }
+}
+
+#editor-control-panel {
     .setting-panel {
         display: inline-block;
 
@@ -225,7 +311,7 @@ $handler-width: 5px;
         }
     }
 
-    .control-btn-panel  {
+    .editor-controls  {
         float: right;
 
         .el-switch__label {
@@ -247,36 +333,6 @@ $handler-width: 5px;
         .btn:hover {
             background-color: lighten($color: #409eff, $amount: 5);
         }
-    }
-}
-
-
-#code-panel {
-    position: absolute;
-    top: $control-panel-height;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    ::-webkit-scrollbar {
-        height:8px;
-        width:8px;
-        transition:all 0.3s ease-in-out;
-        border-radius:2px;
-    }
-
-    ::-webkit-scrollbar-button {
-        display:none;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        width:8px;
-        min-height:15px;
-        background:rgba(50, 50, 50, 0.6) !important;
-        transition:all 0.3s ease-in-out;border-radius:2px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background:rgba(0, 0, 0, 0.5) !important;
     }
 }
 

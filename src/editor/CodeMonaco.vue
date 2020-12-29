@@ -165,5 +165,6 @@ export default {
     font-size: 12px;
     padding: 0;
     overflow-y: hidden;
+    height: 100%;
 }
 </style>
