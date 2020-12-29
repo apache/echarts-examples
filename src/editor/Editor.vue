@@ -50,7 +50,8 @@
                     </el-main>
                 </el-container>
             </el-tab-pane>
-            <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option" :lazy="true">
+            <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option">
+                <div id="option-outline"></div>
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -71,6 +72,9 @@ import Preview from './Preview.vue';
 import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
+import { mount } from "object-visualizer";
+
+import 'object-visualizer/dist/index.css';
 
 export default {
     components: {
@@ -180,6 +184,18 @@ export default {
             if (tab === 'full-code') {
                 this.updateFullCode();
             }
+            else if (tab === 'full-option') {
+                mount(
+                    this.$refs.preview.getOption(),
+                    this.$el.querySelector('#option-outline'),
+                    {
+                        expandOnCreatedAndUpdated: (path) => {
+                            return path.length === 0
+                                || (path[0] === 'series' && path.length <= 1);
+                        },
+                    }
+                );
+            }
         },
         'shared.darkMode'(enableTypeCheck) {
             this.updateFullCode();
@@ -205,6 +221,10 @@ $code-info-height: 25px;
 $control-panel-height: 30px;
 $pd-basic: 10px;
 $handler-width: 5px;
+
+html {
+    font-size: 16px;
+}
 
 #main-container {
     .handler {
@@ -299,6 +319,10 @@ $handler-width: 5px;
 
 #editor-control-panel, #full-code-generate-config {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#option-outline {
+    height: 100%;
 }
 
 #full-code-generate-config {

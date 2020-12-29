@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.19",
+    "object-visualizer": "^3.1.1",
     "resize-detector": "^0.2.2",
     "scroll-into-view": "^1.14.2",
     "sucrase": "^3.15.0",

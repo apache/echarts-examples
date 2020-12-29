@@ -37,7 +37,8 @@ export default {
             // https://stackoverflow.com/questions/32806060/is-there-a-programmatic-way-to-hide-the-cursor-in-ace-editor
             editor.setOptions({
                 readOnly: true,
-                // showLineNumbers: false,
+                showLineNumbers: false,
+                showFoldWidgets: false,
                 highlightActiveLine: false,
                 highlightGutterLine: false
             });
@@ -81,7 +82,6 @@ export default {
     font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
     font-size: 12px;
     line-height: 18px;
-    padding: 10px;
     height: 100%;
 }
 </style>
