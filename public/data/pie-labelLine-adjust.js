@@ -37,7 +37,6 @@ var datas = [
 ];
 
 option = {
-    // color: ['#1B2550', '#2A3566', '#2B3C87', '#4853A7', '#858ED8', '#858ED8', '#A3ABEE'],
     title: {
         text: '阅读书籍分布',
         left: 'center',
