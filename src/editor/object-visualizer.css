@@ -5,7 +5,7 @@
     padding: 10px;
     /* font-family: Menlo; */
     font-size: 0.6em;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .array > .value,
@@ -17,7 +17,7 @@
 
   .key {
     /* color: #4078f2; */
-    color: #792828;
+    color: #111;
     user-select: none;
   }
 
