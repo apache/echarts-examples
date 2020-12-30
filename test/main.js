@@ -344,7 +344,8 @@ function esbuildBundle(entry, result, minify) {
 async function bundle(entryFiles, result) {
     if (USE_WEBPACK) {
         // Split to multiple buckets to seepup bundle
-        const BUCKET_SIZE = 50;
+        // TODO Multiple entry may have effects on the final bundle.
+        const BUCKET_SIZE = 1;
         const buckets = [];
         const esbuildService = await esbuild.startService();
         let count = 0;
