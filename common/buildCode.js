@@ -194,7 +194,7 @@ module.exports.buildMinimalImportCode = buildMinimalImportCode;
 function buildLegacyMinimalImportCode(deps, isESM) {
     const modules = [];
     deps.forEach(function (dep) {
-        if (dep.endsWith('Renderer')) {
+        if (dep.endsWith('Renderer') && dep !== 'CanvasRenderer') {
             modules.push(`zrender/lib/${RENDERERS_MAP_REVERSE[dep]}/${RENDERERS_MAP_REVERSE[dep]}`);
         }
         else if (dep.endsWith('Chart')) {

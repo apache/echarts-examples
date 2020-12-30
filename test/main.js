@@ -11,6 +11,8 @@ const ts = require('typescript');
 const chalk = require('chalk');
 const nStatic = require('node-static');
 const webpack = require('webpack');
+const {RawSource} = require('webpack-sources');
+
 const esbuild = require('esbuild');
 const puppeteer = require('puppeteer');
 const pixelmatch = require('pixelmatch');
@@ -24,6 +26,7 @@ const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
 const MINIFY_BUNDLE = true;
 // const TEST_THEME = 'dark-blue';
 const TEST_THEME = '';
+const USE_WEBPACK = true;
 
 const TEMPLATE_CODE = `
 echarts.registerPreprocessor(function (option) {
@@ -199,17 +202,49 @@ async function compileTs(tsTestFiles, result) {
     // assert(!emitResult.emitSkipped, 'ts compile failed.');
 }
 
-function webpackBundle(entry, result) {
+async function webpackBundle(esbuildService, entry, result) {
     return new Promise((resolve) => {
         webpack({
             entry,
             output: {
-                path: BUNDLE_DIR
-                // filename: nodePath.basename(file)
+                path: BUNDLE_DIR,
+                filename: '[name].js'
+            },
+            // Use esbuild as minify, terser is tooooooo slow for so much tests.
+            optimization: {
+                minimizer: [{
+                    apply(compiler) {
+                        compiler.hooks.compilation.tap(
+                            'ESBuild Minify',
+                            (compilation) => {
+                                compilation.hooks.optimizeChunkAssets.tapPromise(
+                                    'ESBuild Minify',
+                                    async (chunks) => {
+                                        for (const chunk of chunks) {
+                                            for (const file of chunk.files) {
+                                                const asset = compilation.assets[file];
+                                                const { source } = asset.sourceAndMap();
+                                                const result = await esbuildService.transform(source, {
+                                                    minify: true,
+                                                    sourcemap: false
+                                                });
+                                                compilation.updateAsset(file, () => {
+                                                    return new RawSource(result.code || '');
+                                                });
+                                            }
+                                        }
+                                    }
+                                );
+                            },
+                          );
+
+                    }
+                }]
             },
             resolve: {
                 alias: {
-                    echarts: nodePath.join(__dirname, '../../echarts-next')
+                    echarts: nodePath.join(__dirname, '../../echarts-next'),
+                    zrender: nodePath.join(__dirname, '../../zrender-next')
                 }
             }
         }, (err, stats) => {
@@ -234,7 +269,7 @@ function webpackBundle(entry, result) {
                 }
             }
             else {
-                console.log(chalk.green(`Bundled ${entry.join(',\n')}`));
+                console.log(chalk.green(`${Object.values(entry).map(a => `Bundled ${a}`).join('\n')}`));
             }
 
             resolve();
@@ -243,7 +278,6 @@ function webpackBundle(entry, result) {
 }
 
 function esbuildBundle(entry, result, minify) {
-
     const echartsResolvePlugin = {
         name: 'echarts-resolver',
         setup(build) {
@@ -282,14 +316,37 @@ function esbuildBundle(entry, result, minify) {
 }
 
 async function bundle(entryFiles, result) {
-    // const entry = {};
-    // for (let file of entryFiles) {
-    //     entry[nodePath.basename(file, '.js')] = file;
-    // }
-    // await bundleSingle(entry, result);
-    for (let file of entryFiles) {
-        await esbuildBundle([file], result, MINIFY_BUNDLE);
-        console.log(chalk.green(`Bundled ${file}`));
+    if (USE_WEBPACK) {
+        // Split to multiple buckets to seepup bundle
+        const BUCKET_SIZE = 50;
+        const buckets = [];
+        const esbuildService = await esbuild.startService();
+        let count = 0;
+        outer: while (true) {
+            const bucket = {};
+            for (let i = 0; i < BUCKET_SIZE; i++) {
+                const filePath = entryFiles[count++];
+                if (!filePath) {
+                    break outer;
+                }
+                const basename = nodePath.basename(filePath, '.js');
+                bucket[basename] = filePath;
+            }
+            buckets.push(bucket);
+        }
+
+        // TODO Multiple thread.
+        for (let bucket of buckets) {
+            await webpackBundle(esbuildService, bucket, result);
+        }
+
+        esbuildService.stop();
+    }
+    else {
+        for (let file of entryFiles) {
+            await esbuildBundle([file], result, MINIFY_BUNDLE);
+            console.log(chalk.green(`Bundled ${file}`));
+        }
     }
 }
 
@@ -307,7 +364,6 @@ async function runExamples(jsFiles, result) {
         }).resume();
     })
     server.listen(3322);
-
 
     try {
         const IGNORE_LOG = [
