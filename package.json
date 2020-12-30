@@ -9,8 +9,8 @@
     "release": "npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
     "build:example": "node tool/build-example.js",
-    "test:webpack": "node test/main.js --bundler webpack",
-    "test:esbuild": "node test/main.js --bundler esbuild",
+    "test:webpack": "node test/main.js --bundler webpack -m",
+    "test:esbuild": "node test/main.js --bundler esbuild -m",
     "server": "node build/server.js"
   },
   "devDependencies": {
