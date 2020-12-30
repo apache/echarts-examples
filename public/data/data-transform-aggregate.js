@@ -85,6 +85,9 @@ function run(_rawData) {
             name: 'boxplot',
             type: 'boxplot',
             datasetId: 'income_aggregate',
+            itemStyle: {
+                color: '#b8c5f2'
+            },
             encode: {
                 x: ['min', 'Q1', 'median', 'Q3', 'max'],
                 y: 'Country',
