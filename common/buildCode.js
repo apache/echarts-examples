@@ -205,11 +205,11 @@ function buildLegacyMinimalImportCode(deps, isESM) {
         }
     });
 
-    return isESM ? `import * as echarts from 'echarts/index.blank';
+    return isESM ? `import * as echarts from 'echarts/lib/echarts';
 ${modules.map(mod => {
     return `import '${mod}';`;
 }).join('\n')}
-` : `const echarts = require('echarts/index.blank');
+` : `const echarts = require('echarts/lib/echarts');
 ${modules.map(mod => {
     return `require('${mod}');`;
 }).join('\n')}

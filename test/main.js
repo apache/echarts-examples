@@ -22,7 +22,8 @@ const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
 
 const MINIFY_BUNDLE = true;
-const TEST_THEME = 'dark-blue';
+// const TEST_THEME = 'dark-blue';
+const TEST_THEME = '';
 
 const TEMPLATE_CODE = `
 echarts.registerPreprocessor(function (option) {
@@ -43,7 +44,7 @@ echarts.registerPreprocessor(function (option) {
 });
 `
 
-function buildPrepareCode(isESM) {
+function buildPrepareCode(isESM, lang) {
     return `
 ${isESM
     ? `import _seedrandom from 'seedrandom';`
@@ -51,9 +52,11 @@ ${isESM
 }
 
 // Check if i18n will break the minimal imports.
-${isESM
-    ? `import 'echarts/i18n/langJA';`
-    : `require('echarts/i18n/langJA');`
+${lang
+    ? isESM
+        ? `import 'echarts/i18n/${lang}';`
+        : `require('echarts/i18n/${lang}');`
+    : ''
 }
 
 const _myrng = _seedrandom('echarts');
