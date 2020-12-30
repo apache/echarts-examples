@@ -8,10 +8,6 @@
         "pretty": true,
         "outDir": "tmp/tests",
 
-        "baseUrl": "./",
-        "paths": {
-            "echarts": ["../../echarts-next"],
-            "echarts/*": ["../../echarts-next/*"]
-        }
+        "baseUrl": "./"
     }
 }

@@ -12,10 +12,29 @@ const chalk = require('chalk');
 const nStatic = require('node-static');
 const webpack = require('webpack');
 const {RawSource} = require('webpack-sources');
-
+const argparse = require('argparse');
 const esbuild = require('esbuild');
 const puppeteer = require('puppeteer');
+const config = require('./config');
 const pixelmatch = require('pixelmatch');
+
+const parser = new argparse.ArgumentParser({
+    addHelp: true
+});
+parser.addArgument(['--bundler'], {
+    help: 'Bundler, can be webpack or esbuild'
+});
+parser.addArgument(['-m', '--minify'], {
+    action: 'storeTrue',
+    help: 'If minify'
+});
+parser.addArgument(['--echarts'], {
+    help: 'ECharts folder relative to cwd'
+});
+parser.addArgument(['--zrender'], {
+    help: 'ZRender folder relative to cwd'
+});
+const args = parser.parseArgs();
 
 const EXAMPLE_DIR =  `${__dirname}/../public/`;
 const TMP_DIR = `${__dirname}/tmp`;
@@ -23,10 +42,13 @@ const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
 
-const MINIFY_BUNDLE = true;
+const ECHARTS_DIR = nodePath.resolve(__dirname, args.echarts || config.echartsDir);
+const ZRENDER_DIR = nodePath.resolve(__dirname, args.zrender || config.zrenderDir);
+
+const MINIFY_BUNDLE = args.minify;
 // const TEST_THEME = 'dark-blue';
 const TEST_THEME = '';
-const USE_WEBPACK = true;
+const USE_WEBPACK = !(args.bundler === 'esbuild');
 
 const TEMPLATE_CODE = `
 echarts.registerPreprocessor(function (option) {
@@ -84,6 +106,10 @@ async function prepare() {
 
 async function buildRunCode() {
     const files = await globby(`${EXAMPLE_DIR}/data/option/*.json`);
+
+    if (!files.length) {
+        throw new Error('You need to run `node tool/build-example.js` before run this test.');
+    }
 
     await runTasks(files, async (fileName) => {
         const optionCode = await fse.readFile(fileName, 'utf-8');
@@ -159,7 +185,11 @@ async function compileTs(tsTestFiles, result) {
     const config = JSON.parse(fs.readFileSync(nodePath.join(__dirname, 'tsconfig.json'), 'utf-8'));
 
     const {options, errors} = ts.convertCompilerOptionsFromJson({
-        ...config.compilerOptions
+        ...config.compilerOptions,
+        "paths": {
+            "echarts": [ECHARTS_DIR],
+            "echarts/*": [ECHARTS_DIR + '/*']
+        }
     }, nodePath.resolve(__dirname));
 
     if (errors.length) {
@@ -212,7 +242,7 @@ async function webpackBundle(esbuildService, entry, result) {
             },
             // Use esbuild as minify, terser is tooooooo slow for so much tests.
             optimization: {
-                minimizer: [{
+                minimizer: MINIFY_BUNDLE ? [{
                     apply(compiler) {
                         compiler.hooks.compilation.tap(
                             'ESBuild Minify',
@@ -239,12 +269,12 @@ async function webpackBundle(esbuildService, entry, result) {
                           );
 
                     }
-                }]
+                }] : []
             },
             resolve: {
                 alias: {
-                    echarts: nodePath.join(__dirname, '../../echarts-next'),
-                    zrender: nodePath.join(__dirname, '../../zrender-next')
+                    echarts: ECHARTS_DIR,
+                    zrender: ZRENDER_DIR
                 }
             }
         }, (err, stats) => {
@@ -282,9 +312,7 @@ function esbuildBundle(entry, result, minify) {
         name: 'echarts-resolver',
         setup(build) {
             build.onResolve({ filter: /^(echarts\/|echarts$)/ }, args => {
-                const path = args.path.replace(
-                    /^echarts/, nodePath.join(__dirname, '../../echarts-next')
-                );
+                const path = args.path.replace(/^echarts/, ECHARTS_DIR);
                 return {
                     path: args.path === 'echarts' ? (path + '/index.js') : (path + '.js')
                 };
@@ -295,9 +323,7 @@ function esbuildBundle(entry, result, minify) {
         name: 'zrender-resolver',
         setup(build) {
             build.onResolve({ filter: /^zrender/ }, args => {
-                const path = args.path.replace(
-                    /^zrender/, nodePath.join(__dirname, '../../zrender-next')
-                ) + '.js';
+                const path = args.path.replace(/^zrender/, ZRENDER_DIR) + '.js';
                 return { path };
             });
         }
@@ -441,7 +467,7 @@ async function main() {
     console.log('Compiling TypeScript');
     await compileTs(tsFiles, result);
 
-    console.log('Bundling');
+    console.log(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`);
     await bundle(await globby(nodePath.join(RUN_CODE_DIR, '*.js')), result);
 
     console.log('Running examples');

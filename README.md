@@ -38,6 +38,31 @@ Only for default theme
 node tool/build-example.js -t default
 ```
 
+## Run bundler tests.
+
+Run all the examples to test module importing, minimal bundling and DTS correctness.
+
+Before run the tests. you need to update the examples.
+
+```shell
+node tool/build-example.js
+```
+
+Then update the `echartsDir` and `zrenderDir` path in test/config.js
+
+If you want to test with esbuild bundler.
+
+```shell
+npm run test:esbuild
+```
+
+Otherwise it will use webpack bundler.
+
+```shell
+npm run test:webpack
+```
+
+
 ## Edit example
 
 All test cases are in the `public/data` folder. The comment in the header
