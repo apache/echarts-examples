@@ -289,7 +289,8 @@ ${hasECStat ?
 
     return `${PREPARE_CODE}
 
-var myChart = echarts.init(document.getElementById('main')${theme ? `, '${theme}'` : ''});
+var chartDom = document.getElementById('main')${ts ? '!' : ''};
+var myChart = echarts.init(chartDom${theme ? `, '${theme}'` : ''});
 var option${ts ? ': ECOption' : ''};
 
 ${jsCode.trim()}

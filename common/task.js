@@ -29,9 +29,10 @@ function runTasks(
         function addTask() {
             const param = taskParamsLists[cursor];
             if (param) {
+                const currentTaskIdx = cursor;
                 runningTaskCount++;
                 createTask(param)
-                    .then((res) => finishTask(res, cursor))
+                    .then((res) => finishTask(res, currentTaskIdx))
                     .catch(failTask);
                 cursor++;
             }

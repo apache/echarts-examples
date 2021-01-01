@@ -16,7 +16,7 @@ const argparse = require('argparse');
 const esbuild = require('esbuild');
 const puppeteer = require('puppeteer');
 const config = require('./config');
-const pixelmatch = require('pixelmatch');
+const {compareImage} =require('../common/compareImage');
 
 const parser = new argparse.ArgumentParser({
     addHelp: true
@@ -42,6 +42,9 @@ const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
 
+const MINIMAL_POSTFIX = 'minimal';
+const MINIMAL_LEGACY_POSTFIX = 'minimal.legacy';
+
 const ECHARTS_DIR = nodePath.resolve(__dirname, args.echarts || config.echartsDir);
 const ZRENDER_DIR = nodePath.resolve(__dirname, args.zrender || config.zrenderDir);
 
@@ -51,6 +54,7 @@ const TEST_THEME = '';
 const USE_WEBPACK = !(args.bundler === 'esbuild');
 
 const TEMPLATE_CODE = `
+// @ts-ignore
 echarts.registerPreprocessor(function (option) {
     option.animation = false;
     if (option.series) {
@@ -71,6 +75,7 @@ echarts.registerPreprocessor(function (option) {
 
 function buildPrepareCode(isESM, lang) {
     return `
+// @ts-ignore
 ${isESM
     ? `import _seedrandom from 'seedrandom';`
     : `const _seedrandom = require('seedrandom');`
@@ -83,9 +88,11 @@ ${lang
         : `require('echarts/i18n/${lang}');`
     : ''
 }
-
+// @ts-ignore
 const _myrng = _seedrandom('echarts');
+// @ts-ignore
 Math.random = function () {
+    // @ts-ignore
     return _myrng();
 };
 ${TEMPLATE_CODE}
@@ -111,7 +118,7 @@ async function buildRunCode() {
         throw new Error('You need to run `node tool/build-example.js` before run this test.');
     }
 
-    await runTasks(files, async (fileName) => {
+    return (await runTasks(files, async (fileName) => {
         const optionCode = await fse.readFile(fileName, 'utf-8');
         const option = JSON.parse(optionCode);
         const jsCode = await fse.readFile(nodePath.join(
@@ -125,8 +132,8 @@ async function buildRunCode() {
             'CanvasRenderer'
         ]);
 
-        if (deps.includes('MapChart') || deps.includes('GeoComponent')) {
-            console.warn(chalk.yellow('Ignored map tests.'));
+        if (deps.includes('MapChart') || deps.includes('GeoComponent') || option.bmap) {
+            console.warn(chalk.yellow(`Ignored map tests.${fileName}`));
             return;
         }
 
@@ -162,14 +169,14 @@ async function buildRunCode() {
             }), 'utf-8'
         );
         await fse.writeFile(
-            nodePath.join(RUN_CODE_DIR, testName + '.minimal.ts'),
+            nodePath.join(RUN_CODE_DIR, testName + `.${MINIMAL_POSTFIX}.ts`),
             prettier.format(minimalTsCode, {
                 singleQuote: true,
                 parser: 'typescript'
             }), 'utf-8'
         );
         await fse.writeFile(
-            nodePath.join(RUN_CODE_DIR, testName + '.minimal.legacy.js'),
+            nodePath.join(RUN_CODE_DIR, testName + `.${MINIMAL_LEGACY_POSTFIX}.js`),
             prettier.format(legacyCode, {
                 singleQuote: true,
                 parser: 'babel'
@@ -178,7 +185,10 @@ async function buildRunCode() {
         console.log(
             chalk.green('Generated: ', nodePath.join(RUN_CODE_DIR, testName + '.ts'))
         );
-    }, 20);
+
+        return testName;
+    }, 20))
+        .filter(a => !!a);
 }
 
 async function compileTs(tsTestFiles, result) {
@@ -212,18 +222,20 @@ async function compileTs(tsTestFiles, result) {
             let {line, character} = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
             let message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
 
-            const basename = nodePath.basename(diagnostic.file.fileName, '.ts');
-            // console.log(chalk.red(`${diagnostic.file.fileName} (${line + 1},${character + 1})`));
-            // console.log(chalk.gray(message));
-
-            if (!result[basename]) {
-                console.log(diagnostic.file.fileName);
-            }
-
-            result[basename].compileErrors.push({
+            const compilerError = {
                 location: [line + 1, character + 1],
                 message
-            });
+            };
+            if (diagnostic.file.fileName.endsWith(`${MINIMAL_POSTFIX}.ts`)) {
+                const basename = nodePath.basename(diagnostic.file.fileName, `.${MINIMAL_POSTFIX}.ts`);
+                result[basename].compileErrors.minimal.push(compilerError);
+            }
+            else {
+                const basename = nodePath.basename(diagnostic.file.fileName,  `.ts`);
+                result[basename].compileErrors.full.push(compilerError);
+            }
+            // console.log(chalk.red(`${diagnostic.file.fileName} (${line + 1},${character + 1})`));
+            // console.log(chalk.gray(message));
         }
         else {
             console.log(chalk.red(ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')));
@@ -448,25 +460,72 @@ async function runExamples(jsFiles, result) {
     }
 }
 
+
+async function compareExamples(testNames, result) {
+
+    function writePNG(png, diffPath) {
+        return new Promise(resolve => {
+            const writer = fs.createWriteStream(diffPath);
+            png.pack().pipe(writer);
+            writer.on('finish', () => { resolve(); });
+        });
+    }
+
+    for (let testName of testNames) {
+        const diffMinimal = await compareImage(
+            nodePath.resolve(SCREENSHOTS_DIR, testName + '.png'),
+            nodePath.resolve(SCREENSHOTS_DIR, `${testName}.${MINIMAL_POSTFIX}.png`)
+        );
+        const diffMinimalLegacy = await compareImage(
+            nodePath.resolve(SCREENSHOTS_DIR, testName + '.png'),
+            nodePath.resolve(SCREENSHOTS_DIR, `${testName}.${MINIMAL_LEGACY_POSTFIX}.png`)
+        );
+
+        const diffMinimalPNGPath = nodePath.resolve(SCREENSHOTS_DIR, `${testName}.${MINIMAL_POSTFIX}.diff.png`);
+        const diffMinimalLegacyPNGPath = nodePath.resolve(SCREENSHOTS_DIR, `${testName}.${MINIMAL_LEGACY_POSTFIX}.diff.png`);
+
+        writePNG(diffMinimal.diffPNG, diffMinimalPNGPath);
+        writePNG(diffMinimalLegacy.diffPNG, diffMinimalLegacyPNGPath);
+
+        result[testName].screenshotDiff.minimal = {
+            ratio: diffMinimal.diffRatio,
+            png: nodePath.basename(diffMinimalPNGPath)
+        };
+        result[testName].screenshotDiff.minimalLegacy = {
+            ratio: diffMinimalLegacy.diffRatio,
+            png: nodePath.basename(diffMinimalLegacyPNGPath)
+        };
+    }
+}
+
+
 async function main() {
     const result = {};
 
     await prepare();
 
     console.log(chalk.gray('Generating codes'));
-    await buildRunCode();
+    const testNames = await buildRunCode();
 
-    const tsFiles = await globby(nodePath.join(RUN_CODE_DIR, '*.ts'));
 
-    for (let key of tsFiles) {
-        const basename = nodePath.basename(key, '.ts');
-        result[basename] = {
-            compileErrors: []
+    for (let key of testNames) {
+        result[key] = {
+            compileErrors: {
+                full: [],
+                minimal: [],
+                minimalLegacy: [],
+            },
+            screenshotDiff: {}
         };
     }
 
     console.log('Compiling TypeScript');
-    await compileTs(tsFiles, result);
+    await compileTs(
+        (await globby(nodePath.join(RUN_CODE_DIR, '*.ts')))
+            // No need to check types of the minimal legacy imports
+            .filter(a => !a.endsWith(`${MINIMAL_LEGACY_POSTFIX}.ts`)),
+        result
+    );
 
     console.log(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`);
     await bundle(await globby(nodePath.join(RUN_CODE_DIR, '*.js')), result);
@@ -475,6 +534,7 @@ async function main() {
     await runExamples(await globby(nodePath.join(BUNDLE_DIR, '*.js')), result);
 
     console.log('Comparing Results');
+    await compareExamples(testNames, result);
 
     fs.writeFileSync(__dirname + '/tmp/result.json', JSON.stringify(
         result, null, 2

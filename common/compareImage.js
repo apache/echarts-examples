@@ -16,7 +16,7 @@ function readPNG(path) {
     });
 }
 
-module.exports.compareImage = function(targetPath, sourcePath, threshold) {
+module.exports.compareImage = function (targetPath, sourcePath, threshold) {
     if (!fs.existsSync(targetPath)) {
         return true;
     }
