@@ -65,6 +65,7 @@ echarts.registerPreprocessor(function (option) {
         if (!(option.series instanceof Array)) {
             option.series = [option.series];
         }
+        // @ts-ignore
         option.series.forEach(function (seriesOpt) {
             if (seriesOpt.type === 'graph') {
                 seriesOpt.force = seriesOpt.force || {};
@@ -497,6 +498,13 @@ async function compareExamples(testNames, result) {
             ratio: diffMinimalLegacy.diffRatio,
             png: nodePath.basename(diffMinimalLegacyPNGPath)
         };
+
+        if (diffMinimal.diffRatio > 0 || diffMinimalLegacy.diffRatio > 0) {
+            console.log(chalk.red(`Failed ${testName}`));
+        }
+        else {
+            console.log(chalk.green(`Passed ${testName}`));
+        }
     }
 }
 

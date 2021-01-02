@@ -21,13 +21,21 @@
         }
 
         .type-error-log {
-            padding: 5px;
+            padding: 10px;
             color: red;
             font-family:'Courier New', Courier, monospace;
+            /* https://css-tricks.com/snippets/css/make-pre-text-wrap/ */
+            white-space: pre-wrap;
         }
         .type-error-log pre {
             margin: 5px 0;
             padding: 0;
+        }
+        .type-passed {
+            font-size: 14px;
+            color: green;
+            font-family:'Courier New', Courier, monospace;
+            padding: 10px;
         }
     </style>
 
@@ -45,10 +53,13 @@
                                     <div>全量引入</div>
                                     <div>Full Import</div>
                                 </div>
-                                <div class="type-error-log">
+                                <div class="type-error-log" v-if="item.compileErrors.full.length">
                                     <div v-for="compileError in item.compileErrors.full">
                                         <pre>[{{compileError.location.join(', ')}}] {{compileError.message}}</pre>
                                     </div>
+                                </div>
+                                <div class="type-passed" v-else>
+                                    No Error
                                 </div>
                             </el-card>
                         </el-col>
@@ -58,10 +69,13 @@
                                     <div>按需引入</div>
                                     <div>Minimal Import </div>
                                 </div>
-                                <div class="type-error-log">
+                                <div class="type-error-log" v-if="item.compileErrors.minimal.length">
                                     <div v-for="compileError in item.compileErrors.minimal">
                                         <pre>[{{compileError.location.join(', ')}}] {{compileError.message}}</pre>
                                     </div>
+                                </div>
+                                <div class="type-passed" v-else>
+                                    No Error
                                 </div>
                             </el-card>
                         </el-col>
