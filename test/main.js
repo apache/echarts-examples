@@ -53,6 +53,10 @@ const MINIFY_BUNDLE = args.minify;
 const TEST_THEME = '';
 const USE_WEBPACK = !(args.bundler === 'esbuild');
 
+// Create a server
+const port = 3322;
+const baseUrl = `http://localhost:${port}`;
+
 const TEMPLATE_CODE = `
 // @ts-ignore
 echarts.registerPreprocessor(function (option) {
@@ -138,7 +142,7 @@ async function buildRunCode() {
         }
 
         const testName = nodePath.basename(fileName, '.json');
-        const ROOT_PATH = 'public';
+        const ROOT_PATH = `${baseUrl}/public`;
 
         const fullTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
             minimal: false,
@@ -393,9 +397,6 @@ function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 async function runExamples(jsFiles, result) {
-    // Create a server
-    const port = 3322;
-    const baseUrl = `http://localhost:${port}/test/`;
     const fileServer = new nStatic.Server(__dirname + '/../');
     const server = require('http').createServer(function (request, response) {
         request.addListener('end', function () {
@@ -425,6 +426,7 @@ async function runExamples(jsFiles, result) {
             await page.setViewport({ width: 800, height: 600 });
 
             page.on('pageerror', function (err) {
+                // TODO Record pageerror
                 console.error(chalk.red(`[PAGE ERROR] [${basename}]`));
                 console.error(chalk.red(err.toString()));
             });
@@ -435,12 +437,12 @@ async function runExamples(jsFiles, result) {
                 }
             });
 
-            await page.goto(`${baseUrl}/template.html`, {
+            await page.goto(`${baseUrl}/test/template.html`, {
                 waitUntil: 'networkidle0',
                 timeout: 10000
             });
             await page.addScriptTag({
-                url: `${baseUrl}/tmp/bundles/${basename}.js`
+                url: `${baseUrl}/test/tmp/bundles/${basename}.js`
             });
             await waitTime(200);
 
