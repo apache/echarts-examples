@@ -9,6 +9,7 @@ module.exports = [
     {
         entry: path.resolve(__dirname, '../src/main.js'),
         output: {
+            publicPath: './',
             filename: 'example-bundle.js',
             path: path.join(distPath, 'js'),
             library: 'echartsExample',
@@ -30,7 +31,7 @@ module.exports = [
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sassjs-loader']
             }, {
-                test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+                test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
@@ -39,7 +40,15 @@ module.exports = [
                         name: '[name].[ext]'
                     }
                 }]
-            }]
+            }, {
+                test: /\.svg$/,
+                use: [{
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
+                    }
+                }]
+              },]
         },
         externals: {
             vue: 'Vue'
@@ -60,7 +69,10 @@ module.exports = [
             rules: [{
                 test: /\.m?js$/,
                 include: /node_modules/,
-                type: 'javascript/auto'
+                type: 'javascript/auto',
+                resolve: {
+                    fullySpecified: false
+                }
             }]
         },
         output: {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="15px" viewBox="0 0 18 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Treemap</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Treemap" fill="#5470C6">
+            <rect id="Rectangle" x="0" y="0" width="10" height="8" rx="0.5"></rect>
+            <rect id="Rectangle" transform="translate(14.500000, 3.000000) scale(1, -1) translate(-14.500000, -3.000000) " x="11" y="0" width="7" height="6" rx="0.5"></rect>
+            <rect id="Rectangle" transform="translate(14.500000, 9.000000) scale(1, -1) translate(-14.500000, -9.000000) " x="11" y="7" width="7" height="4" rx="0.5"></rect>
+            <rect id="Rectangle" transform="translate(14.500000, 13.500000) scale(1, -1) translate(-14.500000, -13.500000) " x="11" y="12" width="7" height="3" rx="0.5"></rect>
+            <rect id="Rectangle" transform="translate(5.000000, 12.000000) scale(1, -1) translate(-5.000000, -12.000000) " x="0" y="9" width="10" height="6" rx="0.5"></rect>
+        </g>
+    </g>
+</svg>

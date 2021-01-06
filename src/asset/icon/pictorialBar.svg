@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="15px" viewBox="0 0 18 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>PictorialBar</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PictorialBar">
+            <path d="M7.90976979,6.5 L16.9097698,6.5" id="Path-118" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M7.90976979,10 L16.9097698,10" id="Path-118" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M6.90976979,3 L16.9097698,3" id="Path-118" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M6.3965428,13.5 L16.9097698,13.5" id="Path-118" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M3.90976979,9.5 L3.90976979,14 C3.90976979,14.2761424 3.68591216,14.5 3.40976979,14.5 L1.40976979,14.5 C1.13362741,14.5 0.909769789,14.2761424 0.909769789,14 L0.909769789,9.5 L0.5,9.5 C0.223857625,9.5 3.19059275e-12,9.27614237 3.19055893e-12,9 C3.19055556e-12,8.97245957 0.00227541927,8.94496622 0.00680303809,8.91780051 L0.840136371,3.91780051 C0.880318702,3.67670652 1.08891376,3.5 1.33333333,3.5 L3.48620624,3.5 C3.73062582,3.5 3.93922088,3.67670652 3.97940321,3.91780051 L4.81273654,8.91780051 C4.85813407,9.19018567 4.67412423,9.44779944 4.40173907,9.49319696 C4.37457336,9.49772458 4.34708001,9.5 4.31953958,9.5 L3.90976979,9.5 Z" id="Combined-Shape" fill="#5470C6"></path>
+            <rect id="Rectangle" fill="#5470C6" x="0.909769789" y="0" width="3" height="3" rx="1.5"></rect>
+            <rect id="Rectangle" stroke="#5470C6" x="16.4097698" y="6" width="1" height="1" rx="0.5"></rect>
+            <rect id="Rectangle" stroke="#5470C6" x="16.4097698" y="2.5" width="1" height="1" rx="0.5"></rect>
+            <rect id="Rectangle" stroke="#5470C6" x="16.4097698" y="9.5" width="1" height="1" rx="0.5"></rect>
+            <rect id="Rectangle" stroke="#5470C6" x="16.4097698" y="13" width="1" height="1" rx="0.5"></rect>
+        </g>
+    </g>
+</svg>

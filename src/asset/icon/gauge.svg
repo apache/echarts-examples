@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="12px" viewBox="0 0 20 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Gange</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Gange" transform="translate(1.000000, 1.000000)">
+            <path d="M14.625,9 C14.625,5.89339828 12.1066017,3.375 9,3.375 C5.89339828,3.375 3.375,5.89339828 3.375,9 L8.8817842e-16,9 C0,4.02943725 4.02943725,0 9,0 C13.9705627,0 18,4.02943725 18,9 L14.625,9 Z" id="Combined-Shape" stroke="#5470C6" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="Oval" fill="#5470C6" cx="9.125" cy="9.125" r="1.125"></circle>
+            <path d="M9.22812714,9.125 L10.7,1.88050096" id="Path-118" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M14.0625,1.6875 L12.3002343,4.21847701" id="Path-120" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M3.86120846,1.88050096 L5.63412925,4.35400746" id="Path-121" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="" id="Path-146" stroke="#979797"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Parallel</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Parallel" transform="translate(0.000000, 1.000000)" stroke="#5470C6">
+            <path d="M6,0 L6,14" id="Path-98-Copy"></path>
+            <path d="M11.5,0 L11.5,14" id="Path-98-Copy-2"></path>
+            <path d="M17,0 L17,14" id="Path-98-Copy-3"></path>
+            <polyline id="Path-100" points="0.5 3 6 3 11.5 9.01232091 17 12.3003456"></polyline>
+            <polyline id="Path-101" points="0.5 10.2786699 6 6.08427644 11.5 6.08427644 17 8.48490309"></polyline>
+            <path d="M0.5,0 L0.5,14" id="Path-98"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="18px" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Dataset</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dataset" transform="translate(1.000000, 1.000000)">
+            <path d="M3,2.04631614 L3,0.5 C3,0.223857625 3.22385763,1.64601752e-14 3.5,2.22044605e-16 L13.4991376,2.99456227e-05 C13.7752683,2.99456227e-05 13.9991211,0.223869321 13.9991376,0.500000001 L14,13.9 C14.0000165,14.1761424 13.7761723,14.4000134 13.5000299,14.4000299 C13.50002,14.4000299 13.50001,14.4000299 13.5,14.4000299 L11.7804639,14.4" id="Path-127" stroke="#607ACA" stroke-linejoin="round"></path>
+            <path d="M7.64236562,2 L7.64236562,5.80445451 C7.64236562,6.08059689 7.86622325,6.30445451 8.14236562,6.30445451 L12,6.30445451 L12,15.5 C12,15.7761424 11.7761424,16 11.5,16 L0.5,16 C0.223857625,16 3.38176876e-17,15.7761424 0,15.5 L0,2.5 C-3.38176876e-17,2.22385763 0.223857625,2 0.5,2 L7.64236562,2 Z" id="Combined-Shape" stroke="#5470C6" stroke-linejoin="round"></path>
+            <path d="M7.69470594,2.04631614 C7.69470594,2.04631614 9.13180462,3.4656956 12.006002,6.30445451" id="Path-98-Copy-4" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M-2,9 L8,9" id="Path-98" stroke="#5470C6" stroke-linecap="round" transform="translate(3.000000, 9.000000) rotate(90.000000) translate(-3.000000, -9.000000) "></path>
+            <path d="M1.5,10.5 L8.5,10.5" id="Path-98" stroke="#5470C6" stroke-linecap="round" transform="translate(5.000000, 10.500000) rotate(90.000000) translate(-5.000000, -10.500000) "></path>
+            <path d="M6.5,11.5 L11.5,11.5" id="Path-98" stroke="#5470C6" stroke-linecap="round" transform="translate(9.000000, 11.500000) rotate(90.000000) translate(-9.000000, -11.500000) "></path>
+            <path d="M4.5,11.5 L9.5,11.5" id="Path-98-Copy-4" stroke="#5470C6" stroke-linecap="round" transform="translate(7.000000, 11.500000) rotate(90.000000) translate(-7.000000, -11.500000) "></path>
+            <polygon id="Path-147" fill="#5470C6" points="7.84449314 2.81987747 7.84449314 6.30445451 11.7804639 6.17590087"></polygon>
+        </g>
+    </g>
+</svg>

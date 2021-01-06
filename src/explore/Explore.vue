@@ -1,14 +1,6 @@
 <template>
 <div id="example-explore">
     <div id="left-container">
-        <div id="left-toolbar">
-            <el-switch
-                v-model="shared.darkMode"
-                active-color="#181432"
-                :active-text="$t('editor.darkMode')"
-                :inactive-text="''">
-            </el-switch>
-        </div>
         <div id="left-chart-nav">
             <scrollactive
                 active-class="active"
@@ -23,7 +15,7 @@
                         <a class="left-chart-nav-link scrollactive-item" :id="'left-chart-nav-' + category"
                             :href="'#chart-type-' + category"
                         >
-                            <span class="chart-icon"></span>
+                            <span class="chart-icon" v-html="icons[category]"></span>
                             <span class="chart-name">{{$t('chartTypes.' + category)}}</span>
                         </a>
                     </li>
@@ -50,6 +42,14 @@
             </div>
         </div>
     </div>
+    <div id="toolbar">
+        <el-switch
+            v-model="shared.darkMode"
+            active-color="#181432"
+            :active-text="$t('editor.darkMode')"
+            :inactive-text="''">
+        </el-switch>
+    </div>
 </div>
 </template>
 
@@ -61,7 +61,18 @@ import {EXAMPLE_CATEGORIES, BLACK_MAP, URL_PARAMS} from '../common/config';
 import {store} from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
-import scrollIntoView from 'scroll-into-view';
+// import scrollIntoView from 'scroll-into-view';
+
+const icons = {};
+
+['line', 'bar', 'scatter', 'pie', 'radar', 'funnel', 'gauge', 'map',
+    'graph', 'treemap', 'parallel', 'sankey', 'candlestick', 'boxplot', 'heatmap',
+    'pictorialBar', 'themeRiver', 'calendar', 'custom', 'sunburst', 'tree',
+    // 'globe', 'bar3D', 'scatter3D', 'surface', 'map3D', 'lines3D', 'line3D',
+    // 'scatterGL', 'linesGL', 'flowGL', 'graphGL', 'geo3D', 'geo', 'lines', 'dataset'
+].forEach(function (category) {
+    icons[category] = require('../asset/icon/' + category + '.svg');
+});
 
 const LAZY_LOADED_CLASS = 'ec-shot-loaded';
 
@@ -117,6 +128,8 @@ export default {
         return {
             shared: store,
 
+            icons,
+
             EXAMPLE_CATEGORIES,
             // [{
             //  category: '',
@@ -168,11 +181,9 @@ export default {
 
     methods: {
         onActiveNavChanged(event, currentItem, lastActiveItem) {
-            // currentItem && currentItem.scrollIntoView && currentItem.parentNode.scrollIntoView({
-            //     // behavior: "smooth"
-            // });
+            // currentItem && currentItem.scrollIntoView && currentItem.parentNode.scrollIntoView();
             // scrollIntoView(currentItem, {
-            //     time: 300,
+            //     time: 100,
             //     cancellable: false,
             //     align: {
             //         top: 0,
@@ -189,14 +200,18 @@ export default {
 @import "../style/color.scss";
 @import "../style/config.xl.scss";
 
-$chart-nav-width: 170px;
+$chart-nav-width: 200px;
 $chart-icon-width: 25px;
 $chart-icon-border: 1px;
 
-$left-toolbar-height: 30px;
+$toolbar-height: 30px;
 
 $nav-height: 50px;
-$nav-bg: #252839;
+$nav-active-bg: #5470C6;
+$nav-hover-border: $nav-active-bg;
+
+$nav-text-color: #6E7079;
+$nav-hover-text-color: #464646;
 
 $pd-basic: 10px;
 $pd-sm: 6px;
@@ -212,6 +227,32 @@ $pd-lg: 20px;
     bottom: 0;
     left: 0;
     overflow-y: auto;
+
+    ::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none
+    }
+
+    ::-webkit-scrollbar-thumb {
+        width: 4px;
+        min-height: 15px;
+        background: rgba(50, 50, 50, 0.2) !important;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        border-radius: 2px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5) !important
+    }
 }
 
 #explore-container {
@@ -239,25 +280,27 @@ $pd-lg: 20px;
 }
 
 #left-container {
-    position: fixed;
-    top: 10px;
-    bottom: 10px;
-    left: 10px;
+    position: sticky;
+    left: 0;
+    top: 0;
+    float: left;
+    height: calc(100%);
     width: $chart-nav-width;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow-y: auto;
+
 }
 
-#left-toolbar {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: $left-toolbar-height;
-    top: 0;
+#toolbar {
+    position: fixed;
+    right: 30px;
+    top: 20px;
+    height: $toolbar-height;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: $toolbar-height / 2;
     // color: #fff;
+    padding: 4px 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding-left: 5px;
-    padding-top: 4px;
 
     .el-switch__label * {
         font-size: 12px;
@@ -270,15 +313,9 @@ $pd-lg: 20px;
 }
 
 #left-chart-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: $left-toolbar-height + 10px;
-    background-color: $nav-bg;
+    background-color: #fff;
     overflow-y: hidden;
-    border-radius: 10px;
-    color: #fff;
+    color: #111;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 
     &:hover {
@@ -290,16 +327,16 @@ $pd-lg: 20px;
     }
 
     li {
-        transition: 0.5s;
+        // transition: background-color 0.5s;
         cursor: pointer;
 
         a {
             height: 45px;
-            padding: 10px 0 10px 10px;
+            padding: 10px 0 10px 20px;
             display: block;
-            transition: 0.5s;
+            // transition: background-color 0.5s;
             text-decoration: none;
-            color: inherit;
+            color: $nav-text-color;
 
             .chart-name {
                 display: inline-block;
@@ -310,24 +347,32 @@ $pd-lg: 20px;
 
             .chart-icon {
                 content: '';
+                width: 30px;
                 display: inline-block;
-                width: $chart-icon-width;
-                height: $chart-icon-width;
-                background-image: url('../asset/chart-icon.png');
-                background-size: $chart-icon-width;
-                background-repeat: no-repeat;
                 border-radius: 50%;
-                border: $chart-icon-border solid #fff;
                 vertical-align: middle;
             }
+
             &.active {
-                background-color: $clr-contrast;
+                background-color: $nav-active-bg;
+                color: #fff;
+
+                .chart-icon * {
+                    fill: #fff;
+                }
             }
 
+            &.active:hover {
+                color: #fff;
+            }
         }
 
         &:hover {
-            background-color: darken($nav-bg, 10);
+            border-right: 4px solid $nav-hover-border;
+
+            a {
+                color: $nav-hover-text-color;
+            }
         }
     }
 }
@@ -338,24 +383,6 @@ $pd-lg: 20px;
     }
     #explore-container {
         margin-left: 0;
-    }
-}
-
-// icon sprites
-$chart-types: 'line', 'bar', 'scatter', 'pie', 'radar', 'funnel', 'gauge', 'map',
-    'graph', 'treemap', 'parallel', 'sankey', 'candlestick', 'boxplot', 'heatmap',
-    'pictorialBar', 'themeRiver', 'calendar', 'custom', 'sunburst', 'tree',
-    'globe', 'bar3D', 'scatter3D', 'surface', 'map3D', 'lines3D', 'line3D',
-    'scatterGL', 'linesGL', 'flowGL', 'graphGL', 'geo3D', 'geo', 'lines', 'dataset';
-$chart-position: 0, 1, 2, 4, 5, 10, 9, 8, 7, 15, 16, 17, 3, 18, 11, 24, 25, 26, 27, 28, 14,
-    29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 8, 20, 22;
-
-@each $type in $chart-types {
-    $i: index($chart-types, $type);
-    $pos: nth($chart-position, $i);
-    #left-chart-nav-#{$type} .chart-icon {
-        background-position-x: - $chart-icon-border;
-        background-position-y: - $chart-icon-border - $pos * $chart-icon-width;
     }
 }
 

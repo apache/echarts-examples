@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="16px" viewBox="0 0 19 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Sankey</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Sankey" transform="translate(0.000000, 1.000000)">
+            <path d="M0.5,12 L0.5,14" id="Path-98" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M0.5,0 L0.5,10.6057117" id="Path-98" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M0.5,0 L0.5,10.6057117" id="Path-98" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M9.5,0 L9.5,6" id="Path-98-Copy-2" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M18.5,0 L18.5,3.15141088" id="Path-98-Copy-3" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M11.5,14 L11.5,8" id="Path-98-Copy-2" stroke="#5470C6" stroke-linecap="round"></path>
+            <path d="M18.5,14 L18.5,4.74776902" id="Path-98-Copy-3" stroke="#5470C6" stroke-linecap="round"></path>
+            <rect id="Rectangle" fill="#5470C6" fill-rule="nonzero" opacity="0.5" x="12" y="8" width="7" height="6"></rect>
+            <path d="M19,8 L19,4.74978821 C15.1034169,5.07722633 13.9187737,3 9.99624531,3 L9.99624531,6 C14.431782,6 13.4156933,7.95909476 19,8 Z" id="Path" fill="#5470C6" fill-rule="nonzero" opacity="0.5"></path>
+            <rect id="Rectangle" fill="#5470C6" fill-rule="nonzero" opacity="0.5" x="9" y="0" width="10" height="3"></rect>
+            <rect id="Rectangle" fill="#5470C6" fill-rule="nonzero" opacity="0.5" x="1" y="0" width="8" height="6"></rect>
+            <rect id="Rectangle" fill="#5470C6" fill-rule="nonzero" opacity="0.5" x="1" y="12" width="11" height="2"></rect>
+            <path d="M11.0471125,8 C5.18462459,8 6.15860141,6 1,6 L1,10.5210413 C5.67817203,10.5210413 4.7194168,11.9683214 11.0471125,12 C10.9155745,11.855324 11.3358903,8 11.0471125,8 Z" id="Path" fill="#5470C6" fill-rule="nonzero" opacity="0.5"></path>
+        </g>
+    </g>
+</svg>

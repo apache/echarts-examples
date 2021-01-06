@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="18px" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Radar</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Radar" transform="translate(0.000000, 1.000000)">
+            <polygon id="Polygon" stroke="#5470C6" stroke-linecap="round" stroke-linejoin="round" points="8 0 14.9282032 4 14.9282032 12 8 16 1.07179677 12 1.07179677 4"></polygon>
+            <polygon id="Polygon" fill="#5470C6" points="8 2.49358608 13.4266666 5 13.1608549 10.9448339 8 12.4946057 3.01738591 11 6.49877319 7"></polygon>
+        </g>
+    </g>
+</svg>
