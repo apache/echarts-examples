@@ -199,13 +199,15 @@ async function buildRunCode() {
 async function compileTs(tsTestFiles, result) {
     const config = JSON.parse(fs.readFileSync(nodePath.join(__dirname, 'tsconfig.json'), 'utf-8'));
 
-    const {options, errors} = ts.convertCompilerOptionsFromJson({
+    const compilerOptions = {
         ...config.compilerOptions,
         "paths": {
             "echarts": [ECHARTS_DIR],
             "echarts/*": [ECHARTS_DIR + '/*']
         }
-    }, nodePath.resolve(__dirname));
+    };
+
+    const {options, errors} = ts.convertCompilerOptionsFromJson(compilerOptions, nodePath.resolve(__dirname));
 
     if (errors.length) {
         let errMsg = 'tsconfig parse failed: '
@@ -213,6 +215,11 @@ async function compileTs(tsTestFiles, result) {
             + '\n compilerOptions: \n' + JSON.stringify(config.compilerOptions, null, 4);
         assert(false, errMsg);
     }
+
+    // Generate this config file for checking the source code in vscode.
+    fs.writeFileSync(nodePath.join(RUN_CODE_DIR, 'tsconfig.json'), JSON.stringify({
+        compilerOptions
+    }, null, 2), 'utf-8');
 
     // See: https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API
     let program = ts.createProgram(tsTestFiles, options);

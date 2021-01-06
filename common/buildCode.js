@@ -90,6 +90,8 @@ Object.keys(CHARTS_MAP).forEach(key => {
 module.exports.collectDeps = function collectDeps(option) {
     let deps = [];
     if (option.options) {
+
+        // TODO getOption() doesn't have baseOption and options.
         option.options.forEach((opt) => {
             deps = deps.concat(collectDeps(opt));
         });
