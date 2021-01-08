@@ -67,9 +67,10 @@ import {createSandbox} from './sandbox';
 import debounce from 'lodash/debounce';
 import { addListener, removeListener } from 'resize-detector';
 import CHART_LIST from '../data/chart-list-data';
+import CHART_LIST_GL from '../data/chart-list-data-gl';
 import {download} from './downloadExample';
 
-const example = CHART_LIST.find(item => URL_PARAMS.c === item.id);
+const example = CHART_LIST.concat(CHART_LIST_GL).find(item => URL_PARAMS.c === item.id);
 
 function addDecalIfNecessary(option) {
     if (store.enableDecal) {

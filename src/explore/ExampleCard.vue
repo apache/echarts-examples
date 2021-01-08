@@ -39,7 +39,7 @@ export default {
         exampleLink() {
             const example = this.example;
             const hash = ['c=' + example.id];
-            const exampleTheme = this.exampleTheme;
+            const exampleTheme = example.theme || this.exampleTheme;
             if (example.isGL) {
                 hash.push('gl=1');
             }

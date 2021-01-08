@@ -126,7 +126,9 @@ export default [
       "flowGL"
     ],
     "id": "global-wind-visualization",
-    "tags": [],
+    "tags": [
+      "bmap"
+    ],
     "title": "Global wind visualization",
     "difficulty": 10
   },
@@ -135,7 +137,9 @@ export default [
       "flowGL"
     ],
     "id": "global-wind-visualization-2",
-    "tags": [],
+    "tags": [
+      "bmap"
+    ],
     "title": "Global Wind Visualization 2",
     "difficulty": 10
   },
