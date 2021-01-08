@@ -40,7 +40,7 @@ $.getJSON(ROOT_PATH + '/data-gl/asset/data/flights.json', function(data) {
             },
 
             itemStyle: {
-                areaColor: '#111'
+                color: '#111'
             },
 
             boxHeight: 0.5
