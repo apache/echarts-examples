@@ -66,7 +66,7 @@ option = {
             borderWidth: 2,
             width: '60%',
             lineHeight: 40,
-            height: '15%',
+            height: 40,
             borderRadius: 8,
             offsetCenter: [0, '35%'],
             valueAnimation: true,

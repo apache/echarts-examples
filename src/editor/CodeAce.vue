@@ -104,6 +104,13 @@ export default {
     font-size: 12px;
     line-height: 18px;
     padding: 10px;
-    height: 100%;
+    // height: 100%;
+
+    // Fix safari
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
 }
 </style>

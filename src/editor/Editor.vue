@@ -336,7 +336,14 @@ $handler-width: 5px;
 }
 
 #option-outline {
-    height: 100%;
+    // height: 100%;
+    // Fix safari
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
     font-size: 13px;
 
     font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
