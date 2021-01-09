@@ -9,8 +9,8 @@
     "release": "npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
     "build:example": "node tool/build-example.js",
-    "test:webpack": "node test/main.js --bundler webpack -m",
-    "test:esbuild": "node test/main.js --bundler esbuild -m",
+    "test:e2e": "node e2e/main.js --bundler webpack -m --fetch",
+    "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m --fetch",
     "server": "node build/server.js"
   },
   "devDependencies": {
@@ -23,6 +23,7 @@
     "concurrently": "^5.3.0",
     "css-loader": "^3.5.3",
     "cwebp-bin": "^6.1.1",
+    "download-git-repo": "^3.0.2",
     "echarts": "^5.0.0",
     "echarts-stat": "^1.2.0",
     "esbuild": "^0.8.26",
@@ -42,6 +43,7 @@
     "sassjs-loader": "^2.0.0",
     "seedrandom": "^3.0.5",
     "sharp": "^0.26.2",
+    "shelljs": "^0.8.4",
     "style-loader": "^2.0.0",
     "typescript": "^4.1.3",
     "vue-loader": "^15.9.6",

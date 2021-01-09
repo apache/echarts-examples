@@ -16,7 +16,10 @@ const argparse = require('argparse');
 const esbuild = require('esbuild');
 const puppeteer = require('puppeteer');
 const config = require('./config');
-const {compareImage} =require('../common/compareImage');
+const {compareImage} = require('../common/compareImage');
+const shell = require('shelljs');
+const downloadGit = require('download-git-repo');
+const {promisify} = require('util');
 
 const parser = new argparse.ArgumentParser({
     addHelp: true
@@ -28,12 +31,10 @@ parser.addArgument(['-m', '--minify'], {
     action: 'storeTrue',
     help: 'If minify'
 });
-parser.addArgument(['--echarts'], {
-    help: 'ECharts folder relative to cwd'
-});
-parser.addArgument(['--zrender'], {
-    help: 'ZRender folder relative to cwd'
-});
+parser.addArgument(['--fetch'], {
+    action: 'storeTrue',
+    help: `If fetch repo from github. If not use fetch, don't forget to update the location of local repo in config.js.`
+})
 const args = parser.parseArgs();
 
 const EXAMPLE_DIR =  `${__dirname}/../public/`;
@@ -41,12 +42,11 @@ const TMP_DIR = `${__dirname}/tmp`;
 const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
 const SCREENSHOTS_DIR = `${TMP_DIR}/screenshots`;
+const REPO_DIR = `${TMP_DIR}/repos`;
+const PACKAGE_DIR = `${TMP_DIR}/packages`;
 
 const MINIMAL_POSTFIX = 'minimal';
 const MINIMAL_LEGACY_POSTFIX = 'minimal.legacy';
-
-const ECHARTS_DIR = nodePath.resolve(__dirname, args.echarts || config.echartsDir);
-const ZRENDER_DIR = nodePath.resolve(__dirname, args.zrender || config.zrenderDir);
 
 const MINIFY_BUNDLE = args.minify;
 // const TEST_THEME = 'dark-blue';
@@ -109,11 +109,88 @@ async function prepare() {
     fse.removeSync(RUN_CODE_DIR);
     fse.removeSync(BUNDLE_DIR);
     fse.removeSync(SCREENSHOTS_DIR);
+    fse.removeSync(REPO_DIR);
+    fse.removeSync(PACKAGE_DIR);
 
     fse.ensureDirSync(TMP_DIR);
     fse.ensureDirSync(RUN_CODE_DIR);
     fse.ensureDirSync(BUNDLE_DIR);
     fse.ensureDirSync(SCREENSHOTS_DIR);
+    fse.ensureDirSync(REPO_DIR);
+    fse.ensureDirSync(PACKAGE_DIR);
+}
+
+async function downloadPackages(config) {
+    for (let pkg of config.packages) {
+        const pkgDownloadPath = nodePath.join(REPO_DIR, pkg.name);
+        console.log(chalk.gray(`Downloading ${pkg.git}`))
+        await promisify(downloadGit)(pkg.git, pkgDownloadPath);
+        // Override the path
+        pkg.dir = pkgDownloadPath;
+    }
+}
+
+async function installPackages(config) {
+
+    const publishedPackages = {};
+
+    function checkFolder(pkg) {
+        const dir = pkg.dir;
+        if (!fs.existsSync(dir)) {
+            console.warn(chalk.yellow(`${dir} not exists. Please update it in e2e/config.js. Or use --fetch to fetch from GitHub.`));
+            return false;
+        }
+        if (!nodePath.isAbsolute(dir)) {
+            console.warn(chalk.yellow(`${dir} is not an absolute path. Please update it in e2e/config.js. Or add --fetch flag to fetch from GitHub.`));
+            return false;
+        }
+        return true;
+    }
+
+    function publishPackage(pkg) {
+        console.log(chalk.gray(`Publishing ${pkg.dir}`))
+
+        shell.cd(pkg.dir);
+
+        const packageJson = JSON.parse(fs.readFileSync(nodePath.join(pkg.dir, 'package.json')));
+        const tgzFileName = `${packageJson.name}-${packageJson.version}.tgz`;
+        const targetTgzFilePath = nodePath.join(PACKAGE_DIR, tgzFileName);
+
+        if (packageJson.dependencies) {
+            for (let depPkgName in packageJson.dependencies) {
+                if (!publishedPackages[depPkgName]) {
+                    const depPkg = config.packages.find(a => a.name === depPkgName);
+                    if (depPkg) {
+                        publishPackage(depPkg);
+                        // Come back.
+                        shell.cd(pkg.dir);
+                    }
+                }
+
+                shell.exec(`npm install`)
+                shell.exec(`npm install ${publishedPackages[depPkgName]} --no-save`);
+            }
+        }
+
+        shell.exec(`npm pack`);
+        fs.renameSync(nodePath.join(pkg.dir, tgzFileName), targetTgzFilePath);
+        publishedPackages[packageJson.name] = targetTgzFilePath;
+    }
+
+    for (let pkg of config.packages) {
+        if (!checkFolder(pkg)) {
+            return;
+        }
+
+        publishPackage(pkg);
+    };
+
+    // Come back.
+    shell.cd(__dirname);
+    for (let pkg of config.packages) {
+        console.log(chalk.gray(`Installing ${pkg.name}`))
+        shell.exec(`npm install ${publishedPackages[pkg.name]}`);
+    }
 }
 
 async function buildRunCode() {
@@ -200,11 +277,7 @@ async function compileTs(tsTestFiles, result) {
     const config = JSON.parse(fs.readFileSync(nodePath.join(__dirname, 'tsconfig.json'), 'utf-8'));
 
     const compilerOptions = {
-        ...config.compilerOptions,
-        "paths": {
-            "echarts": [ECHARTS_DIR],
-            "echarts/*": [ECHARTS_DIR + '/*']
-        }
+        ...config.compilerOptions
     };
 
     const {options, errors} = ts.convertCompilerOptionsFromJson(compilerOptions, nodePath.resolve(__dirname));
@@ -294,12 +367,6 @@ async function webpackBundle(esbuildService, entry, result) {
 
                     }
                 }] : []
-            },
-            resolve: {
-                alias: {
-                    echarts: ECHARTS_DIR,
-                    zrender: ZRENDER_DIR
-                }
             }
         }, (err, stats) => {
             if (err || stats.hasErrors()) {
@@ -332,27 +399,6 @@ async function webpackBundle(esbuildService, entry, result) {
 }
 
 function esbuildBundle(entry, result, minify) {
-    const echartsResolvePlugin = {
-        name: 'echarts-resolver',
-        setup(build) {
-            build.onResolve({ filter: /^(echarts\/|echarts$)/ }, args => {
-                const path = args.path.replace(/^echarts/, ECHARTS_DIR);
-                return {
-                    path: args.path === 'echarts' ? (path + '/index.js') : (path + '.js')
-                };
-            });
-        }
-    }
-    const zrenderResolverPlugin = {
-        name: 'zrender-resolver',
-        setup(build) {
-            build.onResolve({ filter: /^zrender/ }, args => {
-                const path = args.path.replace(/^zrender/, ZRENDER_DIR) + '.js';
-                return { path };
-            });
-        }
-    }
-
     return esbuild.build({
         entryPoints: entry,
         bundle: true,
@@ -518,8 +564,16 @@ async function compareExamples(testNames, result) {
 
 async function main() {
     const result = {};
-
     await prepare();
+
+    if (args.fetch) {
+        console.log(chalk.gray('Downloading packages'));
+        await downloadPackages(config);
+    }
+
+    console.log(chalk.gray('Installing packages'));
+    await installPackages(config);
+
 
     console.log(chalk.gray('Generating codes'));
     const testNames = await buildRunCode();

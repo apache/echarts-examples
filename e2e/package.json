@@ -1,0 +1,19 @@
+{
+  "name": "echarts-examples-e2e",
+  "version": "1.0.0",
+  "description": "Using the example data to E2E test echarts and it's extensions.",
+  "main": "main.js",
+  "scripts": {
+    "test:e2e": "node main.js --bundler webpack -m --fetch",
+    "test:e2e:esbuild": "node main.js --bundler esbuild -m --fetch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "echarts": "file:../../echarts",
+    "echarts-gl": "file:tmp/echarts-gl-2.0.0-rc.3.tgz",
+    "echarts-liquidfill": "file:tmp/echarts-liquidfill-3.0.0.tgz",
+    "echarts-wordcloud": "file:tmp/echarts-wordcloud-2.0.0.tgz",
+    "zrender": "file:tmp/zrender-5.0.1.tgz"
+  }
+}

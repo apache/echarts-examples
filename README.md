@@ -38,7 +38,7 @@ Only for default theme
 node tool/build-example.js -t default
 ```
 
-## Run bundler tests.
+## Run e2e tests.
 
 Run all the examples to test module importing, minimal bundling and DTS correctness.
 
@@ -48,20 +48,21 @@ Before run the tests. you need to update the examples.
 node tool/build-example.js
 ```
 
-Then update the `echartsDir` and `zrenderDir` path in test/config.js
-
-If you want to test with esbuild bundler.
-
+Then run the tests.
 ```shell
-npm run test:esbuild
+npm run test:e2e
 ```
 
-Otherwise it will use webpack bundler.
-
+If you want to test with esbuild bundler. Which is much faster.
 ```shell
-npm run test:webpack
+npm run test:e2e:esbuild
 ```
 
+If you want use the packages in your local folder which is still in developing. Please update the `dir` path in `test/config.js` for all packages first. Then run the script directly without `--fetch` arg.
+```shell
+node e2e/main.js --bundler esbuild -m
+node e2e/main.js --bundler webpack -m
+```
 
 ## Edit example
 
