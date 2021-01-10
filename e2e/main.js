@@ -462,7 +462,11 @@ async function runExamples(jsFiles, result) {
     try {
         const IGNORE_LOG = [
             'A cookie associated with a cross-site resource at',
-            'A parser-blocking, cross site'
+            'A parser-blocking, cross site',
+            // For ECharts GL
+            'RENDER WARNING',
+            'GL ERROR',
+            'GL_INVALID_OPERATION'
         ];
 
         const browser = await puppeteer.launch({
@@ -470,6 +474,8 @@ async function runExamples(jsFiles, result) {
             args: [
                 '--headless',
                 '--hide-scrollbars',
+                // https://github.com/puppeteer/puppeteer/issues/4913
+                '--use-gl=egl',
                 '--mute-audio'
             ]
         });

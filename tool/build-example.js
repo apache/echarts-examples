@@ -68,8 +68,13 @@ const BASE_URL = `http://localhost:${PORT}`;
 const SCREENSHOT_PAGE_URL = `${BASE_URL}/tool/screenshot.html`;
 
 const IGNORE_LOG = [
+    // For BMap
     'A cookie associated with a cross-site resource at',
-    'A parser-blocking, cross site'
+    'A parser-blocking, cross site',
+    // For ECharts GL
+    'RENDER WARNING',
+    'GL ERROR',
+    'GL_INVALID_OPERATION'
 ];
 
 async function convertToWebP(filePath) {
@@ -114,7 +119,7 @@ async function takeScreenshot(
         try {
             await page.goto(url, {
                 waitUntil: 'networkidle0',
-                timeout: 10000
+                timeout: 20000
             });
         }
         catch (e) {
@@ -132,18 +137,24 @@ async function takeScreenshot(
         fse.ensureDirSync(thumbDir);
 
         // Save option for further tests.
-        const option = await page.evaluate(() => {
-            return _$getEChartsOption()
-        });
-        const optionStr = optionToJson(option);
-
-        fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
-        fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
+        try {
+            const option = await page.evaluate(() => {
+                return _$getEChartsOption()
+            });
+            const optionStr = optionToJson(option);
+            fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
+            fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
+        }
+        catch (e) {
+            console.error(chalk.red('Failed to generate option'));
+            console.error(chalk.red(e));
+        }
 
         await page.screenshot({
             path: filePathTmpRaw,
             type: 'png'
         });
+
 
         await sharp(filePathTmpRaw)
             .resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
@@ -213,11 +224,17 @@ async function takeScreenshot(
     for (let theme of themeList) {
         for (let fileName of files) {
             const basename = path.basename(fileName, '.js');
-            tasks.push({
-                buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
-                theme,
-                basename
-            })
+            if (
+                !matchPattern || matchPattern.some(function (pattern) {
+                    return minimatch(basename, pattern);
+                })
+            ) {
+                tasks.push({
+                    buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
+                    theme,
+                    basename
+                });
+            }
         }
     }
 
@@ -229,6 +246,7 @@ async function takeScreenshot(
             || basename === 'lines3d-taxi-chengdu'
             || basename === 'map3d-colorful-cities'
 
+            // TODO Examples that can't work temporary.
             || basename === 'bar3d-music-visualization'
         ) {
             return;
@@ -278,7 +296,7 @@ async function takeScreenshot(
             await browser.close();
             throw new Error(e.toString());
         }
-    }, sourceFolder === 'data-gl' ? 4 : 16);
+    }, sourceFolder === 'data-gl' ? 2 : 16);
 
     if (BUILD_THUMBS) {
         server.close();
