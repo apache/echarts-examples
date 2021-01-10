@@ -6,8 +6,8 @@ titleCN: 1w 节点 2w7 边的NPM 依赖图
 */
 
 $.when(
-    $.getJSON(ROOT_PATH + "/data-gl/asset/data/npmdep.json"),
-    $.getScript(ROOT_PATH + "/vendors/echarts/extension/graph-modularity.js")
+    $.getJSON(ROOT_PATH + '/data-gl/asset/data/npmdep.json'),
+    $.getScript('https://cdn.jsdelivr.net/npm/echarts-graph-modularity@2/dist/echarts-graph-modularity.js')
 ).done(function (res) {
     var data = res[0];
     var nodes = data.nodes.map(function (nodeName, idx) {
@@ -44,7 +44,7 @@ $.when(
     myChart.setOption({
         backgroundColor: '#000',
         series: [{
-            color: ["rgb(203,239,15)", "rgb(73,15,239)","rgb(15,217,239)","rgb(30,15,239)","rgb(15,174,239)","rgb(116,239,15)","rgb(239,15,58)","rgb(15,239,174)","rgb(239,102,15)","rgb(239,15,15)","rgb(15,44,239)","rgb(239,145,15)","rgb(30,239,15)","rgb(239,188,15)","rgb(159,239,15)","rgb(159,15,239)","rgb(15,239,44)","rgb(15,239,87)","rgb(15,239,217)","rgb(203,15,239)","rgb(239,15,188)","rgb(239,15,102)","rgb(239,58,15)","rgb(239,15,145)","rgb(116,15,239)","rgb(15,131,239)","rgb(73,239,15)","rgb(15,239,131)","rgb(15,87,239)","rgb(239,15,231)"],
+            color: ['rgb(203,239,15)', 'rgb(73,15,239)','rgb(15,217,239)','rgb(30,15,239)','rgb(15,174,239)','rgb(116,239,15)','rgb(239,15,58)','rgb(15,239,174)','rgb(239,102,15)','rgb(239,15,15)','rgb(15,44,239)','rgb(239,145,15)','rgb(30,239,15)','rgb(239,188,15)','rgb(159,239,15)','rgb(159,15,239)','rgb(15,239,44)','rgb(15,239,87)','rgb(15,239,217)','rgb(203,15,239)','rgb(239,15,188)','rgb(239,15,102)','rgb(239,58,15)','rgb(239,15,145)','rgb(116,15,239)','rgb(15,131,239)','rgb(73,239,15)','rgb(15,239,131)','rgb(15,87,239)','rgb(239,15,231)'],
             type: 'graphGL',
             nodes: nodes,
             edges: edges,
@@ -57,7 +57,7 @@ $.when(
                 opacity: 0.05
             },
             itemStyle: {
-                opacity: 1,
+                opacity: 1
                 // borderColor: '#fff',
                 // borderWidth: 1
             },

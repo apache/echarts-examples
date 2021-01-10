@@ -13,5 +13,6 @@ public/vendors/echarts/map/raw
 /public/css
 /public/asset
 /public/data/option
+/public/data-gl/option
 
 tmp
