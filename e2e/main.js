@@ -457,7 +457,7 @@ async function runExamples(jsFiles, result) {
             fileServer.serve(request, response);
         }).resume();
     })
-    server.listen(3322);
+    server.listen(port);
 
     try {
         const IGNORE_LOG = [

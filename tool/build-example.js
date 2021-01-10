@@ -12,6 +12,8 @@ const chalk = require('chalk');
 const sharp = require('sharp');
 const fse = require('fs-extra');
 const { compareImage } = require('../common/compareImage');
+const { runTasks } = require('../common/task');
+const nStatic = require('node-static');
 
 function optionToJson(obj, prop) {
     let json = JSON.stringify(obj, function(key, value) {
@@ -57,11 +59,13 @@ function waitTime(time) {
 }
 
 const BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
-const BASE_PATH = 'file://' + __dirname;
-const SCREENSHOT_PAGE_URL = path.join(BASE_PATH, `../public/screenshot.html`);
 const DEFAULT_PAGE_WIDTH = 700;
 const DEFAULT_PAGE_RATIO = 0.75;
 const OUTPUT_IMAGE_WIDTH = 600;
+
+const PORT = 3323;
+const BASE_URL = `http://localhost:${PORT}`;
+const SCREENSHOT_PAGE_URL = `${BASE_URL}/tool/screenshot.html`;
 
 const IGNORE_LOG = [
     'A cookie associated with a cross-site resource at',
@@ -82,25 +86,13 @@ async function takeScreenshot(
 ) {
     const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
     const page = await browser.newPage();
-    await page.exposeFunction('readLocalFile', async (filePath, type) => {
-        filePath = filePath.replace(/^file:\/*?/, '');
-        return new Promise((resolve, reject) => {
-            fs.readFile(filePath, type || 'utf8', (err, text) => {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    resolve(text);
-                }
-            });
-        });
-    });
+
     await page.setViewport({
         width: (pageWidth || DEFAULT_PAGE_WIDTH),
         height: (pageWidth || DEFAULT_PAGE_WIDTH) * DEFAULT_PAGE_RATIO
     });
     const url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
-    const resourceRootPath = path.join(BASE_PATH, '../public/');
+    const resourceRootPath = `${BASE_URL}/public`;
     // console.log(url);
     await page.evaluateOnNewDocument(function (resourceRootPath) {
         window.ROOT_PATH = resourceRootPath;
@@ -113,7 +105,7 @@ async function takeScreenshot(
     page.on('console', msg => {
         const text = msg.text();
         if (!IGNORE_LOG.find(a => text.indexOf(a) >= 0)) {
-            console.log('PAGE LOG:', text);
+            console.log(chalk.gray('PAGE LOG:', text));
         }
     });
     console.log(`Generating ${theme} thumbs.....${basename}`);
@@ -141,13 +133,9 @@ async function takeScreenshot(
             return _$getEChartsOption()
         });
         const optionStr = optionToJson(option);
-        // if (codeSize(optionStr) > 300 * 1024) {
-        //     console.log(`${basename} excceeds 300kb. Not save to option json`);
-        // }
-        // else {
+
         fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
         fs.writeFileSync(`${rootDir}public/${sourceFolder}/option/${basename}.json`, optionStr, 'utf-8');
-        // }
 
         await page.screenshot({
             path: filePathTmpRaw,
@@ -186,10 +174,15 @@ async function takeScreenshot(
 }
 
 (async () => {
-    const rootDir = path.join(__dirname, '../');
 
-    // await compress(`${rootDir}public/${sourceFolder}/thumb`);
-    // return;
+    const rootDir = path.join(__dirname, '../');
+    const fileServer = new nStatic.Server(rootDir);
+    const server = BUILD_THUMBS && require('http').createServer(function (request, response) {
+        request.addListener('end', function () {
+            fileServer.serve(request, response);
+        }).resume();
+    })
+    server && server.listen(PORT);
 
     let browser;
     if (BUILD_THUMBS) {
@@ -198,8 +191,7 @@ async function takeScreenshot(
             args: [
               '--headless',
               '--hide-scrollbars',
-              '--mute-audio',
-		      '--allow-file-access-from-files'
+              '--mute-audio'
             ]
         });
     }
@@ -211,100 +203,78 @@ async function takeScreenshot(
 
     const exampleList = [];
 
-    const threadNum = BUILD_THUMBS ? 16 : 1;
-    let buckets = [];
-    for (let i = 0; i < files.length;) {
-        const bucket = [];
-        for (let k = 0; k < threadNum; k++) {
-            const fileName = files[i++];
-            if (!fileName) {
-                continue;
-            }
-            const basename = path.basename(fileName, '.js');
-
-            if (
-                !matchPattern || matchPattern.some(function (pattern) {
-                    return minimatch(basename, pattern);
-                })
-            ) {
-                bucket.push({
-                    buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
-                    basename
-                });
-            }
-        }
-        buckets.push(bucket);
-    }
+    let tasks = [];
 
     for (let theme of themeList) {
-        for (let bucket of buckets) {
-            const promises = [];
-
-            for (const {basename, buildThumb} of bucket) {
-
-                // Remove mapbox temporary
-                if (basename.indexOf('mapbox') >= 0
-                    || basename.indexOf('shanghai') >= 0
-                    || basename === 'lines3d-taxi-routes-of-cape-town'
-                    || basename === 'lines3d-taxi-chengdu'
-                    || basename === 'map3d-colorful-cities'
-                ) {
-                    continue;
-                }
-
-                let fmResult;
-                try {
-                    const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
-                    fmResult = matter(code, {
-                        delimiters: ['/*', '*/']
-                    });
-                }
-                catch (e) {
-                    fmResult = {
-                        data: {}
-                    };
-                }
-
-                // const descHTML = marked(fmResult.body);
-
-                try {
-                    const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
-                    const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
-                    if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
-                        exampleList.push({
-                            category: category,
-                            id: basename,
-                            tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
-                            theme: fmResult.data.theme,
-                            title: fmResult.data.title,
-                            titleCN: fmResult.data.titleCN,
-                            difficulty: +difficulty
-                        });
-                    }
-                    // Do screenshot
-                    if (buildThumb) {
-                        promises.push(takeScreenshot(
-                            browser,
-                            theme,
-                            rootDir,
-                            basename,
-                            fmResult.data.shotWidth,
-                            fmResult.data.shotDelay
-                        ));
-                    }
-                }
-                catch (e) {
-                    await browser.close();
-                    throw new Error(e.toString());
-                }
-            }
-            if (promises.length) {
-                await Promise.all(promises);
-            }
+        for (let fileName of files) {
+            const basename = path.basename(fileName, '.js');
+            tasks.push({
+                buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
+                theme,
+                basename
+            })
         }
     }
 
+    await runTasks(tasks, async ({basename, buildThumb, theme}) => {
+        // Remove mapbox temporary
+        if (basename.indexOf('mapbox') >= 0
+            || basename.indexOf('shanghai') >= 0
+            || basename === 'lines3d-taxi-routes-of-cape-town'
+            || basename === 'lines3d-taxi-chengdu'
+            || basename === 'map3d-colorful-cities'
+        ) {
+            return;
+        }
+
+        let fmResult;
+        try {
+            const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
+            fmResult = matter(code, {
+                delimiters: ['/*', '*/']
+            });
+        }
+        catch (e) {
+            fmResult = {
+                data: {}
+            };
+        }
+
+        try {
+            const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
+            const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
+            if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
+                exampleList.push({
+                    category: category,
+                    id: basename,
+                    tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
+                    theme: fmResult.data.theme,
+                    title: fmResult.data.title,
+                    titleCN: fmResult.data.titleCN,
+                    difficulty: +difficulty
+                });
+            }
+            // Do screenshot
+            if (buildThumb) {
+                await takeScreenshot(
+                    browser,
+                    theme,
+                    rootDir,
+                    basename,
+                    fmResult.data.shotWidth,
+                    fmResult.data.shotDelay
+                );
+            }
+        }
+        catch (e) {
+            server.close();
+            await browser.close();
+            throw new Error(e.toString());
+        }
+    }, 16);
+
     if (BUILD_THUMBS) {
+        server.close();
         await browser.close();
     }
 
@@ -323,3 +293,10 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
         fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
     }
 })();
+
+
+process.on('SIGINT', function() {
+    console.log('Closing');
+    // Close through ctrl + c;
+    process.exit();
+});

@@ -13,7 +13,7 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
-    <script type="text/javascript" src="../tool/seedrandom.js"></script>
+    <script type="text/javascript" src="./seedrandom.js"></script>
     <style>
         html, body {
             margin: 0;
@@ -63,61 +63,6 @@
         return myrng();
     };
 
-    var jqOriginal = {
-        getScript: $.getScript,
-        getJSON: $.getJSON,
-        get: $.get
-    };
-
-    function isRemoteURL(url) {
-        return url && url.indexOf('http') === 0;
-    }
-
-    $.getJSON = function (url, cb) {
-        if (isRemoteURL(url)) {
-            return jqOriginal.getJSON.call($, url, cb);
-        }
-
-        const deferred = $.Deferred();
-        readLocalFile(url).then(data => {
-            data = JSON.parse(data);
-            cb && cb(data);
-
-            deferred.resolve([data]);
-        });
-        return deferred;
-    }
-
-    $.get = function (url, cb) {
-        if (isRemoteURL(url)) {
-            return jqOriginal.get.call($, url, cb);
-        }
-
-        const deferred = $.Deferred();
-        readLocalFile(url).then(data => {
-            try {
-                data = JSON.parse(data);
-            }
-            catch(e) {}
-
-            cb && cb(data);
-            deferred.resolve([data]);
-        });
-        return deferred;
-    }
-
-    $.getScript = function (url, cb) {
-        if (isRemoteURL(url)) {
-            return jqOriginal.getScript.call($, url, cb);
-        }
-
-        return $.get(url).then(data => {
-            const scriptContent = data[0];
-            (new Function('window', scriptContent))(window);
-            cb && cb(data);
-        });
-    }
-
     function addComponentPadding(componentOpt) {
         if (!componentOpt) {
             return;
@@ -164,7 +109,7 @@
         var sourceFolder = params.s || 'data';
         var scriptTag = document.createElement('script');
         scriptTag.async = false;
-        scriptTag.src = `./${sourceFolder}/${params.c}.js`
+        scriptTag.src = `../public/${sourceFolder}/${params.c}.js`
         document.body.appendChild(scriptTag);
 
         scriptTag.onload = function () {
