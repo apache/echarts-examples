@@ -17,8 +17,7 @@ var data = [[0,0,5],[0,1,1],[0,2,0],[0,3,0],[0,4,0],[0,5,0],[0,6,0],[0,7,0],[0,8
 
 option = {
     title: {
-        text: 'Punch Card of Github',
-        link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
+        text: 'Punch Card of Github'
     },
     legend: {
         data: ['Punch Card'],
