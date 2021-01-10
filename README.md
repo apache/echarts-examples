@@ -29,7 +29,7 @@ It will copy all the build resources to incubator-echarts-website/next/examples
 ## Update example snapshots
 
 ```shell
-node tool/build-example.js
+npm run build:example
 ```
 
 Only for default theme
@@ -45,7 +45,7 @@ Run all the examples to test module importing, minimal bundling and DTS correctn
 Before run the tests. you need to update the examples.
 
 ```shell
-node tool/build-example.js
+npm run build:example
 ```
 
 Then run the tests.

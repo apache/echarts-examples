@@ -33,13 +33,13 @@ export default {
 
         exampleTheme() {
             const example = this.example;
-            return example.isGL ? '' : (example.theme || (store.darkMode ? 'dark' : ''));
+            return example.theme || (store.darkMode ? 'dark' : '');
         },
 
         exampleLink() {
             const example = this.example;
             const hash = ['c=' + example.id];
-            const exampleTheme = example.theme || this.exampleTheme;
+            const exampleTheme = this.exampleTheme;
             if (example.isGL) {
                 hash.push('gl=1');
             }
@@ -58,7 +58,7 @@ export default {
         screenshotURL() {
             const example = this.example;
             const themePostfix = this.exampleTheme ? ('-' + this.exampleTheme) : '';
-            const ext = example.isGL ? 'jpg' : SUPPORT_WEBP ? 'webp' : 'png';
+            const ext = SUPPORT_WEBP ? 'webp' : 'png';
             const folder = example.isGL ? 'data-gl' : 'data';
             return `${store.cdnRoot}/${folder}/thumb${themePostfix}/${example.id}.${ext}?_v_=${store.version}`;
         }

@@ -43,8 +43,8 @@ img.onload = function () {
         },
         grid3D: {
             viewControl: {
-                alpha: 70,
-                beta: 0
+                alpha: 20,
+                beta: -30
             },
             postEffect: {
                 enable: true,

@@ -81,6 +81,7 @@ img.onload = function () {
             shading: 'lambert',
             barSize: 0.8,
             silent: true,
+            dimensions: ['x', 'y', 'z'],
             itemStyle: {
                 color: function (params) {
                     var i = params.dataIndex;

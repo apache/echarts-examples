@@ -58,7 +58,7 @@ function waitTime(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-const BUILD_THUMBS = sourceFolder === 'data' && !args.no_thumb;
+const BUILD_THUMBS = !args.no_thumb;
 const DEFAULT_PAGE_WIDTH = 700;
 const DEFAULT_PAGE_RATIO = 0.75;
 const OUTPUT_IMAGE_WIDTH = 600;
@@ -105,7 +105,7 @@ async function takeScreenshot(
     page.on('console', msg => {
         const text = msg.text();
         if (!IGNORE_LOG.find(a => text.indexOf(a) >= 0)) {
-            console.log(chalk.gray('PAGE LOG:', text));
+            console.log(chalk.gray(`PAGE LOG[${basename}]: ${text}`));
         }
     });
     console.log(`Generating ${theme} thumbs.....${basename}`);
@@ -123,10 +123,13 @@ async function takeScreenshot(
         }
         await waitTime(200);
         await waitTime(screenshotDelay || 0);
-        const fileBase = `${rootDir}public/${sourceFolder}/${thumbFolder}/${basename}`;
+        const thumbDir = `${rootDir}public/${sourceFolder}/${thumbFolder}`;
+        const fileBase = `${thumbDir}/${basename}`;
         const filePathTmpRaw = `${fileBase}-tmp-raw.png`;
         const filePathTmp = `${fileBase}-tmp.png`;
         const filePath = `${fileBase}.png`;
+
+        fse.ensureDirSync(thumbDir);
 
         // Save option for further tests.
         const option = await page.evaluate(() => {
@@ -191,6 +194,8 @@ async function takeScreenshot(
             args: [
               '--headless',
               '--hide-scrollbars',
+              // https://github.com/puppeteer/puppeteer/issues/4913
+              '--use-gl=egl',
               '--mute-audio'
             ]
         });
@@ -223,6 +228,8 @@ async function takeScreenshot(
             || basename === 'lines3d-taxi-routes-of-cape-town'
             || basename === 'lines3d-taxi-chengdu'
             || basename === 'map3d-colorful-cities'
+
+            || basename === 'bar3d-music-visualization'
         ) {
             return;
         }
@@ -271,7 +278,7 @@ async function takeScreenshot(
             await browser.close();
             throw new Error(e.toString());
         }
-    }, 16);
+    }, sourceFolder === 'data-gl' ? 4 : 16);
 
     if (BUILD_THUMBS) {
         server.close();

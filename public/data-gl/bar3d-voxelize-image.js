@@ -5,8 +5,8 @@ titleCN: Voxelize image
 scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
 */
 
-var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
+var canvas = document.createElement('canvas');
+var ctx = canvas.getContext('2d');
 
 var imgData;
 var currentImg;
@@ -16,7 +16,7 @@ var config = {
     scale: 0.3,
     roughness: 0,
     metalness: 1,
-    projection: "orthographic",
+    projection: 'orthographic',
     depthOfField: 4,
     lockY: false,
     move: true,
@@ -37,22 +37,22 @@ var config = {
 
 option = {
     tooltip: {},
-    backgroundColor: "#000",
+    backgroundColor: '#000',
     xAxis3D: {
-        type: "value"
+        type: 'value'
     },
     yAxis3D: {
-        type: "value"
+        type: 'value'
     },
     zAxis3D: {
-        type: "value",
+        type: 'value',
         min: 0,
         max: 100
     },
     grid3D: {
         show: false,
         viewControl: {
-            projection: "perspective",
+            projection: 'perspective',
             alpha: 45,
             beta: -45,
             panSensitivity: config.move ? 1 : 0,
@@ -69,7 +69,7 @@ option = {
                 enable: true,
                 intensity: 1.5,
                 radius: 5,
-                quality: "high"
+                quality: 'high'
             },
             screenSpaceReflection: {
                 enable: true
@@ -83,7 +83,7 @@ option = {
         },
         boxDepth: 100,
         boxHeight: 20,
-        environment: "none",
+        environment: 'none',
         light: {
             main: {
                 shadow: true,
@@ -100,7 +100,7 @@ option = {
 };
 
 function updateData(pixelData, width, height) {
-    console.time("update");
+    console.time('update');
     var data = new Float32Array(pixelData.length / 4 * 3);
     var off = 0;
     for (var i = 0; i < pixelData.length / 4; i++) {
@@ -121,8 +121,8 @@ function updateData(pixelData, width, height) {
         },
         series: [{
             animation: false,
-            type: "bar3D",
-            shading: "realistic",
+            type: 'bar3D',
+            shading: 'realistic',
             realisticMaterial: {
                 roughness: config.roughness,
                 metalness: config.metalness
@@ -130,8 +130,9 @@ function updateData(pixelData, width, height) {
             barSize: config.barSize,
             bevelSize: config.barBevel,
             silent: true,
+            dimensions: ['x', 'y', 'z'],
             itemStyle: {
-                color: config.sameColor ? config.color : function(params) {
+                color: config.sameColor ? config.color : function (params) {
                     var i = params.dataIndex;
                     var r = pixelData[i * 4] / 255;
                     var g = pixelData[i * 4 + 1] / 255;
@@ -147,7 +148,7 @@ function updateData(pixelData, width, height) {
         }]
     });
 
-    console.timeEnd("update");
+    console.timeEnd('update');
 }
 
 function loadImage(img) {
