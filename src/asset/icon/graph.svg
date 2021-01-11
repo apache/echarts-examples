@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="19px" height="15px" viewBox="0 0 19 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="171px" height="146px" viewBox="0 0 171 146" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>Graph</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Graph" stroke="#5470C6">
-            <circle id="Oval" fill="#5470C6" cx="11" cy="7" r="2"></circle>
-            <circle id="Oval" fill="#5470C6" cx="4.5" cy="5.5" r="1.5"></circle>
-            <circle id="Oval" fill="#5470C6" cx="16" cy="2" r="1"></circle>
-            <circle id="Oval" fill="#5470C6" cx="16" cy="2" r="1"></circle>
-            <circle id="Oval" fill="#5470C6" cx="18" cy="10.5" r="1"></circle>
-            <circle id="Oval" fill="#5470C6" cx="12" cy="14" r="1"></circle>
-            <circle id="Oval" fill="#5470C6" cx="4" cy="1" r="1"></circle>
-            <circle id="Oval" fill="#5470C6" cx="1.5" cy="10" r="1"></circle>
-            <path d="M4,1 L4.375,5.5" id="Path-138"></path>
-            <path d="M6,6 L9.066636,6.53521003" id="Path-140"></path>
-            <path d="M16,2 L12.4203995,5.58224902" id="Path-142"></path>
-            <path d="M11.2700771,9 L12,14" id="Path-143"></path>
-            <path d="M18,10.5 L11.2700771,6.53521003" id="Path-144"></path>
-            <path d="M1.5,10 L3.91296081,6.53521003" id="Path-139"></path>
+        <g id="Graph">
+            <circle id="Oval" fill="#5067A2" cx="96.5" cy="69.5" r="22.5"></circle>
+            <circle id="Oval" fill="#5067A2" cx="38" cy="56" r="18"></circle>
+            <circle id="Oval" fill="#5067A2" cx="11" cy="96" r="11"></circle>
+            <circle id="Oval" fill="#5067A2" cx="142" cy="24" r="11"></circle>
+            <circle id="Oval" fill="#5067A2" cx="160" cy="100" r="11"></circle>
+            <circle id="Oval" fill="#5067A2" cx="105" cy="135" r="11"></circle>
+            <circle id="Oval" fill="#5067A2" cx="33" cy="11" r="11"></circle>
+            <polyline id="Path-5" stroke="#5067A2" stroke-width="10" points="33 11 38 56 11 96"></polyline>
+            <polyline id="Path-7" stroke="#5067A2" stroke-width="10" points="38 56 96.5 69.5 160 100"></polyline>
+            <polyline id="Path-8" stroke="#5067A2" stroke-width="10" points="142 24 96.5 69.5 105 135"></polyline>
         </g>
     </g>
 </svg>

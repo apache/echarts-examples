@@ -69,10 +69,14 @@ const icons = {};
     'graph', 'treemap', 'parallel', 'sankey', 'candlestick', 'boxplot', 'heatmap',
     'pictorialBar', 'themeRiver', 'calendar', 'custom', 'sunburst', 'tree', 'dataset', 'geo', 'lines',
     'dataZoom', 'rich', 'drag'
-    // 'globe', 'bar3D', 'scatter3D', 'surface', 'map3D', 'lines3D', 'line3D',
-    // 'scatterGL', 'linesGL', 'flowGL', 'graphGL', 'geo3D',
 ].forEach(function (category) {
     icons[category] = require('../asset/icon/' + category + '.svg');
+});
+
+const glIcon = require('../asset/icon/gl.svg');
+['globe', 'bar3D', 'scatter3D', 'surface', 'map3D', 'lines3D', 'line3D',
+    'scatterGL', 'linesGL', 'flowGL', 'graphGL', 'geo3D'].forEach(function (category) {
+    icons[category] = glIcon;
 });
 
 const LAZY_LOADED_CLASS = 'ec-shot-loaded';
@@ -349,10 +353,15 @@ $pd-lg: 20px;
 
             .chart-icon {
                 content: '';
-                width: 30px;
+                width: 20px;
                 display: inline-block;
                 border-radius: 50%;
                 vertical-align: middle;
+
+                svg {
+                    width: 100%!important;
+                    height: auto!important;
+                }
             }
 
             &.active {
