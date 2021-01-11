@@ -198,12 +198,14 @@ async function installPackages(config) {
         publishPackage(pkg);
     };
 
-    // Come back.
     shell.cd(__dirname);
     for (let pkg of config.packages) {
         console.log(chalk.gray(`Installing ${pkg.name}`))
         shell.exec(`npm install ${publishedPackages[pkg.name]}`);
     }
+
+    // Come back.
+    shell.cd(process.cwd());
 }
 
 async function buildRunCode() {
