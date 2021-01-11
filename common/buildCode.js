@@ -163,6 +163,9 @@ module.exports.collectDeps = function collectDeps(option) {
         if (CHARTS_MAP[seriesOpt.type]) {
             deps.push(CHARTS_MAP[seriesOpt.type]);
         }
+        if (CHARTS_GL_MAP[seriesOpt.type]) {
+            deps.push(CHARTS_GL_MAP[seriesOpt.type]);
+        }
         MARKERS.forEach(markerType => {
             if (seriesOpt[markerType]) {
                 deps.push(COMPONENTS_MAP[markerType]);

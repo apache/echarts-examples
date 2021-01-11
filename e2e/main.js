@@ -31,10 +31,14 @@ parser.addArgument(['-m', '--minify'], {
     action: 'storeTrue',
     help: 'If minify'
 });
-parser.addArgument(['--fetch'], {
+parser.addArgument(['--local'], {
     action: 'storeTrue',
-    help: `If fetch repo from github. If not use fetch, don't forget to update the location of local repo in config.js.`
-})
+    help: `If use local repos. If so, don't forget to update the location of local repo in config.js.`
+});
+parser.addArgument(['--no-check-npm'], {
+    action: 'storeTrue',
+    help: `If not check npm package publishing and install.`
+});
 const args = parser.parseArgs();
 
 const EXAMPLE_DIR =  `${__dirname}/../public/`;
@@ -109,15 +113,21 @@ async function prepare() {
     fse.removeSync(RUN_CODE_DIR);
     fse.removeSync(BUNDLE_DIR);
     fse.removeSync(SCREENSHOTS_DIR);
-    fse.removeSync(REPO_DIR);
-    fse.removeSync(PACKAGE_DIR);
+
+    if (!args.no_check_npm) {
+        fse.removeSync(REPO_DIR);
+        fse.removeSync(PACKAGE_DIR);
+    }
 
     fse.ensureDirSync(TMP_DIR);
     fse.ensureDirSync(RUN_CODE_DIR);
     fse.ensureDirSync(BUNDLE_DIR);
     fse.ensureDirSync(SCREENSHOTS_DIR);
-    fse.ensureDirSync(REPO_DIR);
-    fse.ensureDirSync(PACKAGE_DIR);
+
+    if (!args.no_check_npm) {
+        fse.ensureDirSync(REPO_DIR);
+        fse.ensureDirSync(PACKAGE_DIR);
+    }
 }
 
 async function downloadPackages(config) {
@@ -137,11 +147,11 @@ async function installPackages(config) {
     function checkFolder(pkg) {
         const dir = pkg.dir;
         if (!fs.existsSync(dir)) {
-            console.warn(chalk.yellow(`${dir} not exists. Please update it in e2e/config.js. Or use --fetch to fetch from GitHub.`));
+            console.warn(chalk.yellow(`${dir} not exists. Please update it in e2e/config.js.`));
             return false;
         }
         if (!nodePath.isAbsolute(dir)) {
-            console.warn(chalk.yellow(`${dir} is not an absolute path. Please update it in e2e/config.js. Or add --fetch flag to fetch from GitHub.`));
+            console.warn(chalk.yellow(`${dir} is not an absolute path. Please update it in e2e/config.js.`));
             return false;
         }
         return true;
@@ -167,7 +177,10 @@ async function installPackages(config) {
                     }
                 }
 
-                shell.exec(`npm install`)
+                if (!args.local) {
+                    // Only run install commands when fetching from github.
+                    shell.exec(`npm install`);
+                }
                 shell.exec(`npm install ${publishedPackages[depPkgName]} --no-save`);
             }
         }
@@ -194,17 +207,22 @@ async function installPackages(config) {
 }
 
 async function buildRunCode() {
-    const files = await globby(`${EXAMPLE_DIR}/data/option/*.json`);
+    const files = await globby([
+        `${EXAMPLE_DIR}/data/option/*.json`,
+        `${EXAMPLE_DIR}/data-gl/option/*.json`
+    ]);
 
     if (!files.length) {
         throw new Error('You need to run `node tool/build-example.js` before run this test.');
     }
 
     return (await runTasks(files, async (fileName) => {
+        const isGL = fileName.startsWith(`${EXAMPLE_DIR}/data-gl`);
+
         const optionCode = await fse.readFile(fileName, 'utf-8');
         const option = JSON.parse(optionCode);
         const jsCode = await fse.readFile(nodePath.join(
-            EXAMPLE_DIR, 'data', nodePath.basename(fileName, '.json') + '.js'
+            EXAMPLE_DIR, isGL ? 'data-gl' : 'data', nodePath.basename(fileName, '.json') + '.js'
         ), 'utf-8');
 
         // TODO Ignore case with extension.
@@ -214,7 +232,9 @@ async function buildRunCode() {
             'CanvasRenderer'
         ]);
 
-        if (deps.includes('MapChart') || deps.includes('GeoComponent') || option.bmap) {
+        if (deps.includes('MapChart')
+            || deps.includes('GeoComponent')
+            || option.bmap) {
             console.warn(chalk.yellow(`Ignored map tests.${fileName}`));
             return;
         }
@@ -222,16 +242,18 @@ async function buildRunCode() {
         const testName = nodePath.basename(fileName, '.json');
         const ROOT_PATH = `${baseUrl}/public`;
 
-        const fullTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
+        const checkTs = !isGL; // TODO: Don't support TypeScript in GL
+
+        const fullCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
             minimal: false,
-            ts: true,
+            ts: checkTs,
             // Check if theme will break the minimal imports.
             theme: TEST_THEME,
             ROOT_PATH
         });
-        const minimalTsCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
+        const minimalCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
             minimal: true,
-            ts: true,
+            ts: checkTs,  // TODO: Don't support TypeScript in GL
             theme: TEST_THEME,
             ROOT_PATH
         });
@@ -244,17 +266,17 @@ async function buildRunCode() {
         });
 
         await fse.writeFile(
-            nodePath.join(RUN_CODE_DIR, testName + '.ts'),
-            prettier.format(fullTsCode, {
+            nodePath.join(RUN_CODE_DIR, testName + (checkTs ? '.ts' : '.js')),
+            prettier.format(fullCode, {
                 singleQuote: true,
-                parser: 'typescript'
+                parser: checkTs ? 'typescript' : 'babel'
             }), 'utf-8'
         );
         await fse.writeFile(
-            nodePath.join(RUN_CODE_DIR, testName + `.${MINIMAL_POSTFIX}.ts`),
-            prettier.format(minimalTsCode, {
+            nodePath.join(RUN_CODE_DIR, testName + `.${MINIMAL_POSTFIX}.${checkTs ? 'ts' : 'js'}`),
+            prettier.format(minimalCode, {
                 singleQuote: true,
-                parser: 'typescript'
+                parser: checkTs ? 'typescript' : 'babel'
             }), 'utf-8'
         );
         await fse.writeFile(
@@ -265,7 +287,7 @@ async function buildRunCode() {
             }), 'utf-8'
         );
         console.log(
-            chalk.green('Generated: ', nodePath.join(RUN_CODE_DIR, testName + '.ts'))
+            chalk.green('Generated: ', nodePath.join(RUN_CODE_DIR, testName))
         );
 
         return testName;
@@ -403,7 +425,6 @@ function esbuildBundle(entry, result, minify) {
         entryPoints: entry,
         bundle: true,
         minify: minify,
-        plugins: [echartsResolvePlugin, zrenderResolverPlugin],
         define: {
             'process.env.NODE_ENV': JSON.stringify(minify ? 'production' : 'development')
         },
@@ -497,12 +518,12 @@ async function runExamples(jsFiles, result) {
                 }
             });
 
-            await page.goto(`${baseUrl}/test/template.html`, {
+            await page.goto(`${baseUrl}/e2e/template.html`, {
                 waitUntil: 'networkidle0',
                 timeout: 10000
             });
             await page.addScriptTag({
-                url: `${baseUrl}/test/tmp/bundles/${basename}.js`
+                url: `${baseUrl}/e2e/tmp/bundles/${basename}.js`
             });
             await waitTime(200);
 
@@ -572,13 +593,15 @@ async function main() {
     const result = {};
     await prepare();
 
-    if (args.fetch) {
-        console.log(chalk.gray('Downloading packages'));
-        await downloadPackages(config);
-    }
+    if (!args.no_check_npm) {
+        if (!args.local) {
+            console.log(chalk.gray('Downloading packages'));
+            await downloadPackages(config);
+        }
 
-    console.log(chalk.gray('Installing packages'));
-    await installPackages(config);
+        console.log(chalk.gray('Installing packages'));
+        await installPackages(config);
+    }
 
 
     console.log(chalk.gray('Generating codes'));

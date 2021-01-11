@@ -40,7 +40,7 @@ node tool/build-example.js -t default
 
 ## Run e2e tests.
 
-Run all the examples to test module importing, minimal bundling and DTS correctness.
+Run all the examples to test package publishing and install, module importing, minimal bundling and DTS correctness.
 
 Before run the tests. you need to update the examples.
 
@@ -52,6 +52,8 @@ Then run the tests.
 ```shell
 npm run test:e2e
 ```
+
+You can change the testing branch or local dir, which is available when add `--local` in `e2e/config.js`
 
 If you want to test with esbuild bundler. Which is much faster.
 ```shell

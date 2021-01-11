@@ -9,8 +9,8 @@
     "release": "npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
     "build:example": "node tool/build-example.js && node tool/build-example.js --source data-gl",
-    "test:e2e": "node e2e/main.js --bundler webpack -m --fetch",
-    "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m --fetch",
+    "test:e2e": "node e2e/main.js --bundler webpack -m",
+    "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m",
     "server": "node build/server.js"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "download-git-repo": "^3.0.2",
     "echarts": "^5.0.0",
     "echarts-stat": "^1.2.0",
-    "esbuild": "^0.8.26",
+    "esbuild": "^0.8.31",
     "file-loader": "^4.3.0",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",
