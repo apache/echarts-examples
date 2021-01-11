@@ -83,7 +83,7 @@
                 </div>
             </el-tab-pane>
             <el-tab-pane label="Screenshots Compare" name="screenshots">
-                <div v-for="item in typeCheckingResult">
+                <div v-for="item in screenshotsCompareResult">
                     <h3>{{ item.testName }}({{item.screenshotDiffRatio}})</h3>
                     <el-row :gutter="10">
                         <el-col :span="4">

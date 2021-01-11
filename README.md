@@ -60,11 +60,19 @@ If you want to test with esbuild bundler. Which is much faster.
 npm run test:e2e:esbuild
 ```
 
-If you want use the packages in your local folder which is still in developing. Please update the `dir` path in `test/config.js` for all packages first. Then run the script directly without `--fetch` arg.
+If you want use the packages in your local folder which is still in developing. Please update the `dir` path in `test/config.js` for all packages first. Then run the script directly with `--local` arg.
+
 ```shell
-node e2e/main.js --bundler esbuild -m
-node e2e/main.js --bundler webpack -m
+node e2e/main.js --bundler esbuild -m --local
+node e2e/main.js --bundler webpack -m --local
 ```
+
+Skip specific stages to speedup the test. Note: This can only be used when you run the whole e2e test at least once.
+
+```shell
+node e2e/main.js --skip bundle
+```
+
 
 ## Edit example
 

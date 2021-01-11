@@ -35,9 +35,8 @@ parser.addArgument(['--local'], {
     action: 'storeTrue',
     help: `If use local repos. If so, don't forget to update the location of local repo in config.js.`
 });
-parser.addArgument(['--no-check-npm'], {
-    action: 'storeTrue',
-    help: `If not check npm package publishing and install.`
+parser.addArgument(['--skip'], {
+    help: 'If skip some stages to speed up the test. Can be npm,bundle,render,compare'
 });
 const args = parser.parseArgs();
 
@@ -114,20 +113,16 @@ async function prepare() {
     fse.removeSync(BUNDLE_DIR);
     fse.removeSync(SCREENSHOTS_DIR);
 
-    if (!args.no_check_npm) {
-        fse.removeSync(REPO_DIR);
-        fse.removeSync(PACKAGE_DIR);
-    }
+    fse.removeSync(REPO_DIR);
+    fse.removeSync(PACKAGE_DIR);
 
     fse.ensureDirSync(TMP_DIR);
     fse.ensureDirSync(RUN_CODE_DIR);
     fse.ensureDirSync(BUNDLE_DIR);
     fse.ensureDirSync(SCREENSHOTS_DIR);
 
-    if (!args.no_check_npm) {
-        fse.ensureDirSync(REPO_DIR);
-        fse.ensureDirSync(PACKAGE_DIR);
-    }
+    fse.ensureDirSync(REPO_DIR);
+    fse.ensureDirSync(PACKAGE_DIR);
 }
 
 async function downloadPackages(config) {
@@ -593,9 +588,18 @@ async function compareExamples(testNames, result) {
 
 async function main() {
     const result = {};
-    await prepare();
 
-    if (!args.no_check_npm) {
+    if (!args.skip) {
+        // Don't clean up if skipping some of the stages.
+        await prepare();
+    }
+
+    function isNotSkipped(stage) {
+        return !((args.skip || '').indexOf(stage) >= 0);
+    }
+
+    // We don't have to test the npm if bundle is also skipped.
+    if (isNotSkipped('npm') && isNotSkipped('bundle')) {
         if (!args.local) {
             console.log(chalk.gray('Downloading packages'));
             await downloadPackages(config);
@@ -604,11 +608,14 @@ async function main() {
         console.log(chalk.gray('Installing packages'));
         await installPackages(config);
     }
+    else {
+        console.log(chalk.yellow('Skipped NPM.'));
+    }
 
 
     console.log(chalk.gray('Generating codes'));
+    // Always build code.
     const testNames = await buildRunCode();
-
 
     for (let key of testNames) {
         result[key] = {
@@ -622,6 +629,7 @@ async function main() {
     }
 
     console.log('Compiling TypeScript');
+    // Always run typescript check to generate the js code.
     await compileTs(
         (await globby(nodePath.join(RUN_CODE_DIR, '*.ts')))
             // No need to check types of the minimal legacy imports
@@ -629,14 +637,29 @@ async function main() {
         result
     );
 
-    console.log(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`);
-    await bundle(await globby(nodePath.join(RUN_CODE_DIR, '*.js')), result);
+    if (isNotSkipped('bundle')) {
+        console.log(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`);
+        await bundle(await globby(nodePath.join(RUN_CODE_DIR, '*.js')), result);
+    }
+    else {
+        console.log(chalk.yellow('Skipped Bundle.'));
+    }
 
-    console.log('Running examples');
-    await runExamples(await globby(nodePath.join(BUNDLE_DIR, '*.js')), result);
+    if (isNotSkipped('render')) {
+        console.log('Running examples');
+        await runExamples(await globby(nodePath.join(BUNDLE_DIR, '*.js')), result);
+    }
+    else {
+        console.log(chalk.yellow('Skipped Render.'));
+    }
 
-    console.log('Comparing Results');
-    await compareExamples(testNames, result);
+    if (isNotSkipped('compare')) {
+        console.log('Comparing Results');
+        await compareExamples(testNames, result);
+    }
+    else {
+        console.log(chalk.yellow('Skipped Compare.'));
+    }
 
     fs.writeFileSync(__dirname + '/tmp/result.json', JSON.stringify(
         result, null, 2
