@@ -328,7 +328,7 @@ ${hasECStat ?
         !minimal
             ? esm
                 ? `import * as echarts from 'echarts';${hasGLInDeps(deps) ? `\nimport 'echarts-gl';` : ''}`
-                : `var echarts = require('echarts');${hasGLInDeps(deps) ? `\require('echarts-gl');` : ''}`
+                : `var echarts = require('echarts');${hasGLInDeps(deps) ? `\nrequire('echarts-gl');` : ''}`
             : legacy
                 ? buildLegacyMinimalImportCode(deps, esm)
                 : buildMinimalImportCode(deps, ts),
