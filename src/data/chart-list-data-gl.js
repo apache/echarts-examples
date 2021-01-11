@@ -36,16 +36,6 @@ export default [
     "category": [
       "bar3D"
     ],
-    "id": "bar3d-music-visualization",
-    "tags": [],
-    "title": "Music Visualization",
-    "titleCN": "Music Visualization",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "bar3D"
-    ],
     "id": "bar3d-myth",
     "tags": [],
     "title": "星云",
