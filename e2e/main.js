@@ -614,7 +614,6 @@ async function main() {
         catch (e) {
             console.error(e);
             throw 'Must run full e2e test without --skip and --tests at least once.';
-            return;
         }
     }
 

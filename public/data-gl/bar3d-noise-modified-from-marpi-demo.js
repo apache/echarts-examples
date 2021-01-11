@@ -15,7 +15,7 @@ var UPDATE_DURATION = 1000;
 
 function initVisualizer() {
 
-    config = {
+    var config = {
         numWaves: 2,
         randomize: randomize,
         color1: '#000',
