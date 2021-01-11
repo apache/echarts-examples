@@ -4,6 +4,7 @@ category: graphGL
 theme: dark
 titleCN: GraphGL - Large Internet
 shotDelay: 10000
+shotWidth: 1920
 */
 
 

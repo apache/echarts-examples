@@ -4,6 +4,7 @@ category: graphGL
 theme: dark
 titleCN: 1w 节点 2w7 边的NPM 依赖图
 shotDelay: 5000
+shotWidth: 1920
 */
 
 function loadScript(scriptUrl, cb) {

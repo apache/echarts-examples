@@ -4,6 +4,7 @@ category: graphGL
 theme: dark
 titleCN: GraphGL GPU Layout
 shotDelay: 5000
+shotWidth: 1280
 */
 
 
