@@ -56,7 +56,7 @@ $.getJSON(uploadedDataURL, function(data) {
             },
 
             itemStyle: {
-                areaColor: '#000'
+                color: '#000'
             },
 
             regionHeight: 0.5
