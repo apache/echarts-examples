@@ -20,6 +20,7 @@ const {compareImage} = require('../common/compareImage');
 const shell = require('shelljs');
 const downloadGit = require('download-git-repo');
 const {promisify} = require('util');
+const minimatch = require('minimatch');
 
 const parser = new argparse.ArgumentParser({
     addHelp: true
@@ -38,6 +39,9 @@ parser.addArgument(['--local'], {
 parser.addArgument(['--skip'], {
     help: 'If skip some stages to speed up the test. Can be npm,bundle,render,compare'
 });
+parser.addArgument(['-t', '--tests'], {
+    help: 'If use pattern to specify which tests to run'
+});
 const args = parser.parseArgs();
 
 const EXAMPLE_DIR =  `${__dirname}/../public/`;
@@ -55,6 +59,11 @@ const MINIFY_BUNDLE = args.minify;
 // const TEST_THEME = 'dark-blue';
 const TEST_THEME = '';
 const USE_WEBPACK = !(args.bundler === 'esbuild');
+
+let testsPattern = args.tests;
+if (testsPattern) {
+    testsPattern = testsPattern.split(',');
+}
 
 // Create a server
 const port = 3322;
@@ -215,11 +224,16 @@ async function buildRunCode() {
 
     return (await runTasks(files, async (fileName) => {
         const isGL = fileName.startsWith(`${EXAMPLE_DIR}/data-gl`);
+        const testName = nodePath.basename(fileName, '.json');
+
+        if (testsPattern && !testsPattern.some(pattern => minimatch(testName, pattern))) {
+            return;
+        }
 
         const optionCode = await fse.readFile(fileName, 'utf-8');
         const option = JSON.parse(optionCode);
         const jsCode = await fse.readFile(nodePath.join(
-            EXAMPLE_DIR, isGL ? 'data-gl' : 'data', nodePath.basename(fileName, '.json') + '.js'
+            EXAMPLE_DIR, isGL ? 'data-gl' : 'data', testName + '.js'
         ), 'utf-8');
 
         // TODO Ignore case with extension.
@@ -236,7 +250,6 @@ async function buildRunCode() {
             return;
         }
 
-        const testName = nodePath.basename(fileName, '.json');
         const ROOT_PATH = `${baseUrl}/public`;
 
         const checkTs = !isGL; // TODO: Don't support TypeScript in GL
@@ -567,14 +580,16 @@ async function compareExamples(testNames, result) {
         writePNG(diffMinimal.diffPNG, diffMinimalPNGPath);
         writePNG(diffMinimalLegacy.diffPNG, diffMinimalLegacyPNGPath);
 
-        result[testName].screenshotDiff.minimal = {
-            ratio: diffMinimal.diffRatio,
-            png: nodePath.basename(diffMinimalPNGPath)
-        };
-        result[testName].screenshotDiff.minimalLegacy = {
-            ratio: diffMinimalLegacy.diffRatio,
-            png: nodePath.basename(diffMinimalLegacyPNGPath)
-        };
+        result[testName].screenshotDiff = {
+            minimal: {
+                ratio: diffMinimal.diffRatio,
+                png: nodePath.basename(diffMinimalPNGPath)
+            },
+            minimalLegacy: {
+                ratio: diffMinimalLegacy.diffRatio,
+                png: nodePath.basename(diffMinimalLegacyPNGPath)
+            }
+        }
 
         if (diffMinimal.diffRatio > 0 || diffMinimalLegacy.diffRatio > 0) {
             console.log(chalk.red(`Failed ${testName}`));
@@ -587,11 +602,23 @@ async function compareExamples(testNames, result) {
 
 
 async function main() {
-    const result = {};
+    let result;
 
-    if (!args.skip) {
+    if (!args.skip && !args.tests) {
         // Don't clean up if skipping some of the stages.
         await prepare();
+        result = {};
+    }
+    else {
+        // Read result.
+        try {
+            result = JSON.parse(fs.readFileSync(__dirname + '/tmp/result.json', 'utf-8'));
+        }
+        catch (e) {
+            console.error(e);
+            throw 'Must run full e2e test without --skip and --tests at least once.';
+            return;
+        }
     }
 
     function isNotSkipped(stage) {
@@ -618,15 +645,17 @@ async function main() {
     const testNames = await buildRunCode();
 
     for (let key of testNames) {
-        result[key] = {
-            compileErrors: {
-                full: [],
-                minimal: [],
-                minimalLegacy: [],
-            },
-            screenshotDiff: {}
-        };
+        result[key] = result[key] || {};
     }
+
+    Object.keys(result).forEach(key => {
+        // Always do TS check on all tests. So reset all compile errors.
+        result[key].compileErrors = {
+            full: [],
+            minimal: [],
+            minimalLegacy: []
+        };
+    });
 
     console.log('Compiling TypeScript');
     // Always run typescript check to generate the js code.
@@ -639,7 +668,15 @@ async function main() {
 
     if (isNotSkipped('bundle')) {
         console.log(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`);
-        await bundle(await globby(nodePath.join(RUN_CODE_DIR, '*.js')), result);
+        const jsFiles = [];
+        for (let testName of testNames) {
+            jsFiles.push(
+                nodePath.join(RUN_CODE_DIR, `${testName}.js`),
+                nodePath.join(RUN_CODE_DIR, `${testName}.${MINIMAL_POSTFIX}.js`),
+                nodePath.join(RUN_CODE_DIR, `${testName}.${MINIMAL_LEGACY_POSTFIX}.js`)
+            );
+        }
+        await bundle(jsFiles, result);
     }
     else {
         console.log(chalk.yellow('Skipped Bundle.'));
@@ -647,7 +684,15 @@ async function main() {
 
     if (isNotSkipped('render')) {
         console.log('Running examples');
-        await runExamples(await globby(nodePath.join(BUNDLE_DIR, '*.js')), result);
+        const bundleFiles = [];
+        for (let testName of testNames) {
+            bundleFiles.push(
+                nodePath.join(BUNDLE_DIR, `${testName}.js`),
+                nodePath.join(BUNDLE_DIR, `${testName}.${MINIMAL_POSTFIX}.js`),
+                nodePath.join(BUNDLE_DIR, `${testName}.${MINIMAL_LEGACY_POSTFIX}.js`)
+            );
+        }
+        await runExamples(bundleFiles, result);
     }
     else {
         console.log(chalk.yellow('Skipped Render.'));

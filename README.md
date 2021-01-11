@@ -67,11 +67,22 @@ node e2e/main.js --bundler esbuild -m --local
 node e2e/main.js --bundler webpack -m --local
 ```
 
-Skip specific stages to speedup the test. Note: This can only be used when you run the whole e2e test at least once.
+#### Run partial tests.
+
+> Note: This can only be used when you run the whole e2e test at least once.
+
+Skip specific stages.
 
 ```shell
 node e2e/main.js --skip bundle
 ```
+
+Specify matched tests.
+
+```shell
+node e2e/main.js --skip npm --tests bar3D*
+```
+
 
 
 ## Edit example
