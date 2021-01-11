@@ -181,10 +181,7 @@ async function installPackages(config) {
                     }
                 }
 
-                if (!args.local) {
-                    // Only run install commands when fetching from github.
-                    shell.exec(`npm install`);
-                }
+                shell.exec(`npm install`);
                 shell.exec(`npm install ${publishedPackages[depPkgName]} --no-save`);
             }
         }
