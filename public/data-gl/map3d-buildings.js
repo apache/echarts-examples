@@ -94,9 +94,7 @@ $.getJSON(ROOT_PATH + '/data-gl/asset/data/buildings.json', function (buildingsG
             },
 
             label: {
-                textStyle: {
-                    color: 'white'
-                }
+                color: 'white'
             },
 
             silent: true,

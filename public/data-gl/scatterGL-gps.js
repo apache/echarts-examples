@@ -41,7 +41,7 @@ option = {
     backgroundColor: '#000',
     title: {
         text: '10000000 GPS Points',
-            left: 'center',
+        left: 'center',
         textStyle: {
             color: '#fff'
         }

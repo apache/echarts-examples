@@ -3,7 +3,7 @@ title: GraphGL - Large Internet
 category: graphGL
 theme: dark
 titleCN: GraphGL - Large Internet
-scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
+shotDelay: 10000
 */
 
 

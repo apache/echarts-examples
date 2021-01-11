@@ -22,17 +22,11 @@ mapChart.setOption({
         boundingCoords: [[-180, 90], [180, -90]],
         silent: true,
         itemStyle: {
-            normal: {
-                borderColor: '#000'
-            }
+            borderColor: '#000'
         },
         label: {
-            normal: {
-                textStyle: {
-                    color: '#fff',
-                    fontSize: 40
-                }
-            }
+            color: '#fff',
+            fontSize: 40
         }
     }
 });
