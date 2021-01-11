@@ -27,6 +27,7 @@ const COMPONENTS_MAP = {
     angleAxis: 'PolarComponent',
     radiusAxis: 'PolarComponent'
 }
+
 const CHARTS_MAP = {
     line: 'LineChart',
     bar: 'BarChart',
@@ -51,9 +52,39 @@ const CHARTS_MAP = {
     sunburst: 'SunburstChart',
     custom: 'CustomChart'
 }
+const COMPONENTS_GL_MAP = {
+
+    grid3D: 'Grid3DComponent',
+    geo3D: 'Geo3DComponent',
+    globe: 'GlobeComponent',
+    mapbox3D: 'Mapbox3DComponent',
+    maptalks3D: 'Maptalks3DComponent',
+
+    // Dependencies
+    xAxis3D: 'Grid3DComponent',
+    yAxis3D: 'Grid3DComponent',
+    zAxis3D: 'Grid3DComponent',
+}
+const CHARTS_GL_MAP = {
+    bar3D: 'Bar3DChart',
+    line3D: 'Line3DChart',
+    scatter3D: 'Scatter3DChart',
+    lines3D: 'Lines3DChart',
+    polygons3D: 'Polygons3DChart',
+    surface: 'SurfaceChart',
+    map3D: 'Map3DChart',
+
+    scatterGL: 'ScatterGLChart',
+    graphGL: 'GraphGLChart',
+    flowGL: 'FlowGLChart',
+    linesGL: 'LinesGLChart'
+}
 
 const COMPONENTS_MAP_REVERSE = {};
 const CHARTS_MAP_REVERSE = {};
+const CHARTS_GL_MAP_REVERSE = {};
+const COMPONENTS_GL_MAP_REVERSE = {};
+
 const RENDERERS_MAP_REVERSE = {
     'SVGRenderer': 'svg',
     'CanvasRenderer': 'canvas'
@@ -69,23 +100,24 @@ const INJECTED_COMPONENTS = [
 
 // Component that was dependent.
 const DEPENDENT_COMPONENTS = [
-    'xAxis', 'yAxis', 'angleAxis', 'radiusAxis'
+    'xAxis', 'yAxis', 'angleAxis', 'radiusAxis',
+    'xAxis3D', 'yAxis3D', 'zAxis3D'
 ];
 
-Object.keys(COMPONENTS_MAP).forEach(key => {
-    // Exclude dependencies.
-    if (DEPENDENT_COMPONENTS.includes(key)) {
-        return;
-    }
-    COMPONENTS_MAP_REVERSE[COMPONENTS_MAP[key]] = key;
-});
-Object.keys(CHARTS_MAP).forEach(key => {
-    // Exclude dependencies.
-    if (DEPENDENT_COMPONENTS.includes(key)) {
-        return;
-    }
-    CHARTS_MAP_REVERSE[CHARTS_MAP[key]] = key;
-});
+function createReverseMap(map, reverseMap) {
+    Object.keys(map).forEach(key => {
+        // Exclude dependencies.
+        if (DEPENDENT_COMPONENTS.includes(key)) {
+            return;
+        }
+        reverseMap[map[key]] = key;
+    });
+}
+
+createReverseMap(COMPONENTS_MAP, COMPONENTS_MAP_REVERSE);
+createReverseMap(CHARTS_MAP, CHARTS_MAP_REVERSE);
+createReverseMap(COMPONENTS_GL_MAP, COMPONENTS_GL_MAP_REVERSE);
+createReverseMap(CHARTS_GL_MAP, CHARTS_GL_MAP_REVERSE);
 
 module.exports.collectDeps = function collectDeps(option) {
     let deps = [];
@@ -117,6 +149,9 @@ module.exports.collectDeps = function collectDeps(option) {
         if (COMPONENTS_MAP[key]) {
             deps.push(COMPONENTS_MAP[key]);
         }
+        if (COMPONENTS_GL_MAP[key]) {
+            deps.push(COMPONENTS_GL_MAP[key]);
+        }
     });
 
     let series = option.series;
@@ -140,24 +175,32 @@ module.exports.collectDeps = function collectDeps(option) {
 }
 
 function buildMinimalImportCode(deps, includeType) {
-    const componentsImports = [];
     const chartsImports = [];
+    const componentsImports = [];
+    const chartsGLImports = [];
+    const componentsGLImports = [];
     const renderersImports = [];
     deps.forEach(function (dep) {
         if (dep.endsWith('Renderer')) {
             renderersImports.push(dep);
         }
-        else if (dep.endsWith('Chart')) {
+        else if (CHARTS_MAP_REVERSE[dep]) {
             chartsImports.push(dep);
             if (includeType) {
                 chartsImports.push(dep.replace(/Chart$/, 'SeriesOption'));
             }
         }
-        else if (dep.endsWith('Component')) {
+        else if (COMPONENTS_MAP_REVERSE[dep]) {
             componentsImports.push(dep);
             if (includeType) {
                 componentsImports.push(dep.replace(/Component$/, 'ComponentOption'));
             }
+        }
+        else if (CHARTS_GL_MAP_REVERSE[dep]) {
+            chartsGLImports.push(dep)
+        }
+        else if (COMPONENTS_GL_MAP_REVERSE[dep]) {
+            componentsGLImports.push(dep);
         }
     });
 
@@ -169,6 +212,8 @@ function buildMinimalImportCode(deps, includeType) {
     const allImports = [
         ...componentsImports,
         ...chartsImports,
+        ...componentsGLImports,
+        ...chartsGLImports,
         ...renderersImports
     ];
 
@@ -176,14 +221,19 @@ function buildMinimalImportCode(deps, includeType) {
 type ECOption = echarts.ComposeOption<
     ${allImports.filter(a => a.endsWith('Option')).join(' | ')}
 >`;
+    const importsCodes = [
+        [componentsImports, 'echarts/components'],
+        [chartsImports, 'echarts/charts'],
+        [renderersImports, 'echarts/renderers'],
+        [chartsGLImports, 'echarts-gl/charts'],
+        [componentsGLImports, 'echarts-gl/components']
+    ].filter(a => a[0].length > 0).map(item => `
+import {${getImportsPartCode(item[0])}
+} from '${item[1]}';
+    `.trim()).join('\n');
 
     return `import * as echarts from 'echarts/core';
-import {${getImportsPartCode(componentsImports)}
-} from 'echarts/components';
-import {${getImportsPartCode(chartsImports)}
-} from 'echarts/charts';
-import {${getImportsPartCode(renderersImports)}
-} from 'echarts/renderers';
+${importsCodes}
 
 echarts.use(
     [${allImports.filter(a => !a.endsWith('Option')).join(', ')}]
@@ -199,11 +249,17 @@ function buildLegacyMinimalImportCode(deps, isESM) {
         if (dep.endsWith('Renderer') && dep !== 'CanvasRenderer') {
             modules.push(`zrender/lib/${RENDERERS_MAP_REVERSE[dep]}/${RENDERERS_MAP_REVERSE[dep]}`);
         }
-        else if (dep.endsWith('Chart')) {
+        else if (CHARTS_MAP_REVERSE[dep]) {
             modules.push(`echarts/lib/chart/${CHARTS_MAP_REVERSE[dep]}`);
         }
-        else if (dep.endsWith('Component')) {
+        else if (COMPONENTS_MAP_REVERSE[dep]) {
             modules.push(`echarts/lib/component/${COMPONENTS_MAP_REVERSE[dep]}`);
+        }
+        else if (CHARTS_GL_MAP_REVERSE[dep]) {
+            modules.push(`echarts-gl/lib/chart/${CHARTS_GL_MAP_REVERSE[dep]}`);
+        }
+        else if (COMPONENTS_GL_MAP_REVERSE[dep]) {
+            modules.push(`echarts-gl/lib/component/${COMPONENTS_GL_MAP_REVERSE[dep]}`);
         }
     });
 
@@ -216,6 +272,10 @@ ${modules.map(mod => {
     return `require('${mod}');`;
 }).join('\n')}
 `
+}
+
+function hasGLInDeps(deps) {
+    return !!deps.find(dep => !!(CHARTS_GL_MAP_REVERSE[dep] || COMPONENTS_GL_MAP_REVERSE[dep]));
 }
 
 module.buildLegacyMinimalImportCode = buildLegacyMinimalImportCode;
@@ -267,8 +327,8 @@ ${hasECStat ?
     const IMPORT_CODE = [
         !minimal
             ? esm
-                ? `import * as echarts from 'echarts';`
-                : `var echarts = require('echarts');`
+                ? `import * as echarts from 'echarts';${hasGLInDeps(deps) ? `\nimport 'echarts-gl';` : ''}`
+                : `var echarts = require('echarts');${hasGLInDeps(deps) ? `\require('echarts-gl');` : ''}`
             : legacy
                 ? buildLegacyMinimalImportCode(deps, esm)
                 : buildMinimalImportCode(deps, ts),
@@ -280,7 +340,7 @@ ${hasECStat ?
     ].filter(a => !!a).join('\n');
 
     const ENV_CODE = [
-        usedRootPath ? `var ROOT_PATH = '${ROOT_PATH}'` : '',
+        usedRootPath ? `var ROOT_PATH = '${ROOT_PATH}';` : '',
         usedApp ? `var app${ts ? ': any' : ''} = {};` : '',
         ts && !minimal ? 'type ECOption = echarts.EChartsOption' : ''
     ].filter(a => !!a).join('\n');

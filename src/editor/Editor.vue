@@ -169,8 +169,7 @@ export default {
                 minimal: this.fullCodeConfig.minimal,
                 ts: false,
                 esm: this.fullCodeConfig.esm,
-                // TODO Enabled when new version is published.
-                legacy: true,
+                // legacy: true,
                 theme: store.darkMode ? 'dark' : '',
                 ROOT_PATH: store.cdnRoot
             });

@@ -15,6 +15,8 @@
                 :inactive-text="''">
             </el-switch>
             <el-switch
+                v-if="!isGL"
+
                 class="enable-decal"
                 v-model="shared.enableDecal"
                 :active-text="$t('editor.enableDecal')"
@@ -26,6 +28,8 @@
                 width="450"
                 trigger="click"
                 style="margin-top:3px;"
+
+                v-if="!isGL"
             >
                 <div class="render-config-container">
                     <el-row :gutter="2" type="flex" align="middle">
@@ -70,7 +74,11 @@ import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import {download} from './downloadExample';
 
-const example = CHART_LIST.concat(CHART_LIST_GL).find(item => URL_PARAMS.c === item.id);
+function findExample(item) {
+    return URL_PARAMS.c === item.id;
+}
+const example = CHART_LIST.concat(CHART_LIST_GL).find(findExample);
+const isGL = CHART_LIST_GL.find(findExample);
 
 function addDecalIfNecessary(option) {
     if (store.enableDecal) {
@@ -179,7 +187,9 @@ export default {
             debouncedTime: undefined,
             backgroundColor: '',
             autoRun: true,
-            loading: false
+            loading: false,
+
+            isGL
         }
     },
 

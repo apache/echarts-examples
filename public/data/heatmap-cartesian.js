@@ -22,7 +22,6 @@ option = {
     tooltip: {
         position: 'top'
     },
-    animation: false,
     grid: {
         height: '50%',
         top: '10%'
