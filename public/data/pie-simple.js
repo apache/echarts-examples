@@ -12,8 +12,7 @@ option = {
         left: 'center'
     },
     tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b} : {c} ({d}%)'
+        trigger: 'item'
     },
     legend: {
         orient: 'vertical',

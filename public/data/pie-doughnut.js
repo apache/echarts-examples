@@ -7,12 +7,11 @@ difficulty: 1
 
 option = {
     tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
+        trigger: 'item'
     },
     legend: {
         top: '5%',
-        left: 'center',
+        left: 'center'
     },
     series: [
         {

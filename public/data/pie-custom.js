@@ -18,8 +18,7 @@ option = {
     },
 
     tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b} : {c} ({d}%)'
+        trigger: 'item'
     },
 
     visualMap: {
