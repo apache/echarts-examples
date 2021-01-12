@@ -298,7 +298,11 @@ module.exports.buildExampleCode = function (
         ts,
         // Theme
         theme,
-        ROOT_PATH
+        ROOT_PATH,
+        // Other imports code code string
+        // For example
+        // `import 'echarts-liquidfill'`
+        extraImports
     }
 ) {
     // if (minimal && !legacy) {
@@ -339,7 +343,8 @@ ${hasECStat ?
             ? esm
                 ? `import 'echarts/theme/${theme}'`
                 : `require('echarts/theme/${theme}')`
-            : ''
+            : '',
+        extraImports
     ].filter(a => !!a).join('\n');
 
     const ENV_CODE = [

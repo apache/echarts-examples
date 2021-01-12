@@ -20,6 +20,7 @@ const {compareImage} = require('../common/compareImage');
 const shell = require('shelljs');
 const downloadGit = require('download-git-repo');
 const {promisify} = require('util');
+const matter = require('gray-matter');
 const minimatch = require('minimatch');
 
 const parser = new argparse.ArgumentParser({
@@ -219,57 +220,31 @@ async function buildRunCode() {
         throw new Error('You need to run `node tool/build-example.js` before run this test.');
     }
 
-    return (await runTasks(files, async (fileName) => {
-        const isGL = fileName.startsWith(`${EXAMPLE_DIR}/data-gl`);
-        const testName = nodePath.basename(fileName, '.json');
-
-        if (testsPattern && !testsPattern.some(pattern => minimatch(testName, pattern))) {
-            return;
-        }
-
-        const optionCode = await fse.readFile(fileName, 'utf-8');
-        const option = JSON.parse(optionCode);
-        const jsCode = await fse.readFile(nodePath.join(
-            EXAMPLE_DIR, isGL ? 'data-gl' : 'data', testName + '.js'
-        ), 'utf-8');
-
-        // TODO Ignore case with extension.
-
-        const deps = collectDeps(option).concat([
-            // TODO SVG
-            'CanvasRenderer'
-        ]);
-
-        if (deps.includes('MapChart')
-            || deps.includes('GeoComponent')
-            || option.bmap) {
-            console.warn(chalk.yellow(`Ignored map tests.${fileName}`));
-            return;
-        }
-
+    async function addTestCase(testName, testCode, deps, checkTs, extraImports, extraRequire) {
         const ROOT_PATH = `${baseUrl}/public`;
 
-        const checkTs = !isGL; // TODO: Don't support TypeScript in GL
-
-        const fullCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
+        const fullCode = buildExampleCode(buildPrepareCode(true) + testCode, deps, {
             minimal: false,
             ts: checkTs,
             // Check if theme will break the minimal imports.
             theme: TEST_THEME,
-            ROOT_PATH
+            ROOT_PATH,
+            extraImports
         });
-        const minimalCode = buildExampleCode(buildPrepareCode(true) + jsCode, deps, {
+        const minimalCode = buildExampleCode(buildPrepareCode(true) + testCode, deps, {
             minimal: true,
-            ts: checkTs,  // TODO: Don't support TypeScript in GL
+            ts: checkTs,
             theme: TEST_THEME,
-            ROOT_PATH
+            ROOT_PATH,
+            extraImports
         });
-        const legacyCode = buildExampleCode(buildPrepareCode(false) + jsCode, deps, {
+        const legacyCode = buildExampleCode(buildPrepareCode(false) + testCode, deps, {
             minimal: true,
             esm: false,
             ts: false,
             theme: TEST_THEME,
-            ROOT_PATH
+            ROOT_PATH,
+            extraImports: extraRequire
         });
 
         await fse.writeFile(
@@ -294,12 +269,70 @@ async function buildRunCode() {
             }), 'utf-8'
         );
         console.log(
-            chalk.green('Generated: ', nodePath.join(RUN_CODE_DIR, testName))
+            chalk.green('Generated: ', testName)
         );
+    }
+
+    const builtinTestCases = await runTasks(files, async (fileName) => {
+        const isGL = fileName.startsWith(`${EXAMPLE_DIR}/data-gl`);
+        const testName = nodePath.basename(fileName, '.json');
+
+        if (testsPattern && !testsPattern.some(pattern => minimatch(testName, pattern))) {
+            return;
+        }
+
+        const optionCode = await fse.readFile(fileName, 'utf-8');
+        const option = JSON.parse(optionCode);
+        const testCode = await fse.readFile(nodePath.join(
+            EXAMPLE_DIR, isGL ? 'data-gl' : 'data', testName + '.js'
+        ), 'utf-8');
+
+        // TODO Ignore case with extension.
+
+        const deps = collectDeps(option).concat([
+            // TODO SVG
+            'CanvasRenderer'
+        ]);
+
+        if (deps.includes('MapChart')
+            || deps.includes('GeoComponent')
+            || option.bmap) {
+            console.warn(chalk.yellow(`Ignored map tests.${fileName}`));
+            return;
+        }
+
+        // TODO: Don't support TypeScript in GL
+        await addTestCase(testName, testCode, deps, !isGL);
 
         return testName;
-    }, 20))
-        .filter(a => !!a);
+    }, 20);
+    const extensionTestCases = await runTasks(await globby(__dirname + '/cases/*.js'), async (fileName) => {
+        const testName = nodePath.basename(fileName, '.js');
+        if (testsPattern && !testsPattern.some(pattern => minimatch(testName, pattern))) {
+            return;
+        }
+
+        const testCode = await fse.readFile(fileName, 'utf-8');
+        let importsCode = '';
+        let requireCode = '';
+        try {
+            const fmResult = matter(testCode, {
+                delimiters: ['/*', '*/']
+            });
+            const extension = fmResult.data.extension;
+            if (extension) {
+                importsCode = `import '${extension}';`;
+                requireCode = `require('${extension}');`;
+            }
+        }
+        catch (e)  {
+        }
+        await addTestCase(testName, testCode, [], false, importsCode, requireCode);
+
+        return testName;
+    }, 20);
+
+    return builtinTestCases.concat(extensionTestCases).filter(a => !!a);
 }
 
 async function compileTs(tsTestFiles, result) {
