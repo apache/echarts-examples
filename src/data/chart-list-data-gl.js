@@ -148,6 +148,16 @@ export default [
     "category": [
       "globe"
     ],
+    "id": "globe-atmosphere",
+    "tags": [],
+    "title": "Globe with Atmosphere",
+    "titleCN": "大气层显示",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "globe"
+    ],
     "id": "globe-contour-paint",
     "tags": [],
     "title": "Contour Paint",

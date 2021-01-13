@@ -8,9 +8,6 @@ option = {
     backgroundColor: '#000',
     globe: {
         baseTexture: ROOT_PATH + '/data-gl/asset/earth.jpg',
-        heightTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
-
-        displacementScale: 0.1,
 
         shading: 'lambert',
 
