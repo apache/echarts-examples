@@ -1,7 +1,7 @@
 /*
-title: Globe Layers
+title: Globe with Atmosphere
 category: globe
-titleCN: Globe Layers
+titleCN: 大气层显示
 */
 
 option = {
@@ -16,6 +16,10 @@ option = {
 
         environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
 
+        atmosphere: {
+            show: true
+        },
+
         light: {
             ambient: {
                 intensity: 0.1
@@ -23,18 +27,7 @@ option = {
             main: {
                 intensity: 1.5
             }
-        },
-
-        layers: [{
-            type: 'blend',
-            blendTo: 'emission',
-            texture: ROOT_PATH + '/data-gl/asset/night.jpg'
-        }, {
-            type: 'overlay',
-            texture: ROOT_PATH + '/data-gl/asset/clouds.png',
-            shading: 'lambert',
-            distance: 5
-        }]
+        }
     },
     series: []
-}
+};

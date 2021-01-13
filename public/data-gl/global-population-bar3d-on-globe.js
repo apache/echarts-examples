@@ -2,7 +2,6 @@
 title: Global Population - Bar3D on Globe
 category: bar3D
 titleCN: Global Population - Bar3D on Globe
-scripts: 'http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js'
 */
 
 $.getJSON(ROOT_PATH + "/data-gl/asset/data/population.json", function (data) {
