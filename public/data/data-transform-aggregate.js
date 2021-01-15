@@ -7,14 +7,14 @@ difficulty: 4
 
 $.when(
     $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
-    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js')
+    $.getScript('https://cdn.jsdelivr.net/npm/echarts-simple-transform/dist/ecSimpleTransform.min.js')
 ).done(function (res) {
     run(res[0]);
 });
 
 function run(_rawData) {
 
-    echarts.registerTransform(window.myTransform.aggregate);
+    echarts.registerTransform(window.ecSimpleTransform.aggregate);
 
     option = {
         dataset: [{
@@ -33,7 +33,7 @@ function run(_rawData) {
             id: 'income_aggregate',
             fromDatasetId: 'since_year',
             transform: [{
-                type: 'myTransform:aggregate',
+                type: 'ecSimpleTransform:aggregate',
                 config: {
                     resultDimensions: [
                         { name: 'min', from: 'Income', method: 'min' },

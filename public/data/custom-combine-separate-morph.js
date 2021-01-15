@@ -76,7 +76,7 @@ var baseOption = {
         id: 'mTagSum',
         fromDatasetId: 'raw',
         transform: {
-            type: 'myTransform:aggregate',
+            type: 'ecSimpleTransform:aggregate',
             config: {
                 resultDimensions: [
                     { from: 'ATA', method: 'sum' },
@@ -113,7 +113,7 @@ var baseOption = {
         id: 'rawClusterCenters',
         fromDatasetId: 'rawClusters',
         transform: {
-            type: 'myTransform:aggregate',
+            type: 'ecSimpleTransform:aggregate',
             // print: true,
             config: {
                 resultDimensions: [
@@ -460,8 +460,8 @@ console.log(app.config);
 
 
 $.when(
-    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js'),
-    $.getScript(ROOT_PATH + '/data/asset/js/transitionPlayer.js'),
+    $.getScript('https://cdn.jsdelivr.net/npm/echarts-simple-transform/dist/ecSimpleTransform.min.js'),
+    $.getScript('https://cdn.jsdelivr.net/npm/echarts-simple-option-player/dist/ecSimpleOptionPlayer.min.js'),
 ).done(function () {
     run();
 });
@@ -469,10 +469,10 @@ $.when(
 
 function run() {
 
-    echarts.registerTransform(myTransform.aggregate);
+    echarts.registerTransform(ecSimpleTransform.aggregate);
     echarts.registerTransform(ecStat.transform.clustering);
 
-    _player = transitionPlayer.create({
+    _player = ecSimpleOptionPlayer.create({
         chart: function () {
             return myChart;
         },

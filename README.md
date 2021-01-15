@@ -108,7 +108,7 @@ describes the meta info of this example.
 For example:
 ```js
 $.when(
-    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js'),
+    $.getScript(ROOT_PATH + '/data/asset/js/xxxx.js'),
     $.getScript('https://cdn.jsdelivr.net/npm/d3-contour@2.0.0/dist/d3-contour.jXs'),
 ).done(function () {
     // ...

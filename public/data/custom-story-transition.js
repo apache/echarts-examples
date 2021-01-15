@@ -7,7 +7,7 @@ difficulty: 11
 
 $.when(
     $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json'),
-    $.getScript(ROOT_PATH + '/data/asset/js/myTransform.js')
+    $.getScript('https://cdn.jsdelivr.net/npm/echarts-simple-transform/dist/ecSimpleTransform.min.js')
 ).done(function (res) {
     run(res[0]);
 });
@@ -15,8 +15,8 @@ $.when(
 let _optionList;
 
 function run(_rawData) {
-    echarts.registerTransform(myTransform.aggregate);
-    echarts.registerTransform(myTransform.id);
+    echarts.registerTransform(ecSimpleTransform.aggregate);
+    echarts.registerTransform(ecSimpleTransform.id);
 
 
     const COUNTRY_A = 'Germany';
@@ -54,7 +54,7 @@ function run(_rawData) {
                     dimension: 'Year', gte: 1950
                 }
             }, {
-                type: 'myTransform:id',
+                type: 'ecSimpleTransform:id',
                 config: {
                     dimensionIndex: 5,
                     dimensionName: 'Id'
@@ -77,7 +77,7 @@ function run(_rawData) {
             id: 'DatasetCountryABSumIncome',
             fromDatasetId: 'DatasetCountryAB',
             transform: {
-                type: 'myTransform:aggregate',
+                type: 'ecSimpleTransform:aggregate',
                 config: {
                     resultDimensions: [
                         { from: 'Income', method: 'sum' },
