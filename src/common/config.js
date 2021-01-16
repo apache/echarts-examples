@@ -120,8 +120,8 @@ export const SUPPORT_WEBP = (function () {
 
 export const SCRIPT_URLS = {
     localEChartsMinJS: 'http://localhost/echarts/dist/echarts.js',
-    echartsMinJS: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0/dist/echarts.min.js',
-    echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@5.0.0',
+    echartsMinJS: 'https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/echarts.min.js',
+    echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@5.0.1',
     echartsStatMinJS: 'https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js',
     // echartsGLMinJS: 'http://localhost/echarts-gl/dist/echarts-gl.min.js',
     echartsGLMinJS: 'https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js',
