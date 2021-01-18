@@ -11,7 +11,7 @@ module.exports = {
         {
             name: 'echarts',
             dir: nodePath.resolve(__dirname, '../../echarts'),
-            git: 'apache/incubator-echarts#release'
+            git: 'apache/echarts#release'
         },
         {
             name: 'echarts-gl',

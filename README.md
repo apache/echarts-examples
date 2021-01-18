@@ -18,7 +18,7 @@ npm run dev
 npm run release
 ```
 
-It will copy all the build resources to incubator-echarts-website/next/examples
+It will copy all the build resources to echarts-website/next/examples
 
 ## Use local echarts build
 
