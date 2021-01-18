@@ -166,6 +166,10 @@ module.exports.collectDeps = function collectDeps(option) {
         if (CHARTS_GL_MAP[seriesOpt.type]) {
             deps.push(CHARTS_GL_MAP[seriesOpt.type]);
         }
+        if (seriesOpt.type === 'map') {
+            // Needs geo component when using map
+            deps.push(COMPONENTS_MAP.geo);
+        }
         MARKERS.forEach(markerType => {
             if (seriesOpt[markerType]) {
                 deps.push(COMPONENTS_MAP[markerType]);
