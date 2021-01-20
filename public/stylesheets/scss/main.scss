@@ -13,3 +13,13 @@
 
 @import "page.view";
 @import "page.explore";
+
+#v5-link {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    width: 300px;
+    margin-left: -150px;
+    text-align: center;
+    z-index: 1000;
+}

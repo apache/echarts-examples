@@ -36,6 +36,16 @@ html
                     div 访问官网
             a.close-btn(href="javascript:;", onclick="closeApacheBanner(true)") x
 
+        #v5-link.alert.alert-warning.alert-dismissible
+            if ecWWWLang == 'en'
+                span Back to the #[a(id="a2", href="https://echarts.apache.org/zh/index.html") latest website.]
+            else
+                span 返回 #[a(id="a1", href="https://echarts.apache.org/zh/index.html") 最新的官网]
+
+            button.close(type="button", data-dismiss="alert", aria-label="Close")
+                span(aria-hidden="true") &times;
+
+
         block content
 
         script(type='text/javascript', src='#{cdnThirdParty.jquery_1_11_3}')
