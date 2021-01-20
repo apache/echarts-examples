@@ -27,7 +27,7 @@ Object.assign(config, {
     // mainSiteHost: 'http://127.0.0.1:8000/echarts/echarts-website',
 
     blogPath: 'http://efe.baidu.com/tags/ECharts/',
-    releaseDestDir: path.resolve(__dirname, '../../echarts-website/examples')
+    releaseDestDir: path.resolve(__dirname, '../../../echarts-website/v4/examples')
 });
 
 module.exports = config;
