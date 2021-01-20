@@ -63,6 +63,7 @@ async function copyResourcesToDest(config) {
     let basePath = path.resolve(projectDir, 'public');
     const filePaths = await globby([
         '**/*',
+        '!.*', // .git .gitignore .htaccess
         '!stylesheets/scss/**/*'
     ], {
         cwd: basePath
