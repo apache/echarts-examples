@@ -35,7 +35,7 @@
                         <el-switch
                             class="enable-decal"
                             v-model="fullCodeConfig.minimal"
-                            :active-text="$t('editor.minimalImport')"
+                            :active-text="$t('editor.minimalBundle')"
                             :inactive-text="''">
                         </el-switch>
                         <el-switch

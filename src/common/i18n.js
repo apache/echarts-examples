@@ -21,7 +21,7 @@ export default {
             tabEditor: 'Edit Example',
             tabFullCodePreview: 'Full Code',
             tabOptionPreview: 'Option Preview',
-            minimalImport: 'Minimal Import'
+            minimalBundle: 'Minimal Bundle'
         },
 
         chartTypes: {
@@ -87,7 +87,7 @@ export default {
             tabEditor: '示例编辑',
             tabFullCodePreview: '完整代码',
             tabOptionPreview: '配置项',
-            minimalImport: '按需引入'
+            minimalBundle: '按需引入'
         },
 
         chartTypes: {

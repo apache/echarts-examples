@@ -181,7 +181,7 @@ module.exports.collectDeps = function collectDeps(option) {
     return Array.from(new Set(deps));
 }
 
-function buildMinimalImportCode(deps, includeType) {
+function buildMinimalBundleCode(deps, includeType) {
     const chartsImports = [];
     const componentsImports = [];
     const chartsGLImports = [];
@@ -248,9 +248,9 @@ echarts.use(
 ` + (includeType ? ECOptionTypeCode : '')
 }
 
-module.exports.buildMinimalImportCode = buildMinimalImportCode;
+module.exports.buildMinimalBundleCode = buildMinimalBundleCode;
 
-function buildLegacyMinimalImportCode(deps, isESM) {
+function buildLegacyMinimalBundleCode(deps, isESM) {
     const modules = [];
     deps.forEach(function (dep) {
         if (dep.endsWith('Renderer') && dep !== 'CanvasRenderer') {
@@ -285,7 +285,7 @@ function hasGLInDeps(deps) {
     return !!deps.find(dep => !!(CHARTS_GL_MAP_REVERSE[dep] || COMPONENTS_GL_MAP_REVERSE[dep]));
 }
 
-module.buildLegacyMinimalImportCode = buildLegacyMinimalImportCode;
+module.buildLegacyMinimalBundleCode = buildLegacyMinimalBundleCode;
 
 module.exports.buildExampleCode = function (
     jsCode, deps, {
@@ -341,8 +341,8 @@ ${hasECStat ?
                 ? `import * as echarts from 'echarts';${hasGLInDeps(deps) ? `\nimport 'echarts-gl';` : ''}`
                 : `var echarts = require('echarts');${hasGLInDeps(deps) ? `\nrequire('echarts-gl');` : ''}`
             : legacy
-                ? buildLegacyMinimalImportCode(deps, esm)
-                : buildMinimalImportCode(deps, ts),
+                ? buildLegacyMinimalBundleCode(deps, esm)
+                : buildMinimalBundleCode(deps, ts),
         (theme && theme !== 'dark')
             ? esm
                 ? `import 'echarts/theme/${theme}'`
