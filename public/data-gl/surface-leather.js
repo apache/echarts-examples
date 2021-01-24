@@ -8,6 +8,7 @@ var TILING = [4, 2];
 
 var heightImg = new Image();
 heightImg.onload = update;
+heightImg.crossOrigin = 'anonymous';
 heightImg.src = ROOT_PATH + '/data-gl/asset/leather/leather_height.jpg';
 
 function update() {
