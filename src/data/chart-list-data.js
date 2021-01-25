@@ -1468,6 +1468,16 @@ export default [
   },
   {
     "category": [
+      "bar"
+    ],
+    "id": "bar-race-country",
+    "tags": [],
+    "title": "Bar Race",
+    "titleCN": "动态排序柱状图 - 各国收入变化",
+    "difficulty": 6
+  },
+  {
+    "category": [
       "bar",
       "rich"
     ],
