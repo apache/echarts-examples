@@ -1,12 +1,12 @@
 /*
 title: Bar Race
-titleCN: 动态排序柱状图 - 各国收入变化
+titleCN: 动态排序柱状图 - 人均收入
 category: bar
 difficulty: 6
 */
 
 
-var updateFrequency = 5000;
+var updateFrequency = 2000;
 var dimension = 0;
 
 var countryColors = {"Australia":"#00008b","Canada":"#f00","China":"#ffde00","Cuba":"#002a8f","Finland":"#003580","France":"#ed2939","Germany":"#000","Iceland":"#003897","India":"#f93","Japan":"#bc002d","North Korea":"#024fa2","South Korea":"#000","New Zealand":"#00247d","Norway":"#ef2b2d","Poland":"#dc143c","Russia":"#d52b1e","Turkey":"#e30a17","United Kingdom":"#00247d","United States":"#b22234"};
@@ -32,13 +32,15 @@ $.when(
             return item.name === countryName;
         }) || {}).emoji;
     }
-    var startIndex = 4;
+    var startIndex = 10;
     var startYear = years[startIndex];
 
     var option = {
         grid: {
+            top: 10,
+            bottom: 30,
             left: 150,
-            right: 150
+            right: 80
         },
         xAxis: {
             max: 'dataMax',
@@ -119,7 +121,7 @@ $.when(
     // console.log(option);
     myChart.setOption(option);
 
-    for (var i = startIndex; i < years.length; ++i) {
+    for (var i = startIndex; i < years.length - 1; ++i) {
         (function (i) {
             setTimeout(function () {
                 updateYear(years[i + 1]);
