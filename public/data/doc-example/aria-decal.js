@@ -56,16 +56,23 @@ var decals = [{
     dashArrayY: [10, 5],
     rotation: 0
 }, {
+    symbol: 'rect',
+    dashArrayX: [[8, 8], [0, 8, 8, 0]],
+    dashArrayY: [8, 0],
+    symbolSize: 0.8,
+    rotation: Math.PI / 4,
+    color: 'black'
+}, {
     color: decalColor,
     dashArrayX: [[30, 30], [0, 30, 30, 0]],
     dashArrayY: [15, 0],
     symbol: 'path://' + svg
-}, {
-    color: decalColor,
-    dashArrayX: [[30, 30], [0, 30, 30, 0]],
-    dashArrayY: [30, 0],
-    symbol: base64,
-    symbolSize: 0.8
+// }, {
+//     color: decalColor,
+//     dashArrayX: [[30, 30], [0, 30, 30, 0]],
+//     dashArrayY: [30, 0],
+//     symbol: base64,
+//     symbolSize: 0.8
 }];
 
 var columns = 6;
