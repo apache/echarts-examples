@@ -294,10 +294,13 @@ async function buildRunCode() {
             'CanvasRenderer'
         ]);
 
-        if (deps.includes('MapChart')
-            || deps.includes('GeoComponent')
-            || option.bmap) {
-            console.warn(chalk.yellow(`Ignored map tests.${fileName}`));
+        if (
+            !(testName === 'map-HK' || testName === 'map-usa')  // Only test these two map examples
+            && (deps.includes('MapChart')
+                || deps.includes('GeoComponent')
+                || option.bmap)
+        ) {
+            console.warn(chalk.yellow(`Ignored map tests ${testName}`));
             return;
         }
 

@@ -41,6 +41,10 @@ function runTasks(
         for (let i = 0; i < concurrency; i++) {
             addTask();
         }
+
+        if (!runningTaskCount) {
+            resolve(rets);
+        }
     });
 }
 

@@ -6,17 +6,17 @@ module.exports = {
         {
             name: 'zrender',    // package name
             dir: nodePath.resolve(__dirname, '../../zrender'),
-            git: 'ecomfe/zrender#release'
+            git: 'ecomfe/zrender#master'
         },
         {
             name: 'echarts',
             dir: nodePath.resolve(__dirname, '../../echarts'),
-            git: 'apache/echarts#release'
+            git: 'apache/echarts#master'
         },
         {
             name: 'echarts-gl',
             dir: nodePath.resolve(__dirname, '../../echarts-gl'),
-            git: 'ecomfe/echarts-gl#next'
+            git: 'ecomfe/echarts-gl#master'
         },
         {
             name: 'echarts-wordcloud',
