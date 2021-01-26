@@ -144,7 +144,7 @@ function setRawScatterOption() {
         replaceMerge: ['xAxis', 'yAxis'],
         transition: {
             from: { seriesIndex: 0, dimension: 'CLUSTER_IDX' },
-            to: { seriesIndex: 0, dimension: 'CLUSTER_IDX', dividingMethod: 'duplicate' }
+            to: { seriesIndex: 0, dimension: 'CLUSTER_IDX' }
         }
     });
 }
@@ -208,7 +208,7 @@ function setClusteredScatterOption() {
         replaceMerge: ['xAxis', 'yAxis'],
         transition: {
             from: { seriesIndex: 0, dimension: 'CLUSTER_IDX' },
-            to: { seriesIndex: 0, dimension: 'CLUSTER_IDX', dividingMethod: 'duplicate' }
+            to: { seriesIndex: 0, dimension: 'CLUSTER_IDX' }
         }
     });
 }
