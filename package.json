@@ -26,7 +26,7 @@
     "download-git-repo": "^3.0.2",
     "echarts": "^5.0.0",
     "echarts-stat": "^1.2.0",
-    "esbuild": "^0.8.31",
+    "esbuild": "^0.8.34",
     "file-loader": "^4.3.0",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",
