@@ -1473,7 +1473,7 @@ export default [
     "id": "bar-race-country",
     "tags": [],
     "title": "Bar Race",
-    "titleCN": "动态排序柱状图 - 各国收入变化",
+    "titleCN": "动态排序柱状图 - 人均收入",
     "difficulty": 6
   },
   {
@@ -1793,6 +1793,26 @@ export default [
     "category": [
       "custom"
     ],
+    "id": "custom-aggregate-scatter-bar",
+    "tags": [],
+    "title": "Aggregate Morphing Between Scatter and Bar",
+    "titleCN": "聚合分割形变（散点图 - 柱状图）",
+    "difficulty": 9
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "custom-aggregate-scatter-pie",
+    "tags": [],
+    "title": "Aggregate Morphing Between Scatter and Pie",
+    "titleCN": "聚合分割形变（散点图 - 饼图）",
+    "difficulty": 9
+  },
+  {
+    "category": [
+      "custom"
+    ],
     "id": "custom-gauge",
     "tags": [],
     "title": "Custom Gauge",
@@ -1909,6 +1929,16 @@ export default [
     "category": [],
     "id": "covid-america",
     "tags": [],
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "custom-aggregate-scatter-cluster",
+    "tags": [],
+    "title": "Aggregate Morphing Between Scatter Clustering",
+    "titleCN": "聚合分割形变（散点图聚类）",
     "difficulty": 10
   },
   {
@@ -2501,16 +2531,6 @@ export default [
     "tags": [],
     "title": "Circle Packing with d3",
     "titleCN": "Circle Packing with d3",
-    "difficulty": 11
-  },
-  {
-    "category": [
-      "custom"
-    ],
-    "id": "custom-combine-separate-morph",
-    "tags": [],
-    "title": "Combine-Separate Morphing",
-    "titleCN": "聚合分割形变",
     "difficulty": 11
   },
   {
