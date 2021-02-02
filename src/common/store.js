@@ -14,8 +14,6 @@ export const store = {
     typeCheck: URL_PARAMS.editor === 'monaco',
     useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
-    code: '',
-
     runCode: '',
     sourceCode: '',
 
