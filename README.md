@@ -26,65 +26,6 @@ It will copy all the build resources to echarts-website/next/examples
 2. Add `local=1` in URL. For example: `editor.html?c=area-basic&local=1`
 
 
-## Update example snapshots
-
-```shell
-npm run build:example
-```
-
-Only for default theme
-
-```shell
-node tool/build-example.js -t default
-```
-
-## Run e2e tests.
-
-Run all the examples to test package publishing and install, module importing, minimal bundling and DTS correctness.
-
-Before run the tests. you need to update the examples.
-
-```shell
-npm run build:example
-```
-
-Then run the tests.
-```shell
-npm run test:e2e
-```
-
-You can change the testing branch or local dir, which is available when add `--local` in `e2e/config.js`
-
-If you want to test with esbuild bundler. Which is much faster.
-```shell
-npm run test:e2e:esbuild
-```
-
-If you want use the packages in your local folder which is still in developing. Please update the `dir` path in `test/config.js` for all packages first. Then run the script directly with `--local` arg.
-
-```shell
-node e2e/main.js --bundler esbuild -m --local
-node e2e/main.js --bundler webpack -m --local
-```
-
-#### Run partial tests.
-
-> Note: This can only be used when you run the whole e2e test at least once.
-
-Skip specific stages.
-
-```shell
-node e2e/main.js --skip bundle
-```
-
-Specify matched tests.
-
-```shell
-node e2e/main.js --skip npm --tests bar3D*
-```
-
-
-
 ## Edit example
 
 All test cases are in the `public/data` folder. The comment in the header
@@ -101,7 +42,6 @@ describes the meta info of this example.
 
 
 ## Some built-in features available in examples
-
 
 ### Import third-party library
 
@@ -160,4 +100,64 @@ app.onresize = function () {
 var width = myChart.getWidth();
 var height = myChart.getHeight();
 ```
+
+
+## Update example snapshots
+
+```shell
+npm run build:example
+```
+
+Only for default theme
+
+```shell
+node tool/build-example.js -t default
+```
+
+
+## Run e2e tests.
+
+Run all the examples to test package publishing and install, module importing, minimal bundling and DTS correctness.
+
+Before run the tests. you need to update the examples.
+
+```shell
+npm run build:example
+```
+
+Then run the tests.
+```shell
+npm run test:e2e
+```
+
+You can change the testing branch or local dir, which is available when add `--local` in `e2e/config.js`
+
+If you want to test with esbuild bundler. Which is much faster.
+```shell
+npm run test:e2e:esbuild
+```
+
+If you want use the packages in your local folder which is still in developing. Please update the `dir` path in `test/config.js` for all packages first. Then run the script directly with `--local` arg.
+
+```shell
+node e2e/main.js --bundler esbuild -m --local
+node e2e/main.js --bundler webpack -m --local
+```
+
+#### Run partial tests.
+
+> Note: This can only be used when you run the whole e2e test at least once.
+
+Skip specific stages.
+
+```shell
+node e2e/main.js --skip bundle
+```
+
+Specify matched tests.
+
+```shell
+node e2e/main.js --skip npm --tests bar3D*
+```
+
 
