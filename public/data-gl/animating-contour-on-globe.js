@@ -41,13 +41,13 @@ $.when(
 
         for (var j = 0, k = 0; j < m; ++j) {
             for (var i = 0; i < n; ++i, ++k) {
-            values[k] = image.data[(k << 2)] / 255;
+                values[k] = image.data[(k << 2)] / 255;
             }
         }
 
         var opt = {
             image: canvas
-        }
+        };
 
         var results = [];
         function update(threshold, levels) {
@@ -88,13 +88,14 @@ $.when(
         return new Promise(function(resolve) {
             var image = new Image();
             image.src = url;
+            image.crossOrigin = 'Anonymous';
             image.onload = function() {
-            var canvas = document.createElement("canvas");
-            canvas.width = image.width / 8;
-            canvas.height = image.height / 8;
-            var context = canvas.getContext("2d");
-            context.drawImage(image, 0, 0, canvas.width, canvas.height);
-            resolve(context.getImageData(0, 0, canvas.width, canvas.height));
+                var canvas = document.createElement('canvas');
+                canvas.width = image.width / 8;
+                canvas.height = image.height / 8;
+                var context = canvas.getContext('2d');
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                resolve(context.getImageData(0, 0, canvas.width, canvas.height));
             };
         });
     }

@@ -85,13 +85,14 @@ function image(url) {
     return new Promise(function(resolve) {
         var image = new Image();
         image.src = url;
+        image.crossOrigin = 'Anonymous';
         image.onload = function() {
-        var canvas = document.createElement("canvas");
-        canvas.width = image.width / 4;
-        canvas.height = image.height / 4;
-        var context = canvas.getContext("2d");
-        context.drawImage(image, 0, 0, canvas.width, canvas.height);
-        resolve(context.getImageData(0, 0, canvas.width, canvas.height));
+            var canvas = document.createElement("canvas");
+            canvas.width = image.width / 4;
+            canvas.height = image.height / 4;
+            var context = canvas.getContext("2d");
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            resolve(context.getImageData(0, 0, canvas.width, canvas.height));
         };
     });
 }
