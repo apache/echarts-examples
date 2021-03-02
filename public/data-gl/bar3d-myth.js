@@ -101,3 +101,4 @@ img.onload = function () {
 }
 
 img.src = ROOT_PATH + '/data-gl/asset/sample.jpg';
+img.crossOrigin = 'Anonymous';
