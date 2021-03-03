@@ -217,6 +217,7 @@ option = {
     },
     baseOption: {
         animationDurationUpdate: ANIMATION_DURATION_UPDATE,
+        transition: ['shape'],
         tooltip: {
         },
         xAxis: {
