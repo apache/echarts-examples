@@ -51,7 +51,7 @@ option = {
         triggerOn: 'none',
         transitionDuration: 0,
         confine: true,
-        bordeRadius: 4,
+        borderRadius: 4,
         borderWidth: 1,
         borderColor: '#333',
         backgroundColor: 'rgba(255,255,255,0.9)',
