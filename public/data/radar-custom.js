@@ -6,11 +6,12 @@ difficulty: 2
 */
 
 option = {
+    color: [ '#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
     title: {
         text: '自定义雷达图'
     },
     legend: {
-        data: ['图一','图二', '张三', '李四']
+        data: ['Data A', 'Data B', 'Data C', 'Data D']
     },
     radar: [
         {
@@ -29,26 +30,24 @@ option = {
             name: {
                 formatter: '【{value}】',
                 textStyle: {
-                    color: '#72ACD1'
+                    color: '#428BD4'
                 }
             },
             splitArea: {
                 areaStyle: {
-                    color: ['rgba(114, 172, 209, 0.2)',
-                        'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
-                        'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
-                    shadowColor: 'rgba(0, 0, 0, 0.3)',
+                    color: ['#77EADF', '#26C3BE', '#64AFE9', '#428BD4'],
+                    shadowColor: 'rgba(0, 0, 0, 0.2)',
                     shadowBlur: 10
                 }
             },
             axisLine: {
                 lineStyle: {
-                    color: 'rgba(255, 255, 255, 0.5)'
+                    color: 'rgba(211, 253, 250, 0.8)'
                 }
             },
             splitLine: {
                 lineStyle: {
-                    color: 'rgba(255, 255, 255, 0.5)'
+                    color: 'rgba(211, 253, 250, 0.8)'
                 }
             }
         },
@@ -62,7 +61,16 @@ option = {
                 { text: '生物', max: 72 }
             ],
             center: ['75%', '50%'],
-            radius: 120
+            radius: 120,
+            name: {
+                textStyle: {
+                    color: '#fff',
+                    backgroundColor: '#666',
+                    borderRadius: 3,
+                    padding: [3, 5]
+                }
+            }
+
         }
     ],
     series: [
@@ -77,18 +85,13 @@ option = {
             data: [
                 {
                     value: [100, 8, 0.40, -80, 2000],
-                    name: '图一',
-                    symbol: 'rect',
-                    symbolSize: 5,
-                    lineStyle: {
-                        type: 'dashed'
-                    }
+                    name: 'Data A'
                 },
                 {
                     value: [60, 5, 0.30, -100, 1500],
-                    name: '图二',
+                    name: 'Data B',
                     areaStyle: {
-                        color: 'rgba(255, 255, 255, 0.5)'
+                        color: 'rgba(255, 228, 52, 0.6)'
                     }
                 }
             ]
@@ -100,26 +103,30 @@ option = {
             data: [
                 {
                     value: [120, 118, 130, 100, 99, 70],
-                    name: '张三',
+                    name: 'Data C',
+                    symbol: 'rect',
+                    symbolSize: 12,
+                    lineStyle: {
+                        type: 'dashed'
+                    },
                     label: {
                         show: true,
-                        formatter: function(params) {
+                        formatter: function (params) {
                             return params.value;
                         }
                     }
                 },
                 {
-                    value: [90, 113, 140, 30, 70, 60],
-                    name: '李四',
+                    value: [100, 93, 50, 90, 70, 60],
+                    name: 'Data D',
                     areaStyle: {
-                        opacity: 0.9,
-                        color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+                        color: new echarts.graphic.RadialGradient(0.1, 0.6, 1, [
                             {
-                                color: '#B8D3E4',
+                                color: 'rgba(255, 145, 124, 0.1)',
                                 offset: 0
                             },
                             {
-                                color: '#72ACD1',
+                                color: 'rgba(255, 145, 124, 0.9)',
                                 offset: 1
                             }
                         ])
@@ -128,4 +135,4 @@ option = {
             ]
         }
     ]
-}
+};
