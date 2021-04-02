@@ -1,6 +1,7 @@
 /*
 title: Global Wind Visualization 2
 category: flowGL
+tags: bmap
 titleCN: Global Wind Visualization 2
 */
 
