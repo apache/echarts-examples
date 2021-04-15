@@ -4,7 +4,7 @@
 
 <script>
 
-import {keywords, fullKeywordsList} from '../data/option-keywords';
+import {keywords} from '../data/option-keywords';
 import {loadScriptsAsync} from '../common/helper';
 import {store} from '../common/store';
 import {SCRIPT_URLS} from '../common/config';
@@ -18,14 +18,14 @@ function ensureACE() {
             const lnTools = ace.require('ace/ext/language_tools');
 
             const completions = [];
-            for (let key in keywords) {
+            keywords.forEach(keyword => {
                 completions.push({
-                    caption: key,
-                    value: key,
-                    score: keywords[key],
+                    caption: keyword.name,
+                    value: keyword.name,
+                    score: keyword.count,
                     metal: 'local'
                 });
-            }
+            });
 
             lnTools.addCompleter({
                 getCompletions: function (editor, session, pos, prefix, callback) {
