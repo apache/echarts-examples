@@ -4,7 +4,9 @@
         class="right-panel"
         id="chart-panel"
         :style="{background: backgroundColor}"
-    ></div>
+    >
+        <div class="chart-container"></div>
+    </div>
     <div id="tool-panel">
         <div class="left-panel">
             <el-switch
@@ -109,7 +111,7 @@ export function ensureECharts() {
             SCRIPT_URLS.echartsStatMinJS,
             ...URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : [],
             ...hasBmap ? [
-                'https://api.map.baidu.com/getscript?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
+                'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
                 SCRIPT_URLS.echartsDir + '/dist/extension/bmap.js'
             ] : []
         ]).then(() => {
@@ -147,7 +149,7 @@ function run() {
     }
 
     try {
-        const updateTime = this.sandbox.run(this.$el.querySelector('#chart-panel'), store);
+        const updateTime = this.sandbox.run(this.$el.querySelector('.chart-container'), store);
 
         log(this.$t('editor.chartOK') + updateTime + 'ms');
 
@@ -321,6 +323,11 @@ export default {
             background-color: rgba(255, 0, 0, 0.2)!important;
             border: 1px solid red!important;
         }
+    }
+
+    .chart-container {
+        position: relative;
+        height: 100%;
     }
 }
 
