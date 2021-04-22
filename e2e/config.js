@@ -6,12 +6,12 @@ module.exports = {
         {
             name: 'zrender',    // package name
             dir: nodePath.resolve(__dirname, '../../zrender'),
-            git: 'ecomfe/zrender#master'
+            git: 'ecomfe/zrender#release'
         },
         {
             name: 'echarts',
             dir: nodePath.resolve(__dirname, '../../echarts'),
-            git: 'apache/echarts#master'
+            git: 'apache/echarts#release'
         },
         {
             name: 'echarts-gl',
