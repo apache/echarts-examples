@@ -1998,6 +1998,16 @@ export default [
     "category": [
       "map"
     ],
+    "id": "geo-beef-cuts",
+    "tags": [],
+    "title": "GEO Beef Cuts",
+    "titleCN": "庖丁解牛",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
     "id": "geo-lines",
     "tags": [],
     "title": "Migration",
@@ -2012,6 +2022,56 @@ export default [
     "tags": [],
     "title": "map and scatter share a geo",
     "titleCN": "map and scatter share a geo",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-organ",
+    "tags": [],
+    "title": "Organ Data with SVG",
+    "titleCN": "内脏数据（SVG）",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-seatmap-flight",
+    "tags": [],
+    "title": "Flight Seatmap with SVG",
+    "titleCN": "航班选座（SVG）",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-svg-lines",
+    "tags": [],
+    "title": "GEO SVG Lines",
+    "titleCN": "GEO 路径图（SVG）",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-svg-map",
+    "tags": [],
+    "title": "GEO SVG Map",
+    "titleCN": "地图（SVG）",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-svg-traffic",
+    "tags": [],
+    "title": "GEO SVG Traffic",
+    "titleCN": "交通（SVG）",
     "difficulty": 10
   },
   {
