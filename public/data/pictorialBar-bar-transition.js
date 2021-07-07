@@ -1,7 +1,7 @@
 /*
-title: 象形主图变形为柱状图
+title: Aggregate Scatter to Bar
 category: pictorialBar, animation
-titleCN: Aggregate Scatter to Bar
+titleCN: 象形主图变形为柱状图
 difficulty: 4
 */
 

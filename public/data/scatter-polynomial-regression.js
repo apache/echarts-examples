@@ -70,7 +70,7 @@ option = {
     series: [{
         name: 'scatter',
         type: 'scatter'
-        }, {
+    }, {
         name: 'line',
         type: 'line',
         smooth: true,

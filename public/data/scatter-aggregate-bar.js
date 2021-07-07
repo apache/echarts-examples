@@ -1,7 +1,7 @@
 /*
-title: 散点图聚合为柱状图动画
+title: Aggregate Scatter to Bar
 category: scatter, animation
-titleCN: Aggregate Scatter to Bar
+titleCN: 散点图聚合为柱状图动画
 difficulty: 4
 */
 

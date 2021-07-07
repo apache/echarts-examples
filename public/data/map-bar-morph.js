@@ -83,6 +83,10 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
         {name: 'Puerto Rico', value: 3667084}
     ];
 
+    data.sort(function (a, b) {
+        return a.value - b.value;
+    });
+
     var mapOption = {
         visualMap: {
             left: 'right',
@@ -109,6 +113,9 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
 
     var barOption = {
         xAxis: {
+            type: 'value'
+        },
+        yAxis: {
             type: 'category',
             axisLabel: {
                 rotate: 30
@@ -116,8 +123,6 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
             data: data.map(function (item) {
                 return item.name;
             })
-        },
-        yAxis: {
         },
         animationDurationUpdate: 1000,
         series: {
