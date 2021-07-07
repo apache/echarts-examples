@@ -1,6 +1,6 @@
 /*
 title: Hexagonal Binning
-category: 'custom, map'
+category: custom, map
 titleCN: 六边形分箱图（自定义系列）
 difficulty: 6
 */
