@@ -3,6 +3,8 @@ title: Simple Gauge
 titleCN: 带标签数字动画的基础仪表盘
 category: gauge
 difficulty: 1
+videoStart: 0
+videoEnd: 1000
 */
 
 option = {

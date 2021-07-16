@@ -106,7 +106,7 @@ async function takeScreenshot(
                     return;
                 }
                 timeout += 100;
-                if (timeout >= 4000 + videoEnd) {
+                if (timeout >= 20000 + videoEnd) {
                     console.error(fileBase + ' download timeout.');
                     resolve();
                     return;
@@ -352,7 +352,7 @@ async function takeScreenshot(
             await browser.close();
             throw new Error(e.toString());
         }
-    }, sourceFolder === 'data-gl' ? 2 : 16);
+    }, sourceFolder === 'data-gl' ? 2 : 4);
 
     if (BUILD_THUMBS) {
         server.close();

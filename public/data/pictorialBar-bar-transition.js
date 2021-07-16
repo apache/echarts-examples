@@ -1,5 +1,5 @@
 /*
-title: Aggregate Scatter to Bar
+title: Transition between pictorialBar and bar
 category: pictorialBar, animation
 titleCN: 象形主图变形为柱状图
 difficulty: 4

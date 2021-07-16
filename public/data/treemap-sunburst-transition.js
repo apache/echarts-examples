@@ -1,6 +1,6 @@
 /*
 title: Transition between Treemap and Sunburst
-category: treemap, sunburst
+category: treemap
 titleCN: 矩形树图和旭日图的动画过渡
 difficulty: 4
 videoStart: 3000

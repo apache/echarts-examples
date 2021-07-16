@@ -1,6 +1,6 @@
 /*
 title: Symbol Shape Morph
-category: treemap, sunburst
+category: scatter
 titleCN: 散点图变形动画
 difficulty: 4
 videoStart: 1000
