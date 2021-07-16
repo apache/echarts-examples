@@ -63,6 +63,7 @@ const BUILD_THUMBS = !args.no_thumb;
 const DEFAULT_PAGE_WIDTH = 700;
 const DEFAULT_PAGE_RATIO = 0.75;
 const OUTPUT_IMAGE_WIDTH = 600;
+const OUTPUT_IMAGE_HEIGHT = OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO;
 
 const PORT = 3323;
 const BASE_URL = `http://localhost:${PORT}`;
@@ -194,7 +195,7 @@ async function takeScreenshot(
         });
 
         await sharp(filePathTmpRaw)
-            .resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
+            .resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_HEIGHT)
             .toFile(filePathTmp);
 
         const {diffRatio} = await compareImage(filePath, filePathTmp, 0.1);
@@ -227,7 +228,7 @@ async function takeScreenshot(
             // await ffmpeg.run('-i', webmFile, '-f', 'webp', `${fileBase}.webp`);
             // await fs.promises.writeFile('./test.mp4', ffmpeg.FS('readFile', `${fileBase}.webp`));
             // ffmpeg.exit(0);
-            shell.exec(`ffmpeg -y -i ${fileBase}.webm -f webp ${fileBase}.webp`);
+            shell.exec(`ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`);
             fs.unlinkSync(webmFile);
         }
 

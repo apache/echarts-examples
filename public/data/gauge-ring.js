@@ -4,7 +4,7 @@ titleCN: 得分环
 category: gauge
 difficulty: 5
 videoStart: 1000
-videoEnd: 5000
+videoEnd: 8000
 */
 
 option = {
