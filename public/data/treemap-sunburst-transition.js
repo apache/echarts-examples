@@ -3,6 +3,8 @@ title: Transition between Treemap and Sunburst
 category: treemap, sunburst
 titleCN: 矩形树图和旭日图的动画过渡
 difficulty: 4
+videoStart: 2000
+videoEnd: 9000
 */
 
 $.getJSON(ROOT_PATH + '/data/asset/data/echarts-package-size.json', function (data) {

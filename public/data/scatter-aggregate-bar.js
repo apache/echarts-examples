@@ -3,6 +3,8 @@ title: Aggregate Scatter to Bar
 category: scatter, animation
 titleCN: 散点图聚合为柱状图动画
 difficulty: 4
+videoStart: 1000
+videoEnd: 6000
 */
 
 var femaleData = [[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],

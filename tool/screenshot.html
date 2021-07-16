@@ -6,7 +6,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@3.10.1/index.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-nightly/dist/echarts.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/china.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/world.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.js"></script>
@@ -39,26 +39,13 @@
     });
 
     var myChart = echarts.init(document.getElementById('viewport'), params.t || null);
-    // var _$oldSetOption = myChart.setOption;
-    // var _$finalOption;
-    // myChart.setOption = function (option, notMerge) {
-    //     if (!_$finalOption || notMerge === true || (notMerge && notMerge.notMerge)) {
-    //         _$finalOption = option;
-    //     }
-    //     else {
-    //         // TODO Should be same logic with echarts merge.
-    //         _$finalOption = echarts.util.merge(_$finalOption, option);
-    //     }
-
-    //     return _$oldSetOption.apply(this, arguments);
-    // }
     var _$getEChartsOption = function () {
         return myChart.getOption();
     }
     var app = {};
 </script>
 <script>
-    var myrng = new Math.seedrandom('echarts');
+    const myrng = new Math.seedrandom('echarts');
     Math.random = function () {
         return myrng();
     };
@@ -77,23 +64,24 @@
         });
     }
 
+    const isAnimated = !isNaN(params.start) && !isNaN(params.end) && +params.end > +params.start;
+
     echarts.registerPreprocessor(function (option) {
-        option.animation = false;
-        // option.textStyle = {
-        //     fontSize: 14
-        // };
-        if (option.series) {
-            if (!(option.series instanceof Array)) {
-                option.series = [option.series];
-            }
-            option.series.forEach(function (seriesOpt) {
-                if (seriesOpt.type === 'graph') {
-                    seriesOpt.force = seriesOpt.force || {};
-                    seriesOpt.force.layoutAnimation = false;
+        if (!isAnimated) {
+            option.animation = false;
+            if (option.series) {
+                if (!(option.series instanceof Array)) {
+                    option.series = [option.series];
                 }
-                seriesOpt.progressive = 1e5;
-                seriesOpt.animation = false;
-            });
+                option.series.forEach(function (seriesOpt) {
+                    if (seriesOpt.type === 'graph') {
+                        seriesOpt.force = seriesOpt.force || {};
+                        seriesOpt.force.layoutAnimation = false;
+                    }
+                    seriesOpt.progressive = 1e5;
+                    seriesOpt.animation = false;
+                });
+            }
         }
         addComponentPadding(option.title);
         addComponentPadding(option.legend);
@@ -106,18 +94,92 @@
             console.error('No ROOT_PATH specified. Use default ROOT_PATH "."');
             window.ROOT_PATH = '.';
         }
-        var sourceFolder = params.s || 'data';
-        var scriptTag = document.createElement('script');
+        const sourceFolder = params.s || 'data';
+        const scriptTag = document.createElement('script');
         scriptTag.async = false;
         scriptTag.src = `../public/${sourceFolder}/${params.c}.js`
         document.body.appendChild(scriptTag);
 
+        let videoRecorder;
         scriptTag.onload = function () {
+            if (isAnimated) {
+                videoRecorder = new VideoRecorder(myChart);
+                setTimeout(() => {
+                    videoRecorder.start();
+                }, +params.start);
+                setTimeout(() => {
+                    videoRecorder.stop();
+                }, +params.end);
+            }
+
             if (typeof option !== 'undefined' && option) {
                 myChart.setOption(option);
             }
         }
     }
+
+    function VideoRecorder(chart) {
+        this.start = startRecording;
+        this.stop = stopRecording;
+
+        var recorder = null;
+
+        var oldRefreshImmediately = chart.getZr().refreshImmediately;
+
+        function startRecording() {
+            // Normal resolution or high resolution?
+            var compositeCanvas = document.createElement('canvas');
+            var width = chart.getWidth();
+            var height = chart.getHeight();
+            compositeCanvas.width = width;
+            compositeCanvas.height = height;
+            var compositeCtx = compositeCanvas.getContext('2d');
+
+            chart.getZr().refreshImmediately = function () {
+                var ret = oldRefreshImmediately.apply(this, arguments);
+                var canvasList = chart.getDom().querySelectorAll('canvas');
+                compositeCtx.fillStyle = '#fff';
+                compositeCtx.fillRect(0, 0, width, height);
+                for (var i = 0; i < canvasList.length; i++) {
+                    compositeCtx.drawImage(canvasList[i], 0, 0, width, height);
+                }
+                return ret;
+            }
+
+            var stream = compositeCanvas.captureStream(25);
+            recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+
+            var videoData = [];
+            recorder.ondataavailable = function (event) {
+                if (event.data && event.data.size) {
+                    videoData.push(event.data);
+                }
+            };
+
+            recorder.onstop = function () {
+                var url = URL.createObjectURL(new Blob(videoData, { type: 'video/webm' }));
+
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = `${params.c}.webm`;
+                a.click();
+
+                setTimeout(function () {
+                    window.URL.revokeObjectURL(url);
+                }, 100);
+            };
+
+            recorder.start();
+        }
+
+        function stopRecording() {
+            if (recorder) {
+                chart.getZr().refreshImmediately = oldRefreshImmediately;
+                recorder.stop();
+            }
+        }
+    }
+
 </script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 title: Morphing between Map and Bar
 category: map, animation
 titleCN: 地图柱状图变形动画
+videoStart: 1000
+videoEnd: 6000
 */
 
 myChart.showLoading();

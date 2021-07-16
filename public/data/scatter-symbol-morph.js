@@ -3,6 +3,8 @@ title: Symbol Shape Morph
 category: treemap, sunburst
 titleCN: 散点图变形动画
 difficulty: 4
+videoStart: 1000
+videoEnd: 8000
 */
 
 var xData = [];

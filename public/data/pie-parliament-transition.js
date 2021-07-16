@@ -3,6 +3,8 @@ title: Transition of Parliament and Pie Chart
 category: custom, animtion
 titleCN: 自定义议会图与饼图过渡动画
 difficulty: 10
+videoStart: 1000
+videoEnd: 6000
 */
 
 var data = [

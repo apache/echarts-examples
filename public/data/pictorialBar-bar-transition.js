@@ -3,6 +3,8 @@ title: Aggregate Scatter to Bar
 category: pictorialBar, animation
 titleCN: 象形主图变形为柱状图
 difficulty: 4
+videoStart: 2000
+videoEnd: 10000
 */
 
 var pathSymbols = {

@@ -14,6 +14,8 @@ const fse = require('fs-extra');
 const { compareImage } = require('../common/compareImage');
 const { runTasks } = require('../common/task');
 const nStatic = require('node-static');
+const shell = require('shelljs');
+const { createFFmpeg, fetchFile } = require('@ffmpeg/ffmpeg');
 
 function optionToJson(obj, prop) {
     let json = JSON.stringify(obj, function(key, value) {
@@ -86,17 +88,55 @@ async function takeScreenshot(
     theme,
     rootDir,
     basename,
-    pageWidth,
-    screenshotDelay
+    // Shot parameters
+    { shotWidth, shotDelay, videoStart, videoEnd }
 ) {
     const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
     const page = await browser.newPage();
+    const hasVideo = !isNaN(videoStart) && !isNaN(videoEnd) && +videoEnd > +videoStart;
+    const thumbDir = `${rootDir}public/${sourceFolder}/${thumbFolder}`;
+    const fileBase = `${thumbDir}/${basename}`;
+    const webmFile = `${fileBase}.webm`;
+
+    function checkDownloadFile() {
+        return new Promise(resolve => {
+            let timeout = 0
+            function check() {
+                if (fs.existsSync(webmFile)) {
+                    resolve();
+                    return;
+                }
+                timeout += 100;
+                if (timeout >= 4000 + videoEnd) {
+                    console.error(fileBase + ' download timeout.');
+                    resolve();
+                    return;
+                }
+
+                setTimeout(check, 100);
+            }
+            setTimeout(check, 100);
+        });
+    }
+
+    let checkingDownload;
 
     await page.setViewport({
-        width: (pageWidth || DEFAULT_PAGE_WIDTH),
-        height: (pageWidth || DEFAULT_PAGE_WIDTH) * DEFAULT_PAGE_RATIO
+        width: (shotWidth || DEFAULT_PAGE_WIDTH),
+        height: (shotWidth || DEFAULT_PAGE_WIDTH) * DEFAULT_PAGE_RATIO
     });
-    const url = `${SCREENSHOT_PAGE_URL}?c=${basename}&s=${sourceFolder}&t=${theme}`;
+    let url = `${SCREENSHOT_PAGE_URL}?c=${basename}&t=${theme}`;
+
+    if (hasVideo) {
+        url += `&start=${videoStart}&end=${videoEnd}`;
+        await page._client.send('Page.setDownloadBehavior', {
+            behavior: 'allow',
+            downloadPath: thumbDir
+        });
+
+        checkingDownload = checkDownloadFile();
+    }
+
     const resourceRootPath = `${BASE_URL}/public`;
     // console.log(url);
     await page.evaluateOnNewDocument(function (resourceRootPath) {
@@ -113,6 +153,7 @@ async function takeScreenshot(
             console.log(chalk.gray(`PAGE LOG[${basename}]: ${text}`));
         }
     });
+
     console.log(`Generating ${theme} thumbs.....${basename}`);
     // https://stackoverflow.com/questions/46160929/puppeteer-wait-for-all-images-to-load-then-take-screenshot
     try {
@@ -127,9 +168,7 @@ async function takeScreenshot(
             // Timeout
         }
         await waitTime(200);
-        await waitTime(screenshotDelay || 0);
-        const thumbDir = `${rootDir}public/${sourceFolder}/${thumbFolder}`;
-        const fileBase = `${thumbDir}/${basename}`;
+        await waitTime(shotDelay || 0);
         const filePathTmpRaw = `${fileBase}-tmp-raw.png`;
         const filePathTmp = `${fileBase}-tmp.png`;
         const filePath = `${fileBase}.png`;
@@ -155,7 +194,6 @@ async function takeScreenshot(
             type: 'png'
         });
 
-
         await sharp(filePathTmpRaw)
             .resize(OUTPUT_IMAGE_WIDTH, OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO)
             .toFile(filePathTmp);
@@ -169,7 +207,9 @@ async function takeScreenshot(
         else {
             console.log(diffRatio);
             fs.copyFileSync(filePathTmp, filePath);
-            await convertToWebP(filePath);
+            if (!hasVideo) {
+                await convertToWebP(filePath);
+            }
         }
 
         try {
@@ -179,6 +219,19 @@ async function takeScreenshot(
 
         fs.unlinkSync(filePathTmpRaw);
         fs.unlinkSync(filePathTmp);
+
+        if (hasVideo) {
+            await checkingDownload;
+            // const ffmpeg = createFFmpeg({ log: true });
+            // await ffmpeg.load();
+            // ffmpeg.FS('writeFile', webmFile, await fetchFile(webmFile));
+            // await ffmpeg.run('-i', webmFile, '-f', 'webp', `${fileBase}.webp`);
+            // await fs.promises.writeFile('./test.mp4', ffmpeg.FS('readFile', `${fileBase}.webp`));
+            // ffmpeg.exit(0);
+            shell.exec(`ffmpeg -y -i ${fileBase}.webm -f webp ${fileBase}.webp`);
+            fs.unlinkSync(webmFile);
+        }
+
     }
     catch (e) {
         console.error(url);
@@ -286,8 +339,12 @@ async function takeScreenshot(
                     theme,
                     rootDir,
                     basename,
-                    fmResult.data.shotWidth,
-                    fmResult.data.shotDelay
+                    {
+                        shotWidth: fmResult.data.shotWidth,
+                        shotDelay: fmResult.data.shotDelay,
+                        videoStart: fmResult.data.videoStart,
+                        videoEnd: fmResult.data.videoEnd,
+                    }
                 );
             }
         }
