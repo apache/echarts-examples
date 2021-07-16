@@ -107,8 +107,8 @@ async function takeScreenshot(
                     return;
                 }
                 timeout += 100;
-                if (timeout >= 20000 + videoEnd) {
-                    console.error(fileBase + ' download timeout.');
+                if (timeout >= 20000 + +videoEnd) {
+                    console.error(fileBase + '.webm download timeout.');
                     resolve();
                     return;
                 }
@@ -125,7 +125,7 @@ async function takeScreenshot(
         width: (shotWidth || DEFAULT_PAGE_WIDTH),
         height: (shotWidth || DEFAULT_PAGE_WIDTH) * DEFAULT_PAGE_RATIO
     });
-    let url = `${SCREENSHOT_PAGE_URL}?c=${basename}&t=${theme}`;
+    let url = `${SCREENSHOT_PAGE_URL}?c=${basename}&t=${theme}&s=${sourceFolder}`;
 
     if (hasVideo) {
         url += `&start=${videoStart}&end=${videoEnd}`;
@@ -229,7 +229,10 @@ async function takeScreenshot(
             // await fs.promises.writeFile('./test.mp4', ffmpeg.FS('readFile', `${fileBase}.webp`));
             // ffmpeg.exit(0);
             shell.exec(`ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`);
-            fs.unlinkSync(webmFile);
+            try {
+                fs.unlinkSync(webmFile);
+            }
+            catch(e) {}
         }
 
     }
