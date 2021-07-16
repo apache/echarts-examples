@@ -3,7 +3,7 @@ title: Aggregate Scatter to Bar
 category: scatter, animation
 titleCN: 散点图聚合为柱状图动画
 difficulty: 4
-videoStart: 1000
+videoStart: 2000
 videoEnd: 6000
 */
 
