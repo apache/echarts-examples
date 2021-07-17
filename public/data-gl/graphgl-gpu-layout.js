@@ -3,7 +3,8 @@ title: GraphGL GPU Layout
 category: graphGL
 theme: dark
 titleCN: GraphGL GPU Layout
-shotDelay: 5000
+videoStart: 0
+videoEnd: 10000
 shotWidth: 1280
 */
 

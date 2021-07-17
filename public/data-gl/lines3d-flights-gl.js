@@ -2,6 +2,8 @@
 title: Flights GL
 category: lines3D
 titleCN: Flights GL
+videoStart: 2000
+videoEnd: 8000
 */
 
 var uploadedDataURL = ROOT_PATH + "/data-gl/asset/data/flights.json";

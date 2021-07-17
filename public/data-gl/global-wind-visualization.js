@@ -3,6 +3,8 @@ title: Global wind visualization
 category: flowGL
 tags: bmap
 titleCN: Global wind visualization
+videoStart: 2000
+videoEnd: 10000
 */
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/winds.json', function (windData) {
@@ -32,6 +34,7 @@ $.getJSON(ROOT_PATH + '/data-gl/asset/data/winds.json', function (windData) {
         }
     }
     myChart.setOption(option = {
+        backgroundColor: '#001122',
         visualMap: {
             left: 'right',
             min: minMag,
