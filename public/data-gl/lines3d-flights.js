@@ -2,8 +2,6 @@
 title: Flights
 category: lines3D
 titleCN: Flights
-videoStart: 2000
-videoEnd: 8000
 */
 
 
