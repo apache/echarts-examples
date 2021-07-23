@@ -54,6 +54,15 @@
                 <div id="option-outline"></div>
             </el-tab-pane>
         </el-tabs>
+        <form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank">
+           <input type="hidden" name="parameters" :value="this.compress(JSON.stringify(this.parameters))" />
+
+           <!-- <input type="hidden" name="parameters" :value="getParameters(this.parameters)" /> -->
+            <!-- <div class="codebox"> -->
+                <!-- <el-button class="codebox" type="submit" size="mini" @click="toCodeSandbox">在线运行</el-button> -->
+            <!-- </div> -->
+            <input  class="codebox" type="submit" value="Open in sandbox" />
+        </form>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}" v-if="!shared.isMobile"></div>
     <Preview :inEditor="true" class="right-container" ref="preview" :style="{
@@ -64,7 +73,8 @@
 </template>
 
 <script>
-
+// import { compress } from 'lz-string'
+import LZString from 'lz-string';
 import CodeAce from './CodeAce.vue';
 import CodeMonaco from './CodeMonaco.vue';
 import FullCodePreview from './FullCodePreview.vue';
@@ -73,6 +83,7 @@ import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
 import { mount } from "@lang/object-visualizer";
+// import { getParameters } from "codesandbox/lib/api/define";
 
 import './object-visualizer.css';
 
@@ -100,6 +111,46 @@ export default {
                 mimimal: false,
                 esm: true,
                 node: false // If is in node
+            },
+            
+            parameters: {
+                files: {
+                    'index.js': {
+                        content: `import React from 'react';
+import ReactDOM from 'react-dom';
+
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+const user = {
+  firstName: 'Harper',
+  lastName: 'Meck',
+};
+
+const element = (
+  <h1>
+    Hello, {formatName(user)}!
+  </h1>
+);
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);`
+                    },
+                    'package.json': {
+                        content: {
+                            dependencies: {
+                                react: "latest",
+                                "react-dom": "latest"
+                            }
+                        }
+                    },
+                    'index.html':{
+                        content:'<div id="root"></div>'
+                    }
+                }
             }
         };
     },
@@ -152,6 +203,37 @@ export default {
     },
 
     methods: {
+        compress(string) {
+            return LZString.compressToBase64(string)
+                .replace(/\+/g, '-') // Convert '+' to '-'
+                .replace(/\//g, '_') // Convert '/' to '_'
+                .replace(/=+$/, ''); // Remove ending '='
+        },
+        toCodeSandbox(){
+            console.log(this.parameters)
+            // const package = {
+
+            // }
+            // fetch('https://codesandbox.io/api/v1/sandboxes/define',{
+            //     method:'POST',
+            //     body: JSON.stringify({
+            //         files: {
+            //             'index.js': {
+            //                 content: this.fullCode
+            //             },
+            //             'package.json': {
+            //                 content: {
+                                
+            //                 }
+            //             }
+            //         }
+            //     })
+                
+            // }).then(res=>{
+
+            // })
+            // console.log('content!:', this.fullCode)
+        },
         onSplitterDragStart() {
             this.mousedown = true;
         },
@@ -448,6 +530,12 @@ $handler-width: 5px;
     z-index: 30;
 
     background: $clr-bg;
+}
+.codebox{
+
+    position: absolute;right:20px;top:5px;
+    font-size: 14px;
+
 }
 
 
