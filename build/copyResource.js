@@ -77,9 +77,14 @@ async function copyResourcesToDest(config) {
             destPath
         );
 
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
-        process.stdout.write(chalk.green(`resource copied to: ${destPath}`));
+        if (process.stdout.clearLine) {
+            process.stdout.clearLine();
+            process.stdout.cursorTo(0);
+            process.stdout.write(chalk.green(`resource copied to: ${destPath}`));
+        }
+        else {
+            console.log(chalk.green(`resource copied to: ${destPath}`));
+        }
     }
 
     console.log('\ncopyResourcesToDest done.');
