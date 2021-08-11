@@ -1,7 +1,7 @@
 <template>
 <div id="main-container">
     <div id="editor-left-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
-        <el-tabs v-model="currentTab" type="border-card">
+        <el-tabs v-model="currentTab" type="border-card" :before-leave="tabsBeforeLeave">
             <el-tab-pane :label="$t('editor.tabEditor')" name="code-editor">
                 <el-container>
                     <el-header id="editor-control-panel">
@@ -53,16 +53,29 @@
             <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option">
                 <div id="option-outline"></div>
             </el-tab-pane>
+            <el-tab-pane name="more-editor">
+                <span slot="label" >
+                    <form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank" class="editor-form">
+                        <input type="hidden" name="parameters" :value="this.compress(JSON.stringify(this.codeSandboxConfig))" />
+                        <button  class="editor-button" type="submit"  @click="getCodeSandboxConfig">
+                            <el-tooltip content="在codeSandbox中打开" placement="bottom">
+                                <span class="codesandbox-icon" v-html="require('../asset/icon/codeSandbox.svg')"></span>
+                            </el-tooltip >
+                        </button>
+                    </form>
+                    <form action="https://codepen.io/pen/define" method="POST" target="_blank" class="editor-form">
+                        <input type="hidden" name="data" :value="JSON.stringify(this.codePenConfig)" />
+                        <button  class="editor-button" type="submit"  @click="getCodePenConfig">
+                            <el-tooltip content="在codePen中打开" placement="bottom">
+                                <span class="codepen-icon" v-html="require('../asset/icon/codePen.svg')"></span>
+                            </el-tooltip >
+                        </button>
+                    </form>
+                </span>
+            </el-tab-pane>
         </el-tabs>
-        <form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank">
-           <input type="hidden" name="parameters" :value="this.compress(JSON.stringify(this.parameters))" />
+        
 
-           <!-- <input type="hidden" name="parameters" :value="getParameters(this.parameters)" /> -->
-            <!-- <div class="codebox"> -->
-                <!-- <el-button class="codebox" type="submit" size="mini" @click="toCodeSandbox">在线运行</el-button> -->
-            <!-- </div> -->
-            <input  class="codebox" type="submit" value="Open in sandbox" />
-        </form>
     </div>
     <div class="handler" id="h-handler" @mousedown="onSplitterDragStart" :style="{left: leftContainerSize + '%'}" v-if="!shared.isMobile"></div>
     <Preview :inEditor="true" class="right-container" ref="preview" :style="{
@@ -73,7 +86,6 @@
 </template>
 
 <script>
-// import { compress } from 'lz-string'
 import LZString from 'lz-string';
 import CodeAce from './CodeAce.vue';
 import CodeMonaco from './CodeMonaco.vue';
@@ -83,9 +95,47 @@ import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
 import { mount } from "@lang/object-visualizer";
-// import { getParameters } from "codesandbox/lib/api/define";
-
 import './object-visualizer.css';
+
+//icon
+// const codeSandboxIcon = require('../asset/icon/codeSandbox.svg')
+
+
+//package
+const codeSandboxPackage = {
+  name: "echarts example",
+  main: "index.js",
+  dependencies: {
+    echarts: "5.1.2",
+    react: "17.0.2",
+    "react-dom": "17.0.2",
+    "react-scripts": "4.0.0",
+  },
+  devDependencies: {
+    typescript: "4.1.3",
+  },
+  scripts: {
+    start: "react-scripts start",
+    build: "react-scripts build",
+    test: "react-scripts test --env=jsdom",
+    eject: "react-scripts eject",
+  },
+  browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
+};
+
+const codeSandboxHTML = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="main" style="width: 600px; height: 400px;"></div>
+  </body>
+</html>`
+
+const codePenHTML = `<div id="main" style="width: 600px; height: 400px;"></div>`
+
+//
 
 export default {
     components: {
@@ -112,46 +162,9 @@ export default {
                 esm: true,
                 node: false // If is in node
             },
-            
-            parameters: {
-                files: {
-                    'index.js': {
-                        content: `import React from 'react';
-import ReactDOM from 'react-dom';
 
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
-
-const user = {
-  firstName: 'Harper',
-  lastName: 'Meck',
-};
-
-const element = (
-  <h1>
-    Hello, {formatName(user)}!
-  </h1>
-);
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);`
-                    },
-                    'package.json': {
-                        content: {
-                            dependencies: {
-                                react: "latest",
-                                "react-dom": "latest"
-                            }
-                        }
-                    },
-                    'index.html':{
-                        content:'<div id="root"></div>'
-                    }
-                }
-            }
+            codeSandboxConfig: {},
+            codePenConfig: {},
         };
     },
 
@@ -209,31 +222,40 @@ ReactDOM.render(
                 .replace(/\//g, '_') // Convert '/' to '_'
                 .replace(/=+$/, ''); // Remove ending '='
         },
-        toCodeSandbox(){
-            console.log(this.parameters)
-            // const package = {
-
-            // }
-            // fetch('https://codesandbox.io/api/v1/sandboxes/define',{
-            //     method:'POST',
-            //     body: JSON.stringify({
-            //         files: {
-            //             'index.js': {
-            //                 content: this.fullCode
-            //             },
-            //             'package.json': {
-            //                 content: {
-                                
-            //                 }
-            //             }
-            //         }
-            //     })
-                
-            // }).then(res=>{
-
-            // })
-            // console.log('content!:', this.fullCode)
+        tabsBeforeLeave(activeName, oldActiveName) {
+            //阻止more-editor标签的返回
+            if(activeName == 'more-editor'){
+                return false;
+            }
         },
+        
+        getCodeSandboxConfig() {
+            this.updateFullCode();
+            this.codeSandboxConfig={
+                files: {
+                    'index.js': {
+                        content: this.fullCode
+                    },
+                    'package.json': {
+                        content: codeSandboxPackage
+                    },
+                    'index.html':{
+                        content: codeSandboxHTML
+                    }
+                }
+            }
+        },
+        getCodePenConfig() {
+            this.updateFullCode();
+            this.codePenConfig={
+                title: 'echarts example',
+                html: codePenHTML,
+                js: this.fullCode.substring(this.fullCode.indexOf("\n") + 1),//去掉第一行
+                editors: "001",
+                js_external: "https://unpkg.com/react@17.x/umd/react.production.min.js;https://unpkg.com/react-dom@17.x/umd/react-dom.production.min.js;https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.2/echarts.min.js"
+            }
+        },
+
         onSplitterDragStart() {
             this.mousedown = true;
         },
@@ -531,12 +553,40 @@ $handler-width: 5px;
 
     background: $clr-bg;
 }
-.codebox{
 
-    position: absolute;right:20px;top:5px;
-    font-size: 14px;
-
+#tab-more-editor{
+    text-align: right;
+    width: calc(100% - 180px);
+    cursor: default;
 }
+.el-tabs__nav {
+    width: calc(100% - 180px);
+}
+.editor-form{
+    width: 20px;
+    display: inline-block;
+
+    .editor-button{
+        background: none;
+        outline: none;
+        border: none;
+        .codesandbox-icon{
+            content: '';
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+
+            svg {
+                width: 100%!important;
+                height: auto!important;
+            }
+        }
+    }
+}
+
+
+
+
 
 
 </style>
