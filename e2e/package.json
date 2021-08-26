@@ -10,10 +10,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "echarts": "file:../../echarts",
-    "echarts-gl": "file:tmp/echarts-gl-2.0.0-rc.3.tgz",
-    "echarts-liquidfill": "file:tmp/echarts-liquidfill-3.0.0.tgz",
-    "echarts-wordcloud": "file:tmp/echarts-wordcloud-2.0.0.tgz",
-    "zrender": "file:tmp/zrender-5.0.1.tgz"
   }
 }

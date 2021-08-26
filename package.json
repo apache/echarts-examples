@@ -10,7 +10,9 @@
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
     "build:example": "node tool/build-example.js && node tool/build-example.js --source data-gl",
     "test:e2e": "node e2e/main.js --bundler webpack -m",
+    "test:e2e:local": "node e2e/main.js --bundler webpack -m --local",
     "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m",
+    "test:e2e:esbuild:local": "node e2e/main.js --bundler esbuild -m --local",
     "server": "node build/server.js"
   },
   "devDependencies": {

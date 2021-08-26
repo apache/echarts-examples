@@ -45,7 +45,7 @@ parser.addArgument(['-t', '--tests'], {
 });
 const args = parser.parseArgs();
 
-const EXAMPLE_DIR =  `${__dirname}/../public/`;
+const EXAMPLE_DIR = nodePath.resolve(`${__dirname}/../public`);
 const TMP_DIR = `${__dirname}/tmp`;
 const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
@@ -173,17 +173,20 @@ async function installPackages(config) {
 
         if (packageJson.dependencies) {
             for (let depPkgName in packageJson.dependencies) {
-                if (!publishedPackages[depPkgName]) {
-                    const depPkg = config.packages.find(a => a.name === depPkgName);
-                    if (depPkg) {
-                        publishPackage(depPkg);
-                        // Come back.
-                        shell.cd(pkg.dir);
-                    }
+                const depPkg = config.packages.find(a => a.name === depPkgName);
+                if (depPkg && !publishedPackages[depPkgName]) {
+                    publishPackage(depPkg);
+                    // Come back.
+                    shell.cd(pkg.dir);
                 }
 
                 shell.exec(`npm install`);
-                shell.exec(`npm install ${publishedPackages[depPkgName]} --no-save`);
+
+                if (depPkg) {
+                    console.log(chalk.gray(`Installing dependency ${depPkgName} from "${publishedPackages[depPkgName]}" ...`));
+                    shell.exec(`npm install ${publishedPackages[depPkgName]} --no-save`);
+                    console.log(chalk.gray(`Install dependency ${depPkgName} done.`));
+                }
             }
         }
 
@@ -202,8 +205,9 @@ async function installPackages(config) {
 
     shell.cd(__dirname);
     for (let pkg of config.packages) {
-        console.log(chalk.gray(`Installing ${pkg.name}`))
-        shell.exec(`npm install ${publishedPackages[pkg.name]}`);
+        console.log(chalk.gray(`Installing ${pkg.name} from "${publishedPackages[pkg.name]}" ...`));
+        shell.exec(`npm install ${publishedPackages[pkg.name]} --no-save`);
+        console.log(chalk.gray(`Install ${pkg.name} done.`));
     }
 
     // Come back.
@@ -282,7 +286,14 @@ async function buildRunCode() {
         }
 
         const optionCode = await fse.readFile(fileName, 'utf-8');
-        const option = JSON.parse(optionCode);
+        let option;
+        try {
+            option = JSON.parse(optionCode);
+        }
+        catch (err) {
+            console.error(`Parse JSON error: fileName: ${fileName} | fileContent: ${optionCode}`);
+            throw err;
+        }
         const testCode = await fse.readFile(nodePath.join(
             EXAMPLE_DIR, isGL ? 'data-gl' : 'data', testName + '.js'
         ), 'utf-8');
@@ -378,10 +389,16 @@ async function compileTs(tsTestFiles, result) {
             };
             if (diagnostic.file.fileName.endsWith(`${MINIMAL_POSTFIX}.ts`)) {
                 const basename = nodePath.basename(diagnostic.file.fileName, `.${MINIMAL_POSTFIX}.ts`);
+                if (!result[basename]) {
+                    throw new Error(`${basename} does not exists in result.`);
+                }
                 result[basename].compileErrors.minimal.push(compilerError);
             }
             else {
-                const basename = nodePath.basename(diagnostic.file.fileName,  `.ts`);
+                const basename = nodePath.basename(diagnostic.file.fileName, `.ts`);
+                if (!result[basename]) {
+                    throw new Error(`${basename} does not exists in result.`);
+                }
                 result[basename].compileErrors.full.push(compilerError);
             }
             // console.log(chalk.red(`${diagnostic.file.fileName} (${line + 1},${character + 1})`));
@@ -699,7 +716,7 @@ async function main() {
     );
 
     if (isNotSkipped('bundle')) {
-        console.log(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`);
+        console.log(chalk.green(`Bundling with ${USE_WEBPACK ? 'webpack' : 'esbuild'}`));
         const jsFiles = [];
         for (let testName of testNames) {
             jsFiles.push(
@@ -715,7 +732,7 @@ async function main() {
     }
 
     if (isNotSkipped('render')) {
-        console.log('Running examples');
+        console.log(chalk.green('Running examples'));
         const bundleFiles = [];
         for (let testName of testNames) {
             bundleFiles.push(
@@ -731,7 +748,7 @@ async function main() {
     }
 
     if (isNotSkipped('compare')) {
-        console.log('Comparing Results');
+        console.log(chalk.green('Comparing Results'));
         await compareExamples(testNames, result);
     }
     else {
