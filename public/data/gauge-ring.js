@@ -3,6 +3,8 @@ title: Ring Gauge
 titleCN: 得分环
 category: gauge
 difficulty: 5
+videoStart: 1000
+videoEnd: 8000
 */
 
 option = {
@@ -48,6 +50,7 @@ option = {
                 offsetCenter: ['0%', '-30%']
             },
             detail: {
+                valueAnimation: true,
                 offsetCenter: ['0%', '-20%']
             }
         },
@@ -58,6 +61,7 @@ option = {
                 offsetCenter: ['0%', '0%']
             },
             detail: {
+                valueAnimation: true,
                 offsetCenter: ['0%', '10%']
             }
         },
@@ -68,6 +72,7 @@ option = {
                 offsetCenter: ['0%', '30%']
             },
             detail: {
+                valueAnimation: true,
                 offsetCenter: ['0%', '40%']
             }
         }

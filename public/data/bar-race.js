@@ -3,6 +3,8 @@ title: Bar Race
 titleCN: 动态排序柱状图
 category: bar
 difficulty: 5
+videoStart: 1000
+videoEnd: 6000
 */
 
 var data = [];

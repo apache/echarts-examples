@@ -2,6 +2,8 @@
 title: Globe Layers
 category: globe
 titleCN: Globe Layers
+videoStart: 2000
+videoEnd: 6000
 */
 
 option = {

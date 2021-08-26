@@ -3,6 +3,8 @@ title: Bar Race
 titleCN: 动态排序柱状图 - 人均收入
 category: bar
 difficulty: 6
+videoStart: 1000
+videoEnd: 6000
 */
 
 

@@ -3,6 +3,8 @@ title: Temperature Gauge chart
 titleCN: 气温仪表盘
 category: gauge
 difficulty: 4
+videoStart: 2000
+videoEnd: 5000
 */
 
 option = {

@@ -3,6 +3,8 @@ title: Line Race
 category: line
 titleCN: 动态排序折线图
 difficulty: 5
+videoStart: 3000
+videoEnd: 8000
 */
 
 $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json', function (_rawData) {

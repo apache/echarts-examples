@@ -2,6 +2,8 @@
 title: Animating Contour on Globe
 category: globe
 titleCN: Animating Contour on Globe
+videoStart: 2000
+videoEnd: 6000
 */
 
 

@@ -1,9 +1,11 @@
 /*
-title: Clock Gauge
+title: Clock
 titleCN: 时钟仪表盘
 category: gauge
 shotWidth: 1000
 difficulty: 7
+videoStart: 2000
+videoEnd: 8000
 */
 
 option = {

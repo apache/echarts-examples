@@ -1612,10 +1612,30 @@ export default [
     "category": [
       "bar"
     ],
+    "id": "bar-polar-label-tangential",
+    "tags": [],
+    "title": "Tangential Polar Bar Label Position",
+    "titleCN": "极坐标系切向柱状图的标签位置",
+    "difficulty": 7
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-polar-label-radial",
+    "tags": [],
+    "title": "Radial Polar Bar Label Position",
+    "titleCN": "极坐标系径向柱状图的标签位置",
+    "difficulty": 7
+  },
+  {
+    "category": [
+      "bar"
+    ],
     "id": "bar-polar-stack",
     "tags": [],
-    "title": "Stacked Bar Chart on Polar",
-    "titleCN": "极坐标系下的堆叠柱状图",
+    "title": "Stacked Tangential Polar Bar",
+    "titleCN": "极坐标系切向堆积柱状图",
     "difficulty": 7
   },
   {
@@ -1624,8 +1644,8 @@ export default [
     ],
     "id": "bar-polar-stack-radial",
     "tags": [],
-    "title": "Stacked Bar Chart on Polar(Radial)",
-    "titleCN": "极坐标系下的堆叠柱状图",
+    "title": "Stacked Radial Polar Bar",
+    "titleCN": "极坐标系径向堆积柱状图",
     "difficulty": 7
   },
   {

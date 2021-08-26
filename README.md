@@ -40,6 +40,19 @@ category: 'line, visualMap'
 
 describes the meta info of this example.
 
+If you want to record a video to show the animation when genering screenshot. Use `videoStart` and `videoEnd`:
+
+```js
+/*
+title: Bar Race
+titleCN: 动态排序柱状图
+category: bar
+difficulty: 5
+videoStart: 1000
+videoEnd: 6000
+*/
+```
+
 
 ## Some built-in features available in examples
 

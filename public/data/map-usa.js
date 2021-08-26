@@ -1,7 +1,7 @@
 /*
 title: USA Population Estimates (2012)
 category: map
-titleCN: USA Population Estimates (2012)
+titleCN: 2012 年美国人口统计
 */
 
 myChart.showLoading();
@@ -75,11 +75,7 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
                         show: true
                     }
                 },
-                // 文本位置修正
-                textFixed: {
-                    Alaska: [20, -20]
-                },
-                data:[
+                data: [
                     {name: 'Alabama', value: 4822023},
                     {name: 'Alaska', value: 731449},
                     {name: 'Arizona', value: 6553255},

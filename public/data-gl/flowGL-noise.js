@@ -3,6 +3,8 @@ title: Flow on the cartesian
 category: flowGL
 titleCN: 直角坐标系上的向量场
 theme: dark
+videoStart: 2000
+videoEnd: 10000
 */
 
 $.getScript('https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js').done(function () {
