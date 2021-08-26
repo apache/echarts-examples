@@ -180,7 +180,7 @@ function setPieOption() {
     };
 
     myChart.setOption(option, {
-        replaceMerge: ['xAxis', 'yAxis', 'viusalMap'],
+        replaceMerge: ['xAxis', 'yAxis', 'visualMap'],
         transition: {
             from: { seriesIndex: 0, dimension: 'M_TAG' },
             to: { seriesIndex: 0, dimension: 'M_TAG' }
