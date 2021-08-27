@@ -15,7 +15,7 @@ const { compareImage } = require('../common/compareImage');
 const { runTasks } = require('../common/task');
 const nStatic = require('node-static');
 const shell = require('shelljs');
-const { createFFmpeg, fetchFile } = require('@ffmpeg/ffmpeg');
+// const { createFFmpeg, fetchFile } = require('@ffmpeg/ffmpeg');
 
 function optionToJson(obj, prop) {
     let json = JSON.stringify(obj, function(key, value) {
@@ -228,14 +228,14 @@ async function takeScreenshot(
 
         if (hasVideo) {
             await checkingDownload;
-            const webpFile = `${fileBase}.webp`;
-            const fileContent = fs.readFileSync(webmFile);
-            ffmpeg.FS('writeFile', `${basename}.webm`, await fetchFile(fileContent));
-            await ffmpeg.run('-i', `${basename}.webm`, '-f', 'webp', '-s', `${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT}`, `${basename}.webp`);
-            fs.writeFileSync(webpFile, ffmpeg.FS('readFile', `${basename}.webp`));
-            ffmpeg.FS("unlink", `${basename}.webm`)
-            ffmpeg.FS("unlink", `${basename}.webp`)
-            // shell.exec(`ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`);
+            // const webpFile = `${fileBase}.webp`;
+            // const fileContent = fs.readFileSync(webmFile);
+            // ffmpeg.FS('writeFile', `${basename}.webm`, await fetchFile(fileContent));
+            // await ffmpeg.run('-i', `${basename}.webm`, '-f', 'webp', '-s', `${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT}`, `${basename}.webp`);
+            // fs.writeFileSync(webpFile, ffmpeg.FS('readFile', `${basename}.webp`));
+            // ffmpeg.FS("unlink", `${basename}.webm`)
+            // ffmpeg.FS("unlink", `${basename}.webp`)
+            shell.exec(`ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`);
             try {
                 fs.unlinkSync(webmFile);
             }
@@ -360,8 +360,9 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
             ]
         });
 
-        const ffmpeg = createFFmpeg({ log: true });
-        await ffmpeg.load();
+        let ffmpeg;
+        // const ffmpeg = createFFmpeg({ log: true });
+        // await ffmpeg.load();
 
         try {
             // Take screenshots
@@ -411,7 +412,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
 
         server.close();
         await browser.close();
-        ffmpeg.exit(0);
+        // ffmpeg.exit(0);
     }
 })();
 
