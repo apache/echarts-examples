@@ -8,7 +8,7 @@
     "localsite": "npm run build && node build/copyResource.js --env localsite",
     "release": "npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
-    "build:example": "node tool/build-example.js && node tool/build-example.js --source data-gl",
+    "build:example": "node --experimental-wasm-threads --experimental-wasm-bulk-memory tool/build-example.js && node --experimental-wasm-threads --experimental-wasm-bulk-memory tool/build-example.js --source data-gl",
     "test:e2e": "node e2e/main.js --bundler webpack -m",
     "test:e2e:local": "node e2e/main.js --bundler webpack -m --local",
     "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m",
@@ -18,6 +18,8 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
+    "@ffmpeg/core": "^0.10.0",
+    "@ffmpeg/ffmpeg": "^0.10.1",
     "@typescript-eslint/typescript-estree": "^4.10.0",
     "argparse": "^1.0.9",
     "babel-loader": "^8.1.0",

@@ -15,6 +15,7 @@ const { compareImage } = require('../common/compareImage');
 const { runTasks } = require('../common/task');
 const nStatic = require('node-static');
 const shell = require('shelljs');
+const { createFFmpeg, fetchFile } = require('@ffmpeg/ffmpeg');
 
 function optionToJson(obj, prop) {
     let json = JSON.stringify(obj, function(key, value) {
@@ -79,21 +80,26 @@ const IGNORE_LOG = [
     'GL_INVALID_OPERATION'
 ];
 
+function checkHasVideo(videoStart, videoEnd) {
+    return !isNaN(videoStart) && !isNaN(videoEnd) && +videoEnd > +videoStart;
+}
+
 async function convertToWebP(filePath) {
     return util.promisify(execFile)(cwebpBin, [filePath, '-o', filePath.replace(/\.png$/, '.webp')]);
 }
 
 async function takeScreenshot(
     browser,
+    ffmpeg,
     theme,
     rootDir,
     basename,
+    hasVideo,
     // Shot parameters
     { shotWidth, shotDelay, videoStart, videoEnd }
 ) {
     const thumbFolder = (theme !== 'default') ? ('thumb-' + theme) : 'thumb';
     const page = await browser.newPage();
-    const hasVideo = !isNaN(videoStart) && !isNaN(videoEnd) && +videoEnd > +videoStart;
     const thumbDir = `${rootDir}public/${sourceFolder}/${thumbFolder}`;
     const fileBase = `${thumbDir}/${basename}`;
     const webmFile = `${fileBase}.webm`;
@@ -222,19 +228,19 @@ async function takeScreenshot(
 
         if (hasVideo) {
             await checkingDownload;
-            // const ffmpeg = createFFmpeg({ log: true });
-            // await ffmpeg.load();
-            // ffmpeg.FS('writeFile', webmFile, await fetchFile(webmFile));
-            // await ffmpeg.run('-i', webmFile, '-f', 'webp', `${fileBase}.webp`);
-            // await fs.promises.writeFile('./test.mp4', ffmpeg.FS('readFile', `${fileBase}.webp`));
-            // ffmpeg.exit(0);
-            shell.exec(`ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`);
+            const webpFile = `${fileBase}.webp`;
+            const fileContent = fs.readFileSync(webmFile);
+            ffmpeg.FS('writeFile', `${basename}.webm`, await fetchFile(fileContent));
+            await ffmpeg.run('-i', `${basename}.webm`, '-f', 'webp', '-s', `${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT}`, `${basename}.webp`);
+            fs.writeFileSync(webpFile, ffmpeg.FS('readFile', `${basename}.webp`));
+            ffmpeg.FS("unlink", `${basename}.webm`)
+            ffmpeg.FS("unlink", `${basename}.webp`)
+            // shell.exec(`ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`);
             try {
                 fs.unlinkSync(webmFile);
             }
             catch(e) {}
         }
-
     }
     catch (e) {
         console.error(url);
@@ -246,28 +252,6 @@ async function takeScreenshot(
 (async () => {
 
     const rootDir = path.join(__dirname, '../');
-    const fileServer = new nStatic.Server(rootDir);
-    const server = BUILD_THUMBS && require('http').createServer(function (request, response) {
-        request.addListener('end', function () {
-            fileServer.serve(request, response);
-        }).resume();
-    })
-    server && server.listen(PORT);
-
-    let browser;
-    if (BUILD_THUMBS) {
-        browser = await puppeteer.launch({
-            headless: false,
-            args: [
-              '--headless',
-              '--hide-scrollbars',
-              // https://github.com/puppeteer/puppeteer/issues/4913
-              '--use-gl=egl',
-              '--mute-audio'
-            ]
-        });
-    }
-
     // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
     const screenshotBlackList = [];
 
@@ -275,92 +259,68 @@ async function takeScreenshot(
 
     const exampleList = [];
 
-    let tasks = [];
+    let thumbTasks = [];
 
     for (let theme of themeList) {
         for (let fileName of files) {
             const basename = path.basename(fileName, '.js');
+
+            // Remove mapbox temporary
+            if (basename.indexOf('mapbox') >= 0
+                || basename.indexOf('shanghai') >= 0
+                || basename === 'lines3d-taxi-routes-of-cape-town'
+                || basename === 'lines3d-taxi-chengdu'
+                || basename === 'map3d-colorful-cities'
+                // TODO Examples that can't work temporary.
+                || basename === 'bar3d-music-visualization'
+            ) {
+                return;
+            }
+
+            let fmResult;
+            try {
+                const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
+                fmResult = matter(code, {
+                    delimiters: ['/*', '*/']
+                });
+            }
+            catch (e) {
+                fmResult = {
+                    data: {}
+                };
+            }
+
+            try {
+                const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
+                const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
+                if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
+                    exampleList.push({
+                        category: category,
+                        id: basename,
+                        tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
+                        theme: fmResult.data.theme,
+                        title: fmResult.data.title,
+                        titleCN: fmResult.data.titleCN,
+                        difficulty: +difficulty
+                    });
+                }
+            }
+            catch (e) {
+                throw new Error(e.toString());
+            }
+
             if (
                 !matchPattern || matchPattern.some(function (pattern) {
                     return minimatch(basename, pattern);
-                })
+                }) && screenshotBlackList.indexOf(basename) < 0
             ) {
-                tasks.push({
-                    buildThumb: BUILD_THUMBS && screenshotBlackList.indexOf(basename) < 0,
+                thumbTasks.push({
                     theme,
+                    fmResult,
                     basename
                 });
             }
         }
-    }
-
-    await runTasks(tasks, async ({basename, buildThumb, theme}) => {
-        // Remove mapbox temporary
-        if (basename.indexOf('mapbox') >= 0
-            || basename.indexOf('shanghai') >= 0
-            || basename === 'lines3d-taxi-routes-of-cape-town'
-            || basename === 'lines3d-taxi-chengdu'
-            || basename === 'map3d-colorful-cities'
-
-            // TODO Examples that can't work temporary.
-            || basename === 'bar3d-music-visualization'
-        ) {
-            return;
-        }
-
-        let fmResult;
-        try {
-            const code = fs.readFileSync(`${rootDir}public/${sourceFolder}/${basename}.js`, 'utf-8');
-            fmResult = matter(code, {
-                delimiters: ['/*', '*/']
-            });
-        }
-        catch (e) {
-            fmResult = {
-                data: {}
-            };
-        }
-
-        try {
-            const difficulty = fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
-            const category = (fmResult.data.category || '').split(/,/g).map(a => a.trim()).filter(a => !!a);
-            if (!exampleList.find(item => item.id === basename)) {  // Avoid add mulitple times when has multiple themes.
-                exampleList.push({
-                    category: category,
-                    id: basename,
-                    tags: (fmResult.data.tags || '').split(/,/g).map(a => a.trim()).filter(a => !!a),
-                    theme: fmResult.data.theme,
-                    title: fmResult.data.title,
-                    titleCN: fmResult.data.titleCN,
-                    difficulty: +difficulty
-                });
-            }
-            // Do screenshot
-            if (buildThumb) {
-                await takeScreenshot(
-                    browser,
-                    theme,
-                    rootDir,
-                    basename,
-                    {
-                        shotWidth: fmResult.data.shotWidth,
-                        shotDelay: fmResult.data.shotDelay,
-                        videoStart: fmResult.data.videoStart,
-                        videoEnd: fmResult.data.videoEnd,
-                    }
-                );
-            }
-        }
-        catch (e) {
-            server.close();
-            await browser.close();
-            throw new Error(e.toString());
-        }
-    }, sourceFolder === 'data-gl' ? 2 : 4);
-
-    if (BUILD_THUMBS) {
-        server.close();
-        await browser.close();
     }
 
     exampleList.sort(function (a, b) {
@@ -374,8 +334,84 @@ async function takeScreenshot(
 /* eslint-disable */
 // THIS FILE IS GENERATED, DON'T MODIFY */
 export default ${JSON.stringify(exampleList, null, 2)}`;
+
     if (!matchPattern) {
         fs.writeFileSync(path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`), code, 'utf-8');
+    }
+
+    // Do screenshot
+    if (BUILD_THUMBS) {
+        const fileServer = new nStatic.Server(rootDir);
+        const server = BUILD_THUMBS && require('http').createServer(function (request, response) {
+            request.addListener('end', function () {
+                fileServer.serve(request, response);
+            }).resume();
+        })
+        server && server.listen(PORT);
+
+        const browser = await puppeteer.launch({
+            headless: false,
+            args: [
+              '--headless',
+              '--hide-scrollbars',
+              // https://github.com/puppeteer/puppeteer/issues/4913
+              '--use-gl=egl',
+              '--mute-audio'
+            ]
+        });
+
+        const ffmpeg = createFFmpeg({ log: true });
+        await ffmpeg.load();
+
+        try {
+            // Take screenshots
+            const animationTasks = thumbTasks.filter(task => {
+                return checkHasVideo(task.fmResult.data.videoStart, task.fmResult.data.videoEnd)
+            })
+            const staticTasks = thumbTasks.filter(task => {
+                return !checkHasVideo(task.fmResult.data.videoStart, task.fmResult.data.videoEnd)
+            })
+            await runTasks(staticTasks, async ({basename, fmResult, theme}) => {
+                await takeScreenshot(
+                    browser,
+                    ffmpeg,
+                    theme,
+                    rootDir,
+                    basename,
+                    false,
+                    {
+                        shotWidth: fmResult.data.shotWidth,
+                        shotDelay: fmResult.data.shotDelay
+                    }
+                );
+            }, sourceFolder === 'data-gl' ? 2 : 16);
+
+            await runTasks(animationTasks, async ({basename, fmResult, theme}) => {
+                await takeScreenshot(
+                    browser,
+                    ffmpeg,
+                    theme,
+                    rootDir,
+                    basename,
+                    true,
+                    {
+                        shotWidth: fmResult.data.shotWidth,
+                        shotDelay: fmResult.data.shotDelay,
+                        videoStart: fmResult.data.videoStart,
+                        videoEnd: fmResult.data.videoEnd,
+                    }
+                );
+            }, 1);  // Webm download seems has issue used with multithreads
+        }
+        catch (e) {
+            server.close();
+            await browser.close();
+            throw new Error(e.toString());
+        }
+
+        server.close();
+        await browser.close();
+        ffmpeg.exit(0);
     }
 })();
 
