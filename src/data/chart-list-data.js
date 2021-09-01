@@ -1210,6 +1210,17 @@ export default [
   },
   {
     "category": [
+      "pictorialBar",
+      "animation"
+    ],
+    "id": "pictorialBar-bar-transition",
+    "tags": [],
+    "title": "Transition between pictorialBar and bar",
+    "titleCN": "象形主图变形为柱状图",
+    "difficulty": 4
+  },
+  {
+    "category": [
       "pie"
     ],
     "id": "pie-legend",
@@ -1227,6 +1238,17 @@ export default [
     "tags": [],
     "title": "Pie Special Label",
     "titleCN": "富文本标签",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "scatter",
+      "animation"
+    ],
+    "id": "scatter-aggregate-bar",
+    "tags": [],
+    "title": "Aggregate Scatter to Bar",
+    "titleCN": "散点图聚合为柱状图动画",
     "difficulty": 4
   },
   {
@@ -1251,12 +1273,32 @@ export default [
   },
   {
     "category": [
+      "scatter"
+    ],
+    "id": "scatter-symbol-morph",
+    "tags": [],
+    "title": "Symbol Shape Morph",
+    "titleCN": "散点图变形动画",
+    "difficulty": 4
+  },
+  {
+    "category": [
       "sunburst"
     ],
     "id": "sunburst-visualMap",
     "tags": [],
     "title": "Sunburst VisualMap",
     "titleCN": "旭日图使用视觉编码",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "treemap"
+    ],
+    "id": "treemap-sunburst-transition",
+    "tags": [],
+    "title": "Transition between Treemap and Sunburst",
+    "titleCN": "矩形树图和旭日图的动画过渡",
     "difficulty": 4
   },
   {
@@ -1287,6 +1329,16 @@ export default [
     "tags": [],
     "title": "Animation Delay",
     "titleCN": "柱状图动画延迟",
+    "difficulty": 5
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-drilldown",
+    "tags": [],
+    "title": "Bar Chart Drilldown Animation.",
+    "titleCN": "柱状图下钻动画",
     "difficulty": 5
   },
   {
@@ -1612,30 +1664,10 @@ export default [
     "category": [
       "bar"
     ],
-    "id": "bar-polar-label-tangential",
-    "tags": [],
-    "title": "Tangential Polar Bar Label Position",
-    "titleCN": "极坐标系切向柱状图的标签位置",
-    "difficulty": 7
-  },
-  {
-    "category": [
-      "bar"
-    ],
-    "id": "bar-polar-label-radial",
-    "tags": [],
-    "title": "Radial Polar Bar Label Position",
-    "titleCN": "极坐标系径向柱状图的标签位置",
-    "difficulty": 7
-  },
-  {
-    "category": [
-      "bar"
-    ],
     "id": "bar-polar-stack",
     "tags": [],
-    "title": "Stacked Tangential Polar Bar",
-    "titleCN": "极坐标系切向堆积柱状图",
+    "title": "Stacked Bar Chart on Polar",
+    "titleCN": "极坐标系下的堆叠柱状图",
     "difficulty": 7
   },
   {
@@ -1644,8 +1676,8 @@ export default [
     ],
     "id": "bar-polar-stack-radial",
     "tags": [],
-    "title": "Stacked Radial Polar Bar",
-    "titleCN": "极坐标系径向堆积柱状图",
+    "title": "Stacked Bar Chart on Polar(Radial)",
+    "titleCN": "极坐标系下的堆叠柱状图",
     "difficulty": 7
   },
   {
@@ -1675,7 +1707,7 @@ export default [
     ],
     "id": "gauge-clock",
     "tags": [],
-    "title": "Clock Gauge",
+    "title": "Clock",
     "titleCN": "时钟仪表盘",
     "difficulty": 7
   },
@@ -1813,26 +1845,6 @@ export default [
     "category": [
       "custom"
     ],
-    "id": "custom-aggregate-scatter-bar",
-    "tags": [],
-    "title": "Aggregate Morphing Between Scatter and Bar",
-    "titleCN": "聚合分割形变（散点图 - 柱状图）",
-    "difficulty": 9
-  },
-  {
-    "category": [
-      "custom"
-    ],
-    "id": "custom-aggregate-scatter-pie",
-    "tags": [],
-    "title": "Aggregate Morphing Between Scatter and Pie",
-    "titleCN": "聚合分割形变（散点图 - 饼图）",
-    "difficulty": 9
-  },
-  {
-    "category": [
-      "custom"
-    ],
     "id": "custom-gauge",
     "tags": [],
     "title": "Custom Gauge",
@@ -1888,6 +1900,18 @@ export default [
     "title": "Master Painter Color Choices Throughout History",
     "titleCN": "Master Painter Color Choices Throughout History",
     "difficulty": 9
+  },
+  {
+    "category": [],
+    "id": "bar-polar-label-radial",
+    "tags": [],
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "bar-polar-label-tangential",
+    "tags": [],
+    "difficulty": 10
   },
   {
     "category": [
@@ -1949,16 +1973,6 @@ export default [
     "category": [],
     "id": "covid-america",
     "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "custom"
-    ],
-    "id": "custom-aggregate-scatter-cluster",
-    "tags": [],
-    "title": "Aggregate Morphing Between Scatter Clustering",
-    "titleCN": "聚合分割形变（散点图聚类）",
     "difficulty": 10
   },
   {
@@ -2088,6 +2102,16 @@ export default [
     "category": [
       "map"
     ],
+    "id": "geo-svg-scatter-simple",
+    "tags": [],
+    "title": "GEO SVG Scatter",
+    "titleCN": "散点图（SVG）",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
     "id": "geo-svg-traffic",
     "tags": [],
     "title": "GEO SVG Traffic",
@@ -2199,6 +2223,17 @@ export default [
   },
   {
     "category": [
+      "map",
+      "animation"
+    ],
+    "id": "map-bar-morph",
+    "tags": [],
+    "title": "Morphing between Map and Bar",
+    "titleCN": "地图柱状图变形动画",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "map"
     ],
     "id": "map-bin",
@@ -2288,7 +2323,7 @@ export default [
     "id": "map-usa",
     "tags": [],
     "title": "USA Population Estimates (2012)",
-    "titleCN": "USA Population Estimates (2012)",
+    "titleCN": "2012 年美国人口统计",
     "difficulty": 10
   },
   {
@@ -2379,6 +2414,17 @@ export default [
     "tags": [],
     "title": "Velocity of Christmas Reindeers",
     "titleCN": "驯鹿的速度",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "custom",
+      "animtion"
+    ],
+    "id": "pie-parliament-transition",
+    "tags": [],
+    "title": "Transition of Parliament and Pie Chart",
+    "titleCN": "自定义议会图与饼图过渡动画",
     "difficulty": 10
   },
   {
@@ -2617,30 +2663,10 @@ export default [
     "category": [
       "custom"
     ],
-    "id": "custom-one-to-one-morph",
-    "tags": [],
-    "title": "One-to-one Morphing",
-    "titleCN": "一对一映射形变",
-    "difficulty": 11
-  },
-  {
-    "category": [
-      "custom"
-    ],
     "id": "custom-spiral-race",
     "tags": [],
     "title": "Custom Spiral Race",
     "titleCN": "自定义螺旋线竞速",
-    "difficulty": 11
-  },
-  {
-    "category": [
-      "custom"
-    ],
-    "id": "custom-story-transition",
-    "tags": [],
-    "title": "Simple Story Transition",
-    "titleCN": "极简场景变换示例",
     "difficulty": 11
   },
   {

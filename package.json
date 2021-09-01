@@ -8,7 +8,7 @@
     "localsite": "npm run build && node build/copyResource.js --env localsite",
     "release": "npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
-    "build:example": "node --experimental-wasm-threads --experimental-wasm-bulk-memory tool/build-example.js && node --experimental-wasm-threads --experimental-wasm-bulk-memory tool/build-example.js --source data-gl",
+    "build:example": "node tool/build-example.js && node tool/build-example.js --source data-gl",
     "test:e2e": "node e2e/main.js --bundler webpack -m",
     "test:e2e:local": "node e2e/main.js --bundler webpack -m --local",
     "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m",
