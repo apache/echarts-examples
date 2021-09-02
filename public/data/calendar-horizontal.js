@@ -1,7 +1,7 @@
 /*
 title: Calendar Heatmap Horizontal
 category: calendar
-titleCN: 横向日力图
+titleCN: 横向日历图
 shotWidth: 900
 difficulty: 2
 */

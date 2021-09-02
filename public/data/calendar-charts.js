@@ -1,7 +1,7 @@
 /*
 title: Calendar Charts
 category: 'calendar, scatter'
-titleCN: 日力图
+titleCN: 日历图
 shotWidth: 1000
 difficulty: 11
 */

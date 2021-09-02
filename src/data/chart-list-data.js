@@ -414,7 +414,7 @@ export default [
     "id": "calendar-horizontal",
     "tags": [],
     "title": "Calendar Heatmap Horizontal",
-    "titleCN": "横向日力图",
+    "titleCN": "横向日历图",
     "difficulty": 2
   },
   {
@@ -1956,7 +1956,7 @@ export default [
     "id": "candlestick-brush",
     "tags": [],
     "title": "Candlestick Brush",
-    "titleCN": "日力图刷选",
+    "titleCN": "日历图刷选",
     "difficulty": 10
   },
   {
@@ -2646,7 +2646,7 @@ export default [
     "id": "calendar-charts",
     "tags": [],
     "title": "Calendar Charts",
-    "titleCN": "日力图",
+    "titleCN": "日历图",
     "difficulty": 11
   },
   {
