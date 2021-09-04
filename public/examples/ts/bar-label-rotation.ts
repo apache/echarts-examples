@@ -59,7 +59,7 @@ app.config = {
                 distance: app.config.distance
             }
         };
-        myChart.setOption({
+        myChart.setOption<echarts.EChartsOption>({
             series: [{
                 label: labelOption
             }, {

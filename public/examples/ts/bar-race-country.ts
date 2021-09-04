@@ -119,7 +119,7 @@ $.when(
     };
 
     // console.log(option);
-    myChart.setOption(option);
+    myChart.setOption<echarts.EChartsOption>(option);
 
     for (var i = startIndex; i < years.length - 1; ++i) {
         (function (i) {
@@ -135,7 +135,7 @@ $.when(
         });
         option.series[0].data = source;
         option.graphic.elements[0].style.text = year;
-        myChart.setOption(option);
+        myChart.setOption<echarts.EChartsOption>(option);
     }
 })
 

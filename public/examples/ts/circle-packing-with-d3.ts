@@ -198,7 +198,7 @@ function initChart(seriesData: DataItem[], maxDepth: number) {
         }
     };
 
-    myChart.setOption(option);
+    myChart.setOption<echarts.EChartsOption>(option);
 
     myChart.on('click', { seriesIndex: 0 }, function (params) {
         drillDown(params.data.id);
@@ -214,7 +214,7 @@ function initChart(seriesData: DataItem[], maxDepth: number) {
         // A trick to prevent d3-hierarchy from visiting parents in this algorithm.
         displayRoot.parent = null;
 
-        myChart.setOption({
+        myChart.setOption<echarts.EChartsOption>({
             dataset: {
                 source: seriesData
             }

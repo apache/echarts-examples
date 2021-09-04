@@ -127,7 +127,7 @@ setInterval(function (){
     option.xAxis[1].data.shift();
     option.xAxis[1].data.push(app.count++);
 
-    myChart.setOption(option);
+    myChart.setOption<echarts.EChartsOption>(option);
 }, 2100);
 
 export {}

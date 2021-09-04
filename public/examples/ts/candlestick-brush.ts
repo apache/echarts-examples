@@ -45,7 +45,7 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
 
     var data = splitData(rawData);
 
-    myChart.setOption(option = {
+    myChart.setOption<echarts.EChartsOption>(option = {
         animation: false,
         legend: {
             bottom: 10,

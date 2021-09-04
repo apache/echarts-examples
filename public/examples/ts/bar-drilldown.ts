@@ -69,7 +69,7 @@ myChart.on('click', function (event) {
         if (!subData) {
             return;
         }
-        myChart.setOption({
+        myChart.setOption<echarts.EChartsOption>({
             xAxis: {
                 data: subData.data.map(function (item) {
                     return item[0];
@@ -96,7 +96,7 @@ myChart.on('click', function (event) {
                     fontSize: 18
                 },
                 onclick: function () {
-                    myChart.setOption(option);
+                    myChart.setOption<echarts.EChartsOption>(option);
                 }
             }]
         });

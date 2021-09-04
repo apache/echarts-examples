@@ -96,7 +96,7 @@ myChart.on('brushSelected', function (params: any) {
         brushed.push('[Series ' + sIdx + '] ' + rawIndices.join(', '));
     }
 
-    myChart.setOption({
+    myChart.setOption<echarts.EChartsOption>({
         title: {
             backgroundColor: '#333',
             text: 'SELECTED DATA INDICES: \n' + brushed.join('\n'),

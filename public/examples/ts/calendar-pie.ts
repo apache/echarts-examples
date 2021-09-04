@@ -104,14 +104,14 @@ option = {
 let pieInitialized: boolean;
 setTimeout(function () {
     pieInitialized = true;
-    myChart.setOption({
+    myChart.setOption<echarts.EChartsOption>({
         series: getPieSeries(scatterData, myChart)
     });
 }, 10);
 
 app.onresize = function () {
     if (pieInitialized) {
-        myChart.setOption({
+        myChart.setOption<echarts.EChartsOption>({
             series: getPieSeriesUpdate(scatterData, myChart)
         });
     }

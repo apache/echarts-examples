@@ -19,7 +19,7 @@ $.get(ROOT_PATH + '/data/asset/data/confidence-band.json', function (data: DataI
     var base = -data.reduce(function (min, val) {
         return Math.floor(Math.min(min, val.l));
     }, Infinity);
-    myChart.setOption(option = {
+    myChart.setOption<echarts.EChartsOption>(option = {
         title: {
             text: 'Confidence Band',
             subtext: 'Example in MetricsGraphics.js',

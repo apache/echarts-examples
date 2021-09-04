@@ -55,7 +55,7 @@ setTimeout(function () {
         const xAxisInfo = event.axesInfo[0];
         if (xAxisInfo) {
             const dimension = xAxisInfo.value + 1;
-            myChart.setOption({
+            myChart.setOption<echarts.EChartsOption>({
                 series: {
                     id: 'pie',
                     label: {
@@ -70,7 +70,7 @@ setTimeout(function () {
         }
     });
 
-    myChart.setOption(option);
+    myChart.setOption<echarts.EChartsOption>(option);
 });
 
 export {}

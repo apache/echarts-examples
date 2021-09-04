@@ -72,7 +72,7 @@ setInterval(function () {
         data.push(randomData());
     }
 
-    myChart.setOption({
+    myChart.setOption<echarts.EChartsOption>({
         series: [{
             data: data
         }]

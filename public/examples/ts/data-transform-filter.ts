@@ -76,7 +76,7 @@ function run(_rawData: any) {
         }]
     };
 
-    myChart.setOption(option);
+    myChart.setOption<echarts.EChartsOption>(option);
 }
 
 export {}

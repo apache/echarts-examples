@@ -53,7 +53,7 @@ function run () {
             data[i] += Math.round(Math.random() * 200);
         }
     }
-    myChart.setOption({
+    myChart.setOption<echarts.EChartsOption>({
         series: [{
             type: 'bar',
             data

@@ -94,7 +94,7 @@ $.get(ROOT_PATH + '/data/asset/data/life-expectancy-table.json', function (data)
         ]
     };
 
-    myChart.setOption(option);
+    myChart.setOption<echarts.EChartsOption>(option);
 });
 
 export {}
