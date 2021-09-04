@@ -49,7 +49,7 @@ export function parseSourceCode(code) {
         // remove front matter
         .replace(/\/\*[\w\W]*?\*\//, '').trim()
         // ts code needs add `export {}` to be a module. remove it.
-        .replace(/export\s+\{\s*\}$/g, '');
+        .replace(/export\s+\{\s*\}\s*;?$/g, '');
 }
 
 let hashId = 123;
