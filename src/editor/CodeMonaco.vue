@@ -4,14 +4,15 @@
 
 <script>
 
-import {keywords, fullKeywordsList} from '../data/option-keywords';
 import {loadScriptsAsync} from '../common/helper';
 import {store} from '../common/store';
-import {SCRIPT_URLS} from '../common/config';
+import {SCRIPT_URLS, URL_PARAMS} from '../common/config';
 import { ensureECharts } from './Preview.vue';
 
 function loadTypes() {
-    return fetch(store.cdnRoot + '/types/echarts.d.ts', {
+    return fetch(
+        ('local' in URL_PARAMS
+                ? SCRIPT_URLS.localEChartsDir : SCRIPT_URLS.echartsDir) + '/types/dist/echarts.d.ts', {
         mode: 'cors'
     }).then(response => response.text()).then(code => {
 
@@ -32,32 +33,46 @@ function loadTypes() {
         monaco.languages.typescript.typescriptDefaults.addExtraLib(
             code,
             // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
+            'file:///node_modules/@types/echarts/echarts.d.ts'
+        );
+
+        monaco.languages.typescript.typescriptDefaults.addExtraLib(
+            `
+import * as echarts from './echarts';
+// Export for UMD module.
+export as namespace echarts
+export = echarts;`,
+            // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
             'file:///node_modules/@types/echarts/index.d.ts'
         );
 
         monaco.languages.typescript.typescriptDefaults.addExtraLib(
-`import {init, EChartsOption} from 'echarts';
+`import * as echarts from 'echarts';
 // Declare to global namespace.
 declare global {
-declare const $: any;
-declare const ROOT_PATH: string;
-declare const app: {
-    configParameters: {
-        [key: string]: ({
-            options: { [key: string]: string
-        }) | ({
-            min?: number
-            max?: number
-        })
-    }
-    config: {
-        onChange: () => void
-        [key: string]: string | number | function
-    }
-    [key: string]: any
-};
-declare const myChart: ReturnType<typeof init>;
-declare var option: EChartsOption;
+    const ROOT_PATH: string
+    const app: {
+        configParameters: {
+            [key: string]: {
+                options: Record<string, string>
+            } | {
+                min?: number
+                max?: number
+            }
+        },
+        config: {
+            onChange: () => void
+            [key: string]: string | number | Function
+        },
+        onresize: () => void,
+        [key: string]: any
+    };
+
+    const ecStat: any;
+    const myChart: echarts.ECharts
+    let option: echarts.EChartsOption
+
+    const echarts: typeof echarts
 }
 `,
             'file:///example.d.ts'

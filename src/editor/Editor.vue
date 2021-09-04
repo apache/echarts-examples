@@ -69,7 +69,6 @@ import CodeAce from './CodeAce.vue';
 import CodeMonaco from './CodeMonaco.vue';
 import FullCodePreview from './FullCodePreview.vue';
 import Preview from './Preview.vue';
-import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
 import { mount } from "@lang/object-visualizer";

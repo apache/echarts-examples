@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+
+        "strict": true,
+
+        "moduleResolution": "node",
+        "pretty": true,
+        "outDir": "tmp/tests",
+
+        "baseUrl": "./"
+    },
+    "include": ["./ts/**/*.ts", "./types/**/*.d.ts"]
+}

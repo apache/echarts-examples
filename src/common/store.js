@@ -30,17 +30,26 @@ export const store = {
 export function loadExampleCode() {
     return new Promise(resolve => {
         const dataRoot = URL_PARAMS.gl ? 'data-gl' : 'data';
-        $.ajax(`${store.cdnRoot}/${dataRoot}/${URL_PARAMS.c}.js?_v_${store.version}`, {
-            dataType: 'text',
-            success: (data) => {
-                resolve(data);
+        $.ajax(
+            store.typeCheck
+                ?  `${store.cdnRoot}/examples/ts/${URL_PARAMS.c}.ts?_v_${store.version}`
+                : `${store.cdnRoot}/${dataRoot}/${URL_PARAMS.c}.js?_v_${store.version}`,
+            {
+                dataType: 'text',
+                success: (data) => {
+                    resolve(data);
+                }
             }
-        });
+        );
     });
 }
 
 export function parseSourceCode(code) {
-    return code.replace(/\/\*[\w\W]*?\*\//, '').trim();
+    return code
+        // remove front matter
+        .replace(/\/\*[\w\W]*?\*\//, '').trim()
+        // ts code needs add `export {}` to be a module. remove it.
+        .replace(/export\s+\{\s*\}$/g, '');
 }
 
 let hashId = 123;
