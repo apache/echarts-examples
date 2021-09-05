@@ -126,36 +126,39 @@ const GRID_HEIGHT = (100 - BASE_TOP - GAP) / CATEGORY_DIM_COUNT - GAP;
 const CATEGORY_DIM = 7;
 const SYMBOL_SIZE = 4;
 
-function retrieveScatterData(data, dimX, dimY) {
-    var result = [];
-    for (var i = 0; i < data.length; i++) {
-        var item = [data[i][dimX], data[i][dimY]];
+function retrieveScatterData(data: (number | string)[][], dimX: number, dimY: number) {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = [data[i][dimX], data[i][dimY]];
         item[CATEGORY_DIM] = data[i][CATEGORY_DIM];
         result.push(item);
     }
     return result;
 }
 
-function generateGrids(option) {
-    var index = 0;
+function generateGrids() {
+    let index = 0;
 
-    for (var i = 0; i < CATEGORY_DIM_COUNT; i++) {
-        for (var j = 0; j < CATEGORY_DIM_COUNT; j++) {
+    const grid: echarts.GridComponentOption[] = [];
+    const xAxis: echarts.XAXisComponentOption[] = [];
+    const yAxis: echarts.YAXisComponentOption[] = [];
+    const series: echarts.SeriesOption[] = [];
+
+
+    for (let i = 0; i < CATEGORY_DIM_COUNT; i++) {
+        for (let j = 0; j < CATEGORY_DIM_COUNT; j++) {
             if (CATEGORY_DIM_COUNT - i + j >= CATEGORY_DIM_COUNT) {
                 continue;
             }
 
-            option.grid.push({
+            grid.push({
                 left: BASE_LEFT + i * (GRID_WIDTH + GAP) + '%',
                 top: BASE_TOP + j * (GRID_HEIGHT + GAP) + '%',
                 width: GRID_WIDTH + '%',
                 height: GRID_HEIGHT + '%'
             });
 
-            option.brush.xAxisIndex && option.brush.xAxisIndex.push(index);
-            option.brush.yAxisIndex && option.brush.yAxisIndex.push(index);
-
-            option.xAxis.push({
+            xAxis.push({
                 splitNumber: 3,
                 position: 'top',
                 axisLine: {
@@ -174,7 +177,7 @@ function generateGrids(option) {
                 scale: true
             });
 
-            option.yAxis.push({
+            yAxis.push({
                 splitNumber: 3,
                 position: 'right',
                 axisLine: {
@@ -193,7 +196,7 @@ function generateGrids(option) {
                 scale: true
             });
 
-            option.series.push({
+            series.push({
                 type: 'scatter',
                 symbolSize: SYMBOL_SIZE,
                 xAxisIndex: index,
@@ -201,20 +204,26 @@ function generateGrids(option) {
                 data: retrieveScatterData(rawData, i, j)
             });
 
-            option.visualMap.seriesIndex.push(option.series.length - 1);
-
             index++;
         }
     }
+
+    return {
+        grid,
+        xAxis,
+        yAxis,
+        series
+    };
 }
 
+const gridOption = generateGrids();
 
-var option = {
+option = {
     animation: false,
     brush: {
         brushLink: 'all',
-        xAxisIndex: [],
-        yAxisIndex: [],
+        xAxisIndex: gridOption.xAxis.map(function (_, idx) { return idx }),
+        yAxisIndex: gridOption.yAxis.map(function (_, idx) { return idx }),
         inBrush: {
             opacity: 1
         }
@@ -232,7 +241,7 @@ var option = {
         outOfRange: {
             color: '#ddd'
         },
-        seriesIndex: [0]
+        seriesIndex: gridOption.series.map(function (_, idx) { return idx })
     },
     tooltip: {
         trigger: 'item'
@@ -280,9 +289,9 @@ var option = {
             }
         }
     },
-    grid: [],
-    xAxis: [],
-    yAxis: [],
+    xAxis: gridOption.xAxis,
+    yAxis: gridOption.yAxis,
+    grid: gridOption.grid,
     series: [
         {
             name: 'parallel',
@@ -293,10 +302,9 @@ var option = {
                 opacity: 0.3
             },
             data: rawData
-        }
+        },
+        ...gridOption.series
     ]
 };
-
-generateGrids(option);
 
 export {}

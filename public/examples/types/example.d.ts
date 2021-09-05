@@ -6,7 +6,7 @@ declare global {
     const app: {
         configParameters: {
             [key: string]: {
-                options: Record<string, string>
+                options: Record<string, string> | string[]
             } | {
                 min?: number
                 max?: number
