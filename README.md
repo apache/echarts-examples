@@ -28,7 +28,7 @@ It will copy all the build resources to echarts-website/next/examples
 
 ## Edit example
 
-All test cases are in the `public/data` folder. The comment in the header
+All test cases are in the `public/examples/ts` folder. The comment in the header
 
 ```js
 /*
@@ -51,6 +51,12 @@ difficulty: 5
 videoStart: 1000
 videoEnd: 6000
 */
+```
+
+Most of examples are written in `TypeScript`. You need to comile it to `JavaScript` by using command:
+
+```shell
+npm run compile:example
 ```
 
 

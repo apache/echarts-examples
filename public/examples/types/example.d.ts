@@ -1,29 +1,31 @@
-import * as echarts from 'echarts'
+import * as echarts from 'echarts';
 import * as jQuery from 'jquery';
 
 declare global {
-    const ROOT_PATH: string
-    const app: {
-        configParameters: {
-            [key: string]: {
-                options: Record<string, string> | string[]
-            } | {
-                min?: number
-                max?: number
-            }
-        },
-        config: {
-            onChange: () => void
-            [key: string]: string | number | Function
-        },
-        onresize: () => void,
-        [key: string]: any
+  const ROOT_PATH: string;
+  const app: {
+    configParameters: {
+      [key: string]:
+        | {
+            options: Record<string, string> | string[];
+          }
+        | {
+            min?: number;
+            max?: number;
+          };
     };
+    config: {
+      onChange: () => void;
+      [key: string]: string | number | Function;
+    };
+    onresize: () => void;
+    [key: string]: any;
+  };
 
-    const ecStat: any;
+  const ecStat: any;
 
-    const myChart: echarts.ECharts
-    let option: echarts.EChartsOption
+  const myChart: echarts.ECharts;
+  let option: echarts.EChartsOption;
 
-    const echarts: typeof echarts
+  const echarts: typeof echarts;
 }

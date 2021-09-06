@@ -15,7 +15,6 @@ const { compareImage } = require('../common/compareImage');
 const { runTasks } = require('../common/task');
 const nStatic = require('node-static');
 const shell = require('shelljs');
-// const { createFFmpeg, fetchFile } = require('@ffmpeg/ffmpeg');
 
 function optionToJson(obj, prop) {
     let json = JSON.stringify(obj, function(key, value) {

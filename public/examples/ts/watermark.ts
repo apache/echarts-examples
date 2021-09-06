@@ -217,4 +217,4 @@ option = {
     }]
 };
 
-export []
+export {}
