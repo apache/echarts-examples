@@ -80,6 +80,15 @@
         $t('editor.edit')
       }}</a>
     </div>
+
+    <div id="code-info" v-if="inEditor && !shared.isMobile">
+      <template v-if="shared.editorStatus.message">
+        <span class="code-info-time">{{ currentTime }}</span>
+        <span :class="'code-info-type-' + shared.editorStatus.type">{{
+          shared.editorStatus.message
+        }}</span>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -318,12 +327,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../style/color.scss';
+
 #chart-panel {
   position: absolute;
   // top: $control-panel-height;
   top: 42px;
   right: 15px;
-  bottom: 15px;
+  bottom: 40px;
   left: 15px;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
@@ -424,6 +435,40 @@ export default {
     .edit {
       margin-right: 5px;
     }
+  }
+}
+
+#code-info {
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
+  overflow: hidden;
+
+  height: 25px;
+  line-height: 25px;
+  padding: 0;
+
+  // border-top: 1px solid $clr-border;
+  font-size: 0.9rem;
+
+  .code-info-time {
+    color: $clr-text;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .code-info-type-info {
+    color: $clr-text;
+    font-size: 12px;
+  }
+
+  .code-info-type-warn {
+    color: $clr-warn;
+  }
+
+  .code-info-type-error {
+    color: $clr-error;
   }
 }
 

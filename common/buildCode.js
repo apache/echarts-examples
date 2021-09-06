@@ -230,7 +230,7 @@ function buildMinimalBundleCode(deps, includeType) {
   ];
 
   const ECOptionTypeCode = `
-type ECOption = echarts.ComposeOption<
+type EChartsOption = echarts.ComposeOption<
     ${allImports.filter((a) => a.endsWith('Option')).join(' | ')}
 >`;
   const importsCodes = [
@@ -383,7 +383,7 @@ ${
   const ENV_CODE = [
     usedRootPath ? `var ROOT_PATH = '${ROOT_PATH}';` : '',
     usedApp ? `var app${ts ? ': any' : ''} = {};` : '',
-    ts && !minimal ? 'type ECOption = echarts.EChartsOption' : ''
+    ts && !minimal ? 'type EChartsOption = echarts.EChartsOption' : ''
   ]
     .filter((a) => !!a)
     .join('\n');
@@ -396,7 +396,7 @@ ${
 
 var chartDom = document.getElementById('main')${ts ? '!' : ''};
 var myChart = echarts.init(chartDom${theme ? `, '${theme}'` : ''});
-var option${ts ? ': ECOption' : ''};
+var option${ts ? ': EChartsOption' : ''};
 
 ${jsCode.trim()}
 

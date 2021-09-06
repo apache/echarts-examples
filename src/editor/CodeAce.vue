@@ -55,6 +55,7 @@ export default {
       editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
+        tabSize: 2,
         enableLiveAutocompletion: true
       });
 

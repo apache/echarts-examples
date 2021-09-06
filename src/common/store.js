@@ -10,7 +10,7 @@ export const store = {
   enableDecal: 'decal' in URL_PARAMS,
   renderer: URL_PARAMS.renderer || 'canvas',
 
-  typeCheck: URL_PARAMS.editor === 'monaco',
+  typeCheck: 'ts' in URL_PARAMS,
   useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
   runCode: '',
@@ -28,11 +28,10 @@ export const store = {
 
 export function loadExampleCode() {
   return new Promise((resolve) => {
-    const dataRoot = URL_PARAMS.gl ? 'data-gl' : 'data';
+    const glFolder = URL_PARAMS.gl ? 'gl/' : '';
+    const lang = store.typeCheck ? 'ts' : 'js';
     $.ajax(
-      store.typeCheck
-        ? `${store.cdnRoot}/examples/ts/${URL_PARAMS.c}.ts?_v_${store.version}`
-        : `${store.cdnRoot}/${dataRoot}/${URL_PARAMS.c}.js?_v_${store.version}`,
+      `${store.cdnRoot}examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
       {
         dataType: 'text',
         success: (data) => {

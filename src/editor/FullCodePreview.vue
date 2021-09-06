@@ -29,7 +29,11 @@ export default {
     ensureACE().then(() => {
       this.loading = false;
       const editor = ace.edit(this.$el);
-      editor.getSession().setMode('ace/mode/javascript');
+      editor
+        .getSession()
+        .setMode(
+          store.typeCheck ? 'ace/mode/typescript' : 'ace/mode/javascript'
+        );
       // https://stackoverflow.com/questions/32806060/is-there-a-programmatic-way-to-hide-the-cursor-in-ace-editor
       editor.setOptions({
         readOnly: true,

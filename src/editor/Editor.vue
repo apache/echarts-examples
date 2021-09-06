@@ -6,22 +6,11 @@
       v-if="!shared.isMobile"
     >
       <el-tabs v-model="currentTab" type="border-card">
-        <el-tab-pane :label="$t('editor.tabEditor')" name="code-editor">
+        <el-tab-pane name="code-editor">
+          <span slot="label">{{ $t('editor.tabEditor') }}</span>
           <el-container>
             <el-header id="editor-control-panel">
-              <div id="code-info">
-                <template v-if="shared.editorStatus.message">
-                  <span class="code-info-time">{{ currentTime }}</span>
-                  <span :class="'code-info-type-' + shared.editorStatus.type">{{
-                    shared.editorStatus.message
-                  }}</span>
-                </template>
-              </div>
               <div class="editor-controls">
-                <!-- <el-switch v-model="shared.typeCheck"
-                                :active-text="$t('editor.monacoMode')"
-                                :inactive-text="''"
-                            ></el-switch> -->
                 <a
                   href="javascript:;"
                   class="btn btn-default btn-sm"
@@ -56,14 +45,12 @@
                 <!-- <i class="el-icon-setting"></i> 配置 -->
               </span>
               <el-switch
-                class="enable-decal"
                 v-model="fullCodeConfig.minimal"
                 :active-text="$t('editor.minimalBundle')"
                 :inactive-text="''"
               >
               </el-switch>
               <el-switch
-                class="enable-decal"
                 v-model="fullCodeConfig.esm"
                 active-text="ES Modules"
                 :inactive-text="''"
@@ -199,7 +186,7 @@ export default {
       deps.push(store.renderer === 'svg' ? 'SVGRenderer' : 'CanvasRenderer');
       this.fullCode = buildExampleCode(store.sourceCode, deps, {
         minimal: this.fullCodeConfig.minimal,
-        ts: false,
+        ts: store.typeCheck,
         esm: this.fullCodeConfig.esm,
         // legacy: true,
         theme: store.darkMode ? 'dark' : '',
@@ -261,7 +248,6 @@ export default {
 <style lang="scss">
 @import '../style/color.scss';
 
-$code-info-height: 25px;
 $control-panel-height: 30px;
 $pd-basic: 10px;
 $handler-width: 5px;
@@ -429,39 +415,6 @@ $handler-width: 5px;
     .btn:hover {
       background-color: lighten($color: #409eff, $amount: 5);
     }
-  }
-}
-
-#code-info {
-  position: absolute;
-  bottom: 0;
-  overflow: hidden;
-
-  height: $control-panel-height;
-  line-height: $control-panel-height;
-  padding: 0px 10px;
-
-  // border-top: 1px solid $clr-border;
-  font-size: 0.9rem;
-
-  .code-info-time {
-    color: $clr-text;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 12px;
-  }
-
-  .code-info-type-info {
-    color: $clr-text;
-    font-size: 12px;
-  }
-
-  .code-info-type-warn {
-    color: $clr-warn;
-  }
-
-  .code-info-type-error {
-    color: $clr-error;
   }
 }
 
