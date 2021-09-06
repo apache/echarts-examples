@@ -1,12 +1,12 @@
-import {store} from '../common/store';
-import {URL_PARAMS, SCRIPT_URLS} from '../common/config';
-import {downloadBlob} from '../common/helper';
+import { store } from '../common/store';
+import { URL_PARAMS, SCRIPT_URLS } from '../common/config';
+import { downloadBlob } from '../common/helper';
 
 const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') >= 0;
 const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}'` : '';
 
 export function download() {
-    const code = `<!--
+  const code = `<!--
     THIS EXAMPLE WAS DOWNLOADED FROM ${window.location.href}
 -->
 <!DOCTYPE html>
@@ -55,10 +55,10 @@ if (option && typeof option === 'object') {
     </body>
 </html>
     `;
-    const file = new Blob([code], {
-        type: 'text/html;charset=UTF-8',
-        encoding: 'UTF-8'
-    });
-    // download the blob
-    downloadBlob(file, URL_PARAMS.c + '.html');
+  const file = new Blob([code], {
+    type: 'text/html;charset=UTF-8',
+    encoding: 'UTF-8'
+  });
+  // download the blob
+  downloadBlob(file, URL_PARAMS.c + '.html');
 }

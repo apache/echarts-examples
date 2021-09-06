@@ -1,38 +1,36 @@
-$clr-primary:        #293c55;
-$clr-primary-light:  #849dbe;
-$clr-primary-dark:   #162436;
+$clr-primary: #293c55;
+$clr-primary-light: #849dbe;
+$clr-primary-dark: #162436;
 $clr-primary-darker: #0e151f;
 
-$clr-primary-home:   #333743;
-$clr-text-home:      #9297A3;
+$clr-primary-home: #333743;
+$clr-text-home: #9297a3;
 
-$clr-secondary:      #a9334c;
+$clr-secondary: #a9334c;
 $clr-secondary-dark: darken($clr-secondary, 10%);
 
-$clr-contrast:       #e43c59;
-$clr-contrast-dark:  #bf465b;
+$clr-contrast: #e43c59;
+$clr-contrast-dark: #bf465b;
 
-$clr-darkest:        #000;
-$clr-darker:         #333;
-$clr-dark:           #666;
-$clr-light:          #999;
-$clr-lighter:        #eee;
-$clr-lightest:       #f9f9f9;
+$clr-darkest: #000;
+$clr-darker: #333;
+$clr-dark: #666;
+$clr-light: #999;
+$clr-lighter: #eee;
+$clr-lightest: #f9f9f9;
 
-$clr-thirdary:       #40A7DC;
+$clr-thirdary: #40a7dc;
 $clr-thirdary-light: lighten($clr-thirdary, 10%);
 
 $clr-border: rgba(78, 97, 118, 0.45);
 $clr-border-light: rgba(78, 97, 118, 0.25);
 
-$clr-gray:           #ccc;
-$clr-gray-dark:      #999;
-$clr-gray-light:     #f3f3f3;
+$clr-gray: #ccc;
+$clr-gray-dark: #999;
+$clr-gray-light: #f3f3f3;
 
-$clr-warn:           #f93;
-$clr-error:          $clr-contrast;
-
-
+$clr-warn: #f93;
+$clr-error: $clr-contrast;
 
 $clr-bg: #f3f4fa;
 $clr-text: $clr-dark;

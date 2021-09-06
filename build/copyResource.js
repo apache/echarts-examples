@@ -23,78 +23,91 @@ const projectDir = __dirname;
  */
 
 function initEnv() {
-    let envType = argv.env;
-    let isDev = argv.dev != null || argv.debug != null || envType === 'debug' || envType === 'dev';
+  let envType = argv.env;
+  let isDev =
+    argv.dev != null ||
+    argv.debug != null ||
+    envType === 'debug' ||
+    envType === 'dev';
 
-    if (isDev) {
-        console.warn('====================================================================');
-        console.warn('THIS IS IN DEV MODE');
-        console.warn('!!! Please input your local host in `config/env.dev.js` firstly !!!');
-        console.warn('====================================================================');
-        envType = 'dev';
-    }
+  if (isDev) {
+    console.warn(
+      '===================================================================='
+    );
+    console.warn('THIS IS IN DEV MODE');
+    console.warn(
+      '!!! Please input your local host in `config/env.dev.js` firstly !!!'
+    );
+    console.warn(
+      '===================================================================='
+    );
+    envType = 'dev';
+  }
 
-    if (!envType) {
-        throw new Error('--env MUST be specified');
-    }
+  if (!envType) {
+    throw new Error('--env MUST be specified');
+  }
 
-    let config = require('../config/env.' + envType);
+  let config = require('../config/env.' + envType);
 
-    if (isDev) {
-        console.warn('====================================================================');
-        console.warn('Please visit the website: ');
-        console.warn(config.host);
-        console.warn('====================================================================');
-    }
+  if (isDev) {
+    console.warn(
+      '===================================================================='
+    );
+    console.warn('Please visit the website: ');
+    console.warn(config.host);
+    console.warn(
+      '===================================================================='
+    );
+  }
 
-    assert(path.isAbsolute(config.releaseDestDir));
+  assert(path.isAbsolute(config.releaseDestDir));
 
-    config.envType = envType;
+  config.envType = envType;
 
-    return config;
+  return config;
 }
 
 async function copyResourcesToDest(config) {
-    let basePath = path.resolve(projectDir, '../public');
-    const filePaths = await globby([
-        '**/*',
-        // Use jade in echarts-www
-        '!zh/*',
-        '!en/*'
-    ], {
-        cwd: basePath
-    });
-
-    console.log();
-
-    for (let filePath of filePaths) {
-        fse.ensureDirSync(
-            path.resolve(config.releaseDestDir, path.dirname(filePath))
-        );
-        let destPath = path.resolve(config.releaseDestDir, filePath);
-        fs.copyFileSync(
-            path.resolve(basePath, filePath),
-            destPath
-        );
-
-        if (process.stdout.clearLine) {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            process.stdout.write(chalk.green(`resource copied to: ${destPath}`));
-        }
-        else {
-            console.log(chalk.green(`resource copied to: ${destPath}`));
-        }
+  let basePath = path.resolve(projectDir, '../public');
+  const filePaths = await globby(
+    [
+      '**/*',
+      // Use jade in echarts-www
+      '!zh/*',
+      '!en/*'
+    ],
+    {
+      cwd: basePath
     }
+  );
 
-    console.log('\ncopyResourcesToDest done.');
+  console.log();
+
+  for (let filePath of filePaths) {
+    fse.ensureDirSync(
+      path.resolve(config.releaseDestDir, path.dirname(filePath))
+    );
+    let destPath = path.resolve(config.releaseDestDir, filePath);
+    fs.copyFileSync(path.resolve(basePath, filePath), destPath);
+
+    if (process.stdout.clearLine) {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      process.stdout.write(chalk.green(`resource copied to: ${destPath}`));
+    } else {
+      console.log(chalk.green(`resource copied to: ${destPath}`));
+    }
+  }
+
+  console.log('\ncopyResourcesToDest done.');
 }
 
 async function run() {
-    let config = initEnv();
-    await copyResourcesToDest(config);
+  let config = initEnv();
+  await copyResourcesToDest(config);
 
-    console.log('All done.');
+  console.log('All done.');
 }
 
 run();

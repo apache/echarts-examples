@@ -1,72 +1,72 @@
 .object-visualizer {
-    border-radius: 4px;
-    overflow-x: auto;
-    margin: 0;
-    padding: 10px;
-    /* font-family: Menlo; */
-    font-size: 0.6em;
-    line-height: 1.7;
-  }
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0;
+  padding: 10px;
+  /* font-family: Menlo; */
+  font-size: 0.6em;
+  line-height: 1.7;
+}
 
-  .array > .value,
-  .object > .value {
-    display: flex;
-    flex-direction: column;
-    margin-left: 2em;
-  }
+.array > .value,
+.object > .value {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+}
 
-  .key {
-    /* color: #4078f2; */
-    color: #111;
-    user-select: none;
-  }
+.key {
+  /* color: #4078f2; */
+  color: #111;
+  user-select: none;
+}
 
-  .string > .value {
-    color: #50a14f;
-  }
+.string > .value {
+  color: #50a14f;
+}
 
-  .boolean > .value,
-  .number > .value {
-    color: #d19a66;
-  }
+.boolean > .value,
+.number > .value {
+  color: #d19a66;
+}
 
-  .null > .value,
-  .undefined > .value {
-    color: hsl(0, 0%, 40%);
-  }
+.null > .value,
+.undefined > .value {
+  color: hsl(0, 0%, 40%);
+}
 
-  .separator {
-    cursor: pointer;
-    font-size: 0.8em;
-    user-select: none;
-    color: hsl(0, 0%, 30%);
-  }
+.separator {
+  cursor: pointer;
+  font-size: 0.8em;
+  user-select: none;
+  color: hsl(0, 0%, 30%);
+}
 
-  .indicator {
-    cursor: pointer;
-    font-size: 0.8em;
-    padding-right: 0.5em;
-    user-select: none;
-    vertical-align: text-bottom;
-    color: hsl(0, 0%, 30%);
-  }
+.indicator {
+  cursor: pointer;
+  font-size: 0.8em;
+  padding-right: 0.5em;
+  user-select: none;
+  vertical-align: text-bottom;
+  color: hsl(0, 0%, 30%);
+}
 
-  .array > .key,
-  .object > .key {
-    cursor: pointer;
-  }
+.array > .key,
+.object > .key {
+  cursor: pointer;
+}
 
-  .value > .array,
-  .value > .object {
-    position: relative;
-    left: -0.8em;
-  }
+.value > .array,
+.value > .object {
+  position: relative;
+  left: -0.8em;
+}
 
-  .count,
-  .preview,
-  .quotes {
-    cursor: pointer;
-    font-size: 0.8em;
-    user-select: none;
-    color: hsl(0, 0%, 30%);
-  }
+.count,
+.preview,
+.quotes {
+  cursor: pointer;
+  font-size: 0.8em;
+  user-select: none;
+  color: hsl(0, 0%, 30%);
+}

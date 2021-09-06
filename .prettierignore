@@ -1,8 +1,16 @@
+public/data
+public/data-gl
+src/data
+src/data
+src/data
+
+
+
+# From git ignore
 node_modules
 release
 public/vendors/echarts/map/tool
 public/vendors/echarts/map/raw
-.DS_Store
 /public.zip
 /build/config.gypi
 /public-gh
@@ -18,4 +26,3 @@ public/vendors/echarts/map/raw
 /e2e/package-lock.json
 
 tmp
-.webm
