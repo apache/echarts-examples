@@ -7,6 +7,7 @@ videoStart: 2000
 videoEnd: 6000
 */
 
+// prettier-ignore
 const femaleData = [[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],
     [170.0, 59.0], [159.1, 47.6], [166.0, 69.8], [176.2, 66.8], [160.2, 75.2],
     [172.5, 55.2], [170.9, 54.2], [172.9, 62.5], [153.4, 42.0], [160.0, 50.0],
@@ -60,7 +61,9 @@ const femaleData = [[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], 
     [169.5, 67.3], [160.0, 75.5], [172.7, 68.2], [162.6, 61.4], [157.5, 76.8],
     [176.5, 71.8], [164.4, 55.5], [160.7, 48.6], [174.0, 66.4], [163.8, 67.3]
 ];
-var maleDeta = [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187.2, 78.8],
+
+// prettier-ignore
+const maleDeta = [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187.2, 78.8],
     [181.5, 74.8], [184.0, 86.4], [184.5, 78.4], [175.0, 62.0], [184.0, 81.6],
     [180.0, 76.6], [177.8, 83.6], [192.0, 90.0], [176.0, 74.6], [174.0, 71.0],
     [184.0, 79.6], [192.7, 93.8], [171.5, 70.0], [173.0, 72.4], [176.0, 85.9],
@@ -113,77 +116,84 @@ var maleDeta = [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187
 ];
 
 function calculateAverage(data: number[][], dim: number) {
-    let total = 0;
-    for (var i = 0; i < data.length; i++) {
-        total += data[i][dim];
-    }
-    return total /= data.length;
+  let total = 0;
+  for (var i = 0; i < data.length; i++) {
+    total += data[i][dim];
+  }
+  return (total /= data.length);
 }
 
-
-const scatterOption: echarts.EChartsOption = option = {
-    xAxis: {
-        scale: true
+const scatterOption: echarts.EChartsOption = (option = {
+  xAxis: {
+    scale: true
+  },
+  yAxis: {
+    scale: true
+  },
+  series: [
+    {
+      type: 'scatter',
+      id: 'female',
+      dataGroupId: 'female',
+      universalTransition: {
+        enabled: true,
+        delay: function (idx, count) {
+          return Math.random() * 400;
+        }
+      },
+      data: femaleData
     },
-    yAxis: {
-        scale: true
-    },
-    series: [{
-        type: 'scatter',
-        id: 'female',
-        dataGroupId: 'female',
-        universalTransition: {
-            enabled: true,
-            delay: function (idx, count) {
-                return Math.random() * 400;
-            }
-        },
-        data: femaleData
-    }, {
-        type: 'scatter',
-        id: 'male',
-        dataGroupId: 'male',
-        universalTransition: {
-            enabled: true,
-            delay: function (idx, count) {
-                return Math.random() * 400;
-            }
-        },
-        data: maleDeta
-    }]
-};
+    {
+      type: 'scatter',
+      id: 'male',
+      dataGroupId: 'male',
+      universalTransition: {
+        enabled: true,
+        delay: function (idx, count) {
+          return Math.random() * 400;
+        }
+      },
+      data: maleDeta
+    }
+  ]
+});
 
 const barOption: echarts.EChartsOption = {
-    xAxis: {
-        type: 'category',
-        data: ['Female', 'Male']
-    },
-    yAxis: {},
-    series: [{
-        type: 'bar',
-        id: 'total',
-        data: [{
-            value: calculateAverage(maleDeta, 0),
-            groupId: 'male'
-        }, {
-            value: calculateAverage(femaleData, 0),
-            groupId: 'female'
-        }],
-        universalTransition: {
-            enabled: true,
-            seriesKey: ['female', 'male'],
-            delay: function (idx, count) {
-                return Math.random() * 400;
-            }
+  xAxis: {
+    type: 'category',
+    data: ['Female', 'Male']
+  },
+  yAxis: {},
+  series: [
+    {
+      type: 'bar',
+      id: 'total',
+      data: [
+        {
+          value: calculateAverage(maleDeta, 0),
+          groupId: 'male'
+        },
+        {
+          value: calculateAverage(femaleData, 0),
+          groupId: 'female'
         }
-    }]
+      ],
+      universalTransition: {
+        enabled: true,
+        seriesKey: ['female', 'male'],
+        delay: function (idx, count) {
+          return Math.random() * 400;
+        }
+      }
+    }
+  ]
 };
 
 let currentOption = scatterOption;
 
 setInterval(function () {
-    currentOption = currentOption === scatterOption ? barOption : scatterOption;
-    myChart.setOption(currentOption, true);
+  currentOption = currentOption === scatterOption ? barOption : scatterOption;
+  myChart.setOption(currentOption, true);
 }, 2000);
 
 export {};

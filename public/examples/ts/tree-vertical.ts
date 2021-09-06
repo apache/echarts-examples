@@ -6,51 +6,53 @@ titleCN: 从上到下树状图
 
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
-    myChart.hideLoading();
+  myChart.hideLoading();
 
-    myChart.setOption(option = {
-        tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
-        },
-        series:[
-            {
-                type: 'tree',
+  myChart.setOption(
+    (option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
+      series: [
+        {
+          type: 'tree',
 
-                data: [data],
+          data: [data],
 
-                left: '2%',
-                right: '2%',
-                top: '8%',
-                bottom: '20%',
+          left: '2%',
+          right: '2%',
+          top: '8%',
+          bottom: '20%',
 
-                symbol: 'emptyCircle',
+          symbol: 'emptyCircle',
 
-                orient: 'vertical',
+          orient: 'vertical',
 
-                expandAndCollapse: true,
+          expandAndCollapse: true,
 
-                label: {
-                    position: 'top',
-                    rotate: -90,
-                    verticalAlign: 'middle',
-                    align: 'right',
-                    fontSize: 9
-                },
+          label: {
+            position: 'top',
+            rotate: -90,
+            verticalAlign: 'middle',
+            align: 'right',
+            fontSize: 9
+          },
 
-                leaves: {
-                    label: {
-                        position: 'bottom',
-                        rotate: -90,
-                        verticalAlign: 'middle',
-                        align: 'left'
-                    }
-                },
-
-                animationDurationUpdate: 750
+          leaves: {
+            label: {
+              position: 'bottom',
+              rotate: -90,
+              verticalAlign: 'middle',
+              align: 'left'
             }
-        ]
-    });
+          },
+
+          animationDurationUpdate: 750
+        }
+      ]
+    })
+  );
 });
 
 export {};

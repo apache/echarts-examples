@@ -5,62 +5,82 @@ titleCN: 圆角旭日图
 difficulty: 2
 */
 
-var data = [{
+var data = [
+  {
     name: 'Grandpa',
-    children: [{
+    children: [
+      {
         name: 'Uncle Leo',
         value: 15,
-        children: [{
+        children: [
+          {
             name: 'Cousin Jack',
             value: 2
-        }, {
+          },
+          {
             name: 'Cousin Mary',
             value: 5,
-            children: [{
+            children: [
+              {
                 name: 'Jackson',
                 value: 2
-            }]
-        }, {
+              }
+            ]
+          },
+          {
             name: 'Cousin Ben',
             value: 4
-        }]
-    }, {
+          }
+        ]
+      },
+      {
         name: 'Father',
         value: 10,
-        children: [{
+        children: [
+          {
             name: 'Me',
             value: 5
-        }, {
+          },
+          {
             name: 'Brother Peter',
             value: 1
-        }]
-    }]
-}, {
+          }
+        ]
+      }
+    ]
+  },
+  {
     name: 'Nancy',
-    children: [{
+    children: [
+      {
         name: 'Uncle Nike',
-        children: [{
+        children: [
+          {
             name: 'Cousin Betty',
             value: 1
-        }, {
+          },
+          {
             name: 'Cousin Jenny',
             value: 2
-        }]
-    }]
-}];
+          }
+        ]
+      }
+    ]
+  }
+];
 
 option = {
-    series: {
-        type: 'sunburst',
-        data: data,
-        radius: [60, '90%'],
-        itemStyle: {
-            borderRadius: 7,
-            borderWidth: 2
-        },
-        label: {
-            show: false
-        }
+  series: {
+    type: 'sunburst',
+    data: data,
+    radius: [60, '90%'],
+    itemStyle: {
+      borderRadius: 7,
+      borderWidth: 2
+    },
+    label: {
+      show: false
     }
+  }
 };
-export {}
+export {};

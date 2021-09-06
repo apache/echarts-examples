@@ -6,56 +6,57 @@ titleCN: 从下到上树状图
 
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
-    myChart.hideLoading();
+  myChart.hideLoading();
 
-    myChart.setOption(option = {
+  myChart.setOption(
+    (option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
 
-        tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
-        },
+      series: [
+        {
+          type: 'tree',
 
-        series:[
-            {
-                type: 'tree',
+          data: [data],
 
-                data: [data],
+          left: '2%',
+          right: '2%',
+          top: '20%',
+          bottom: '8%',
 
-                left: '2%',
-                right: '2%',
-                top: '20%',
-                bottom: '8%',
+          symbol: 'emptyCircle',
 
-                symbol: 'emptyCircle',
+          orient: 'BT',
 
-                orient: 'BT',
+          expandAndCollapse: true,
 
-                expandAndCollapse: true,
+          label: {
+            position: 'bottom',
+            rotate: 90,
+            verticalAlign: 'middle',
+            align: 'right'
+          },
 
-                label: {
-                    position: 'bottom',
-                    rotate: 90,
-                    verticalAlign: 'middle',
-                    align: 'right'
-                },
-
-                leaves: {
-                    label: {
-                        position: 'top',
-                        rotate: 90,
-                        verticalAlign: 'middle',
-                        align: 'left'
-                    }
-                },
-
-                emphasis: {
-                    focus: 'descendant'
-                },
-
-                animationDurationUpdate: 750
+          leaves: {
+            label: {
+              position: 'top',
+              rotate: 90,
+              verticalAlign: 'middle',
+              align: 'left'
             }
-        ]
-    });
+          },
+
+          emphasis: {
+            focus: 'descendant'
+          },
+
+          animationDurationUpdate: 750
+        }
+      ]
+    })
+  );
 });
 
-export {}
+export {};

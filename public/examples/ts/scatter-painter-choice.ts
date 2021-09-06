@@ -7,57 +7,66 @@ difficulty: 9
 
 myChart.showLoading();
 
-$.get(ROOT_PATH + '/data/asset/data/masterPainterColorChoice.json', function (json) {
+$.get(
+  ROOT_PATH + '/data/asset/data/masterPainterColorChoice.json',
+  function (json) {
     myChart.hideLoading();
 
     var data = json[0].x.map(function (x: number, idx: number) {
-        return [+x, +json[0].y[idx]];
+      return [+x, +json[0].y[idx]];
     });
 
-    myChart.setOption(option = {
+    myChart.setOption(
+      (option = {
         title: {
-            text: 'Master Painter Color Choices Throughout History',
-            subtext: 'Data From Plot.ly',
-            left: 'right'
+          text: 'Master Painter Color Choices Throughout History',
+          subtext: 'Data From Plot.ly',
+          left: 'right'
         },
         xAxis: {
-            type: 'value',
-            splitLine: {
-                show: false
-            },
-            scale: true,
-            splitNumber: 5,
-            max: 'dataMax',
-            axisLabel: {
-                formatter: function (val: number) {
-                    return val + 's';
-                }
+          type: 'value',
+          splitLine: {
+            show: false
+          },
+          scale: true,
+          splitNumber: 5,
+          max: 'dataMax',
+          axisLabel: {
+            formatter: function (val: number) {
+              return val + 's';
             }
+          }
         },
         yAxis: {
-            type: 'value',
-            min: 0,
-            max: 360,
-            interval: 60,
-            name: 'Hue',
-            splitLine: {
-                show: false
-            }
+          type: 'value',
+          min: 0,
+          max: 360,
+          interval: 60,
+          name: 'Hue',
+          splitLine: {
+            show: false
+          }
         },
-        series: [{
+        series: [
+          {
             name: 'scatter',
             type: 'scatter',
             symbolSize: function (val, param) {
-                return json[0].marker.size[param.dataIndex] / json[0].marker.sizeref;
+              return (
+                json[0].marker.size[param.dataIndex] / json[0].marker.sizeref
+              );
             },
             itemStyle: {
-                color: function (param) {
-                    return json[0].marker.color[param.dataIndex];
-                }
+              color: function (param) {
+                return json[0].marker.color[param.dataIndex] as string;
+              }
             },
             data: data
-        }]
-    });
-});
+          }
+        ]
+      })
+    );
+  }
+);
 
-export {}
+export {};

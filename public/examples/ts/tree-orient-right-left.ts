@@ -4,61 +4,61 @@ category: tree
 titleCN: 从右到左树状图
 */
 
-
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
-    myChart.hideLoading();
+  myChart.hideLoading();
 
-    data.children.forEach(function (datum, index) {
-        index % 2 === 0 && (datum.collapsed = true);
-    });
+  data.children.forEach(function (datum, index) {
+    index % 2 === 0 && (datum.collapsed = true);
+  });
 
-    myChart.setOption(option = {
+  myChart.setOption(
+    (option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
 
-        tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
-        },
+      series: [
+        {
+          type: 'tree',
 
-        series:[
-            {
-                type: 'tree',
+          data: [data],
 
-                data: [data],
+          top: '1%',
+          left: '15%',
+          bottom: '1%',
+          right: '7%',
 
-                top: '1%',
-                left: '15%',
-                bottom: '1%',
-                right: '7%',
+          symbolSize: 7,
 
-                symbolSize: 7,
+          orient: 'RL',
 
-                orient: 'RL',
+          label: {
+            position: 'right',
+            verticalAlign: 'middle',
+            align: 'left'
+          },
 
-                label: {
-                    position: 'right',
-                    verticalAlign: 'middle',
-                    align: 'left'
-                },
-
-                leaves: {
-                    label: {
-                        position: 'left',
-                        verticalAlign: 'middle',
-                        align: 'right'
-                    }
-                },
-
-                emphasis: {
-                    focus: 'descendant'
-                },
-
-                expandAndCollapse: true,
-                animationDuration: 550,
-                animationDurationUpdate: 750
+          leaves: {
+            label: {
+              position: 'left',
+              verticalAlign: 'middle',
+              align: 'right'
             }
-        ]
-    });
+          },
+
+          emphasis: {
+            focus: 'descendant'
+          },
+
+          expandAndCollapse: true,
+          animationDuration: 550,
+          animationDurationUpdate: 750
+        }
+      ]
+    })
+  );
 });
 
-export {}
+export {};

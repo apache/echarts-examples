@@ -7,9 +7,12 @@ difficulty: 2
 
 // Prime Costs and Prices for ACME Fashion\nCollection "Spring-Summer, 2016"
 // Data from https://playground.anychart.com/gallery/7.12.0/Error_Charts/Marker_Chart
+
+// prettier-ignore
 var dimensions = [
     'name', 'Price', 'Prime cost', 'Prime cost min', 'Prime cost max', 'Price min', 'Price max'
 ];
+// prettier-ignore
 var data = [
     ['Blouse "Blue Viola"', 101.88, 99.75, 76.75, 116.75, 69.88, 119.88],
     ['Dress "Daisy"', 155.8, 144.03, 126.03, 156.03, 129.8, 188.8],
@@ -31,113 +34,128 @@ var data = [
 ];
 
 function renderItem(params, api) {
-    var children = [];
-    var coordDims = ['x', 'y'];
+  var children = [];
+  var coordDims = ['x', 'y'];
 
-    for (var baseDimIdx = 0; baseDimIdx < 2; baseDimIdx++) {
-        var otherDimIdx = 1 - baseDimIdx;
-        var encode = params.encode;
-        var baseValue = api.value(encode[coordDims[baseDimIdx]][0]);
-        var param = [];
-        param[baseDimIdx] = baseValue;
-        param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][1]);
-        var highPoint = api.coord(param);
-        param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][2]);
-        var lowPoint = api.coord(param);
-        var halfWidth = 5;
+  for (var baseDimIdx = 0; baseDimIdx < 2; baseDimIdx++) {
+    var otherDimIdx = 1 - baseDimIdx;
+    var encode = params.encode;
+    var baseValue = api.value(encode[coordDims[baseDimIdx]][0]);
+    var param = [];
+    param[baseDimIdx] = baseValue;
+    param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][1]);
+    var highPoint = api.coord(param);
+    param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][2]);
+    var lowPoint = api.coord(param);
+    var halfWidth = 5;
 
-        var style = api.style({
-            stroke: api.visual('color'),
-            fill: null
-        });
+    var style = api.style({
+      stroke: api.visual('color'),
+      fill: null
+    });
 
-        children.push({
-            type: 'line',
-            transition: ['shape'],
-            shape: makeShape(
-                baseDimIdx,
-                highPoint[baseDimIdx] - halfWidth, highPoint[otherDimIdx],
-                highPoint[baseDimIdx] + halfWidth, highPoint[otherDimIdx]
-            ),
-            style: style
-        }, {
-            type: 'line',
-            transition: ['shape'],
-            shape: makeShape(
-                baseDimIdx,
-                highPoint[baseDimIdx], highPoint[otherDimIdx],
-                lowPoint[baseDimIdx], lowPoint[otherDimIdx]
-            ),
-            style: style
-        }, {
-            type: 'line',
-            transition: ['shape'],
-            shape: makeShape(
-                baseDimIdx,
-                lowPoint[baseDimIdx] - halfWidth, lowPoint[otherDimIdx],
-                lowPoint[baseDimIdx] + halfWidth, lowPoint[otherDimIdx]
-            ),
-            style: style
-        });
-    }
+    children.push(
+      {
+        type: 'line',
+        transition: ['shape'],
+        shape: makeShape(
+          baseDimIdx,
+          highPoint[baseDimIdx] - halfWidth,
+          highPoint[otherDimIdx],
+          highPoint[baseDimIdx] + halfWidth,
+          highPoint[otherDimIdx]
+        ),
+        style: style
+      },
+      {
+        type: 'line',
+        transition: ['shape'],
+        shape: makeShape(
+          baseDimIdx,
+          highPoint[baseDimIdx],
+          highPoint[otherDimIdx],
+          lowPoint[baseDimIdx],
+          lowPoint[otherDimIdx]
+        ),
+        style: style
+      },
+      {
+        type: 'line',
+        transition: ['shape'],
+        shape: makeShape(
+          baseDimIdx,
+          lowPoint[baseDimIdx] - halfWidth,
+          lowPoint[otherDimIdx],
+          lowPoint[baseDimIdx] + halfWidth,
+          lowPoint[otherDimIdx]
+        ),
+        style: style
+      }
+    );
+  }
 
-    function makeShape(baseDimIdx, base1, value1, base2, value2) {
-        var shape = {};
-        shape[coordDims[baseDimIdx] + '1'] = base1;
-        shape[coordDims[1 - baseDimIdx] + '1'] = value1;
-        shape[coordDims[baseDimIdx] + '2'] = base2;
-        shape[coordDims[1 - baseDimIdx] + '2'] = value2;
-        return shape;
-    }
+  function makeShape(baseDimIdx, base1, value1, base2, value2) {
+    var shape = {};
+    shape[coordDims[baseDimIdx] + '1'] = base1;
+    shape[coordDims[1 - baseDimIdx] + '1'] = value1;
+    shape[coordDims[baseDimIdx] + '2'] = base2;
+    shape[coordDims[1 - baseDimIdx] + '2'] = value2;
+    return shape;
+  }
 
-    return {
-        type: 'group',
-        children: children
-    };
+  return {
+    type: 'group',
+    children: children
+  };
 }
 
 option = {
-    tooltip: {
+  tooltip: {},
+  legend: {
+    data: ['bar', 'error']
+  },
+  dataZoom: [
+    {
+      type: 'slider'
     },
-    legend: {
-        data: ['bar', 'error']
+    {
+      type: 'inside'
+    }
+  ],
+  grid: {
+    bottom: 80
+  },
+  xAxis: {},
+  yAxis: {},
+  series: [
+    {
+      type: 'scatter',
+      name: 'error',
+      data: data,
+      dimensions: dimensions,
+      encode: {
+        x: 2,
+        y: 1,
+        tooltip: [2, 1, 3, 4, 5, 6],
+        itemName: 0
+      },
+      itemStyle: {
+        color: '#77bef7'
+      }
     },
-    dataZoom: [{
-        type: 'slider'
-    }, {
-        type: 'inside'
-    }],
-    grid: {
-        bottom: 80
-    },
-    xAxis: {},
-    yAxis: {},
-    series: [{
-        type: 'scatter',
-        name: 'error',
-        data: data,
-        dimensions: dimensions,
-        encode: {
-            x: 2,
-            y: 1,
-            tooltip: [2, 1, 3, 4, 5, 6],
-            itemName: 0
-        },
-        itemStyle: {
-            color: '#77bef7'
-        }
-    }, {
-        type: 'custom',
-        name: 'error',
-        renderItem: renderItem,
-        dimensions: dimensions,
-        encode: {
-            x: [2, 3, 4],
-            y: [1, 5, 6],
-            tooltip: [2, 1, 3, 4, 5, 6],
-            itemName: 0
-        },
-        data: data,
-        z: 100
-    }]
+    {
+      type: 'custom',
+      name: 'error',
+      renderItem: renderItem,
+      dimensions: dimensions,
+      encode: {
+        x: [2, 3, 4],
+        y: [1, 5, 6],
+        tooltip: [2, 1, 3, 4, 5, 6],
+        itemName: 0
+      },
+      data: data,
+      z: 100
+    }
+  ]
 };

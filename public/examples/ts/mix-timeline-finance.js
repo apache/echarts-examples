@@ -7,26 +7,28 @@ difficulty: 6
 
 var dataMap = {};
 function dataFormatter(obj) {
-    var pList = ['北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江','上海','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','重庆','四川','贵州','云南','西藏','陕西','甘肃','青海','宁夏','新疆'];
-    var temp;
-    for (var year = 2002; year <= 2011; year++) {
-        var max = 0;
-        var sum = 0;
-        temp = obj[year];
-        for (var i = 0, l = temp.length; i < l; i++) {
-            max = Math.max(max, temp[i]);
-            sum += temp[i];
-            obj[year][i] = {
-                name: pList[i],
-                value: temp[i]
-            };
-        }
-        obj[year + 'max'] = Math.floor(max / 100) * 100;
-        obj[year + 'sum'] = sum;
+  // prettier-ignore
+  var pList = ['北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江','上海','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','重庆','四川','贵州','云南','西藏','陕西','甘肃','青海','宁夏','新疆'];
+  var temp;
+  for (var year = 2002; year <= 2011; year++) {
+    var max = 0;
+    var sum = 0;
+    temp = obj[year];
+    for (var i = 0, l = temp.length; i < l; i++) {
+      max = Math.max(max, temp[i]);
+      sum += temp[i];
+      obj[year][i] = {
+        name: pList[i],
+        value: temp[i]
+      };
     }
-    return obj;
+    obj[year + 'max'] = Math.floor(max / 100) * 100;
+    obj[year + 'sum'] = sum;
+  }
+  return obj;
 }
 
+// prettier-ignore
 dataMap.dataGDP = dataFormatter({
     //max : 60000,
     2011:[16251.93,11307.28,24515.76,11237.55,14359.88,22226.7,10568.83,12582,19195.69,49110.27,32318.85,15300.65,17560.18,11702.82,45361.85,26931.03,19632.26,19669.56,53210.28,11720.87,2522.66,10011.37,21026.68,5701.84,8893.12,605.83,12512.3,5020.37,1670.44,2102.21,6610.05],
@@ -41,6 +43,7 @@ dataMap.dataGDP = dataFormatter({
     2002:[4315,2150.76,6018.28,2324.8,1940.94,5458.22,2348.54,3637.2,5741.03,10606.85,8003.67,3519.72,4467.55,2450.48,10275.5,6035.48,4212.82,4151.54,13502.42,2523.73,642.73,2232.86,4725.01,1243.43,2312.82,162.04,2253.39,1232.03,340.65,377.16,1612.6]
 });
 
+// prettier-ignore
 dataMap.dataPI = dataFormatter({
     //max : 4000,
     2011:[136.27,159.72,2905.73,641.42,1306.3,1915.57,1277.44,1701.5,124.94,3064.78,1583.04,2015.31,1612.24,1391.07,3973.85,3512.24,2569.3,2768.03,2665.2,2047.23,659.23,844.52,2983.51,726.22,1411.01,74.47,1220.9,678.75,155.08,184.14,1139.03],
@@ -55,6 +58,7 @@ dataMap.dataPI = dataFormatter({
     2002:[82.44,84.21,956.84,197.8,374.69,590.2,446.17,474.2,79.68,1110.44,685.2,783.66,664.78,535.98,1390,1288.36,707,847.25,1015.08,601.99,222.89,317.87,1047.95,281.1,463.44,39.75,282.21,215.51,47.31,52.95,305]
 });
 
+// prettier-ignore
 dataMap.dataSI = dataFormatter({
     //max : 26600,
     2011:[3752.48,5928.32,13126.86,6635.26,8037.69,12152.15,5611.48,5962.41,7927.89,25203.28,16555.58,8309.38,9069.2,6390.55,24017.11,15427.08,9815.94,9361.99,26447.38,5675.32,714.5,5543.04,11029.13,2194.33,3780.32,208.79,6935.59,2377.83,975.18,1056.15,3225.9],
@@ -69,6 +73,7 @@ dataMap.dataSI = dataFormatter({
     2002:[1249.99,1069.08,2911.69,1134.31,754.78,2609.85,943.49,1843.6,2622.45,5604.49,4090.48,1337.04,2036.97,941.77,5184.98,2768.75,1709.89,1523.5,6143.4,846.89,148.88,958.87,1733.38,481.96,934.88,32.72,1007.56,501.69,144.51,153.06,603.15]
 });
 
+// prettier-ignore
 dataMap.dataTI = dataFormatter({
     //max : 25000,
     2011:[12363.18,5219.24,8483.17,3960.87,5015.89,8158.98,3679.91,4918.09,11142.86,20842.21,14180.23,4975.96,6878.74,3921.2,17370.89,7991.72,7247.02,7539.54,24097.7,3998.33,1148.93,3623.81,7014.04,2781.29,3701.79,322.57,4355.81,1963.79,540.18,861.92,2245.12],
@@ -83,6 +88,7 @@ dataMap.dataTI = dataFormatter({
     2002:[2982.57,997.47,2149.75,992.69,811.47,2258.17,958.88,1319.4,3038.9,3891.92,3227.99,1399.02,1765.8,972.73,3700.52,1978.37,1795.93,1780.79,6343.94,1074.85,270.96,956.12,1943.68,480.37,914.5,89.56,963.62,514.83,148.83,171.14,704.5]
 });
 
+// prettier-ignore
 dataMap.dataEstate = dataFormatter({
     //max : 3600,
     2011:[1074.93,411.46,918.02,224.91,384.76,876.12,238.61,492.1,1019.68,2747.89,1677.13,634.92,911.16,402.51,1838.14,987,634.67,518.04,3321.31,465.68,208.71,396.28,620.62,160.3,222.31,17.44,398.03,134.25,29.05,79.01,176.22],
@@ -97,6 +103,7 @@ dataMap.dataEstate = dataFormatter({
     2002:[298.02,73.04,140.89,65.83,51.48,130.94,76.11,118.7,384.86,371.09,360.63,139.18,188.09,125.27,371.13,199.31,145.17,165.29,808.16,82.83,21.45,90.48,210.82,53.49,95.68,3.42,77.68,41.52,9.74,13.46,43.04]
 });
 
+// prettier-ignore
 dataMap.dataFinancial = dataFormatter({
     //max : 3200,
     2011:[2215.41,756.5,746.01,519.32,447.46,755.57,207.65,370.78,2277.4,2600.11,2730.29,503.85,862.41,357.44,1640.41,868.2,674.57,501.09,2916.13,445.37,105.24,704.66,868.15,297.27,456.23,31.7,432.11,145.05,62.56,134.18,288.77],
@@ -111,271 +118,324 @@ dataMap.dataFinancial = dataFormatter({
     2002:[561.91,76.86,179.6,124.1,48.39,137.18,75.45,31.6,485.25,368.86,347.53,81.85,138.28,76.51,310.07,158.77,96.95,92.43,454.65,35.86,10.08,134.52,183.13,41.45,102.39,2.81,67.3,42.08,16.75,21.45,52.18]
 });
 
-
 option = {
-    baseOption: {
-        timeline: {
-            axisType: 'category',
-            // realtime: false,
-            // loop: false,
-            autoPlay: true,
-            // currentIndex: 2,
-            playInterval: 1000,
-            // controlStyle: {
-            //     position: 'left'
-            // },
-            data: [
-                '2002-01-01','2003-01-01','2004-01-01',
-                {
-                    value: '2005-01-01',
-                    tooltip: {
-                        formatter: '{b} GDP达到一个高度'
-                    },
-                    symbol: 'diamond',
-                    symbolSize: 16
-                },
-                '2006-01-01', '2007-01-01','2008-01-01','2009-01-01','2010-01-01',
-                {
-                    value: '2011-01-01',
-                    tooltip: {
-                        formatter: function (params) {
-                            return params.name + 'GDP达到又一个高度';
-                        }
-                    },
-                    symbol: 'diamond',
-                    symbolSize: 18
-                },
-            ],
-            label: {
-                formatter : function(s) {
-                    return (new Date(s)).getFullYear();
-                }
+  baseOption: {
+    timeline: {
+      axisType: 'category',
+      // realtime: false,
+      // loop: false,
+      autoPlay: true,
+      // currentIndex: 2,
+      playInterval: 1000,
+      // controlStyle: {
+      //     position: 'left'
+      // },
+      data: [
+        '2002-01-01',
+        '2003-01-01',
+        '2004-01-01',
+        {
+          value: '2005-01-01',
+          tooltip: {
+            formatter: '{b} GDP达到一个高度'
+          },
+          symbol: 'diamond',
+          symbolSize: 16
+        },
+        '2006-01-01',
+        '2007-01-01',
+        '2008-01-01',
+        '2009-01-01',
+        '2010-01-01',
+        {
+          value: '2011-01-01',
+          tooltip: {
+            formatter: function (params) {
+              return params.name + 'GDP达到又一个高度';
             }
-        },
-        title: {
-            subtext: '数据来自国家统计局'
-        },
-        tooltip: {
-        },
-        legend: {
-            left: 'right',
-            data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],
-            selected: {
-                'GDP': false, '金融': false, '房地产': false
-            }
-        },
-        calculable : true,
-        grid: {
-            top: 80,
-            bottom: 100,
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow',
-                    label: {
-                        show: true,
-                        formatter: function (params) {
-                            return params.value.replace('\n', '');
-                        }
-                    }
-                }
-            }
-        },
-        xAxis: [
-            {
-                'type':'category',
-                'axisLabel':{'interval':0},
-                'data':[
-                    '北京','\n天津','河北','\n山西','内蒙古','\n辽宁','吉林','\n黑龙江',
-                    '上海','\n江苏','浙江','\n安徽','福建','\n江西','山东','\n河南',
-                    '湖北','\n湖南','广东','\n广西','海南','\n重庆','四川','\n贵州',
-                    '云南','\n西藏','陕西','\n甘肃','青海','\n宁夏','新疆'
-                ],
-                splitLine: {show: false}
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value',
-                name: 'GDP（亿元）'
-            }
-        ],
-        series: [
-            {name: 'GDP', type: 'bar'},
-            {name: '金融', type: 'bar'},
-            {name: '房地产', type: 'bar'},
-            {name: '第一产业', type: 'bar'},
-            {name: '第二产业', type: 'bar'},
-            {name: '第三产业', type: 'bar'},
-            {
-                name: 'GDP占比',
-                type: 'pie',
-                center: ['75%', '35%'],
-                radius: '28%',
-                z: 100
-            }
-        ]
-    },
-    options: [
-        {
-            title: {text: '2002全国宏观经济指标'},
-            series: [
-                {data: dataMap.dataGDP['2002']},
-                {data: dataMap.dataFinancial['2002']},
-                {data: dataMap.dataEstate['2002']},
-                {data: dataMap.dataPI['2002']},
-                {data: dataMap.dataSI['2002']},
-                {data: dataMap.dataTI['2002']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2002sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2002sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2002sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2003全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2003']},
-                {data: dataMap.dataFinancial['2003']},
-                {data: dataMap.dataEstate['2003']},
-                {data: dataMap.dataPI['2003']},
-                {data: dataMap.dataSI['2003']},
-                {data: dataMap.dataTI['2003']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2003sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2003sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2003sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2004全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2004']},
-                {data: dataMap.dataFinancial['2004']},
-                {data: dataMap.dataEstate['2004']},
-                {data: dataMap.dataPI['2004']},
-                {data: dataMap.dataSI['2004']},
-                {data: dataMap.dataTI['2004']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2004sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2004sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2004sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2005全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2005']},
-                {data: dataMap.dataFinancial['2005']},
-                {data: dataMap.dataEstate['2005']},
-                {data: dataMap.dataPI['2005']},
-                {data: dataMap.dataSI['2005']},
-                {data: dataMap.dataTI['2005']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2005sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2005sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2005sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2006全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2006']},
-                {data: dataMap.dataFinancial['2006']},
-                {data: dataMap.dataEstate['2006']},
-                {data: dataMap.dataPI['2006']},
-                {data: dataMap.dataSI['2006']},
-                {data: dataMap.dataTI['2006']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2006sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2006sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2006sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2007全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2007']},
-                {data: dataMap.dataFinancial['2007']},
-                {data: dataMap.dataEstate['2007']},
-                {data: dataMap.dataPI['2007']},
-                {data: dataMap.dataSI['2007']},
-                {data: dataMap.dataTI['2007']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2007sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2007sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2007sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2008全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2008']},
-                {data: dataMap.dataFinancial['2008']},
-                {data: dataMap.dataEstate['2008']},
-                {data: dataMap.dataPI['2008']},
-                {data: dataMap.dataSI['2008']},
-                {data: dataMap.dataTI['2008']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2008sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2008sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2008sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2009全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2009']},
-                {data: dataMap.dataFinancial['2009']},
-                {data: dataMap.dataEstate['2009']},
-                {data: dataMap.dataPI['2009']},
-                {data: dataMap.dataSI['2009']},
-                {data: dataMap.dataTI['2009']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2009sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2009sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2009sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2010全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2010']},
-                {data: dataMap.dataFinancial['2010']},
-                {data: dataMap.dataEstate['2010']},
-                {data: dataMap.dataPI['2010']},
-                {data: dataMap.dataSI['2010']},
-                {data: dataMap.dataTI['2010']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2010sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2010sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2010sum']}
-                ]}
-            ]
-        },
-        {
-            title : {text: '2011全国宏观经济指标'},
-            series : [
-                {data: dataMap.dataGDP['2011']},
-                {data: dataMap.dataFinancial['2011']},
-                {data: dataMap.dataEstate['2011']},
-                {data: dataMap.dataPI['2011']},
-                {data: dataMap.dataSI['2011']},
-                {data: dataMap.dataTI['2011']},
-                {data: [
-                    {name: '第一产业', value: dataMap.dataPI['2011sum']},
-                    {name: '第二产业', value: dataMap.dataSI['2011sum']},
-                    {name: '第三产业', value: dataMap.dataTI['2011sum']}
-                ]}
-            ]
+          },
+          symbol: 'diamond',
+          symbolSize: 18
         }
+      ],
+      label: {
+        formatter: function (s) {
+          return new Date(s).getFullYear();
+        }
+      }
+    },
+    title: {
+      subtext: '数据来自国家统计局'
+    },
+    tooltip: {},
+    legend: {
+      left: 'right',
+      data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],
+      selected: {
+        GDP: false,
+        金融: false,
+        房地产: false
+      }
+    },
+    calculable: true,
+    grid: {
+      top: 80,
+      bottom: 100,
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+          label: {
+            show: true,
+            formatter: function (params) {
+              return params.value.replace('\n', '');
+            }
+          }
+        }
+      }
+    },
+    xAxis: [
+      {
+        type: 'category',
+        axisLabel: { interval: 0 },
+        data: [
+          '北京',
+          '\n天津',
+          '河北',
+          '\n山西',
+          '内蒙古',
+          '\n辽宁',
+          '吉林',
+          '\n黑龙江',
+          '上海',
+          '\n江苏',
+          '浙江',
+          '\n安徽',
+          '福建',
+          '\n江西',
+          '山东',
+          '\n河南',
+          '湖北',
+          '\n湖南',
+          '广东',
+          '\n广西',
+          '海南',
+          '\n重庆',
+          '四川',
+          '\n贵州',
+          '云南',
+          '\n西藏',
+          '陕西',
+          '\n甘肃',
+          '青海',
+          '\n宁夏',
+          '新疆'
+        ],
+        splitLine: { show: false }
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: 'GDP（亿元）'
+      }
+    ],
+    series: [
+      { name: 'GDP', type: 'bar' },
+      { name: '金融', type: 'bar' },
+      { name: '房地产', type: 'bar' },
+      { name: '第一产业', type: 'bar' },
+      { name: '第二产业', type: 'bar' },
+      { name: '第三产业', type: 'bar' },
+      {
+        name: 'GDP占比',
+        type: 'pie',
+        center: ['75%', '35%'],
+        radius: '28%',
+        z: 100
+      }
     ]
+  },
+  options: [
+    {
+      title: { text: '2002全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2002'] },
+        { data: dataMap.dataFinancial['2002'] },
+        { data: dataMap.dataEstate['2002'] },
+        { data: dataMap.dataPI['2002'] },
+        { data: dataMap.dataSI['2002'] },
+        { data: dataMap.dataTI['2002'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2002sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2002sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2002sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2003全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2003'] },
+        { data: dataMap.dataFinancial['2003'] },
+        { data: dataMap.dataEstate['2003'] },
+        { data: dataMap.dataPI['2003'] },
+        { data: dataMap.dataSI['2003'] },
+        { data: dataMap.dataTI['2003'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2003sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2003sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2003sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2004全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2004'] },
+        { data: dataMap.dataFinancial['2004'] },
+        { data: dataMap.dataEstate['2004'] },
+        { data: dataMap.dataPI['2004'] },
+        { data: dataMap.dataSI['2004'] },
+        { data: dataMap.dataTI['2004'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2004sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2004sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2004sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2005全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2005'] },
+        { data: dataMap.dataFinancial['2005'] },
+        { data: dataMap.dataEstate['2005'] },
+        { data: dataMap.dataPI['2005'] },
+        { data: dataMap.dataSI['2005'] },
+        { data: dataMap.dataTI['2005'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2005sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2005sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2005sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2006全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2006'] },
+        { data: dataMap.dataFinancial['2006'] },
+        { data: dataMap.dataEstate['2006'] },
+        { data: dataMap.dataPI['2006'] },
+        { data: dataMap.dataSI['2006'] },
+        { data: dataMap.dataTI['2006'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2006sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2006sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2006sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2007全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2007'] },
+        { data: dataMap.dataFinancial['2007'] },
+        { data: dataMap.dataEstate['2007'] },
+        { data: dataMap.dataPI['2007'] },
+        { data: dataMap.dataSI['2007'] },
+        { data: dataMap.dataTI['2007'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2007sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2007sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2007sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2008全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2008'] },
+        { data: dataMap.dataFinancial['2008'] },
+        { data: dataMap.dataEstate['2008'] },
+        { data: dataMap.dataPI['2008'] },
+        { data: dataMap.dataSI['2008'] },
+        { data: dataMap.dataTI['2008'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2008sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2008sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2008sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2009全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2009'] },
+        { data: dataMap.dataFinancial['2009'] },
+        { data: dataMap.dataEstate['2009'] },
+        { data: dataMap.dataPI['2009'] },
+        { data: dataMap.dataSI['2009'] },
+        { data: dataMap.dataTI['2009'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2009sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2009sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2009sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2010全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2010'] },
+        { data: dataMap.dataFinancial['2010'] },
+        { data: dataMap.dataEstate['2010'] },
+        { data: dataMap.dataPI['2010'] },
+        { data: dataMap.dataSI['2010'] },
+        { data: dataMap.dataTI['2010'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2010sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2010sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2010sum'] }
+          ]
+        }
+      ]
+    },
+    {
+      title: { text: '2011全国宏观经济指标' },
+      series: [
+        { data: dataMap.dataGDP['2011'] },
+        { data: dataMap.dataFinancial['2011'] },
+        { data: dataMap.dataEstate['2011'] },
+        { data: dataMap.dataPI['2011'] },
+        { data: dataMap.dataSI['2011'] },
+        { data: dataMap.dataTI['2011'] },
+        {
+          data: [
+            { name: '第一产业', value: dataMap.dataPI['2011sum'] },
+            { name: '第二产业', value: dataMap.dataSI['2011sum'] },
+            { name: '第三产业', value: dataMap.dataTI['2011sum'] }
+          ]
+        }
+      ]
+    }
+  ]
 };

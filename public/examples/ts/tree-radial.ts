@@ -6,38 +6,40 @@ titleCN: 径向树状图
 
 myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
-    myChart.hideLoading();
+  myChart.hideLoading();
 
-    myChart.setOption(option = {
-        tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
-        },
-        series: [
-            {
-                type: 'tree',
+  myChart.setOption(
+    (option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
+      series: [
+        {
+          type: 'tree',
 
-                data: [data],
+          data: [data],
 
-                top: '18%',
-                bottom: '14%',
+          top: '18%',
+          bottom: '14%',
 
-                layout: 'radial',
+          layout: 'radial',
 
-                symbol: 'emptyCircle',
+          symbol: 'emptyCircle',
 
-                symbolSize: 7,
+          symbolSize: 7,
 
-                initialTreeDepth: 3,
+          initialTreeDepth: 3,
 
-                animationDurationUpdate: 750,
+          animationDurationUpdate: 750,
 
-                emphasis: {
-                    focus: 'descendant'
-                }
-            }
-        ]
-    });
+          emphasis: {
+            focus: 'descendant'
+          }
+        }
+      ]
+    })
+  );
 });
 
 export {};

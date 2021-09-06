@@ -136,6 +136,7 @@ export default {
         minimap: {
           enabled: false
         },
+        wordWrap: 'off',
         automaticLayout: true
       });
 
