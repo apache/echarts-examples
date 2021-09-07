@@ -6,9 +6,21 @@
         src="../asset/placeholder.jpg"
         :data-src="screenshotURL"
       />
-      <h4 class="example-title">{{ title }}</h4>
-      <h5 class="example-subtitle" v-if="showSubtitle">{{ subtitle }}</h5>
     </a>
+    <div class="example-title">{{ title }}</div>
+    <div class="example-subtitle" v-if="showSubtitle">{{ subtitle }}</div>
+    <div class="example-tags">
+      <el-tooltip :content="$t('editor.tooltip.jsMode')" placement="bottom">
+        <a class="js" :href="exampleLink" target="_blank">JS</a>
+      </el-tooltip>
+      <el-tooltip
+        :content="$t('editor.tooltip.tsMode')"
+        placement="bottom"
+        v-if="example.ts"
+      >
+        <a class="ts" :href="exampleLink + '&lang=ts'" target="_blank">TS</a>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
@@ -80,42 +92,71 @@ export default {
   margin-bottom: 30px;
 
   border-radius: 2px;
+  position: relative;
 
-  .example-link {
-    position: relative;
+  .chart-area {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .example-title {
+    color: $clr-primary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    padding: 10px 10px 2px 10px;
+    margin: 0;
     display: block;
+    font-size: 14px;
+    text-align: left;
+  }
 
-    .chart-area {
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-      margin-top: 10px;
-    }
+  .example-subtitle {
+    font-size: 12px;
+    text-align: left;
+    color: #aaa;
+    display: block;
+    // font-weight: 200;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 3px 0 0 0;
+    padding-left: 10px;
+  }
 
-    .example-title {
-      color: $clr-primary;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+  .example-tags {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
 
-      padding: 10px 10px 2px 10px;
-      margin: 0;
-      font-weight: normal;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .example-subtitle {
+    & > * {
+      display: inline-block;
+      padding: 1px 6px;
+      margin-left: 5px;
+      vertical-align: middle;
+      border-radius: 3px;
       font-size: 12px;
-      text-align: center;
-      color: #aaa;
-      font-weight: normal;
-      // font-weight: 200;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 3px 0 0 0;
+      font-weight: bold;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .js {
+      background: #f7df1e;
+      color: #444;
+    }
+
+    .ts {
+      background: #3178c6;
+      color: #eee;
     }
   }
 

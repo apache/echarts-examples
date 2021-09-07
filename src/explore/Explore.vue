@@ -375,7 +375,6 @@ $pd-lg: 20px;
 
   li {
     // transition: background-color 0.5s;
-    cursor: pointer;
 
     a {
       height: 45px;

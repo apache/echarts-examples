@@ -13,7 +13,9 @@ export const store = {
   renderer: URL_PARAMS.renderer || 'canvas',
 
   typeCheck:
-    getExampleConfig().ts && (URL_PARAMS.lang || '').toLowerCase() === 'ts',
+    getExampleConfig() &&
+    getExampleConfig().ts &&
+    (URL_PARAMS.lang || '').toLowerCase() === 'ts',
   useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
   runCode: '',
