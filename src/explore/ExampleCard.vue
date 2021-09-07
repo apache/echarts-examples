@@ -7,19 +7,15 @@
         :data-src="screenshotURL"
       />
     </a>
-    <div class="example-title">{{ title }}</div>
-    <div class="example-subtitle" v-if="showSubtitle">{{ subtitle }}</div>
-    <div class="example-tags">
-      <el-tooltip :content="$t('editor.tooltip.jsMode')" placement="bottom">
+    <div>
+      <div class="example-tags">
         <a class="js" :href="exampleLink" target="_blank">JS</a>
-      </el-tooltip>
-      <el-tooltip
-        :content="$t('editor.tooltip.tsMode')"
-        placement="bottom"
-        v-if="example.ts"
-      >
         <a class="ts" :href="exampleLink + '&lang=ts'" target="_blank">TS</a>
-      </el-tooltip>
+      </div>
+      <div>
+        <div class="example-title">{{ title }}</div>
+        <div class="example-subtitle" v-if="showSubtitle">{{ subtitle }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -90,17 +86,25 @@ export default {
   width: 100%;
   max-width: 350px;
   margin-bottom: 30px;
-
-  border-radius: 2px;
   position: relative;
+
+  .example-link {
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: block;
+  }
 
   .chart-area {
     width: 100%;
     height: 100%;
-    border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    margin-top: 10px;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 
   .example-title {
@@ -130,9 +134,8 @@ export default {
   }
 
   .example-tags {
-    position: absolute;
-    right: 10px;
-    bottom: 20px;
+    margin-top: 10px;
+    float: right;
 
     & > * {
       display: inline-block;
@@ -140,8 +143,8 @@ export default {
       margin-left: 5px;
       vertical-align: middle;
       border-radius: 3px;
-      font-size: 12px;
-      font-weight: bold;
+      font-size: 10px;
+      // font-weight: bold;
       opacity: 0.8;
 
       &:hover {
