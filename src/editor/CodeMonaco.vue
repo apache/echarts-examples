@@ -97,6 +97,9 @@ function ensureMonacoAndTsTransformer() {
         return new Promise((resolve) => {
           window.require(['vs/editor/editor.main'], function () {
             loadTypes().then(() => {
+              // Disable AMD. Which will break other libs.
+              // FIXME
+              window.define.amd = null;
               resolve();
             });
           });
@@ -163,7 +166,27 @@ export default {
   methods: {
     setInitialCode(code) {
       if (this._editor && code) {
-        this._editor.setValue(code || '');
+        // this._editor.setValue(code || '');
+
+        // https://github.com/microsoft/monaco-editor/issues/299#issuecomment-268423927
+        this._editor.executeEdits('replace', [
+          {
+            identifier: 'delete',
+            range: new monaco.Range(1, 1, 10000, 1),
+            text: '',
+            forceMoveMarkers: true
+          }
+        ]);
+        this._editor.executeEdits('replace', [
+          {
+            identifier: 'insert',
+            range: new monaco.Range(1, 1, 1, 1),
+            text: code,
+            forceMoveMarkers: true
+          }
+        ]);
+        this._editor.setSelection(new monaco.Range(0, 0, 0, 0));
+        // this._editor.setPosition(currentPosition);
       }
     }
   },

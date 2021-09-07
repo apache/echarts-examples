@@ -10,7 +10,7 @@ export const store = {
   enableDecal: 'decal' in URL_PARAMS,
   renderer: URL_PARAMS.renderer || 'canvas',
 
-  typeCheck: 'ts' in URL_PARAMS,
+  typeCheck: (URL_PARAMS.lang || '').toLowerCase() === 'ts',
   useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
   runCode: '',

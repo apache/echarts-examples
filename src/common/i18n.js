@@ -2,6 +2,7 @@ export default {
   en: {
     editor: {
       run: 'Run',
+      format: 'Format',
       errorInEditor: 'Errors exist in code!',
       chartOK: 'Chart has been generated successfully, ',
 
@@ -16,12 +17,16 @@ export default {
       download: 'Download',
 
       edit: 'Edit',
-      monacoMode: 'Enable Type Checking',
 
-      tabEditor: 'Edit Example',
+      tabEditor: 'Edit Code',
       tabFullCodePreview: 'Full Code',
       tabOptionPreview: 'Option Preview',
-      minimalBundle: 'Minimal Bundle'
+      minimalBundle: 'Minimal Bundle',
+
+      tooltip: {
+        jsMode: 'JavaScript',
+        tsMode: 'TypeScript. Provides Better Intelligent'
+      }
     },
 
     chartTypes: {
@@ -69,6 +74,7 @@ export default {
   zh: {
     editor: {
       run: '运行',
+      format: '格式化',
       errorInEditor: '编辑器内容有误！',
       chartOK: '图表已生成, ',
 
@@ -84,10 +90,15 @@ export default {
       edit: '编辑',
       monacoMode: '开启类型检查',
 
-      tabEditor: '示例编辑',
+      tabEditor: '代码编辑',
       tabFullCodePreview: '完整代码',
       tabOptionPreview: '配置项',
-      minimalBundle: '按需引入'
+      minimalBundle: '按需引入',
+
+      tooltip: {
+        jsMode: 'JavaScript 代码编辑',
+        tsMode: 'TypeScript 代码编辑，提供更好的代码补全和类型检查。'
+      }
     },
 
     chartTypes: {

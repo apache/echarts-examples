@@ -134,5 +134,7 @@ export const SCRIPT_URLS = {
   datGUIMinJS:
     'https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js',
   monacoDir: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.27.0/min/vs',
-  aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-min-noconflict'
+  aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-min-noconflict',
+
+  prettierDir: 'https://cdn.jsdelivr.net/npm/prettier@2.3.2'
 };

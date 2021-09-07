@@ -26,7 +26,6 @@
           :inactive-text="''"
         >
         </el-switch>
-
         <el-popover
           placement="bottom"
           width="450"
@@ -72,9 +71,19 @@
         >
           {{ $t('editor.download') }}
         </button>
-        <a class="screenshot" @click="screenshot" target="_blank"
-          ><i class="el-icon-camera-solid"></i
-        ></a>
+        <a class="screenshot" @click="screenshot" target="_blank">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
       </template>
       <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{
         $t('editor.edit')
@@ -98,7 +107,7 @@ import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
 import { loadScriptsAsync } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
-import { addListener, removeListener } from 'resize-detector';
+import { addListener } from 'resize-detector';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import { download } from './downloadExample';
@@ -416,8 +425,10 @@ export default {
     cursor: pointer;
   }
   .screenshot {
-    font-size: 22px;
-    margin-right: 10px;
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+    margin-top: 2px;
   }
 }
 

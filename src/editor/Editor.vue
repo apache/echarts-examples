@@ -10,13 +10,67 @@
           <span slot="label">{{ $t('editor.tabEditor') }}</span>
           <el-container>
             <el-header id="editor-control-panel">
-              <div class="editor-controls">
-                <a
-                  href="javascript:;"
-                  class="btn btn-default btn-sm"
-                  @click="disposeAndRun"
-                  >{{ $t('editor.run') }}</a
+              <div class="languages">
+                <el-tooltip
+                  :content="$t('editor.tooltip.jsMode')"
+                  placement="bottom"
                 >
+                  <a
+                    :class="{ js: true, active: !shared.typeCheck }"
+                    @click="changeLang('js')"
+                    >JS</a
+                  >
+                </el-tooltip>
+                <el-tooltip
+                  :content="$t('editor.tooltip.tsMode')"
+                  placement="bottom"
+                >
+                  <a
+                    @click="changeLang('ts')"
+                    :class="{ ts: true, active: shared.typeCheck }"
+                    >TS</a
+                  >
+                </el-tooltip>
+              </div>
+              <div class="editor-controls">
+                <a class="btn btn-sm format" @click="format">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                  <span>{{ $t('editor.format') }}</span>
+                </a>
+                <a class="btn btn-default btn-sm run" @click="disposeAndRun">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>{{ $t('editor.run') }}</span>
+                </a>
               </div>
             </el-header>
             <el-main>
@@ -51,6 +105,7 @@
               >
               </el-switch>
               <el-switch
+                v-if="!shared.typeCheck"
                 v-model="fullCodeConfig.esm"
                 active-text="ES Modules"
                 :inactive-text="''"
@@ -62,6 +117,7 @@
             </el-main>
           </el-container>
         </el-tab-pane>
+
         <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option">
           <div id="option-outline"></div>
         </el-tab-pane>
@@ -93,10 +149,23 @@ import FullCodePreview from './FullCodePreview.vue';
 import Preview from './Preview.vue';
 import { store, loadExampleCode, parseSourceCode } from '../common/store';
 import { collectDeps, buildExampleCode } from '../../common/buildCode';
+import { goto } from '../common/route';
 import { mount } from '@lang/object-visualizer';
 
 import './object-visualizer.css';
+import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { loadScriptsAsync } from '../common/helper';
 
+function ensurePrettier() {
+  if (typeof prettier === 'undefined') {
+    return loadScriptsAsync([
+      SCRIPT_URLS.prettierDir + '/standalone.js',
+      SCRIPT_URLS.prettierDir +
+        (store.typeCheck ? '/parser-typescript.js' : '/parser-babel.js')
+    ]).then(([_, parser]) => {});
+  }
+  return Promise.resolve();
+}
 export default {
   components: {
     CodeAce,
@@ -220,15 +289,35 @@ export default {
       } else if (tab === 'full-option') {
         this.updateOptionOutline();
       }
+    },
+    changeLang(lang) {
+      if ((URL_PARAMS.lang || 'js').toLowerCase() !== lang) {
+        goto(
+          Object.assign({}, URL_PARAMS, {
+            lang
+          })
+        );
+      }
+    },
+    format() {
+      ensurePrettier().then(() => {
+        this.initialCode = prettier.format(store.sourceCode, {
+          singleQuote: true,
+          tabWidth: 2,
+          printWidth: 80,
+          semi: true,
+          trailingComma: 'none',
+          // tabWidth: +this.formatCodeSettings.tabSize,
+          // printWidth: +this.formatCodeSettings.maxLineWidth,
+          parser: store.typeCheck ? 'typescript' : 'babel',
+          plugins: prettierPlugins
+        });
+        this.updateFullCode();
+      });
     }
   },
 
   watch: {
-    'shared.typeCheck'(enableTypeCheck) {
-      // Update initialCode to avoid code changed when switching editor
-      this.initialCode = store.sourceCode;
-      this.updateFullCode();
-    },
     currentTab(tab) {
       this.updateTabContent(tab);
     },
@@ -393,6 +482,43 @@ $handler-width: 5px;
     }
   }
 
+  .languages {
+    display: inline-block;
+    padding: 2px 10px;
+    font-weight: bold;
+
+    a {
+      display: inline-block;
+      padding: 3px 10px;
+      margin-left: 5px;
+      vertical-align: middle;
+      cursor: pointer;
+
+      &.ts {
+        color: #3178c6;
+      }
+
+      &.js {
+        color: #000;
+      }
+
+      &.active {
+        font-size: 12px;
+        border-radius: 3px;
+
+        &.js {
+          background: #f7df1e;
+          color: #000;
+        }
+
+        &.ts {
+          background: #3178c6;
+          color: #fff;
+        }
+      }
+    }
+  }
+
   .editor-controls {
     float: right;
 
@@ -404,16 +530,31 @@ $handler-width: 5px;
     }
 
     .btn {
-      color: #fff;
       border-radius: 0;
-      background-color: #409eff;
       margin-left: $pd-basic;
       border: none;
       height: 30px;
-      width: 50px;
-    }
-    .btn:hover {
-      background-color: lighten($color: #409eff, $amount: 5);
+
+      background: none;
+      color: $clr-text;
+
+      & > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      &.run {
+        color: #fff;
+        background-color: #409eff;
+      }
+      &.run:hover {
+        background-color: lighten($color: #409eff, $amount: 5);
+      }
     }
   }
 }
