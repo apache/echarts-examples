@@ -36,8 +36,8 @@ function codeSize(code) {
 const parser = new argparse.ArgumentParser({
   addHelp: true
 });
-parser.addArgument(['-s', '--source'], {
-  help: 'Source folder'
+parser.addArgument(['--gl'], {
+  help: 'If generating gl'
 });
 parser.addArgument(['-t', '--theme'], {
   help: 'Theme list, default to be all'
@@ -51,7 +51,7 @@ parser.addArgument(['--no-thumb'], {
 });
 
 const args = parser.parseArgs();
-const sourceFolder = args.source || 'data';
+const isGL = args.gl;
 let themeList = args.theme || 'default,dark';
 let matchPattern = args.pattern;
 if (matchPattern) {
@@ -107,7 +107,8 @@ async function takeScreenshot(
 ) {
   const thumbFolder = theme !== 'default' ? 'thumb-' + theme : 'thumb';
   const page = await browser.newPage();
-  const thumbDir = `${rootDir}public/${sourceFolder}/${thumbFolder}`;
+  const dataDir = isGL ? 'data-gl' : 'data';
+  const thumbDir = `${rootDir}public/${dataDir}/${thumbFolder}`;
   const fileBase = `${thumbDir}/${basename}`;
   const webmFile = `${fileBase}.webm`;
 
@@ -138,7 +139,9 @@ async function takeScreenshot(
     width: shotWidth || DEFAULT_PAGE_WIDTH,
     height: (shotWidth || DEFAULT_PAGE_WIDTH) * DEFAULT_PAGE_RATIO
   });
-  let url = `${SCREENSHOT_PAGE_URL}?c=${basename}&t=${theme}&s=${sourceFolder}`;
+  let url = `${SCREENSHOT_PAGE_URL}?c=${basename}&t=${theme}${
+    isGL ? '&gl' : ''
+  }`;
 
   if (hasVideo) {
     url += `&start=${videoStart}&end=${videoEnd}`;
@@ -193,9 +196,9 @@ async function takeScreenshot(
         return _$getEChartsOption();
       });
       const optionStr = optionToJson(option);
-      fse.ensureDirSync(`${rootDir}public/${sourceFolder}/option/`);
+      fse.ensureDirSync(`${rootDir}public/${dataDir}/option/`);
       fs.writeFileSync(
-        `${rootDir}public/${sourceFolder}/option/${basename}.json`,
+        `${rootDir}public/${dataDir}/option/${basename}.json`,
         optionStr,
         'utf-8'
       );
@@ -261,7 +264,9 @@ async function takeScreenshot(
   // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
   const screenshotBlackList = [];
 
-  const files = await globby(`${rootDir}public/${sourceFolder}/*.js`);
+  const files = await globby(
+    `${rootDir}public/examples/js/${isGL ? 'gl/' : ''}*.js`
+  );
 
   const exampleList = [];
 
@@ -286,10 +291,7 @@ async function takeScreenshot(
 
       let fmResult;
       try {
-        const code = fs.readFileSync(
-          `${rootDir}public/${sourceFolder}/${basename}.js`,
-          'utf-8'
-        );
+        const code = fs.readFileSync(fileName, 'utf-8');
         fmResult = matter(code, {
           delimiters: ['/*', '*/']
         });
@@ -355,7 +357,10 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
 
   if (!matchPattern) {
     fs.writeFileSync(
-      path.join(__dirname, `../src/data/chart-list-${sourceFolder}.js`),
+      path.join(
+        __dirname,
+        `../src/data/chart-list-data${isGL ? '-gl' : ''}.js`
+      ),
       code,
       'utf-8'
     );
@@ -420,7 +425,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
             }
           );
         },
-        sourceFolder === 'data-gl' ? 2 : 16
+        isGL ? 2 : 16
       );
 
       await runTasks(

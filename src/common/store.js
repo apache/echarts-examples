@@ -49,6 +49,7 @@ export function parseSourceCode(code) {
       .replace(/\/\*[\w\W]*?\*\//, '')
       .trim()
       // ts code needs add `export {}` to be a module. remove it.
+      // FIXME
       .replace(/export\s+\{\s*\}\s*;?$/g, '')
   );
 }

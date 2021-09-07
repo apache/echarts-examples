@@ -141,10 +141,11 @@
           console.error('No ROOT_PATH specified. Use default ROOT_PATH "."');
           window.ROOT_PATH = '.';
         }
-        const sourceFolder = params.s || 'data';
         const scriptTag = document.createElement('script');
         scriptTag.async = false;
-        scriptTag.src = `../public/${sourceFolder}/${params.c}.js`;
+        scriptTag.src = `../public/examples/js${'gl' in params ? '/gl' : ''}/${
+          params.c
+        }.js`;
         document.body.appendChild(scriptTag);
 
         let videoRecorder;
