@@ -292,11 +292,27 @@ export default {
     },
     changeLang(lang) {
       if ((URL_PARAMS.lang || 'js').toLowerCase() !== lang) {
-        goto(
-          Object.assign({}, URL_PARAMS, {
-            lang
+        if (!this.initialCode || store.sourceCode === this.initialCode) {
+          goto(
+            Object.assign({}, URL_PARAMS, {
+              lang
+            })
+          );
+        } else {
+          this.$confirm(this.$t('editor.codeChangedConfirm'), '', {
+            confirmButtonText: this.$t('editor.confirmButtonText'),
+            cancelButtonText: this.$t('editor.cancelButtonText'),
+            type: 'warning'
           })
-        );
+            .then(() => {
+              goto(
+                Object.assign({}, URL_PARAMS, {
+                  lang
+                })
+              );
+            })
+            .catch(() => {});
+        }
       }
     },
     format() {

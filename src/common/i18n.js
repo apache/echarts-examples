@@ -26,7 +26,12 @@ export default {
       tooltip: {
         jsMode: 'JavaScript',
         tsMode: 'TypeScript. Provides Better Intelligent'
-      }
+      },
+
+      codeChangedConfirm:
+        "Modified code will be lost. Do you wan't to continue?",
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
     },
 
     chartTypes: {
@@ -98,7 +103,12 @@ export default {
       tooltip: {
         jsMode: 'JavaScript 代码编辑',
         tsMode: 'TypeScript 代码编辑，提供更好的代码补全和类型检查。'
-      }
+      },
+
+      codeChangedConfirm: '已经修改过的代码将会丢失，是否确认继续？',
+
+      confirmButtonText: '确认',
+      cancelButtonText: '取消'
     },
 
     chartTypes: {

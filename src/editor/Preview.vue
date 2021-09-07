@@ -57,10 +57,10 @@
               </el-col>
             </el-row>
           </div>
-          <span class="render-config-trigger" slot="reference"
-            ><i class="el-icon-setting el-icon--left"></i
-            >{{ $t('editor.renderCfgTitle') }}</span
-          >
+          <span class="render-config-trigger" slot="reference">
+            <i class="el-icon-setting el-icon--left"></i
+            >{{ $t('editor.renderCfgTitle') }}
+          </span>
         </el-popover>
       </div>
       <template v-if="inEditor">
