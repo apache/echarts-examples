@@ -102,21 +102,21 @@
 </template>
 
 <script>
-import { store, updateRunHash } from '../common/store';
+import {
+  getExampleConfig,
+  isGLExample,
+  store,
+  updateRunHash
+} from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
 import { loadScriptsAsync } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { addListener } from 'resize-detector';
-import CHART_LIST from '../data/chart-list-data';
-import CHART_LIST_GL from '../data/chart-list-data-gl';
 import { download } from './downloadExample';
 
-function findExample(item) {
-  return URL_PARAMS.c === item.id;
-}
-const example = CHART_LIST.concat(CHART_LIST_GL).find(findExample);
-const isGL = CHART_LIST_GL.find(findExample);
+const example = getExampleConfig();
+const isGL = isGLExample();
 
 function addDecalIfNecessary(option) {
   if (store.enableDecal) {

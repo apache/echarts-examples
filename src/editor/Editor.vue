@@ -22,12 +22,18 @@
                   >
                 </el-tooltip>
                 <el-tooltip
-                  :content="$t('editor.tooltip.tsMode')"
+                  :content="
+                    $t(`editor.tooltip.${exampleConfig.ts ? 'tsMode' : 'noTs'}`)
+                  "
                   placement="bottom"
                 >
                   <a
-                    @click="changeLang('ts')"
-                    :class="{ ts: true, active: shared.typeCheck }"
+                    @click="exampleConfig.ts && changeLang('ts')"
+                    :class="{
+                      ts: true,
+                      active: shared.typeCheck,
+                      disabled: !exampleConfig.ts
+                    }"
                     >TS</a
                   >
                 </el-tooltip>
@@ -147,7 +153,12 @@ import CodeAce from './CodeAce.vue';
 import CodeMonaco from './CodeMonaco.vue';
 import FullCodePreview from './FullCodePreview.vue';
 import Preview from './Preview.vue';
-import { store, loadExampleCode, parseSourceCode } from '../common/store';
+import {
+  store,
+  loadExampleCode,
+  parseSourceCode,
+  getExampleConfig
+} from '../common/store';
 import { collectDeps, buildExampleCode } from '../../common/buildCode';
 import { goto } from '../common/route';
 import { mount } from '@lang/object-visualizer';
@@ -185,6 +196,8 @@ export default {
       currentTab: 'code-editor',
 
       fullCode: '',
+
+      exampleConfig: getExampleConfig(),
 
       fullCodeConfig: {
         mimimal: false,
@@ -512,6 +525,15 @@ $handler-width: 5px;
 
       &.ts {
         color: #3178c6;
+      }
+
+      &.ts.disabled {
+        color: #ddd;
+        cursor: default;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
 
       &.js {

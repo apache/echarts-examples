@@ -264,9 +264,8 @@ async function takeScreenshot(
   // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
   const screenshotBlackList = [];
 
-  const files = await globby(
-    `${rootDir}public/examples/js/${isGL ? 'gl/' : ''}*.js`
-  );
+  const examplesRoot = `${rootDir}public/examples`;
+  const files = await globby(`${examplesRoot}/js/${isGL ? 'gl/' : ''}*.js`);
 
   const exampleList = [];
 
@@ -288,6 +287,9 @@ async function takeScreenshot(
       ) {
         return;
       }
+
+      const tsFile = `${examplesRoot}/ts/${isGL ? 'gl/' : ''}${basename}.ts`;
+      const hasTs = fs.existsSync(tsFile);
 
       let fmResult;
       try {
@@ -313,6 +315,7 @@ async function takeScreenshot(
           exampleList.push({
             category: category,
             id: basename,
+            ts: hasTs,
             tags: (fmResult.data.tags || '')
               .split(/,/g)
               .map((a) => a.trim())

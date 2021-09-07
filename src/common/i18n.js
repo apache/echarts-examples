@@ -25,7 +25,8 @@ export default {
 
       tooltip: {
         jsMode: 'JavaScript',
-        tsMode: 'TypeScript. Provides Better Intelligent'
+        tsMode: 'TypeScript. Provides Better Intelligent',
+        noTs: 'No Available TypeScript Code'
       },
 
       codeChangedConfirm:
@@ -102,7 +103,8 @@ export default {
 
       tooltip: {
         jsMode: 'JavaScript 代码编辑',
-        tsMode: 'TypeScript 代码编辑，提供更好的代码补全和类型检查。'
+        tsMode: 'TypeScript 代码编辑，提供更好的代码补全和类型检查',
+        noTs: '该示例暂无 TypeScript 版本'
       },
 
       codeChangedConfirm: '已经修改过的代码将会丢失，是否确认继续？',
