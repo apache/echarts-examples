@@ -5,9 +5,9 @@ titleCN: OHLC 图（使用自定义系列）
 difficulty: 1
 */
 
-function splitData(rawData) {
-  var categoryData = [];
-  var values = [];
+function splitData(rawData: number[][]) {
+  const categoryData = [];
+  const values = [];
   for (var i = 0; i < rawData.length; i++) {
     categoryData.push(rawData[i][0]);
     rawData[i][0] = i;
@@ -19,13 +19,16 @@ function splitData(rawData) {
   };
 }
 
-function renderItem(params, api) {
+function renderItem(
+  params: echarts.CustomSeriesRenderItemParams,
+  api: echarts.CustomSeriesRenderItemAPI
+): echarts.CustomSeriesRenderItemReturn {
   var xValue = api.value(0);
   var openPoint = api.coord([xValue, api.value(1)]);
   var closePoint = api.coord([xValue, api.value(2)]);
   var lowPoint = api.coord([xValue, api.value(3)]);
   var highPoint = api.coord([xValue, api.value(4)]);
-  var halfWidth = api.size([1, 0])[0] * 0.35;
+  var halfWidth = (api.size!([1, 0]) as number[])[0] * 0.35;
   var style = api.style({
     stroke: api.visual('color')
   });
@@ -84,13 +87,13 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
           type: 'cross'
         },
         position: function (pos, params, el, elRect, size) {
-          var obj = { top: 10 };
+          var obj: Record<string, number> = { top: 10 };
           obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
           return obj;
         }
       },
       axisPointer: {
-        link: { xAxisIndex: 'all' }
+        link: [{ xAxisIndex: 'all' }]
       },
       toolbox: {
         feature: {
@@ -117,7 +120,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
           boundaryGap: false,
           axisLine: { onZero: false },
           splitLine: { show: false },
-          splitNumber: 20,
           min: 'dataMin',
           max: 'dataMax',
           axisPointer: {
@@ -154,7 +156,7 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
           name: 'Dow-Jones index',
           type: 'custom',
           renderItem: renderItem,
-          dimensions: [null, 'open', 'close', 'lowest', 'highest'],
+          dimensions: ['-', 'open', 'close', 'lowest', 'highest'],
           encode: {
             x: 0,
             y: [1, 2, 3, 4],
@@ -167,3 +169,5 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
     true
   );
 });
+
+export {};

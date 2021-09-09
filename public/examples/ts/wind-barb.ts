@@ -75,9 +75,9 @@ $.getJSON(
       };
     };
 
-    const renderWeather: echarts.CustomSeriesOption['renderItem'] = function (
-      param,
-      api
+    const renderWeather = function (
+      param: echarts.CustomSeriesRenderItemParams,
+      api: echarts.CustomSeriesRenderItemAPI
     ) {
       const point = api.coord([
         (api.value(dims.time) as number) + (3600 * 24 * 1000) / 2,
@@ -90,7 +90,7 @@ $.getJSON(
           {
             type: 'image',
             style: {
-              image: api.value(dims.weatherIcon),
+              image: api.value(dims.weatherIcon) as string,
               x: -weatherIconSize / 2,
               y: -weatherIconSize / 2,
               width: weatherIconSize,
@@ -110,7 +110,7 @@ $.getJSON(
             position: [point[0], 80]
           }
         ]
-      };
+      } as echarts.CustomSeriesRenderItemReturn;
     };
 
     option = {

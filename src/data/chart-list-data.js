@@ -220,7 +220,7 @@ export default [
       "candlestick"
     ],
     "id": "custom-ohlc",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "OHLC Chart",
     "titleCN": "OHLC 图（使用自定义系列）",
@@ -231,7 +231,7 @@ export default [
       "custom"
     ],
     "id": "custom-profit",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Profit",
     "titleCN": "利润分布直方图",
@@ -497,7 +497,7 @@ export default [
       "dataZoom"
     ],
     "id": "custom-error-scatter",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Error Scatter on Catesian",
     "titleCN": "使用自定系列给散点图添加误差范围",
@@ -817,7 +817,7 @@ export default [
       "custom"
     ],
     "id": "custom-cartesian-polygon",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Custom Cartesian Polygon",
     "titleCN": "自定义多边形图",
@@ -828,7 +828,7 @@ export default [
       "custom"
     ],
     "id": "custom-error-bar",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Error Bar on Catesian",
     "titleCN": "使用自定系列给柱状图添加误差范围",
@@ -1211,7 +1211,7 @@ export default [
       "custom"
     ],
     "id": "custom-polar-heatmap",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Polar Heatmap",
     "titleCN": "极坐标热力图（自定义系列）",
@@ -1884,7 +1884,7 @@ export default [
       "custom"
     ],
     "id": "custom-wind",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Use custom series to draw wind vectors",
     "titleCN": "使用自定义系列绘制风场",
@@ -2916,7 +2916,7 @@ export default [
       "custom"
     ],
     "id": "circle-packing-with-d3",
-    "ts": true,
+    "ts": false,
     "tags": [],
     "title": "Circle Packing with d3",
     "titleCN": "Circle Packing with d3",

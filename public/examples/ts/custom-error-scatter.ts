@@ -9,11 +9,11 @@ difficulty: 2
 // Data from https://playground.anychart.com/gallery/7.12.0/Error_Charts/Marker_Chart
 
 // prettier-ignore
-var dimensions = [
+const dimensions = [
     'name', 'Price', 'Prime cost', 'Prime cost min', 'Prime cost max', 'Price min', 'Price max'
 ];
 // prettier-ignore
-var data = [
+const data = [
     ['Blouse "Blue Viola"', 101.88, 99.75, 76.75, 116.75, 69.88, 119.88],
     ['Dress "Daisy"', 155.8, 144.03, 126.03, 156.03, 129.8, 188.8],
     ['Trousers "Cutesy Classic"', 203.25, 173.56, 151.56, 187.56, 183.25, 249.25],
@@ -33,28 +33,34 @@ var data = [
     ['Sweater "Fluffy Comfort"', 790.34, 678.34, 660.34, 690.34, 762.34, 824.34]
 ];
 
-function renderItem(params, api) {
-  var children = [];
-  var coordDims = ['x', 'y'];
+function renderItem(
+  params: echarts.CustomSeriesRenderItemParams,
+  api: echarts.CustomSeriesRenderItemAPI
+): echarts.CustomSeriesRenderItemReturn {
+  const group: echarts.CustomSeriesRenderItemReturn = {
+    type: 'group',
+    children: []
+  };
+  let coordDims = ['x', 'y'];
 
-  for (var baseDimIdx = 0; baseDimIdx < 2; baseDimIdx++) {
-    var otherDimIdx = 1 - baseDimIdx;
-    var encode = params.encode;
-    var baseValue = api.value(encode[coordDims[baseDimIdx]][0]);
-    var param = [];
+  for (let baseDimIdx = 0; baseDimIdx < 2; baseDimIdx++) {
+    let otherDimIdx = 1 - baseDimIdx;
+    let encode = params.encode;
+    let baseValue = api.value(encode[coordDims[baseDimIdx]][0]);
+    let param = [];
     param[baseDimIdx] = baseValue;
     param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][1]);
-    var highPoint = api.coord(param);
+    let highPoint = api.coord(param);
     param[otherDimIdx] = api.value(encode[coordDims[otherDimIdx]][2]);
-    var lowPoint = api.coord(param);
-    var halfWidth = 5;
+    let lowPoint = api.coord(param);
+    let halfWidth = 5;
 
     var style = api.style({
-      stroke: api.visual('color'),
-      fill: null
+      stroke: api.visual('color') as string,
+      fill: undefined
     });
 
-    children.push(
+    group.children.push(
       {
         type: 'line',
         transition: ['shape'],
@@ -94,8 +100,14 @@ function renderItem(params, api) {
     );
   }
 
-  function makeShape(baseDimIdx, base1, value1, base2, value2) {
-    var shape = {};
+  function makeShape(
+    baseDimIdx: number,
+    base1: number,
+    value1: number,
+    base2: number,
+    value2: number
+  ) {
+    var shape: Record<string, number> = {};
     shape[coordDims[baseDimIdx] + '1'] = base1;
     shape[coordDims[1 - baseDimIdx] + '1'] = value1;
     shape[coordDims[baseDimIdx] + '2'] = base2;
@@ -103,10 +115,7 @@ function renderItem(params, api) {
     return shape;
   }
 
-  return {
-    type: 'group',
-    children: children
-  };
+  return group;
 }
 
 option = {
@@ -159,3 +168,5 @@ option = {
     }
   ]
 };
+
+export {};

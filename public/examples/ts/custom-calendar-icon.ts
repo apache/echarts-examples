@@ -73,8 +73,8 @@ option = {
       coordinateSystem: 'calendar',
       renderItem: function (params, api) {
         const cellPoint = api.coord(api.value(0));
-        const cellWidth = params.coordSys.cellWidth;
-        const cellHeight = params.coordSys.cellHeight;
+        const cellWidth: number = (params.coordSys as any).cellWidth;
+        const cellHeight: number = (params.coordSys as any).cellHeight;
 
         const value = api.value(1) as string;
         const events = value && value.split('|');
@@ -83,7 +83,7 @@ option = {
           return;
         }
 
-        const group = {
+        const group: echarts.CustomSeriesRenderItemReturn = {
           type: 'group',
           children:
             (layouts[events.length - 1] || []).map(function (
@@ -93,7 +93,7 @@ option = {
               return {
                 type: 'path',
                 shape: {
-                  pathData: pathes[events[index]],
+                  pathData: pathes[+events[index]],
                   x: -8,
                   y: -8,
                   width: 16,
@@ -114,7 +114,7 @@ option = {
                     )
                 ],
                 style: api.style({
-                  fill: colors[events[index]]
+                  fill: colors[+events[index]]
                 })
               };
             }) || []
@@ -133,7 +133,7 @@ option = {
 
         return group;
       },
-      dimensions: [null, { type: 'ordinal' }],
+      dimensions: [undefined, { type: 'ordinal' }],
       data: getVirtulData('2017')
     }
   ]

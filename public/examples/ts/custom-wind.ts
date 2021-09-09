@@ -5,7 +5,7 @@ category: custom
 difficulty: 7
 */
 
-function shuffle(array) {
+function shuffle(array: any[]) {
   // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   var currentIndex = array.length;
   var temporaryValue;
@@ -91,15 +91,15 @@ $.getJSON(ROOT_PATH + '/data-gl/asset/data/winds.json', function (windData) {
           y: 0
         },
         renderItem: function (params, api) {
-          var x = api.value(0),
-            y = api.value(1),
-            dx = api.value(2),
-            dy = api.value(3);
-          var start = api.coord([
+          const x = api.value(0) as number;
+          const y = api.value(1) as number;
+          const dx = api.value(2) as number;
+          const dy = api.value(3) as number;
+          const start = api.coord([
             Math.max(x - dx / 5, -180),
             Math.max(y - dy / 5, -90)
           ]);
-          var end = api.coord([
+          const end = api.coord([
             Math.min(x + dx / 5, 180),
             Math.min(y + dy / 5, 90)
           ]);
@@ -122,3 +122,5 @@ $.getJSON(ROOT_PATH + '/data-gl/asset/data/winds.json', function (windData) {
     })
   );
 });
+
+export {};

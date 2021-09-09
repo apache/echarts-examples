@@ -31,7 +31,7 @@ $.get(
           tooltip: {
             show: true,
             confine: true,
-            formatter: function (params) {
+            formatter: function (params: any) {
               return [
                 'This is the introduction:',
                 'xxxxxxxxxxxxxxxxxxxxx',
