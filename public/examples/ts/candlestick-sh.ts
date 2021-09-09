@@ -157,7 +157,6 @@ option = {
     boundaryGap: false,
     axisLine: { onZero: false },
     splitLine: { show: false },
-    splitNumber: 20,
     min: 'dataMin',
     max: 'dataMax'
   },

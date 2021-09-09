@@ -14,29 +14,16 @@ $.when(
   run(res[0]);
 });
 
-function run(rawData: RawDataNode) {
+function run(rawData) {
   const dataWrap = prepareData(rawData);
   initChart(dataWrap.seriesData, dataWrap.maxDepth);
 }
 
-interface DataItem {
-  id: string;
-  value: number;
-  depth: number;
-  index: number;
-}
-
-type RawDataNode = {
-  [key: string]: RawDataNode;
-} & {
-  $count: number;
-};
-
-function prepareData(rawData: RawDataNode) {
-  const seriesData: DataItem[] = [];
+function prepareData(rawData) {
+  const seriesData = [];
   let maxDepth = 0;
 
-  function convert(source: RawDataNode, basePath: string, depth: number) {
+  function convert(source, basePath, depth) {
     if (source == null) {
       return;
     }
@@ -68,7 +55,7 @@ function prepareData(rawData: RawDataNode) {
   };
 }
 
-function initChart(seriesData: DataItem[], maxDepth: number) {
+function initChart(seriesData, maxDepth) {
   var displayRoot = stratify();
 
   function stratify() {
@@ -98,10 +85,7 @@ function initChart(seriesData: DataItem[], maxDepth: number) {
     });
   }
 
-  const renderItem: echarts.CustomSeriesOption['renderItem'] = function (
-    params,
-    api
-  ) {
+  function renderItem(params, api) {
     var context = params.context;
 
     // Only do that layout once in each time `setOption` called.
@@ -179,7 +163,7 @@ function initChart(seriesData: DataItem[], maxDepth: number) {
         }
       }
     };
-  };
+  }
 
   option = {
     dataset: {
@@ -210,13 +194,13 @@ function initChart(seriesData: DataItem[], maxDepth: number) {
     }
   };
 
-  myChart.setOption<echarts.EChartsOption>(option);
+  myChart.setOption < echarts.EChartsOption > option;
 
   myChart.on('click', { seriesIndex: 0 }, function (params) {
     drillDown(params.data.id);
   });
 
-  function drillDown(targetNodeId?: string) {
+  function drillDown(targetNodeId) {
     displayRoot = stratify();
     if (targetNodeId != null) {
       displayRoot = displayRoot.descendants().find(function (node) {
@@ -226,11 +210,13 @@ function initChart(seriesData: DataItem[], maxDepth: number) {
     // A trick to prevent d3-hierarchy from visiting parents in this algorithm.
     displayRoot.parent = null;
 
-    myChart.setOption<echarts.EChartsOption>({
-      dataset: {
-        source: seriesData
-      }
-    });
+    myChart.setOption <
+      echarts.EChartsOption >
+      {
+        dataset: {
+          source: seriesData
+        }
+      };
   }
 
   // Reset: click on the blank area.

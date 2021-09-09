@@ -8,7 +8,7 @@
       />
     </a>
     <div>
-      <div class="example-tags">
+      <div class="example-langs">
         <a class="js" :href="exampleLink" target="_blank">JS</a>
         <a class="ts" :href="exampleLink + '&lang=ts'" target="_blank">TS</a>
       </div>
@@ -133,7 +133,7 @@ export default {
     padding-left: 10px;
   }
 
-  .example-tags {
+  .example-langs {
     margin-top: 10px;
     float: right;
 

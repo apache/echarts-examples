@@ -36,7 +36,11 @@ $.when(
   $.getJSON('https://cdn.jsdelivr.net/npm/emoji-flags@1.3.0/data.json'),
   $.getJSON(ROOT_PATH + '/data/asset/data/life-expectancy-table.json')
 ).done(function (res0, res1) {
-  const flags = res0[0];
+  interface Flag {
+    name: string;
+    emoji: string;
+  }
+  const flags: Flag[] = res0[0];
   const data = res1[0];
   const years: string[] = [];
   for (let i = 0; i < data.length; ++i) {
@@ -74,7 +78,7 @@ $.when(
       }
     },
     dataset: {
-      source: data.slice(1).filter(function (d) {
+      source: data.slice(1).filter(function (d: string[]) {
         return d[4] === startYear;
       })
     },
@@ -85,7 +89,7 @@ $.when(
       axisLabel: {
         show: true,
         fontSize: 14,
-        formatter: function (value: string) {
+        formatter: function (value: any) {
           return value + '{flag|' + getFlag(value) + '}';
         },
         rich: {
@@ -104,8 +108,8 @@ $.when(
         seriesLayoutBy: 'column',
         type: 'bar',
         itemStyle: {
-          color: function (param: any) {
-            return countryColors[param.value[3]] || '#5470c6';
+          color: function (param) {
+            return countryColors[(param.value as number[])[3]] || '#5470c6';
           }
         },
         encode: {
@@ -155,11 +159,11 @@ $.when(
   }
 
   function updateYear(year: string) {
-    let source = data.slice(1).filter(function (d) {
+    let source = data.slice(1).filter(function (d: string[]) {
       return d[4] === year;
     });
-    option.series[0].data = source;
-    option.graphic.elements[0].style.text = year;
+    (option as any).series[0].data = source;
+    (option as any).graphic.elements[0].style.text = year;
     myChart.setOption<echarts.EChartsOption>(option);
   }
 });

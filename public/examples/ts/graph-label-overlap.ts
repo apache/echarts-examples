@@ -13,7 +13,7 @@ $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
     tooltip: {},
     legend: [
       {
-        data: graph.categories.map(function (a) {
+        data: graph.categories.map(function (a: { name: string }) {
           return a.name;
         })
       }

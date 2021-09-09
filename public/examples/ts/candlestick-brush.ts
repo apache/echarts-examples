@@ -43,7 +43,7 @@ function calculateMA(dayCount: number, data: { values: number[][] }) {
 $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
   var data = splitData(rawData);
 
-  myChart.setOption<echarts.EChartsOption>(
+  myChart.setOption(
     (option = {
       animation: false,
       legend: {
@@ -134,7 +134,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
           boundaryGap: false,
           axisLine: { onZero: false },
           splitLine: { show: false },
-          splitNumber: 20,
           min: 'dataMin',
           max: 'dataMax',
           axisPointer: {
@@ -151,7 +150,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
           axisTick: { show: false },
           splitLine: { show: false },
           axisLabel: { show: false },
-          splitNumber: 20,
           min: 'dataMin',
           max: 'dataMax'
         }

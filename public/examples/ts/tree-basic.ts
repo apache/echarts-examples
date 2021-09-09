@@ -8,7 +8,10 @@ myChart.showLoading();
 $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
   myChart.hideLoading();
 
-  data.children.forEach(function (datum, index) {
+  data.children.forEach(function (
+    datum: { collapsed: boolean },
+    index: number
+  ) {
     index % 2 === 0 && (datum.collapsed = true);
   });
 

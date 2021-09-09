@@ -65,7 +65,7 @@ $.get(
             return item.date;
           }),
           axisLabel: {
-            formatter: function (value, idx) {
+            formatter: function (value: any, idx: number) {
               var date = new Date(value);
               return idx === 0
                 ? value

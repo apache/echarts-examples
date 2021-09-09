@@ -396,12 +396,19 @@ option = {
       levels: [
         {},
         {
+          r0: 0,
+          r: 40,
           label: {
             rotate: 0
           }
         },
-        {},
         {
+          r0: 40,
+          r: 105
+        },
+        {
+          r0: 115,
+          r: 140,
           itemStyle: {
             shadowBlur: 2,
             shadowColor: colors[2],
@@ -414,6 +421,8 @@ option = {
           }
         },
         {
+          r0: 140,
+          r: 145,
           itemStyle: {
             shadowBlur: 80,
             shadowColor: colors[0]
@@ -423,7 +432,7 @@ option = {
             textShadowBlur: 5,
             textShadowColor: '#333'
           },
-          blur: {
+          downplay: {
             label: {
               opacity: 0.5
             }

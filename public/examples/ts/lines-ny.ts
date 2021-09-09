@@ -9,7 +9,7 @@ var CHUNK_COUNT = 32;
 
 var dataCount = 0;
 
-function fetchData(idx) {
+function fetchData(idx: number) {
   if (idx >= CHUNK_COUNT) {
     return;
   }

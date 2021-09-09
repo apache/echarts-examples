@@ -135,7 +135,7 @@ option = {
         focus: 'series',
         label: {
           show: true,
-          formatter: function (param) {
+          formatter: function (param: any) {
             return param.data[3];
           },
           position: 'top'

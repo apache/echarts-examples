@@ -21,7 +21,7 @@ $.get(
         roam: true,
         emphasis: {
           itemStyle: {
-            color: null
+            color: undefined
           },
           label: {
             show: false

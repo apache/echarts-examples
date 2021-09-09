@@ -25,7 +25,7 @@ $.get(ROOT_PATH + '/data/asset/geo/flight-seats.svg', function (svg) {
       },
       emphasis: {
         itemStyle: {
-          color: null,
+          color: undefined,
           borderColor: 'green',
           borderWidth: 2
         },

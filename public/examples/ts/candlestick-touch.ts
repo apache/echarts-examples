@@ -107,7 +107,7 @@ option = {
       boundaryGap: false,
       axisLine: { lineStyle: { color: '#777' } },
       axisLabel: {
-        formatter: function (value) {
+        formatter: function (value: any) {
           return echarts.format.formatTime('MM-dd', value);
         }
       },
@@ -127,7 +127,6 @@ option = {
       axisLabel: { show: false },
       axisTick: { show: false },
       axisLine: { lineStyle: { color: '#777' } },
-      splitNumber: 20,
       min: 'dataMin',
       max: 'dataMax',
       axisPointer: {

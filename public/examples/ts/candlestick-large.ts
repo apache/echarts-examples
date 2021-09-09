@@ -54,7 +54,6 @@ option = {
       // inverse: true,
       axisLine: { onZero: false },
       splitLine: { show: false },
-      splitNumber: 20,
       min: 'dataMin',
       max: 'dataMax'
     },
@@ -67,7 +66,6 @@ option = {
       axisTick: { show: false },
       splitLine: { show: false },
       axisLabel: { show: false },
-      splitNumber: 20,
       min: 'dataMin',
       max: 'dataMax'
     }

@@ -59,14 +59,13 @@ app.config = {
   position: 'insideBottom',
   distance: 15,
   onChange: function () {
-    var labelOption = {
-      normal: {
-        rotate: app.config.rotate,
-        align: app.config.align,
-        verticalAlign: app.config.verticalAlign,
-        position: app.config.position,
-        distance: app.config.distance
-      }
+    const labelOption: BarLabelOption = {
+      rotate: app.config.rotate as BarLabelOption['rotate'],
+      align: app.config.align as BarLabelOption['align'],
+      verticalAlign: app.config
+        .verticalAlign as BarLabelOption['verticalAlign'],
+      position: app.config.position as BarLabelOption['position'],
+      distance: app.config.distance as BarLabelOption['distance']
     };
     myChart.setOption<echarts.EChartsOption>({
       series: [
@@ -89,7 +88,7 @@ app.config = {
 
 type BarLabelOption = NonNullable<echarts.BarSeriesOption['label']>;
 
-const labelOption = {
+const labelOption: BarLabelOption = {
   show: true,
   position: app.config.position as BarLabelOption['position'],
   distance: app.config.distance as BarLabelOption['distance'],
@@ -178,3 +177,5 @@ option = {
     }
   ]
 };
+
+export {};

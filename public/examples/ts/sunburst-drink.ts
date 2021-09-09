@@ -822,7 +822,7 @@ option = {
 
     data: data,
     radius: [0, '95%'],
-    sort: null,
+    sort: undefined,
 
     emphasis: {
       focus: 'ancestor'

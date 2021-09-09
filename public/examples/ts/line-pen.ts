@@ -19,7 +19,7 @@ option = {
     text: 'Click to Add Points'
   },
   tooltip: {
-    formatter: function (params) {
+    formatter: function (params: any) {
       var data = params.data || [0, 0];
       return data[0].toFixed(2) + ', ' + data[1].toFixed(2);
     }
@@ -55,7 +55,7 @@ option = {
 
 var zr = myChart.getZr();
 
-zr.on('click', function (params) {
+zr.on('click', function (params: any) {
   var pointInPixel = [params.offsetX, params.offsetY];
   var pointInGrid = myChart.convertFromPixel('grid', pointInPixel);
 
@@ -73,7 +73,7 @@ zr.on('click', function (params) {
   }
 });
 
-zr.on('mousemove', function (params) {
+zr.on('mousemove', function (params: any) {
   var pointInPixel = [params.offsetX, params.offsetY];
   zr.setCursorStyle(
     myChart.containPixel('grid', pointInPixel) ? 'copy' : 'default'

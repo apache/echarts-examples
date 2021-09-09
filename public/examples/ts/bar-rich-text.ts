@@ -49,7 +49,7 @@ option = {
     inverse: true,
     data: ['Sunny', 'Cloudy', 'Showers'],
     axisLabel: {
-      formatter: function (value) {
+      formatter: function (value: string) {
         return '{' + value + '| }\n{value|' + value + '}';
       },
       margin: 20,

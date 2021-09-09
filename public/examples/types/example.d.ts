@@ -23,6 +23,7 @@ declare global {
   };
 
   const ecStat: any;
+  const d3: any;
 
   const myChart: echarts.ECharts;
   let option: echarts.EChartsOption;
