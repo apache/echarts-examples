@@ -164,19 +164,9 @@ import { goto } from '../common/route';
 import { mount } from '@lang/object-visualizer';
 
 import './object-visualizer.css';
-import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
-import { loadScriptsAsync } from '../common/helper';
+import { URL_PARAMS } from '../common/config';
+import { formatCode } from '../common/helper';
 
-function ensurePrettier() {
-  if (typeof prettier === 'undefined') {
-    return loadScriptsAsync([
-      SCRIPT_URLS.prettierDir + '/standalone.js',
-      SCRIPT_URLS.prettierDir +
-        (store.typeCheck ? '/parser-typescript.js' : '/parser-babel.js')
-    ]).then(([_, parser]) => {});
-  }
-  return Promise.resolve();
-}
 export default {
   components: {
     CodeAce,
@@ -274,6 +264,10 @@ export default {
         theme: store.darkMode ? 'dark' : '',
         ROOT_PATH: store.cdnRoot
       });
+      // Format
+      formatCode(this.fullCode).then((code) => {
+        this.fullCode = code;
+      });
     },
     updateOptionOutline() {
       const option = Object.freeze(this.$refs.preview.getOption());
@@ -368,19 +362,8 @@ export default {
       }
     },
     format() {
-      ensurePrettier().then(() => {
-        this.initialCode = prettier.format(store.sourceCode, {
-          singleQuote: true,
-          tabWidth: 2,
-          printWidth: 80,
-          semi: true,
-          trailingComma: 'none',
-          // tabWidth: +this.formatCodeSettings.tabSize,
-          // printWidth: +this.formatCodeSettings.maxLineWidth,
-          parser: store.typeCheck ? 'typescript' : 'babel',
-          plugins: prettierPlugins
-        });
-        this.updateFullCode();
+      formatCode(store.sourceCode).then((code) => {
+        this.initialCode = code;
       });
     }
   },

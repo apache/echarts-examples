@@ -1,3 +1,5 @@
+import { store } from './store';
+import { SCRIPT_URLS } from './config';
 const promisesCache = {};
 
 export function loadScriptsAsync(scripts) {
@@ -56,4 +58,31 @@ export function downloadBlob(blob, fileName) {
     // should revoke the blob url after the download
     URL.revokeObjectURL(a.href);
   }
+}
+
+function ensurePrettier() {
+  if (typeof prettier === 'undefined') {
+    return loadScriptsAsync([
+      SCRIPT_URLS.prettierDir + '/standalone.js',
+      SCRIPT_URLS.prettierDir +
+        (store.typeCheck ? '/parser-typescript.js' : '/parser-babel.js')
+    ]).then(([_, parser]) => {});
+  }
+  return Promise.resolve();
+}
+
+export function formatCode(code) {
+  return ensurePrettier().then(() => {
+    return prettier.format(code, {
+      singleQuote: true,
+      tabWidth: 2,
+      printWidth: 80,
+      semi: true,
+      trailingComma: 'none',
+      // tabWidth: +this.formatCodeSettings.tabSize,
+      // printWidth: +this.formatCodeSettings.maxLineWidth,
+      parser: store.typeCheck ? 'typescript' : 'babel',
+      plugins: prettierPlugins
+    });
+  });
 }
