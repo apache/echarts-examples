@@ -18,7 +18,6 @@
 .key {
   /* color: #4078f2; */
   color: #111;
-  user-select: none;
 }
 
 .string > .value {
@@ -38,7 +37,6 @@
 .separator {
   cursor: pointer;
   font-size: 0.8em;
-  user-select: none;
   color: hsl(0, 0%, 30%);
 }
 

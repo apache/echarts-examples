@@ -280,6 +280,7 @@ export default {
       if (!option) {
         return;
       }
+      const tipTitle = this.$t('editor.tooltip.gotoDoc');
       mount(option, this.$el.querySelector('#option-outline'), {
         getKeys(object, path) {
           return Object.keys(object).filter((key) => {
@@ -288,6 +289,43 @@ export default {
             }
             return true;
           });
+        },
+        renderName(name, path) {
+          let obj = option;
+          let hash = [];
+          let isTopLevel = true;
+          for (let i = 0; i < path.length; i++) {
+            let key = path[i];
+            obj = obj[key];
+
+            if (obj == null) {
+              hash.push(key);
+              break;
+            }
+
+            if (Array.isArray(obj) && isTopLevel) {
+              // Get type of component / series.
+              const item = obj[path[i + 1]];
+              const type = item && item.type;
+              if (type) {
+                key += '-' + type;
+                i++;
+                obj = item;
+              }
+            } else if (!isNaN(key)) {
+              // Ignore data[0]
+              continue;
+            }
+            hash.push(key);
+          }
+
+          const isObjOrArray = typeof obj === 'object' && obj != null;
+          const link = `https://echarts.apache.org/zh/option.html#${hash.join(
+            '.'
+          )}`;
+          return !isObjOrArray
+            ? `<a href="${link}" target="_blank" title="${tipTitle}">${name}</a>`
+            : `${name}<a href="${link}" target="_blank" title="${tipTitle}"><i class="el-icon-document"></i></a>`;
         },
         expandOnCreatedAndUpdated(path) {
           return (
@@ -479,6 +517,15 @@ $handler-width: 5px;
 
   font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas',
     monospace;
+
+  .el-icon-document {
+    margin-left: 5px;
+    font-size: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 #full-code-generate-config {

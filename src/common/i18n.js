@@ -26,7 +26,9 @@ export default {
       tooltip: {
         jsMode: 'JavaScript',
         tsMode: 'TypeScript. Provides Better Intelligent',
-        noTs: 'No Available TypeScript Code'
+        noTs: 'No Available TypeScript Code',
+
+        gotoDoc: 'Go To Documentation'
       },
 
       codeChangedConfirm:
@@ -104,7 +106,9 @@ export default {
       tooltip: {
         jsMode: 'JavaScript 代码编辑',
         tsMode: 'TypeScript 代码编辑，提供更好的代码补全和类型检查',
-        noTs: '该示例暂无 TypeScript 版本'
+        noTs: '该示例暂无 TypeScript 版本',
+
+        gotoDoc: '查看文档'
       },
 
       codeChangedConfirm: '已经修改过的代码将会丢失，是否确认继续？',
