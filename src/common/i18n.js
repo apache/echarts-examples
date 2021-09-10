@@ -15,6 +15,7 @@ export default {
       useDirtyRect: 'Use Dirty Rect',
 
       download: 'Download',
+      screenshot: 'Screenshot',
 
       edit: 'Edit',
 
@@ -94,6 +95,7 @@ export default {
       useDirtyRect: '开启脏矩形优化',
       renderer: '渲染模式',
       download: '下载示例',
+      screenshot: '截图',
 
       edit: '编辑',
       monacoMode: '开启类型检查',

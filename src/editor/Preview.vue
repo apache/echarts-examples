@@ -26,13 +26,7 @@
           :inactive-text="''"
         >
         </el-switch>
-        <el-popover
-          placement="bottom"
-          width="450"
-          trigger="click"
-          style="margin-top: 3px"
-          v-if="!isGL"
-        >
+        <el-popover placement="bottom" width="450" trigger="click" v-if="!isGL">
           <div class="render-config-container">
             <el-row :gutter="2" type="flex" align="middle">
               <el-col :span="12">
@@ -58,45 +52,72 @@
             </el-row>
           </div>
           <span class="render-config-trigger" slot="reference">
-            <i class="el-icon-setting el-icon--left"></i
-            >{{ $t('editor.renderCfgTitle') }}
+            <el-button size="mini">
+              {{ $t('editor.renderCfgTitle')
+              }}<i class="el-icon-setting el-icon--right"></i>
+            </el-button>
+            <!-- <i class="el-icon-setting el-icon--left"></i
+            >{{ $t('editor.renderCfgTitle') }} -->
           </span>
         </el-popover>
-      </div>
-      <template v-if="inEditor">
-        <button
-          v-if="!shared.isMobile"
-          class="download btn btn-sm"
-          @click="downloadExample"
+        <el-select
+          v-if="shared.echartsVersion"
+          class="version-select"
+          size="mini"
+          id="choose-echarts-version"
+          v-model="shared.echartsVersion"
+          @change="changeVersion"
         >
-          {{ $t('editor.download') }}
-        </button>
-        <a class="screenshot" @click="screenshot" target="_blank">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+          <el-option
+            v-for="version in allEchartsVersions"
+            :key="version"
+            :label="version"
+            :value="version"
           >
-            <path
-              fill-rule="evenodd"
-              d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </a>
-      </template>
-      <a :href="editLink" target="_blank" v-else class="edit btn btn-sm">{{
-        $t('editor.edit')
-      }}</a>
+            {{ version }}
+          </el-option>
+        </el-select>
+      </div>
+
+      <a
+        :href="editLink"
+        target="_blank"
+        v-if="!inEditor"
+        class="edit btn btn-sm"
+        >{{ $t('editor.edit') }}</a
+      >
     </div>
 
-    <div id="code-info" v-if="inEditor && !shared.isMobile">
-      <template v-if="shared.editorStatus.message">
-        <span class="code-info-time">{{ currentTime }}</span>
-        <span :class="'code-info-type-' + shared.editorStatus.type">{{
+    <div id="preview-status">
+      <div class="left">
+        <template v-if="inEditor && !shared.isMobile">
+          <el-button
+            icon="el-icon-download"
+            size="mini"
+            @click="downloadExample"
+          >
+            {{ $t('editor.download') }}
+          </el-button>
+          <el-button
+            @click="screenshot"
+            icon="el-icon-camera-solid"
+            size="mini"
+          >
+            {{ $t('editor.screenshot') }}
+          </el-button>
+        </template>
+      </div>
+
+      <div
+        class="right"
+        id="run-log"
+        v-if="inEditor && !shared.isMobile && shared.editorStatus.message"
+      >
+        <span class="run-log-time">{{ currentTime }}</span>
+        <span :class="'run-log-type-' + shared.editorStatus.type">{{
           shared.editorStatus.message
         }}</span>
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -130,6 +151,10 @@ function addDecalIfNecessary(option) {
 export function ensureECharts() {
   if (typeof echarts === 'undefined') {
     const hasBmap = example && example.tags.indexOf('bmap') >= 0;
+    const echartsDir = SCRIPT_URLS.echartsDir.replace(
+      '{{version}}',
+      store.echartsVersion
+    );
 
     // Code from https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu
     if (hasBmap) {
@@ -141,15 +166,15 @@ export function ensureECharts() {
       SCRIPT_URLS.datGUIMinJS,
       'local' in URL_PARAMS
         ? SCRIPT_URLS.localEChartsMinJS
-        : SCRIPT_URLS.echartsMinJS,
-      SCRIPT_URLS.echartsDir + '/dist/extension/dataTool.js',
+        : SCRIPT_URLS.echartsMinJS.replace('{{version}}', store.echartsVersion),
+      echartsDir + '/dist/extension/dataTool.js',
       'https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js',
       SCRIPT_URLS.echartsStatMinJS,
       ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
       ...(hasBmap
         ? [
             'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
-            SCRIPT_URLS.echartsDir + '/dist/extension/bmap.js'
+            echartsDir + '/dist/extension/bmap.js'
           ]
         : [])
     ]).then(() => {
@@ -230,24 +255,38 @@ export default {
       autoRun: true,
       loading: false,
 
-      isGL
+      isGL,
+
+      allEchartsVersions: []
     };
   },
 
   mounted() {
-    this.loading = true;
-    ensureECharts().then(() => {
-      this.loading = false;
-      if (store.runCode) {
-        this.run();
-      }
-    });
+    this.loadECharts();
 
     addListener(this.$el, () => {
       if (this.sandbox) {
         this.sandbox.resize();
       }
     });
+
+    $.getJSON('https://data.jsdelivr.com/v1/package/npm/echarts').done(
+      (data) => {
+        const versions = data.versions.filter(
+          (version) =>
+            version.indexOf('beta') < 0 &&
+            version.indexOf('rc') < 0 &&
+            version.indexOf('alpha') < 0 &&
+            version.startsWith('5') // Only version 5.
+        );
+        this.allEchartsVersions = versions;
+
+        // Use last version
+        if (!store.echartsVersion || store.echartsVersion === '5') {
+          store.echartsVersion = data.versions[0];
+        }
+      }
+    );
   },
 
   computed: {
@@ -292,6 +331,15 @@ export default {
     run,
     // debouncedRun will be created at first run
     // debouncedRun: null,
+    loadECharts() {
+      this.loading = true;
+      ensureECharts().then(() => {
+        this.loading = false;
+        if (store.runCode) {
+          this.run();
+        }
+      });
+    },
     refreshAll() {
       this.dispose();
       this.run();
@@ -321,6 +369,13 @@ export default {
     },
     getOption() {
       return this.sandbox && this.sandbox.getOption();
+    },
+    changeVersion() {
+      if (this.sandbox) {
+        this.sandbox.dispose();
+      }
+      window.echarts = undefined;
+      this.loadECharts();
     }
     // hasEditorError() {
     //     const annotations = this.editor.getSession().getAnnotations();
@@ -343,7 +398,7 @@ export default {
   // top: $control-panel-height;
   top: 42px;
   right: 15px;
-  bottom: 40px;
+  bottom: 50px;
   left: 15px;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
@@ -387,15 +442,18 @@ export default {
   padding-top: 5px;
   padding-left: 15px;
 
-  // .el-switch__label * {
-  //     font-size: 12px;
-  // }
+  * {
+    font-size: 12px;
+  }
 
   .render-config-trigger {
-    margin-left: 10px;
     cursor: pointer;
     font-weight: 500;
-    // font-size: 12px;
+    margin-left: 10px;
+  }
+  .version-select {
+    width: 80px;
+    margin-left: 10px;
   }
 
   label {
@@ -417,18 +475,10 @@ export default {
     margin-left: 20px;
   }
 
-  .screenshot,
-  .download,
   .edit {
     float: right;
     margin-right: 15px;
     cursor: pointer;
-  }
-  .screenshot {
-    margin-right: 5px;
-    width: 25px;
-    height: 25px;
-    margin-top: 2px;
   }
 }
 
@@ -449,37 +499,64 @@ export default {
   }
 }
 
-#code-info {
+#preview-status {
+  overflow: hidden;
   position: absolute;
   bottom: 5px;
-  right: 20px;
-  overflow: hidden;
+  left: 0;
+  right: 0;
+  height: 30px;
 
-  height: 25px;
-  line-height: 25px;
-  padding: 0;
+  padding: 0 20px;
 
   // border-top: 1px solid $clr-border;
   font-size: 0.9rem;
 
-  .code-info-time {
-    color: $clr-text;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 12px;
+  .screenshot,
+  .download,
+  .edit {
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  .screenshot {
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+    margin-top: 2px;
   }
 
-  .code-info-type-info {
-    color: $clr-text;
-    font-size: 12px;
+  .left {
+    float: left;
+    & > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
-  .code-info-type-warn {
-    color: $clr-warn;
+  .right {
+    float: right;
   }
+  #run-log {
+    line-height: 25px;
+    .run-log-time {
+      color: $clr-text;
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 12px;
+    }
 
-  .code-info-type-error {
-    color: $clr-error;
+    .run-log-type-info {
+      color: $clr-text;
+      font-size: 12px;
+    }
+
+    .run-log-type-warn {
+      color: $clr-warn;
+    }
+
+    .run-log-type-error {
+      color: $clr-error;
+    }
   }
 }
 

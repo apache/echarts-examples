@@ -4,6 +4,8 @@ import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 
 export const store = {
+  echartsVersion: '5',
+
   cdnRoot: '',
   version: '',
   locale: '',
