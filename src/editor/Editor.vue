@@ -281,6 +281,7 @@ export default {
         return;
       }
       const tipTitle = this.$t('editor.tooltip.gotoDoc');
+      const lang = this.$i18n.locale;
       mount(option, this.$el.querySelector('#option-outline'), {
         getKeys(object, path) {
           return Object.keys(object).filter((key) => {
@@ -320,7 +321,7 @@ export default {
           }
 
           const isObjOrArray = typeof obj === 'object' && obj != null;
-          const link = `https://echarts.apache.org/zh/option.html#${hash.join(
+          const link = `https://echarts.apache.org/${lang}/option.html#${hash.join(
             '.'
           )}`;
           return !isObjOrArray
