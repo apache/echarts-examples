@@ -79,6 +79,8 @@ const CHARTS_GL_MAP = {
   linesGL: 'LinesGLChart'
 };
 
+const FEATURES = ['UniversalTransition', 'LabelLayout'];
+
 const COMPONENTS_MAP_REVERSE = {};
 const CHARTS_MAP_REVERSE = {};
 const CHARTS_GL_MAP_REVERSE = {};
@@ -180,6 +182,13 @@ module.exports.collectDeps = function collectDeps(option) {
         deps.push(COMPONENTS_MAP[markerType]);
       }
     });
+    // Features
+    if (seriesOpt.labelLayout) {
+      deps.push('LabelLayout');
+    }
+    if (seriesOpt.universalTransition) {
+      deps.push('UniversalTransition');
+    }
   });
 
   // Remove duplicates
@@ -191,6 +200,7 @@ function buildMinimalBundleCode(deps, includeType) {
   const componentsImports = [];
   const chartsGLImports = [];
   const componentsGLImports = [];
+  const featuresImports = [];
   const renderersImports = [];
   deps.forEach(function (dep) {
     if (dep.endsWith('Renderer')) {
@@ -209,6 +219,8 @@ function buildMinimalBundleCode(deps, includeType) {
       chartsGLImports.push(dep);
     } else if (COMPONENTS_GL_MAP_REVERSE[dep]) {
       componentsGLImports.push(dep);
+    } else if (FEATURES.includes(dep)) {
+      featuresImports.push(dep);
     }
   });
 
@@ -226,7 +238,8 @@ function buildMinimalBundleCode(deps, includeType) {
     ...chartsImports,
     ...componentsGLImports,
     ...chartsGLImports,
-    ...renderersImports
+    ...renderersImports,
+    ...featuresImports
   ];
 
   const ECOptionTypeCode = `
@@ -236,6 +249,7 @@ type EChartsOption = echarts.ComposeOption<
   const importsCodes = [
     [componentsImports, 'echarts/components'],
     [chartsImports, 'echarts/charts'],
+    [featuresImports, 'echarts/features'],
     [renderersImports, 'echarts/renderers'],
     [chartsGLImports, 'echarts-gl/charts'],
     [componentsGLImports, 'echarts-gl/components']
