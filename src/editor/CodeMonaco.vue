@@ -12,7 +12,8 @@ function loadTypes() {
   return fetch(
     ('local' in URL_PARAMS
       ? SCRIPT_URLS.localEChartsDir
-      : SCRIPT_URLS.echartsDir) + '/types/dist/echarts.d.ts',
+      : SCRIPT_URLS.echartsDir.replace('{{version}}', store.echartsVersion)) +
+      '/types/dist/echarts.d.ts',
     {
       mode: 'cors'
     }
