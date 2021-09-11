@@ -190,6 +190,14 @@ module.exports.collectDeps = function collectDeps(option) {
       deps.push('UniversalTransition');
     }
   });
+  // Dataset transform
+  if (option.dataset && Array.isArray(option.dataset)) {
+    option.dataset.forEach((dataset) => {
+      if (dataset.transform) {
+        deps.push('TransformComponent');
+      }
+    });
+  }
 
   // Remove duplicates
   return Array.from(new Set(deps));
@@ -215,6 +223,10 @@ function buildMinimalBundleCode(deps, includeType) {
       if (includeType) {
         componentsImports.push(dep.replace(/Component$/, 'ComponentOption'));
       }
+    } else if (dep === 'TransformComponent') {
+      // TransformComponent don't have individual option type.
+      // TODO will put in to an config if there are other similar components
+      componentsImports.push(dep);
     } else if (CHARTS_GL_MAP_REVERSE[dep]) {
       chartsGLImports.push(dep);
     } else if (COMPONENTS_GL_MAP_REVERSE[dep]) {
