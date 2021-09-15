@@ -22,17 +22,15 @@
                   >
                 </el-tooltip>
                 <el-tooltip
-                  :content="
-                    $t(`editor.tooltip.${exampleConfig.ts ? 'tsMode' : 'noTs'}`)
-                  "
+                  :content="$t(`editor.tooltip.${hasTs ? 'tsMode' : 'noTs'}`)"
                   placement="bottom"
                 >
                   <a
-                    @click="exampleConfig.ts && changeLang('ts')"
+                    @click="hasTs && changeLang('ts')"
                     :class="{
                       ts: true,
                       active: shared.typeCheck,
-                      disabled: !exampleConfig.ts
+                      disabled: !hasTs
                     }"
                     >TS</a
                   >
@@ -198,6 +196,9 @@ export default {
   },
 
   computed: {
+    hasTs() {
+      return this.exampleConfig && this.exampleConfig.ts;
+    },
     currentTime() {
       // Update time when message updated.
       const message = this.shared.message;
