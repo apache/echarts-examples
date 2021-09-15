@@ -126,6 +126,7 @@
 import {
   getExampleConfig,
   isGLExample,
+  saveExampleCodeToLocal,
   store,
   updateRunHash
 } from '../common/store';
@@ -135,9 +136,12 @@ import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { addListener } from 'resize-detector';
 import { download } from './downloadExample';
+import { gotoURL } from '../common/route';
 
 const example = getExampleConfig();
 const isGL = isGLExample();
+
+const echartsVersions = {};
 
 function addDecalIfNecessary(option) {
   if (store.enableDecal) {
@@ -167,7 +171,6 @@ export function ensureECharts() {
       'local' in URL_PARAMS
         ? SCRIPT_URLS.localEChartsMinJS
         : SCRIPT_URLS.echartsMinJS.replace('{{version}}', store.echartsVersion),
-      echartsDir + '/dist/extension/dataTool.js',
       'https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js',
       SCRIPT_URLS.echartsStatMinJS,
       ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
@@ -371,11 +374,14 @@ export default {
       return this.sandbox && this.sandbox.getOption();
     },
     changeVersion() {
-      if (this.sandbox) {
-        this.sandbox.dispose();
-      }
-      window.echarts = undefined;
-      this.loadECharts();
+      saveExampleCodeToLocal();
+      setTimeout(() => {
+        gotoURL(
+          Object.assign({}, URL_PARAMS, {
+            version: store.echartsVersion
+          })
+        );
+      });
     }
     // hasEditorError() {
     //     const annotations = this.editor.getSession().getAnnotations();

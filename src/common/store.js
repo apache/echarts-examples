@@ -4,7 +4,7 @@ import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 
 export const store = {
-  echartsVersion: '5',
+  echartsVersion: URL_PARAMS.version || '5',
 
   cdnRoot: '',
   version: '',
@@ -45,7 +45,34 @@ export function isGLExample() {
   return CHART_LIST_GL.find(findExample);
 }
 
+export function saveExampleCodeToLocal() {
+  localStorage.setItem(
+    'echarts-examples-code',
+    JSON.stringify({
+      code: store.sourceCode,
+      lang: store.typeCheck ? 'ts' : 'js'
+    })
+  );
+}
+
+export function loadExampleCodeFromLocal() {
+  try {
+    return JSON.parse(localStorage.getItem('echarts-examples-code'));
+  } catch (e) {
+    return null;
+  }
+}
+
+export function clearLocalExampleCode() {
+  localStorage.removeItem('echarts-examples-code');
+}
+
 export function loadExampleCode() {
+  const localCode = loadExampleCodeFromLocal();
+  if (localCode) {
+    clearLocalExampleCode();
+    return Promise.resolve(localCode.code);
+  }
   return new Promise((resolve) => {
     const glFolder = URL_PARAMS.gl ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';

@@ -21,7 +21,7 @@ export function getURL(params) {
   );
 }
 
-export function goto(params, pushHistory) {
+export function gotoURL(params, pushHistory) {
   if (pushHistory) {
     history.pushState({}, getURL(params));
   } else {

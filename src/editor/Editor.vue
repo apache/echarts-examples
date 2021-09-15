@@ -160,7 +160,7 @@ import {
   getExampleConfig
 } from '../common/store';
 import { collectDeps, buildExampleCode } from '../../common/buildCode';
-import { goto } from '../common/route';
+import { gotoURL } from '../common/route';
 import { mount } from '@lang/object-visualizer';
 
 import './object-visualizer.css';
@@ -339,7 +339,7 @@ export default {
     changeLang(lang) {
       if ((URL_PARAMS.lang || 'js').toLowerCase() !== lang) {
         if (!this.initialCode || store.sourceCode === this.initialCode) {
-          goto(
+          gotoURL(
             Object.assign({}, URL_PARAMS, {
               lang
             })
@@ -351,7 +351,7 @@ export default {
             type: 'warning'
           })
             .then(() => {
-              goto(
+              gotoURL(
                 Object.assign({}, URL_PARAMS, {
                   lang
                 })

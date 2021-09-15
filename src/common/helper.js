@@ -1,5 +1,6 @@
 import { store } from './store';
 import { SCRIPT_URLS } from './config';
+
 const promisesCache = {};
 
 export function loadScriptsAsync(scripts) {
