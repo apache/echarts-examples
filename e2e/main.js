@@ -45,7 +45,8 @@ parser.addArgument(['-t', '--tests'], {
 });
 const args = parser.parseArgs();
 
-const EXAMPLE_DIR = nodePath.resolve(`${__dirname}/../public`);
+const PUBLIC_DIR = nodePath.resolve(`${__dirname}/../public`);
+const EXAMPLE_DIR = nodePath.resolve(`${PUBLIC_DIR}/examples`);
 const TMP_DIR = `${__dirname}/tmp`;
 const RUN_CODE_DIR = `${TMP_DIR}/tests`;
 const BUNDLE_DIR = `${TMP_DIR}/bundles`;
@@ -233,8 +234,8 @@ async function installPackages(config) {
 
 async function buildRunCode() {
   const files = await globby([
-    `${EXAMPLE_DIR}/data/option/*.json`,
-    `${EXAMPLE_DIR}/data-gl/option/*.json`
+    `${PUBLIC_DIR}/data/option/*.json`,
+    `${PUBLIC_DIR}/data-gl/option/*.json`
   ]);
 
   if (!files.length) {
@@ -318,7 +319,7 @@ async function buildRunCode() {
   const builtinTestCases = await runTasks(
     files,
     async (fileName) => {
-      const isGL = fileName.startsWith(`${EXAMPLE_DIR}/data-gl`);
+      const isGL = fileName.startsWith(`${PUBLIC_DIR}/data-gl`);
       const testName = nodePath.basename(fileName, '.json');
 
       if (
@@ -339,7 +340,7 @@ async function buildRunCode() {
         throw err;
       }
       const testCode = await fse.readFile(
-        nodePath.join(EXAMPLE_DIR, isGL ? 'data-gl' : 'data', testName + '.js'),
+        nodePath.join(EXAMPLE_DIR, 'js', isGL ? 'gl' : '', testName + '.js'),
         'utf-8'
       );
 
