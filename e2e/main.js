@@ -361,8 +361,8 @@ async function buildRunCode() {
         return;
       }
 
-      // TODO: Don't support TypeScript in GL
-      await addTestCase(testName, testCode, deps, !isGL);
+      // Do typescript check in compile:example
+      await addTestCase(testName, testCode, deps, false);
 
       return testName;
     },
@@ -739,8 +739,16 @@ async function compareExamples(testNames, result) {
       `${testName}.${MINIMAL_LEGACY_POSTFIX}.diff.png`
     );
 
-    writePNG(diffMinimal.diffPNG, diffMinimalPNGPath);
-    writePNG(diffMinimalLegacy.diffPNG, diffMinimalLegacyPNGPath);
+    if (!diffMinimal.diffPNG) {
+      console.error(`Screenshot Error in ${testName}`);
+    } else {
+      writePNG(diffMinimal.diffPNG, diffMinimalPNGPath);
+    }
+    if (!diffMinimalLegacy.diffPNG) {
+      console.error(`Screenshot Error in ${testName}, minimal`);
+    } else {
+      writePNG(diffMinimalLegacy.diffPNG, diffMinimalLegacyPNGPath);
+    }
 
     result[testName].screenshotDiff = {
       minimal: {
