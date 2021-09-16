@@ -27,9 +27,9 @@ async function run() {
     fs.writeFileSync(file, content, 'utf-8');
   }
 
-  if (hasError) {
-    shell.exit(1);
-  }
+  // if (hasError) {
+  //   shell.exit(1);
+  // }
 }
 
 run();

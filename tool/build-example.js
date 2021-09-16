@@ -37,7 +37,8 @@ const parser = new argparse.ArgumentParser({
   addHelp: true
 });
 parser.addArgument(['--gl'], {
-  help: 'If generating gl'
+  help: 'If generating gl',
+  action: 'storeTrue'
 });
 parser.addArgument(['-t', '--theme'], {
   help: 'Theme list, default to be all'
@@ -69,7 +70,7 @@ const DEFAULT_PAGE_RATIO = 0.75;
 const OUTPUT_IMAGE_WIDTH = 600;
 const OUTPUT_IMAGE_HEIGHT = OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO;
 
-const PORT = 3323;
+const PORT = 3324;
 const BASE_URL = `http://localhost:${PORT}`;
 const SCREENSHOT_PAGE_URL = `${BASE_URL}/tool/screenshot.html`;
 
@@ -285,7 +286,7 @@ async function takeScreenshot(
         // TODO Examples that can't work temporary.
         basename === 'bar3d-music-visualization'
       ) {
-        return;
+        continue;
       }
 
       const tsFile = `${examplesRoot}/ts/${isGL ? 'gl/' : ''}${basename}.ts`;
