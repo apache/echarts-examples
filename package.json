@@ -5,8 +5,8 @@
   "scripts": {
     "build": "npx webpack --config build/webpack.config.js --mode production",
     "watch": "npx webpack --config build/webpack.config.js --mode development --devtool source-map --watch",
-    "localsite": "npm run compile:example || npm run build && node build/copyResource.js --env localsite",
-    "release": "npm run compile:example || npm run build && node build/copyResource.js --env asf",
+    "localsite": "npm run compile:example && npm run build && node build/copyResource.js --env localsite",
+    "release": "npm run compile:example && npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
     "build:example": "npm run compile:example && node tool/build-example.js && node tool/build-example.js --gl",
     "compile:example": "node tool/compile-example.js",

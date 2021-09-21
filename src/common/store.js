@@ -77,7 +77,7 @@ export function loadExampleCode() {
     const glFolder = URL_PARAMS.gl ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';
     $.ajax(
-      `${store.cdnRoot}examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
+      `${store.cdnRoot}/examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
       {
         dataType: 'text',
         success: (data) => {
