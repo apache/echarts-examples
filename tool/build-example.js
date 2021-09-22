@@ -218,10 +218,9 @@ async function takeScreenshot(
       .toFile(filePathTmp);
 
     const { diffRatio } = await compareImage(filePath, filePathTmp, 0.1);
-    const force = true;
 
     console.log(filePath);
-    if (diffRatio < 0.01 && !force) {
+    if (diffRatio < 0.01) {
       console.log('Not changed');
     } else {
       console.log(diffRatio);
