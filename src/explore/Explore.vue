@@ -221,7 +221,7 @@ export default {
     this._lazyload = new LazyLoad({
       // Container should be the scroll viewport.
       // container: this.$el.querySelector('#explore-container .example-list-panel'),
-      elements_selector: 'img.chart-area',
+      elements_selector: '.chart-area',
       load_delay: 400,
       class_loaded: LAZY_LOADED_CLASS
     });

@@ -1,11 +1,20 @@
 <template>
   <div class="example-list-item">
     <a target="_blank" class="example-link" :href="exampleLink">
-      <img
+      <picture class="chart-area">
+        <source :data-srcset="screenshotURLWebP" type="image/webp" />
+        <source :data-srcset="screenshotURLPNG" type="image/png" />
+        <img
+          class="chart-area"
+          src="../asset/placeholder.jpg"
+          :data-src="screenshotURLPNG"
+        />
+      </picture>
+      <!-- <img
         class="chart-area"
         src="../asset/placeholder.jpg"
         :data-src="screenshotURL"
-      />
+      /> -->
     </a>
     <div>
       <div class="example-langs">
@@ -28,7 +37,7 @@
 
 <script>
 import { store } from '../common/store';
-import { SUPPORT_WEBP, URL_PARAMS } from '../common/config';
+import { URL_PARAMS } from '../common/config';
 
 export default {
   props: ['example'],
@@ -74,12 +83,19 @@ export default {
       return './editor.html?' + hash.join('&');
     },
 
-    screenshotURL() {
+    screenshotURLWithoutExt() {
       const example = this.example;
       const themePostfix = this.exampleTheme ? '-' + this.exampleTheme : '';
-      const ext = SUPPORT_WEBP ? 'webp' : 'png';
       const folder = example.isGL ? 'data-gl' : 'data';
-      return `${store.cdnRoot}/${folder}/thumb${themePostfix}/${example.id}.${ext}?_v_=${store.version}`;
+      return `${store.cdnRoot}/${folder}/thumb${themePostfix}/${example.id}`;
+    },
+
+    screenshotURLWebP() {
+      return this.screenshotURLWithoutExt + `.webp?_v_=${store.version}`;
+    },
+
+    screenshotURLPNG() {
+      return this.screenshotURLWithoutExt + `.png?_v_=${store.version}`;
     }
   }
 };

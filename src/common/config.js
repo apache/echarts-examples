@@ -108,17 +108,6 @@ const URL_PARAMS = {};
 
 export { URL_PARAMS };
 
-export const SUPPORT_WEBP = (function () {
-  var elem = document.createElement('canvas');
-  elem.width = elem.height = 1;
-  if (!!(elem.getContext && elem.getContext('2d'))) {
-    // was able or not to get WebP representation
-    return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-  }
-  // very old browser like IE 8, canvas not supported
-  return false;
-})();
-
 export const SCRIPT_URLS = {
   echartsMinJS:
     'https://cdn.jsdelivr.net/npm/echarts@{{version}}/dist/echarts.min.js',
