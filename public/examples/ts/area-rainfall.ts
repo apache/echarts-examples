@@ -8,8 +8,7 @@ difficulty: 5
 option = {
   title: {
     text: 'Rainfall and Flow Relationship',
-    left: 'center',
-    textAlign: 'right'
+    left: 'center'
   },
   grid: {
     bottom: 80

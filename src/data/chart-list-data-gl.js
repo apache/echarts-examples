@@ -7,6 +7,7 @@ export default [
       "globe"
     ],
     "id": "animating-contour-on-globe",
+    "ts": false,
     "tags": [],
     "title": "Animating Contour on Globe",
     "titleCN": "Animating Contour on Globe",
@@ -17,6 +18,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-dataset",
+    "ts": false,
     "tags": [],
     "title": "3D Bar with Dataset",
     "titleCN": "使用 dataset 为三维柱状图设置数据",
@@ -27,6 +29,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-global-population",
+    "ts": false,
     "tags": [],
     "title": "Bar3D - Global Population",
     "titleCN": "Bar3D - Global Population",
@@ -37,6 +40,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-myth",
+    "ts": false,
     "tags": [],
     "title": "星云",
     "titleCN": "星云",
@@ -47,6 +51,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-noise-modified-from-marpi-demo",
+    "ts": false,
     "tags": [],
     "title": "Noise modified from marpi's demo",
     "titleCN": "Noise modified from marpi's demo",
@@ -57,6 +62,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-punch-card",
+    "ts": false,
     "tags": [],
     "title": "Bar3D - Punch Card",
     "titleCN": "Bar3D - Punch Card",
@@ -67,6 +73,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-simplex-noise",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "Bar3D - Simplex Noise",
@@ -78,6 +85,7 @@ export default [
       "bar3D"
     ],
     "id": "bar3d-voxelize-image",
+    "ts": false,
     "tags": [],
     "title": "Voxelize image",
     "titleCN": "Voxelize image",
@@ -88,6 +96,7 @@ export default [
       "flowGL"
     ],
     "id": "flowGL-noise",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "Flow on the cartesian",
@@ -99,6 +108,7 @@ export default [
       "geo3D"
     ],
     "id": "geo3d",
+    "ts": false,
     "tags": [],
     "title": "Geo3D",
     "titleCN": "Geo3D",
@@ -109,6 +119,7 @@ export default [
       "geo3D"
     ],
     "id": "geo3d-with-different-height",
+    "ts": false,
     "tags": [],
     "title": "Geo3D with Different Height",
     "titleCN": "Geo3D with Different Height",
@@ -119,6 +130,7 @@ export default [
       "bar3D"
     ],
     "id": "global-population-bar3d-on-globe",
+    "ts": false,
     "tags": [],
     "title": "Global Population - Bar3D on Globe",
     "titleCN": "Global Population - Bar3D on Globe",
@@ -129,6 +141,7 @@ export default [
       "flowGL"
     ],
     "id": "global-wind-visualization",
+    "ts": false,
     "tags": [
       "bmap"
     ],
@@ -141,6 +154,7 @@ export default [
       "flowGL"
     ],
     "id": "global-wind-visualization-2",
+    "ts": false,
     "tags": [
       "bmap"
     ],
@@ -153,6 +167,7 @@ export default [
       "globe"
     ],
     "id": "globe-atmosphere",
+    "ts": false,
     "tags": [],
     "title": "Globe with Atmosphere",
     "titleCN": "大气层显示",
@@ -163,6 +178,7 @@ export default [
       "globe"
     ],
     "id": "globe-contour-paint",
+    "ts": false,
     "tags": [],
     "title": "Contour Paint",
     "titleCN": "Contour Paint",
@@ -173,6 +189,7 @@ export default [
       "globe"
     ],
     "id": "globe-country-carousel",
+    "ts": false,
     "tags": [],
     "title": "Country Carousel",
     "titleCN": "Country Carousel",
@@ -183,6 +200,7 @@ export default [
       "globe"
     ],
     "id": "globe-displacement",
+    "ts": false,
     "tags": [],
     "title": "Globe Displacement",
     "titleCN": "Globe Displacement",
@@ -193,6 +211,7 @@ export default [
       "globe"
     ],
     "id": "globe-echarts-gl-hello-world",
+    "ts": false,
     "tags": [],
     "title": "ECharts-GL Hello World",
     "titleCN": "ECharts-GL Hello World",
@@ -203,6 +222,7 @@ export default [
       "globe"
     ],
     "id": "globe-layers",
+    "ts": false,
     "tags": [],
     "title": "Globe Layers",
     "titleCN": "Globe Layers",
@@ -213,6 +233,7 @@ export default [
       "globe"
     ],
     "id": "globe-moon",
+    "ts": false,
     "tags": [],
     "title": "Moon",
     "titleCN": "Moon",
@@ -223,6 +244,7 @@ export default [
       "globe"
     ],
     "id": "globe-with-echarts-surface",
+    "ts": false,
     "tags": [],
     "title": "Globe with ECharts Surface",
     "titleCN": "Globe with ECharts Surface",
@@ -233,6 +255,7 @@ export default [
       "graphGL"
     ],
     "id": "graphgl-gpu-layout",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "GraphGL GPU Layout",
@@ -244,6 +267,7 @@ export default [
       "graphGL"
     ],
     "id": "graphgl-large-internet",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "GraphGL - Large Internet",
@@ -255,6 +279,7 @@ export default [
       "graphGL"
     ],
     "id": "graphgl-npm-dep",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "NPM Dependencies with graphGL",
@@ -266,6 +291,7 @@ export default [
       "surface"
     ],
     "id": "image-surface-sushuang",
+    "ts": false,
     "tags": [],
     "title": "Image Surface Sushuang",
     "titleCN": "Image Surface Sushuang",
@@ -276,6 +302,7 @@ export default [
       "bar3D"
     ],
     "id": "image-to-bar3d",
+    "ts": false,
     "tags": [],
     "title": "Image to Bar3D",
     "titleCN": "Image to Bar3D",
@@ -286,6 +313,7 @@ export default [
       "globe"
     ],
     "id": "iron-globe",
+    "ts": false,
     "tags": [],
     "title": "Iron globe",
     "titleCN": "Iron globe",
@@ -296,8 +324,9 @@ export default [
       "line3D"
     ],
     "id": "line3d-orthographic",
+    "ts": false,
     "tags": [],
-    "title": "三维折线图正交投影",
+    "title": "Orthographic Projection",
     "titleCN": "三维折线图正交投影",
     "difficulty": 10
   },
@@ -306,6 +335,7 @@ export default [
       "lines3D"
     ],
     "id": "lines3d-airline-on-globe",
+    "ts": false,
     "tags": [],
     "title": "Airline on Globe",
     "titleCN": "Airline on Globe",
@@ -316,6 +346,7 @@ export default [
       "lines3D"
     ],
     "id": "lines3d-flights",
+    "ts": false,
     "tags": [],
     "title": "Flights",
     "titleCN": "Flights",
@@ -326,6 +357,7 @@ export default [
       "lines3D"
     ],
     "id": "lines3d-flights-gl",
+    "ts": false,
     "tags": [],
     "title": "Flights GL",
     "titleCN": "Flights GL",
@@ -336,6 +368,7 @@ export default [
       "lines3D"
     ],
     "id": "lines3d-flights-on-geo3d",
+    "ts": false,
     "tags": [],
     "title": "Flights on Geo3D",
     "titleCN": "Flights on Geo3D",
@@ -346,6 +379,7 @@ export default [
       "linesGL"
     ],
     "id": "linesGL-ny",
+    "ts": false,
     "tags": [],
     "title": "Use linesGL to draw 1 million ny streets.",
     "titleCN": "实时交互的纽约街道可视化",
@@ -356,6 +390,7 @@ export default [
       "map3D"
     ],
     "id": "map3d-alcohol-consumption",
+    "ts": false,
     "tags": [],
     "title": "Map3D - Alcohol Consumption",
     "titleCN": "Map3D - Alcohol Consumption",
@@ -366,6 +401,7 @@ export default [
       "map3D"
     ],
     "id": "map3d-buildings",
+    "ts": false,
     "tags": [],
     "title": "Buildings",
     "titleCN": "Buildings",
@@ -376,6 +412,7 @@ export default [
       "map3D"
     ],
     "id": "map3d-wood-city",
+    "ts": false,
     "tags": [],
     "title": "Wood City",
     "titleCN": "Wood City",
@@ -386,6 +423,7 @@ export default [
       "map3D"
     ],
     "id": "map3d-wood-map",
+    "ts": false,
     "tags": [],
     "title": "木质世界地图",
     "titleCN": "木质世界地图",
@@ -396,6 +434,7 @@ export default [
       "bar3D"
     ],
     "id": "metal-bar3d",
+    "ts": false,
     "tags": [],
     "title": "Metal Bar3D",
     "titleCN": "Metal Bar3D",
@@ -406,6 +445,7 @@ export default [
       "surface"
     ],
     "id": "metal-surface",
+    "ts": false,
     "tags": [],
     "title": "Metal Surface",
     "titleCN": "Metal Surface",
@@ -416,6 +456,7 @@ export default [
       "surface"
     ],
     "id": "parametric-surface-rose",
+    "ts": false,
     "tags": [],
     "title": "Parametric Surface Rose",
     "titleCN": "Parametric Surface Rose",
@@ -426,6 +467,7 @@ export default [
       "scatter3D"
     ],
     "id": "scatter3d",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "Scatter3D",
@@ -437,6 +479,7 @@ export default [
       "scatter3D"
     ],
     "id": "scatter3D-dataset",
+    "ts": false,
     "tags": [],
     "title": "3D Scatter with Dataset",
     "titleCN": "使用 dataset 为三维散点图设置数据",
@@ -447,6 +490,7 @@ export default [
       "scatter3D"
     ],
     "id": "scatter3d-globe-population",
+    "ts": false,
     "tags": [],
     "title": "Scatter3D - Globe Population",
     "titleCN": "Scatter3D - Globe Population",
@@ -457,6 +501,7 @@ export default [
       "scatter3D"
     ],
     "id": "scatter3d-orthographic",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "三维散点图正交投影",
@@ -468,6 +513,7 @@ export default [
       "scatter3D"
     ],
     "id": "scatter3d-scatter",
+    "ts": false,
     "tags": [],
     "title": "3D Scatter with Scatter Matrix",
     "titleCN": "三维散点图和散点矩阵结合使用",
@@ -478,6 +524,7 @@ export default [
       "scatter3D"
     ],
     "id": "scatter3d-simplex-noise",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "Scatter3D - Simplex Noise",
@@ -489,6 +536,7 @@ export default [
       "scatterGL"
     ],
     "id": "scatterGL-gps",
+    "ts": false,
     "tags": [],
     "title": "10 million Bulk GPS points",
     "titleCN": "1 千万 GPS 点可视化",
@@ -499,6 +547,7 @@ export default [
       "scatterGL"
     ],
     "id": "scattergl-weibo",
+    "ts": false,
     "tags": [],
     "theme": "dark",
     "title": "微博签到数据点亮中国",
@@ -510,6 +559,7 @@ export default [
       "surface"
     ],
     "id": "simple-surface",
+    "ts": false,
     "tags": [],
     "title": "Simple Surface",
     "titleCN": "Simple Surface",
@@ -520,6 +570,7 @@ export default [
       "surface"
     ],
     "id": "sphere-parametric-surface",
+    "ts": false,
     "tags": [],
     "title": "Sphere Parametric Surface",
     "titleCN": "Sphere Parametric Surface",
@@ -530,6 +581,7 @@ export default [
       "bar3D"
     ],
     "id": "stacked-bar3d",
+    "ts": false,
     "tags": [],
     "title": "Stacked Bar3D",
     "titleCN": "Stacked Bar3D",
@@ -540,6 +592,7 @@ export default [
       "surface"
     ],
     "id": "surface-breather",
+    "ts": false,
     "tags": [],
     "title": "Breather",
     "titleCN": "Breather",
@@ -550,6 +603,7 @@ export default [
       "surface"
     ],
     "id": "surface-golden-rose",
+    "ts": false,
     "tags": [],
     "title": "Golden Rose",
     "titleCN": "Golden Rose",
@@ -560,8 +614,9 @@ export default [
       "surface"
     ],
     "id": "surface-leather",
+    "ts": false,
     "tags": [],
-    "title": "皮革材质",
+    "title": "Leather Material",
     "titleCN": "皮革材质",
     "difficulty": 10
   },
@@ -570,6 +625,7 @@ export default [
       "surface"
     ],
     "id": "surface-mollusc-shell",
+    "ts": false,
     "tags": [],
     "title": "Mollusc Shell",
     "titleCN": "Mollusc Shell",
@@ -580,6 +636,7 @@ export default [
       "surface"
     ],
     "id": "surface-theme-roses",
+    "ts": false,
     "tags": [],
     "title": "Theme Roses",
     "titleCN": "Theme Roses",
@@ -590,6 +647,7 @@ export default [
       "surface"
     ],
     "id": "surface-wave",
+    "ts": false,
     "tags": [],
     "title": "Surface Wave",
     "titleCN": "Surface Wave",
@@ -600,6 +658,7 @@ export default [
       "bar3D"
     ],
     "id": "transparent-bar3d",
+    "ts": false,
     "tags": [],
     "title": "Transparent Bar3D",
     "titleCN": "Transparent Bar3D",

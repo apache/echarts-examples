@@ -9,12 +9,11 @@ option = {
   tooltip: {
     trigger: 'axis',
     axisPointer: {
-      // 坐标轴指示器，坐标轴触发有效
-      type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+      type: 'shadow'
     }
   },
   legend: {
-    data: ['利润', '支出', '收入']
+    data: ['Profit', 'Expenses', 'Income']
   },
   grid: {
     left: '3%',
@@ -38,7 +37,7 @@ option = {
   ],
   series: [
     {
-      name: '利润',
+      name: 'Profit',
       type: 'bar',
       label: {
         show: true,
@@ -50,7 +49,7 @@ option = {
       data: [200, 170, 240, 244, 200, 220, 210]
     },
     {
-      name: '收入',
+      name: 'Income',
       type: 'bar',
       stack: 'Total',
       label: {
@@ -62,7 +61,7 @@ option = {
       data: [320, 302, 341, 374, 390, 450, 420]
     },
     {
-      name: '支出',
+      name: 'Expenses',
       type: 'bar',
       stack: 'Total',
       label: {

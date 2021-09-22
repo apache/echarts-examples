@@ -70,7 +70,7 @@ const DEFAULT_PAGE_RATIO = 0.75;
 const OUTPUT_IMAGE_WIDTH = 600;
 const OUTPUT_IMAGE_HEIGHT = OUTPUT_IMAGE_WIDTH * DEFAULT_PAGE_RATIO;
 
-const PORT = 3324;
+const PORT = 3323;
 const BASE_URL = `http://localhost:${PORT}`;
 const SCREENSHOT_PAGE_URL = `${BASE_URL}/tool/screenshot.html`;
 
@@ -218,9 +218,10 @@ async function takeScreenshot(
       .toFile(filePathTmp);
 
     const { diffRatio } = await compareImage(filePath, filePathTmp, 0.1);
+    const force = true;
 
     console.log(filePath);
-    if (diffRatio < 0.01) {
+    if (diffRatio < 0.01 && !force) {
       console.log('Not changed');
     } else {
       console.log(diffRatio);
@@ -466,6 +467,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
 
 process.on('SIGINT', function () {
   console.log('Closing');
+  server.close();
   // Close through ctrl + c;
   process.exit();
 });

@@ -25,7 +25,7 @@ option = {
     }
   },
   legend: {
-    data: ['支出', '收入']
+    data: ['Expenses', 'Income']
   },
   grid: {
     left: '3%',
@@ -35,11 +35,10 @@ option = {
   },
   xAxis: {
     type: 'category',
-    splitLine: { show: false },
     data: (function () {
-      var list = [];
-      for (var i = 1; i <= 11; i++) {
-        list.push('11月' + i + '日');
+      let list = [];
+      for (let i = 1; i <= 11; i++) {
+        list.push('Nov ' + i);
       }
       return list;
     })()
@@ -49,7 +48,7 @@ option = {
   },
   series: [
     {
-      name: '辅助',
+      name: 'Placeholder',
       type: 'bar',
       stack: 'Total',
       itemStyle: {
@@ -65,7 +64,7 @@ option = {
       data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
     },
     {
-      name: '收入',
+      name: 'Income',
       type: 'bar',
       stack: 'Total',
       label: {
@@ -75,7 +74,7 @@ option = {
       data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
     },
     {
-      name: '支出',
+      name: 'Expenses',
       type: 'bar',
       stack: 'Total',
       label: {

@@ -1,5 +1,5 @@
 /*
-title: 三维折线图正交投影
+title: Orthographic Projection
 category: line3D
 titleCN: 三维折线图正交投影
 */

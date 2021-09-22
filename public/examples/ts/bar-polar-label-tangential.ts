@@ -31,9 +31,7 @@ option = {
       position: 'middle', // or 'start', 'insideStart', 'end', 'insideEnd'
       formatter: '{b}: {c}'
     }
-  },
-  backgroundColor: '#fff',
-  animation: false
+  }
 };
 
 export {};
