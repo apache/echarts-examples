@@ -8,7 +8,7 @@ var svg = `<?xml version="1.0" encoding="utf-8"?>
 echarts.registerMap('simple_svg', { svg: svg });
 
 option = {
-    geo: {
-        map: 'simple_svg'
-    }
+  geo: {
+    map: 'simple_svg'
+  }
 };
