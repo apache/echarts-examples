@@ -58,7 +58,7 @@
                     <form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank" class="editor-form">
                         <input type="hidden" name="parameters" :value="this.compress(JSON.stringify(this.codeSandboxConfig))" />
                         <button  class="editor-button" type="submit"  @click="getCodeSandboxConfig">
-                            <el-tooltip content="在codeSandbox中打开" placement="bottom">
+                            <el-tooltip :content="shared.locale == 'zh'? '在codeSandbox中打开': 'open in codeSandbox'" placement="bottom">
                                 <span class="codesandbox-icon" v-html="require('../asset/icon/codeSandbox.svg')"></span>
                             </el-tooltip >
                         </button>
@@ -66,11 +66,23 @@
                     <form action="https://codepen.io/pen/define" method="POST" target="_blank" class="editor-form">
                         <input type="hidden" name="data" :value="JSON.stringify(this.codePenConfig)" />
                         <button  class="editor-button" type="submit"  @click="getCodePenConfig">
-                            <el-tooltip content="在codePen中打开" placement="bottom">
+                            <el-tooltip :content="shared.locale == 'zh'? '在codePen中打开': 'open in codePen'" placement="bottom">
                                 <span class="codepen-icon" v-html="require('../asset/icon/codePen.svg')"></span>
                             </el-tooltip >
                         </button>
                     </form>
+                    <form action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more/" method="POST" target="check" class="editor-form">
+                        <input type="hidden" name="html" :value="this.jsFiddleConfig.html" />
+                        <input type="hidden" name="js" :value="this.jsFiddleConfig.js" />
+                        <input type="hidden" name="resources" :value="this.jsFiddleConfig.resources" />
+                        <input type="hidden" name="title" :value="this.title" />
+                        <button  class="editor-button" type="submit"  @click="getJSFiddleConfig">
+                            <el-tooltip :content="shared.locale == 'zh'? '在JSFiddle中打开': 'open in JSFiddle'" placement="bottom">
+                                <span class="jsfiddle-icon" v-html="require('../asset/icon/jsFiddle.svg')"></span>
+                            </el-tooltip >
+                        </button>
+                    </form>
+                    
                 </span>
             </el-tab-pane>
         </el-tabs>
@@ -96,46 +108,7 @@ import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
 import { mount } from "@lang/object-visualizer";
 import './object-visualizer.css';
-
-//icon
-// const codeSandboxIcon = require('../asset/icon/codeSandbox.svg')
-
-
-//package
-const codeSandboxPackage = {
-  name: "echarts example",
-  main: "index.js",
-  dependencies: {
-    echarts: "5.1.2",
-    react: "17.0.2",
-    "react-dom": "17.0.2",
-    "react-scripts": "4.0.0",
-  },
-  devDependencies: {
-    typescript: "4.1.3",
-  },
-  scripts: {
-    start: "react-scripts start",
-    build: "react-scripts build",
-    test: "react-scripts test --env=jsdom",
-    eject: "react-scripts eject",
-  },
-  browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
-};
-
-const codeSandboxHTML = `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <div id="main" style="width: 600px; height: 400px;"></div>
-  </body>
-</html>`
-
-const codePenHTML = `<div id="main" style="width: 600px; height: 400px;"></div>`
-
-//
+import { getCodeSandboxHTML,codeSandboxPackage, staticConfig, getJSCode, codePenJSExternal, HTML, fiddleJSExternal } from './onlineEditor.js'
 
 export default {
     components: {
@@ -165,6 +138,13 @@ export default {
 
             codeSandboxConfig: {},
             codePenConfig: {},
+            jsFiddleConfig: {
+                html: '',
+                js: '',
+                resources: ''
+            },
+
+            title: '',
         };
     },
 
@@ -187,6 +167,14 @@ export default {
     },
 
     mounted() {
+        //通过解析当前路由获取示例的标题
+        const url = window.location.search;
+        const params = {};
+        url.substring(1).split('&').forEach(el => {
+            const [ key, value ] = el.split('=');
+            params[key] = value; 
+        })
+        this.title = params.c;
 
         if (store.isMobile) {
             this.leftContainerSize = 0;
@@ -230,31 +218,40 @@ export default {
         },
         
         getCodeSandboxConfig() {
-            this.updateFullCode();
-            this.codeSandboxConfig={
+            codeSandboxPackage.name = this.title;
+            let config={
                 files: {
-                    'index.js': {
-                        content: this.fullCode
-                    },
                     'package.json': {
                         content: codeSandboxPackage
                     },
                     'index.html':{
-                        content: codeSandboxHTML
+                        content: getCodeSandboxHTML()
+                    },
+                    'sandbox.config.json':{
+                        content: staticConfig
                     }
                 }
             }
+            this.codeSandboxConfig = config;
         },
         getCodePenConfig() {
-            this.updateFullCode();
             this.codePenConfig={
-                title: 'echarts example',
-                html: codePenHTML,
-                js: this.fullCode.substring(this.fullCode.indexOf("\n") + 1),//去掉第一行
+                title: this.title,
+                html: HTML,
+                js: getJSCode(),
                 editors: "001",
-                js_external: "https://unpkg.com/react@17.x/umd/react.production.min.js;https://unpkg.com/react-dom@17.x/umd/react-dom.production.min.js;https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.2/echarts.min.js"
+                js_external: codePenJSExternal
             }
         },
+
+        getJSFiddleConfig(){
+            this.jsFiddleConfig = {
+                html:HTML,
+                js: getJSCode(),
+                resources: fiddleJSExternal
+            }
+        },
+
 
         onSplitterDragStart() {
             this.mousedown = true;
