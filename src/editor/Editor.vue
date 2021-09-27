@@ -1,7 +1,7 @@
 <template>
 <div id="main-container">
     <div id="editor-left-container" :style="{width: leftContainerSize + '%'}" v-if="!shared.isMobile">
-        <el-tabs v-model="currentTab" type="border-card" :before-leave="tabsBeforeLeave">
+        <el-tabs v-model="currentTab" type="border-card" :before-leave="tabsBeforeLeave" :class="shared.locale == 'zh'? 'tabs-zh': 'tabs-en'">
             <el-tab-pane :label="$t('editor.tabEditor')" name="code-editor">
                 <el-container>
                     <el-header id="editor-control-panel">
@@ -59,7 +59,7 @@
                         <input type="hidden" name="parameters" :value="this.compress(JSON.stringify(this.codeSandboxConfig))" />
                         <button  class="editor-button" type="submit"  @click="getCodeSandboxConfig">
                             <el-tooltip :content="shared.locale == 'zh'? '在codeSandbox中打开': 'open in codeSandbox'" placement="bottom">
-                                <span class="codesandbox-icon" v-html="require('../asset/icon/codeSandbox.svg')"></span>
+                                <span v-html="require('../asset/icon/codeSandbox.svg')"></span>
                             </el-tooltip >
                         </button>
                     </form>
@@ -67,7 +67,7 @@
                         <input type="hidden" name="data" :value="JSON.stringify(this.codePenConfig)" />
                         <button  class="editor-button" type="submit"  @click="getCodePenConfig">
                             <el-tooltip :content="shared.locale == 'zh'? '在codePen中打开': 'open in codePen'" placement="bottom">
-                                <span class="codepen-icon" v-html="require('../asset/icon/codePen.svg')"></span>
+                                <span  v-html="require('../asset/icon/codePen.svg')"></span>
                             </el-tooltip >
                         </button>
                     </form>
@@ -78,7 +78,7 @@
                         <input type="hidden" name="title" :value="this.title" />
                         <button  class="editor-button" type="submit"  @click="getJSFiddleConfig">
                             <el-tooltip :content="shared.locale == 'zh'? '在JSFiddle中打开': 'open in JSFiddle'" placement="bottom">
-                                <span class="jsfiddle-icon" v-html="require('../asset/icon/jsFiddle.svg')"></span>
+                                <span v-html="require('../asset/icon/jsFiddle.svg')"></span>
                             </el-tooltip >
                         </button>
                     </form>
@@ -107,8 +107,8 @@ import {URL_PARAMS} from '../common/config';
 import {store, loadExampleCode, parseSourceCode} from '../common/store';
 import {collectDeps, buildExampleCode} from '../../common/buildCode';
 import { mount } from "@lang/object-visualizer";
-import './object-visualizer.css';
 import { getCodeSandboxHTML,codeSandboxPackage, staticConfig, getJSCode, codePenJSExternal, HTML, fiddleJSExternal } from './onlineEditor.js'
+import './object-visualizer.css';
 
 export default {
     components: {
@@ -551,33 +551,36 @@ $handler-width: 5px;
     background: $clr-bg;
 }
 
-#tab-more-editor{
-    text-align: right;
-    width: calc(100% - 180px);
-    cursor: default;
+.tabs-en{
+    #tab-more-editor{
+        text-align: right;
+        width: calc(100% - 180px);
+        cursor: default;
+    }
+    .el-tabs__nav {
+        width: calc(100% - 180px);
+    }
+
 }
-.el-tabs__nav {
-    width: calc(100% - 180px);
+.tabs-zh{
+    #tab-more-editor{
+        text-align: right;
+        width: calc(100% - 130px);
+        cursor: default;
+    }
+    .el-tabs__nav {
+        width: calc(100% - 130px);
+    }
 }
 .editor-form{
     width: 20px;
     display: inline-block;
+    margin: 0 3px;
 
     .editor-button{
         background: none;
         outline: none;
         border: none;
-        .codesandbox-icon{
-            content: '';
-            width: 18px;
-            height: 18px;
-            display: inline-block;
-
-            svg {
-                width: 100%!important;
-                height: auto!important;
-            }
-        }
     }
 }
 

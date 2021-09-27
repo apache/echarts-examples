@@ -23,14 +23,16 @@ export  const getCodeSandboxHTML = ()=>{
       <script type="text/javascript" src="${SCRIPT_URLS.echartsGLMinJS}"></script>
       <script type="text/javascript" src="${SCRIPT_URLS.echartsStatMinJS}"></script>
       <script type="text/javascript">
-        var chartDom = document.getElementById('main');
-        var myChart = echarts.init(chartDom);
-        var option;
 
-        ${rootPathCode}
-        ${store.sourceCode}
+var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
 
-        option && myChart.setOption(option);
+${rootPathCode}
+${store.sourceCode}
+
+option && myChart.setOption(option);
+
       </script>
     </body>
   </html>`)
