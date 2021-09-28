@@ -15,6 +15,17 @@ export default [
   },
   {
     "category": [
+      "custom"
+    ],
+    "id": "bar-histogram",
+    "ts": true,
+    "tags": [],
+    "title": "Histogram with Custom Series",
+    "titleCN": "直方图（自定义系列）",
+    "difficulty": 0
+  },
+  {
+    "category": [
       "bar"
     ],
     "id": "bar-simple",
@@ -22,6 +33,17 @@ export default [
     "tags": [],
     "title": "Basic Bar",
     "titleCN": "基础柱状图",
+    "difficulty": 0
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-tick-align",
+    "ts": true,
+    "tags": [],
+    "title": "Axis Align with Tick",
+    "titleCN": "坐标轴刻度与标签对齐",
     "difficulty": 0
   },
   {
@@ -352,6 +374,17 @@ export default [
     "category": [
       "scatter"
     ],
+    "id": "scatter-clustering-process",
+    "ts": false,
+    "tags": [],
+    "title": "Clustering Process",
+    "titleCN": "聚合过程可视化",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "scatter"
+    ],
     "id": "scatter-exponential-regression",
     "ts": true,
     "tags": [],
@@ -438,6 +471,17 @@ export default [
   },
   {
     "category": [
+      "calendar"
+    ],
+    "id": "calendar-horizontal",
+    "ts": true,
+    "tags": [],
+    "title": "Calendar Heatmap Horizontal",
+    "titleCN": "横向日历图",
+    "difficulty": 2
+  },
+  {
+    "category": [
       "candlestick"
     ],
     "id": "candlestick-sh",
@@ -501,6 +545,28 @@ export default [
     "tags": [],
     "title": "Simple Graph",
     "titleCN": "Graph 简单示例",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "heatmap"
+    ],
+    "id": "heatmap-large",
+    "ts": false,
+    "tags": [],
+    "title": "Heatmap - 2w data",
+    "titleCN": "热力图 - 2w 数据",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "heatmap"
+    ],
+    "id": "heatmap-large-piecewise",
+    "ts": false,
+    "tags": [],
+    "title": "Heatmap - Discrete Mapping of Color",
+    "titleCN": "热力图 - 颜色的离散映射",
     "difficulty": 2
   },
   {
@@ -770,6 +836,28 @@ export default [
   },
   {
     "category": [
+      "custom"
+    ],
+    "id": "custom-profile",
+    "ts": false,
+    "tags": [],
+    "title": "Profile",
+    "titleCN": "性能分析图",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "cycle-plot",
+    "ts": false,
+    "tags": [],
+    "title": "Cycle Plot",
+    "titleCN": "Cycle Plot",
+    "difficulty": 3
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "data-transform-filter",
@@ -828,6 +916,17 @@ export default [
   },
   {
     "category": [
+      "gauge"
+    ],
+    "id": "gauge-stage",
+    "ts": true,
+    "tags": [],
+    "title": "Stage Speed Gauge",
+    "titleCN": "阶段速度仪表盘",
+    "difficulty": 3
+  },
+  {
+    "category": [
       "graph"
     ],
     "id": "graph-force",
@@ -846,6 +945,30 @@ export default [
     "tags": [],
     "title": "Hide Overlapped Label",
     "titleCN": "关系图自动隐藏重叠标签",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "heatmap"
+    ],
+    "id": "heatmap-bmap",
+    "ts": false,
+    "tags": [
+      "bmap"
+    ],
+    "title": "Heatmap on Baidu Map Extension",
+    "titleCN": "热力图与百度地图扩展",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "heatmap"
+    ],
+    "id": "heatmap-map",
+    "ts": false,
+    "tags": [],
+    "title": "Air Qulity",
+    "titleCN": "全国主要城市空气质量",
     "difficulty": 3
   },
   {
@@ -1072,6 +1195,19 @@ export default [
   },
   {
     "category": [
+      "custom",
+      "dataZoom",
+      "drag"
+    ],
+    "id": "custom-gantt-flight",
+    "ts": false,
+    "tags": [],
+    "title": "Gantt Chart of Airport Flights",
+    "titleCN": "机场航班甘特图",
+    "difficulty": 4
+  },
+  {
+    "category": [
       "custom"
     ],
     "id": "custom-polar-heatmap",
@@ -1079,6 +1215,17 @@ export default [
     "tags": [],
     "title": "Polar Heatmap",
     "titleCN": "极坐标热力图（自定义系列）",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "boxplot"
+    ],
+    "id": "data-transform-aggregate",
+    "ts": false,
+    "tags": [],
+    "title": "Data Transform Simple Aggregate",
+    "titleCN": "简单的数据聚合",
     "difficulty": 4
   },
   {
@@ -1178,6 +1325,17 @@ export default [
     "tags": [],
     "title": "Multiple X Axes",
     "titleCN": "多 X 轴",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "multiple-y-axis",
+    "ts": true,
+    "tags": [],
+    "title": "Multiple Y Axes",
+    "titleCN": "多 Y 轴示例",
     "difficulty": 4
   },
   {
@@ -1313,6 +1471,17 @@ export default [
     "tags": [],
     "title": "Area Chart with Time Axis",
     "titleCN": "时间轴折线图",
+    "difficulty": 5
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-animation-delay",
+    "ts": true,
+    "tags": [],
+    "title": "Animation Delay",
+    "titleCN": "柱状图动画延迟",
     "difficulty": 5
   },
   {
@@ -1510,6 +1679,18 @@ export default [
   },
   {
     "category": [
+      "custom",
+      "dataZoom"
+    ],
+    "id": "wind-barb",
+    "ts": true,
+    "tags": [],
+    "title": "Wind Barb",
+    "titleCN": "风向图",
+    "difficulty": 5
+  },
+  {
+    "category": [
       "bar"
     ],
     "id": "bar-race-country",
@@ -1552,6 +1733,18 @@ export default [
     "tags": [],
     "title": "Calendar Pie",
     "titleCN": "日历饼图",
+    "difficulty": 6
+  },
+  {
+    "category": [
+      "custom",
+      "map"
+    ],
+    "id": "custom-hexbin",
+    "ts": false,
+    "tags": [],
+    "title": "Hexagonal Binning",
+    "titleCN": "六边形分箱图（自定义系列）",
     "difficulty": 6
   },
   {
@@ -1607,6 +1800,17 @@ export default [
     "tags": [],
     "title": "Line Style and Item Style",
     "titleCN": "自定义折线图样式",
+    "difficulty": 6
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "mix-timeline-finance",
+    "ts": false,
+    "tags": [],
+    "title": "Finance Indices 2002",
+    "titleCN": "2002全国宏观经济指标",
     "difficulty": 6
   },
   {
@@ -1820,6 +2024,17 @@ export default [
   },
   {
     "category": [
+      "line"
+    ],
+    "id": "line-y-category",
+    "ts": true,
+    "tags": [],
+    "title": "Line Y Category",
+    "titleCN": "垂直折线图（Y轴为类目轴）",
+    "difficulty": 8
+  },
+  {
+    "category": [
       "scatter"
     ],
     "id": "scatter-polar-punchCard",
@@ -1828,6 +2043,17 @@ export default [
     "title": "Punch Card of Github",
     "titleCN": "GitHub 打卡气泡图（极坐标）",
     "difficulty": 8
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "custom-gauge",
+    "ts": false,
+    "tags": [],
+    "title": "Custom Gauge",
+    "titleCN": "自定义仪表",
+    "difficulty": 9
   },
   {
     "category": [
@@ -1866,33 +2092,23 @@ export default [
     "category": [
       "scatter"
     ],
+    "id": "scatter-life-expectancy-timeline",
+    "ts": false,
+    "tags": [],
+    "title": "Life Expectancy and GDP",
+    "titleCN": "各国人均寿命与GDP关系演变",
+    "difficulty": 9
+  },
+  {
+    "category": [
+      "scatter"
+    ],
     "id": "scatter-painter-choice",
     "ts": true,
     "tags": [],
     "title": "Master Painter Color Choices Throughout History",
     "titleCN": "Master Painter Color Choices Throughout History",
     "difficulty": 9
-  },
-  {
-    "category": [],
-    "id": "bar-animation-delay",
-    "ts": true,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "bar-histogram",
-    "ts": true,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "bar-tick-align",
-    "ts": true,
-    "tags": [],
-    "difficulty": 10
   },
   {
     "category": [
@@ -1935,13 +2151,6 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
-    "id": "calendar-horizontal",
-    "ts": true,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
     "category": [
       "candlestick"
     ],
@@ -1964,55 +2173,6 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
-    "id": "custom-gantt-flight",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "custom-gauge",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "custom-hexbin",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "custom-profile",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "custom-spiral-race",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "cycle-plot",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "data-transform-aggregate",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
     "category": [
       "scatter",
       "map"
@@ -2027,10 +2187,14 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "funnel"
+    ],
     "id": "funnel",
     "ts": true,
     "tags": [],
+    "title": "Funnel Chart",
+    "titleCN": "漏斗图",
     "difficulty": 10
   },
   {
@@ -2067,13 +2231,6 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
-    "id": "gauge-stage",
-    "ts": true,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
     "category": [
       "map"
     ],
@@ -2085,24 +2242,36 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "geo-lines",
     "ts": false,
     "tags": [],
+    "title": "Migration",
+    "titleCN": "模拟迁徙",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "geo-map-scatter",
     "ts": false,
     "tags": [],
+    "title": "map and scatter share a geo",
+    "titleCN": "map and scatter share a geo",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "geo-organ",
     "ts": false,
     "tags": [],
+    "title": "Organ Data with SVG",
+    "titleCN": "内脏数据（SVG）",
     "difficulty": 10
   },
   {
@@ -2161,34 +2330,6 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
-    "id": "heatmap-bmap",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "heatmap-large",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "heatmap-large-piecewise",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "heatmap-map",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
     "category": [
       "line",
       "drag"
@@ -2232,13 +2373,6 @@ export default [
     "tags": [],
     "title": "Tooltip and DataZoom on Mobile",
     "titleCN": "移动端上的 dataZoom 和 tooltip",
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "line-y-category",
-    "ts": true,
-    "tags": [],
     "difficulty": 10
   },
   {
@@ -2320,59 +2454,95 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-bin",
     "ts": false,
-    "tags": [],
+    "tags": [
+      "bmap"
+    ],
+    "title": "Binning on Map",
+    "titleCN": "Binning on Map",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-china",
     "ts": false,
     "tags": [],
+    "title": "Map China",
+    "titleCN": "Map China",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-china-dataRange",
     "ts": false,
     "tags": [],
+    "title": "Sales of iphone",
+    "titleCN": "iphone销量",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-HK",
     "ts": true,
     "tags": [],
+    "title": "Population Density of HongKong (2011)",
+    "titleCN": "香港18区人口密度 （2011）",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-labels",
     "ts": false,
     "tags": [],
+    "title": "Rich Text Labels on Map",
+    "titleCN": "地图上的富文本标签",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-locate",
     "ts": false,
     "tags": [],
+    "title": "Map Locate",
+    "titleCN": "Map Locate",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-polygon",
     "ts": false,
-    "tags": [],
+    "tags": [
+      "bmap"
+    ],
+    "title": "Draw Polygon on Map",
+    "titleCN": "在地图上绘制多边形",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-province",
     "ts": false,
     "tags": [],
+    "title": "Switch among 34 Provinces",
+    "titleCN": "34 省切换查看",
     "difficulty": 10
   },
   {
@@ -2387,31 +2557,25 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-world",
     "ts": false,
     "tags": [],
+    "title": "Map World",
+    "titleCN": "Map World",
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "map"
+    ],
     "id": "map-world-dataRange",
     "ts": false,
     "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "mix-timeline-finance",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "multiple-y-axis",
-    "ts": true,
-    "tags": [],
+    "title": "World Population (2010)",
+    "titleCN": "World Population (2010)",
     "difficulty": 10
   },
   {
@@ -2515,24 +2679,14 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
-    "id": "scatter-clustering-process",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
-    "id": "scatter-life-expectancy-timeline",
-    "ts": false,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
-    "category": [],
+    "category": [
+      "scatter"
+    ],
     "id": "scatter-map",
     "ts": false,
     "tags": [],
+    "title": "Air Quality",
+    "titleCN": "全国主要城市空气质量",
     "difficulty": 10
   },
   {
@@ -2570,10 +2724,14 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
+    "category": [
+      "scatter"
+    ],
     "id": "scatter-world-population",
     "ts": false,
     "tags": [],
+    "title": "World Population (2011)",
+    "titleCN": "World Population (2011)",
     "difficulty": 10
   },
   {
@@ -2742,13 +2900,6 @@ export default [
     "difficulty": 10
   },
   {
-    "category": [],
-    "id": "wind-barb",
-    "ts": true,
-    "tags": [],
-    "difficulty": 10
-  },
-  {
     "category": [
       "calendar",
       "scatter"
@@ -2769,6 +2920,17 @@ export default [
     "tags": [],
     "title": "Circle Packing with d3",
     "titleCN": "Circle Packing with d3",
+    "difficulty": 11
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "custom-spiral-race",
+    "ts": false,
+    "tags": [],
+    "title": "Custom Spiral Race",
+    "titleCN": "自定义螺旋线竞速",
     "difficulty": 11
   },
   {
