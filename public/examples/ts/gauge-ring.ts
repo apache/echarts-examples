@@ -101,19 +101,16 @@ setInterval(function () {
   gaugeData[0].value = +(Math.random() * 100).toFixed(2);
   gaugeData[1].value = +(Math.random() * 100).toFixed(2);
   gaugeData[2].value = +(Math.random() * 100).toFixed(2);
-  myChart.setOption<echarts.EChartsOption>(
-    {
-      series: [
-        {
-          data: gaugeData,
-          pointer: {
-            show: false
-          }
+  myChart.setOption<echarts.EChartsOption>({
+    series: [
+      {
+        data: gaugeData,
+        pointer: {
+          show: false
         }
-      ]
-    },
-    true
-  );
+      }
+    ]
+  });
 }, 2000);
 
 export {};
