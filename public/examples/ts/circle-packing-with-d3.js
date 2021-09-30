@@ -194,7 +194,7 @@ function initChart(seriesData, maxDepth) {
     }
   };
 
-  myChart.setOption < echarts.EChartsOption > option;
+  myChart.setOption(option);
 
   myChart.on('click', { seriesIndex: 0 }, function (params) {
     drillDown(params.data.id);
@@ -210,13 +210,11 @@ function initChart(seriesData, maxDepth) {
     // A trick to prevent d3-hierarchy from visiting parents in this algorithm.
     displayRoot.parent = null;
 
-    myChart.setOption <
-      echarts.EChartsOption >
-      {
-        dataset: {
-          source: seriesData
-        }
-      };
+    myChart.setOption({
+      dataset: {
+        source: seriesData
+      }
+    });
   }
 
   // Reset: click on the blank area.
@@ -226,5 +224,3 @@ function initChart(seriesData, maxDepth) {
     }
   });
 }
-
-export {};
