@@ -1,5 +1,5 @@
 /*
-title: Heatmap - 2w data
+title: Heatmap - 20K data
 category: heatmap
 titleCN: 热力图 - 2w 数据
 difficulty: 2
