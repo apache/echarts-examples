@@ -57,7 +57,7 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
       {
         name: 'Order',
         type: 'map',
-        mapType: 'USA',
+        map: 'USA',
         roam: true,
         label: {
           show: true,
