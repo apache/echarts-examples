@@ -6,8 +6,8 @@ var schema = [
   { name: 'PM25', index: 2, text: 'PM2.5' },
   { name: 'PM10', index: 3, text: 'PM10' },
   { name: 'CO', index: 4, text: '一氧化碳（CO）' },
-  { name: 'NO2', index: 5, text: '二氧化氮（NO2）' },
-  { name: 'SO2', index: 6, text: '二氧化硫（SO2）' }
+  { name: 'NO2', index: 5, text: '二氧化氮（NO₂）' },
+  { name: 'SO2', index: 6, text: '二氧化硫（SO₂）' }
 ];
 
 var dataBJ = [
@@ -185,25 +185,25 @@ option = {
       right: 0,
       dimension: 7,
       selected: {
-        严重污染: false,
-        重度污染: false
+        '严重污染': false,
+        '重度污染': false
       },
       categories: ['严重污染', '重度污染', '中度污染', '轻度污染', '良', '优'],
       inRange: {
         symbolSize: 30,
         symbol: {
-          优: 'diamond',
+          '优': 'diamond',
           '': 'circle'
         }
       },
       outOfRange: {
         color: '#000',
         symbolSize: {
-          优: 50,
+          '优': 50,
           '': 30
         },
         symbol: {
-          优: 'diamond',
+          '优': 'diamond',
           '': 'circle'
         }
       }
