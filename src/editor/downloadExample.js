@@ -6,6 +6,14 @@ const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') >= 0;
 const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}'` : '';
 
 export function download() {
+  const echartsMinJS = SCRIPT_URLS.echartsMinJS.replace(
+    '{{version}}',
+    store.echartsVersion
+  );
+  const echartsDir = SCRIPT_URLS.echartsDir.replace(
+    '{{version}}',
+    store.echartsVersion
+  );
   const code = `<!--
     THIS EXAMPLE WAS DOWNLOADED FROM ${window.location.href}
 -->
@@ -17,9 +25,9 @@ export function download() {
     <body style="height: 100%; margin: 0">
         <div id="container" style="height: 100%"></div>
 
-        <script type="text/javascript" src="${SCRIPT_URLS.echartsMinJS}"></script>
+        <script type="text/javascript" src="${echartsMinJS}"></script>
         <!-- Uncomment this line if you want to dataTool extension
-        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/dist/extension/dataTool.min.js"></script>
+        <script type="text/javascript" src="${echartsDir}/dist/extension/dataTool.min.js"></script>
         -->
         <!-- Uncomment this line if you want to use gl extension
         <script type="text/javascript" src="${SCRIPT_URLS.echartsGLMinJS}"></script>
@@ -28,8 +36,8 @@ export function download() {
         <script type="text/javascript" src="${SCRIPT_URLS.echartsStatMinJS}"></script>
         -->
         <!-- Uncomment this line if you want to use map
-        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/map/js/china.js"></script>
-        <script type="text/javascript" src="${SCRIPT_URLS.echartsDir}/map/js/world.js"></script>
+        <script type="text/javascript" src="${echartsDir}/map/js/china.js"></script>
+        <script type="text/javascript" src="${echartsDir}/map/js/world.js"></script>
         -->
         <!-- Uncomment these two lines if you want to use bmap extension
         <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
