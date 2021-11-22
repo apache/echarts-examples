@@ -23,7 +23,7 @@ export function getURL(params) {
 
 export function gotoURL(params, pushHistory) {
   if (pushHistory) {
-    history.pushState({}, getURL(params));
+    history.pushState({}, '', getURL(params));
   } else {
     location.href = getURL(params);
   }

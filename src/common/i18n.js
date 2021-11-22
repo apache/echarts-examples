@@ -14,6 +14,8 @@ export default {
       renderer: 'Renderer',
       useDirtyRect: 'Use Dirty Rect',
 
+      randomData: 'Random',
+
       download: 'Download',
       screenshot: 'Screenshot',
 
@@ -89,6 +91,8 @@ export default {
 
       darkMode: '深色模式',
       enableDecal: '无障碍花纹',
+
+      randomData: '随机数据',
       // lightMode: '浅色模式',
 
       renderCfgTitle: '渲染设置',

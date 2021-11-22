@@ -1,4 +1,5 @@
 import showDebugDirtyRect from '../dep/showDebugDirtyRect';
+import seedrandom from 'seedrandom';
 
 export function createSandbox(optionUpdated) {
   let appEnv = {};
@@ -114,7 +115,10 @@ export function createSandbox(optionUpdated) {
 
       // run the code
 
-      const compiledCode = store.runCode;
+      const compiledCode = store.runCode
+        // Replace random method
+        .replace(/Math.random\(\)/g, '__ECHARTS_EXAMPLE_RANDOM__()');
+      const echartsExampleRandom = seedrandom(store.randomSeed);
 
       const func = new Function(
         'myChart',
@@ -122,6 +126,7 @@ export function createSandbox(optionUpdated) {
         'setTimeout',
         'setInterval',
         'ROOT_PATH',
+        '__ECHARTS_EXAMPLE_RANDOM__',
         'var option;\n' + compiledCode + '\nreturn option;'
       );
       const option = func(
@@ -129,7 +134,8 @@ export function createSandbox(optionUpdated) {
         appEnv,
         setTimeout,
         setInterval,
-        store.cdnRoot
+        store.cdnRoot,
+        echartsExampleRandom
       );
       let updateTime = 0;
 

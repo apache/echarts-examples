@@ -26,7 +26,13 @@
           :inactive-text="''"
         >
         </el-switch>
-        <el-popover placement="bottom" width="450" trigger="click" v-if="!isGL">
+        <!-- Not display when random button is displayed on mobile devices. -->
+        <el-popover
+          placement="bottom"
+          width="450"
+          trigger="click"
+          v-if="!isGL && !(shared.isMobile && hasRandomData)"
+        >
           <div class="render-config-container">
             <el-row :gutter="2" type="flex" align="middle">
               <el-col :span="12">
@@ -56,12 +62,10 @@
               {{ $t('editor.renderCfgTitle')
               }}<i class="el-icon-setting el-icon--right"></i>
             </el-button>
-            <!-- <i class="el-icon-setting el-icon--left"></i
-            >{{ $t('editor.renderCfgTitle') }} -->
           </span>
         </el-popover>
         <el-select
-          v-if="shared.echartsVersion"
+          v-if="shared.echartsVersion && !shared.isMobile"
           class="version-select"
           size="mini"
           id="choose-echarts-version"
@@ -77,6 +81,13 @@
             {{ version }}
           </el-option>
         </el-select>
+        <el-button
+          class="random"
+          v-if="hasRandomData"
+          size="mini"
+          @click="changeRandomSeed"
+          >{{ $t('editor.randomData') }}</el-button
+        >
       </div>
 
       <a
@@ -128,6 +139,7 @@ import {
   isGLExample,
   saveExampleCodeToLocal,
   store,
+  updateRandomSeed,
   updateRunHash
 } from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
@@ -140,8 +152,6 @@ import { gotoURL } from '../common/route';
 
 const example = getExampleConfig();
 const isGL = isGLExample();
-
-const echartsVersions = {};
 
 function addDecalIfNecessary(option) {
   if (store.enableDecal) {
@@ -293,6 +303,11 @@ export default {
   },
 
   computed: {
+    hasRandomData() {
+      return (
+        this.shared.runCode && this.shared.runCode.indexOf('Math.random()') >= 0
+      );
+    },
     editLink() {
       const params = ['c=' + URL_PARAMS.c];
       if (URL_PARAMS.theme) {
@@ -382,6 +397,17 @@ export default {
           })
         );
       });
+    },
+    changeRandomSeed() {
+      updateRandomSeed();
+      gotoURL(
+        {
+          ...URL_PARAMS,
+          random: store.randomSeed
+        },
+        true
+      );
+      this.run();
     }
     // hasEditorError() {
     //     const annotations = this.editor.getSession().getAnnotations();
@@ -459,6 +485,9 @@ export default {
   }
   .version-select {
     width: 80px;
+    margin-left: 10px;
+  }
+  .random {
     margin-left: 10px;
   }
 

@@ -2,6 +2,8 @@
 import { URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
+import { customAlphabet } from 'nanoid';
+const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 
 export const store = {
   echartsVersion: URL_PARAMS.version || '5',
@@ -30,12 +32,19 @@ export const store = {
   editorStatus: {
     type: '',
     message: ''
-  }
+  },
+
+  randomSeed: URL_PARAMS.random || 'echarts'
 };
 
 function findExample(item) {
   return URL_PARAMS.c === item.id;
 }
+
+export function updateRandomSeed() {
+  store.randomSeed = nanoid();
+}
+
 export function getExampleConfig() {
   const example = CHART_LIST.concat(CHART_LIST_GL).find(findExample);
   return example;
