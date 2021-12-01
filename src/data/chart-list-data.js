@@ -863,7 +863,7 @@ export default [
     "id": "data-transform-filter",
     "ts": true,
     "tags": [],
-    "title": "Data Transform Fitler",
+    "title": "Data Transform Filter",
     "titleCN": "数据过滤",
     "difficulty": 3
   },
