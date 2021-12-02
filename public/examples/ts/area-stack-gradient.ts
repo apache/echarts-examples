@@ -60,11 +60,11 @@ option = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgba(128, 255, 165)'
+            color: 'rgb(128, 255, 165)'
           },
           {
             offset: 1,
-            color: 'rgba(1, 191, 236)'
+            color: 'rgb(1, 191, 236)'
           }
         ])
       },
@@ -87,11 +87,11 @@ option = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgba(0, 221, 255)'
+            color: 'rgb(0, 221, 255)'
           },
           {
             offset: 1,
-            color: 'rgba(77, 119, 255)'
+            color: 'rgb(77, 119, 255)'
           }
         ])
       },
@@ -114,11 +114,11 @@ option = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgba(55, 162, 255)'
+            color: 'rgb(55, 162, 255)'
           },
           {
             offset: 1,
-            color: 'rgba(116, 21, 219)'
+            color: 'rgb(116, 21, 219)'
           }
         ])
       },
@@ -141,11 +141,11 @@ option = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgba(255, 0, 135)'
+            color: 'rgb(255, 0, 135)'
           },
           {
             offset: 1,
-            color: 'rgba(135, 0, 157)'
+            color: 'rgb(135, 0, 157)'
           }
         ])
       },
@@ -172,11 +172,11 @@ option = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgba(255, 191, 0)'
+            color: 'rgb(255, 191, 0)'
           },
           {
             offset: 1,
-            color: 'rgba(224, 62, 76)'
+            color: 'rgb(224, 62, 76)'
           }
         ])
       },
