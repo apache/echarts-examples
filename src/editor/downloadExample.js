@@ -2,10 +2,14 @@ import { store } from '../common/store';
 import { URL_PARAMS, SCRIPT_URLS } from '../common/config';
 import { downloadBlob } from '../common/helper';
 
-const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') >= 0;
-const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}'` : '';
-
 export function download() {
+
+  const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') >= 0;
+  const rootPathCode = hasRootPath ? 'var ROOT_PATH = \'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples\'' : '';
+
+  const hasJQueryJS = store.sourceCode.indexOf('$.get') >= 0;
+  const jqueryScriptCode = hasJQueryJS ? '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>' : '';
+
   const echartsMinJS = SCRIPT_URLS.echartsMinJS.replace(
     '{{version}}',
     store.echartsVersion
@@ -25,6 +29,7 @@ export function download() {
     <body style="height: 100%; margin: 0">
         <div id="container" style="height: 100%"></div>
 
+        ${jqueryScriptCode}
         <script type="text/javascript" src="${echartsMinJS}"></script>
         <!-- Uncomment this line if you want to dataTool extension
         <script type="text/javascript" src="${echartsDir}/dist/extension/dataTool.min.js"></script>
