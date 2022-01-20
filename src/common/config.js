@@ -24,7 +24,7 @@ export const EXAMPLE_CATEGORIES = [
 
   'dataset',
   'dataZoom',
-  'drag',
+  'graphic',
   'rich',
 
   'globe',

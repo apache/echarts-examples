@@ -38,7 +38,6 @@ $.when(
   projection = d3.geoOrthographic();
 
   option = {
-    animation: false,
     geo: {
       map: 'world',
 
@@ -51,6 +50,7 @@ $.when(
       itemStyle: {
         borderColor: '#333',
         borderWidth: 1,
+        borderJoin: 'round',
         color: '#000'
       },
 
@@ -60,7 +60,7 @@ $.when(
         },
 
         itemStyle: {
-          color: '#333'
+          color: 'skyblue'
         }
       },
 

@@ -66,7 +66,7 @@ export default {
 
       dataset: 'Dataset',
       dataZoom: 'DataZoom',
-      drag: 'Drag',
+      graphic: 'Graphic',
       rich: 'Rich Text',
 
       globe: '3D Globe',
@@ -149,7 +149,7 @@ export default {
 
       dataset: '数据集',
       dataZoom: '数据区域缩放',
-      drag: '拖拽',
+      graphic: '原生图形',
       rich: '富文本',
 
       globe: '3D 地球',

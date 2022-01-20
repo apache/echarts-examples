@@ -549,6 +549,17 @@ export default [
   },
   {
     "category": [
+      "graphic"
+    ],
+    "id": "graphic-stroke-animation",
+    "ts": true,
+    "tags": [],
+    "title": "Stroke Animation",
+    "titleCN": "描边动画",
+    "difficulty": 2
+  },
+  {
+    "category": [
       "heatmap"
     ],
     "id": "heatmap-large",
@@ -1196,8 +1207,7 @@ export default [
   {
     "category": [
       "custom",
-      "dataZoom",
-      "drag"
+      "dataZoom"
     ],
     "id": "custom-gantt-flight",
     "ts": false,
@@ -2332,12 +2342,12 @@ export default [
   {
     "category": [
       "line",
-      "drag"
+      "graphic"
     ],
     "id": "line-draggable",
     "ts": true,
     "tags": [],
-    "title": "Try Dragging these Points",
+    "title": "Draggable Points",
     "titleCN": "可拖拽点",
     "difficulty": 10
   },
