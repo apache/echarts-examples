@@ -1,9 +1,9 @@
 /*
 title: Stroke Animation
-category: 'graphic'
-titleCN: 描边动画
-difficulty: 2
-videoStart: 500
+category: graphic
+titleCN: 关键帧描边动画
+difficulty: 5
+videoStart: 1000
 videoEnd: 3000
 */
 
