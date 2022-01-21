@@ -4,6 +4,7 @@ category: custom
 titleCN: 自定义特效
 videoStart: 1000
 videoEnd: 3000
+shotWidth: 400
 */
 
 $.get(ROOT_PATH + '/data/asset/geo/Map_of_Iceland.svg', function (svg) {
