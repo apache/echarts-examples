@@ -66,13 +66,12 @@ option = {
   yAxis: [
     {
       name: 'Flow(m^3/s)',
-      type: 'value',
-      max: 500
+      type: 'value'
     },
     {
       name: 'Rainfall(mm)',
       nameLocation: 'start',
-      max: 5,
+      alignTicks: true,
       type: 'value',
       inverse: true
     }

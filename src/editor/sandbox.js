@@ -187,7 +187,7 @@ export function createSandbox(optionUpdated) {
                 );
               }
             }
-            if (typeof obj === 'string') {
+            if (typeof value === 'string') {
               try {
                 var colorArr = echarts.color.parse(value);
                 isColor = !!colorArr;

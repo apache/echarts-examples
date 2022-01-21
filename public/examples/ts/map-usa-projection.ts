@@ -1,31 +1,24 @@
 /*
-title: USA Population Estimates (2012)
+title: USA Choropleth Map with Projection
 category: map
-titleCN: 2012 年美国人口统计
+titleCN: 自定义地图投影
 */
 
 myChart.showLoading();
 
-$.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
+$.when(
+  $.get(ROOT_PATH + '/data/asset/geo/USA.json'),
+
+  $.getScript('https://cdn.jsdelivr.net/npm/d3-array'),
+  $.getScript('https://cdn.jsdelivr.net/npm/d3-geo')
+).done(function (res) {
+  const usaJson = res[0];
+
+  const projection = d3.geoAlbersUsa();
+
   myChart.hideLoading();
 
-  echarts.registerMap('USA', usaJson, {
-    Alaska: {
-      left: -131,
-      top: 25,
-      width: 15
-    },
-    Hawaii: {
-      left: -110,
-      top: 28,
-      width: 5
-    },
-    'Puerto Rico': {
-      left: -76,
-      top: 26,
-      width: 2
-    }
-  });
+  echarts.registerMap('USA', usaJson);
   option = {
     title: {
       text: 'USA Population Estimates (2012)',
@@ -57,7 +50,7 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
           '#a50026'
         ]
       },
-      text: ['High', 'Low'],
+      text: ['High', 'Low'], // 文本，默认为数值文本
       calculable: true
     },
     toolbox: {
@@ -75,8 +68,15 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
       {
         name: 'USA PopEstimates',
         type: 'map',
-        roam: true,
         map: 'USA',
+        projection: {
+          project: function (point) {
+            return projection(point);
+          },
+          unproject: function (point) {
+            return projection.invert(point);
+          }
+        },
         emphasis: {
           label: {
             show: true

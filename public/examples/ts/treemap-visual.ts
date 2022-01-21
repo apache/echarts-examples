@@ -120,8 +120,7 @@ $.get(
             type: 'treemap',
             label: {
               show: true,
-              formatter: '{b}',
-              ellipsis: true
+              formatter: '{b}'
             },
             itemStyle: {
               borderColor: 'black'

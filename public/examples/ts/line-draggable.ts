@@ -1,8 +1,8 @@
 /*
-title: Try Dragging these Points
-category: 'line, drag'
+title: Draggable Points
+category: 'line, graphic'
 titleCN: 可拖拽点
-difficulty: 10
+difficulty: 12
 */
 
 const symbolSize = 20;

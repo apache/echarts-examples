@@ -549,6 +549,17 @@ export default [
   },
   {
     "category": [
+      "graphic"
+    ],
+    "id": "graphic-stroke-animation",
+    "ts": true,
+    "tags": [],
+    "title": "Stroke Animation",
+    "titleCN": "描边动画",
+    "difficulty": 2
+  },
+  {
+    "category": [
       "heatmap"
     ],
     "id": "heatmap-large",
@@ -1196,8 +1207,7 @@ export default [
   {
     "category": [
       "custom",
-      "dataZoom",
-      "drag"
+      "dataZoom"
     ],
     "id": "custom-gantt-flight",
     "ts": false,
@@ -2332,12 +2342,12 @@ export default [
   {
     "category": [
       "line",
-      "drag"
+      "graphic"
     ],
     "id": "line-draggable",
     "ts": true,
     "tags": [],
-    "title": "Try Dragging these Points",
+    "title": "Draggable Points",
     "titleCN": "可拖拽点",
     "difficulty": 10
   },
@@ -2538,6 +2548,17 @@ export default [
     "category": [
       "map"
     ],
+    "id": "map-projection-globe",
+    "ts": true,
+    "tags": [],
+    "title": "Map with Orthographic Projection",
+    "titleCN": "正交投影地图",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
     "id": "map-province",
     "ts": false,
     "tags": [],
@@ -2554,6 +2575,17 @@ export default [
     "tags": [],
     "title": "USA Population Estimates (2012)",
     "titleCN": "2012 年美国人口统计",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "map-usa-projection",
+    "ts": true,
+    "tags": [],
+    "title": "USA Choropleth Map with Projection",
+    "titleCN": "自定义地图投影",
     "difficulty": 10
   },
   {

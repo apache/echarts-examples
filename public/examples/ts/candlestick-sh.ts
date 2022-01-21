@@ -153,7 +153,6 @@ option = {
   xAxis: {
     type: 'category',
     data: data0.categoryData,
-    scale: true,
     boundaryGap: false,
     axisLine: { onZero: false },
     splitLine: { show: false },
