@@ -549,21 +549,10 @@ export default [
   },
   {
     "category": [
-      "graphic"
-    ],
-    "id": "graphic-stroke-animation",
-    "ts": true,
-    "tags": [],
-    "title": "Stroke Animation",
-    "titleCN": "描边动画",
-    "difficulty": 2
-  },
-  {
-    "category": [
       "heatmap"
     ],
     "id": "heatmap-large",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Heatmap - 20K data",
     "titleCN": "热力图 - 2w 数据",
@@ -574,7 +563,7 @@ export default [
       "heatmap"
     ],
     "id": "heatmap-large-piecewise",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Heatmap - Discrete Mapping of Color",
     "titleCN": "热力图 - 颜色的离散映射",
@@ -1611,6 +1600,17 @@ export default [
   },
   {
     "category": [
+      "graphic"
+    ],
+    "id": "graphic-stroke-animation",
+    "ts": true,
+    "tags": [],
+    "title": "Stroke Animation",
+    "titleCN": "关键帧描边动画",
+    "difficulty": 5
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "line-function",
@@ -2078,7 +2078,8 @@ export default [
   },
   {
     "category": [
-      "line"
+      "line",
+      "graphic"
     ],
     "id": "line-graphic",
     "ts": true,
@@ -2297,6 +2298,17 @@ export default [
   },
   {
     "category": [
+      "custom"
+    ],
+    "id": "geo-svg-custom-effect",
+    "ts": true,
+    "tags": [],
+    "title": "GEO SVG with Customized Effect",
+    "titleCN": "自定义特效",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "map"
     ],
     "id": "geo-svg-lines",
@@ -2341,14 +2353,13 @@ export default [
   },
   {
     "category": [
-      "line",
       "graphic"
     ],
-    "id": "line-draggable",
-    "ts": true,
+    "id": "graphic-wave-animation",
+    "ts": false,
     "tags": [],
-    "title": "Draggable Points",
-    "titleCN": "可拖拽点",
+    "title": "Wave Animation",
+    "titleCN": null,
     "difficulty": 10
   },
   {
@@ -2964,6 +2975,18 @@ export default [
     "title": "Custom Spiral Race",
     "titleCN": "自定义螺旋线竞速",
     "difficulty": 11
+  },
+  {
+    "category": [
+      "line",
+      "graphic"
+    ],
+    "id": "line-draggable",
+    "ts": true,
+    "tags": [],
+    "title": "Draggable Points",
+    "titleCN": "可拖拽点",
+    "difficulty": 12
   },
   {
     "category": [
