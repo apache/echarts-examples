@@ -149,7 +149,7 @@ export default {
 
       dataset: '数据集',
       dataZoom: '数据区域缩放',
-      graphic: '原生图形',
+      graphic: '图形组件',
       rich: '富文本',
 
       globe: '3D 地球',
