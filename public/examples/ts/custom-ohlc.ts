@@ -116,7 +116,6 @@ $.get(ROOT_PATH + '/data/asset/data/stock-DJI.json', function (rawData) {
         {
           type: 'category',
           data: data.categoryData,
-          scale: true,
           boundaryGap: false,
           axisLine: { onZero: false },
           splitLine: { show: false },

@@ -121,7 +121,6 @@ option = {
       type: 'category',
       gridIndex: 1,
       data: dates,
-      scale: true,
       boundaryGap: false,
       splitLine: { show: false },
       axisLabel: { show: false },
