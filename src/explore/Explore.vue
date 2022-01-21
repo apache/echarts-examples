@@ -100,7 +100,7 @@ const icons = {};
   'lines',
   'dataZoom',
   'rich',
-  'drag'
+  'graphic'
 ].forEach(function (category) {
   icons[category] = require('../asset/icon/' + category + '.svg');
 });
