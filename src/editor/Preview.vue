@@ -296,7 +296,7 @@ export default {
 
         // Use last version
         if (!store.echartsVersion || store.echartsVersion === '5') {
-          store.echartsVersion = data.versions[0];
+          store.echartsVersion = versions[0];
         }
       }
     );
