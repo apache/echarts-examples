@@ -4,7 +4,7 @@ category: graphic
 titleCN: 加载动画
 difficulty: 6
 videoStart: 1000
-videoEnd: 3400
+videoEnd: 3200
 shotWidth: 400
 */
 option = {
