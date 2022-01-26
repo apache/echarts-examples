@@ -1792,6 +1792,17 @@ export default [
   },
   {
     "category": [
+      "graphic"
+    ],
+    "id": "graphic-loading",
+    "ts": true,
+    "tags": [],
+    "title": "Customized Loading Animation",
+    "titleCN": "加载动画",
+    "difficulty": 6
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "line-markline",
