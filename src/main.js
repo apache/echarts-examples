@@ -4,7 +4,7 @@ import messages from './common/i18n';
 import EditorPage from './editor/Editor.vue';
 import ExplorePage from './explore/Explore.vue';
 import ViewPage from './editor/View.vue';
-import {store} from './common/store';
+import { store } from './common/store';
 import VueScrollactive from 'vue-scrollactive';
 
 Vue.use(VueScrollactive);
@@ -19,35 +19,36 @@ Vue.use(VueScrollactive);
  * @param {string} [option.version]
  */
 export function init(el, option) {
-    const i18n = new VueI18n({
-        locale: option.locale,
-        fallbackLocale: 'en',
-        messages
-    });
-    store.cdnRoot = option.cdnRoot;
-    store.version = option.version;
-    store.locale = option.locale || 'en';
+  const i18n = new VueI18n({
+    locale: option.locale,
+    fallbackLocale: 'en',
+    messages
+  });
+  store.cdnRoot = option.cdnRoot;
+  store.version = option.version;
+  store.locale = option.locale || 'en';
 
+  if (typeof el === 'string') {
+    el = document.querySelector(el);
+  }
+  if (!el) {
+    throw new Error("Can't find el.");
+  }
 
-    if (typeof el === 'string') {
-        el = document.querySelector(el);
+  const container = document.createElement('div');
+  el.appendChild(container);
+
+  new Vue({
+    i18n,
+    el: container,
+    render: (h) => {
+      return h(
+        {
+          editor: EditorPage,
+          explore: ExplorePage,
+          view: ViewPage
+        }[option.page] || ExplorePage
+      );
     }
-    if (!el) {
-        throw new Error('Can\'t find el.');
-    }
-
-    const container = document.createElement('div');
-    el.appendChild(container);
-
-    new Vue({
-        i18n,
-        el: container,
-        render: h => {
-            return h(({
-                editor: EditorPage,
-                explore: ExplorePage,
-                view: ViewPage
-            })[option.page] || ExplorePage);
-        }
-    });
+  });
 }

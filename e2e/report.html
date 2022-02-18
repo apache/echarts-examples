@@ -1,186 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test Report</title>
-    <link href="https://cdn.jsdelivr.net/npm/element-ui@2.14.1/lib/theme-chalk/index.css" rel="stylesheet" type="text/css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/element-ui@2.14.1/lib/theme-chalk/index.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <style>
-        #app {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+      #app {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-        .import-type-title {
-            padding: 10px;
-        }
+      .import-type-title {
+        padding: 10px;
+      }
 
-        .import-type-title div {
-            font-size: 14px;
-            font-family:'Courier New', Courier, monospace;
-        }
+      .import-type-title div {
+        font-size: 14px;
+        font-family: 'Courier New', Courier, monospace;
+      }
 
-        .type-error-log {
-            padding: 10px;
-            color: red;
-            font-family:'Courier New', Courier, monospace;
-        }
-        .type-error-log pre {
-            margin: 5px 0;
-            padding: 0;
-            /* https://css-tricks.com/snippets/css/make-pre-text-wrap/ */
-            white-space: pre-wrap;
-        }
-        .type-passed {
-            font-size: 14px;
-            color: green;
-            font-family:'Courier New', Courier, monospace;
-            padding: 10px;
-        }
+      .type-error-log {
+        padding: 10px;
+        color: red;
+        font-family: 'Courier New', Courier, monospace;
+      }
+      .type-error-log pre {
+        margin: 5px 0;
+        padding: 0;
+        /* https://css-tricks.com/snippets/css/make-pre-text-wrap/ */
+        white-space: pre-wrap;
+      }
+      .type-passed {
+        font-size: 14px;
+        color: green;
+        font-family: 'Courier New', Courier, monospace;
+        padding: 10px;
+      }
     </style>
-
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <el-tabs v-model="tab" type="border-card">
-            <el-tab-pane label="Type Checking" name="typechecking">
-                <div v-for="item in typeCheckingResult">
-                    <h3>{{ item.testName }}({{item.compileErrorsCount}})</h3>
-                    <el-row :gutter="30">
-                        <el-col :span="12">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <div class="import-type-title">
-                                    <div>全量引入</div>
-                                    <div>Full Import</div>
-                                </div>
-                                <div class="type-error-log" v-if="item.compileErrors.full.length">
-                                    <div v-for="compileError in item.compileErrors.full">
-                                        <pre>[{{compileError.location.join(', ')}}] {{compileError.message}}</pre>
-                                    </div>
-                                </div>
-                                <div class="type-passed" v-else>
-                                    No Error
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="12">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <div class="import-type-title">
-                                    <div>按需引入</div>
-                                    <div>Minimal Import </div>
-                                </div>
-                                <div class="type-error-log" v-if="item.compileErrors.minimal.length">
-                                    <div v-for="compileError in item.compileErrors.minimal">
-                                        <pre>[{{compileError.location.join(', ')}}] {{compileError.message}}</pre>
-                                    </div>
-                                </div>
-                                <div class="type-passed" v-else>
-                                    No Error
-                                </div>
-                            </el-card>
-                        </el-col>
-                    </el-row>
-                </div>
-            </el-tab-pane>
-            <el-tab-pane label="Screenshots Compare" name="screenshots">
-                <div v-for="item in screenshotsCompareResult">
-                    <h3>{{ item.testName }}({{item.screenshotDiffRatio}})</h3>
-                    <el-row :gutter="10">
-                        <el-col :span="4">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <el-image :src="SCREENSHOT_ROOT + item.testName + '.png'"></el-image>
-                                <div class="import-type-title">
-                                    <div>全量引入</div>
-                                    <div>Full Import</div>
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="4">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <el-image :src="SCREENSHOT_ROOT + item.testName + '.minimal.png'"></el-image>
-                                <div class="import-type-title">
-                                    <div>按需引入</div>
-                                    <div>Minimal Import </div>
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="4">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <el-image :src="SCREENSHOT_ROOT + item.testName + '.minimal.legacy.png'"></el-image>
-                                <div class="import-type-title">
-                                    <div>自注册方式按需引入</div>
-                                    <div>Minimal Import with Self Registion</div>
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="4">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <el-image :src="SCREENSHOT_ROOT + item.testName + '.minimal.diff.png'"></el-image>
-                                <div class="import-type-title">
-                                    <div>按需引入差异</div>
-                                    <div>Diff of Minimal Import </div>
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="4">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <el-image :src="SCREENSHOT_ROOT + item.testName + '.minimal.legacy.diff.png'"></el-image>
-                                <div class="import-type-title">
-                                    <div>自注册方式按需引入差异</div>
-                                    <div>Diff of Minimal Import with Self Registion</div>
-                                </div>
-                            </el-card>
-                        </el-col>
-                    </el-row>
-                </div>
-            </el-tab-pane>
-        </el-tabs>
+      <el-tabs v-model="tab" type="border-card">
+        <el-tab-pane label="Type Checking" name="typechecking">
+          <div v-for="item in typeCheckingResult">
+            <h3>{{ item.testName }}({{item.compileErrorsCount}})</h3>
+            <el-row :gutter="30">
+              <el-col :span="12">
+                <el-card :body-style="{ padding: '0px' }">
+                  <div class="import-type-title">
+                    <div>全量引入</div>
+                    <div>Full Import</div>
+                  </div>
+                  <div
+                    class="type-error-log"
+                    v-if="item.compileErrors.full.length"
+                  >
+                    <div v-for="compileError in item.compileErrors.full">
+                      <pre>
+[{{compileError.location.join(', ')}}] {{compileError.message}}</pre
+                      >
+                    </div>
+                  </div>
+                  <div class="type-passed" v-else>No Error</div>
+                </el-card>
+              </el-col>
+              <el-col :span="12">
+                <el-card :body-style="{ padding: '0px' }">
+                  <div class="import-type-title">
+                    <div>按需引入</div>
+                    <div>Minimal Import</div>
+                  </div>
+                  <div
+                    class="type-error-log"
+                    v-if="item.compileErrors.minimal.length"
+                  >
+                    <div v-for="compileError in item.compileErrors.minimal">
+                      <pre>
+[{{compileError.location.join(', ')}}] {{compileError.message}}</pre
+                      >
+                    </div>
+                  </div>
+                  <div class="type-passed" v-else>No Error</div>
+                </el-card>
+              </el-col>
+            </el-row>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="Screenshots Compare" name="screenshots">
+          <div v-for="item in screenshotsCompareResult">
+            <h3>{{ item.testName }}({{item.screenshotDiffRatio}})</h3>
+            <el-row :gutter="10">
+              <el-col :span="4">
+                <el-card :body-style="{ padding: '0px' }">
+                  <el-image
+                    :src="SCREENSHOT_ROOT + item.testName + '.png'"
+                  ></el-image>
+                  <div class="import-type-title">
+                    <div>全量引入</div>
+                    <div>Full Import</div>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="4">
+                <el-card :body-style="{ padding: '0px' }">
+                  <el-image
+                    :src="SCREENSHOT_ROOT + item.testName + '.minimal.png'"
+                  ></el-image>
+                  <div class="import-type-title">
+                    <div>按需引入</div>
+                    <div>Minimal Import</div>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="4">
+                <el-card :body-style="{ padding: '0px' }">
+                  <el-image
+                    :src="SCREENSHOT_ROOT + item.testName + '.minimal.legacy.png'"
+                  ></el-image>
+                  <div class="import-type-title">
+                    <div>自注册方式按需引入</div>
+                    <div>Minimal Import with Self Registion</div>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="4">
+                <el-card :body-style="{ padding: '0px' }">
+                  <el-image
+                    :src="SCREENSHOT_ROOT + item.testName + '.minimal.diff.png'"
+                  ></el-image>
+                  <div class="import-type-title">
+                    <div>按需引入差异</div>
+                    <div>Diff of Minimal Import</div>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="4">
+                <el-card :body-style="{ padding: '0px' }">
+                  <el-image
+                    :src="SCREENSHOT_ROOT + item.testName + '.minimal.legacy.diff.png'"
+                  ></el-image>
+                  <div class="import-type-title">
+                    <div>自注册方式按需引入差异</div>
+                    <div>Diff of Minimal Import with Self Registion</div>
+                  </div>
+                </el-card>
+              </el-col>
+            </el-row>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/element-ui@2.14.1/lib/index.js"></script>
 
     <script>
-        const app = new Vue({
-            el: '#app',
-            data() {
-                return {
-                    typeCheckingResult: [],
-                    screenshotsCompareResult: [],
+      const app = new Vue({
+        el: '#app',
+        data() {
+          return {
+            typeCheckingResult: [],
+            screenshotsCompareResult: [],
 
-                    SCREENSHOT_ROOT: './tmp/screenshots/',
+            SCREENSHOT_ROOT: './tmp/screenshots/',
 
-                    tab: 'screenshots',
-                    splitterModel: 10
-                };
-            }
-        });
+            tab: 'screenshots',
+            splitterModel: 10
+          };
+        }
+      });
 
-        fetch('./tmp/result.json')
-            .then(response => response.json())
-            .then(json => {
-                const result = [];
-                function getCompilerErrorsCount({ full, minimal, minimalLegacy }) {
-                    return full.length + minimal.length + minimalLegacy.length;
-                }
-                function getScreenshotDiffRatio({ minimal, minimalLegacy }) {
-                    return minimal.ratio + minimalLegacy.ratio;
-                }
+      fetch('./tmp/result.json')
+        .then((response) => response.json())
+        .then((json) => {
+          const result = [];
+          function getCompilerErrorsCount({ full, minimal, minimalLegacy }) {
+            return full.length + minimal.length + minimalLegacy.length;
+          }
+          function getScreenshotDiffRatio({ minimal, minimalLegacy }) {
+            return minimal.ratio + minimalLegacy.ratio;
+          }
 
-                Object.keys(json).forEach(key => {
-                    result.push({
-                        ...json[key],
-                        compileErrorsCount: getCompilerErrorsCount(json[key].compileErrors),
-                        screenshotDiffRatio: getScreenshotDiffRatio(json[key].screenshotDiff),
-                        testName: key
-                    });
-                });
-                app.typeCheckingResult = result.slice().sort((a, b) => {
-                    return b.compileErrorsCount - a.compileErrorsCount;
-                });
-                app.screenshotsCompareResult = result.slice().sort((a, b) => {
-                    return b.screenshotDiffRatio - a.screenshotDiffRatio;
-                });
+          Object.keys(json).forEach((key) => {
+            result.push({
+              ...json[key],
+              compileErrorsCount: getCompilerErrorsCount(
+                json[key].compileErrors
+              ),
+              screenshotDiffRatio: getScreenshotDiffRatio(
+                json[key].screenshotDiff
+              ),
+              testName: key
             });
+          });
+          app.typeCheckingResult = result.slice().sort((a, b) => {
+            return b.compileErrorsCount - a.compileErrorsCount;
+          });
+          app.screenshotsCompareResult = result.slice().sort((a, b) => {
+            return b.screenshotDiffRatio - a.screenshotDiffRatio;
+          });
+        });
     </script>
-</body>
+  </body>
 </html>

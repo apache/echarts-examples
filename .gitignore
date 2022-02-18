@@ -14,6 +14,7 @@ public/vendors/echarts/map/raw
 /public/asset
 /public/data/option
 /public/data-gl/option
+/public/examples/js
 /e2e/package-lock.json
 
 tmp

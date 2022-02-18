@@ -1,125 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@3.10.1/index.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-nightly/dist/echarts.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/china.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/world.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/lodash@3.10.1/index.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts-nightly/dist/echarts.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/china.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts@5.0.0-alpha.2/map/js/world.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://api.map.baidu.com/api?v=2.0&amp;ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"
+    ></script>
     <script type="text/javascript" src="./seedrandom.js"></script>
     <style>
-        html, body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #viewport {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            right: 0px;
-            bottom: 0px;
-        }
+      html,
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #viewport {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+      }
     </style>
-</head>
-<body>
-<div id="viewport"></div>
-<script>
-    // Params parser
-    var params = {};
-    (location.search || '').substr(1).split('&').forEach(function (item) {
-        var kv = item.split('=');
-        params[kv[0]] = kv[1];
-    });
+  </head>
+  <body>
+    <div id="viewport"></div>
+    <script>
+      // Params parser
+      var params = {};
+      (location.search || '')
+        .substr(1)
+        .split('&')
+        .forEach(function (item) {
+          var kv = item.split('=');
+          params[kv[0]] = kv[1];
+        });
 
-    var myChart = echarts.init(document.getElementById('viewport'), params.t || null);
-    var _$getEChartsOption = function () {
+      var myChart = echarts.init(
+        document.getElementById('viewport'),
+        params.t || null
+      );
+      var _$getEChartsOption = function () {
         return myChart.getOption();
-    }
-    var app = {};
-</script>
-<script>
-    const myrng = new Math.seedrandom('echarts');
-    Math.random = function () {
+      };
+      var app = {};
+    </script>
+    <script>
+      const myrng = new Math.seedrandom('echarts');
+      Math.random = function () {
         return myrng();
-    };
+      };
 
-    function addComponentPadding(componentOpt) {
+      function addComponentPadding(componentOpt) {
         if (!componentOpt) {
-            return;
+          return;
         }
         if (!(componentOpt instanceof Array)) {
-            componentOpt = [componentOpt];
+          componentOpt = [componentOpt];
         }
         componentOpt.forEach(function (opt) {
-            if (!opt.padding) {
-                opt.padding = 15;
-            }
+          if (!opt.padding) {
+            opt.padding = 15;
+          }
         });
-    }
+      }
 
-    const isAnimated = !isNaN(params.start) && !isNaN(params.end) && +params.end > +params.start;
+      const isAnimated =
+        !isNaN(params.start) &&
+        !isNaN(params.end) &&
+        +params.end > +params.start;
 
-    echarts.registerPreprocessor(function (option) {
+      echarts.registerPreprocessor(function (option) {
         if (!isAnimated) {
-            option.animation = false;
-            if (option.series) {
-                if (!(option.series instanceof Array)) {
-                    option.series = [option.series];
-                }
-                option.series.forEach(function (seriesOpt) {
-                    if (seriesOpt.type === 'graph') {
-                        seriesOpt.force = seriesOpt.force || {};
-                        seriesOpt.force.layoutAnimation = false;
-                    }
-                    seriesOpt.progressive = 1e5;
-                    seriesOpt.animation = false;
-                });
+          option.animation = false;
+          if (option.series) {
+            if (!(option.series instanceof Array)) {
+              option.series = [option.series];
             }
+            option.series.forEach(function (seriesOpt) {
+              if (seriesOpt.type === 'graph') {
+                seriesOpt.force = seriesOpt.force || {};
+                seriesOpt.force.layoutAnimation = false;
+              }
+              seriesOpt.progressive = 1e5;
+              seriesOpt.animation = false;
+            });
+          }
         }
         addComponentPadding(option.title);
         addComponentPadding(option.legend);
         addComponentPadding(option.toolbox);
-    });
+      });
 
-    if (params.c) {
+      if (params.c) {
         if (!window.ROOT_PATH) {
-            // When visiting `screenshot.html` In browser.
-            console.error('No ROOT_PATH specified. Use default ROOT_PATH "."');
-            window.ROOT_PATH = '.';
+          // When visiting `screenshot.html` In browser.
+          console.error('No ROOT_PATH specified. Use default ROOT_PATH "."');
+          window.ROOT_PATH = '.';
         }
-        const sourceFolder = params.s || 'data';
         const scriptTag = document.createElement('script');
         scriptTag.async = false;
-        scriptTag.src = `../public/${sourceFolder}/${params.c}.js`
+        scriptTag.src = `../public/examples/js${'gl' in params ? '/gl' : ''}/${
+          params.c
+        }.js`;
         document.body.appendChild(scriptTag);
 
         let videoRecorder;
         scriptTag.onload = function () {
-            if (isAnimated) {
-                videoRecorder = new VideoRecorder(myChart);
-                setTimeout(() => {
-                    videoRecorder.start();
-                }, +params.start);
-                setTimeout(() => {
-                    videoRecorder.stop();
-                }, +params.end);
-            }
+          if (isAnimated) {
+            videoRecorder = new VideoRecorder(myChart);
+            setTimeout(() => {
+              videoRecorder.start();
+            }, +params.start);
+            setTimeout(() => {
+              videoRecorder.stop();
+            }, +params.end);
+          }
 
-            if (typeof option !== 'undefined' && option) {
-                myChart.setOption(option);
-            }
-        }
-    }
+          if (typeof option !== 'undefined' && option) {
+            myChart.setOption(option);
+          }
+        };
+      }
 
-    function VideoRecorder(chart) {
+      function VideoRecorder(chart) {
         this.start = startRecording;
         this.stop = stopRecording;
 
@@ -128,59 +175,60 @@
         var oldRefreshImmediately = chart.getZr().refreshImmediately;
 
         function startRecording() {
-            // Normal resolution or high resolution?
-            var compositeCanvas = document.createElement('canvas');
-            var width = chart.getWidth();
-            var height = chart.getHeight();
-            compositeCanvas.width = width;
-            compositeCanvas.height = height;
-            var compositeCtx = compositeCanvas.getContext('2d');
+          // Normal resolution or high resolution?
+          var compositeCanvas = document.createElement('canvas');
+          var width = chart.getWidth();
+          var height = chart.getHeight();
+          compositeCanvas.width = width;
+          compositeCanvas.height = height;
+          var compositeCtx = compositeCanvas.getContext('2d');
 
-            chart.getZr().refreshImmediately = function () {
-                var ret = oldRefreshImmediately.apply(this, arguments);
-                var canvasList = chart.getDom().querySelectorAll('canvas');
-                compositeCtx.fillStyle = '#fff';
-                compositeCtx.fillRect(0, 0, width, height);
-                for (var i = 0; i < canvasList.length; i++) {
-                    compositeCtx.drawImage(canvasList[i], 0, 0, width, height);
-                }
-                return ret;
+          chart.getZr().refreshImmediately = function () {
+            var ret = oldRefreshImmediately.apply(this, arguments);
+            var canvasList = chart.getDom().querySelectorAll('canvas');
+            compositeCtx.fillStyle = '#fff';
+            compositeCtx.fillRect(0, 0, width, height);
+            for (var i = 0; i < canvasList.length; i++) {
+              compositeCtx.drawImage(canvasList[i], 0, 0, width, height);
             }
+            return ret;
+          };
 
-            var stream = compositeCanvas.captureStream(25);
-            recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+          var stream = compositeCanvas.captureStream(25);
+          recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
 
-            var videoData = [];
-            recorder.ondataavailable = function (event) {
-                if (event.data && event.data.size) {
-                    videoData.push(event.data);
-                }
-            };
+          var videoData = [];
+          recorder.ondataavailable = function (event) {
+            if (event.data && event.data.size) {
+              videoData.push(event.data);
+            }
+          };
 
-            recorder.onstop = function () {
-                var url = URL.createObjectURL(new Blob(videoData, { type: 'video/webm' }));
+          recorder.onstop = function () {
+            var url = URL.createObjectURL(
+              new Blob(videoData, { type: 'video/webm' })
+            );
 
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = `${params.c}.webm`;
-                a.click();
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = `${params.c}.webm`;
+            a.click();
 
-                setTimeout(function () {
-                    window.URL.revokeObjectURL(url);
-                }, 100);
-            };
+            setTimeout(function () {
+              window.URL.revokeObjectURL(url);
+            }, 100);
+          };
 
-            recorder.start();
+          recorder.start();
         }
 
         function stopRecording() {
-            if (recorder) {
-                chart.getZr().refreshImmediately = oldRefreshImmediately;
-                recorder.stop();
-            }
+          if (recorder) {
+            chart.getZr().refreshImmediately = oldRefreshImmediately;
+            recorder.stop();
+          }
         }
-    }
-
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>

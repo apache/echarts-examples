@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "strict": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
+    "pretty": true,
+    "outDir": "./js/",
+    "baseUrl": "./"
+  },
+  "include": ["./ts/**/*.ts", "./ts/**/*.js", "./types/**/*.d.ts"]
+}
