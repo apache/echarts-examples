@@ -37,7 +37,12 @@ export default {
       codeChangedConfirm:
         "Modified code will be lost. Do you wan't to continue?",
       confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
+      cancelButtonText: 'No',
+
+      share: {
+        title: 'Share',
+        success: 'Sharable URL has been copied to clipboard'
+      }
     },
 
     chartTypes: {
@@ -120,7 +125,12 @@ export default {
       codeChangedConfirm: '已经修改过的代码将会丢失，是否确认继续？',
 
       confirmButtonText: '确认',
-      cancelButtonText: '取消'
+      cancelButtonText: '取消',
+
+      share: {
+        title: '分享',
+        success: '分享链接已复制到剪贴板'
+      }
     },
 
     chartTypes: {

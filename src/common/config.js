@@ -99,7 +99,7 @@ export const BLACK_MAP = (function (list) {
 
 const URL_PARAMS = {};
 (location.search || '')
-  .substr(1)
+  .slice(1)
   .split('&')
   .forEach(function (item) {
     const kv = item.split('=');
@@ -108,23 +108,24 @@ const URL_PARAMS = {};
 
 export { URL_PARAMS };
 
+// https://npm.elemecdn.com/
+export const CDN_ROOT = 'https://cdn.jsdelivr.net/npm/';
+
 export const SCRIPT_URLS = {
-  echartsMinJS:
-    'https://cdn.jsdelivr.net/npm/echarts@{{version}}/dist/echarts.min.js',
-  echartsDir: 'https://cdn.jsdelivr.net/npm/echarts@{{version}}',
+  echartsMinJS: '/dist/echarts.min.js',
+  echartsDir: `${CDN_ROOT}echarts@{{version}}`,
+  echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,
 
   localEChartsMinJS: 'http://localhost/echarts/dist/echarts.js',
   localEChartsDir: 'http://localhost/echarts',
 
-  echartsStatMinJS:
-    'https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js',
+  echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
+  echartsStatMinJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
   // echartsGLMinJS: 'http://localhost/echarts-gl/dist/echarts-gl.min.js',
-  echartsGLMinJS:
-    'https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js',
-  datGUIMinJS:
-    'https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js',
-  monacoDir: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.27.0/min/vs',
-  aceDir: 'https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-min-noconflict',
+  echartsGLMinJS: `${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js`,
+  datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
+  monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
+  aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
 
-  prettierDir: 'https://cdn.jsdelivr.net/npm/prettier@2.3.2'
+  prettierDir: `${CDN_ROOT}prettier@2.3.2`
 };

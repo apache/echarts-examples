@@ -64,16 +64,24 @@
             </el-button>
           </span>
         </el-popover>
+        <el-button
+          class="random"
+          v-if="hasRandomData"
+          size="mini"
+          @click="changeRandomSeed"
+          >{{ $t('editor.randomData') }}</el-button
+        >
         <el-select
           v-if="shared.echartsVersion && !shared.isMobile"
           class="version-select"
+          :class="{ nightly }"
           size="mini"
           id="choose-echarts-version"
           v-model="shared.echartsVersion"
           @change="changeVersion"
         >
           <el-option
-            v-for="version in allEchartsVersions"
+            v-for="version in versionList"
             :key="version"
             :label="version"
             :value="version"
@@ -81,12 +89,11 @@
             {{ version }}
           </el-option>
         </el-select>
-        <el-button
-          class="random"
-          v-if="hasRandomData"
-          size="mini"
-          @click="changeRandomSeed"
-          >{{ $t('editor.randomData') }}</el-button
+        <el-checkbox
+          v-if="!shared.isMobile"
+          v-model="nightly"
+          class="use-nightly"
+          >Nightly</el-checkbox
         >
       </div>
 
@@ -116,6 +123,9 @@
           >
             {{ $t('editor.screenshot') }}
           </el-button>
+          <el-button @click="share" icon="el-icon-share" size="mini">
+            {{ $t('editor.share.title') }}
+          </el-button>
         </template>
       </div>
 
@@ -143,12 +153,13 @@ import {
   updateRunHash
 } from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
-import { loadScriptsAsync } from '../common/helper';
+import { loadScriptsAsync, compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { addListener } from 'resize-detector';
 import { download } from './downloadExample';
 import { gotoURL } from '../common/route';
+import { gt } from 'semver';
 
 const example = getExampleConfig();
 const isGL = isGLExample();
@@ -162,13 +173,12 @@ function addDecalIfNecessary(option) {
   }
 }
 
-export function ensureECharts() {
+export function ensureECharts(nightly) {
   if (typeof echarts === 'undefined') {
     const hasBmap = example && example.tags.indexOf('bmap') >= 0;
-    const echartsDir = SCRIPT_URLS.echartsDir.replace(
-      '{{version}}',
-      store.echartsVersion
-    );
+    const echartsDir = SCRIPT_URLS[
+      nightly ? 'echartsNightlyDir' : 'echartsDir'
+    ].replace('{{version}}', store.echartsVersion);
 
     // Code from https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu
     if (hasBmap) {
@@ -180,14 +190,14 @@ export function ensureECharts() {
       SCRIPT_URLS.datGUIMinJS,
       'local' in URL_PARAMS
         ? SCRIPT_URLS.localEChartsMinJS
-        : SCRIPT_URLS.echartsMinJS.replace('{{version}}', store.echartsVersion),
-      'https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js',
+        : echartsDir + SCRIPT_URLS.echartsMinJS,
+      SCRIPT_URLS.echartsWorldMapJS,
       SCRIPT_URLS.echartsStatMinJS,
       ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
       ...(hasBmap
         ? [
             'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
-            echartsDir + '/dist/extension/bmap.js'
+            echartsDir + '/dist/extension/bmap.min.js'
           ]
         : [])
     ]).then(() => {
@@ -270,7 +280,9 @@ export default {
 
       isGL,
 
-      allEchartsVersions: []
+      allEchartsVersions: [],
+      nightlyVersions: [],
+      nightly: false
     };
   },
 
@@ -283,23 +295,7 @@ export default {
       }
     });
 
-    $.getJSON('https://data.jsdelivr.com/v1/package/npm/echarts').done(
-      (data) => {
-        const versions = data.versions.filter(
-          (version) =>
-            version.indexOf('beta') < 0 &&
-            version.indexOf('rc') < 0 &&
-            version.indexOf('alpha') < 0 &&
-            version.startsWith('5') // Only version 5.
-        );
-        this.allEchartsVersions = versions;
-
-        // Use last version
-        if (!store.echartsVersion || store.echartsVersion === '5') {
-          store.echartsVersion = versions[0];
-        }
-      }
-    );
+    this.fetchVersionList();
   },
 
   computed: {
@@ -311,17 +307,23 @@ export default {
     editLink() {
       const params = ['c=' + URL_PARAMS.c];
       if (URL_PARAMS.theme) {
-        params.push(['theme=' + URL_PARAMS.theme]);
+        params.push('theme=' + URL_PARAMS.theme);
       }
       if (URL_PARAMS.gl) {
-        params.push(['gl=' + URL_PARAMS.gl]);
+        params.push('gl=' + URL_PARAMS.gl);
       }
       return './editor.html?' + params.join('&');
+    },
+    versionList() {
+      return this.nightly ? this.nightlyVersions : this.allEchartsVersions;
+    },
+    isNightlyVersion() {
+      return store.echartsVersion && store.echartsVersion.indexOf('dev') > -1;
     }
   },
 
   watch: {
-    'shared.runCode'(val) {
+    'shared.runCode'() {
       if (this.autoRun || !this.sandbox) {
         if (!this.debouncedRun) {
           // First run
@@ -342,6 +344,12 @@ export default {
     },
     'shared.useDirtyRect'() {
       this.refreshAll();
+    },
+    isNightlyVersion: {
+      handler(val) {
+        this.nightly = val;
+      },
+      immediate: true
     }
   },
 
@@ -351,7 +359,7 @@ export default {
     // debouncedRun: null,
     loadECharts() {
       this.loading = true;
-      ensureECharts().then(() => {
+      ensureECharts(this.nightly).then(() => {
         this.loading = false;
         if (store.runCode) {
           this.run();
@@ -385,6 +393,17 @@ export default {
         $a.dispatchEvent(evt);
       }
     },
+    share() {
+      let shareURL = location.href;
+      if (store.initialCode !== store.sourceCode) {
+        shareURL += '&code=' + compressStr(store.sourceCode);
+      }
+      navigator.clipboard
+        .writeText(shareURL)
+        .then(() => this.$message.success(this.$t('editor.share.success')))
+        // PENDING
+        .catch(() => window.open(shareURL, '_blank'));
+    },
     getOption() {
       return this.sandbox && this.sandbox.getOption();
     },
@@ -408,7 +427,7 @@ export default {
         true
       );
       this.run();
-    }
+    },
     // hasEditorError() {
     //     const annotations = this.editor.getSession().getAnnotations();
     //     for (let aid = 0, alen = annotations.length; aid < alen; ++aid) {
@@ -417,7 +436,46 @@ export default {
     //         }
     //     }
     //     return false;
-    // }
+    // },
+    fetchVersionList() {
+      $.getJSON('https://data.jsdelivr.com/v1/package/npm/echarts').done(
+        (data) => {
+          const versions = data.versions.filter(
+            (version) =>
+              version.indexOf('beta') < 0 &&
+              version.indexOf('rc') < 0 &&
+              version.indexOf('alpha') < 0 &&
+              version.startsWith('5') // Only version 5.
+          );
+          this.allEchartsVersions = versions;
+
+          // Use lastest version
+          if (
+            !store.echartsVersion ||
+            store.echartsVersion === '5' ||
+            store.echartsVersion === 'latest'
+          ) {
+            store.echartsVersion = versions[0];
+          }
+
+          // put latest rc version for preview
+          if (gt(data.tags.rc.split('-')[0], data.tags.latest)) {
+            versions.unshift(data.tags.rc);
+            store.echartsVersion === 'rc' &&
+              (store.echartsVersion = versions[0]);
+          }
+        }
+      );
+      $.getJSON(
+        'https://data.jsdelivr.com/v1/package/npm/echarts-nightly'
+      ).done(({ tags: { latest, next }, versions }) => {
+        const nextIdx = versions.indexOf(next);
+        const latestIdx = versions.indexOf(latest);
+        this.nightlyVersions = versions
+          .slice(nextIdx, nextIdx + 10)
+          .concat(versions.slice(latestIdx, latestIdx + 10));
+      });
+    }
   }
 };
 </script>
@@ -486,8 +544,13 @@ export default {
   .version-select {
     width: 80px;
     margin-left: 10px;
+
+    &.nightly {
+      width: 160px;
+    }
   }
-  .random {
+  .random,
+  .use-nightly {
     margin-left: 10px;
   }
 

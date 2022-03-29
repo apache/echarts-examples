@@ -87,3 +87,8 @@ export function formatCode(code) {
     });
   });
 }
+
+export {
+  compressToBase64 as compressStr,
+  decompressFromBase64 as decompressStr
+} from 'lz-string';
