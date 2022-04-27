@@ -88,7 +88,7 @@ export default function setup() {
     },
 
     run({ store, recreateInstance }) {
-      if (!chartInstance || recreateInstance) {
+      if (recreateInstance || !chartInstance || chartInstance.isDisposed()) {
         this.dispose();
         window.chartInstance = chartInstance = echarts.init(
           document.getElementById('chart-container'),
@@ -172,7 +172,7 @@ export default function setup() {
         echarts.util.isObject(option) && chartInstance.setOption(option, true);
       } catch (e) {
         console.error('failed to run code', e);
-        sendMessage({ evt: 'codeError' });
+        sendMessage({ evt: 'codeError', message: e.message });
       }
 
       if (gui) {

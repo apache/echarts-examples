@@ -155,12 +155,12 @@ const isDebug = 'debug' in URL_PARAMS;
 const hasBMap = example && example.tags.indexOf('bmap') >= 0;
 
 function getScriptURL(link) {
-  return isDebug || isLocal ? link.replace('.min.', '') : link;
+  return isDebug || isLocal ? link.replace('.min.', '.') : link;
 }
 
 function getScripts(nightly) {
   const echartsDir = SCRIPT_URLS[
-    nightly && !isLocal ? 'echartsNightlyDir' : 'echartsDir'
+    isLocal ? 'localEChartsDir' : nightly ? 'echartsNightlyDir' : 'echartsDir'
   ].replace('{{version}}', store.echartsVersion);
 
   return [
@@ -221,8 +221,18 @@ function run(recreateInstance) {
         this.loading = false;
         this.dispose();
       },
-      () => {
-        log(this.$t('editor.errorInEditor'), 'error');
+      (errMsg) => {
+        console.log(errMsg);
+        const infiniteLoopInEditor =
+          errMsg && errMsg.indexOf('loop executes') > -1;
+        log(
+          this.$t(
+            `editor.${
+              infiniteLoopInEditor ? 'infiniteLoopInEditor' : 'errorInEditor'
+            }`
+          ),
+          'error'
+        );
       },
       (option, updateTime) => {
         if (

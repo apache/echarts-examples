@@ -69,7 +69,7 @@ export function createSandbox(
       //   onerror();
       //   break;
       case 'codeError':
-        onCodeError();
+        onCodeError(data.message);
         break;
       default:
         break;

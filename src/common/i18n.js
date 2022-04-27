@@ -4,6 +4,7 @@ export default {
       run: 'Run',
       format: 'Format',
       errorInEditor: 'Errors exist in code!',
+      infiniteLoopInEditor: 'Potential infinite loops exist in code!',
       chartOK: 'Chart has been generated successfully, ',
 
       darkMode: 'Dark Mode',
@@ -92,6 +93,7 @@ export default {
       run: '运行',
       format: '格式化',
       errorInEditor: '编辑器内容有误！',
+      infiniteLoopInEditor: '编辑器内容可能存在无限循环！',
       chartOK: '图表已生成, ',
 
       darkMode: '深色模式',
