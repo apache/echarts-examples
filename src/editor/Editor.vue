@@ -123,7 +123,7 @@
         </el-tab-pane>
 
         <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option">
-          <div id="option-outline"></div>
+          <div id="option-outline" ref="optionOutline"></div>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -136,6 +136,7 @@
     ></div>
     <Preview
       :inEditor="true"
+      @ready="onPreviewReady"
       class="right-container"
       ref="preview"
       :style="{
@@ -272,13 +273,14 @@ export default {
     },
     updateOptionOutline() {
       const option = Object.freeze(this.$refs.preview.getOption());
+      console.log(option);
       if (!option) {
         return;
       }
       const tipTitle = this.$t('editor.tooltip.gotoDoc');
       const lang = this.$i18n.locale;
-      mount(option, this.$el.querySelector('#option-outline'), {
-        getKeys(object, path) {
+      mount(option, this.$refs.optionOutline, {
+        getKeys(object) {
           return Object.keys(object).filter((key) => {
             if (Array.isArray(object[key]) && !object[key].length) {
               return false;
@@ -366,6 +368,9 @@ export default {
       formatCode(store.sourceCode).then((code) => {
         store.initialCode = this.initialCode = code;
       });
+    },
+    onPreviewReady() {
+      this.updateTabContent(this.currentTab);
     }
   },
 

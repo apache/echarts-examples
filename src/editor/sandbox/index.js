@@ -81,6 +81,10 @@ export function createSandbox(
     sandbox.contentWindow.postMessage({ action, ...argumentMap }, '*');
   }
 
+  function getChartInstance() {
+    return sandbox.contentWindow.chartInstance;
+  }
+
   window.addEventListener('message', hanldeMessage, false);
 
   return {
@@ -96,7 +100,9 @@ export function createSandbox(
       sendMessage('screenshot', { filename });
     },
     getOption() {
-      sendMessage('getOption');
+      // sendMessage('getOption');
+      const chart = getChartInstance();
+      return chart && chart.getOption();
     }
   };
 }

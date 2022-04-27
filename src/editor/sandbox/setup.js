@@ -93,7 +93,7 @@ export default function setup() {
     run({ store, recreateInstance }) {
       if (!chartInstance || recreateInstance) {
         this.dispose();
-        chartInstance = echarts.init(
+        window.chartInstance = chartInstance = echarts.init(
           document.getElementById('chart-container'),
           store.darkMode ? 'dark' : '',
           {

@@ -203,6 +203,7 @@ function run(recreateInstance) {
 
   if (!this.sandbox) {
     this.loading = true;
+    let isFirstRun = true;
     this.sandbox = createSandbox(
       this.$refs.chartPanel,
       getScripts(this.nightly),
@@ -247,6 +248,11 @@ function run(recreateInstance) {
             this.debouncedTime = preferredDebounceTime;
             break;
           }
+        }
+
+        if (isFirstRun) {
+          this.$emit('ready');
+          isFirstRun = false;
         }
       }
     );
