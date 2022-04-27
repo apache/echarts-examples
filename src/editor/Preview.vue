@@ -212,7 +212,9 @@ function run(recreateInstance) {
       },
       () => {
         // TODO show error hints
+        console.error('failed to run sandbox');
         this.loading = false;
+        this.dispose();
       },
       () => {
         log(this.$t('editor.errorInEditor'), 'error');

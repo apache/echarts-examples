@@ -138,11 +138,21 @@ export default function setup() {
           '__ECHARTS_EXAMPLE_RANDOM__',
           'top',
           'parent',
+          'window',
+          'self',
+          'location',
+          'histroy',
           // PENDING: create a single panel for CSS code?
-          'var css, option;\n' +
+          'var css, option;' +
             handleLoop(compiledCode) +
             '\nreturn [option, css];'
         );
+
+        const win = {
+          addEventListener: window.addEventListener.bind(window),
+          removeEventListener: window.removeEventListener.bind(window),
+          location: Object.freeze(JSON.parse(JSON.stringify(location)))
+        };
 
         const res = func(
           chartInstance,
@@ -150,11 +160,15 @@ export default function setup() {
           setTimeout,
           setInterval,
           store.cdnRoot,
+          echartsExampleRandom,
           // prevent someone from trying to close the parent window via top/parent.close()
           // or any other unexpected and dangerous behaviors
           void 0,
           void 0,
-          echartsExampleRandom
+          win,
+          win,
+          win.location,
+          void 0
         );
         chartStyleEl.textContent = res[1] || '';
 

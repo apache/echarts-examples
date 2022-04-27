@@ -33,13 +33,10 @@ export function createSandbox(
   sandbox.setAttribute(
     'sandbox',
     [
-      'allow-forms',
       'allow-modals',
       'allow-pointer-lock',
-      'allow-popups',
       'allow-same-origin',
       'allow-scripts',
-      'allow-top-navigation-by-user-activation',
       'allow-downloads'
     ].join(' ')
   );
@@ -59,6 +56,9 @@ export function createSandbox(
   container.appendChild(sandbox);
 
   function hanldeMessage(e) {
+    if (e.source !== sandbox.contentWindow) {
+      return;
+    }
     const evt = e.data.evt;
     console.log('event from sandbox', evt);
     switch (evt) {
@@ -87,6 +87,7 @@ export function createSandbox(
     dispose() {
       sendMessage('dispose');
       window.removeEventListener('message', hanldeMessage);
+      container.removeChild(sandbox);
     },
     run(store, recreateInstance) {
       sendMessage('run', { store, recreateInstance });
