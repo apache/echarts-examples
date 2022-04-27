@@ -49,12 +49,13 @@ module.exports = [
           ]
         },
         {
-          test: /\.svg$/,
+          test: /\.(svg|html)$/,
           use: [
             {
               loader: 'html-loader',
               options: {
-                minimize: true
+                // will be `true` in production
+                // minimize: true
               }
             }
           ]

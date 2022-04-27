@@ -67,7 +67,7 @@ function ensurePrettier() {
       SCRIPT_URLS.prettierDir + '/standalone.js',
       SCRIPT_URLS.prettierDir +
         (store.typeCheck ? '/parser-typescript.js' : '/parser-babel.js')
-    ]).then(([_, parser]) => {});
+    ]);
   }
   return Promise.resolve();
 }

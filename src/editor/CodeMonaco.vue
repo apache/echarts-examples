@@ -6,7 +6,6 @@
 import { loadScriptsAsync } from '../common/helper';
 import { store } from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
-import { ensureECharts } from './Preview.vue';
 
 function loadTypes() {
   return fetch(
@@ -88,31 +87,26 @@ declare global {
 }
 
 function ensureMonacoAndTsTransformer() {
-  function loadMonaco() {
-    if (typeof monaco === 'undefined') {
-      return loadScriptsAsync([
-        SCRIPT_URLS.monacoDir + '/loader.js',
-        // Prebuilt TS transformer with surcrase
-        store.cdnRoot + '/js/example-transform-ts-bundle.js'
-      ]).then(function () {
-        window.require.config({ paths: { vs: SCRIPT_URLS.monacoDir } });
-        return new Promise((resolve) => {
-          window.require(['vs/editor/editor.main'], function () {
-            loadTypes().then(() => {
-              // Disable AMD. Which will break other libs.
-              // FIXME
-              window.define.amd = null;
-              resolve();
-            });
+  if (typeof monaco === 'undefined') {
+    return loadScriptsAsync([
+      SCRIPT_URLS.monacoDir + '/loader.js',
+      // Prebuilt TS transformer with surcrase
+      store.cdnRoot + '/js/example-transform-ts-bundle.js'
+    ]).then(function () {
+      window.require.config({ paths: { vs: SCRIPT_URLS.monacoDir } });
+      return new Promise((resolve) => {
+        window.require(['vs/editor/editor.main'], function () {
+          loadTypes().then(() => {
+            // Disable AMD. Which will break other libs.
+            // FIXME
+            window.define.amd = null;
+            resolve();
           });
         });
       });
-    }
-    return Promise.resolve();
+    });
   }
-
-  // Must load echarts before monaco. Or the AMD loader will affect loading of echarts.
-  return ensureECharts().then(loadMonaco);
+  return Promise.resolve();
 }
 
 export default {

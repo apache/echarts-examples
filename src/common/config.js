@@ -98,13 +98,11 @@ export const BLACK_MAP = (function (list) {
 ]);
 
 const URL_PARAMS = {};
-(location.search || '')
-  .slice(1)
-  .split('&')
-  .forEach(function (item) {
-    const kv = item.split('=');
-    URL_PARAMS[kv[0]] = kv[1];
-  });
+(() =>
+  // Object.fromEntries(new URLSearchParams(location.search).entries())
+  new URLSearchParams(location.search).forEach(
+    (val, key) => (URL_PARAMS[key] = val)
+  ))();
 
 export { URL_PARAMS };
 
@@ -112,9 +110,10 @@ export { URL_PARAMS };
 export const CDN_ROOT = 'https://cdn.jsdelivr.net/npm/';
 
 export const SCRIPT_URLS = {
-  echartsMinJS: '/dist/echarts.min.js',
   echartsDir: `${CDN_ROOT}echarts@{{version}}`,
   echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,
+  echartsJS: '/dist/echarts.js',
+  echartsMinJS: '/dist/echarts.min.js',
 
   localEChartsMinJS: 'http://localhost/echarts/dist/echarts.js',
   localEChartsDir: 'http://localhost/echarts',
@@ -127,5 +126,9 @@ export const SCRIPT_URLS = {
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
 
-  prettierDir: `${CDN_ROOT}prettier@2.3.2`
+  prettierDir: `${CDN_ROOT}prettier@2.3.2`,
+
+  bmapLibJS:
+    'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
+  echartsBMapMinJS: '/dist/extension/bmap.min.js'
 };

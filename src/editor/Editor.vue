@@ -81,12 +81,12 @@
               <CodeMonaco
                 v-if="shared.typeCheck"
                 id="code-panel"
-                :initialCode="shared.initialCode"
+                :initialCode="initialCode"
               ></CodeMonaco>
               <CodeAce
                 v-else
                 id="code-panel"
-                :initialCode="shared.initialCode"
+                :initialCode="initialCode"
               ></CodeAce>
             </el-main>
           </el-container>
@@ -226,7 +226,7 @@ export default {
     } else {
       loadExampleCode().then((code) => {
         // Only set the code in editor. editor will sync to the store.
-        store.initialCode = parseSourceCode(code);
+        store.initialCode = this.initialCode = parseSourceCode(code);
       });
 
       window.addEventListener('mousemove', (e) => {
@@ -339,7 +339,7 @@ export default {
     },
     changeLang(lang) {
       if ((URL_PARAMS.lang || 'js').toLowerCase() !== lang) {
-        if (!store.initialCode || store.sourceCode === store.initialCode) {
+        if (!this.initialCode || store.sourceCode === this.initialCode) {
           gotoURL(
             Object.assign({}, URL_PARAMS, {
               lang
@@ -364,7 +364,7 @@ export default {
     },
     format() {
       formatCode(store.sourceCode).then((code) => {
-        store.initialCode = code;
+        store.initialCode = this.initialCode = code;
       });
     }
   },

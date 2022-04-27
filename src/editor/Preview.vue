@@ -4,10 +4,9 @@
       v-loading="loading"
       class="right-panel"
       id="chart-panel"
+      ref="chartPanel"
       :style="{ background: backgroundColor }"
-    >
-      <div class="chart-container"></div>
-    </div>
+    ></div>
     <div id="tool-panel">
       <div class="left-panel">
         <el-switch
@@ -90,7 +89,7 @@
           </el-option>
         </el-select>
         <el-checkbox
-          v-if="!shared.isMobile"
+          v-if="inEditor && !shared.isMobile"
           v-model="nightly"
           class="use-nightly"
           >Nightly</el-checkbox
@@ -109,11 +108,7 @@
     <div id="preview-status">
       <div class="left">
         <template v-if="inEditor && !shared.isMobile">
-          <el-button
-            icon="el-icon-download"
-            size="mini"
-            @click="downloadExample"
-          >
+          <el-button icon="el-icon-download" size="mini" @click="download">
             {{ $t('editor.download') }}
           </el-button>
           <el-button
@@ -153,10 +148,9 @@ import {
   updateRunHash
 } from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
-import { loadScriptsAsync, compressStr } from '../common/helper';
+import { compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
-import { addListener } from 'resize-detector';
 import { download } from './downloadExample';
 import { gotoURL } from '../common/route';
 import { gt } from 'semver';
@@ -164,47 +158,25 @@ import { gt } from 'semver';
 const example = getExampleConfig();
 const isGL = isGLExample();
 
-function addDecalIfNecessary(option) {
-  if (store.enableDecal) {
-    option.aria = option.aria || {};
-    option.aria.decal = option.aria.decal || {};
-    option.aria.decal.show = true;
-    option.aria.show = option.aria.enabled = true;
-  }
-}
+function getScripts(nightly) {
+  const echartsDir = SCRIPT_URLS[
+    nightly ? 'echartsNightlyDir' : 'echartsDir'
+  ].replace('{{version}}', store.echartsVersion);
+  const hasBmap = example && example.tags.indexOf('bmap') >= 0;
 
-export function ensureECharts(nightly) {
-  if (typeof echarts === 'undefined') {
-    const hasBmap = example && example.tags.indexOf('bmap') >= 0;
-    const echartsDir = SCRIPT_URLS[
-      nightly ? 'echartsNightlyDir' : 'echartsDir'
-    ].replace('{{version}}', store.echartsVersion);
-
-    // Code from https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu
-    if (hasBmap) {
-      window.HOST_TYPE = '2';
-      window.BMap_loadScriptTime = new Date().getTime();
-    }
-
-    return loadScriptsAsync([
-      SCRIPT_URLS.datGUIMinJS,
-      'local' in URL_PARAMS
-        ? SCRIPT_URLS.localEChartsMinJS
-        : echartsDir + SCRIPT_URLS.echartsMinJS,
-      SCRIPT_URLS.echartsWorldMapJS,
-      SCRIPT_URLS.echartsStatMinJS,
-      ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
-      ...(hasBmap
-        ? [
-            'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
-            echartsDir + '/dist/extension/bmap.min.js'
-          ]
-        : [])
-    ]).then(() => {
-      echarts.registerPreprocessor(addDecalIfNecessary);
-    });
-  }
-  return Promise.resolve();
+  return [
+    'local' in URL_PARAMS
+      ? SCRIPT_URLS.localEChartsMinJS
+      : echartsDir +
+        SCRIPT_URLS['dev' in URL_PARAMS ? 'echartsJS' : 'echartsMinJS'],
+    ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
+    ...(hasBmap
+      ? [SCRIPT_URLS.bmapLibJS, echartsDir + SCRIPT_URLS.echartsBMapMinJS]
+      : []),
+    SCRIPT_URLS.echartsStatMinJS,
+    SCRIPT_URLS.echartsWorldMapJS,
+    SCRIPT_URLS.datGUIMinJS
+  ].map((url) => ({ src: url }));
 }
 
 function log(text, type) {
@@ -215,60 +187,78 @@ function log(text, type) {
   store.editorStatus.type = type;
 }
 
-function run() {
-  if (typeof echarts === 'undefined') {
+function run(recreateInstance) {
+  if (!store.runCode) {
     return;
   }
-  if (!this.sandbox) {
-    this.sandbox = createSandbox((chart) => {
-      const option = chart.getOption();
-      if (
-        typeof option.backgroundColor === 'string' &&
-        option.backgroundColor !== 'transparent'
-      ) {
-        this.backgroundColor = option.backgroundColor;
-      } else {
-        this.backgroundColor = '#fff';
-      }
-    });
-  }
 
-  try {
-    const updateTime = this.sandbox.run(
-      this.$el.querySelector('.chart-container'),
-      store
-    );
+  const runCode = () => {
+    console.log('runCode');
 
-    log(this.$t('editor.chartOK') + updateTime + 'ms');
-
-    // Find the appropriate throttle time
-    const debounceTime = 500;
-    const debounceTimeQuantities = [0, 500, 2000, 5000, 10000];
-    for (let i = debounceTimeQuantities.length - 1; i >= 0; i--) {
-      const quantity = debounceTimeQuantities[i];
-      const preferredDebounceTime = debounceTimeQuantities[i + 1] || 1000000;
-      if (
-        updateTime >= quantity &&
-        this.debouncedTime !== preferredDebounceTime
-      ) {
-        this.debouncedRun = debounce(run, preferredDebounceTime, {
-          trailing: true
-        });
-        this.debouncedTime = preferredDebounceTime;
-        break;
-      }
-    }
+    this.sandbox.run(store, recreateInstance);
 
     // Update run hash to let others known chart has been changed.
     updateRunHash();
-  } catch (e) {
-    log(this.$t('editor.errorInEditor'), 'error');
-    console.error(e);
+  };
+
+  if (!this.sandbox) {
+    this.loading = true;
+    this.sandbox = createSandbox(
+      this.$refs.chartPanel,
+      getScripts(this.nightly),
+      () => {
+        runCode();
+        this.loading = false;
+      },
+      () => {
+        // TODO show error hints
+        this.loading = false;
+      },
+      () => {
+        log(this.$t('editor.errorInEditor'), 'error');
+      },
+      (option, updateTime) => {
+        if (
+          typeof option.backgroundColor === 'string' &&
+          option.backgroundColor !== 'transparent'
+        ) {
+          this.backgroundColor = option.backgroundColor;
+        } else {
+          this.backgroundColor = '#fff';
+        }
+
+        log(this.$t('editor.chartOK') + updateTime.toFixed(2) + 'ms');
+
+        // Find the appropriate throttle time
+        const debounceTimeQuantities = [0, 500, 2000, 5000, 10000];
+        for (let i = debounceTimeQuantities.length - 1; i >= 0; i--) {
+          const quantity = debounceTimeQuantities[i];
+          const preferredDebounceTime =
+            debounceTimeQuantities[i + 1] || 1000000;
+          if (
+            updateTime >= quantity &&
+            this.debouncedTime !== preferredDebounceTime
+          ) {
+            this.debouncedRun = debounce(run, preferredDebounceTime, {
+              trailing: true
+            });
+            this.debouncedTime = preferredDebounceTime;
+            break;
+          }
+        }
+      }
+    );
+  } else {
+    runCode();
   }
 }
 
 export default {
-  props: ['inEditor'],
+  props: {
+    inEditor: {
+      type: Boolean
+    }
+  },
 
   data() {
     return {
@@ -276,7 +266,7 @@ export default {
       debouncedTime: undefined,
       backgroundColor: '',
       autoRun: true,
-      loading: false,
+      loading: true,
 
       isGL,
 
@@ -287,13 +277,7 @@ export default {
   },
 
   mounted() {
-    this.loadECharts();
-
-    addListener(this.$el, () => {
-      if (this.sandbox) {
-        this.sandbox.resize();
-      }
-    });
+    this.run();
 
     this.fetchVersionList();
   },
@@ -357,52 +341,37 @@ export default {
     run,
     // debouncedRun will be created at first run
     // debouncedRun: null,
-    loadECharts() {
-      this.loading = true;
-      ensureECharts(this.nightly).then(() => {
-        this.loading = false;
-        if (store.runCode) {
-          this.run();
-        }
-      });
-    },
     refreshAll() {
-      this.dispose();
-      this.run();
+      this.run(true);
     },
     dispose() {
       if (this.sandbox) {
         this.sandbox.dispose();
+        this.sandbox = null;
       }
     },
-    downloadExample() {
-      download();
-    },
+    download,
     screenshot() {
-      if (this.sandbox) {
-        const url = this.sandbox.getDataURL();
-        const $a = document.createElement('a');
-        $a.download =
-          URL_PARAMS.c + '.' + (store.renderer === 'svg' ? 'svg' : 'png');
-        $a.target = '_blank';
-        $a.href = url;
-        const evt = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: false
-        });
-        $a.dispatchEvent(evt);
-      }
+      this.sandbox &&
+        this.sandbox.screenshot(
+          (URL_PARAMS.c || Date.now()) +
+            '.' +
+            (store.renderer === 'svg' ? 'svg' : 'png')
+        );
     },
     share() {
-      let shareURL = location.href;
+      let shareURL = new URL(location.href);
       if (store.initialCode !== store.sourceCode) {
-        shareURL += '&code=' + compressStr(store.sourceCode);
+        shareURL.searchParams.set('code', compressStr(store.sourceCode));
       }
       navigator.clipboard
-        .writeText(shareURL)
+        .writeText(shareURL.toString())
         .then(() => this.$message.success(this.$t('editor.share.success')))
         // PENDING
-        .catch(() => window.open(shareURL, '_blank'));
+        .catch((e) => {
+          console.error('failed to write share url to the clipboard', e);
+          window.open(shareURL, '_blank');
+        });
     },
     getOption() {
       return this.sandbox && this.sandbox.getOption();
@@ -495,25 +464,7 @@ export default {
   border-radius: 5px;
   background: #fff;
   overflow: hidden;
-
   padding: 10px;
-
-  .ec-debug-dirty-rect-container {
-    left: 10px !important;
-    top: 10px !important;
-    right: 10px !important;
-    bottom: 10px !important;
-
-    .ec-debug-dirty-rect {
-      background-color: rgba(255, 0, 0, 0.2) !important;
-      border: 1px solid red !important;
-    }
-  }
-
-  .chart-container {
-    position: relative;
-    height: 100%;
-  }
 }
 
 .render-config-container {
