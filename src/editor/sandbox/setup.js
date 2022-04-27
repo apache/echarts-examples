@@ -76,7 +76,6 @@ export default function setup() {
     },
 
     screenshot({ filename }) {
-      console.log('screenshot');
       const dataURL = chartInstance.getDataURL({
         excludeComponents: ['toolbox']
       });
