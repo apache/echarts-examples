@@ -28,33 +28,27 @@
         <!-- Not display when random button is displayed on mobile devices. -->
         <el-popover
           placement="bottom"
-          width="450"
           trigger="click"
           v-if="!isGL && !(shared.isMobile && hasRandomData)"
         >
           <div class="render-config-container">
-            <el-row :gutter="2" type="flex" align="middle">
-              <el-col :span="12">
-                <label class="tool-label">{{ $t('editor.renderer') }}</label>
-                <el-radio-group
-                  v-model="shared.renderer"
-                  size="mini"
-                  style="text-transform: uppercase"
-                >
-                  <el-radio-button label="svg"></el-radio-button>
-                  <el-radio-button label="canvas"></el-radio-button>
-                </el-radio-group>
-              </el-col>
-              <el-col :span="12">
-                <el-switch
-                  v-if="shared.renderer === 'canvas'"
-                  v-model="shared.useDirtyRect"
-                  :active-text="$t('editor.useDirtyRect')"
-                  :inactive-text="''"
-                >
-                </el-switch>
-              </el-col>
-            </el-row>
+            <div>
+              <label class="tool-label">{{ $t('editor.renderer') }}</label>
+              <el-radio-group
+                v-model="shared.renderer"
+                size="mini"
+                style="text-transform: uppercase"
+              >
+                <el-radio-button label="svg" />
+                <el-radio-button label="canvas" />
+              </el-radio-group>
+            </div>
+            <el-switch
+              v-if="shared.renderer === 'canvas'"
+              v-model="shared.useDirtyRect"
+              :active-text="$t('editor.useDirtyRect')"
+              :inactive-text="''"
+            />
           </div>
           <span class="render-config-trigger" slot="reference">
             <el-button size="mini">
@@ -106,7 +100,7 @@
     </div>
 
     <div id="preview-status">
-      <div class="left">
+      <div>
         <template v-if="inEditor && !shared.isMobile">
           <el-button icon="el-icon-download" size="mini" @click="download">
             {{ $t('editor.download') }}
@@ -125,11 +119,10 @@
       </div>
 
       <div
-        class="right"
         id="run-log"
         v-if="inEditor && !shared.isMobile && shared.editorStatus.message"
       >
-        <span class="run-log-time">{{ currentTime }}</span>
+        <span class="run-log-time">{{ shared.editorStatus.time }}</span>
         <span :class="'run-log-type-' + shared.editorStatus.type">{{
           shared.editorStatus.message
         }}</span>
@@ -195,6 +188,7 @@ function log(text, type) {
   if (type !== 'warn' && type !== 'error') {
     type = 'info';
   }
+  store.editorStatus.time = new Date().toLocaleString();
   store.editorStatus.message = text;
   store.editorStatus.type = type;
 }
@@ -377,7 +371,14 @@ export default {
       }
       navigator.clipboard
         .writeText(shareURL.toString())
-        .then(() => this.$message.success(this.$t('editor.share.success')))
+        .then(() => {
+          this.$message.closeAll();
+          this.$message({
+            type: 'success',
+            message: this.$t('editor.share.success'),
+            customClass: 'no-min-width'
+          });
+        })
         // PENDING
         .catch((e) => {
           console.error('failed to write share url to the clipboard', e);
@@ -463,6 +464,12 @@ export default {
 <style lang="scss">
 @import '../style/color.scss';
 
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #chart-panel {
   position: absolute;
   // top: $control-panel-height;
@@ -479,6 +486,20 @@ export default {
 }
 
 .render-config-container {
+  @include flex-center;
+
+  user-select: none;
+
+  > * {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .tool-label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
   .el-radio-group {
     label {
       margin-bottom: 0;
@@ -488,11 +509,12 @@ export default {
 
 #tool-panel {
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding-top: 5px;
-  padding-left: 15px;
+  top: 5px;
+  right: 15px;
+  left: 15px;
+  @include flex-center;
+
+  user-select: none;
 
   * {
     font-size: 12px;
@@ -520,24 +542,12 @@ export default {
     margin-bottom: 0;
   }
 
-  .left-panel {
-    float: left;
-  }
-
-  .left-panel > * {
-    vertical-align: middle;
-    display: inline-block;
-  }
-
-  .tool-label {
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-left: 20px;
+  .dark-mode {
+    margin-right: 5px;
   }
 
   .edit {
-    float: right;
-    margin-right: 15px;
+    margin-left: 5px;
     cursor: pointer;
   }
 }
@@ -551,63 +561,31 @@ export default {
     box-shadow: rgba(10, 9, 9, 0.1) 0px 0px 5px;
   }
   #tool-panel {
-    padding-left: 5px;
-    .download,
-    .edit {
-      margin-right: 5px;
-    }
+    right: 5px;
+    left: 5px;
   }
 }
 
 #preview-status {
-  overflow: hidden;
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 0;
   right: 0;
-  height: 30px;
-
-  padding: 0 20px;
-
-  // border-top: 1px solid $clr-border;
+  padding: 0 15px;
   font-size: 0.9rem;
+  @include flex-center;
 
-  .screenshot,
-  .download,
-  .edit {
-    margin-right: 15px;
-    cursor: pointer;
-  }
-  .screenshot {
-    margin-right: 5px;
-    width: 25px;
-    height: 25px;
-    margin-top: 2px;
-  }
-
-  .left {
-    float: left;
-    & > * {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-
-  .right {
-    float: right;
-  }
   #run-log {
-    line-height: 25px;
+    @include flex-center;
+    font-size: 12px;
+
     .run-log-time {
       color: $clr-text;
-      display: inline-block;
       margin-right: 10px;
-      font-size: 12px;
     }
 
     .run-log-type-info {
       color: $clr-text;
-      font-size: 12px;
     }
 
     .run-log-type-warn {
@@ -620,20 +598,9 @@ export default {
   }
 }
 
-.dg.main * {
-  box-sizing: content-box;
-}
-.dg.main input {
-  line-height: normal;
-}
-
-.dg.main.a {
-  overflow-x: visible;
-}
-
-.dg.main .c {
-  select {
-    color: #000;
+.el-message {
+  &.no-min-width {
+    min-width: auto;
   }
 }
 </style>

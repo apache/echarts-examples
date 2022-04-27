@@ -44,7 +44,7 @@ export function download() {
   -->
   <!-- Uncomment these two lines if you want to use bmap extension
   <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=<Your Key Here>"></script>
-  <script type="text/javascript" src="${echartsDir}${echartsBMapJS}"></script>
+  <script type="text/javascript" src="${echartsDir}${SCRIPT_URLS.echartsBMapJS}"></script>
   -->
 
   <script type="text/javascript">
