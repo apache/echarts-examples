@@ -122,8 +122,8 @@ export default function setup() {
         // run the code
         const compiledCode = store.runCode
           // Replace random method
-          .replace(/Math.random\(\)/g, '__ECHARTS_EXAMPLE_RANDOM__()');
-        const echartsExampleRandom = Math.seedrandom(store.randomSeed);
+          .replace(/Math.random\(.*\)/g, '__ECHARTS_EXAMPLE_RANDOM__()');
+        const echartsExampleRandom = new Math.seedrandom(store.randomSeed);
 
         const func = new Function(
           'myChart',
