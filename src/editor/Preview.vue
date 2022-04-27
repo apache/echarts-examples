@@ -156,24 +156,36 @@ import { gotoURL } from '../common/route';
 import { gt } from 'semver';
 
 const example = getExampleConfig();
-const isGL = isGLExample();
+const isGL = 'gl' in URL_PARAMS || isGLExample();
+const isLocal = 'local' in URL_PARAMS;
+const isDebug = 'debug' in URL_PARAMS;
+const hasBMap = example && example.tags.indexOf('bmap') >= 0;
+
+function getScriptURL(link) {
+  return isDebug || isLocal ? link.replace('.min.', '') : link;
+}
 
 function getScripts(nightly) {
   const echartsDir = SCRIPT_URLS[
-    nightly ? 'echartsNightlyDir' : 'echartsDir'
+    nightly && !isLocal ? 'echartsNightlyDir' : 'echartsDir'
   ].replace('{{version}}', store.echartsVersion);
-  const hasBmap = example && example.tags.indexOf('bmap') >= 0;
 
   return [
-    'local' in URL_PARAMS
-      ? SCRIPT_URLS.localEChartsMinJS
-      : echartsDir +
-        SCRIPT_URLS['dev' in URL_PARAMS ? 'echartsJS' : 'echartsMinJS'],
-    ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
-    ...(hasBmap
-      ? [SCRIPT_URLS.bmapLibJS, echartsDir + SCRIPT_URLS.echartsBMapMinJS]
+    echartsDir + getScriptURL(SCRIPT_URLS.echartsJS),
+    ...(isGL
+      ? [
+          isLocal
+            ? SCRIPT_URLS.localEChartsGLJS
+            : getScriptURL(SCRIPT_URLS.echartsGLJS)
+        ]
       : []),
-    SCRIPT_URLS.echartsStatMinJS,
+    ...(hasBMap
+      ? [
+          SCRIPT_URLS.bmapLibJS,
+          echartsDir + getScriptURL(SCRIPT_URLS.echartsBMapJS)
+        ]
+      : []),
+    getScriptURL(SCRIPT_URLS.echartsStatJS),
     SCRIPT_URLS.echartsWorldMapJS,
     SCRIPT_URLS.datGUIMinJS
   ].map((url) => ({ src: url }));
@@ -193,8 +205,6 @@ function run(recreateInstance) {
   }
 
   const runCode = () => {
-    console.log('runCode');
-
     this.sandbox.run(store, recreateInstance);
 
     // Update run hash to let others known chart has been changed.
@@ -274,11 +284,11 @@ export default {
       debouncedTime: undefined,
       backgroundColor: '',
       autoRun: true,
-      loading: true,
+      loading: false,
 
       isGL,
 
-      allEchartsVersions: [],
+      allEChartsVersions: [],
       nightlyVersions: [],
       nightly: false
     };
@@ -297,17 +307,10 @@ export default {
       );
     },
     editLink() {
-      const params = ['c=' + URL_PARAMS.c];
-      if (URL_PARAMS.theme) {
-        params.push('theme=' + URL_PARAMS.theme);
-      }
-      if (URL_PARAMS.gl) {
-        params.push('gl=' + URL_PARAMS.gl);
-      }
-      return './editor.html?' + params.join('&');
+      return './editor.html' + location.search;
     },
     versionList() {
-      return this.nightly ? this.nightlyVersions : this.allEchartsVersions;
+      return this.nightly ? this.nightlyVersions : this.allEChartsVersions;
     },
     isNightlyVersion() {
       return store.echartsVersion && store.echartsVersion.indexOf('dev') > -1;
@@ -424,7 +427,7 @@ export default {
               version.indexOf('alpha') < 0 &&
               version.startsWith('5') // Only version 5.
           );
-          this.allEchartsVersions = versions;
+          this.allEChartsVersions = versions;
 
           // Use lastest version
           if (

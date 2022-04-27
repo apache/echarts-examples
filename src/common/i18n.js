@@ -28,20 +28,20 @@ export default {
 
       tooltip: {
         jsMode: 'JavaScript',
-        tsMode: 'TypeScript. Provides Better Intelligent',
+        tsMode: 'TypeScript - Provides Better Intelligent',
         noTs: 'No Available TypeScript Code',
 
         gotoDoc: 'Go To Documentation'
       },
 
       codeChangedConfirm:
-        "Modified code will be lost. Do you wan't to continue?",
+        'Modified code will be lost. Do you want to continue?',
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
 
       share: {
         title: 'Share',
-        success: 'Sharable URL has been copied to clipboard'
+        success: 'Sharable URL has been copied to your clipboard'
       }
     },
 

@@ -28,23 +28,23 @@ export function download() {
   <div id="container" style="height: 100%"></div>
 
   ${jqueryScriptCode}
-  <script type="text/javascript" src="${echartsDir}${SCRIPT_URLS.echartsMinJS}"></script>
+  <script type="text/javascript" src="${echartsDir}${SCRIPT_URLS.echartsJS}"></script>
   <!-- Uncomment this line if you want to dataTool extension
   <script type="text/javascript" src="${echartsDir}/dist/extension/dataTool.min.js"></script>
   -->
   <!-- Uncomment this line if you want to use gl extension
-  <script type="text/javascript" src="${SCRIPT_URLS.echartsGLMinJS}"></script>
+  <script type="text/javascript" src="${SCRIPT_URLS.echartsGLJS}"></script>
   -->
   <!-- Uncomment this line if you want to echarts-stat extension
-  <script type="text/javascript" src="${SCRIPT_URLS.echartsStatMinJS}"></script>
+  <script type="text/javascript" src="${SCRIPT_URLS.echartsStatJS}"></script>
   -->
   <!-- Uncomment this line if you want to use map
   <script type="text/javascript" src="${echarts4Dir}/map/js/china.js"></script>
   <script type="text/javascript" src="${echarts4Dir}/map/js/world.js"></script>
   -->
   <!-- Uncomment these two lines if you want to use bmap extension
-  <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
-  <script type="text/javascript" src="${echartsDir}/dist/extension/bmap.min.js"></script>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=<Your Key Here>"></script>
+  <script type="text/javascript" src="${echartsDir}${echartsBMapJS}"></script>
   -->
 
   <script type="text/javascript">

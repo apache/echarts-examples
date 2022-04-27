@@ -112,16 +112,14 @@ export const CDN_ROOT = 'https://cdn.jsdelivr.net/npm/';
 export const SCRIPT_URLS = {
   echartsDir: `${CDN_ROOT}echarts@{{version}}`,
   echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,
-  echartsJS: '/dist/echarts.js',
-  echartsMinJS: '/dist/echarts.min.js',
+  echartsJS: '/dist/echarts.min.js',
 
-  localEChartsMinJS: 'http://localhost/echarts/dist/echarts.js',
   localEChartsDir: 'http://localhost/echarts',
+  localEChartsGLJS: 'http://localhost/echarts-gl/dist/echarts-gl.js',
 
   echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
-  echartsStatMinJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
-  // echartsGLMinJS: 'http://localhost/echarts-gl/dist/echarts-gl.min.js',
-  echartsGLMinJS: `${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js`,
+  echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
+  echartsGLJS: `${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js`,
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
@@ -130,5 +128,5 @@ export const SCRIPT_URLS = {
 
   bmapLibJS:
     'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
-  echartsBMapMinJS: '/dist/extension/bmap.min.js'
+  echartsBMapJS: '/dist/extension/bmap.min.js'
 };

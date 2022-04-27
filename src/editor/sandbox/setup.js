@@ -1,8 +1,5 @@
 export default function setup() {
-  const sendMessage = function (payload) {
-    console.log('sendMessage', payload);
-    parent.postMessage(payload, '*');
-  };
+  const sendMessage = (payload) => parent.postMessage(payload, '*');
 
   const chartStyleEl = document.head.querySelector('#chart-styles');
 
@@ -188,13 +185,13 @@ export default function setup() {
         gui = new dat.GUI({ autoPlace: false });
         $(gui.domElement).css({
           position: 'absolute',
-          right: 5,
+          right: 0,
           top: 0,
           zIndex: 1000
         });
         document.body.append(gui.domElement);
 
-        const configParams = appEnv.configParams || {};
+        const configParams = appEnv.configParameters || {};
         const config = appEnv.config;
         for (const name in config) {
           const value = config[name];
@@ -244,7 +241,6 @@ export default function setup() {
   });
 
   function handleMessage(ev) {
-    console.log('handle message in sandbox', ev);
     // const { action, ...args } = ev.data;
     const action = ev.data.action;
     delete ev.data.action;

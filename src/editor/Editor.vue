@@ -273,7 +273,6 @@ export default {
     },
     updateOptionOutline() {
       const option = Object.freeze(this.$refs.preview.getOption());
-      console.log(option);
       if (!option) {
         return;
       }

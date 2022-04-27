@@ -92,20 +92,27 @@ export function loadExampleCode() {
     clearLocalExampleCode();
     return Promise.resolve(localCode.code);
   }
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     // ignore c if code is provided
     if (URL_PARAMS.code) {
-      resolve(decompressStr(URL_PARAMS.code));
-      return;
+      try {
+        return resolve(decompressStr(URL_PARAMS.code));
+      } catch (e) {
+        console.error(e);
+        return reject('failed to decompress code');
+      }
     }
-    const glFolder = URL_PARAMS.gl ? 'gl/' : '';
+    const glFolder = 'gl' in URL_PARAMS ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';
     $.ajax(
       `${store.cdnRoot}/examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
       {
         dataType: 'text',
-        success: (data) => {
+        success(data) {
           resolve(data);
+        },
+        error() {
+          reject('failed to load example', URL_PARAMS.c);
         }
       }
     );

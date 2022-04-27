@@ -59,11 +59,10 @@ export function createSandbox(
     if (e.source !== sandbox.contentWindow) {
       return;
     }
-    const evt = e.data.evt;
-    console.log('event from sandbox', evt);
-    switch (evt) {
+    const data = e.data;
+    switch (data.evt) {
       case 'optionUpdated':
-        onOptionUpdated(e.data.option, e.data.updateTime);
+        onOptionUpdated(data.option, data.updateTime);
         break;
       // case 'error':
       // case 'unhandledRejection':
