@@ -1,7 +1,7 @@
 import { getTemplates } from './helper';
 
 /**
- * Open with codepen
+ * Open with CodePen
  * @param {string} code
  * @param {Array<{ src?: string, content?: string }>} scripts
  * @param {string} css

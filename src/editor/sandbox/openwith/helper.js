@@ -1,7 +1,7 @@
 import { store } from '../../../common/store';
 
 /**
- * Open with codepen
+ * Get templates
  * @param {string} code
  * @param {Array<{ src?: string, content?: string }>} scripts
  * @param {string} css

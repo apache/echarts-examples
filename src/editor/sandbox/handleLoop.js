@@ -32,9 +32,7 @@ export default function handleLoop(code) {
     delMonitor: ';LoopController.delLoop(%d);'
   };
 
-  /**
-   * Traverse the AST to find the loop position
-   */
+  // Traverse the AST to find the loop position
   estraverse.traverse(AST, {
     enter(node) {
       switch (node.type) {
@@ -43,16 +41,12 @@ export default function handleLoop(code) {
         case 'ForStatement':
         case 'ForInStatement':
         case 'ForOfStatement':
-          /**
-           * Gets the head and tail of the loop body
-           */
+          // Gets the head and tail of the loop body
           let { start, end } = node.body;
           start++;
           let pre = insertCode.setMonitor.replace('%d', loopID);
           let aft = '';
-          /**
-           * If the body of the loop is not enveloped by {} and is indented, we need to manually add {}
-           */
+          // If the body of the loop is not enveloped by {} and is indented, we need to manually add {}
           if (node.body.type !== 'BlockStatement') {
             pre = '{' + pre;
             aft = '}';
@@ -72,9 +66,7 @@ export default function handleLoop(code) {
     }
   });
 
-  /**
-   * Insert code to corresponding position
-   */
+  // Insert code to corresponding position
   fragments
     .sort((a, b) => b.pos - a.pos)
     .forEach((fragment) => {

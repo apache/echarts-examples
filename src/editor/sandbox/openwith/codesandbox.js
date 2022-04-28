@@ -2,9 +2,10 @@ import { getParameters } from 'codesandbox/lib/api/define';
 import { getTemplates } from './helper';
 
 /**
- * Open with codepen
+ * Open with CodeSandBox
  * @param {string} code
  * @param {Array<{ src?: string, content?: string }>} scripts
+ * @param {string} css
  */
 export default function openWithCodeSandBox(title, scripts, css) {
   const templates = getTemplates(title, scripts, css);
