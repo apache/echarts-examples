@@ -89,6 +89,7 @@ export function createSandbox(
         break;
       case 'cssParsed':
         onCSSParsed(data.css);
+        break;
       default:
         break;
     }
