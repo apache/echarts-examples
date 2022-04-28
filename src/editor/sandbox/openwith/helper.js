@@ -11,8 +11,8 @@ export function getTemplates(title, scripts, css) {
   scripts = (scripts && scripts.slice()) || [];
   const lang = store.locale && store.locale.indexOf('zh') > -1 ? 'zh-CN' : 'en';
 
-  const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}';` : '';
   const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') > -1;
+  const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}';` : '';
   const hasJQuery = /\$[\.\(]+/g.test(store.sourceCode);
   hasJQuery &&
     scripts.unshift({
