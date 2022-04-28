@@ -52,7 +52,22 @@ export function createSandbox(
       )
       .join('')
   );
-  sandbox.onload = onload;
+  sandbox.onload = () => {
+    // FIXME
+    // No good way to prevent the user from trying to redirect the iframe via `document.location.href = xxx`
+    // This is a tricky way
+    // `onload` will be triggered again after the iframe redirects
+    // here we check and block it as we usually won't do this
+    if (sandbox.__loaded__) {
+      const errorMsg = 'potential redirection from the code was blocked';
+      console.error(errorMsg);
+      onCodeError(errorMsg);
+      onerror();
+      return;
+    }
+    sandbox.__loaded__ = true;
+    onload();
+  };
   sandbox.onerror = onerror;
   container.appendChild(sandbox);
 

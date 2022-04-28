@@ -7,6 +7,7 @@ export default {
       openWithCodePen: 'Open with CodePen',
       errorInEditor: 'Errors exist in code!',
       infiniteLoopInEditor: 'Potential infinite loops exist in code!',
+      potentialRedirectionInEditor: 'Potential redirection exists in code!',
       chartOK: 'Chart has been generated successfully, ',
 
       darkMode: 'Dark Mode',
@@ -98,6 +99,7 @@ export default {
       openWithCodePen: '在 CodePen 中编辑',
       errorInEditor: '编辑器内容有误！',
       infiniteLoopInEditor: '编辑器内容可能存在无限循环！',
+      potentialRedirectionInEditor: '编辑器内容可能存在重定向代码！',
       chartOK: '图表已生成, ',
 
       darkMode: '深色模式',

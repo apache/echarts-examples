@@ -64,6 +64,45 @@ export default function setup() {
   let appEnv = {};
   let gui;
 
+  // override some potentially dangerous API
+  const win = [
+    'addEventListener',
+    'removeEventListener',
+    'atob',
+    'btoa',
+    'fetch',
+    'getComputedStyle'
+  ].reduce(
+    (prev, curr) => {
+      const val = window[curr];
+      prev[curr] = echarts.util.isFunction(val) ? val.bind(window) : val;
+      return prev;
+    },
+    {
+      location: Object.freeze(JSON.parse(JSON.stringify(location))),
+      history: void 0,
+      parent: void 0,
+      top: void 0,
+      setTimeout,
+      setInterval
+    }
+  );
+  [
+    'innerHeight',
+    'outerHeight',
+    'innerWidth',
+    'outerWidth',
+    'devicePixelRatio',
+    'screen'
+  ].forEach((prop) => {
+    Object.defineProperty(win, prop, {
+      get() {
+        return window[prop];
+      }
+    });
+  });
+  win.self = win.window = win.globalThis = win;
+
   const api = {
     dispose() {
       if (chartInstance) {
@@ -137,19 +176,14 @@ export default function setup() {
           'parent',
           'window',
           'self',
+          'globalThis',
           'location',
           'histroy',
           // PENDING: create a single panel for CSS code?
           'var css, option;' +
             handleLoop(compiledCode) +
             '\nreturn [option, css];'
-        );
-
-        const win = {
-          addEventListener: window.addEventListener.bind(window),
-          removeEventListener: window.removeEventListener.bind(window),
-          location: Object.freeze(JSON.parse(JSON.stringify(location)))
-        };
+        ).bind(win);
 
         const res = func(
           chartInstance,
@@ -162,6 +196,7 @@ export default function setup() {
           // or any other unexpected and dangerous behaviors
           void 0,
           void 0,
+          win,
           win,
           win,
           win.location,

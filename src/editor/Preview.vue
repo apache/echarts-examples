@@ -240,10 +240,16 @@ function run(recreateInstance) {
       (errMsg) => {
         const infiniteLoopInEditor =
           errMsg && errMsg.indexOf('loop executes') > -1;
+        const potentialRedirection =
+          errMsg && errMsg.indexOf('potential redirection') > -1;
         log(
           this.$t(
             `editor.${
-              infiniteLoopInEditor ? 'infiniteLoopInEditor' : 'errorInEditor'
+              infiniteLoopInEditor
+                ? 'infiniteLoopInEditor'
+                : potentialRedirection
+                ? 'potentialRedirectionInEditor'
+                : 'errorInEditor'
             }`
           ),
           'error'
