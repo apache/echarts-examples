@@ -193,7 +193,10 @@ function log(text, type) {
   if (type !== 'warn' && type !== 'error') {
     type = 'info';
   }
-  store.editorStatus.time = new Date().toLocaleString();
+  const now = new Date();
+  store.editorStatus.time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+    .map((t) => (t + '').padStart(2, '0'))
+    .join(':');
   store.editorStatus.message = text;
   store.editorStatus.type = type;
 }
