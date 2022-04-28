@@ -100,7 +100,7 @@
     </div>
 
     <div id="preview-status">
-      <div>
+      <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
           <el-button icon="el-icon-download" size="mini" @click="download">
             {{ $t('editor.download') }}
@@ -584,13 +584,20 @@ export default {
   font-size: 0.9rem;
   @include flex-center;
 
+  .left-buttons {
+    flex-shrink: 0;
+  }
+
   #run-log {
     @include flex-center;
     font-size: 12px;
+    margin-left: 10px;
+    text-align: right;
 
     .run-log-time {
       color: $clr-text;
       margin-right: 10px;
+      white-space: nowrap;
     }
 
     .run-log-type-info {
