@@ -217,6 +217,8 @@ function run(recreateInstance) {
 
   if (
     !this.sandbox ||
+    // FIXME the second run will recreate the sandbox as echarts version will be `5.3.2`
+    // (previously it's default 5)
     scripts.some((s) => this.scripts.findIndex((s1) => s1.src === s.src) === -1)
   ) {
     this.loading = true;
