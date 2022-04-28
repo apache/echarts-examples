@@ -127,6 +127,6 @@ export const SCRIPT_URLS = {
   prettierDir: `${CDN_ROOT}prettier@2.3.2`,
 
   bmapLibJS:
-    'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
+    'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
   echartsBMapJS: '/dist/extension/bmap.min.js'
 };

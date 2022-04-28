@@ -5,8 +5,9 @@ import { downloadBlob } from '../common/helper';
 export function download() {
   const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') >= 0;
   const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}';` : '';
+  const lang = store.locale && store.locale.indexOf('zh') > -1 ? 'zh-CN' : 'en';
 
-  const hasJQueryJS = store.sourceCode.indexOf('$.get') >= 0;
+  const hasJQueryJS = /\$[\.\(]+/g.test(store.sourceCode);
   const jqueryScriptCode = hasJQueryJS
     ? '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery"></script>'
     : '';
@@ -20,7 +21,7 @@ export function download() {
   THIS EXAMPLE WAS DOWNLOADED FROM ${window.location.href}
 -->
 <!DOCTYPE html>
-<html style="height: 100%">
+<html lang="${lang}" style="height: 100%">
 <head>
   <meta charset="utf-8">
 </head>
@@ -28,7 +29,9 @@ export function download() {
   <div id="container" style="height: 100%"></div>
 
   ${jqueryScriptCode}
-  <script type="text/javascript" src="${echartsDir}${SCRIPT_URLS.echartsJS}"></script>
+  <script type="text/javascript" src="${echartsDir}${
+    SCRIPT_URLS.echartsJS
+  }"></script>
   <!-- Uncomment this line if you want to dataTool extension
   <script type="text/javascript" src="${echartsDir}/dist/extension/dataTool.min.js"></script>
   -->
@@ -43,15 +46,18 @@ export function download() {
   <script type="text/javascript" src="${echarts4Dir}/map/js/world.js"></script>
   -->
   <!-- Uncomment these two lines if you want to use bmap extension
-  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=<Your Key Here>"></script>
-  <script type="text/javascript" src="${echartsDir}${SCRIPT_URLS.echartsBMapJS}"></script>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="${echartsDir}${
+    SCRIPT_URLS.echartsBMapJS
+  }"></script>
   -->
 
   <script type="text/javascript">
     var dom = document.getElementById('container');
     var myChart = echarts.init(dom, null, {
       renderer: '${store.renderer}',
-      useDirtyRect: ${store.useDirtyRect}
+      useDirtyRect: ${store.useDirtyRect},
+      darkMode: ${store.darkMode ? 'dark' : "''"}
     });
     var app = {};
     ${rootPathCode}

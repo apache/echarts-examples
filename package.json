@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "@lang/object-visualizer": "^4.2.0",
+    "codesandbox": "^2.2.3",
     "lodash": "^4.17.19",
     "lz-string": "^1.4.4",
     "nanoid": "^3.1.30",

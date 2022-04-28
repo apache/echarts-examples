@@ -46,7 +46,8 @@ export default function setup() {
       const endTime = performance.now();
       sendMessage({
         evt: 'optionUpdated',
-        option: chart.getOption(),
+        // Function can't be cloned
+        // option: chart.getOption(),
         updateTime: endTime - startTime
       });
       return res;
@@ -166,7 +167,12 @@ export default function setup() {
           win.location,
           void 0
         );
-        chartStyleEl.textContent = res[1] || '';
+
+        const css = (chartStyleEl.textContent = res[1] || '');
+        sendMessage({
+          evt: 'cssParsed',
+          css
+        });
 
         const option = res[0];
         echarts.util.isObject(option) && chartInstance.setOption(option, true);

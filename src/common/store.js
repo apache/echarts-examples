@@ -96,7 +96,11 @@ export function loadExampleCode() {
     // ignore c if code is provided
     if (URL_PARAMS.code) {
       try {
-        return resolve(decompressStr(URL_PARAMS.code));
+        // PENDING fallback to `c` if the decompressed code is not available?
+        const code = decompressStr(URL_PARAMS.code);
+        return code
+          ? resolve(code)
+          : reject('code was decompressed but got nothing');
       } catch (e) {
         console.error(e);
         return reject('failed to decompress code');

@@ -11,9 +11,10 @@ export function createSandbox(
   onload,
   onerror,
   onCodeError,
-  onOptionUpdated
+  onOptionUpdated,
+  onCSSParsed
 ) {
-  scripts = scripts || [];
+  scripts = (scripts && scripts.slice()) || [];
   scripts.push(
     { content: estraverse },
     { content: loopController },
@@ -62,7 +63,7 @@ export function createSandbox(
     const data = e.data;
     switch (data.evt) {
       case 'optionUpdated':
-        onOptionUpdated(data.option, data.updateTime);
+        onOptionUpdated(data.updateTime);
         break;
       // case 'error':
       // case 'unhandledRejection':
@@ -71,6 +72,8 @@ export function createSandbox(
       case 'codeError':
         onCodeError(data.message);
         break;
+      case 'cssParsed':
+        onCSSParsed(data.css);
       default:
         break;
     }
@@ -91,7 +94,6 @@ export function createSandbox(
       sendMessage('dispose');
       window.removeEventListener('message', hanldeMessage);
       container.removeChild(sandbox);
-      sandbox = null;
     },
     run(store, recreateInstance) {
       sendMessage('run', { store, recreateInstance });

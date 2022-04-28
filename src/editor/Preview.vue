@@ -162,6 +162,7 @@ function getScripts(nightly) {
   const echartsDir = SCRIPT_URLS[
     isLocal ? 'localEChartsDir' : nightly ? 'echartsNightlyDir' : 'echartsDir'
   ].replace('{{version}}', store.echartsVersion);
+  const code = store.runCode;
 
   return [
     echartsDir + getScriptURL(SCRIPT_URLS.echartsJS),
@@ -172,15 +173,19 @@ function getScripts(nightly) {
             : getScriptURL(SCRIPT_URLS.echartsGLJS)
         ]
       : []),
-    ...(hasBMap
+    ...(hasBMap || /coordinateSystem.*:.*['"]bmap['"]/g.test(code)
       ? [
           SCRIPT_URLS.bmapLibJS,
           echartsDir + getScriptURL(SCRIPT_URLS.echartsBMapJS)
         ]
       : []),
-    getScriptURL(SCRIPT_URLS.echartsStatJS),
-    SCRIPT_URLS.echartsWorldMapJS,
-    SCRIPT_URLS.datGUIMinJS
+    ...(code.indexOf('ecStat.') > -1
+      ? [getScriptURL(SCRIPT_URLS.echartsStatJS)]
+      : []),
+    ...(/map.*:.*['"]world['"]/g.test(code)
+      ? [SCRIPT_URLS.echartsWorldMapJS]
+      : []),
+    ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : [])
   ].map((url) => ({ src: url }));
 }
 
@@ -205,12 +210,18 @@ function run(recreateInstance) {
     updateRunHash();
   };
 
-  if (!this.sandbox) {
+  const scripts = getScripts(this.nightly);
+
+  if (
+    !this.sandbox ||
+    scripts.some((s) => this.scripts.findIndex((s1) => s1.src === s.src) === -1)
+  ) {
     this.loading = true;
     let isFirstRun = true;
+    this.dispose();
     this.sandbox = createSandbox(
       this.$refs.chartPanel,
-      getScripts(this.nightly),
+      (this.scripts = scripts),
       () => {
         runCode();
         this.loading = false;
@@ -233,7 +244,8 @@ function run(recreateInstance) {
           'error'
         );
       },
-      (option, updateTime) => {
+      (updateTime) => {
+        const option = this.getOption();
         if (
           typeof option.backgroundColor === 'string' &&
           option.backgroundColor !== 'transparent'
@@ -267,6 +279,9 @@ function run(recreateInstance) {
           this.$emit('ready');
           isFirstRun = false;
         }
+      },
+      (css) => {
+        this.css = css;
       }
     );
   } else {
@@ -465,6 +480,12 @@ export default {
           .slice(nextIdx, nextIdx + 10)
           .concat(versions.slice(latestIdx, latestIdx + 10));
       });
+    },
+    getAssets() {
+      return {
+        scripts: this.scripts,
+        css: this.css
+      };
     }
   }
 };

@@ -3,6 +3,8 @@ export default {
     editor: {
       run: 'Run',
       format: 'Format',
+      openWithCodeSandBox: 'Open with CodeSandBox',
+      openWithCodePen: 'Open with CodePen',
       errorInEditor: 'Errors exist in code!',
       infiniteLoopInEditor: 'Potential infinite loops exist in code!',
       chartOK: 'Chart has been generated successfully, ',
@@ -92,6 +94,8 @@ export default {
     editor: {
       run: '运行',
       format: '格式化',
+      openWithCodeSandBox: '在 CodeSandBox 中编辑',
+      openWithCodePen: '在 CodePen 中编辑',
       errorInEditor: '编辑器内容有误！',
       infiniteLoopInEditor: '编辑器内容可能存在无限循环！',
       chartOK: '图表已生成, ',
