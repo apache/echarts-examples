@@ -28,7 +28,7 @@ export function getTemplates(title, scripts, css) {
 <body>
   <div id="chart-container"></div>
   ${scripts
-    .filter((script) => !script.url || script.url.indexOf('dat.gui') < 0)
+    .filter((script) => !script.src || script.src.indexOf('dat.gui') < 0)
     .map((script) =>
       script.content
         ? `<script>${script.content}</script>`
