@@ -1,6 +1,6 @@
 const LoopController = {
   _config: {
-    maxExecTimePerLoop: 3e3,
+    maxExecTimePerLoop: 1e4,
     maxLoopCount: 1e6
   },
   loopMap: new Map(),

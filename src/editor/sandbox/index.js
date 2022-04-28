@@ -91,6 +91,7 @@ export function createSandbox(
       sendMessage('dispose');
       window.removeEventListener('message', hanldeMessage);
       container.removeChild(sandbox);
+      sandbox = null;
     },
     run(store, recreateInstance) {
       sendMessage('run', { store, recreateInstance });

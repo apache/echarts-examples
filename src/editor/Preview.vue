@@ -222,7 +222,6 @@ function run(recreateInstance) {
         this.dispose();
       },
       (errMsg) => {
-        console.log(errMsg);
         const infiniteLoopInEditor =
           errMsg && errMsg.indexOf('loop executes') > -1;
         log(
