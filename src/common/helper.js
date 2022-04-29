@@ -1,5 +1,6 @@
 import { store } from './store';
 import { SCRIPT_URLS } from './config';
+import { compressToBase64, decompressFromBase64 } from 'lz-string';
 
 const promisesCache = {};
 
@@ -88,7 +89,23 @@ export function formatCode(code) {
   });
 }
 
-export {
-  compressToBase64 as compressStr,
-  decompressFromBase64 as decompressStr
-} from 'lz-string';
+export function compressStr(str) {
+  if (!str || !(str = str.trim())) {
+    return str;
+  }
+  return compressToBase64(str)
+    .replace(/\+/g, '-') // Convert '+' to '-'
+    .replace(/\//g, '_') // Convert '/' to '_'
+    .replace(/=+$/, ''); // Remove ending '='
+}
+
+export function decompressStr(str) {
+  if (!str || !(str = str.trim())) {
+    return str;
+  }
+  return decompressFromBase64(
+    str
+      .replace(/\-/g, '+') // Convert '-' to '+'
+      .replace(/_/g, '/') // Convert '_' to '/'
+  );
+}
