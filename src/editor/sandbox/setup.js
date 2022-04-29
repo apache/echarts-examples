@@ -46,8 +46,7 @@ export default function setup() {
       const endTime = performance.now();
       sendMessage({
         evt: 'optionUpdated',
-        // Function can't be cloned
-        // option: chart.getOption(),
+        option: JSON.stringify(chart.getOption()),
         updateTime: endTime - startTime
       });
       return res;
@@ -123,14 +122,10 @@ export default function setup() {
       $a.click();
     },
 
-    getOption() {
-      return chartInstance.getOption();
-    },
-
     run({ store, recreateInstance }) {
       if (recreateInstance || !chartInstance || chartInstance.isDisposed()) {
         this.dispose();
-        window.chartInstance = chartInstance = echarts.init(
+        chartInstance = echarts.init(
           document.getElementById('chart-container'),
           store.darkMode ? 'dark' : '',
           {

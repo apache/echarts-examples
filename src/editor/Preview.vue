@@ -214,12 +214,17 @@ function run(recreateInstance) {
   };
 
   const scripts = getScripts(this.nightly);
+  const scriptsChanged =
+    !this.scripts ||
+    scripts.some(
+      (s) => this.scripts.findIndex((s1) => s1.src === s.src) === -1
+    );
 
   if (
     !this.sandbox ||
     // FIXME the second run will recreate the sandbox as echarts version will be `5.3.2`
     // (previously it's default 5)
-    scripts.some((s) => this.scripts.findIndex((s1) => s1.src === s.src) === -1)
+    scriptsChanged
   ) {
     this.loading = true;
     let isFirstRun = true;

@@ -33,13 +33,7 @@ export function createSandbox(
   const sandbox = document.createElement('iframe');
   sandbox.setAttribute(
     'sandbox',
-    [
-      'allow-modals',
-      'allow-pointer-lock',
-      'allow-same-origin',
-      'allow-scripts',
-      'allow-downloads'
-    ].join(' ')
+    ['allow-pointer-lock', 'allow-scripts', 'allow-downloads'].join(' ')
   );
   sandbox.style.cssText = 'width:100%;height:100%;border:none;background:none';
   sandbox.srcdoc = srcdoc.replace(
@@ -78,6 +72,7 @@ export function createSandbox(
     const data = e.data;
     switch (data.evt) {
       case 'optionUpdated':
+        sandbox.chartOption = JSON.parse(data.option);
         onOptionUpdated(data.updateTime);
         break;
       // case 'error':
@@ -99,10 +94,6 @@ export function createSandbox(
     sandbox.contentWindow.postMessage({ action, ...argumentMap }, '*');
   }
 
-  function getChartInstance() {
-    return sandbox.contentWindow.chartInstance;
-  }
-
   window.addEventListener('message', hanldeMessage, false);
 
   return {
@@ -118,9 +109,7 @@ export function createSandbox(
       sendMessage('screenshot', { filename });
     },
     getOption() {
-      // sendMessage('getOption');
-      const chart = getChartInstance();
-      return chart && chart.getOption();
+      return sandbox.chartOption;
     }
   };
 }
