@@ -35,17 +35,38 @@ export function createSandbox(
     'sandbox',
     ['allow-pointer-lock', 'allow-scripts', 'allow-downloads'].join(' ')
   );
+  const csp = {
+    'default-src': [
+      `'self'`,
+      `'unsafe-inline'`,
+      `'unsafe-eval'`,
+      '*.apache.org',
+      '*.jsdelivr.net',
+      '*.jsdelivr.com',
+      '*.unpkg.com',
+      '*.baidu.com',
+      '*.bdimg.com',
+      'cdnjs.cloudflare.com'
+    ],
+    'frame-src': [`'self'`, '*.apache.org'],
+    'object-src': [`'none'`]
+  };
+  sandbox.csp = Object.entries(csp)
+    .map(([key, val]) => `${key} ${val.join(' ')}`)
+    .join('; ');
+  sandbox.srcdoc = srcdoc
+    .replace('__CSP__', sandbox.csp)
+    .replace(
+      '<!--SCRIPTS-->',
+      scripts
+        .map((script) =>
+          script.content
+            ? `<script>${script.content}</script>`
+            : `<script src="${script.src}"></script>`
+        )
+        .join('')
+    );
   sandbox.style.cssText = 'width:100%;height:100%;border:none;background:none';
-  sandbox.srcdoc = srcdoc.replace(
-    '<!--SCRIPTS-->',
-    scripts
-      .map((script) =>
-        script.content
-          ? `<script>${script.content}</script>`
-          : `<script src="${script.src}"></script>`
-      )
-      .join('')
-  );
   sandbox.onload = () => {
     // FIXME
     // No good way to prevent the user from trying to redirect the iframe via `document.location.href = xxx`

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta
-      http-equiv="content-security-policy"
-      content="default-src 'self' 'unsafe-inline' 'unsafe-eval' *.apache.org *.jsdelivr.net *.jsdelivr.com *.unpkg.com *.baidu.com cdnjs.cloudflare.com; frame-src 'self' *.apache.org; object-src 'none';"
-    />
+    <meta http-equiv="content-security-policy" content="__CSP__" />
     <style>
       * {
         margin: 0;
@@ -41,6 +38,31 @@
   </head>
   <body>
     <div id="chart-container"></div>
+    <script>
+      // FIXME
+      (() => {
+        const noop = () => {};
+        const fakeStorage = {
+          clear: noop,
+          setItem: noop,
+          removeItem: noop,
+          getItem: noop,
+          key: noop,
+          length: 0
+        };
+        Object.defineProperties(window, {
+          localStorage: {
+            value: fakeStorage
+          },
+          sessionStorage: {
+            value: fakeStorage
+          }
+        });
+        Object.defineProperty(document, 'cookie', {
+          value: ''
+        });
+      })();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="https://cdn.jsdelivr.net/npm/seedrandom@3.0.5/seedrandom.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/acorn@8.7.1/dist/acorn.min.js"></script>
