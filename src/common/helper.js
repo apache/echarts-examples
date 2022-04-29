@@ -91,7 +91,7 @@ export function formatCode(code) {
 
 export function compressStr(str) {
   if (!str || !(str = str.trim())) {
-    return str;
+    return;
   }
   return compressToBase64(str)
     .replace(/\+/g, '-') // Convert '+' to '-'
@@ -101,7 +101,7 @@ export function compressStr(str) {
 
 export function decompressStr(str) {
   if (!str || !(str = str.trim())) {
-    return str;
+    return;
   }
   return decompressFromBase64(
     str
