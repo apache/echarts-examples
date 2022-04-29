@@ -385,6 +385,7 @@ export default {
     // debouncedRun will be created at first run
     // debouncedRun: null,
     refreshAll() {
+      // PENDING full reload?
       this.run(true);
     },
     dispose() {

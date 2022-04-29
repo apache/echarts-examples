@@ -56,7 +56,7 @@ export default function setup() {
   }
 
   function clearChartEvents(chart) {
-    chart && chartEvents.forEach(chart.off);
+    chart && chartEvents.forEach(chart.off.bind(chart));
     chartEvents.length = 0;
   }
 
