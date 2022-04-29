@@ -46,7 +46,9 @@ export default function setup() {
       const endTime = performance.now();
       sendMessage({
         evt: 'optionUpdated',
-        option: JSON.stringify(chart.getOption()),
+        option: JSON.stringify(chart.getOption(), (key, val) =>
+          echarts.util.isFunction(val) ? val + '' : val
+        ),
         updateTime: endTime - startTime
       });
       return res;
@@ -174,6 +176,9 @@ export default function setup() {
           'globalThis',
           'location',
           'histroy',
+          'eval',
+          'execScript',
+          'Function',
           // PENDING: create a single panel for CSS code?
           'var css, option;' +
             handleLoop(compiledCode) +
@@ -195,6 +200,9 @@ export default function setup() {
           win,
           win,
           win.location,
+          void 0,
+          void 0,
+          void 0,
           void 0
         );
 
