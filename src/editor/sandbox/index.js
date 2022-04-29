@@ -46,7 +46,17 @@ export function createSandbox(
       '*.unpkg.com',
       '*.baidu.com',
       '*.bdimg.com',
-      'cdnjs.cloudflare.com'
+      'apache.org',
+      'jsdelivr.net',
+      'jsdelivr.com',
+      'unpkg.com',
+      'baidu.com',
+      'bdimg.com',
+      'cdnjs.cloudflare.com',
+      'cdn.bootcdn.net',
+      'lib.baomitu.com',
+      'unpkg.zhimg.com',
+      'npm.elemecdn.com'
     ],
     'frame-src': [`'self'`, '*.apache.org'],
     'object-src': [`'none'`]
