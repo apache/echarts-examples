@@ -4,6 +4,9 @@ import setup from './setup';
 import loopController from 'raw-loader!./loopController';
 import showDebugDirtyRect from 'raw-loader!../../dep/showDebugDirtyRect';
 import estraverse from 'raw-loader!./estraverse.browser';
+import workerJS from 'raw-loader!!./worker';
+
+let sandboxWorker;
 
 export function createSandbox(
   container,
@@ -118,6 +121,14 @@ export function createSandbox(
       case 'cssParsed':
         onCSSParsed(data.css);
         break;
+      case 'requestProxy':
+        const [method, url, async] = data.args;
+        sandboxWorker.postMessage({
+          reqId: data.reqId,
+          args: [method, new URL(url, location.origin).toString(), async],
+          body: data.body
+        });
+        break;
       default:
         break;
     }
@@ -128,6 +139,11 @@ export function createSandbox(
   }
 
   window.addEventListener('message', hanldeMessage, false);
+
+  if (!sandboxWorker) {
+    sandboxWorker = new Worker(URL.createObjectURL(new Blob([workerJS])));
+  }
+  sandboxWorker.onmessage = (e) => sendMessage('requestProxyRes', e.data);
 
   return {
     dispose() {

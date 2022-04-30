@@ -288,8 +288,59 @@ export default function setup() {
     // const { action, ...args } = ev.data;
     const action = ev.data.action;
     delete ev.data.action;
+    if (action === 'requestProxyRes') {
+      return onXHRRes(ev.data);
+    }
     typeof api[action] === 'function' && api[action].apply(api, [ev.data]);
   }
+
+  const pendingXHRMap = new Map();
+
+  function onXHRRes(e) {
+    const xhr = pendingXHRMap.get(e.reqId);
+    if (xhr) {
+      const args = xhr.__args.slice();
+      if (e.type === 'load') {
+        const blob = new Blob([e.res], {
+          // FIXME how to determine the response content type
+          // to enable jQuery can detect the right type?
+          // type: 'application/json'
+        });
+        const blobURL = URL.createObjectURL(blob);
+        args[1] = blobURL;
+        xhr.addEventListener('load', () => URL.revokeObjectURL(blobURL));
+      } else {
+        args[1] = null;
+      }
+      console.log(args[1]);
+      nativeXHROpen.apply(xhr, args);
+      nativeXHRSend.apply(xhr);
+
+      pendingXHRMap.delete(e.reqId);
+    }
+  }
+
+  const nativeXHROpen = XMLHttpRequest.prototype.open;
+  const nativeXHRSend = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.open = function () {
+    const args = Array.prototype.slice.call(arguments, 0);
+    this.__args = args;
+    this.__reqId = args.slice(0, 2).join(':');
+    nativeXHROpen.apply(this, arguments);
+  };
+  XMLHttpRequest.prototype.send = function (data) {
+    console.log(this);
+    pendingXHRMap.set(this.__reqId, this);
+    parent.postMessage(
+      {
+        evt: 'requestProxy',
+        args: this.__args,
+        reqId: this.__reqId,
+        body: data
+      },
+      '*'
+    );
+  };
 
   window.addEventListener('message', handleMessage, false);
   window.addEventListener('error', function () {
