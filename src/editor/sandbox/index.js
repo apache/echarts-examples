@@ -3,7 +3,7 @@ import handleLoop from './handleLoop';
 import setup from './setup';
 import loopController from 'raw-loader!./loopController';
 import showDebugDirtyRect from 'raw-loader!../../dep/showDebugDirtyRect';
-import estraverse from 'raw-loader!./estraverse.browser';
+import estraverse from '!!raw-loader!./estraverse.browser';
 
 export function createSandbox(
   container,
