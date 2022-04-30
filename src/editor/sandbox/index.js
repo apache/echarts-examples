@@ -40,6 +40,8 @@ export function createSandbox(
       `'self'`,
       `'unsafe-inline'`,
       `'unsafe-eval'`,
+      'data:',
+      'blob:',
       '*.apache.org',
       '*.jsdelivr.net',
       '*.jsdelivr.com',
