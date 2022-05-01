@@ -230,6 +230,7 @@ function run(recreateInstance) {
     this.sandbox = createSandbox(
       this.$refs.chartPanel,
       (this.scripts = scripts),
+      store.isSharedCode,
       () => {
         runCode();
         this.loading = false;

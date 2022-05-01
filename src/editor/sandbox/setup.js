@@ -1,4 +1,4 @@
-export default function setup() {
+export default function setup(isShared) {
   const sendMessage = (payload) => parent.postMessage(payload, '*');
 
   const chartStyleEl = document.head.querySelector('#chart-styles');
@@ -65,50 +65,84 @@ export default function setup() {
   let appEnv = {};
   let gui;
 
-  // override some potentially dangerous API
-  const win = [
-    'addEventListener',
-    'removeEventListener',
-    'atob',
-    'btoa',
-    'fetch',
-    'getComputedStyle'
-  ].reduce(
-    (prev, curr) => {
-      const val = window[curr];
-      prev[curr] = echarts.util.isFunction(val) ? val.bind(window) : val;
-      return prev;
-    },
-    {
-      location: Object.freeze(JSON.parse(JSON.stringify(location))),
-      history: void 0,
-      parent: void 0,
-      top: void 0,
-      setTimeout,
-      setInterval
-    }
-  );
-  [
-    'innerHeight',
-    'outerHeight',
-    'innerWidth',
-    'outerWidth',
-    'devicePixelRatio',
-    'screen'
-  ].forEach((prop) => {
-    Object.defineProperty(win, prop, {
-      get() {
-        return window[prop];
+  let win;
+  if (isShared) {
+    // override some potentially dangerous API
+    win = [
+      'addEventListener',
+      'removeEventListener',
+      'atob',
+      'btoa',
+      'fetch',
+      'getComputedStyle'
+    ].reduce(
+      (prev, curr) => {
+        const val = window[curr];
+        prev[curr] = echarts.util.isFunction(val) ? val.bind(window) : val;
+        return prev;
+      },
+      {
+        location: Object.freeze(JSON.parse(JSON.stringify(location))),
+        document: (() => {
+          const nativeCreateElement = document.createElement;
+          const nativeCreateElementNS = document.createElementNS;
+          const fakeDoc = document.cloneNode();
+          // To enable the created elements to be inserted to body
+          // Object.defineProperties(fakeDoc, {
+          //   documentElement: {
+          //     get() {
+          //       return document.documentElement;
+          //     }
+          //   },
+          //   body: {
+          //     get() {
+          //       return document.body;
+          //     }
+          //   }
+          // });
+          fakeDoc.createElement = function () {
+            const tagName = arguments[0];
+            if (tagName && tagName.toLowerCase() === 'script') {
+              return console.error(
+                `Disallowed attempting to create dynamic script!`
+              );
+            }
+            return nativeCreateElement.apply(document, arguments);
+          };
+          fakeDoc.nativeCreateElementNS = function () {
+            const tagName = arguments[0];
+            if (tagName && tagName.toLowerCase() === 'script') {
+              return console.error(
+                `Disallowed attempting to create dynamic script!`
+              );
+            }
+            return nativeCreateElementNS.apply(document, arguments);
+          };
+          return fakeDoc;
+        })(),
+        history: void 0,
+        parent: void 0,
+        top: void 0,
+        setTimeout,
+        setInterval
       }
+    );
+    [
+      'innerHeight',
+      'outerHeight',
+      'innerWidth',
+      'outerWidth',
+      'devicePixelRatio',
+      'screen'
+    ].forEach((prop) => {
+      Object.defineProperty(win, prop, {
+        get() {
+          return window[prop];
+        }
+      });
     });
-  });
-  win.self = win.window = win.globalThis = win;
-
-  Object.defineProperty(document, 'defaultView', {
-    value: win,
-    writable: false,
-    configurable: false
-  });
+    win.self = win.window = win.globalThis = win;
+  }
 
   const api = {
     dispose() {
@@ -167,50 +201,78 @@ export default function setup() {
           // Replace random method
           .replace(/Math.random\([^)]*\)/g, '__ECHARTS_EXAMPLE_RANDOM__()');
         const echartsExampleRandom = new Math.seedrandom(store.randomSeed);
-
-        const func = new Function(
-          'myChart',
-          'app',
-          'setTimeout',
-          'setInterval',
-          'ROOT_PATH',
-          '__ECHARTS_EXAMPLE_RANDOM__',
-          'top',
-          'parent',
-          'window',
-          'self',
-          'globalThis',
-          'location',
-          'histroy',
-          'eval',
-          'execScript',
-          'Function',
-          // PENDING: create a single panel for CSS code?
+        // PENDING: create a single panel for CSS code?
+        const runCode =
           'var css, option;' +
-            handleLoop(compiledCode) +
-            '\nreturn [option, css];'
-        ).bind(win);
+          handleLoop(compiledCode) +
+          '\nreturn [option, css];';
 
-        const res = func(
-          chartInstance,
-          appEnv,
-          setTimeout,
-          setInterval,
-          store.cdnRoot,
-          echartsExampleRandom,
-          // prevent someone from trying to close the parent window via top/parent.close()
-          // or any other unexpected and dangerous behaviors
-          void 0,
-          void 0,
-          win,
-          win,
-          win,
-          win.location,
-          void 0,
-          void 0,
-          void 0,
-          void 0
-        );
+        let func;
+        let res;
+
+        if (isShared) {
+          func = new Function(
+            'myChart',
+            'app',
+            'setTimeout',
+            'setInterval',
+            'ROOT_PATH',
+            '__ECHARTS_EXAMPLE_RANDOM__',
+            'top',
+            'parent',
+            'window',
+            'self',
+            'globalThis',
+            'document',
+            'location',
+            'histroy',
+            'eval',
+            'execScript',
+            'Function',
+            runCode
+          ).bind(win);
+
+          res = func(
+            chartInstance,
+            appEnv,
+            setTimeout,
+            setInterval,
+            store.cdnRoot,
+            echartsExampleRandom,
+            // prevent someone from trying to close the parent window via top/parent.close()
+            // or any other unexpected and dangerous behaviors
+            void 0,
+            void 0,
+            win,
+            win,
+            win,
+            win.document,
+            win.location,
+            void 0,
+            void 0,
+            void 0,
+            void 0
+          );
+        } else {
+          func = new Function(
+            'myChart',
+            'app',
+            'setTimeout',
+            'setInterval',
+            'ROOT_PATH',
+            '__ECHARTS_EXAMPLE_RANDOM__',
+            runCode
+          );
+
+          res = func(
+            chartInstance,
+            appEnv,
+            setTimeout,
+            setInterval,
+            store.cdnRoot,
+            echartsExampleRandom
+          );
+        }
 
         const css = (chartStyleEl.textContent = res[1] || '');
         sendMessage({

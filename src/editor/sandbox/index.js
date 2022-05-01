@@ -8,6 +8,7 @@ import estraverse from '!!raw-loader!./estraverse.browser';
 export function createSandbox(
   container,
   scripts,
+  isShared,
   onload,
   onerror,
   onCodeError,
@@ -24,7 +25,7 @@ export function createSandbox(
           ${handleLoop}
           ${showDebugDirtyRect}
           ${setup}
-          setup()
+          setup(${isShared})
         })()
       `
     }

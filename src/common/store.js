@@ -29,6 +29,8 @@ export const store = {
   runCode: '',
   sourceCode: '',
 
+  isSharedCode: false,
+
   runHash: '',
 
   isMobile: window.innerWidth < 600,
@@ -98,6 +100,7 @@ export function loadExampleCode() {
       try {
         // PENDING fallback to `c` if the decompressed code is not available?
         const code = decompressStr(URL_PARAMS.code);
+        store.isSharedCode = !!code;
         return code
           ? resolve(code)
           : reject('code was decompressed but got nothing');
