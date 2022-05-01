@@ -54,10 +54,9 @@ export function download() {
 
   <script type="text/javascript">
     var dom = document.getElementById('container');
-    var myChart = echarts.init(dom, null, {
+    var myChart = echarts.init(dom, ${store.darkMode ? "'dark'" : 'null'}, {
       renderer: '${store.renderer}',
-      useDirtyRect: ${store.useDirtyRect},
-      darkMode: ${store.darkMode ? 'dark' : "''"}
+      useDirtyRect: ${store.useDirtyRect}
     });
     var app = {};
     ${rootPathCode}

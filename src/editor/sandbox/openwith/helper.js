@@ -43,10 +43,9 @@ export function getTemplates(title, scripts, css) {
 </html>`;
 
   const jsTpl = `var dom = document.getElementById('chart-container');
-var myChart = echarts.init(dom, null, {
+var myChart = echarts.init(dom, ${store.darkMode ? "'dark'" : 'null'}, {
   renderer: '${store.renderer}',
-  useDirtyRect: ${store.useDirtyRect},
-  darkMode: ${store.darkMode ? 'dark' : "''"}
+  useDirtyRect: ${store.useDirtyRect}
 });
 var app = {};
 ${rootPathCode}
