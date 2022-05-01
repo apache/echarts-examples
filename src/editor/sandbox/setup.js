@@ -104,6 +104,12 @@ export default function setup() {
   });
   win.self = win.window = win.globalThis = win;
 
+  Object.defineProperty(document, 'defaultView', {
+    value: win,
+    writable: false,
+    configurable: false
+  });
+
   const api = {
     dispose() {
       if (chartInstance) {

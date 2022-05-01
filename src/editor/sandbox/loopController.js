@@ -1,9 +1,9 @@
-const LoopController = {
-  _config: {
+const LoopController = Object.freeze({
+  _config: Object.freeze({
     maxExecTimePerLoop: 1e4,
     maxLoopCount: 1e6
-  },
-  loopMap: new Map(),
+  }),
+  _loopMap: new Map(),
   initLoop(loopID) {
     this.setLoop(loopID, {
       isInit: true,
@@ -13,22 +13,22 @@ const LoopController = {
     });
   },
   getLoop(loopID) {
-    return this.loopMap.get(loopID);
+    return this._loopMap.get(loopID);
   },
   setLoop(loopID, loop) {
-    this.loopMap.set(loopID, loop);
+    this._loopMap.set(loopID, loop);
   },
   delLoop(loopID) {
-    this.loopMap.delete(loopID);
+    this._loopMap.delete(loopID);
   },
   clearLoops() {
-    this.loopMap.clear();
+    this._loopMap.clear();
   },
   exitLoop(loopID) {
     this.delLoop(loopID);
   },
   calcLoop(loopID) {
-    if (this.loopMap.has(loopID)) {
+    if (this._loopMap.has(loopID)) {
       let { isInit, totalExecTime, startTime, count } = this.getLoop(loopID);
       if (isInit) {
         totalExecTime = Date.now() - startTime;
@@ -57,4 +57,4 @@ const LoopController = {
       );
     }
   }
-};
+});
