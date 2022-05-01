@@ -33,7 +33,12 @@ export function createSandbox(
   const sandbox = document.createElement('iframe');
   sandbox.setAttribute(
     'sandbox',
-    ['allow-pointer-lock', 'allow-scripts', 'allow-downloads'].join(' ')
+    [
+      'allow-pointer-lock',
+      'allow-scripts',
+      'allow-downloads',
+      'allow-same-origin'
+    ].join(' ')
   );
   const csp = {
     'default-src': [
@@ -41,27 +46,32 @@ export function createSandbox(
       `'unsafe-inline'`,
       `'unsafe-eval'`,
       'data:',
-      'blob:',
-      '*.apache.org',
-      '*.jsdelivr.net',
-      '*.jsdelivr.com',
-      '*.unpkg.com',
-      '*.baidu.com',
-      '*.bdimg.com',
-      'apache.org',
-      'jsdelivr.net',
-      'jsdelivr.com',
-      'unpkg.com',
-      'baidu.com',
-      'bdimg.com',
-      'cdnjs.cloudflare.com',
-      'cdn.bootcdn.net',
-      'lib.baomitu.com',
-      'unpkg.zhimg.com',
-      'npm.elemecdn.com'
-    ],
-    'frame-src': [`'self'`, '*.apache.org'],
-    'object-src': [`'none'`]
+      'blob:'
+    ].concat(
+      [
+        '*.apache.org',
+        '*.jsdelivr.net',
+        '*.jsdelivr.com',
+        '*.unpkg.com',
+        '*.baidu.com',
+        '*.bdimg.com',
+        'apache.org',
+        'jsdelivr.net',
+        'jsdelivr.com',
+        'unpkg.com',
+        'baidu.com',
+        'bdimg.com',
+        'cdnjs.cloudflare.com',
+        'cdn.bootcdn.net',
+        'lib.baomitu.com',
+        'unpkg.zhimg.com',
+        'npm.elemecdn.com'
+      ].map((domain) => 'https://' + domain)
+    ),
+    'frame-src': [`'self'`, 'https://*.apache.org'],
+    'object-src': [`'none'`],
+    'navigate-to': [`'none'`],
+    'worker-src': [`'none'`]
   };
   sandbox.csp = Object.entries(csp)
     .map(([key, val]) => `${key} ${val.join(' ')}`)
