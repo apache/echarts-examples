@@ -361,16 +361,16 @@ export default {
       }
     },
     'shared.renderer'() {
-      this.refreshAll();
+      this.refresh();
     },
     'shared.darkMode'() {
-      this.refreshAll();
+      this.refresh();
     },
     'shared.enableDecal'() {
-      this.refreshAll();
+      this.refresh();
     },
     'shared.useDirtyRect'() {
-      this.refreshAll();
+      this.refresh();
     },
     isNightlyVersion: {
       handler(val) {
@@ -384,8 +384,12 @@ export default {
     run,
     // debouncedRun will be created at first run
     // debouncedRun: null,
+    refresh() {
+      this.run(true);
+    },
     refreshAll() {
-      // PENDING full reload?
+      // trigger reload
+      this.scripts = null;
       this.run(true);
     },
     dispose() {
