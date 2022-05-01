@@ -20,12 +20,12 @@ export function createSandbox(
     { content: estraverse },
     { content: loopController },
     {
+      // TODO optimize
       content: `
         (function(){
-          ${handleLoop}
+          var handleLoop = ${handleLoop};
           ${showDebugDirtyRect}
-          ${setup}
-          setup(${isShared})
+          ;(${setup})(${isShared})
         })()
       `
     }

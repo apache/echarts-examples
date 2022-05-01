@@ -420,7 +420,7 @@ export default {
           this.$message({
             type: 'success',
             message: this.$t('editor.share.success'),
-            customClass: 'no-min-width'
+            customClass: 'toast-shared-url'
           });
         })
         // PENDING
@@ -656,8 +656,9 @@ export default {
 }
 
 .el-message {
-  &.no-min-width {
+  &.toast-shared-url {
     min-width: auto;
+    z-index: 9999999 !important;
   }
 }
 </style>
