@@ -84,7 +84,7 @@ export function createSandbox(
     .replace('__LANG__', document.documentElement.lang || 'en')
     .replace('__CSP__', sandbox.csp)
     .replace(
-      '<!--SCRIPTS-->',
+      '__SCRIPTS__',
       scripts
         .map((script) =>
           script.content
