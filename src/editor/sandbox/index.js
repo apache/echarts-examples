@@ -68,7 +68,7 @@ export function createSandbox(
         'npm.elemecdn.com'
       ].map((domain) => 'https://' + domain)
     ),
-    'frame-src': [`'self'`, 'https://*.apache.org'],
+    'frame-src': [`'none'`],
     'object-src': [`'none'`],
     'navigate-to': [`'none'`],
     'worker-src': [`'none'`]
