@@ -57,6 +57,7 @@ export function createSandbox(
         '*.bdimg.com',
         '*.bdstatic.com',
         'apache.org',
+        'apache.github.io',
         'jsdelivr.net',
         'jsdelivr.com',
         'unpkg.com',
