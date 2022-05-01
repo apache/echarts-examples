@@ -2,7 +2,9 @@
 import { URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
+import { compressStr, decompressStr } from './helper';
 import { customAlphabet } from 'nanoid';
+
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 
 export const store = {
@@ -22,8 +24,12 @@ export const store = {
     (URL_PARAMS.lang || '').toLowerCase() === 'ts',
   useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
+  // for share
+  initialCode: '',
   runCode: '',
   sourceCode: '',
+
+  isSharedCode: false,
 
   runHash: '',
 
@@ -54,26 +60,32 @@ export function isGLExample() {
   return CHART_LIST_GL.find(findExample);
 }
 
+const LOCAL_EXAMPLE_CODE_STORE_KEY = 'echarts-examples-code';
+
 export function saveExampleCodeToLocal() {
   localStorage.setItem(
-    'echarts-examples-code',
-    JSON.stringify({
-      code: store.sourceCode,
-      lang: store.typeCheck ? 'ts' : 'js'
-    })
+    LOCAL_EXAMPLE_CODE_STORE_KEY,
+    compressStr(
+      JSON.stringify({
+        code: store.sourceCode,
+        lang: store.typeCheck ? 'ts' : 'js'
+      })
+    )
   );
 }
 
 export function loadExampleCodeFromLocal() {
   try {
-    return JSON.parse(localStorage.getItem('echarts-examples-code'));
+    return JSON.parse(
+      decompressStr(localStorage.getItem(LOCAL_EXAMPLE_CODE_STORE_KEY))
+    );
   } catch (e) {
     return null;
   }
 }
 
 export function clearLocalExampleCode() {
-  localStorage.removeItem('echarts-examples-code');
+  localStorage.removeItem(LOCAL_EXAMPLE_CODE_STORE_KEY);
 }
 
 export function loadExampleCode() {
@@ -82,15 +94,32 @@ export function loadExampleCode() {
     clearLocalExampleCode();
     return Promise.resolve(localCode.code);
   }
-  return new Promise((resolve) => {
-    const glFolder = URL_PARAMS.gl ? 'gl/' : '';
+  return new Promise((resolve, reject) => {
+    // ignore c if code is provided
+    if (URL_PARAMS.code) {
+      try {
+        // PENDING fallback to `c` if the decompressed code is not available?
+        const code = decompressStr(URL_PARAMS.code);
+        store.isSharedCode = !!code;
+        return code
+          ? resolve(code)
+          : reject('code was decompressed but got nothing');
+      } catch (e) {
+        console.error(e);
+        return reject('failed to decompress code');
+      }
+    }
+    const glFolder = 'gl' in URL_PARAMS ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';
     $.ajax(
       `${store.cdnRoot}/examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
       {
         dataType: 'text',
-        success: (data) => {
+        success(data) {
           resolve(data);
+        },
+        error() {
+          reject('failed to load example', URL_PARAMS.c);
         }
       }
     );

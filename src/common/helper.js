@@ -1,5 +1,6 @@
 import { store } from './store';
 import { SCRIPT_URLS } from './config';
+import { compressToBase64, decompressFromBase64 } from 'lz-string';
 
 const promisesCache = {};
 
@@ -67,7 +68,7 @@ function ensurePrettier() {
       SCRIPT_URLS.prettierDir + '/standalone.js',
       SCRIPT_URLS.prettierDir +
         (store.typeCheck ? '/parser-typescript.js' : '/parser-babel.js')
-    ]).then(([_, parser]) => {});
+    ]);
   }
   return Promise.resolve();
 }
@@ -86,4 +87,25 @@ export function formatCode(code) {
       plugins: prettierPlugins
     });
   });
+}
+
+export function compressStr(str) {
+  if (!str || !(str = str.trim())) {
+    return;
+  }
+  return compressToBase64(str)
+    .replace(/\+/g, '-') // Convert '+' to '-'
+    .replace(/\//g, '_') // Convert '/' to '_'
+    .replace(/=+$/, ''); // Remove ending '='
+}
+
+export function decompressStr(str) {
+  if (!str || !(str = str.trim())) {
+    return;
+  }
+  return decompressFromBase64(
+    str
+      .replace(/\-/g, '+') // Convert '-' to '+'
+      .replace(/_/g, '/') // Convert '_' to '/'
+  );
 }

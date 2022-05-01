@@ -4,10 +4,9 @@
       v-loading="loading"
       class="right-panel"
       id="chart-panel"
+      ref="chartPanel"
       :style="{ background: backgroundColor }"
-    >
-      <div class="chart-container"></div>
-    </div>
+    ></div>
     <div id="tool-panel">
       <div class="left-panel">
         <el-switch
@@ -29,33 +28,27 @@
         <!-- Not display when random button is displayed on mobile devices. -->
         <el-popover
           placement="bottom"
-          width="450"
           trigger="click"
           v-if="!isGL && !(shared.isMobile && hasRandomData)"
         >
           <div class="render-config-container">
-            <el-row :gutter="2" type="flex" align="middle">
-              <el-col :span="12">
-                <label class="tool-label">{{ $t('editor.renderer') }}</label>
-                <el-radio-group
-                  v-model="shared.renderer"
-                  size="mini"
-                  style="text-transform: uppercase"
-                >
-                  <el-radio-button label="svg"></el-radio-button>
-                  <el-radio-button label="canvas"></el-radio-button>
-                </el-radio-group>
-              </el-col>
-              <el-col :span="12">
-                <el-switch
-                  v-if="shared.renderer === 'canvas'"
-                  v-model="shared.useDirtyRect"
-                  :active-text="$t('editor.useDirtyRect')"
-                  :inactive-text="''"
-                >
-                </el-switch>
-              </el-col>
-            </el-row>
+            <div>
+              <label class="tool-label">{{ $t('editor.renderer') }}</label>
+              <el-radio-group
+                v-model="shared.renderer"
+                size="mini"
+                style="text-transform: uppercase"
+              >
+                <el-radio-button label="svg" />
+                <el-radio-button label="canvas" />
+              </el-radio-group>
+            </div>
+            <el-switch
+              v-if="shared.renderer === 'canvas'"
+              v-model="shared.useDirtyRect"
+              :active-text="$t('editor.useDirtyRect')"
+              :inactive-text="''"
+            />
           </div>
           <span class="render-config-trigger" slot="reference">
             <el-button size="mini">
@@ -64,16 +57,24 @@
             </el-button>
           </span>
         </el-popover>
+        <el-button
+          class="random"
+          v-if="hasRandomData"
+          size="mini"
+          @click="changeRandomSeed"
+          >{{ $t('editor.randomData') }}</el-button
+        >
         <el-select
           v-if="shared.echartsVersion && !shared.isMobile"
           class="version-select"
+          :class="{ nightly }"
           size="mini"
           id="choose-echarts-version"
           v-model="shared.echartsVersion"
           @change="changeVersion"
         >
           <el-option
-            v-for="version in allEchartsVersions"
+            v-for="version in versionList"
             :key="version"
             :label="version"
             :value="version"
@@ -81,12 +82,11 @@
             {{ version }}
           </el-option>
         </el-select>
-        <el-button
-          class="random"
-          v-if="hasRandomData"
-          size="mini"
-          @click="changeRandomSeed"
-          >{{ $t('editor.randomData') }}</el-button
+        <el-checkbox
+          v-if="inEditor && !shared.isMobile"
+          v-model="nightly"
+          class="use-nightly"
+          >Nightly</el-checkbox
         >
       </div>
 
@@ -100,13 +100,9 @@
     </div>
 
     <div id="preview-status">
-      <div class="left">
+      <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
-          <el-button
-            icon="el-icon-download"
-            size="mini"
-            @click="downloadExample"
-          >
+          <el-button icon="el-icon-download" size="mini" @click="download">
             {{ $t('editor.download') }}
           </el-button>
           <el-button
@@ -116,15 +112,17 @@
           >
             {{ $t('editor.screenshot') }}
           </el-button>
+          <el-button @click="share" icon="el-icon-share" size="mini">
+            {{ $t('editor.share.title') }}
+          </el-button>
         </template>
       </div>
 
       <div
-        class="right"
         id="run-log"
         v-if="inEditor && !shared.isMobile && shared.editorStatus.message"
       >
-        <span class="run-log-time">{{ currentTime }}</span>
+        <span class="run-log-time">{{ shared.editorStatus.time }}</span>
         <span :class="'run-log-type-' + shared.editorStatus.type">{{
           shared.editorStatus.message
         }}</span>
@@ -143,122 +141,175 @@ import {
   updateRunHash
 } from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
-import { loadScriptsAsync } from '../common/helper';
+import { compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
-import { addListener } from 'resize-detector';
 import { download } from './downloadExample';
 import { gotoURL } from '../common/route';
+import { gt } from 'semver';
 
 const example = getExampleConfig();
-const isGL = isGLExample();
+const isGL = 'gl' in URL_PARAMS || isGLExample();
+const isLocal = 'local' in URL_PARAMS;
+const isDebug = 'debug' in URL_PARAMS;
+const hasBMap = example && example.tags.indexOf('bmap') >= 0;
 
-function addDecalIfNecessary(option) {
-  if (store.enableDecal) {
-    option.aria = option.aria || {};
-    option.aria.decal = option.aria.decal || {};
-    option.aria.decal.show = true;
-    option.aria.show = option.aria.enabled = true;
-  }
+function getScriptURL(link) {
+  return isDebug || isLocal ? link.replace('.min.', '.') : link;
 }
 
-export function ensureECharts() {
-  if (typeof echarts === 'undefined') {
-    const hasBmap = example && example.tags.indexOf('bmap') >= 0;
-    const echartsDir = SCRIPT_URLS.echartsDir.replace(
-      '{{version}}',
-      store.echartsVersion
-    );
+function getScripts(nightly) {
+  const echartsDir = SCRIPT_URLS[
+    isLocal ? 'localEChartsDir' : nightly ? 'echartsNightlyDir' : 'echartsDir'
+  ].replace('{{version}}', store.echartsVersion);
+  const code = store.runCode;
 
-    // Code from https://api.map.baidu.com/api?v=2.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu
-    if (hasBmap) {
-      window.HOST_TYPE = '2';
-      window.BMap_loadScriptTime = new Date().getTime();
-    }
-
-    return loadScriptsAsync([
-      SCRIPT_URLS.datGUIMinJS,
-      'local' in URL_PARAMS
-        ? SCRIPT_URLS.localEChartsMinJS
-        : SCRIPT_URLS.echartsMinJS.replace('{{version}}', store.echartsVersion),
-      'https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js',
-      SCRIPT_URLS.echartsStatMinJS,
-      ...(URL_PARAMS.gl ? [SCRIPT_URLS.echartsGLMinJS] : []),
-      ...(hasBmap
-        ? [
-            'https://api.map.baidu.com/getscript?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu&services=&t=20200327103013',
-            echartsDir + '/dist/extension/bmap.js'
-          ]
-        : [])
-    ]).then(() => {
-      echarts.registerPreprocessor(addDecalIfNecessary);
-    });
-  }
-  return Promise.resolve();
+  return [
+    echartsDir + getScriptURL(SCRIPT_URLS.echartsJS),
+    ...(isGL
+      ? [
+          isLocal
+            ? SCRIPT_URLS.localEChartsGLJS
+            : getScriptURL(SCRIPT_URLS.echartsGLJS)
+        ]
+      : []),
+    ...(hasBMap || /coordinateSystem.*:.*['"]bmap['"]/g.test(code)
+      ? [
+          SCRIPT_URLS.bmapLibJS,
+          echartsDir + getScriptURL(SCRIPT_URLS.echartsBMapJS)
+        ]
+      : []),
+    ...(code.indexOf('ecStat.') > -1
+      ? [getScriptURL(SCRIPT_URLS.echartsStatJS)]
+      : []),
+    ...(/map.*:.*['"]world['"]/g.test(code)
+      ? [SCRIPT_URLS.echartsWorldMapJS]
+      : []),
+    ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : [])
+  ].map((url) => ({ src: url }));
 }
 
 function log(text, type) {
   if (type !== 'warn' && type !== 'error') {
     type = 'info';
   }
+  const now = new Date();
+  store.editorStatus.time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+    .map((t) => (t + '').padStart(2, '0'))
+    .join(':');
   store.editorStatus.message = text;
   store.editorStatus.type = type;
 }
 
-function run() {
-  if (typeof echarts === 'undefined') {
+function run(recreateInstance) {
+  if (!store.runCode) {
     return;
   }
-  if (!this.sandbox) {
-    this.sandbox = createSandbox((chart) => {
-      const option = chart.getOption();
-      if (
-        typeof option.backgroundColor === 'string' &&
-        option.backgroundColor !== 'transparent'
-      ) {
-        this.backgroundColor = option.backgroundColor;
-      } else {
-        this.backgroundColor = '#fff';
-      }
-    });
-  }
 
-  try {
-    const updateTime = this.sandbox.run(
-      this.$el.querySelector('.chart-container'),
-      store
-    );
-
-    log(this.$t('editor.chartOK') + updateTime + 'ms');
-
-    // Find the appropriate throttle time
-    const debounceTime = 500;
-    const debounceTimeQuantities = [0, 500, 2000, 5000, 10000];
-    for (let i = debounceTimeQuantities.length - 1; i >= 0; i--) {
-      const quantity = debounceTimeQuantities[i];
-      const preferredDebounceTime = debounceTimeQuantities[i + 1] || 1000000;
-      if (
-        updateTime >= quantity &&
-        this.debouncedTime !== preferredDebounceTime
-      ) {
-        this.debouncedRun = debounce(run, preferredDebounceTime, {
-          trailing: true
-        });
-        this.debouncedTime = preferredDebounceTime;
-        break;
-      }
-    }
+  const runCode = () => {
+    this.sandbox.run(store, recreateInstance);
 
     // Update run hash to let others known chart has been changed.
     updateRunHash();
-  } catch (e) {
-    log(this.$t('editor.errorInEditor'), 'error');
-    console.error(e);
+  };
+
+  const scripts = getScripts(this.nightly);
+  const ECScriptReg = /\/echarts(?:\.min)?\.js/;
+  const scriptsChanged =
+    !this.scripts ||
+    scripts.some(
+      (s) =>
+        !ECScriptReg.test(s.src) &&
+        this.scripts.findIndex((s1) => s1.src === s.src) === -1
+    );
+
+  if (!this.sandbox || scriptsChanged) {
+    this.loading = true;
+    let isFirstRun = true;
+    this.dispose();
+    this.sandbox = createSandbox(
+      this.$refs.chartPanel,
+      (this.scripts = scripts),
+      store.isSharedCode,
+      () => {
+        runCode();
+        this.loading = false;
+      },
+      () => {
+        // TODO show error hints
+        console.error('failed to run sandbox');
+        this.loading = false;
+        this.dispose();
+      },
+      (errMsg) => {
+        const infiniteLoopInEditor =
+          errMsg && errMsg.indexOf('loop executes') > -1;
+        const potentialRedirection =
+          errMsg && errMsg.indexOf('potential redirection') > -1;
+        log(
+          this.$t(
+            `editor.${
+              infiniteLoopInEditor
+                ? 'infiniteLoopInEditor'
+                : potentialRedirection
+                ? 'potentialRedirectionInEditor'
+                : 'errorInEditor'
+            }`
+          ),
+          'error'
+        );
+      },
+      (updateTime) => {
+        const option = this.getOption();
+        if (
+          typeof option.backgroundColor === 'string' &&
+          option.backgroundColor !== 'transparent'
+        ) {
+          this.backgroundColor = option.backgroundColor;
+        } else {
+          this.backgroundColor = '#fff';
+        }
+
+        log(this.$t('editor.chartOK') + updateTime.toFixed(2) + 'ms');
+
+        // Find the appropriate throttle time
+        const debounceTimeQuantities = [0, 500, 2000, 5000, 10000];
+        for (let i = debounceTimeQuantities.length - 1; i >= 0; i--) {
+          const quantity = debounceTimeQuantities[i];
+          const preferredDebounceTime =
+            debounceTimeQuantities[i + 1] || 1000000;
+          if (
+            updateTime >= quantity &&
+            this.debouncedTime !== preferredDebounceTime
+          ) {
+            this.debouncedRun = debounce(run, preferredDebounceTime, {
+              trailing: true
+            });
+            this.debouncedTime = preferredDebounceTime;
+            break;
+          }
+        }
+
+        if (isFirstRun) {
+          this.$emit('ready');
+          isFirstRun = false;
+        }
+      },
+      (css) => {
+        this.css = css;
+      }
+    );
+  } else {
+    runCode();
   }
 }
 
 export default {
-  props: ['inEditor'],
+  props: {
+    inEditor: {
+      type: Boolean
+    }
+  },
 
   data() {
     return {
@@ -270,36 +321,16 @@ export default {
 
       isGL,
 
-      allEchartsVersions: []
+      allEChartsVersions: [],
+      nightlyVersions: [],
+      nightly: false
     };
   },
 
   mounted() {
-    this.loadECharts();
+    this.run();
 
-    addListener(this.$el, () => {
-      if (this.sandbox) {
-        this.sandbox.resize();
-      }
-    });
-
-    $.getJSON('https://data.jsdelivr.com/v1/package/npm/echarts').done(
-      (data) => {
-        const versions = data.versions.filter(
-          (version) =>
-            version.indexOf('beta') < 0 &&
-            version.indexOf('rc') < 0 &&
-            version.indexOf('alpha') < 0 &&
-            version.startsWith('5') // Only version 5.
-        );
-        this.allEchartsVersions = versions;
-
-        // Use last version
-        if (!store.echartsVersion || store.echartsVersion === '5') {
-          store.echartsVersion = versions[0];
-        }
-      }
-    );
+    this.fetchVersionList();
   },
 
   computed: {
@@ -309,19 +340,18 @@ export default {
       );
     },
     editLink() {
-      const params = ['c=' + URL_PARAMS.c];
-      if (URL_PARAMS.theme) {
-        params.push(['theme=' + URL_PARAMS.theme]);
-      }
-      if (URL_PARAMS.gl) {
-        params.push(['gl=' + URL_PARAMS.gl]);
-      }
-      return './editor.html?' + params.join('&');
+      return './editor.html' + location.search;
+    },
+    versionList() {
+      return this.nightly ? this.nightlyVersions : this.allEChartsVersions;
+    },
+    isNightlyVersion() {
+      return store.echartsVersion && store.echartsVersion.indexOf('dev') > -1;
     }
   },
 
   watch: {
-    'shared.runCode'(val) {
+    'shared.runCode'() {
       if (this.autoRun || !this.sandbox) {
         if (!this.debouncedRun) {
           // First run
@@ -332,16 +362,22 @@ export default {
       }
     },
     'shared.renderer'() {
-      this.refreshAll();
+      this.refresh();
     },
     'shared.darkMode'() {
-      this.refreshAll();
+      this.refresh();
     },
     'shared.enableDecal'() {
-      this.refreshAll();
+      this.refresh();
     },
     'shared.useDirtyRect'() {
-      this.refreshAll();
+      this.refresh();
+    },
+    isNightlyVersion: {
+      handler(val) {
+        this.nightly = val;
+      },
+      immediate: true
     }
   },
 
@@ -349,41 +385,49 @@ export default {
     run,
     // debouncedRun will be created at first run
     // debouncedRun: null,
-    loadECharts() {
-      this.loading = true;
-      ensureECharts().then(() => {
-        this.loading = false;
-        if (store.runCode) {
-          this.run();
-        }
-      });
+    refresh() {
+      this.run(true);
     },
     refreshAll() {
-      this.dispose();
-      this.run();
+      // trigger reload
+      this.scripts = null;
+      this.run(true);
     },
     dispose() {
       if (this.sandbox) {
         this.sandbox.dispose();
+        this.sandbox = null;
       }
     },
-    downloadExample() {
-      download();
-    },
+    download,
     screenshot() {
-      if (this.sandbox) {
-        const url = this.sandbox.getDataURL();
-        const $a = document.createElement('a');
-        $a.download =
-          URL_PARAMS.c + '.' + (store.renderer === 'svg' ? 'svg' : 'png');
-        $a.target = '_blank';
-        $a.href = url;
-        const evt = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: false
-        });
-        $a.dispatchEvent(evt);
+      this.sandbox &&
+        this.sandbox.screenshot(
+          (URL_PARAMS.c || Date.now()) +
+            '.' +
+            (store.renderer === 'svg' ? 'svg' : 'png')
+        );
+    },
+    share() {
+      let shareURL = new URL(location.href);
+      if (store.initialCode !== store.sourceCode) {
+        shareURL.searchParams.set('code', compressStr(store.sourceCode));
       }
+      navigator.clipboard
+        .writeText(shareURL.toString())
+        .then(() => {
+          this.$message.closeAll();
+          this.$message({
+            type: 'success',
+            message: this.$t('editor.share.success'),
+            customClass: 'no-min-width'
+          });
+        })
+        // PENDING
+        .catch((e) => {
+          console.error('failed to write share url to the clipboard', e);
+          window.open(shareURL, '_blank');
+        });
     },
     getOption() {
       return this.sandbox && this.sandbox.getOption();
@@ -408,7 +452,7 @@ export default {
         true
       );
       this.run();
-    }
+    },
     // hasEditorError() {
     //     const annotations = this.editor.getSession().getAnnotations();
     //     for (let aid = 0, alen = annotations.length; aid < alen; ++aid) {
@@ -417,13 +461,64 @@ export default {
     //         }
     //     }
     //     return false;
-    // }
+    // },
+    fetchVersionList() {
+      $.getJSON('https://data.jsdelivr.com/v1/package/npm/echarts').done(
+        (data) => {
+          const versions = data.versions.filter(
+            (version) =>
+              version.indexOf('beta') < 0 &&
+              version.indexOf('rc') < 0 &&
+              version.indexOf('alpha') < 0 &&
+              version.startsWith('5') // Only version 5.
+          );
+          this.allEChartsVersions = versions;
+
+          // Use lastest version
+          if (
+            !store.echartsVersion ||
+            store.echartsVersion === '5' ||
+            store.echartsVersion === 'latest'
+          ) {
+            store.echartsVersion = versions[0];
+          }
+
+          // put latest rc version for preview
+          if (gt(data.tags.rc.split('-')[0], data.tags.latest)) {
+            versions.unshift(data.tags.rc);
+            store.echartsVersion === 'rc' &&
+              (store.echartsVersion = versions[0]);
+          }
+        }
+      );
+      $.getJSON(
+        'https://data.jsdelivr.com/v1/package/npm/echarts-nightly'
+      ).done(({ tags: { latest, next }, versions }) => {
+        const nextIdx = versions.indexOf(next);
+        const latestIdx = versions.indexOf(latest);
+        this.nightlyVersions = versions
+          .slice(nextIdx, nextIdx + 10)
+          .concat(versions.slice(latestIdx, latestIdx + 10));
+      });
+    },
+    getAssets() {
+      return {
+        scripts: this.scripts,
+        css: this.css
+      };
+    }
   }
 };
 </script>
 
 <style lang="scss">
 @import '../style/color.scss';
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 #chart-panel {
   position: absolute;
@@ -437,28 +532,24 @@ export default {
   border-radius: 5px;
   background: #fff;
   overflow: hidden;
-
   padding: 10px;
-
-  .ec-debug-dirty-rect-container {
-    left: 10px !important;
-    top: 10px !important;
-    right: 10px !important;
-    bottom: 10px !important;
-
-    .ec-debug-dirty-rect {
-      background-color: rgba(255, 0, 0, 0.2) !important;
-      border: 1px solid red !important;
-    }
-  }
-
-  .chart-container {
-    position: relative;
-    height: 100%;
-  }
 }
 
 .render-config-container {
+  @include flex-center;
+
+  user-select: none;
+
+  > * {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .tool-label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
   .el-radio-group {
     label {
       margin-bottom: 0;
@@ -468,11 +559,12 @@ export default {
 
 #tool-panel {
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding-top: 5px;
-  padding-left: 15px;
+  top: 5px;
+  right: 15px;
+  left: 15px;
+  @include flex-center;
+
+  user-select: none;
 
   * {
     font-size: 12px;
@@ -486,8 +578,13 @@ export default {
   .version-select {
     width: 80px;
     margin-left: 10px;
+
+    &.nightly {
+      width: 160px;
+    }
   }
-  .random {
+  .random,
+  .use-nightly {
     margin-left: 10px;
   }
 
@@ -495,24 +592,12 @@ export default {
     margin-bottom: 0;
   }
 
-  .left-panel {
-    float: left;
-  }
-
-  .left-panel > * {
-    vertical-align: middle;
-    display: inline-block;
-  }
-
-  .tool-label {
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-left: 20px;
+  .dark-mode {
+    margin-right: 5px;
   }
 
   .edit {
-    float: right;
-    margin-right: 15px;
+    margin-left: 5px;
     cursor: pointer;
   }
 }
@@ -526,63 +611,38 @@ export default {
     box-shadow: rgba(10, 9, 9, 0.1) 0px 0px 5px;
   }
   #tool-panel {
-    padding-left: 5px;
-    .download,
-    .edit {
-      margin-right: 5px;
-    }
+    right: 5px;
+    left: 5px;
   }
 }
 
 #preview-status {
-  overflow: hidden;
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 0;
   right: 0;
-  height: 30px;
-
-  padding: 0 20px;
-
-  // border-top: 1px solid $clr-border;
+  padding: 0 15px;
   font-size: 0.9rem;
+  @include flex-center;
 
-  .screenshot,
-  .download,
-  .edit {
-    margin-right: 15px;
-    cursor: pointer;
-  }
-  .screenshot {
-    margin-right: 5px;
-    width: 25px;
-    height: 25px;
-    margin-top: 2px;
+  .left-buttons {
+    flex-shrink: 0;
   }
 
-  .left {
-    float: left;
-    & > * {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-
-  .right {
-    float: right;
-  }
   #run-log {
-    line-height: 25px;
+    @include flex-center;
+    font-size: 12px;
+    margin-left: 10px;
+    text-align: right;
+
     .run-log-time {
       color: $clr-text;
-      display: inline-block;
       margin-right: 10px;
-      font-size: 12px;
+      white-space: nowrap;
     }
 
     .run-log-type-info {
       color: $clr-text;
-      font-size: 12px;
     }
 
     .run-log-type-warn {
@@ -595,20 +655,9 @@ export default {
   }
 }
 
-.dg.main * {
-  box-sizing: content-box;
-}
-.dg.main input {
-  line-height: normal;
-}
-
-.dg.main.a {
-  overflow-x: visible;
-}
-
-.dg.main .c {
-  select {
-    color: #000;
+.el-message {
+  &.no-min-width {
+    min-width: auto;
   }
 }
 </style>
