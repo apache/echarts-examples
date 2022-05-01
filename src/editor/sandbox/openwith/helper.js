@@ -34,7 +34,7 @@ export function getTemplates(title, scripts, css) {
         ? `<script>${script.content}</script>`
         : `<script src="${
             script.src.indexOf('api.map.baidu.com/api') > -1
-              ? script.src.replace(/(ak=)(\S+)$/, '$1YOUR_API_KEY>')
+              ? script.src.replace(/(ak=)(\S+)$/, '$1YOUR_API_KEY')
               : script.src
           }"></script>`
     )
