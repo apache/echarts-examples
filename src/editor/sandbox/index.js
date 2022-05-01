@@ -55,12 +55,14 @@ export function createSandbox(
         '*.unpkg.com',
         '*.baidu.com',
         '*.bdimg.com',
+        '*.bdstatic.com',
         'apache.org',
         'jsdelivr.net',
         'jsdelivr.com',
         'unpkg.com',
         'baidu.com',
         'bdimg.com',
+        'bdstatic.com',
         'cdnjs.cloudflare.com',
         'cdn.bootcdn.net',
         'lib.baomitu.com',
@@ -77,6 +79,7 @@ export function createSandbox(
     .map(([key, val]) => `${key} ${val.join(' ')}`)
     .join('; ');
   sandbox.srcdoc = srcdoc
+    .replace('__LANG__', document.documentElement.lang || 'en')
     .replace('__CSP__', sandbox.csp)
     .replace(
       '<!--SCRIPTS-->',
