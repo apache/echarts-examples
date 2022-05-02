@@ -4,7 +4,7 @@
  *
  * @param {string} code the source code
  */
-export default function handleLoop(code) {
+function handleLoop(code) {
   let AST;
   try {
     AST = acorn.parse(code, {

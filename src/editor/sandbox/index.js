@@ -1,9 +1,24 @@
 import srcdoc from './srcdoc.html';
-import handleLoop from './handleLoop';
-import setup from './setup';
-import loopController from 'raw-loader!./loopController';
-import showDebugDirtyRect from 'raw-loader!../../dep/showDebugDirtyRect';
-import estraverse from '!!raw-loader!./estraverse.browser';
+import estraverse from './estraverse.browser?raw-pure';
+import loopController from './loopController?raw-minify';
+import handleLoop from './handleLoop?raw-minify';
+import showDebugDirtyRect from '../../dep/showDebugDirtyRect?raw-minify';
+import setup from './setup?raw-minify';
+
+function prepareSetupScript(isShared) {
+  const isProd = process.env.NODE_ENV === 'production';
+  return [
+    estraverse,
+    loopController,
+    [
+      '(()=>{',
+      handleLoop,
+      showDebugDirtyRect,
+      `(${setup})(${isShared})`,
+      '})()'
+    ].join(isProd ? '' : '\n\n')
+  ].map((content) => ({ content }));
+}
 
 export function createSandbox(
   container,
@@ -15,20 +30,8 @@ export function createSandbox(
   onOptionUpdated,
   onCSSParsed
 ) {
-  scripts = (scripts && scripts.slice()) || [];
-  scripts.push(
-    { content: estraverse },
-    { content: loopController },
-    {
-      // TODO optimize
-      content: `
-        (function(){
-          var handleLoop = ${handleLoop};
-          ${showDebugDirtyRect}
-          ;(${setup})(${isShared})
-        })()
-      `
-    }
+  scripts = ((scripts && scripts.slice()) || []).concat(
+    prepareSetupScript(isShared)
   );
 
   const sandbox = document.createElement('iframe');

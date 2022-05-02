@@ -24,6 +24,9 @@ module.exports = [
         },
         {
           test: /\.js$/,
+          resourceQuery: {
+            not: [/raw-pure/]
+          },
           use: ['babel-loader'],
           exclude: /node_modules/
         },
@@ -59,6 +62,26 @@ module.exports = [
               }
             }
           ]
+        },
+        {
+          resourceQuery: /raw-pure/,
+          type: 'asset/source'
+        },
+        {
+          resourceQuery: /raw-minify/,
+          type: 'asset/source',
+          use: [
+            {
+              loader: path.resolve(__dirname, './minify-loader.js'),
+              /** @type {import('terser').MinifyOptions} */
+              options: {
+                compress: {
+                  pure_funcs: ['console.debug', 'console.log']
+                }
+              }
+            }
+          ],
+          enforce: 'post'
         }
       ]
     },

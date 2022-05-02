@@ -1,4 +1,4 @@
-export default function setup(isShared) {
+function setup(isShared) {
   const sendMessage = (payload) => parent.postMessage(payload, '*');
 
   const chartStyleEl = document.head.querySelector('#chart-styles');
