@@ -440,6 +440,10 @@ $control-panel-height: 30px;
 $pd-basic: 10px;
 $handler-width: 5px;
 
+#v4-link {
+  display: none !important;
+}
+
 #main-container {
   .handler {
     position: absolute;
