@@ -111,15 +111,17 @@ export function loadExampleCode() {
     }
     const glFolder = 'gl' in URL_PARAMS ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';
+    // fallback to line-simple if no c is provided
+    const c = URL_PARAMS.c || 'line-simple';
     $.ajax(
-      `${store.cdnRoot}/examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
+      `${store.cdnRoot}/examples/${lang}/${glFolder}${c}.${lang}?_v_${store.version}`,
       {
         dataType: 'text',
         success(data) {
           resolve(data);
         },
         error() {
-          reject('failed to load example', URL_PARAMS.c);
+          reject('failed to load example', c);
         }
       }
     );
