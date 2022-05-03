@@ -32,7 +32,7 @@
           v-if="!isGL && !(shared.isMobile && hasRandomData)"
         >
           <div class="render-config-container">
-            <div>
+            <div class="cfg-renderer">
               <label class="tool-label">{{ $t('editor.renderer') }}</label>
               <el-radio-group
                 v-model="shared.renderer"
@@ -543,11 +543,17 @@ export default {
   > * {
     margin-left: 10px;
     margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .cfg-renderer {
+    @include flex-center;
   }
 
   .tool-label {
     font-weight: bold;
     margin-right: 5px;
+    margin-bottom: 0;
   }
 
   .el-radio-group {
