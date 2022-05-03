@@ -35,57 +35,65 @@ export function createSandbox(
   );
 
   const sandbox = document.createElement('iframe');
-  sandbox.setAttribute(
-    'sandbox',
-    [
-      'allow-pointer-lock',
-      'allow-scripts',
-      'allow-downloads',
-      'allow-same-origin'
-    ].join(' ')
-  );
-  const csp = {
-    'default-src': [
-      `'self'`,
-      `'unsafe-inline'`,
-      `'unsafe-eval'`,
-      'data:',
-      'blob:'
-    ].concat(
-      [
-        '*.apache.org',
-        '*.jsdelivr.net',
-        '*.jsdelivr.com',
-        '*.unpkg.com',
-        '*.baidu.com',
-        '*.bdimg.com',
-        '*.bdstatic.com',
-        'apache.org',
-        'apache.github.io',
-        'jsdelivr.net',
-        'jsdelivr.com',
-        'unpkg.com',
-        'baidu.com',
-        'bdimg.com',
-        'bdstatic.com',
-        'cdnjs.cloudflare.com',
-        'cdn.bootcdn.net',
-        'lib.baomitu.com',
-        'unpkg.zhimg.com',
-        'npm.elemecdn.com'
-      ].map((domain) => 'https://' + domain)
-    ),
-    'frame-src': [`'none'`],
-    'object-src': [`'none'`],
-    'navigate-to': [`'none'`],
-    'worker-src': [`'none'`]
-  };
-  sandbox.csp = Object.entries(csp)
-    .map(([key, val]) => `${key} ${val.join(' ')}`)
-    .join('; ');
+  const allow = [
+    'allow-pointer-lock',
+    'allow-scripts',
+    'allow-downloads',
+    'allow-same-origin'
+  ];
+  isShared ||
+    allow.push(
+      'allow-popups',
+      'allow-popups-to-escape-sandbox',
+      'allow-modals'
+    );
+  sandbox.setAttribute('sandbox', allow.join(' '));
+  let csp;
+  if (isShared) {
+    csp = {
+      'default-src': [
+        `'self'`,
+        `'unsafe-inline'`,
+        `'unsafe-eval'`,
+        'data:',
+        'blob:'
+      ].concat(
+        [
+          '*.apache.org',
+          '*.jsdelivr.net',
+          '*.jsdelivr.com',
+          '*.unpkg.com',
+          '*.baidu.com',
+          '*.bdimg.com',
+          '*.bdstatic.com',
+          'apache.org',
+          'apache.github.io',
+          'jsdelivr.net',
+          'jsdelivr.com',
+          'unpkg.com',
+          'baidu.com',
+          'bdimg.com',
+          'bdstatic.com',
+          'cdnjs.cloudflare.com',
+          'cdn.bootcdn.net',
+          'lib.baomitu.com',
+          'unpkg.zhimg.com',
+          'npm.elemecdn.com'
+        ].map((domain) => 'https://' + domain)
+      ),
+      'frame-src': [`'none'`],
+      'object-src': [`'none'`],
+      'navigate-to': [`'none'`],
+      'worker-src': [`'none'`]
+    };
+    csp = Object.entries(csp)
+      .map(([key, val]) => `${key} ${val.join(' ')}`)
+      .join('; ');
+  }
+  csp && sandbox.setAttribute('csp', csp);
   sandbox.srcdoc = srcdoc
     .replace('__LANG__', document.documentElement.lang || 'en')
-    .replace('__CSP__', sandbox.csp)
+    .replace('__CSP__', csp || '')
     .replace(
       '__SCRIPTS__',
       scripts
@@ -103,7 +111,7 @@ export function createSandbox(
     // This is a tricky way
     // `onload` will be triggered again after the iframe redirects
     // here we check and block it as we usually won't do this
-    if (sandbox.__loaded__) {
+    if (sandbox.__loaded__ && isShared) {
       const errorMsg = 'potential redirection from the code was blocked';
       console.error(errorMsg);
       onCodeError(errorMsg);
