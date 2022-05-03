@@ -2,12 +2,12 @@ import { getParameters } from 'codesandbox/lib/api/define';
 import { getTemplates } from './helper';
 
 /**
- * Open with CodeSandBox
+ * Open with CodeSandbox
  * @param {string} code
  * @param {Array<{ src?: string, content?: string }>} scripts
  * @param {string} css
  */
-export default function openWithCodeSandBox(title, scripts, css) {
+export default function openWithCodeSandbox(title, scripts, css) {
   const templates = getTemplates(title, scripts, css);
   title = templates.title.split(' - ');
 

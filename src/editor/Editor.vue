@@ -56,8 +56,8 @@
                 </a>
                 <a
                   class="btn btn-sm codesandbox"
-                  @click="toExternalEditor('CodeSandBox')"
-                  :title="$t('editor.openWithCodeSandBox')"
+                  @click="toExternalEditor('CodeSandbox')"
+                  :title="$t('editor.openWithCodeSandbox')"
                 >
                   <svg
                     viewBox="0 0 512 512"
@@ -206,7 +206,7 @@ import './object-visualizer.css';
 import { URL_PARAMS } from '../common/config';
 import { formatCode } from '../common/helper';
 import openWithCodePen from './sandbox/openwith/codepen';
-import openWithCodeSandBox from './sandbox/openwith/codesandbox';
+import openWithCodeSandbox from './sandbox/openwith/codesandbox';
 
 export default {
   components: {
@@ -280,7 +280,7 @@ export default {
       const assets = previewRef.getAssets();
       const vendors = {
         CodePen: openWithCodePen,
-        CodeSandBox: openWithCodeSandBox
+        CodeSandbox: openWithCodeSandbox
       };
       vendors[vendor](
         this.exampleConfig && this.exampleConfig.title,
