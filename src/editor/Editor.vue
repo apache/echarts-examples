@@ -408,7 +408,7 @@ export default {
     },
     format() {
       formatCode(store.sourceCode).then((code) => {
-        store.initialCode = this.initialCode = code;
+        this.initialCode = code;
       });
     },
     onPreviewReady() {
