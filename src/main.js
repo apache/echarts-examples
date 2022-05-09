@@ -38,6 +38,12 @@ export function init(el, option) {
   const container = document.createElement('div');
   el.appendChild(container);
 
+  const page = option.page;
+  if (page && page !== 'explore') {
+    const v4Link = document.getElementById('v4-link');
+    v4Link && v4Link.remove();
+  }
+
   new Vue({
     i18n,
     el: container,
@@ -47,7 +53,7 @@ export function init(el, option) {
           editor: EditorPage,
           explore: ExplorePage,
           view: ViewPage
-        }[option.page] || ExplorePage
+        }[page] || ExplorePage
       );
     }
   });

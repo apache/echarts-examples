@@ -3,7 +3,11 @@ export default {
     editor: {
       run: 'Run',
       format: 'Format',
+      openWithCodeSandbox: 'Open with CodeSandbox',
+      openWithCodePen: 'Open with CodePen',
       errorInEditor: 'Errors exist in code!',
+      infiniteLoopInEditor: 'Potential infinite loops exist in code!',
+      potentialRedirectionInEditor: 'Potential redirection exists in code!',
       chartOK: 'Chart has been generated successfully, ',
 
       darkMode: 'Dark Mode',
@@ -28,16 +32,21 @@ export default {
 
       tooltip: {
         jsMode: 'JavaScript',
-        tsMode: 'TypeScript. Provides Better Intelligent',
+        tsMode: 'TypeScript - Provides Better Intelligent',
         noTs: 'No Available TypeScript Code',
 
         gotoDoc: 'Go To Documentation'
       },
 
       codeChangedConfirm:
-        "Modified code will be lost. Do you wan't to continue?",
+        'Modified code will be lost. Do you want to continue?',
       confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
+      cancelButtonText: 'No',
+
+      share: {
+        title: 'Share',
+        success: 'Sharable URL has been copied to your clipboard'
+      }
     },
 
     chartTypes: {
@@ -86,7 +95,11 @@ export default {
     editor: {
       run: '运行',
       format: '格式化',
+      openWithCodeSandbox: '在 CodeSandbox 中编辑',
+      openWithCodePen: '在 CodePen 中编辑',
       errorInEditor: '编辑器内容有误！',
+      infiniteLoopInEditor: '编辑器内容可能存在无限循环！',
+      potentialRedirectionInEditor: '编辑器内容可能存在重定向代码！',
       chartOK: '图表已生成, ',
 
       darkMode: '深色模式',
@@ -120,7 +133,12 @@ export default {
       codeChangedConfirm: '已经修改过的代码将会丢失，是否确认继续？',
 
       confirmButtonText: '确认',
-      cancelButtonText: '取消'
+      cancelButtonText: '取消',
+
+      share: {
+        title: '分享',
+        success: '分享链接已复制到剪贴板'
+      }
     },
 
     chartTypes: {
