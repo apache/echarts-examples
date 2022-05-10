@@ -145,7 +145,7 @@ import { compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { download } from './downloadExample';
-import { gotoURL } from '../common/route';
+import { gotoURL, getURL } from '../common/route';
 import { gt } from 'semver';
 
 const example = getExampleConfig();
@@ -347,6 +347,15 @@ export default {
     },
     isNightlyVersion() {
       return store.echartsVersion && store.echartsVersion.indexOf('dev') > -1;
+    },
+    toolOptions() {
+      const isCanvas = store.renderer === 'canvas';
+      return {
+        renderer: isCanvas ? null : store.renderer,
+        useDirtyRect: store.useDirtyRect && isCanvas ? 1 : null,
+        decal: store.enableDecal ? 1 : null,
+        theme: store.darkMode ? 'dark' : null
+      };
     }
   },
 
@@ -361,17 +370,12 @@ export default {
         }
       }
     },
-    'shared.renderer'() {
-      this.refresh();
-    },
-    'shared.darkMode'() {
-      this.refresh();
-    },
-    'shared.enableDecal'() {
-      this.refresh();
-    },
-    'shared.useDirtyRect'() {
-      this.refresh();
+    toolOptions: {
+      handler(n) {
+        this.refresh();
+        gotoURL(n, true);
+      },
+      deep: true
     },
     isNightlyVersion: {
       handler(val) {
@@ -409,12 +413,13 @@ export default {
         );
     },
     share() {
-      let shareURL = new URL(location.href);
+      const params = {};
       if (store.initialCode !== store.sourceCode) {
-        shareURL.searchParams.set('code', compressStr(store.sourceCode));
+        params.code = compressStr(store.sourceCode);
       }
+      const sharableURL = getURL(params);
       navigator.clipboard
-        .writeText(shareURL.toString())
+        .writeText(sharableURL)
         .then(() => {
           this.$message.closeAll();
           this.$message({
@@ -426,7 +431,7 @@ export default {
         // PENDING
         .catch((e) => {
           console.error('failed to write share url to the clipboard', e);
-          window.open(shareURL, '_blank');
+          window.open(sharableURL, '_blank');
         });
     },
     getOption() {
@@ -434,23 +439,11 @@ export default {
     },
     changeVersion() {
       saveExampleCodeToLocal();
-      setTimeout(() => {
-        gotoURL(
-          Object.assign({}, URL_PARAMS, {
-            version: store.echartsVersion
-          })
-        );
-      });
+      setTimeout(() => gotoURL({ version: store.echartsVersion }));
     },
     changeRandomSeed() {
       updateRandomSeed();
-      gotoURL(
-        {
-          ...URL_PARAMS,
-          random: store.randomSeed
-        },
-        true
-      );
+      gotoURL({ random: store.randomSeed }, true);
       this.run();
     },
     // hasEditorError() {

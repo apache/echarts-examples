@@ -196,7 +196,8 @@ import {
   store,
   loadExampleCode,
   parseSourceCode,
-  getExampleConfig
+  getExampleConfig,
+  CODE_CHANGED_FLAG
 } from '../common/store';
 import { collectDeps, buildExampleCode } from '../../common/buildCode';
 import { gotoURL } from '../common/route';
@@ -254,7 +255,10 @@ export default {
     } else {
       loadExampleCode().then((code) => {
         // Only set the code in editor. editor will sync to the store.
-        store.initialCode = this.initialCode = parseSourceCode(code);
+        this.initialCode = parseSourceCode(code);
+        if (store.initialCode !== CODE_CHANGED_FLAG) {
+          store.initialCode = this.initialCode;
+        }
       });
 
       window.addEventListener('mousemove', (e) => {
@@ -384,24 +388,14 @@ export default {
     changeLang(lang) {
       if ((URL_PARAMS.lang || 'js').toLowerCase() !== lang) {
         if (!this.initialCode || store.sourceCode === this.initialCode) {
-          gotoURL(
-            Object.assign({}, URL_PARAMS, {
-              lang
-            })
-          );
+          gotoURL({ lang });
         } else {
           this.$confirm(this.$t('editor.codeChangedConfirm'), '', {
             confirmButtonText: this.$t('editor.confirmButtonText'),
             cancelButtonText: this.$t('editor.cancelButtonText'),
             type: 'warning'
           })
-            .then(() => {
-              gotoURL(
-                Object.assign({}, URL_PARAMS, {
-                  lang
-                })
-              );
-            })
+            .then(() => gotoURL({ lang }))
             .catch(() => {});
         }
       }
