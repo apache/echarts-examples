@@ -195,7 +195,7 @@ function setup(isShared) {
       clearTimers();
       clearChartEvents(chartInstance);
       // Reset
-      appEnv.config = null;
+      appEnv = {};
       appStore = store;
 
       try {
