@@ -84,8 +84,51 @@ function setup(isShared) {
       {
         location: Object.freeze(JSON.parse(JSON.stringify(location))),
         document: (() => {
-          const nativeCreateElement = document.createElement;
-          const nativeCreateElementNS = document.createElementNS;
+          const disallowedElements = [
+            'script',
+            'video',
+            'audio',
+            'iframe',
+            'frame',
+            'frameset',
+            'embed',
+            'object',
+            // PENDING
+            'foreignobject'
+          ];
+          const disallowedElementsMatcher = new RegExp(
+            `<(${disallowedElements.join('|')}).*>`
+          );
+          const nativeSetters = {
+            innerHTML: Object.getOwnPropertyDescriptor(
+              Element.prototype,
+              'innerHTML'
+            ).set,
+            outerHTML: Object.getOwnPropertyDescriptor(
+              Element.prototype,
+              'outerHTML'
+            ).set,
+            innerText: Object.getOwnPropertyDescriptor(
+              HTMLElement.prototype,
+              'innerText'
+            ).set,
+            outerText: Object.getOwnPropertyDescriptor(
+              HTMLElement.prototype,
+              'outerText'
+            ).set
+          };
+          ['inner', 'outer'].forEach((prop) => {
+            const htmlProp = prop + 'HTML';
+            Object.defineProperty(Element.prototype, htmlProp, {
+              set(value) {
+                return (
+                  disallowedElementsMatcher.test(value)
+                    ? nativeSetters[prop + 'Text']
+                    : nativeSetters[htmlProp]
+                ).call(this, value);
+              }
+            });
+          });
           const fakeDoc = document.cloneNode();
           // To enable the created elements to be inserted to body
           // Object.defineProperties(fakeDoc, {
@@ -100,24 +143,32 @@ function setup(isShared) {
           //     }
           //   }
           // });
-          fakeDoc.createElement = function () {
-            const tagName = arguments[0];
-            if (tagName && tagName.toLowerCase() === 'script') {
-              return console.error(
-                `Disallowed attempting to create dynamic script!`
-              );
-            }
-            return nativeCreateElement.apply(document, arguments);
-          };
-          fakeDoc.nativeCreateElementNS = function () {
-            const tagName = arguments[0];
-            if (tagName && tagName.toLowerCase() === 'script') {
-              return console.error(
-                `Disallowed attempting to create dynamic script!`
-              );
-            }
-            return nativeCreateElementNS.apply(document, arguments);
-          };
+          [
+            ['write', document.write, 0, true],
+            ['writeln', document.writeln, 0, true],
+            ['createElement', document.createElement, 0],
+            ['createElementNS', document.createElementNS, 1]
+          ].forEach((api) => {
+            const nativeFn = api[1];
+            const argIndx = api[2];
+            const fullTextSearch = api[3];
+            fakeDoc[api[0]] = function () {
+              let val = arguments[argIndx];
+              val && (val = val.toLowerCase());
+              if (
+                val &&
+                (fullTextSearch
+                  ? ((val = val.match(disallowedElementsMatcher)),
+                    (val = val && val[1]))
+                  : disallowedElements.includes(val))
+              ) {
+                return console.error(
+                  `Disallowed attempting to create ${val} element!`
+                );
+              }
+              return nativeFn.apply(document, arguments);
+            };
+          });
           return fakeDoc;
         })(),
         history: void 0,

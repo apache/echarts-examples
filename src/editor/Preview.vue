@@ -329,9 +329,6 @@ export default {
 
   mounted() {
     this.run();
-    if (store.isSharedCode) {
-      this.showShareHint();
-    }
 
     this.fetchVersionList();
   },
@@ -368,6 +365,8 @@ export default {
         if (!this.debouncedRun) {
           // First run
           this.run();
+          // show share hint on first run if code is user-shared
+          store.isSharedCode && this.showShareHint();
         } else {
           this.debouncedRun();
         }
@@ -406,7 +405,9 @@ export default {
         this.sandbox = null;
       }
     },
-    download,
+    download() {
+      download(store.isSharedCode && this.$t('editor.share.hint'));
+    },
     screenshot() {
       this.sandbox &&
         this.sandbox.screenshot(
@@ -421,7 +422,7 @@ export default {
         type: 'warning',
         message: this.$t('editor.share.hint'),
         customClass: 'toast-shared-url',
-        duration: 5000,
+        duration: 8000,
         showClose: true
       });
     },

@@ -251,7 +251,6 @@ export default {
       loadExampleCode().then((code) => {
         // No editor available. Set to runCode directly.
         store.runCode = parseSourceCode(code);
-        this.showShareHint();
       });
     } else {
       loadExampleCode().then((code) => {
@@ -260,7 +259,6 @@ export default {
         if (store.initialCode !== CODE_CHANGED_FLAG) {
           store.initialCode = this.initialCode;
         }
-        this.showShareHint();
       });
 
       window.addEventListener('mousemove', (e) => {
@@ -278,17 +276,6 @@ export default {
   },
 
   methods: {
-    showShareHint() {
-      if (store.isSharedCode) {
-        this.$message.closeAll();
-        this.$message({
-          type: 'warning',
-          message: this.$t('editor.share.hint'),
-          duration: 5000,
-          showClose: true
-        });
-      }
-    },
     toExternalEditor(vendor) {
       const previewRef = this.$refs.preview;
       if (!previewRef) {
