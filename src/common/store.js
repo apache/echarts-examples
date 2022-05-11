@@ -16,7 +16,12 @@ export const store = {
 
   darkMode: URL_PARAMS.theme === 'dark',
   enableDecal: 'decal' in URL_PARAMS,
-  renderer: URL_PARAMS.renderer || 'canvas',
+  renderer: (() => {
+    const renderer = URL_PARAMS.renderer && URL_PARAMS.renderer.toLowerCase();
+    return renderer && ['canvas', 'svg'].includes(renderer)
+      ? renderer
+      : 'canvas';
+  })(),
 
   typeCheck:
     getExampleConfig() &&
@@ -62,12 +67,16 @@ export function isGLExample() {
 
 const LOCAL_EXAMPLE_CODE_STORE_KEY = 'echarts-examples-code';
 
+// for sharing URL
+export const CODE_CHANGED_FLAG = '__CODE_CHANGED__';
+
 export function saveExampleCodeToLocal() {
   localStorage.setItem(
     LOCAL_EXAMPLE_CODE_STORE_KEY,
     compressStr(
       JSON.stringify({
         code: store.sourceCode,
+        codeModified: store.initialCode !== store.sourceCode,
         lang: store.typeCheck ? 'ts' : 'js'
       })
     )
@@ -92,6 +101,10 @@ export function loadExampleCode() {
   const localCode = loadExampleCodeFromLocal();
   if (localCode) {
     clearLocalExampleCode();
+    // for sharing URL
+    if (localCode.codeModified) {
+      store.initialCode = CODE_CHANGED_FLAG;
+    }
     return Promise.resolve(localCode.code);
   }
   return new Promise((resolve, reject) => {

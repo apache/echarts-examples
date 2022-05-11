@@ -9,8 +9,6 @@ $.getScript(
 ).done(function () {
   var simplex = new SimplexNoise();
 
-  window.onresize = myChart.resize;
-
   var UPDATE_DURATION = 1000;
 
   function initVisualizer() {

@@ -184,7 +184,10 @@ function setup(isShared) {
             console.error('failed to show debug dirty rect', e);
           }
         }
-        window.addEventListener('resize', chartInstance.resize);
+        window.addEventListener('resize', () => {
+          chartInstance.resize();
+          echarts.util.isFunction(appEnv.onresize) && appEnv.onresize();
+        });
         wrapChartMethods(chartInstance);
       }
 
@@ -192,7 +195,7 @@ function setup(isShared) {
       clearTimers();
       clearChartEvents(chartInstance);
       // Reset
-      appEnv.config = null;
+      appEnv = {};
       appStore = store;
 
       try {
