@@ -15,6 +15,22 @@ export default {
     loadExampleCode().then((code) => {
       store.runCode = parseSourceCode(code);
     });
+
+    this.showShareHint();
+  },
+
+  methods: {
+    showShareHint() {
+      if (store.isSharedCode) {
+        this.$message.closeAll();
+        this.$message({
+          type: 'warning',
+          message: this.$t('editor.share.hint'),
+          duration: 5000,
+          showClose: true
+        });
+      }
+    }
   }
 };
 </script>

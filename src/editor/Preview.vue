@@ -329,6 +329,9 @@ export default {
 
   mounted() {
     this.run();
+    if (store.isSharedCode) {
+      this.showShareHint();
+    }
 
     this.fetchVersionList();
   },
@@ -411,6 +414,16 @@ export default {
             '.' +
             (store.renderer === 'svg' ? 'svg' : 'png')
         );
+    },
+    showShareHint() {
+      this.$message.closeAll();
+      this.$message({
+        type: 'warning',
+        message: this.$t('editor.share.hint'),
+        customClass: 'toast-shared-url',
+        duration: 5000,
+        showClose: true
+      });
     },
     share() {
       const params = {};

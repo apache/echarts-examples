@@ -45,8 +45,9 @@ export default {
 
       share: {
         title: 'Share',
-        success: 'Sharable URL has been copied to your clipboard'
-      }
+        success: 'Sharable URL has been copied to your clipboard',
+        hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.'
+      },
     },
 
     chartTypes: {
@@ -137,7 +138,8 @@ export default {
 
       share: {
         title: '分享',
-        success: '分享链接已复制到剪贴板'
+        success: '分享链接已复制到剪贴板',
+        hint: '请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。'
       }
     },
 
