@@ -340,7 +340,8 @@ export default {
       );
     },
     editLink() {
-      return './editor.html' + location.search;
+      const url = this.getSharableURL(true);
+      return './editor.html' + url.search;
     },
     versionList() {
       return this.nightly ? this.nightlyVersions : this.allEChartsVersions;
@@ -373,10 +374,7 @@ export default {
       }
     },
     toolOptions: {
-      handler(n) {
-        this.refresh();
-        gotoURL(n, true);
-      },
+      handler: 'refresh',
       deep: true
     },
     isNightlyVersion: {
@@ -406,7 +404,11 @@ export default {
       }
     },
     download() {
-      download(store.isSharedCode && this.$t('editor.share.hint'));
+      const url = this.getSharableURL(true);
+      const isShared = store.isSharedCode || url.searchParams.has('code');
+      const headers = [`\tTHIS EXAMPLE WAS DOWNLOADED FROM ${url.toString()}`];
+      isShared && headers.push('\t' + this.$t('editor.share.hint'));
+      download(headers.join('\n'));
     },
     screenshot() {
       this.sandbox &&
@@ -426,12 +428,21 @@ export default {
         showClose: true
       });
     },
-    share() {
+    getSharableURL(raw) {
       const params = {};
       if (store.initialCode !== store.sourceCode) {
         params.code = compressStr(store.sourceCode);
       }
-      const sharableURL = getURL(params);
+      return getURL(
+        {
+          ...this.toolOptions,
+          ...params
+        },
+        raw
+      );
+    },
+    share() {
+      const sharableURL = this.getSharableURL();
       navigator.clipboard
         .writeText(sharableURL)
         .then(() => {
@@ -453,7 +464,12 @@ export default {
     },
     changeVersion() {
       saveExampleCodeToLocal();
-      setTimeout(() => gotoURL({ version: store.echartsVersion }));
+      setTimeout(() =>
+        gotoURL({
+          version: store.echartsVersion,
+          ...this.toolOptions
+        })
+      );
     },
     changeRandomSeed() {
       updateRandomSeed();

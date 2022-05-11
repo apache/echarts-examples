@@ -2,7 +2,7 @@ import { store } from '../common/store';
 import { URL_PARAMS, SCRIPT_URLS } from '../common/config';
 import { downloadBlob } from '../common/helper';
 
-export function download(shareHint) {
+export function download(sourceHeader) {
   const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') > -1;
   const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}';` : '';
   const lang = store.locale && store.locale.indexOf('zh') > -1 ? 'zh-CN' : 'en';
@@ -18,7 +18,7 @@ export function download(shareHint) {
   );
   const echarts4Dir = SCRIPT_URLS.echartsDir.replace('{{version}}', '4.9.0');
   const code = `<!--
-  ${shareHint || `THIS EXAMPLE WAS DOWNLOADED FROM ${window.location.href}`}
+${sourceHeader}
 -->
 <!DOCTYPE html>
 <html lang="${lang}" style="height: 100%">
