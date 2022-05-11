@@ -13,7 +13,8 @@ export default {
 
   mounted() {
     loadExampleCode().then((code) => {
-      store.runCode = parseSourceCode(code);
+      // set sourceCode here as there is no editor in view mode
+      store.sourceCode = store.runCode = parseSourceCode(code);
     });
   }
 };
