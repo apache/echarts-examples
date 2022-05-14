@@ -688,6 +688,11 @@ export default {
   &.toast-shared-url {
     min-width: auto;
     z-index: 9999999 !important;
+
+    .el-message__content {
+      padding-right: 20px;
+      line-height: 1.25;
+    }
   }
 }
 </style>
