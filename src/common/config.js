@@ -107,7 +107,7 @@ const URL_PARAMS = {};
 export { URL_PARAMS };
 
 // https://npm.elemecdn.com/
-export const CDN_ROOT = 'https://cdn.jsdelivr.net/npm/';
+export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
 
 export const SCRIPT_URLS = {
   echartsDir: `${CDN_ROOT}echarts@{{version}}`,

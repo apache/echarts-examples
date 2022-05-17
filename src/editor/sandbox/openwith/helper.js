@@ -16,7 +16,7 @@ export function getTemplates(title, scripts, css) {
   const hasJQuery = /\$[\.\(]+/g.test(store.sourceCode);
   hasJQuery &&
     scripts.unshift({
-      src: 'https://cdn.jsdelivr.net/npm/jquery'
+      src: 'https://fastly.jsdelivr.net/npm/jquery'
     });
 
   const htmlTpl = `<!DOCTYPE html>

@@ -9,7 +9,7 @@ export function download(sourceHeader) {
 
   const hasJQueryJS = /\$[\.\(]+/g.test(store.sourceCode);
   const jqueryScriptCode = hasJQueryJS
-    ? '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery"></script>'
+    ? '<script type="text/javascript" src="https://fastly.jsdelivr.net/npm/jquery"></script>'
     : '';
 
   const echartsDir = SCRIPT_URLS.echartsDir.replace(
