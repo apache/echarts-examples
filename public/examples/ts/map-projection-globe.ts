@@ -10,8 +10,8 @@ let projection: any;
 
 $.when(
   $.get(ROOT_PATH + '/data/asset/geo/world.json'),
-  $.getScript('https://cdn.jsdelivr.net/npm/d3-array'),
-  $.getScript('https://cdn.jsdelivr.net/npm/d3-geo')
+  $.getScript('https://fastly.jsdelivr.net/npm/d3-array'),
+  $.getScript('https://fastly.jsdelivr.net/npm/d3-geo')
 ).done(function (res) {
   myChart.hideLoading();
   // Add graticule

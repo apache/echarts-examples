@@ -22,12 +22,14 @@ context.fillStyle = config.color;
 context.shadowColor = config.color;
 
 $.when(
-  $.getScript('https://cdn.jsdelivr.net/npm/d3-array@2.8.0/dist/d3-array.js'),
   $.getScript(
-    'https://cdn.jsdelivr.net/npm/d3-contour@2.0.0/dist/d3-contour.js'
+    'https://fastly.jsdelivr.net/npm/d3-array@2.8.0/dist/d3-array.js'
   ),
-  $.getScript('https://cdn.jsdelivr.net/npm/d3-geo@2.0.1/dist/d3-geo.js'),
-  $.getScript('https://cdn.jsdelivr.net/npm/d3-timer@2.0.0/dist/d3-timer.js')
+  $.getScript(
+    'https://fastly.jsdelivr.net/npm/d3-contour@2.0.0/dist/d3-contour.js'
+  ),
+  $.getScript('https://fastly.jsdelivr.net/npm/d3-geo@2.0.1/dist/d3-geo.js'),
+  $.getScript('https://fastly.jsdelivr.net/npm/d3-timer@2.0.0/dist/d3-timer.js')
 ).done(function () {
   image(ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg').then(
     function (image) {

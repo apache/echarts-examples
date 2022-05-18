@@ -5,7 +5,7 @@ titleCN: Noise modified from marpi's demo
 */
 
 $.getScript(
-  'https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js'
+  'https://fastly.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js'
 ).done(function () {
   var simplex = new SimplexNoise();
 
