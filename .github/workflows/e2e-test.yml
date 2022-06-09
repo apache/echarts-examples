@@ -1,0 +1,22 @@
+name: Run e2e Test
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: npm install
+        run: |
+          npm install
+          npm install puppeteer
+
+      - name: build
+        run: npm run build:example
+
+      - name: test e2e
+        run: npm run test:e2e
