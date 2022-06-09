@@ -11,7 +11,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: install ffmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v1
+        uses: FedericoCarboni/setup-ffmpeg@v1.1.0
+        id: setup-ffmpeg
 
       - name: npm install
         run: |
