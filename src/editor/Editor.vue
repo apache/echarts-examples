@@ -269,8 +269,16 @@ export default {
         }
       });
 
-      window.addEventListener('mouseup', (e) => {
+      window.addEventListener('mouseup', () => {
         this.mousedown = false;
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          const previewRef = this.$refs.preview;
+          previewRef && previewRef.share();
+          e.preventDefault();
+        }
       });
     }
   },
