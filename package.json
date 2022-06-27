@@ -34,7 +34,7 @@
     "echarts": "^5.2.0",
     "echarts-stat": "^1.2.0",
     "esbuild": "^0.8.34",
-    "file-loader": "^4.3.0",
+    "file-loader": "^6.2.0",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",
     "gray-matter": "^4.0.2",
