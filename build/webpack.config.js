@@ -46,7 +46,8 @@ module.exports = [
               options: {
                 limit: 10000,
                 outputPath: '../asset',
-                name: '[name].[ext]'
+                name: '[name].[ext]',
+                esModule: false
               }
             }
           ]
