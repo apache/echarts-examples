@@ -2570,17 +2570,6 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-projection-globe",
-    "ts": true,
-    "tags": [],
-    "title": "Map with Orthographic Projection",
-    "titleCN": "正交投影地图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-province",
     "ts": false,
     "tags": [],
