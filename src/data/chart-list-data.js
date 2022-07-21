@@ -2502,55 +2502,11 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-china",
-    "ts": false,
-    "tags": [],
-    "title": "Map China",
-    "titleCN": "Map China",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-china-dataRange",
-    "ts": false,
-    "tags": [],
-    "title": "Sales of iphone",
-    "titleCN": "iphone销量",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-HK",
     "ts": true,
     "tags": [],
     "title": "Population Density of HongKong (2011)",
     "titleCN": "香港18区人口密度 （2011）",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-labels",
-    "ts": false,
-    "tags": [],
-    "title": "Rich Text Labels on Map",
-    "titleCN": "地图上的富文本标签",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-locate",
-    "ts": false,
-    "tags": [],
-    "title": "Map Locate",
-    "titleCN": "Map Locate",
     "difficulty": 10
   },
   {
@@ -2564,17 +2520,6 @@ export default [
     ],
     "title": "Draw Polygon on Map",
     "titleCN": "在地图上绘制多边形",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-province",
-    "ts": false,
-    "tags": [],
-    "title": "Switch among 34 Provinces",
-    "titleCN": "34 省切换查看",
     "difficulty": 10
   },
   {
@@ -2597,28 +2542,6 @@ export default [
     "tags": [],
     "title": "USA Choropleth Map with Projection",
     "titleCN": "自定义地图投影",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-world",
-    "ts": false,
-    "tags": [],
-    "title": "Map World",
-    "titleCN": "Map World",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-world-dataRange",
-    "ts": false,
-    "tags": [],
-    "title": "World Population (2010)",
-    "titleCN": "World Population (2010)",
     "difficulty": 10
   },
   {
