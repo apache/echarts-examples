@@ -337,6 +337,8 @@ function setup(isShared) {
         const option = res[0];
         echarts.util.isObject(option) && chartInstance.setOption(option, true);
       } catch (e) {
+        // PENDING: prevent chart can't be updated once error occurs
+        chartInstance.__flagInMainProcess = false;
         console.error('failed to run code', e);
         sendMessage({ evt: 'codeError', message: e.message });
       }
