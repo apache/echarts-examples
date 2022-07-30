@@ -65,7 +65,7 @@
 <script>
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP, URL_PARAMS } from '../common/config';
+import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
@@ -193,8 +193,7 @@ export default {
       const imgs = this.$el.querySelectorAll('img.chart-area');
       for (let i = 0; i < imgs.length; i++) {
         // Force lazyload to update
-        imgs[i].classList.remove(LAZY_LOADED_CLASS);
-        imgs[i].setAttribute('data-was-processed', 'false');
+        LazyLoad.resetStatus(imgs[i]);
       }
       this._lazyload.update();
     }
@@ -223,7 +222,17 @@ export default {
       // container: this.$el.querySelector('#explore-container .example-list-panel'),
       elements_selector: '.chart-area',
       load_delay: 400,
-      class_loaded: LAZY_LOADED_CLASS
+      class_loaded: LAZY_LOADED_CLASS,
+      callback_error(img) {
+        const fallbackSrc = img.getAttribute('data-src');
+        const children = img.parentElement.children;
+        for (let i = 0, len = children.length; i < len; i++) {
+          const el = children[i];
+          if (el !== img) {
+            el.srcset = fallbackSrc;
+          }
+        }
+      }
     });
   },
 

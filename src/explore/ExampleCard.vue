@@ -1,20 +1,11 @@
 <template>
   <div class="example-list-item">
     <a target="_blank" class="example-link" :href="exampleLink">
-      <picture class="chart-area">
+      <picture>
         <source :data-srcset="screenshotURLWebP" type="image/webp" />
         <source :data-srcset="screenshotURLPNG" type="image/png" />
-        <img
-          class="chart-area"
-          src="../asset/placeholder.jpg"
-          :data-src="screenshotURLPNG"
-        />
+        <img class="chart-area" data-src="../asset/placeholder.jpg" />
       </picture>
-      <!-- <img
-        class="chart-area"
-        src="../asset/placeholder.jpg"
-        :data-src="screenshotURL"
-      /> -->
     </a>
     <div>
       <div class="example-langs">
