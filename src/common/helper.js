@@ -63,7 +63,10 @@ export function downloadBlob(blob, fileName) {
 }
 
 function ensurePrettier() {
-  if (typeof prettier === 'undefined') {
+  if (
+    typeof prettier === 'undefined' ||
+    typeof prettierPlugins === 'undefined'
+  ) {
     return loadScriptsAsync([
       SCRIPT_URLS.prettierDir + '/standalone.js',
       SCRIPT_URLS.prettierDir +
