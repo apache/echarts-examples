@@ -375,9 +375,11 @@ export default {
           }
 
           const isObjOrArray = typeof obj === 'object' && obj != null;
-          const link = `https://echarts.apache.org/${lang}/option.html#${hash.join(
-            '.'
-          )}`;
+          const link = hash.includes('bmap')
+            ? 'https://github.com/apache/echarts/blob/release/extension-src/bmap/README.md'
+            : `https://echarts.apache.org/${lang}/option.html#${hash.join(
+                '.'
+              )}`;
           return !isObjOrArray
             ? `<a href="${link}" target="_blank" title="${tipTitle}">${name}</a>`
             : `${name}<a href="${link}" target="_blank" title="${tipTitle}"><i class="el-icon-document"></i></a>`;
