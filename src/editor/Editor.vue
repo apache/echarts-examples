@@ -319,7 +319,10 @@ export default {
         esm: this.fullCodeConfig.esm,
         // legacy: true,
         theme: store.darkMode ? 'dark' : '',
-        ROOT_PATH: store.cdnRoot
+        renderer: store.renderer,
+        useDirtyRect: store.useDirtyRect,
+        ROOT_PATH: store.cdnRoot,
+        isZHLang: this.$i18n.locale === 'zh'
       });
       // Format
       formatCode(this.fullCode).then((code) => {
