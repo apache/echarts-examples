@@ -237,7 +237,7 @@ export default {
 
   methods: {
     onActiveNavChanged(event, currentItem, lastActiveItem) {
-      if (!event) {
+      if (!event || !currentItem) {
         return;
       }
       // change url
