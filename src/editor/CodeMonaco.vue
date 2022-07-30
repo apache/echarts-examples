@@ -11,7 +11,11 @@ function loadTypes() {
   return fetch(
     ('local' in URL_PARAMS
       ? SCRIPT_URLS.localEChartsDir
-      : SCRIPT_URLS.echartsDir.replace('{{version}}', store.echartsVersion)) +
+      : SCRIPT_URLS[
+          store.echartsVersion.indexOf('dev') > -1
+            ? 'echartsNightlyDir'
+            : 'echartsDir'
+        ].replace('{{version}}', store.echartsVersion)) +
       '/types/dist/echarts.d.ts',
     {
       mode: 'cors'
@@ -19,27 +23,28 @@ function loadTypes() {
   )
     .then((response) => response.text())
     .then((code) => {
+      const tsLang = monaco.languages.typescript;
+      const typescriptDefaults = tsLang.typescriptDefaults;
       // validation settings
-      monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+      typescriptDefaults.setDiagnosticsOptions({
         noSemanticValidation: false,
         noSyntaxValidation: false
       });
 
       // compiler options
-      monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-        target: monaco.languages.typescript.ScriptTarget.ES6,
+      typescriptDefaults.setCompilerOptions({
+        target: tsLang.ScriptTarget.ES6,
         allowNonTsExtensions: true,
         noResolve: false
       });
 
-      // console.log('file:///node_modules/@types/' + res[i].path);
-      monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      typescriptDefaults.addExtraLib(
         code,
         // https://github.com/microsoft/monaco-editor/issues/667#issuecomment-468164794
         'file:///node_modules/@types/echarts/echarts.d.ts'
       );
 
-      monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      typescriptDefaults.addExtraLib(
         `
 import * as echarts from './echarts';
 // Export for UMD module.
@@ -49,7 +54,7 @@ export = echarts;`,
         'file:///node_modules/@types/echarts/index.d.ts'
       );
 
-      monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      typescriptDefaults.addExtraLib(
         `import * as echarts from 'echarts';
 // Declare to global namespace.
 declare global {
@@ -90,7 +95,7 @@ function ensureMonacoAndTsTransformer() {
   if (typeof monaco === 'undefined') {
     return loadScriptsAsync([
       SCRIPT_URLS.monacoDir + '/loader.js',
-      // Prebuilt TS transformer with surcrase
+      // Prebuilt TS transformer with sucrase
       store.cdnRoot + '/js/example-transform-ts-bundle.js'
     ]).then(function () {
       window.require.config({ paths: { vs: SCRIPT_URLS.monacoDir } });
@@ -122,7 +127,6 @@ export default {
   mounted() {
     this.loading = true;
     ensureMonacoAndTsTransformer().then(() => {
-      this.loading = false;
       const model = monaco.editor.createModel(
         this.initialCode || '',
         'typescript',
@@ -149,6 +153,8 @@ export default {
         store.sourceCode = editor.getValue();
         store.runCode = echartsExampleTransformTs(store.sourceCode);
       });
+
+      this.loading = false;
     });
   },
 
