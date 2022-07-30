@@ -354,7 +354,7 @@ $pd-lg: 20px;
   width: $chart-nav-width;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
 }
 
 #toolbar {
