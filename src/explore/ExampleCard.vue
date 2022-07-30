@@ -4,7 +4,7 @@
       <picture>
         <source :data-srcset="screenshotURLWebP" type="image/webp" />
         <source :data-srcset="screenshotURLPNG" type="image/png" />
-        <img class="chart-area" data-src="../asset/placeholder.jpg" />
+        <img class="chart-area" src="../asset/placeholder.jpg" />
       </picture>
     </a>
     <div>

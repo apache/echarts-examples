@@ -224,7 +224,7 @@ export default {
       load_delay: 400,
       class_loaded: LAZY_LOADED_CLASS,
       callback_error(img) {
-        const fallbackSrc = img.getAttribute('data-src');
+        const fallbackSrc = img.src;
         const children = img.parentElement.children;
         for (let i = 0, len = children.length; i < len; i++) {
           const el = children[i];
