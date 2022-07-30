@@ -102,7 +102,12 @@
     <div id="preview-status">
       <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
-          <el-button icon="el-icon-download" size="mini" @click="download">
+          <el-button
+            icon="el-icon-download"
+            size="mini"
+            @click="download"
+            :title="$t('editor.download') + ' (HTML)'"
+          >
             {{ $t('editor.download') }}
           </el-button>
           <el-button
@@ -112,7 +117,12 @@
           >
             {{ $t('editor.screenshot') }}
           </el-button>
-          <el-button @click="share" icon="el-icon-share" size="mini">
+          <el-button
+            @click="share"
+            icon="el-icon-share"
+            size="mini"
+            :title="$t('editor.share.tooltip')"
+          >
             {{ $t('editor.share.title') }}
           </el-button>
         </template>
@@ -406,8 +416,10 @@ export default {
     download() {
       const url = this.getSharableURL(true);
       const isShared = store.isSharedCode || url.searchParams.has('code');
-      const headers = [`\tTHIS EXAMPLE WAS DOWNLOADED FROM ${url.toString()}`];
-      isShared && headers.push('\t' + this.$t('editor.share.hint'));
+      const headers = [
+        `\t${this.$t('editor.downloadSourceTip')} ${url.toString()}`
+      ];
+      isShared && headers.push('\t⚠ ' + this.$t('editor.share.hint'));
       download(headers.join('\n'));
     },
     screenshot() {

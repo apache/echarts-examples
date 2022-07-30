@@ -22,6 +22,7 @@ export default {
 
       download: 'Download',
       screenshot: 'Screenshot',
+      downloadSourceTip: 'THIS EXAMPLE WAS DOWNLOADED FROM',
 
       edit: 'Edit',
 
@@ -46,8 +47,9 @@ export default {
       share: {
         title: 'Share',
         success: 'Sharable URL has been copied to your clipboard',
-        hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.'
-      },
+        hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.',
+        tooltip: 'Create a sharable link for your code ✨'
+      }
     },
 
     chartTypes: {
@@ -114,6 +116,7 @@ export default {
       renderer: '渲染模式',
       download: '下载示例',
       screenshot: '截图',
+      downloadSourceTip: '此示例下载自',
 
       edit: '编辑',
       monacoMode: '开启类型检查',
@@ -139,7 +142,8 @@ export default {
       share: {
         title: '分享',
         success: '分享链接已复制到剪贴板',
-        hint: '请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。'
+        hint: '请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。',
+        tooltip: '为当前代码创建一个可分享的链接 ✨'
       }
     },
 
