@@ -64,15 +64,15 @@
   "dependencies": {
     "@lang/object-visualizer": "^4.2.0",
     "codesandbox": "^2.2.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "lz-string": "^1.4.4",
-    "nanoid": "^3.1.31",
-    "prettier": "^2.3.2",
-    "resize-detector": "^0.2.2",
+    "nanoid": "^4.0.0",
+    "prettier": "^2.7.1",
+    "resize-detector": "^0.3.0",
     "scroll-into-view": "^1.14.2",
-    "semver": "^7.3.5",
-    "sucrase": "^3.17.0",
-    "vanilla-lazyload": "^12.5.1",
+    "semver": "^7.3.7",
+    "sucrase": "^3.24.0",
+    "vanilla-lazyload": "^17.8.3",
     "vue-i18n": "^8.18.2",
     "vue-scrollactive": "^0.9.3"
   }
