@@ -50,7 +50,7 @@ function showDebugDirtyRect(zr, opts) {
   const debugViewRoot = document.createElement('div');
   debugViewRoot.className = 'ec-debug-dirty-rect-container';
   debugViewRoot.style.cssText =
-    'position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;';
+    'position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:9999999;';
   const debugRects = [];
   const dom = zr.dom;
   dom.appendChild(debugViewRoot);
