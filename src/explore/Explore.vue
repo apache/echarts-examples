@@ -1,6 +1,6 @@
 <template>
   <div id="example-explore">
-    <div id="left-container">
+    <div id="left-container" ref="leftContainer">
       <div id="left-chart-nav">
         <scrollactive
           active-class="active"
@@ -69,7 +69,6 @@ import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
-// import scrollIntoView from 'scroll-into-view';
 
 const icons = {};
 
@@ -238,15 +237,25 @@ export default {
 
   methods: {
     onActiveNavChanged(event, currentItem, lastActiveItem) {
-      // currentItem && currentItem.scrollIntoView && currentItem.parentNode.scrollIntoView();
-      // scrollIntoView(currentItem, {
-      //     time: 100,
-      //     cancellable: false,
-      //     align: {
-      //         top: 0,
-      //         topOffset: 50
-      //     }
-      // });
+      if (!event) {
+        return;
+      }
+      // change url
+      history.replaceState(null, null, currentItem.href);
+
+      // scroll nav
+      const leftContainer = this.$refs.leftContainer;
+      const containerOffsetHeight = leftContainer.offsetHeight;
+      const rect = currentItem.parentElement.getBoundingClientRect();
+      if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
+        const scrollTop =
+          currentItem.offsetTop -
+          containerOffsetHeight +
+          currentItem.offsetHeight;
+        leftContainer.scrollTo
+          ? leftContainer.scrollTo(0, scrollTop)
+          : (leftContainer.scrollTop = scrollTop);
+      }
     }
   }
 };
@@ -345,6 +354,7 @@ $pd-lg: 20px;
   width: $chart-nav-width;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 #toolbar {
