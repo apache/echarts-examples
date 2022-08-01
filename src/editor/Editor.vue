@@ -219,9 +219,7 @@ export default {
 
   data() {
     return {
-      mousedown: false,
       leftContainerSize: 40,
-      mobileMode: false,
       shared: store,
       initialCode: '',
 
@@ -273,6 +271,7 @@ export default {
         this.mousedown = false;
       });
 
+      // Save code as a sharable link when ctrl/cmd + s is pressed.
       window.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 's') {
           const previewRef = this.$refs.preview;
@@ -415,7 +414,18 @@ export default {
     },
     format() {
       formatCode(store.sourceCode).then((code) => {
-        this.initialCode = code;
+        if (
+          code === this.initialCode &&
+          store.sourceCode !== this.initialCode
+        ) {
+          // If formatted code is the same as initial code but source code is changed,
+          // should also trigger update
+          this.initialCode = store.sourceCode;
+          console.log('update initial code');
+        }
+        this.$nextTick(() => {
+          this.initialCode = code;
+        });
       });
     },
     onPreviewReady() {
