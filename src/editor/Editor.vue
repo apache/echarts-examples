@@ -421,7 +421,6 @@ export default {
           // If formatted code is the same as initial code but source code is changed,
           // should also trigger update
           this.initialCode = store.sourceCode;
-          console.log('update initial code');
         }
         this.$nextTick(() => {
           this.initialCode = code;

@@ -156,7 +156,7 @@ import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { download } from './downloadExample';
 import { gotoURL, getURL } from '../common/route';
-import { gt } from 'semver';
+import { gt, rcompare } from 'semver';
 
 const example = getExampleConfig();
 const isGL = 'gl' in URL_PARAMS || isGLExample();
@@ -488,53 +488,78 @@ export default {
       gotoURL({ random: store.randomSeed }, true);
       this.run();
     },
-    // hasEditorError() {
-    //     const annotations = this.editor.getSession().getAnnotations();
-    //     for (let aid = 0, alen = annotations.length; aid < alen; ++aid) {
-    //         if (annotations[aid].type === 'error') {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // },
     fetchVersionList() {
-      $.getJSON('https://data.jsdelivr.com/v1/package/npm/echarts').done(
-        (data) => {
-          const versions = data.versions.filter(
-            (version) =>
-              version.indexOf('beta') < 0 &&
-              version.indexOf('rc') < 0 &&
-              version.indexOf('alpha') < 0 &&
-              version.startsWith('5') // Only version 5.
-          );
-          this.allEChartsVersions = versions;
+      const isZH = store.locale === 'zh';
+      const server = isZH
+        ? // speed up for China mainland. `data.jsdelivr.com` is very slow or unaccessible for some ISPs.
+          'https://registry.npmmirror.com'
+        : 'https://data.jsdelivr.com/v1/package/npm';
 
-          // Use lastest version
-          if (
-            !store.echartsVersion ||
-            store.echartsVersion === '5' ||
-            store.echartsVersion === 'latest'
-          ) {
-            store.echartsVersion = versions[0];
-          }
-
-          // put latest rc version for preview
-          if (gt(data.tags.rc.split('-')[0], data.tags.latest)) {
-            versions.unshift(data.tags.rc);
-            store.echartsVersion === 'rc' &&
-              (store.echartsVersion = versions[0]);
-          }
+      const handleData = (data) => {
+        if (isZH) {
+          data.versions = Object.keys(data.versions).sort(rcompare);
+          data.tags = data['dist-tags'];
         }
-      );
-      $.getJSON(
-        'https://data.jsdelivr.com/v1/package/npm/echarts-nightly'
-      ).done(({ tags: { latest, next }, versions }) => {
+      };
+
+      $.getJSON(`${server}/echarts`).done((data) => {
+        handleData(data);
+
+        if (isDebug) {
+          console.log('echarts version data', data);
+        }
+
+        const versions = data.versions.filter(
+          (version) =>
+            version.indexOf('beta') < 0 &&
+            version.indexOf('rc') < 0 &&
+            version.indexOf('alpha') < 0 &&
+            version.startsWith('5') // Only version 5.
+        );
+        this.allEChartsVersions = versions;
+
+        // Use lastest version
+        if (
+          !store.echartsVersion ||
+          store.echartsVersion === '5' ||
+          store.echartsVersion === 'latest'
+        ) {
+          store.echartsVersion = versions[0];
+        }
+
+        // put latest rc version for preview
+        if (gt(data.tags.rc.split('-')[0], data.tags.latest)) {
+          versions.unshift(data.tags.rc);
+          store.echartsVersion === 'rc' && (store.echartsVersion = versions[0]);
+        }
+      });
+
+      $.getJSON(`${server}/echarts-nightly`).done((data) => {
+        handleData(data);
+
+        if (isDebug) {
+          console.log('echarts-nightly version data', data);
+        }
+
+        const {
+          tags: { latest, next },
+          versions
+        } = data;
         const nextIdx = versions.indexOf(next);
         const latestIdx = versions.indexOf(latest);
         this.nightlyVersions = versions
           .slice(nextIdx, nextIdx + 10)
           .concat(versions.slice(latestIdx, latestIdx + 10));
       });
+
+      if (isDebug) {
+        console.log(
+          'echarts versions',
+          this.allEChartsVersions,
+          'nightly versions',
+          this.nightlyVersions
+        );
+      }
     },
     getAssets() {
       return {
