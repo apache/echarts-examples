@@ -115,7 +115,7 @@ export function loadExampleCode() {
         // PENDING fallback to `c` if the decompressed code is not available?
         const code = decompressStr(URL_PARAMS.code);
         // not considered as shared code if it's opened by echarts website like echarts-doc
-        store.isSharedCode = !!(isOpenedByEChartsWebsite() || code);
+        store.isSharedCode = !isOpenedByEChartsWebsite() && !!code;
         return code
           ? resolve(code)
           : reject('code was decompressed but got nothing');
