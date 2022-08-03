@@ -112,3 +112,11 @@ export function decompressStr(str) {
       .replace(/_/g, '/') // Convert '_' to '/'
   );
 }
+
+export function isOpenedByEChartsWebsite() {
+  try {
+    return (
+      window.opener && window.opener.origin === 'https://echarts.apache.org'
+    );
+  } catch {}
+}

@@ -2,7 +2,7 @@
 import { URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { compressStr, decompressStr } from './helper';
+import { compressStr, decompressStr, isOpenedByEChartsWebsite } from './helper';
 import { customAlphabet } from 'nanoid';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
@@ -109,11 +109,13 @@ export function loadExampleCode() {
   }
   return new Promise((resolve, reject) => {
     // ignore c if code is provided
+    // TODO support uncompressed base64 code like `code=xxxx&enc=base64`
     if (URL_PARAMS.code) {
       try {
         // PENDING fallback to `c` if the decompressed code is not available?
         const code = decompressStr(URL_PARAMS.code);
-        store.isSharedCode = !!code;
+        // not considered as shared code if it's opened by echarts website like echarts-doc
+        store.isSharedCode = !!(isOpenedByEChartsWebsite() || code);
         return code
           ? resolve(code)
           : reject('code was decompressed but got nothing');
