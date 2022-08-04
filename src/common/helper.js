@@ -120,3 +120,7 @@ export function isTrustedOpener() {
     );
   } catch {}
 }
+
+export function decodeBase64(str) {
+  return decodeURIComponent(escape(window.atob(str)));
+}
