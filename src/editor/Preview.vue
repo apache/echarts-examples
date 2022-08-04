@@ -444,6 +444,7 @@ export default {
       const params = {};
       if (store.initialCode !== store.sourceCode) {
         params.code = compressStr(store.sourceCode);
+        params.enc = null;
       }
       return getURL(
         {

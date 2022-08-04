@@ -118,7 +118,9 @@ export function isTrustedOpener() {
     return (
       window.opener && window.opener.origin === 'https://echarts.apache.org'
     );
-  } catch {}
+  } catch {
+    // CORS
+  }
 }
 
 export function decodeBase64(str) {

@@ -118,6 +118,7 @@ export function loadExampleCode() {
     if (code) {
       try {
         // PENDING fallback to `c` if the decompressed code is not available?
+        // TODO: auto-detect the encoder type?
         code =
           URL_PARAMS.enc === 'base64'
             ? decodeBase64(code)
