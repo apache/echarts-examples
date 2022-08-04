@@ -2,7 +2,7 @@
 import { URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { compressStr, decompressStr, isOpenedByEChartsWebsite } from './helper';
+import { compressStr, decompressStr, isTrustedOpener } from './helper';
 import { customAlphabet } from 'nanoid';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
@@ -115,7 +115,9 @@ export function loadExampleCode() {
         // PENDING fallback to `c` if the decompressed code is not available?
         const code = decompressStr(URL_PARAMS.code);
         // not considered as shared code if it's opened by echarts website like echarts-doc
-        store.isSharedCode = !isOpenedByEChartsWebsite() && !!code;
+        store.isSharedCode = !isTrustedOpener() && !!code;
+        // clear the opener
+        window.opener = null;
         return code
           ? resolve(code)
           : reject('code was decompressed but got nothing');

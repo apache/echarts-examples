@@ -113,7 +113,7 @@ export function decompressStr(str) {
   );
 }
 
-export function isOpenedByEChartsWebsite() {
+export function isTrustedOpener() {
   try {
     return (
       window.opener && window.opener.origin === 'https://echarts.apache.org'
