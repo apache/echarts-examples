@@ -230,7 +230,7 @@ export default {
       exampleConfig: getExampleConfig(),
 
       fullCodeConfig: {
-        mimimal: false,
+        minimal: false,
         esm: true,
         node: false // If is in node
       }
@@ -279,6 +279,9 @@ export default {
           e.preventDefault();
         }
       });
+
+      // ensure prettier
+      formatCode(' ');
     }
   },
 
