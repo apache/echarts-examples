@@ -1,0 +1,7 @@
+github:
+  description: Examples of Apache ECharts
+  homepage: https://echarts.apache.org/examples
+  labels:
+    - echarts
+    - apache
+    - examples
