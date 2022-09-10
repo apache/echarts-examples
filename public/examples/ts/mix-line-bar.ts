@@ -62,8 +62,8 @@ option = {
       name: 'Evaporation',
       type: 'bar',
       tooltip: {
-        valueFormatter: function (value: number) {
-          return value + ' ml';
+        valueFormatter: function (value) {
+          return value as number + ' ml';
         }
       },
       data: [
@@ -74,8 +74,8 @@ option = {
       name: 'Precipitation',
       type: 'bar',
       tooltip: {
-        valueFormatter: function (value: number) {
-          return value + ' ml';
+        valueFormatter: function (value) {
+          return value as number + ' ml';
         }
       },
       data: [
@@ -87,8 +87,8 @@ option = {
       type: 'line',
       yAxisIndex: 1,
       tooltip: {
-        valueFormatter: function (value: number) {
-          return value + ' °C';
+        valueFormatter: function (value) {
+          return value as number + ' °C';
         }
       },
       data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
