@@ -150,9 +150,9 @@ Note: the commands below will execute `npm install` in these local directories.
 
 ```shell
 # run e2e using local dependent repos and webpack.
-npm run test:e2e:local
+npm run test:e2e:local > result.log 2>&1
 # run e2e using local dependent repos and esbuild, which is much faster.
-npm run test:e2e:esbuild:local
+npm run test:e2e:esbuild:local > result.log 2>&1
 ```
 
 ### Run e2e test using remote dependent repos
@@ -161,10 +161,15 @@ Note: the commands below will download the repos listed in `echarts-examples/e2e
 
 ```shell
 # run e2e using remote dependent repos and webpack.
-npm run test:e2e
+npm run test:e2e > result.log 2>&1
 # run e2e using remote dependent repos and esbuild, which is much faster.
-npm run test:e2e:esbuild
+npm run test:e2e:esbuild > result.log 2>&1
 ```
+
+### Check the test result
+The test result is in:
++ the `result.log`
++ `echarts-examples/e2e/report.html`, the file should be opened in your own local http server.
 
 ### Run partial tests.
 

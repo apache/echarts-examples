@@ -9,7 +9,7 @@
     "release": "npm run compile:example && npm run build && node build/copyResource.js --env asf",
     "dev": "npx concurrently --kill-others \"npm:watch\" \"npm:server\"",
     "build:example": "npm run compile:example && node tool/build-example.js && node tool/build-example.js --gl",
-    "build:examplelist": "npm run compile:example && node tool/build-example.js --no-thumb",
+    "build:examplelist": "npm run compile:example && node tool/build-example.js --no-thumb && node tool/build-example.js --no-thumb --gl",
     "compile:example": "node tool/compile-example.js",
     "test:e2e": "node e2e/main.js --bundler webpack -m",
     "test:e2e:local": "node e2e/main.js --bundler webpack -m --local",
