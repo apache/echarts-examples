@@ -129,6 +129,10 @@ async function prepare() {
   fse.removeSync(REPO_DIR);
   fse.removeSync(PACKAGE_DIR);
 
+  fse.removeSync(nodePath.join(__dirname, 'package.json'));
+  fse.removeSync(nodePath.join(__dirname, 'package-lock.json'));
+  fse.copySync(nodePath.join(__dirname, 'package.tpl.json'), nodePath.join(__dirname, 'package.json'));
+
   fse.ensureDirSync(TMP_DIR);
   fse.ensureDirSync(RUN_CODE_DIR);
   fse.ensureDirSync(BUNDLE_DIR);
@@ -175,45 +179,82 @@ async function installPackages(config) {
 
     shell.cd(pkg.dir);
 
-    const packageJson = JSON.parse(
-      fs.readFileSync(nodePath.join(pkg.dir, 'package.json'))
-    );
+    const packageJsonPath = nodePath.join(pkg.dir, 'package.json');
+    const packageJsonRaw = fs.readFileSync(packageJsonPath, {encoding: 'utf-8'});
+    const packageJson = JSON.parse(packageJsonRaw);
     const tgzFileName = `${packageJson.name}-${packageJson.version}.tgz`;
     const targetTgzFilePath = nodePath.join(PACKAGE_DIR, tgzFileName);
+    let needModifyPackageJSON = false;
+
+    function doesConfigIncludesDepPkg(depPkgName) {
+      return !!config.packages.find((a) => a.name === depPkgName)
+    }
 
     if (packageJson.dependencies) {
       for (let depPkgName in packageJson.dependencies) {
-        const depPkg = config.packages.find((a) => a.name === depPkgName);
-        if (depPkg && !publishedPackages[depPkgName]) {
-          publishPackage(depPkg);
-          // Come back.
-          shell.cd(pkg.dir);
+        if (!doesConfigIncludesDepPkg(depPkgName) || publishedPackages[depPkgName]) {
+          continue;
         }
+        publishPackage(depPkg);
+        // Come back.
+        shell.cd(pkg.dir);
+      }
 
-        shell.exec(`npm install`);
+      if (shell.exec(`npm install`).code !== 0) {
+        console.error(`shell fail: npm install in ${pkg.dir}`);
+        process.exit(1);
+      }
 
-        if (depPkg) {
-          console.log(
-            chalk.gray(
-              `Installing dependency ${depPkgName} from "${publishedPackages[depPkgName]}" ...`
-            )
-          );
-          shell.exec(`npm install ${publishedPackages[depPkgName]} --no-save`);
-          console.log(chalk.gray(`Install dependency ${depPkgName} done.`));
+      for (let depPkgName in packageJson.dependencies) {
+        if (!doesConfigIncludesDepPkg(depPkgName)) {
+          continue;
         }
+        console.log(
+          chalk.gray(
+            `Installing dependency ${depPkgName} from "${publishedPackages[depPkgName].targetTgzFilePath}" ...`
+          )
+        );
+        if (shell.exec(`npm install ${publishedPackages[depPkgName].targetTgzFilePath}`).code !== 0) {
+          console.error(`shell fail: npm install ${publishedPackages[depPkgName].targetTgzFilePath}`);
+          process.exit(1);
+        }
+        // After the npm install above, the package.json will be modifiedt to like:
+        // "dependencies": ["zredner": "file:../echarts-examples/e2e/tmp/packages/zrender-5.3.2.tgz"]
+        // which is a relative path and not correct if the tgz is copied to another place in
+        // the latter process.
+        // If we use --no-save, the latter npm install by tgz may not use the version of zrender that
+        // config.js specified.
+        // So we modifiy the version mandatorily to the version that config.js specified.
+        // In the latter npm install by tgz, the zrender will be installed firstly. And when echarts
+        // is installing, it found the right version of zrender has been installed, and do not install
+        // zrender separately.
+        needModifyPackageJSON = true;
+        packageJson.dependencies[depPkgName] = publishedPackages[depPkgName].version;
+        console.log(chalk.gray(`Install dependency ${depPkgName} done.`));
       }
     }
 
-    shell.exec(`npm pack`);
+    if (needModifyPackageJSON) {
+      // Modify package.json for npm pack.
+      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson), {encoding: 'utf-8'});
+    }
+    if (shell.exec(`npm pack`).code !== 0) {
+      console.error(`shell fail: npm pack in ${pkg.dir}`);
+      shell.exit(1);
+    }
     fs.renameSync(nodePath.join(pkg.dir, tgzFileName), targetTgzFilePath);
-    publishedPackages[packageJson.name] = targetTgzFilePath;
+    publishedPackages[packageJson.name] = {targetTgzFilePath, version: packageJson.version};
+
+    if (needModifyPackageJSON) {
+      // Restore modified package.json
+      fs.writeFileSync(packageJsonPath, packageJsonRaw, {encoding: 'utf-8'});
+    }
   }
 
   for (let pkg of config.packages) {
     if (!checkFolder(pkg)) {
-      return;
+      process.exit(1);
     }
-
     publishPackage(pkg);
   }
 
@@ -221,10 +262,13 @@ async function installPackages(config) {
   for (let pkg of config.packages) {
     console.log(
       chalk.gray(
-        `Installing ${pkg.name} from "${publishedPackages[pkg.name]}" ...`
+        `Installing ${pkg.name} from "${publishedPackages[pkg.name].targetTgzFilePath}" ...`
       )
     );
-    shell.exec(`npm install ${publishedPackages[pkg.name]} --no-save`);
+    if (shell.exec(`npm install ${publishedPackages[pkg.name].targetTgzFilePath}`).code !== 0) {
+      console.log(`shell fail: npm install ${publishedPackages[pkg.name].targetTgzFilePath}`);
+      process.exit(1);
+    }
     console.log(chalk.gray(`Install ${pkg.name} done.`));
   }
 
@@ -783,8 +827,8 @@ async function main() {
         fs.readFileSync(__dirname + '/tmp/result.json', 'utf-8')
       );
     } catch (e) {
-      console.error(e);
-      throw 'Must run full e2e test without --skip and --tests at least once.';
+      console.log(`Can not find ${__dirname}/tmp/result.json. Make a new one.`);
+      result = {};
     }
   }
 
@@ -882,7 +926,7 @@ async function main() {
 main()
   .catch((e) => {
     console.error(e);
-    process.exit();
+    process.exit(1);
   })
   .then(() => {
     process.exit();
@@ -891,5 +935,5 @@ main()
 process.on('SIGINT', function () {
   console.log('Closing');
   // Close through ctrl + c;
-  process.exit();
+  process.exit(1);
 });

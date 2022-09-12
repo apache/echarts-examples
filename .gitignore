@@ -16,6 +16,8 @@ public/vendors/echarts/map/raw
 /public/data-gl/option
 /public/examples/js
 /e2e/package-lock.json
+/e2e/package.json
+/e2e/node_modules
 
 tmp
 .webm
