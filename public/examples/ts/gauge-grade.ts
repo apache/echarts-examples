@@ -12,6 +12,8 @@ option = {
       type: 'gauge',
       startAngle: 180,
       endAngle: 0,
+      center: ['50%', '75%'],
+      radius: '90%',
       min: 0,
       max: 1,
       splitNumber: 8,
@@ -68,12 +70,12 @@ option = {
         }
       },
       title: {
-        offsetCenter: [0, '-20%'],
-        fontSize: 30
+        offsetCenter: [0, '-10%'],
+        fontSize: 20
       },
       detail: {
-        fontSize: 50,
-        offsetCenter: [0, '0%'],
+        fontSize: 30,
+        offsetCenter: [0, '-35%'],
         valueAnimation: true,
         formatter: function (value: number) {
           return Math.round(value * 100);
