@@ -53,15 +53,16 @@ option = {
         color: '#464646',
         fontSize: 20,
         distance: -60,
-        formatter: function (value) {
+        rotate: 'tangential',
+        formatter: function (value: number) {
           if (value === 0.875) {
-            return 'A';
+            return 'Grade A';
           } else if (value === 0.625) {
-            return 'B';
+            return 'Grade B';
           } else if (value === 0.375) {
-            return 'C';
+            return 'Grade C';
           } else if (value === 0.125) {
-            return 'D';
+            return 'Grade D';
           }
           return '';
         }
@@ -74,8 +75,8 @@ option = {
         fontSize: 50,
         offsetCenter: [0, '0%'],
         valueAnimation: true,
-        formatter: function (value) {
-          return Math.round(value * 100) + '分';
+        formatter: function (value: number) {
+          return Math.round(value * 100);
         },
         color: 'auto'
       },
