@@ -76,8 +76,10 @@
                 </a>
                 <a
                   class="btn btn-sm format"
-                  @click="format"
                   :title="$t('editor.format')"
+                  :disabled="!formatterReady"
+                  :style="{ cursor: formatterReady ? '' : 'progress' }"
+                  @click="format"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -122,12 +124,9 @@
                 v-if="shared.typeCheck"
                 id="code-panel"
                 :initialCode="initialCode"
-              ></CodeMonaco>
-              <CodeAce
-                v-else
-                id="code-panel"
-                :initialCode="initialCode"
-              ></CodeAce>
+                @ready="prepareFormatter"
+              />
+              <CodeAce v-else id="code-panel" :initialCode="initialCode" />
             </el-main>
           </el-container>
         </el-tab-pane>
@@ -233,7 +232,9 @@ export default {
         minimal: false,
         esm: true,
         node: false // If is in node
-      }
+      },
+
+      formatterReady: false
     };
   },
 
@@ -281,7 +282,7 @@ export default {
       });
 
       // ensure prettier
-      formatCode(' ');
+      store.typeCheck || this.prepareFormatter();
     }
   },
 
@@ -416,6 +417,10 @@ export default {
       }
     },
     format() {
+      if (!this.formatterReady) {
+        console.warn('formatter is not ready yet!');
+        return;
+      }
       formatCode(store.sourceCode).then((code) => {
         if (
           code === this.initialCode &&
@@ -428,6 +433,11 @@ export default {
         this.$nextTick(() => {
           this.initialCode = code;
         });
+      });
+    },
+    prepareFormatter() {
+      return formatCode(' ').then(() => {
+        this.formatterReady = true;
       });
     },
     onPreviewReady() {

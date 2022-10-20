@@ -155,6 +155,7 @@ export default {
       });
 
       this.loading = false;
+      this.$emit('ready');
     });
   },
 
