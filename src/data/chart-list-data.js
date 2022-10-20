@@ -910,7 +910,7 @@ export default [
     "id": "gauge-progress",
     "ts": true,
     "tags": [],
-    "title": "Grogress Gauge",
+    "title": "Progress Gauge",
     "titleCN": "进度仪表盘",
     "difficulty": 3
   },
