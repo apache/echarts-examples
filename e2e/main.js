@@ -218,13 +218,13 @@ async function installPackages(config) {
           console.error(`shell fail: npm install ${publishedPackages[depPkgName].targetTgzFilePath}`);
           process.exit(1);
         }
-        // After the npm install above, the package.json will be modifiedt to like:
+        // After the npm install above, the package.json will be modified to like:
         // "dependencies": ["zredner": "file:../echarts-examples/e2e/tmp/packages/zrender-5.3.2.tgz"]
         // which is a relative path and not correct if the tgz is copied to another place in
         // the latter process.
         // If we use --no-save, the latter npm install by tgz may not use the version of zrender that
         // config.js specified.
-        // So we modifiy the version mandatorily to the version that config.js specified.
+        // So we modify the version mandatorily to the version that config.js specified.
         // In the latter npm install by tgz, the zrender will be installed firstly. And when echarts
         // is installing, it found the right version of zrender has been installed, and do not install
         // zrender separately.

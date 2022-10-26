@@ -519,7 +519,7 @@ export default {
         );
         this.allEChartsVersions = versions;
 
-        // Use lastest version
+        // Use latest version
         if (
           !store.echartsVersion ||
           store.echartsVersion === '5' ||
