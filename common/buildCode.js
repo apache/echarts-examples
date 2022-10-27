@@ -409,7 +409,7 @@ module.exports.buildExampleCode = function (
   }
 
   if (minimal && !esm) {
-    // Only legacy mode can be used when use require in mimimal bundle.
+    // Only legacy mode can be used when use require in minimal bundle.
     legacy = true;
   }
 
