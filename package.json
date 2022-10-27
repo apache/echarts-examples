@@ -1,6 +1,7 @@
 {
   "name": "echarts-examples",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "npx webpack --config build/webpack.config.js --mode production",
