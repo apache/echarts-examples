@@ -12,10 +12,11 @@ export function download(sourceHeader) {
     ? '<script type="text/javascript" src="https://fastly.jsdelivr.net/npm/jquery"></script>'
     : '';
 
-  const echartsDir = SCRIPT_URLS.echartsDir.replace(
-    '{{version}}',
-    store.echartsVersion
-  );
+  const echartsDir = SCRIPT_URLS[
+    store.echartsVersion.indexOf('dev') > -1
+      ? 'echartsNightlyDir'
+      : 'echartsDir'
+  ].replace('{{version}}', store.echartsVersion);
   const echarts4Dir = SCRIPT_URLS.echartsDir.replace('{{version}}', '4.9.0');
   const code = `<!--
 ${sourceHeader}
