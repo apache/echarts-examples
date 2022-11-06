@@ -282,8 +282,11 @@ export default {
       });
 
       window.addEventListener('beforeunload', (e) => {
-        // no repeated prompt if already confirmed
-        if (window.__EDITOR_NO_LEAVE_CONFIRMATION__) {
+        // no repeated prompt if already confirmed or the code is not changed
+        if (
+          window.__EDITOR_NO_LEAVE_CONFIRMATION__ ||
+          store.sourceCode === this.initialCode
+        ) {
           return;
         }
         // prevent the code from being lost accidentally due to refreshing or closing the page
