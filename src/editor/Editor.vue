@@ -281,6 +281,16 @@ export default {
         }
       });
 
+      window.addEventListener('beforeunload', (e) => {
+        // no repeated prompt if already confirmed
+        if (window.__EDITOR_NO_LEAVE_CONFIRMATION__) {
+          return;
+        }
+        // prevent the code from being lost accidentally due to refreshing or closing the page
+        e.preventDefault();
+        e.returnValue = '';
+      });
+
       // ensure prettier
       store.typeCheck || this.prepareFormatter();
     }
@@ -411,7 +421,11 @@ export default {
             cancelButtonText: this.$t('editor.cancelButtonText'),
             type: 'warning'
           })
-            .then(() => gotoURL({ lang }))
+            .then(() => {
+              // already confirmed
+              window.__EDITOR_NO_LEAVE_CONFIRMATION__ = true;
+              gotoURL({ lang });
+            })
             .catch(() => {});
         }
       }

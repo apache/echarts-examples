@@ -477,12 +477,14 @@ export default {
     },
     changeVersion() {
       saveExampleCodeToLocal();
-      setTimeout(() =>
+      setTimeout(() => {
+        // no confirmation as we have saved the code to local storage
+        window.__EDITOR_NO_LEAVE_CONFIRMATION__ = true;
         gotoURL({
           version: store.echartsVersion,
           ...this.toolOptions
-        })
-      );
+        });
+      });
     },
     changeRandomSeed() {
       updateRandomSeed();
