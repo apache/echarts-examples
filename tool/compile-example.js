@@ -11,9 +11,12 @@ async function run() {
       .code !== 0;
   shell.exec(`prettier --write ${path.join(exampleDir, 'js')}`);
 
-  const files = await globby(path.join(exampleDir, `js/**/*.js`));
+  const files = await globby('js/**/*.js', {
+    cwd: exampleDir,
+    absolute: true
+  });
 
-  for (let file of files) {
+  for (const file of files) {
     const content =
       fs
         .readFileSync(file, 'utf-8')

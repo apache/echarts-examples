@@ -266,7 +266,10 @@ async function takeScreenshot(
   const screenshotBlackList = [];
 
   const examplesRoot = `${rootDir}public/examples`;
-  const files = await globby(`${examplesRoot}/js/${isGL ? 'gl/' : ''}*.js`);
+  const files = await globby(`js/${isGL ? 'gl/' : ''}*.js`, {
+    cwd: examplesRoot,
+    absolute: true
+  });
 
   const exampleList = [];
 
