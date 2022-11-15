@@ -5,6 +5,8 @@ titleCN: 日历饼图
 difficulty: 6
 */
 
+// This example requires ECharts v5.4.0 or later
+
 const cellSize = [80, 80];
 const pieRadius = 30;
 
@@ -26,7 +28,7 @@ const scatterData = getVirtualData();
 const pieSeries = scatterData.map(function (item, index) {
   return {
     type: 'pie',
-    id: index + 'pie',
+    id: 'pie-' + index,
     center: item[0],
     radius: pieRadius,
     coordinateSystem: 'calendar',

@@ -2535,6 +2535,18 @@ export default [
   },
   {
     "category": [
+      "map",
+      "pie"
+    ],
+    "id": "map-usa-pie",
+    "ts": true,
+    "tags": [],
+    "title": "Pie Charts on GEO Map",
+    "titleCN": "在地图上显示饼图",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "map"
     ],
     "id": "map-usa-projection",
