@@ -16,12 +16,12 @@ option = {
     },
     formatter: function (params: any) {
       let tar;
-      if (params[1].value !== '-') {
+      if (params[1] && params[1].value !== '-') {
         tar = params[1];
       } else {
         tar = params[2];
       }
-      return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+      return tar && tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
     }
   },
   legend: {
@@ -51,6 +51,7 @@ option = {
       name: 'Placeholder',
       type: 'bar',
       stack: 'Total',
+      silent: true,
       itemStyle: {
         borderColor: 'transparent',
         color: 'transparent'
