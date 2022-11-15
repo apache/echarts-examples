@@ -28,7 +28,7 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
   });
 
   function randomPieSeries(
-    center: number[],
+    center: string | number[],
     radius: number
   ): echarts.PieSeriesOption {
     const data = ['A', 'B', 'C', 'D'].map((t) => {
@@ -69,7 +69,15 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
     series: [
       randomPieSeries([-86.753504, 33.01077], 15),
       randomPieSeries([-116.853504, 39.8], 25),
-      randomPieSeries([-99, 31.5], 30)
+      randomPieSeries([-99, 31.5], 30),
+      randomPieSeries(
+        // it's also supported to use geo region name as center since v5.4.1
+        +echarts.version.split('.').slice(0, 3).join('') > 540
+          ? 'Maine'
+          : // or you can only use the LngLat array
+            [-69, 45.5],
+        12
+      )
     ]
   };
 
