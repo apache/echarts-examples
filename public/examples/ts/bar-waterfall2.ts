@@ -19,7 +19,7 @@ option = {
       if (params[1].value !== '-') {
         tar = params[1];
       } else {
-        tar = params[0];
+        tar = params[2];
       }
       return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
     }
