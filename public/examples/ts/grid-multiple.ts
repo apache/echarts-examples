@@ -144,7 +144,7 @@ option = {
   ],
   yAxis: [
     {
-      name: 'Evaporation(m^3/s)',
+      name: 'Evaporation(m³/s)',
       type: 'value',
       max: 500
     },
