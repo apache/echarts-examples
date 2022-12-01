@@ -123,7 +123,7 @@ allLevelData.forEach((data, index) => {
         x: 'x',
         y: 'y',
         itemGroupId: 'groupId',
-        childGroupId: 'childGroupId'
+        itemChildGroupId: 'childGroupId'
       },
       data,
       universalTransition: {
