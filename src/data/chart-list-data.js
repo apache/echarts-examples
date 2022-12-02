@@ -1490,7 +1490,7 @@ export default [
     "id": "bar-drilldown",
     "ts": true,
     "tags": [],
-    "title": "Bar Chart Drilldown Animation.",
+    "title": "Bar Chart Drilldown Animation",
     "titleCN": "柱状图下钻动画",
     "difficulty": 5
   },
@@ -1698,6 +1698,17 @@ export default [
     "title": "Wind Barb",
     "titleCN": "风向图",
     "difficulty": 5
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-multi-drilldown",
+    "ts": true,
+    "tags": [],
+    "title": "Bar Chart Multi-level Drilldown Animation",
+    "titleCN": "柱状图多层下钻动画",
+    "difficulty": 6
   },
   {
     "category": [
