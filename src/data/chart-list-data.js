@@ -1490,8 +1490,8 @@ export default [
     "id": "bar-drilldown",
     "ts": true,
     "tags": [],
-    "title": "Bar Chart Multi-level Drilldown Animation",
-    "titleCN": "柱状图多层下钻动画",
+    "title": "Bar Chart Drilldown Animation",
+    "titleCN": "柱状图下钻动画",
     "difficulty": 5
   },
   {
