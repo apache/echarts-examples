@@ -1703,6 +1703,17 @@ export default [
     "category": [
       "bar"
     ],
+    "id": "bar-multi-drilldown",
+    "ts": true,
+    "tags": [],
+    "title": "Bar Chart Multi-level Drilldown Animation",
+    "titleCN": "柱状图多层下钻动画",
+    "difficulty": 6
+  },
+  {
+    "category": [
+      "bar"
+    ],
     "id": "bar-race-country",
     "ts": true,
     "tags": [],
