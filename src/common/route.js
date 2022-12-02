@@ -1,24 +1,9 @@
-export function getURL(params) {
-  const searchUrlParts = [];
-  for (let key in params) {
-    if (params.hasOwnProperty(key)) {
-      let part = key;
-      if (params[key] != null) {
-        part += '=' + params[key];
-      }
-      searchUrlParts.push(part);
-    }
-  }
-  const searchUrl = searchUrlParts.join('&');
-
-  return (
-    location.protocol +
-    '//' +
-    location.hostname +
-    (location.port ? ':' + location.port : '') +
-    location.pathname +
-    (searchUrl ? '?' + searchUrl : '')
+export function getURL(params, raw) {
+  const url = new URL(location.href);
+  Object.entries(params).forEach(([k, v]) =>
+    v == null ? url.searchParams.delete(k) : url.searchParams.set(k, v)
   );
+  return raw ? url : url.toString();
 }
 
 export function gotoURL(params, pushHistory) {

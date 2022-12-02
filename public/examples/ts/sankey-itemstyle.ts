@@ -6,11 +6,11 @@ difficulty: 2
 */
 
 option = {
+  backgroundColor: '#fff',
   title: {
     subtext: 'Data From lisachristina1234 on GitHub',
     left: 'center'
   },
-  backgroundColor: '#FFFFFF',
   series: [
     {
       type: 'sankey',

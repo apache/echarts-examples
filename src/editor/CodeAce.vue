@@ -49,7 +49,6 @@ export default {
   mounted() {
     this.loading = true;
     ensureACE().then(() => {
-      this.loading = false;
       const editor = ace.edit(this.$el);
       editor.getSession().setMode('ace/mode/javascript');
       editor.setOptions({
@@ -68,6 +67,8 @@ export default {
       if (this.initialCode) {
         this.setInitialCode(this.initialCode);
       }
+
+      this.loading = false;
     });
   },
 

@@ -81,6 +81,12 @@ const CHARTS_GL_MAP = {
 
 const FEATURES = ['UniversalTransition', 'LabelLayout'];
 
+const EXTENSIONS_MAP = {
+  bmap: 'bmap/bmap'
+  // PENDING: There seem no examples that use dataTool
+  // dataTool: 'dataTool'
+};
+
 const COMPONENTS_MAP_REVERSE = {};
 const CHARTS_MAP_REVERSE = {};
 const CHARTS_GL_MAP_REVERSE = {};
@@ -159,6 +165,9 @@ module.exports.collectDeps = function collectDeps(option) {
     if (COMPONENTS_GL_MAP[key]) {
       deps.push(COMPONENTS_GL_MAP[key]);
     }
+    if (EXTENSIONS_MAP[key]) {
+      deps.push(key);
+    }
   });
 
   let series = option.series;
@@ -176,6 +185,9 @@ module.exports.collectDeps = function collectDeps(option) {
     if (seriesOpt.type === 'map') {
       // Needs geo component when using map
       deps.push(COMPONENTS_MAP.geo);
+    }
+    if (seriesOpt.coordinateSystem === 'bmap') {
+      deps.push('bmap');
     }
     MARKERS.forEach((markerType) => {
       if (seriesOpt[markerType]) {
@@ -210,6 +222,7 @@ function buildMinimalBundleCode(deps, includeType) {
   const componentsGLImports = [];
   const featuresImports = [];
   const renderersImports = [];
+  const extensionImports = [];
   deps.forEach(function (dep) {
     if (dep.endsWith('Renderer')) {
       renderersImports.push(dep);
@@ -233,6 +246,8 @@ function buildMinimalBundleCode(deps, includeType) {
       componentsGLImports.push(dep);
     } else if (FEATURES.includes(dep)) {
       featuresImports.push(dep);
+    } else if (EXTENSIONS_MAP[dep]) {
+      extensionImports.push(dep);
     }
   });
 
@@ -272,12 +287,15 @@ type EChartsOption = echarts.ComposeOption<
 import {${getImportsPartCode(item[0])}
 } from '${item[1]}';
     `.trim()
-    )
-    .join('\n');
+    );
+
+  getExtensionDeps(extensionImports, includeType).forEach((ext) => {
+    importsCodes.push(`import '${ext}';`);
+  });
 
   return (
     `import * as echarts from 'echarts/core';
-${importsCodes}
+${importsCodes.join('\n')}
 
 echarts.use(
     [${allImports.filter((a) => !a.endsWith('Option')).join(', ')}]
@@ -305,6 +323,8 @@ function buildLegacyMinimalBundleCode(deps, isESM) {
       modules.push(
         `echarts-gl/lib/component/${COMPONENTS_GL_MAP_REVERSE[dep]}`
       );
+    } else if (EXTENSIONS_MAP[dep]) {
+      modules.push(getExtensionDeps([dep], false)[0]);
     }
   });
 
@@ -331,6 +351,24 @@ function hasGLInDeps(deps) {
   );
 }
 
+function getExtensionDeps(deps, ts) {
+  return deps
+    .filter((dep) => EXTENSIONS_MAP[dep])
+    .map(
+      (dep) => `echarts/extension${ts ? '-src' : ''}/${EXTENSIONS_MAP[dep]}`
+    );
+}
+
+function getBMapTip(isZHLang) {
+  return `// ${
+    isZHLang
+      ? '请确保在引入百度地图扩展之前已经引入百度地图 JS API 脚本并成功加载'
+      : 'Please ensure BaiduMap script has been loaded before importing bmap extension'
+  }\n// https://api.map.baidu.com/api?v=3.0&ak=${
+    isZHLang ? '你申请的AK' : 'YOUR_APP_KEY'
+  }\n`;
+}
+
 module.buildLegacyMinimalBundleCode = buildLegacyMinimalBundleCode;
 
 module.exports.buildExampleCode = function (
@@ -350,11 +388,15 @@ module.exports.buildExampleCode = function (
     ts,
     // Theme
     theme,
+    renderer,
+    useDirtyRect,
     ROOT_PATH,
     // Other imports code code string
     // For example
     // `import 'echarts-liquidfill'`
-    extraImports
+    extraImports,
+    // language
+    isZHLang
   }
 ) {
   // if (minimal && !legacy) {
@@ -367,7 +409,7 @@ module.exports.buildExampleCode = function (
   }
 
   if (minimal && !esm) {
-    // Only legacy mode can be used when use require in mimimal bundle.
+    // Only legacy mode can be used when use require in minimal bundle.
     legacy = true;
   }
 
@@ -384,14 +426,27 @@ ${
     : ''
 }
 `;
+
   const IMPORT_CODE = [
     !minimal
       ? esm
         ? `import * as echarts from 'echarts';${
             hasGLInDeps(deps) ? `\nimport 'echarts-gl';` : ''
+          }${
+            getExtensionDeps(deps, ts).length
+              ? `\n${getExtensionDeps(deps, ts)
+                  .map((dep) => `import '${dep}';`)
+                  .join('\n')}`
+              : ''
           }`
         : `var echarts = require('echarts');${
             hasGLInDeps(deps) ? `\nrequire('echarts-gl');` : ''
+          }${
+            getExtensionDeps(deps, ts).length
+              ? `\n${getExtensionDeps(deps, ts)
+                  .map((dep) => `require('${dep}');`)
+                  .join('\n')}`
+              : ''
           }`
       : legacy
       ? buildLegacyMinimalBundleCode(deps, esm)
@@ -414,14 +469,41 @@ ${
     .filter((a) => !!a)
     .join('\n');
 
-  const PREPARE_CODE = [IMPORT_CODE.trim(), DEP_CODE.trim(), ENV_CODE.trim()]
+  const bmapExtDep = getExtensionDeps(['bmap'], ts)[0];
+  const PREPARE_CODE = [
+    IMPORT_CODE.trim().replace(
+      new RegExp(`((?:import|require)\\s*\\(?'${bmapExtDep}'\\)?;)`),
+      getBMapTip(isZHLang) + '$1'
+    ),
+    DEP_CODE.trim(),
+    ENV_CODE.trim()
+  ]
     .filter((a) => !!a)
     .join('\n\n');
+
+  const hasTheme = !!theme;
+  const hasRenderer = renderer !== 'canvas';
+  const hasUseDirtyRect = useDirtyRect && !hasRenderer;
+  const hasOption = hasRenderer || hasUseDirtyRect;
 
   return `${PREPARE_CODE}
 
 var chartDom = document.getElementById('main')${ts ? '!' : ''};
-var myChart = echarts.init(chartDom${theme ? `, '${theme}'` : ''});
+var myChart = echarts.init(chartDom${
+    hasTheme ? `, '${theme}'` : hasOption ? ', null' : ''
+  }${
+    hasOption
+      ? `, {
+${[
+  hasRenderer && `renderer: '${renderer}'`,
+  hasUseDirtyRect && 'useDirtyRect: true'
+]
+  .filter(Boolean)
+  .map((t) => '  ' + t)
+  .join(',\n')}
+}`
+      : ''
+  });
 var option${ts ? ': EChartsOption' : ''};
 
 ${jsCode.trim()}

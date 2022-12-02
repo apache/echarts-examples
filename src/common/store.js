@@ -2,7 +2,14 @@
 import { URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
+import {
+  compressStr,
+  decompressStr,
+  decodeBase64,
+  isTrustedOpener
+} from './helper';
 import { customAlphabet } from 'nanoid';
+
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 
 export const store = {
@@ -14,7 +21,12 @@ export const store = {
 
   darkMode: URL_PARAMS.theme === 'dark',
   enableDecal: 'decal' in URL_PARAMS,
-  renderer: URL_PARAMS.renderer || 'canvas',
+  renderer: (() => {
+    const renderer = URL_PARAMS.renderer && URL_PARAMS.renderer.toLowerCase();
+    return renderer && ['canvas', 'svg'].includes(renderer)
+      ? renderer
+      : 'canvas';
+  })(),
 
   typeCheck:
     getExampleConfig() &&
@@ -22,8 +34,12 @@ export const store = {
     (URL_PARAMS.lang || '').toLowerCase() === 'ts',
   useDirtyRect: 'useDirtyRect' in URL_PARAMS,
 
+  // for share
+  initialCode: '',
   runCode: '',
   sourceCode: '',
+
+  isSharedCode: false,
 
   runHash: '',
 
@@ -54,43 +70,84 @@ export function isGLExample() {
   return CHART_LIST_GL.find(findExample);
 }
 
+const LOCAL_EXAMPLE_CODE_STORE_KEY = 'echarts-examples-code';
+
+// for sharing URL
+export const CODE_CHANGED_FLAG = '__CODE_CHANGED__';
+
 export function saveExampleCodeToLocal() {
   localStorage.setItem(
-    'echarts-examples-code',
-    JSON.stringify({
-      code: store.sourceCode,
-      lang: store.typeCheck ? 'ts' : 'js'
-    })
+    LOCAL_EXAMPLE_CODE_STORE_KEY,
+    compressStr(
+      JSON.stringify({
+        code: store.sourceCode,
+        codeModified: store.initialCode !== store.sourceCode,
+        lang: store.typeCheck ? 'ts' : 'js'
+      })
+    )
   );
 }
 
 export function loadExampleCodeFromLocal() {
   try {
-    return JSON.parse(localStorage.getItem('echarts-examples-code'));
+    return JSON.parse(
+      decompressStr(localStorage.getItem(LOCAL_EXAMPLE_CODE_STORE_KEY))
+    );
   } catch (e) {
     return null;
   }
 }
 
 export function clearLocalExampleCode() {
-  localStorage.removeItem('echarts-examples-code');
+  localStorage.removeItem(LOCAL_EXAMPLE_CODE_STORE_KEY);
 }
 
 export function loadExampleCode() {
   const localCode = loadExampleCodeFromLocal();
   if (localCode) {
     clearLocalExampleCode();
+    // for sharing URL
+    if (localCode.codeModified) {
+      store.initialCode = CODE_CHANGED_FLAG;
+    }
     return Promise.resolve(localCode.code);
   }
-  return new Promise((resolve) => {
-    const glFolder = URL_PARAMS.gl ? 'gl/' : '';
+  return new Promise((resolve, reject) => {
+    // ignore c if code is provided
+    let code = URL_PARAMS.code;
+    if (code) {
+      try {
+        // PENDING fallback to `c` if the decompressed code is not available?
+        // TODO: auto-detect the encoder type?
+        code =
+          URL_PARAMS.enc === 'base64'
+            ? decodeBase64(code)
+            : decompressStr(code);
+        // not considered as shared code if it's opened by echarts website like echarts-doc
+        store.isSharedCode = !isTrustedOpener() && !!code;
+        // clear the opener
+        window.opener = null;
+        return code
+          ? resolve(code)
+          : reject('code was decompressed but got nothing');
+      } catch (e) {
+        console.error(e);
+        return reject('failed to decompress code');
+      }
+    }
+    const glFolder = 'gl' in URL_PARAMS ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';
+    // fallback to line-simple if no c is provided
+    const c = URL_PARAMS.c || 'line-simple';
     $.ajax(
-      `${store.cdnRoot}/examples/${lang}/${glFolder}${URL_PARAMS.c}.${lang}?_v_${store.version}`,
+      `${store.cdnRoot}/examples/${lang}/${glFolder}${c}.${lang}?_v_${store.version}`,
       {
         dataType: 'text',
-        success: (data) => {
+        success(data) {
           resolve(data);
+        },
+        error() {
+          reject('failed to load example', c);
         }
       }
     );

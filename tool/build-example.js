@@ -44,7 +44,7 @@ parser.addArgument(['-t', '--theme'], {
   help: 'Theme list, default to be all'
 });
 parser.addArgument(['-p', '--pattern'], {
-  help: 'Glob match patterns for generating thumb. https://github.com/isaacs/minimatch Mutiple match pattens can be splitted with ,'
+  help: 'Glob match patterns for generating thumb. https://github.com/isaacs/minimatch Multiple match pattens can be split with ,'
 });
 parser.addArgument(['--no-thumb'], {
   help: 'If not generate thumbs',
@@ -266,7 +266,10 @@ async function takeScreenshot(
   const screenshotBlackList = [];
 
   const examplesRoot = `${rootDir}public/examples`;
-  const files = await globby(`${examplesRoot}/js/${isGL ? 'gl/' : ''}*.js`);
+  const files = await globby(`js/${isGL ? 'gl/' : ''}*.js`, {
+    cwd: examplesRoot,
+    absolute: true
+  });
 
   const exampleList = [];
 
@@ -312,7 +315,7 @@ async function takeScreenshot(
           .map((a) => a.trim())
           .filter((a) => !!a);
         if (!exampleList.find((item) => item.id === basename)) {
-          // Avoid add mulitple times when has multiple themes.
+          // Avoid add multiple times when has multiple themes.
           exampleList.push({
             category: category,
             id: basename,

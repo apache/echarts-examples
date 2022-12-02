@@ -1,0 +1,12 @@
+{
+  "description": "DO NOT remove this file, otherwise when e2e/main.js execute npm install, packages will be installed in echarst-examples/node_modules and will be removed because --no-save is used.",
+  "name": "echarts-examples-e2e",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "zrender": "file:tmp/packages/zrender-5.3.2.tgz"
+  }
+}

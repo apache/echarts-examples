@@ -1,6 +1,6 @@
-var DebugRect = (function () {
+const DebugRect = (function () {
   function DebugRect(style) {
-    var dom = (this.dom = document.createElement('div'));
+    const dom = (this.dom = document.createElement('div'));
     dom.className = 'ec-debug-dirty-rect';
     style = Object.assign({}, style);
     Object.assign(style, {
@@ -8,15 +8,15 @@ var DebugRect = (function () {
       border: '1px solid #00f'
     });
     dom.style.cssText =
-      '\nposition: absolute;\nopacity: 0;\ntransition: opacity 0.5s linear;\npointer-events: none;\n';
-    for (var key in style) {
+      'position:absolute;opacity:0;transition:opacity 0.5s linear;pointer-events:none;';
+    for (const key in style) {
       if (style.hasOwnProperty(key)) {
         dom.style[key] = style[key];
       }
     }
   }
   DebugRect.prototype.update = function (rect) {
-    var domStyle = this.dom.style;
+    const domStyle = this.dom.style;
     domStyle.width = rect.width + 'px';
     domStyle.height = rect.height + 'px';
     domStyle.left = rect.x + 'px';
@@ -26,7 +26,7 @@ var DebugRect = (function () {
     this.dom.style.opacity = '0';
   };
   DebugRect.prototype.show = function () {
-    var _this = this;
+    const _this = this;
     clearTimeout(this._hideTimeout);
     this.dom.style.opacity = '1';
     this._hideTimeout = setTimeout(function () {
@@ -35,9 +35,10 @@ var DebugRect = (function () {
   };
   return DebugRect;
 })();
-export default function (zr, opts) {
+
+function showDebugDirtyRect(zr, opts) {
   opts = opts || {};
-  var painter = zr.painter;
+  const painter = zr.painter;
   if (!painter.getLayers) {
     throw new Error('Debug dirty rect can only been used on canvas renderer.');
   }
@@ -46,12 +47,12 @@ export default function (zr, opts) {
       'Debug dirty rect can only been used on zrender inited with container.'
     );
   }
-  var debugViewRoot = document.createElement('div');
-  debugViewRoot.style.cssText =
-    '\nposition:absolute;\nleft:0;\ntop:0;\nright:0;\nbottom:0;\npointer-events:none;\n';
+  const debugViewRoot = document.createElement('div');
   debugViewRoot.className = 'ec-debug-dirty-rect-container';
-  var debugRects = [];
-  var dom = zr.dom;
+  debugViewRoot.style.cssText =
+    'position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:9999999;';
+  const debugRects = [];
+  const dom = zr.dom;
   dom.appendChild(debugViewRoot);
   var computedStyle = getComputedStyle(dom);
   if (computedStyle.position === 'static') {
@@ -59,13 +60,13 @@ export default function (zr, opts) {
   }
   zr.on('rendered', function () {
     if (painter.getLayers) {
-      var idx_1 = 0;
+      let idx_1 = 0;
       painter.eachBuiltinLayer(function (layer) {
         if (!layer.debugGetPaintRects) {
           return;
         }
-        var paintRects = layer.debugGetPaintRects();
-        for (var i = 0; i < paintRects.length; i++) {
+        const paintRects = layer.debugGetPaintRects();
+        for (let i = 0; i < paintRects.length; i++) {
           if (!debugRects[idx_1]) {
             debugRects[idx_1] = new DebugRect(opts.style);
             debugViewRoot.appendChild(debugRects[idx_1].dom);
@@ -75,7 +76,7 @@ export default function (zr, opts) {
           idx_1++;
         }
       });
-      for (var i = idx_1; i < debugRects.length; i++) {
+      for (let i = idx_1; i < debugRects.length; i++) {
         debugRects[i].hide();
       }
     }

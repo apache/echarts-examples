@@ -1,6 +1,6 @@
 <template>
   <div id="example-explore">
-    <div id="left-container">
+    <div id="left-container" ref="leftContainer">
       <div id="left-chart-nav">
         <scrollactive
           active-class="active"
@@ -65,11 +65,10 @@
 <script>
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP, URL_PARAMS } from '../common/config';
+import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
-// import scrollIntoView from 'scroll-into-view';
 
 const icons = {};
 
@@ -100,7 +99,7 @@ const icons = {};
   'lines',
   'dataZoom',
   'rich',
-  'drag'
+  'graphic'
 ].forEach(function (category) {
   icons[category] = require('../asset/icon/' + category + '.svg');
 });
@@ -193,8 +192,7 @@ export default {
       const imgs = this.$el.querySelectorAll('img.chart-area');
       for (let i = 0; i < imgs.length; i++) {
         // Force lazyload to update
-        imgs[i].classList.remove(LAZY_LOADED_CLASS);
-        imgs[i].setAttribute('data-was-processed', 'false');
+        LazyLoad.resetStatus(imgs[i]);
       }
       this._lazyload.update();
     }
@@ -223,21 +221,41 @@ export default {
       // container: this.$el.querySelector('#explore-container .example-list-panel'),
       elements_selector: '.chart-area',
       load_delay: 400,
-      class_loaded: LAZY_LOADED_CLASS
+      class_loaded: LAZY_LOADED_CLASS,
+      callback_error(img) {
+        const fallbackSrc = img.src;
+        const children = img.parentElement.children;
+        for (let i = 0, len = children.length; i < len; i++) {
+          const el = children[i];
+          if (el !== img) {
+            el.srcset = fallbackSrc;
+          }
+        }
+      }
     });
   },
 
   methods: {
     onActiveNavChanged(event, currentItem, lastActiveItem) {
-      // currentItem && currentItem.scrollIntoView && currentItem.parentNode.scrollIntoView();
-      // scrollIntoView(currentItem, {
-      //     time: 100,
-      //     cancellable: false,
-      //     align: {
-      //         top: 0,
-      //         topOffset: 50
-      //     }
-      // });
+      if (!event || !currentItem) {
+        return;
+      }
+      // change url
+      history.replaceState(null, null, currentItem.href);
+
+      // scroll nav
+      const leftContainer = this.$refs.leftContainer;
+      const containerOffsetHeight = leftContainer.offsetHeight;
+      const rect = currentItem.parentElement.getBoundingClientRect();
+      if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
+        const scrollTop =
+          currentItem.offsetTop -
+          containerOffsetHeight +
+          currentItem.offsetHeight;
+        leftContainer.scrollTo
+          ? leftContainer.scrollTo(0, scrollTop)
+          : (leftContainer.scrollTop = scrollTop);
+      }
     }
   }
 };
@@ -336,6 +354,7 @@ $pd-lg: 20px;
   width: $chart-nav-width;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  // scroll-behavior: smooth;
 }
 
 #toolbar {

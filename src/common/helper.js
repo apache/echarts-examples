@@ -1,5 +1,6 @@
 import { store } from './store';
 import { SCRIPT_URLS } from './config';
+import { compressToBase64, decompressFromBase64 } from 'lz-string';
 
 const promisesCache = {};
 
@@ -62,12 +63,15 @@ export function downloadBlob(blob, fileName) {
 }
 
 function ensurePrettier() {
-  if (typeof prettier === 'undefined') {
+  if (
+    typeof prettier === 'undefined' ||
+    typeof prettierPlugins === 'undefined'
+  ) {
     return loadScriptsAsync([
       SCRIPT_URLS.prettierDir + '/standalone.js',
       SCRIPT_URLS.prettierDir +
         (store.typeCheck ? '/parser-typescript.js' : '/parser-babel.js')
-    ]).then(([_, parser]) => {});
+    ]);
   }
   return Promise.resolve();
 }
@@ -86,4 +90,39 @@ export function formatCode(code) {
       plugins: prettierPlugins
     });
   });
+}
+
+export function compressStr(str) {
+  if (!str || !(str = str.trim())) {
+    return;
+  }
+  return compressToBase64(str)
+    .replace(/\+/g, '-') // Convert '+' to '-'
+    .replace(/\//g, '_') // Convert '/' to '_'
+    .replace(/=+$/, ''); // Remove ending '='
+}
+
+export function decompressStr(str) {
+  if (!str || !(str = str.trim())) {
+    return;
+  }
+  return decompressFromBase64(
+    str
+      .replace(/\-/g, '+') // Convert '-' to '+'
+      .replace(/_/g, '/') // Convert '_' to '/'
+  );
+}
+
+export function isTrustedOpener() {
+  try {
+    return (
+      window.opener && window.opener.origin === 'https://echarts.apache.org'
+    );
+  } catch {
+    // CORS
+  }
+}
+
+export function decodeBase64(str) {
+  return decodeURIComponent(escape(window.atob(str)));
 }

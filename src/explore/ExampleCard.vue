@@ -1,20 +1,11 @@
 <template>
   <div class="example-list-item">
     <a target="_blank" class="example-link" :href="exampleLink">
-      <picture class="chart-area">
+      <picture>
         <source :data-srcset="screenshotURLWebP" type="image/webp" />
         <source :data-srcset="screenshotURLPNG" type="image/png" />
-        <img
-          class="chart-area"
-          src="../asset/placeholder.jpg"
-          :data-src="screenshotURLPNG"
-        />
+        <img class="chart-area" src="../asset/placeholder.jpg" />
       </picture>
-      <!-- <img
-        class="chart-area"
-        src="../asset/placeholder.jpg"
-        :data-src="screenshotURL"
-      /> -->
     </a>
     <div>
       <div class="example-langs">
@@ -28,7 +19,7 @@
         >
       </div>
       <div>
-        <div class="example-title">{{ title }}</div>
+        <div class="example-title" :title="title">{{ title }}</div>
         <div class="example-subtitle" v-if="showSubtitle">{{ subtitle }}</div>
       </div>
     </div>
@@ -68,18 +59,12 @@ export default {
       const example = this.example;
       const hash = ['c=' + example.id];
       const exampleTheme = this.exampleTheme;
-      if (example.isGL) {
-        hash.push('gl=1');
-      }
-      if (exampleTheme) {
-        hash.push('theme=' + exampleTheme);
-      }
-      if ('local' in URL_PARAMS) {
-        hash.push('local');
-      }
-      if ('useDirtyRect' in URL_PARAMS) {
-        hash.push('useDirtyRect');
-      }
+      example.isGL && hash.push('gl=1');
+      exampleTheme && hash.push('theme=' + exampleTheme);
+      'local' in URL_PARAMS && hash.push('local=1');
+      'debug' in URL_PARAMS && hash.push('debug=1');
+      'useDirtyRect' in URL_PARAMS && hash.push('useDirtyRect=1');
+      URL_PARAMS.renderer && hash.push('renderer=' + URL_PARAMS.renderer);
       return './editor.html?' + hash.join('&');
     },
 

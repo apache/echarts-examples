@@ -5,15 +5,14 @@ titleCN: 日历热力图
 difficulty: 1
 */
 
-function getVirtulData(year: string) {
-  year = year || '2017';
-  var date = +echarts.number.parseDate(year + '-01-01');
-  var end = +echarts.number.parseDate(+year + 1 + '-01-01');
-  var dayTime = 3600 * 24 * 1000;
-  var data: [string, number][] = [];
-  for (var time = date; time < end; time += dayTime) {
+function getVirtualData(year: string) {
+  const date = +echarts.time.parse(year + '-01-01');
+  const end = +echarts.time.parse(+year + 1 + '-01-01');
+  const dayTime = 3600 * 24 * 1000;
+  const data: [string, number][] = [];
+  for (let time = date; time < end; time += dayTime) {
     data.push([
-      echarts.format.formatTime('yyyy-MM-dd', time),
+      echarts.time.format(time, '{yyyy}-{MM}-{dd}', false),
       Math.floor(Math.random() * 10000)
     ]);
   }
@@ -49,7 +48,7 @@ option = {
   series: {
     type: 'heatmap',
     coordinateSystem: 'calendar',
-    data: getVirtulData('2016')
+    data: getVirtualData('2016')
   }
 };
 

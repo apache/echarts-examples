@@ -15,7 +15,7 @@ function loadScript(scriptUrl, cb) {
 }
 
 loadScript(
-  'https://cdn.jsdelivr.net/npm/echarts-graph-modularity@2.0.0/dist/echarts-graph-modularity.min.js',
+  'https://fastly.jsdelivr.net/npm/echarts-graph-modularity@2.0.0/dist/echarts-graph-modularity.min.js',
   function () {
     // Reinit chart again
     // TODO: visual encoding registerion must been done before echarts.init.

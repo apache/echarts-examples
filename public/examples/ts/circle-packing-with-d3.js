@@ -8,7 +8,7 @@ difficulty: 11
 $.when(
   $.get(ROOT_PATH + '/data/asset/data/option-view.json'),
   $.getScript(
-    'https://cdn.jsdelivr.net/npm/d3-hierarchy@2.0.0/dist/d3-hierarchy.min.js'
+    'https://fastly.jsdelivr.net/npm/d3-hierarchy@2.0.0/dist/d3-hierarchy.min.js'
   )
 ).done(function (res) {
   run(res[0]);

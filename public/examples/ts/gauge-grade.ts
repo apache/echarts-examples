@@ -12,6 +12,8 @@ option = {
       type: 'gauge',
       startAngle: 180,
       endAngle: 0,
+      center: ['50%', '75%'],
+      radius: '90%',
       min: 0,
       max: 1,
       splitNumber: 8,
@@ -53,29 +55,30 @@ option = {
         color: '#464646',
         fontSize: 20,
         distance: -60,
-        formatter: function (value) {
+        rotate: 'tangential',
+        formatter: function (value: number) {
           if (value === 0.875) {
-            return 'A';
+            return 'Grade A';
           } else if (value === 0.625) {
-            return 'B';
+            return 'Grade B';
           } else if (value === 0.375) {
-            return 'C';
+            return 'Grade C';
           } else if (value === 0.125) {
-            return 'D';
+            return 'Grade D';
           }
           return '';
         }
       },
       title: {
-        offsetCenter: [0, '-20%'],
-        fontSize: 30
+        offsetCenter: [0, '-10%'],
+        fontSize: 20
       },
       detail: {
-        fontSize: 50,
-        offsetCenter: [0, '0%'],
+        fontSize: 30,
+        offsetCenter: [0, '-35%'],
         valueAnimation: true,
-        formatter: function (value) {
-          return Math.round(value * 100) + '分';
+        formatter: function (value: number) {
+          return Math.round(value * 100) + '';
         },
         color: 'auto'
       },

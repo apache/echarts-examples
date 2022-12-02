@@ -6,15 +6,14 @@ shotWidth: 900
 difficulty: 1
 */
 
-function getVirtulData(year: string) {
-  year = year || '2017';
-  var date = +echarts.number.parseDate(year + '-01-01');
-  var end = +echarts.number.parseDate(+year + 1 + '-01-01');
-  var dayTime = 3600 * 24 * 1000;
-  var data = [];
-  for (var time = date; time < end; time += dayTime) {
+function getVirtualData(year: string) {
+  const date = +echarts.time.parse(year + '-01-01');
+  const end = +echarts.time.parse(+year + 1 + '-01-01');
+  const dayTime = 3600 * 24 * 1000;
+  const data: [string, number][] = [];
+  for (let time = date; time < end; time += dayTime) {
     data.push([
-      echarts.format.formatTime('yyyy-MM-dd', time),
+      echarts.time.format(time, '{yyyy}-{MM}-{dd}', false),
       Math.floor(Math.random() * 1000)
     ]);
   }
@@ -25,7 +24,7 @@ option = {
   tooltip: {
     position: 'top',
     formatter: function (p: any) {
-      var format = echarts.format.formatTime('yyyy-MM-dd', p.data[0]);
+      const format = echarts.time.format(p.data[0], '{yyyy}-{MM}-{dd}', false);
       return format + ': ' + p.data[1];
     }
   },
@@ -65,19 +64,19 @@ option = {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       calendarIndex: 0,
-      data: getVirtulData('2015')
+      data: getVirtualData('2015')
     },
     {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       calendarIndex: 1,
-      data: getVirtulData('2016')
+      data: getVirtualData('2016')
     },
     {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       calendarIndex: 2,
-      data: getVirtulData('2017')
+      data: getVirtualData('2017')
     }
   ]
 };

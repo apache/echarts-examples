@@ -65,7 +65,7 @@ option = {
   ],
   yAxis: [
     {
-      name: 'Flow(m^3/s)',
+      name: 'Flow(m³/s)',
       type: 'value'
     },
     {

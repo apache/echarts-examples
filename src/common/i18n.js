@@ -3,7 +3,11 @@ export default {
     editor: {
       run: 'Run',
       format: 'Format',
+      openWithCodeSandbox: 'Open with CodeSandbox',
+      openWithCodePen: 'Open with CodePen',
       errorInEditor: 'Errors exist in code!',
+      infiniteLoopInEditor: 'Potential infinite loops exist in code!',
+      potentialRedirectionInEditor: 'Potential redirection exists in code!',
       chartOK: 'Chart has been generated successfully, ',
 
       darkMode: 'Dark Mode',
@@ -18,6 +22,7 @@ export default {
 
       download: 'Download',
       screenshot: 'Screenshot',
+      downloadSourceTip: 'THIS EXAMPLE WAS DOWNLOADED FROM',
 
       edit: 'Edit',
 
@@ -28,16 +33,23 @@ export default {
 
       tooltip: {
         jsMode: 'JavaScript',
-        tsMode: 'TypeScript. Provides Better Intelligent',
+        tsMode: 'TypeScript - Provides Better Intelligent',
         noTs: 'No Available TypeScript Code',
 
         gotoDoc: 'Go To Documentation'
       },
 
       codeChangedConfirm:
-        "Modified code will be lost. Do you wan't to continue?",
+        'Modified code will be lost. Do you want to continue?',
       confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
+      cancelButtonText: 'No',
+
+      share: {
+        title: 'Share',
+        success: 'Sharable URL has been copied to your clipboard',
+        hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.',
+        tooltip: 'Create a sharable link for your code ✨'
+      }
     },
 
     chartTypes: {
@@ -86,7 +98,11 @@ export default {
     editor: {
       run: '运行',
       format: '格式化',
+      openWithCodeSandbox: '在 CodeSandbox 中编辑',
+      openWithCodePen: '在 CodePen 中编辑',
       errorInEditor: '编辑器内容有误！',
+      infiniteLoopInEditor: '编辑器内容可能存在无限循环！',
+      potentialRedirectionInEditor: '编辑器内容可能存在重定向代码！',
       chartOK: '图表已生成, ',
 
       darkMode: '深色模式',
@@ -100,6 +116,7 @@ export default {
       renderer: '渲染模式',
       download: '下载示例',
       screenshot: '截图',
+      downloadSourceTip: '此示例下载自',
 
       edit: '编辑',
       monacoMode: '开启类型检查',
@@ -120,7 +137,14 @@ export default {
       codeChangedConfirm: '已经修改过的代码将会丢失，是否确认继续？',
 
       confirmButtonText: '确认',
-      cancelButtonText: '取消'
+      cancelButtonText: '取消',
+
+      share: {
+        title: '分享',
+        success: '分享链接已复制到剪贴板',
+        hint: '请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。',
+        tooltip: '为当前代码创建一个可分享的链接 ✨'
+      }
     },
 
     chartTypes: {
@@ -149,7 +173,7 @@ export default {
 
       dataset: '数据集',
       dataZoom: '数据区域缩放',
-      graphic: '原生图形',
+      graphic: '图形组件',
       rich: '富文本',
 
       globe: '3D 地球',

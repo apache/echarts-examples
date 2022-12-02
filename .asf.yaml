@@ -1,0 +1,12 @@
+github:
+  description: Examples of Apache ECharts
+  homepage: https://echarts.apache.org/examples
+  labels:
+    - echarts
+    - apache
+    - examples
+
+notifications:
+  commits: commits@echarts.apache.org
+  pullrequests: commits@echarts.apache.org
+  issues: commits@echarts.apache.org

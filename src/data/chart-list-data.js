@@ -549,21 +549,10 @@ export default [
   },
   {
     "category": [
-      "graphic"
-    ],
-    "id": "graphic-stroke-animation",
-    "ts": true,
-    "tags": [],
-    "title": "Stroke Animation",
-    "titleCN": "描边动画",
-    "difficulty": 2
-  },
-  {
-    "category": [
       "heatmap"
     ],
     "id": "heatmap-large",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Heatmap - 20K data",
     "titleCN": "热力图 - 2w 数据",
@@ -574,7 +563,7 @@ export default [
       "heatmap"
     ],
     "id": "heatmap-large-piecewise",
-    "ts": false,
+    "ts": true,
     "tags": [],
     "title": "Heatmap - Discrete Mapping of Color",
     "titleCN": "热力图 - 颜色的离散映射",
@@ -921,7 +910,7 @@ export default [
     "id": "gauge-progress",
     "ts": true,
     "tags": [],
-    "title": "Grogress Gauge",
+    "title": "Progress Gauge",
     "titleCN": "进度仪表盘",
     "difficulty": 3
   },
@@ -1611,6 +1600,17 @@ export default [
   },
   {
     "category": [
+      "graphic"
+    ],
+    "id": "graphic-stroke-animation",
+    "ts": true,
+    "tags": [],
+    "title": "Stroke Animation",
+    "titleCN": "关键帧描边动画",
+    "difficulty": 5
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "line-function",
@@ -1788,6 +1788,17 @@ export default [
     "tags": [],
     "title": "Graph Dynamic",
     "titleCN": "动态增加图节点",
+    "difficulty": 6
+  },
+  {
+    "category": [
+      "graphic"
+    ],
+    "id": "graphic-loading",
+    "ts": true,
+    "tags": [],
+    "title": "Customized Loading Animation",
+    "titleCN": "加载动画",
     "difficulty": 6
   },
   {
@@ -2078,7 +2089,8 @@ export default [
   },
   {
     "category": [
-      "line"
+      "line",
+      "graphic"
     ],
     "id": "line-graphic",
     "ts": true,
@@ -2297,6 +2309,17 @@ export default [
   },
   {
     "category": [
+      "custom"
+    ],
+    "id": "geo-svg-custom-effect",
+    "ts": true,
+    "tags": [],
+    "title": "GEO SVG with Customized Effect",
+    "titleCN": "自定义特效",
+    "difficulty": 10
+  },
+  {
+    "category": [
       "map"
     ],
     "id": "geo-svg-lines",
@@ -2341,14 +2364,13 @@ export default [
   },
   {
     "category": [
-      "line",
       "graphic"
     ],
-    "id": "line-draggable",
-    "ts": true,
+    "id": "graphic-wave-animation",
+    "ts": false,
     "tags": [],
-    "title": "Draggable Points",
-    "titleCN": "可拖拽点",
+    "title": "Wave Animation",
+    "titleCN": null,
     "difficulty": 10
   },
   {
@@ -2480,55 +2502,11 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-china",
-    "ts": false,
-    "tags": [],
-    "title": "Map China",
-    "titleCN": "Map China",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-china-dataRange",
-    "ts": false,
-    "tags": [],
-    "title": "Sales of iphone",
-    "titleCN": "iphone销量",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-HK",
     "ts": true,
     "tags": [],
     "title": "Population Density of HongKong (2011)",
     "titleCN": "香港18区人口密度 （2011）",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-labels",
-    "ts": false,
-    "tags": [],
-    "title": "Rich Text Labels on Map",
-    "titleCN": "地图上的富文本标签",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-locate",
-    "ts": false,
-    "tags": [],
-    "title": "Map Locate",
-    "titleCN": "Map Locate",
     "difficulty": 10
   },
   {
@@ -2548,33 +2526,23 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-projection-globe",
-    "ts": true,
-    "tags": [],
-    "title": "Map with Orthographic Projection",
-    "titleCN": "正交投影地图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-province",
-    "ts": false,
-    "tags": [],
-    "title": "Switch among 34 Provinces",
-    "titleCN": "34 省切换查看",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-usa",
     "ts": true,
     "tags": [],
     "title": "USA Population Estimates (2012)",
     "titleCN": "2012 年美国人口统计",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map",
+      "pie"
+    ],
+    "id": "map-usa-pie",
+    "ts": true,
+    "tags": [],
+    "title": "Pie Charts on GEO Map",
+    "titleCN": "在地图上显示饼图",
     "difficulty": 10
   },
   {
@@ -2586,28 +2554,6 @@ export default [
     "tags": [],
     "title": "USA Choropleth Map with Projection",
     "titleCN": "自定义地图投影",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-world",
-    "ts": false,
-    "tags": [],
-    "title": "Map World",
-    "titleCN": "Map World",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "map-world-dataRange",
-    "ts": false,
-    "tags": [],
-    "title": "World Population (2010)",
-    "titleCN": "World Population (2010)",
     "difficulty": 10
   },
   {
@@ -2964,6 +2910,18 @@ export default [
     "title": "Custom Spiral Race",
     "titleCN": "自定义螺旋线竞速",
     "difficulty": 11
+  },
+  {
+    "category": [
+      "line",
+      "graphic"
+    ],
+    "id": "line-draggable",
+    "ts": true,
+    "tags": [],
+    "title": "Draggable Points",
+    "titleCN": "可拖拽点",
+    "difficulty": 12
   },
   {
     "category": [

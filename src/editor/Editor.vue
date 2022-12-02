@@ -37,7 +37,50 @@
                 </el-tooltip>
               </div>
               <div class="editor-controls">
-                <a class="btn btn-sm format" @click="format">
+                <a
+                  class="btn btn-sm codepen"
+                  @click="toExternalEditor('CodePen')"
+                  :title="$t('editor.openWithCodePen')"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="none"
+                  >
+                    <path
+                      d="M21.838 8.445c0-.001-.001-.001 0 0l-.003-.004l-.001-.001v-.001a.809.809 0 0 0-.235-.228l-9.164-6.08a.834.834 0 0 0-.898 0L2.371 8.214A.786.786 0 0 0 2 8.897v6.16a.789.789 0 0 0 .131.448v.001l.002.002l.01.015v.002h.001l.001.001l.001.001c.063.088.14.16.226.215l9.165 6.082a.787.787 0 0 0 .448.139a.784.784 0 0 0 .45-.139l9.165-6.082a.794.794 0 0 0 .371-.685v-6.16a.793.793 0 0 0-.133-.452zm-9.057-4.172l6.953 4.613l-3.183 2.112l-3.771-2.536V4.273zm-1.592 0v4.189l-3.771 2.536l-3.181-2.111l6.952-4.614zm-7.595 6.098l2.395 1.59l-2.395 1.611v-3.201zm7.595 9.311l-6.96-4.617l3.195-2.15l3.765 2.498v4.269zm.795-5.653l-3.128-2.078l3.128-2.105l3.131 2.105l-3.131 2.078zm.797 5.653v-4.27l3.766-2.498l3.193 2.15l-6.959 4.618zm7.597-6.11l-2.396-1.611l2.396-1.59v3.201z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </a>
+                <a
+                  class="btn btn-sm codesandbox"
+                  @click="toExternalEditor('CodeSandbox')"
+                  :title="$t('editor.openWithCodeSandbox')"
+                >
+                  <svg
+                    viewBox="0 0 512 512"
+                    fill="none"
+                    stroke="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M69 153.99L256 263.99M256 263.99L443 153.99M256 263.99V463.99M448 341.37V170.61C447.993 165.021 446.523 159.531 443.735 154.687C440.947 149.843 436.939 145.814 432.11 143L280.11 54.54C272.787 50.2765 264.464 48.0303 255.99 48.0303C247.516 48.0303 239.193 50.2765 231.87 54.54L79.89 143C75.0609 145.814 71.053 149.843 68.2652 154.687C65.4773 159.531 64.0068 165.021 64 170.61V341.37C64.0033 346.962 65.4722 352.456 68.2602 357.304C71.0482 362.152 75.058 366.185 79.89 369L231.89 457.46C239.215 461.718 247.537 463.96 256.01 463.96C264.483 463.96 272.805 461.718 280.13 457.46L432.13 369C436.958 366.182 440.964 362.148 443.748 357.301C446.533 352.453 447.999 346.96 448 341.37Z"
+                      stroke="currentColor"
+                      stroke-width="38"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+                <a
+                  class="btn btn-sm format"
+                  :title="$t('editor.format')"
+                  :disabled="!formatterReady"
+                  :style="{ cursor: formatterReady ? '' : 'progress' }"
+                  @click="format"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -51,7 +94,6 @@
                       d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                     />
                   </svg>
-                  <span>{{ $t('editor.format') }}</span>
                 </a>
                 <a class="btn btn-default btn-sm run" @click="disposeAndRun">
                   <svg
@@ -82,12 +124,9 @@
                 v-if="shared.typeCheck"
                 id="code-panel"
                 :initialCode="initialCode"
-              ></CodeMonaco>
-              <CodeAce
-                v-else
-                id="code-panel"
-                :initialCode="initialCode"
-              ></CodeAce>
+                @ready="prepareFormatter"
+              />
+              <CodeAce v-else id="code-panel" :initialCode="initialCode" />
             </el-main>
           </el-container>
         </el-tab-pane>
@@ -123,7 +162,7 @@
         </el-tab-pane>
 
         <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option">
-          <div id="option-outline"></div>
+          <div id="option-outline" ref="optionOutline"></div>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -136,6 +175,7 @@
     ></div>
     <Preview
       :inEditor="true"
+      @ready="onPreviewReady"
       class="right-container"
       ref="preview"
       :style="{
@@ -155,7 +195,8 @@ import {
   store,
   loadExampleCode,
   parseSourceCode,
-  getExampleConfig
+  getExampleConfig,
+  CODE_CHANGED_FLAG
 } from '../common/store';
 import { collectDeps, buildExampleCode } from '../../common/buildCode';
 import { gotoURL } from '../common/route';
@@ -164,6 +205,8 @@ import { mount } from '@lang/object-visualizer';
 import './object-visualizer.css';
 import { URL_PARAMS } from '../common/config';
 import { formatCode } from '../common/helper';
+import openWithCodePen from './sandbox/openwith/codepen';
+import openWithCodeSandbox from './sandbox/openwith/codesandbox';
 
 export default {
   components: {
@@ -175,9 +218,7 @@ export default {
 
   data() {
     return {
-      mousedown: false,
       leftContainerSize: 40,
-      mobileMode: false,
       shared: store,
       initialCode: '',
 
@@ -188,31 +229,18 @@ export default {
       exampleConfig: getExampleConfig(),
 
       fullCodeConfig: {
-        mimimal: false,
+        minimal: false,
         esm: true,
         node: false // If is in node
-      }
+      },
+
+      formatterReady: false
     };
   },
 
   computed: {
     hasTs() {
       return this.exampleConfig && this.exampleConfig.ts;
-    },
-    currentTime() {
-      // Update time when message updated.
-      const message = this.shared.message;
-
-      const time = new Date();
-      const digits = [time.getHours(), time.getMinutes(), time.getSeconds()];
-      let timeStr = '';
-      for (let i = 0, len = digits.length; i < len; ++i) {
-        timeStr += (digits[i] < 10 ? '0' : '') + digits[i];
-        if (i < len - 1) {
-          timeStr += ':';
-        }
-      }
-      return timeStr;
     }
   },
 
@@ -227,6 +255,9 @@ export default {
       loadExampleCode().then((code) => {
         // Only set the code in editor. editor will sync to the store.
         this.initialCode = parseSourceCode(code);
+        if (store.initialCode !== CODE_CHANGED_FLAG) {
+          store.initialCode = this.initialCode;
+        }
       });
 
       window.addEventListener('mousemove', (e) => {
@@ -237,13 +268,54 @@ export default {
         }
       });
 
-      window.addEventListener('mouseup', (e) => {
+      window.addEventListener('mouseup', () => {
         this.mousedown = false;
       });
+
+      // Save code as a sharable link when ctrl/cmd + s is pressed.
+      window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          const previewRef = this.$refs.preview;
+          previewRef && previewRef.share();
+          e.preventDefault();
+        }
+      });
+
+      window.addEventListener('beforeunload', (e) => {
+        // no repeated prompt if already confirmed or the code is not changed
+        if (
+          window.__EDITOR_NO_LEAVE_CONFIRMATION__ ||
+          store.sourceCode === this.initialCode
+        ) {
+          return;
+        }
+        // prevent the code from being lost accidentally due to refreshing or closing the page
+        e.preventDefault();
+        e.returnValue = '';
+      });
+
+      // ensure prettier
+      store.typeCheck || this.prepareFormatter();
     }
   },
 
   methods: {
+    toExternalEditor(vendor) {
+      const previewRef = this.$refs.preview;
+      if (!previewRef) {
+        return;
+      }
+      const assets = previewRef.getAssets();
+      const vendors = {
+        CodePen: openWithCodePen,
+        CodeSandbox: openWithCodeSandbox
+      };
+      vendors[vendor](
+        this.exampleConfig && this.exampleConfig.title,
+        assets.scripts,
+        assets.css
+      );
+    },
     onSplitterDragStart() {
       this.mousedown = true;
     },
@@ -263,7 +335,10 @@ export default {
         esm: this.fullCodeConfig.esm,
         // legacy: true,
         theme: store.darkMode ? 'dark' : '',
-        ROOT_PATH: store.cdnRoot
+        renderer: store.renderer,
+        useDirtyRect: store.useDirtyRect,
+        ROOT_PATH: store.cdnRoot,
+        isZHLang: this.$i18n.locale === 'zh'
       });
       // Format
       formatCode(this.fullCode).then((code) => {
@@ -277,8 +352,8 @@ export default {
       }
       const tipTitle = this.$t('editor.tooltip.gotoDoc');
       const lang = this.$i18n.locale;
-      mount(option, this.$el.querySelector('#option-outline'), {
-        getKeys(object, path) {
+      mount(option, this.$refs.optionOutline, {
+        getKeys(object) {
           return Object.keys(object).filter((key) => {
             if (Array.isArray(object[key]) && !object[key].length) {
               return false;
@@ -316,9 +391,11 @@ export default {
           }
 
           const isObjOrArray = typeof obj === 'object' && obj != null;
-          const link = `https://echarts.apache.org/${lang}/option.html#${hash.join(
-            '.'
-          )}`;
+          const link = hash.includes('bmap')
+            ? 'https://github.com/apache/echarts/blob/release/extension-src/bmap/README.md'
+            : `https://echarts.apache.org/${lang}/option.html#${hash.join(
+                '.'
+              )}`;
           return !isObjOrArray
             ? `<a href="${link}" target="_blank" title="${tipTitle}">${name}</a>`
             : `${name}<a href="${link}" target="_blank" title="${tipTitle}"><i class="el-icon-document"></i></a>`;
@@ -340,11 +417,7 @@ export default {
     changeLang(lang) {
       if ((URL_PARAMS.lang || 'js').toLowerCase() !== lang) {
         if (!this.initialCode || store.sourceCode === this.initialCode) {
-          gotoURL(
-            Object.assign({}, URL_PARAMS, {
-              lang
-            })
-          );
+          gotoURL({ lang });
         } else {
           this.$confirm(this.$t('editor.codeChangedConfirm'), '', {
             confirmButtonText: this.$t('editor.confirmButtonText'),
@@ -352,20 +425,40 @@ export default {
             type: 'warning'
           })
             .then(() => {
-              gotoURL(
-                Object.assign({}, URL_PARAMS, {
-                  lang
-                })
-              );
+              // already confirmed
+              window.__EDITOR_NO_LEAVE_CONFIRMATION__ = true;
+              gotoURL({ lang });
             })
             .catch(() => {});
         }
       }
     },
     format() {
+      if (!this.formatterReady) {
+        console.warn('formatter is not ready yet!');
+        return;
+      }
       formatCode(store.sourceCode).then((code) => {
-        this.initialCode = code;
+        if (
+          code === this.initialCode &&
+          store.sourceCode !== this.initialCode
+        ) {
+          // If formatted code is the same as initial code but source code is changed,
+          // should also trigger update
+          this.initialCode = store.sourceCode;
+        }
+        this.$nextTick(() => {
+          this.initialCode = code;
+        });
       });
+    },
+    prepareFormatter() {
+      return formatCode(' ').then(() => {
+        this.formatterReady = true;
+      });
+    },
+    onPreviewReady() {
+      this.updateTabContent(this.currentTab);
     }
   },
 
@@ -601,12 +694,16 @@ $handler-width: 5px;
 
     .btn {
       border-radius: 0;
-      margin-left: $pd-basic;
+      margin: 0;
       border: none;
       height: 30px;
 
       background: none;
       color: $clr-text;
+
+      &:hover {
+        color: #409eff;
+      }
 
       & > * {
         display: inline-block;
@@ -624,6 +721,12 @@ $handler-width: 5px;
       }
       &.run:hover {
         background-color: lighten($color: #409eff, $amount: 5);
+      }
+
+      &.codepen {
+        svg {
+          transform: scale(1.08);
+        }
       }
     }
   }
