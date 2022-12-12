@@ -315,7 +315,7 @@ export default {
         }
       }
     },
-    onHashChange() {
+    onHashChange(e) {
       const { lastActiveNavItem, navItems } = this._scrollactive;
       if (lastActiveNavItem) {
         lastActiveNavItem.classList.remove('active');
@@ -339,6 +339,11 @@ export default {
         leftContainer.scrollTo
           ? leftContainer.scrollTo(0, scrollTop)
           : (leftContainer.scrollTop = scrollTop);
+      }
+
+      if (e) {
+        const anchor = this._scrollactive.scrollContainer.querySelector(hash);
+        anchor && anchor.scrollIntoView();
       }
     }
   }
