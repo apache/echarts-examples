@@ -73,6 +73,7 @@
     "semver": "^7.3.7",
     "sucrase": "^3.24.0",
     "vanilla-lazyload": "^17.8.3",
-    "vue-i18n": "^8.18.2"
+    "vue-i18n": "^8.18.2",
+    "vue-scrollactive": "^0.9.3"
   }
 }
