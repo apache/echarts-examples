@@ -39,12 +39,23 @@ module.exports = [
           use: [MiniCssExtractPlugin.loader, 'css-loader', 'sassjs-loader']
         },
         {
-          test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
+          test: /\.(png|jpg|jpeg|gif|webp)(\?.+)?$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 5120,
+                esModule: false
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(eot|ttf|woff|woff2)(\?.+)?$/,
           use: [
             {
               loader: 'file-loader',
               options: {
-                limit: 10000,
                 outputPath: '../asset',
                 name: '[name].[ext]',
                 esModule: false
@@ -98,7 +109,7 @@ module.exports = [
     ]
   },
   {
-    // Sepearte built ts transformer to be loaded async
+    // Separate built ts transformer to be loaded async
     entry: path.resolve(__dirname, '../src/editor/transformTs.js'),
     stats: 'minimal',
     module: {

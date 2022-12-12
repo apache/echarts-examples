@@ -1,19 +1,20 @@
 <template>
-  <div id="example-explore">
+  <div
+    id="example-explore"
+    ref="scrollContainer"
+    @wheel.passive="onContentScroll"
+    @touchmove.passive="onContentScroll"
+    @scroll.passive="onScroll"
+    @pointerdown="onPointerUpDown"
+    @pointerup="onPointerUpDown"
+  >
     <div id="left-container" ref="leftContainer">
       <div id="left-chart-nav">
-        <scrollactive
-          active-class="active"
-          :offset="80"
-          :duration="500"
-          :scroll-container-selector="'#example-explore'"
-          bezier-easing-value=".5,0,.35,1"
-          @itemchanged="onActiveNavChanged"
-        >
+        <nav ref="nav">
           <ul>
             <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
               <a
-                class="left-chart-nav-link scrollactive-item"
+                class="left-chart-nav-link"
                 :id="'left-chart-nav-' + category"
                 :href="'#chart-type-' + category"
               >
@@ -24,7 +25,7 @@
               </a>
             </li>
           </ul>
-        </scrollactive>
+        </nav>
       </div>
     </div>
     <div id="explore-container">
@@ -216,6 +217,29 @@ export default {
   },
 
   mounted() {
+    const { nav, scrollContainer } = this.$refs;
+    const navItems = [].slice.call(
+      nav.querySelectorAll('.left-chart-nav-link')
+    );
+    this._scrollactive = {
+      nav,
+      navItems,
+      scrollContainer,
+      scrollAnchors: navItems.map((item) =>
+        scrollContainer.querySelector(item.hash)
+      )
+    };
+    this.$nextTick(() => {
+      const hash = (location.hash = location.hash || navItems[0].hash);
+      this.onHashChange();
+      // const initialAnchor = hash && scrollContainer.querySelector(hash);
+      // initialAnchor && setTimeout(() => initialAnchor.scrollIntoView(), 0);
+      location.hash = '';
+      location.hash = hash;
+    });
+    window.addEventListener('hashchange', this.onHashChange);
+    window.addEventListener('keydown', this.onKeyDown);
+
     this._lazyload = new LazyLoad({
       // Container should be the scroll viewport.
       // container: this.$el.querySelector('#explore-container .example-list-panel'),
@@ -236,22 +260,82 @@ export default {
   },
 
   methods: {
-    onActiveNavChanged(event, currentItem, lastActiveItem) {
-      if (!event || !currentItem) {
+    onPointerUpDown(e) {
+      const scrollactive = this._scrollactive;
+      const scrollContainer = scrollactive.scrollContainer;
+      scrollactive.maybeDraggingScrollbar =
+        e.type === 'pointerdown'
+          ? e.button === 0 &&
+            e.clientX >=
+              scrollContainer.clientLeft + scrollContainer.clientWidth - 18
+          : false;
+    },
+    // manually scroll
+    onKeyDown(e) {
+      const keyCode = e.keyCode;
+      if (
+        // page up, page down, end, home
+        (keyCode > 32 && keyCode < 37) ||
+        // arrow up, arrow down
+        keyCode === 38 ||
+        keyCode === 40
+      ) {
+        this.onContentScroll();
+      }
+    },
+    // FIXME can't detect if it's scrolled by dragging scrollbar
+    onScroll() {
+      this._scrollactive.maybeDraggingScrollbar && this.onContentScroll();
+    },
+    // wheel, touchmove, keydown (see above)
+    onContentScroll() {
+      const { navItems, scrollAnchors, scrollContainer } = this._scrollactive;
+      const scrollTop = scrollContainer.scrollTop;
+      if (
+        scrollTop <= 1 ||
+        scrollTop >=
+          scrollContainer.scrollHeight - scrollContainer.offsetHeight - 1
+      ) {
         return;
       }
-      // change url
-      history.replaceState(null, null, currentItem.href);
-
+      for (let i = 0, len = scrollAnchors.length; i < len; i++) {
+        const anchor = scrollAnchors[i];
+        const section = anchor.parentElement;
+        const targetOffsetTop = section.offsetTop - 80;
+        const hash = '#' + anchor.id;
+        if (
+          scrollTop >= targetOffsetTop &&
+          scrollTop < targetOffsetTop + section.offsetHeight &&
+          location.hash !== hash
+        ) {
+          // location.hash = hash;
+          history.replaceState(null, null, navItems[i].href);
+          this.onHashChange();
+          break;
+        }
+      }
+    },
+    onHashChange() {
+      const { lastActiveNavItem, navItems } = this._scrollactive;
+      if (lastActiveNavItem) {
+        lastActiveNavItem.classList.remove('active');
+      }
+      const hash = location.hash;
+      const activeNavItem = (this._scrollactive.lastActiveNavItem =
+        navItems.find((item) => item.hash === hash));
+      if (!activeNavItem) {
+        return;
+      }
+      activeNavItem.classList.add('active');
       // scroll nav
       const leftContainer = this.$refs.leftContainer;
       const containerOffsetHeight = leftContainer.offsetHeight;
-      const rect = currentItem.parentElement.getBoundingClientRect();
+      const rect = activeNavItem.parentElement.getBoundingClientRect();
       if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
         const scrollTop =
-          currentItem.offsetTop -
+          activeNavItem.offsetTop -
           containerOffsetHeight +
-          currentItem.offsetHeight;
+          activeNavItem.offsetHeight;
         leftContainer.scrollTo
           ? leftContainer.scrollTo(0, scrollTop)
           : (leftContainer.scrollTop = scrollTop);
@@ -292,6 +376,7 @@ $pd-lg: 20px;
   bottom: 0;
   left: 0;
   overflow-y: auto;
+  scroll-behavior: smooth;
 
   ::-webkit-scrollbar {
     height: 4px;
@@ -336,6 +421,8 @@ $pd-lg: 20px;
     font-weight: normal;
     color: #464646;
     font-size: 20px;
+    // TODO use variable
+    scroll-margin-top: 80px;
   }
   .chart-type-head span {
     font-size: 16px;
@@ -354,6 +441,7 @@ $pd-lg: 20px;
   width: $chart-nav-width;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  scrollbar-width: thin;
   // scroll-behavior: smooth;
 }
 
