@@ -422,7 +422,7 @@ $pd-lg: 20px;
     color: #464646;
     font-size: 20px;
     // TODO use variable
-    scroll-margin-top: 80px;
+    scroll-margin-top: $nav-height - 20px;
   }
   .chart-type-head span {
     font-size: 16px;
