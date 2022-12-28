@@ -87,8 +87,8 @@ option = {
         width: 50,
         height: 14,
         fontSize: 14,
-        color: 'auto',
-        borderColor: 'auto',
+        color: 'inherit',
+        borderColor: 'inherit',
         borderRadius: 20,
         borderWidth: 1,
         formatter: '{value}%'
