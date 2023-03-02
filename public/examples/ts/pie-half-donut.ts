@@ -18,7 +18,7 @@ option = {
     {
       name: 'Access From',
       type: 'pie',
-      radius: ['70%', '140%'],
+      radius: ['70%', '100%'],
       center: ['50%', '100%'], // move down the chart to hide the bottom half
       startAngle: 180, // adjust the start angle
       avoidLabelOverlap: false,
