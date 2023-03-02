@@ -28,9 +28,7 @@ option = {
       },
       emphasis: {
         label: {
-          show: true,
-          fontSize: 40,
-          fontWeight: 'bold'
+          show: false, // doesn't work with our tricks, disable it
         }
       },
       labelLine: {
