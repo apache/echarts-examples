@@ -1229,6 +1229,17 @@ export default [
   },
   {
     "category": [
+      "custom"
+    ],
+    "id": "flame-graph",
+    "ts": true,
+    "tags": [],
+    "title": "Flame graph",
+    "titleCN": "火焰图",
+    "difficulty": 4
+  },
+  {
+    "category": [
       "gauge"
     ],
     "id": "gauge-grade",
