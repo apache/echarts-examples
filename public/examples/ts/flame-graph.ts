@@ -31,7 +31,7 @@ const ColorTypes = {
 } as const;
 
 const filterJson = (json: StackTrace, id?: string): StackTrace => {
-  if (id === undefined) {
+  if (id == null) {
     return json;
   }
 
@@ -40,9 +40,9 @@ const filterJson = (json: StackTrace, id?: string): StackTrace => {
       return item;
     }
 
-    for (const child of item?.children ?? []) {
+    for (const child of item.children || []) {
       const temp = recur(child, id);
-      if (temp && Array.from(Object.keys(temp)).length !== 0) {
+      if (temp) {
         item.children = [temp];
         item.value = temp.value; // change the parents' values
         return item;
@@ -50,7 +50,7 @@ const filterJson = (json: StackTrace, id?: string): StackTrace => {
     }
   };
 
-  return recur(json, id) ?? json;
+  return recur(json, id) || json;
 };
 
 const recursionJson = (jsonObj: StackTrace, id?: string): any[] => {
@@ -70,15 +70,13 @@ const recursionJson = (jsonObj: StackTrace, id?: string): any[] => {
         (item.value / rootVal) * 100
       ],
       itemStyle: {
-        normal: {
-          color: ColorTypes[item.name.split(' ')[0] as keyof typeof ColorTypes]
-        }
+        color: ColorTypes[item.name.split(' ')[0] as keyof typeof ColorTypes]
       }
     };
     data.push(temp);
 
     let prevStart = start;
-    for (const child of item?.children ?? []) {
+    for (const child of item.children || []) {
       recur(child, prevStart, level + 1);
       prevStart = prevStart + child.value;
     }
@@ -90,12 +88,12 @@ const recursionJson = (jsonObj: StackTrace, id?: string): any[] => {
 
 const heightOfJson = (json: StackTrace): number => {
   const recur = (item: StackTrace, level = 0): number => {
-    if ((item?.children ?? []).length === 0) {
+    if ((item.children || []).length === 0) {
       return level;
     }
 
     let maxLevel = level;
-    for (const child of item?.children ?? []) {
+    for (const child of item.children!) {
       const tempLevel = recur(child, level + 1);
       maxLevel = Math.max(maxLevel, tempLevel);
     }
@@ -112,7 +110,8 @@ const renderItem: CustomSeriesRenderItem = (
   const level = api.value(0);
   const start = api.coord([api.value(1), level]);
   const end = api.coord([api.value(2), level]);
-  const height = ((api.size?.([0, 1]) ?? [0, 20]) as number[])[1];
+  const height = (((api.size && api.size([0, 1])) || [0, 20]) as number[])[1];
+  const width = end[0] - start[0];
 
   return {
     type: 'rect',
@@ -120,10 +119,38 @@ const renderItem: CustomSeriesRenderItem = (
     shape: {
       x: start[0],
       y: start[1] - height / 2,
-      width: end[0] - start[0],
-      height: height
+      width,
+      height: height - 2 /* itemGap */,
+      r: 2
     },
-    style: api.style({})
+    style: {
+      fill: api.visual('color')
+    },
+    emphasis: {
+      style: {
+        stroke: '#000'
+      }
+    },
+    textConfig: {
+      position: 'insideLeft'
+    },
+    textContent: {
+      style: {
+        text: api.value(3),
+        fontFamily: 'Verdana',
+        fill: '#000',
+        width: width - 4,
+        overflow: 'truncate',
+        ellipsis: '..',
+        truncateMinChar: 1
+      },
+      emphasis: {
+        style: {
+          stroke: '#000',
+          lineWidth: 0.5
+        }
+      }
+    }
   };
 };
 
@@ -136,10 +163,31 @@ $.get(
     const levelOfOriginalJson = heightOfJson(stackTrace);
 
     option = {
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 0,
+        y2: 1,
+        colorStops: [
+          {
+            offset: 0.05,
+            color: '#eee'
+          },
+          {
+            offset: 0.95,
+            color: '#eeeeb0'
+          }
+        ]
+      },
       tooltip: {
         formatter: (params: any) => {
           const samples = params.value[2] - params.value[1];
-          return `${params.marker} ${params.value[3]}: (${samples} samples, ${params.value[4]}%)`;
+          return `${params.marker} ${
+            params.value[3]
+          }: (${echarts.format.addCommas(
+            samples
+          )} samples, ${+params.value[4].toFixed(2)}%)`;
         }
       },
       title: [
@@ -147,9 +195,20 @@ $.get(
           text: 'Flame Graph',
           left: 'center',
           top: 10,
-          textStyle: { fontWeight: 'normal', fontSize: 20 }
+          textStyle: {
+            fontFamily: 'Verdana',
+            fontWeight: 'normal',
+            fontSize: 20
+          }
         }
       ],
+      toolbox: {
+        feature: {
+          restore: {}
+        },
+        right: 20,
+        top: 10
+      },
       xAxis: {
         show: false
       },
@@ -160,36 +219,28 @@ $.get(
       series: [
         {
           type: 'custom',
-          renderItem: renderItem,
+          renderItem,
           encode: {
             x: [0, 1],
             y: 0
-          },
-          itemStyle: {
-            borderWidth: 1,
-            borderColor: '#fff'
-          },
-          labelLayout: {
-            hideOverlap: true
           },
           data: recursionJson(stackTrace)
         }
       ]
     };
 
-    if (option && typeof option === 'object') {
-      myChart.setOption(option);
-    }
+    myChart.setOption(option);
 
     myChart.on('click', (params: any) => {
       const data = recursionJson(stackTrace, params.data.name);
       const rootValue = data[0].value[2];
 
       myChart.setOption({
-        ...option,
         xAxis: { max: rootValue },
         series: [{ data }]
       });
     });
   }
 );
+
+export {};
