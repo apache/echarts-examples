@@ -328,6 +328,17 @@ export default [
   },
   {
     "category": [
+      "pie"
+    ],
+    "id": "pie-half-donut",
+    "ts": true,
+    "tags": [],
+    "title": "Half Doughnut Chart",
+    "titleCN": "半环形图",
+    "difficulty": 1
+  },
+  {
+    "category": [
       "radar"
     ],
     "id": "radar-aqi",
