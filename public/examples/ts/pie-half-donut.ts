@@ -12,27 +12,23 @@ option = {
   legend: {
     top: '5%',
     left: 'center',
-    selectedMode: false, // doesn't work with our tricks, disable it
+    // doesn't perfectly work with our tricks, disable it
+    selectedMode: false
   },
   series: [
     {
       name: 'Access From',
       type: 'pie',
-      radius: ['70%', '100%'],
-      center: ['50%', '100%'], // move down the chart to hide the bottom half
-      startAngle: 180, // adjust the start angle
-      avoidLabelOverlap: false,
+      radius: ['40%', '70%'],
+      center: ['50%', '70%'],
+      // adjust the start angle
+      startAngle: 180,
       label: {
-        show: false,
-        position: 'center'
-      },
-      emphasis: {
-        label: {
-          show: false, // doesn't work with our tricks, disable it
+        show: true,
+        formatter(param) {
+          // correct the percentage
+          return param.name + ' (' + param.percent! * 2 + '%)';
         }
-      },
-      labelLine: {
-        show: false
       },
       data: [
         { value: 1048, name: 'Search Engine' },
@@ -41,14 +37,19 @@ option = {
         { value: 484, name: 'Union Ads' },
         { value: 300, name: 'Video Ads' },
         {
-          value: 1048 + 735 + 580 + 484 + 300, // make an record to fill the bottom 50%
-          name: '', // hide the legend
+          // make an record to fill the bottom 50%
+          value: 1048 + 735 + 580 + 484 + 300,
           itemStyle: {
-            color: '#ffffff', // make the piece invisible
+            // stop the chart from rendering this piece
+            color: 'none'
           },
-        },
+          label: {
+            show: false
+          }
+        }
       ]
     }
   ]
 };
+
 export {};
