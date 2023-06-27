@@ -319,8 +319,11 @@
                 <span v-else-if="isPRReviewLoading === false">{{
                   $t('editor.prPreview.reviewLoadFailed')
                 }}</span>
+                <span v-else-if="!prLatestReview">{{
+                  $t('editor.prPreview.noReview')
+                }}</span>
                 <el-descriptions
-                  v-else-if="prLatestReview"
+                  v-else
                   size="small"
                   direction="vertical"
                   :column="3"
