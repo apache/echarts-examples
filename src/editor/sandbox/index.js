@@ -4,6 +4,7 @@ import loopController from './loopController?raw-minify';
 import handleLoop from './handleLoop?raw-minify';
 import showDebugDirtyRect from '../../dep/showDebugDirtyRect?raw-minify';
 import setup from './setup?raw-minify';
+import { store } from '../../common/store';
 
 function prepareSetupScript(isShared) {
   const isProd = process.env.NODE_ENV === 'production';
@@ -58,28 +59,32 @@ export function createSandbox(
         'data:',
         'blob:'
       ].concat(
-        [
-          '*.apache.org',
-          '*.jsdelivr.net',
-          '*.jsdelivr.com',
-          '*.unpkg.com',
-          '*.baidu.com',
-          '*.bdimg.com',
-          '*.bdstatic.com',
-          'apache.org',
-          'apache.github.io',
-          'jsdelivr.net',
-          'jsdelivr.com',
-          'unpkg.com',
-          'baidu.com',
-          'bdimg.com',
-          'bdstatic.com',
-          'cdnjs.cloudflare.com',
-          'cdn.bootcdn.net',
-          'lib.baomitu.com',
-          'unpkg.zhimg.com',
-          'npm.elemecdn.com'
-        ].map((domain) => 'https://' + domain)
+        (() => {
+          const domains = [
+            '*.apache.org',
+            '*.jsdelivr.net',
+            '*.jsdelivr.com',
+            '*.unpkg.com',
+            '*.baidu.com',
+            '*.bdimg.com',
+            '*.bdstatic.com',
+            'apache.org',
+            'apache.github.io',
+            'jsdelivr.net',
+            'jsdelivr.com',
+            'unpkg.com',
+            'baidu.com',
+            'bdimg.com',
+            'bdstatic.com',
+            'cdnjs.cloudflare.com',
+            'cdn.bootcdn.net',
+            'lib.baomitu.com',
+            'unpkg.zhimg.com',
+            'npm.elemecdn.com'
+          ];
+          store.isPR && domains.push(`echarts-pr-${store.prNumber}.surge.sh`);
+          return domains;
+        })().map((domain) => 'https://' + domain)
       ),
       'frame-src': [`'none'`],
       'object-src': [`'none'`],

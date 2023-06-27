@@ -115,7 +115,9 @@ export const SCRIPT_URLS = {
   echartsJS: '/dist/echarts.min.js',
 
   localEChartsDir: 'http://localhost/echarts',
-  localEChartsGLJS: 'http://localhost/echarts-gl/dist/echarts-gl.js',
+  localEChartsGLDir: 'http://localhost/echarts-gl',
+
+  prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
 
   echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
   echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
@@ -123,8 +125,8 @@ export const SCRIPT_URLS = {
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
-
   prettierDir: `${CDN_ROOT}prettier@2.3.2`,
+  highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
 
   bmapLibJS:
     'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',

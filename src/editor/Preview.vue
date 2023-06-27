@@ -67,7 +67,10 @@
         <el-select
           v-if="shared.echartsVersion && !shared.isMobile"
           class="version-select"
-          :class="{ nightly }"
+          :class="{
+            'is-nightly': nightly,
+            'is-pr': shared.isPR || hasPRVersion
+          }"
           size="mini"
           id="choose-echarts-version"
           v-model="shared.echartsVersion"
@@ -148,7 +151,8 @@ import {
   saveExampleCodeToLocal,
   store,
   updateRandomSeed,
-  updateRunHash
+  updateRunHash,
+  isValidPRVersion
 } from '../common/store';
 import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
 import { compressStr } from '../common/helper';
@@ -169,17 +173,29 @@ function getScriptURL(link) {
 }
 
 function getScripts(nightly) {
-  const echartsDir = SCRIPT_URLS[
-    isLocal ? 'localEChartsDir' : nightly ? 'echartsNightlyDir' : 'echartsDir'
-  ].replace('{{version}}', store.echartsVersion);
+  const echartsDirTpl =
+    SCRIPT_URLS[
+      isLocal
+        ? 'localEChartsDir'
+        : store.isPR
+        ? 'prPreviewEChartsDir'
+        : nightly
+        ? 'echartsNightlyDir'
+        : 'echartsDir'
+    ];
+  const echartsDir = store.isPR
+    ? echartsDirTpl.replace('{{PR_NUMBER}}', store.prNumber)
+    : echartsDirTpl.replace('{{version}}', store.echartsVersion);
   const code = store.runCode;
 
   return [
-    echartsDir + getScriptURL(SCRIPT_URLS.echartsJS),
+    echartsDir +
+      getScriptURL(SCRIPT_URLS.echartsJS) +
+      (store.isPR ? '?_=' + (store.prLatestCommit || Date.now()) : ''),
     ...(isGL
       ? [
           isLocal
-            ? SCRIPT_URLS.localEChartsGLJS
+            ? SCRIPT_URLS.localEChartsGLDir + '/dist/echarts-gl.js'
             : getScriptURL(SCRIPT_URLS.echartsGLJS)
         ]
       : []),
@@ -333,7 +349,9 @@ export default {
 
       allEChartsVersions: [],
       nightlyVersions: [],
-      nightly: false
+      nightly: false,
+
+      hasPRVersion: false
     };
   },
 
@@ -378,6 +396,9 @@ export default {
           this.run();
           // show share hint on first run if code is user-shared
           store.isSharedCode && this.showShareHint();
+          // show PR hint on first run if it's based on PR
+          store.isPR &&
+            setTimeout(this.showPRHint, store.isSharedCode ? 1e3 : 0);
         } else {
           this.debouncedRun();
         }
@@ -430,12 +451,21 @@ export default {
             (store.renderer === 'svg' ? 'svg' : 'png')
         );
     },
+    showPRHint() {
+      this.$message({
+        type: 'warning',
+        message: this.$t('editor.pr.hint').replace('{{PR}}', store.prNumber),
+        customClass: 'toast-declaration',
+        duration: 8000,
+        showClose: true
+      });
+    },
     showShareHint() {
       this.$message.closeAll();
       this.$message({
         type: 'warning',
         message: this.$t('editor.share.hint'),
-        customClass: 'toast-shared-url',
+        customClass: 'toast-declaration',
         duration: 8000,
         showClose: true
       });
@@ -463,7 +493,7 @@ export default {
           this.$message({
             type: 'success',
             message: this.$t('editor.share.success'),
-            customClass: 'toast-shared-url'
+            customClass: 'toast-declaration'
           });
         })
         // PENDING
@@ -482,6 +512,7 @@ export default {
         window.__EDITOR_NO_LEAVE_CONFIRMATION__ = true;
         gotoURL({
           version: store.echartsVersion,
+          pv: store.isPR ? URL_PARAMS.version : void 0,
           ...this.toolOptions
         });
       });
@@ -504,6 +535,9 @@ export default {
           data.tags = data['dist-tags'];
         }
       };
+
+      const prVersion = URL_PARAMS.pv;
+      const hasPRVersion = (this.hasPRVersion = isValidPRVersion(prVersion));
 
       $.getJSON(`${server}/echarts`).done((data) => {
         handleData(data);
@@ -535,6 +569,8 @@ export default {
           versions.unshift(data.tags.rc);
           store.echartsVersion === 'rc' && (store.echartsVersion = versions[0]);
         }
+
+        hasPRVersion && versions.unshift(prVersion);
       });
 
       $.getJSON(`${server}/echarts-nightly`).done((data) => {
@@ -553,6 +589,8 @@ export default {
         this.nightlyVersions = versions
           .slice(nextIdx, nextIdx + 10)
           .concat(versions.slice(latestIdx, latestIdx + 10));
+
+        hasPRVersion && this.nightlyVersions.unshift(prVersion);
       });
 
       if (isDebug) {
@@ -633,6 +671,9 @@ export default {
   left: 15px;
   @include flex-center;
 
+  white-space: nowrap;
+  overflow-x: auto;
+
   user-select: none;
 
   * {
@@ -648,7 +689,8 @@ export default {
     width: 80px;
     margin-left: 10px;
 
-    &.nightly {
+    &.is-nightly,
+    &.is-pr {
       width: 160px;
     }
   }
@@ -693,6 +735,8 @@ export default {
   padding: 0 15px;
   font-size: 0.9rem;
   @include flex-center;
+  white-space: nowrap;
+  overflow-x: auto;
 
   .left-buttons {
     flex-shrink: 0;
@@ -725,9 +769,13 @@ export default {
 }
 
 .el-message {
-  &.toast-shared-url {
+  &.toast-declaration {
     min-width: auto;
     z-index: 9999999 !important;
+
+    .el-message__icon {
+      font-size: 20px;
+    }
 
     .el-message__content {
       padding-right: 20px;
