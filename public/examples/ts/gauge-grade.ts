@@ -34,20 +34,20 @@ option = {
         width: 20,
         offsetCenter: [0, '-60%'],
         itemStyle: {
-          color: 'inherit'
+          color: 'auto'
         }
       },
       axisTick: {
         length: 12,
         lineStyle: {
-          color: 'inherit',
+          color: 'auto',
           width: 2
         }
       },
       splitLine: {
         length: 20,
         lineStyle: {
-          color: 'inherit',
+          color: 'auto',
           width: 5
         }
       },

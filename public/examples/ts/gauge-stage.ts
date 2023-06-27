@@ -21,7 +21,7 @@ option = {
       },
       pointer: {
         itemStyle: {
-          color: 'inherit'
+          color: 'auto'
         }
       },
       axisTick: {
