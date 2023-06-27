@@ -70,7 +70,7 @@
     "nanoid": "^4.0.0",
     "prettier": "^2.7.1",
     "resize-detector": "^0.3.0",
-    "semver": "^7.3.7",
+    "semver": "^7.5.2",
     "sucrase": "^3.24.0",
     "vanilla-lazyload": "^17.8.3",
     "vue-i18n": "^8.18.2",
