@@ -30,6 +30,33 @@ export default {
       tabFullCodePreview: 'Full Code',
       tabOptionPreview: 'Option Preview',
       minimalBundle: 'Minimal Bundle',
+      prPreview: {
+        title: 'PR Preview',
+        author: 'Author',
+        fromBranch: 'From Branch',
+        toBranch: 'To Branch',
+        milestone: 'Milestone',
+        labels: 'Labels',
+        changes: 'Changes',
+        addedLines: 'Added Lines',
+        removedLines: 'Removed Lines',
+        changedFiles: 'Changed Files',
+        commits: 'Commits',
+        latestCommit: 'Latest Commit',
+        review: 'Review',
+        loadingReview: 'Loading review...',
+        reviewLoadFailed: 'Failed to load review.',
+        noReview: 'No review yet.',
+        reviewedBy: 'Reviewed By',
+        reviewedAt: 'Reviewed At',
+        reviewState: 'State',
+        reviewComment: 'Comment',
+        noComment: 'NO COMMENT',
+        diff: 'Diff',
+        viewDiff: 'View Diff',
+        loadingDiff: 'Loading diff...',
+        diffLoadFailed: 'Failed to load diff.'
+      },
 
       tooltip: {
         jsMode: 'JavaScript',
@@ -49,6 +76,11 @@ export default {
         success: 'Sharable URL has been copied to your clipboard',
         hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.',
         tooltip: 'Create a sharable link for your code ✨'
+      },
+
+      pr: {
+        hint: 'Please be aware that this chart is not based on the distribution files released by Apache ECharts but built from GitHub PR #{{PR}}.',
+        tooltip: 'Click to view the PR on GitHub'
       }
     },
 
@@ -125,6 +157,33 @@ export default {
       tabFullCodePreview: '完整代码',
       tabOptionPreview: '配置项',
       minimalBundle: '按需引入',
+      prPreview: {
+        title: 'PR 预览',
+        author: '作者',
+        fromBranch: '源分支',
+        toBranch: '目标分支',
+        milestone: '里程碑',
+        labels: '标签',
+        changes: '变更',
+        addedLines: '添加行数',
+        removedLines: '删除行数',
+        changedFiles: '文件变更数',
+        commits: '提交数',
+        latestCommit: '最新提交',
+        review: '评审',
+        loadingReview: '加载中...',
+        reviewLoadFailed: '加载失败',
+        noReview: '暂无',
+        reviewedBy: '评审人',
+        reviewedAt: '时间',
+        reviewState: '状态',
+        reviewComment: '评论',
+        noComment: '无评论内容',
+        diff: 'Diff',
+        viewDiff: '点击查看 Diff',
+        loadingDiff: '加载中...',
+        diffLoadFailed: '加载 diff 失败'
+      },
 
       tooltip: {
         jsMode: 'JavaScript 代码编辑',
@@ -144,6 +203,11 @@ export default {
         success: '分享链接已复制到剪贴板',
         hint: '请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。',
         tooltip: '为当前代码创建一个可分享的链接 ✨'
+      },
+
+      pr: {
+        hint: '请注意，该图表是基于 GitHub PR #{{PR}} 构建产物生成的，而非 Apache ECharts 官方发行产物。请注意鉴别其内容。',
+        tooltip: '点击前往 GitHub 查看该 PR 详情'
       }
     },
 

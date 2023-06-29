@@ -38,6 +38,23 @@
               </div>
               <div class="editor-controls">
                 <a
+                  v-if="shared.isPR"
+                  class="btn btn-default btn-sm pull-request"
+                  target="_blank"
+                  :href="`https://github.com/apache/echarts/pull/${shared.prNumber}`"
+                  :title="`${pr && pr.title ? pr.title + '\n' : ''}${$t(
+                    'editor.pr.tooltip'
+                  )}`"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"
+                    />
+                  </svg>
+                  <span>#{{ shared.prNumber }}</span>
+                </a>
+                <a
                   class="btn btn-sm codepen"
                   @click="toExternalEditor('CodePen')"
                   :title="$t('editor.openWithCodePen')"
@@ -164,6 +181,212 @@
         <el-tab-pane :label="$t('editor.tabOptionPreview')" name="full-option">
           <div id="option-outline" ref="optionOutline"></div>
         </el-tab-pane>
+
+        <el-tab-pane
+          v-if="shared.isPR"
+          v-loading="isPRLoading"
+          :label="$t('editor.prPreview.title')"
+          name="pr-preview"
+        >
+          <div v-if="pr" id="pr-preview" ref="prPreview">
+            <el-descriptions
+              class="pr-info"
+              direction="vertical"
+              size="small"
+              :column="4"
+              border
+            >
+              <a
+                slot="title"
+                class="pr-title"
+                ref="prTitle"
+                target="_blank"
+                :href="pr.html_url"
+                >(#{{ pr.number }}) {{ pr.title }}</a
+              >
+              <el-descriptions-item :label="$t('editor.prPreview.author')">
+                <a
+                  target="_blank"
+                  :href="pr.user.html_url"
+                  class="pr-author-avatar"
+                >
+                  <el-avatar :src="pr.user.avatar_url" :size="20" />
+                  <span>{{ pr.user.login }}</span>
+                </a>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('editor.prPreview.fromBranch')">
+                <a
+                  target="_blank"
+                  :href="pr.head.repo.html_url + '/tree/' + pr.head.ref"
+                  :title="pr.head.label"
+                >
+                  {{ pr.head.ref }}
+                </a>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('editor.prPreview.toBranch')">
+                <a
+                  target="_blank"
+                  :href="pr.head.repo.html_url + '/tree/' + pr.head.ref"
+                  :title="pr.base.label"
+                >
+                  {{ pr.base.ref }}
+                </a>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('editor.prPreview.milestone')">
+                <a
+                  v-if="pr.milestone"
+                  target="_blank"
+                  :href="pr.milestone.html_url"
+                >
+                  {{ pr.milestone.title }}
+                </a>
+                <template v-else>-</template>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('editor.prPreview.labels')"
+                :span="4"
+              >
+                <el-tag
+                  v-for="label in pr.labels"
+                  :key="label.id"
+                  size="small"
+                  class="pr-label"
+                  :color="'#' + label.color"
+                  :title="label.description"
+                  >{{ label.name }}</el-tag
+                >
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('editor.prPreview.changes')"
+                :span="4"
+              >
+                <el-descriptions
+                  size="small"
+                  direction="vertical"
+                  :column="5"
+                  :colon="false"
+                >
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.addedLines')"
+                  >
+                    <span>
+                      {{ pr.additions }}
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.removedLines')"
+                  >
+                    <span>
+                      {{ pr.deletions }}
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.changedFiles')"
+                  >
+                    <a :href="pr.html_url + '/files'" target="_blank">
+                      {{ pr.changed_files }}
+                    </a>
+                  </el-descriptions-item>
+                  <el-descriptions-item :label="$t('editor.prPreview.commits')">
+                    <a :href="pr.html_url + '/commits'" target="_blank">
+                      {{ pr.commits }}
+                    </a>
+                  </el-descriptions-item>
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.latestCommit')"
+                  >
+                    <a
+                      :href="pr.html_url + '/commits/' + pr.head.sha"
+                      target="_blank"
+                    >
+                      {{ pr.head.sha.slice(0, 7) }}
+                    </a>
+                  </el-descriptions-item>
+                </el-descriptions>
+              </el-descriptions-item>
+              <el-descriptions-item :span="4">
+                <span slot="label">
+                  {{ $t('editor.prPreview.review') }}
+                  <i
+                    v-if="isPRReviewLoading"
+                    class="el-icon-loading"
+                    style="margin-left: 5px"
+                  ></i>
+                </span>
+                <span v-if="isPRReviewLoading">{{
+                  $t('editor.prPreview.loadingReview')
+                }}</span>
+                <span v-else-if="isPRReviewLoading === false">{{
+                  $t('editor.prPreview.reviewLoadFailed')
+                }}</span>
+                <span v-else-if="!prLatestReview">{{
+                  $t('editor.prPreview.noReview')
+                }}</span>
+                <el-descriptions
+                  v-else
+                  size="small"
+                  direction="vertical"
+                  :column="3"
+                  :colon="false"
+                >
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.reviewedBy')"
+                  >
+                    <a
+                      target="_blank"
+                      :href="prLatestReview.user.html_url"
+                      class="pr-author-avatar"
+                    >
+                      <el-avatar
+                        :src="prLatestReview.user.avatar_url"
+                        :size="20"
+                      />
+                      <span>{{ prLatestReview.user.login }}</span>
+                    </a>
+                  </el-descriptions-item>
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.reviewedAt')"
+                  >
+                    {{ new Date(prLatestReview.submitted_at).toLocaleString() }}
+                  </el-descriptions-item>
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.reviewState')"
+                  >
+                    {{ prLatestReview.state }}
+                  </el-descriptions-item>
+                  <el-descriptions-item
+                    :label="$t('editor.prPreview.reviewComment')"
+                    :span="3"
+                  >
+                    <a :href="prLatestReview.html_url" target="_blank">
+                      {{
+                        prLatestReview.body || $t('editor.prPreview.noComment')
+                      }}
+                    </a>
+                  </el-descriptions-item>
+                </el-descriptions>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('editor.prPreview.diff')"
+                :span="4"
+              >
+                <details @toggle="$event.target.open && loadPRDiff()">
+                  <summary style="display: revert; cursor: pointer">
+                    {{ $t('editor.prPreview.viewDiff') }}
+                    <i
+                      v-if="isPRDiffLoading"
+                      class="el-icon-loading"
+                      style="margin-left: 5px"
+                    ></i>
+                  </summary>
+                  <pre
+                    class="pr-diff"
+                  ><span v-if="isPRDiffLoading">{{ $t('editor.prPreview.loadingDiff') }}</span><span v-if="isPRDiffLoading === false">{{ $t('editor.prPreview.diffLoadFailed') }}</span><div ref="prDiff"></div></pre>
+                </details>
+              </el-descriptions-item>
+            </el-descriptions>
+          </div>
+        </el-tab-pane>
       </el-tabs>
     </div>
     <div
@@ -203,8 +426,8 @@ import { gotoURL } from '../common/route';
 import { mount } from '@lang/object-visualizer';
 
 import './object-visualizer.css';
-import { URL_PARAMS } from '../common/config';
-import { formatCode } from '../common/helper';
+import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { formatCode, loadScriptsAsync } from '../common/helper';
 import openWithCodePen from './sandbox/openwith/codepen';
 import openWithCodeSandbox from './sandbox/openwith/codesandbox';
 
@@ -234,7 +457,13 @@ export default {
         node: false // If is in node
       },
 
-      formatterReady: false
+      formatterReady: false,
+
+      pr: null,
+      isPRLoading: false,
+      prLatestReview: null,
+      isPRReviewLoading: false,
+      isPRDiffLoading: false
     };
   },
 
@@ -412,6 +641,8 @@ export default {
         this.updateFullCode();
       } else if (tab === 'full-option') {
         this.updateOptionOutline();
+      } else if (tab === 'pr-preview') {
+        this.preparePRPreview();
       }
     },
     changeLang(lang) {
@@ -459,6 +690,82 @@ export default {
     },
     onPreviewReady() {
       this.updateTabContent(this.currentTab);
+    },
+    preparePRPreview() {
+      if (!store.isPR || this.isPRLoading || this.pr) {
+        return;
+      }
+      this.isPRLoading = true;
+      const prURL = `https://api.github.com/repos/apache/echarts/pulls/${store.prNumber}`;
+      $.ajax({
+        url: prURL,
+        headers: {
+          Accept: 'application/json'
+        },
+        dataType: 'json',
+        success: (pr) => {
+          this.pr = pr;
+          this.isPRReviewLoading = true;
+          $.ajax({
+            url: prURL + '/reviews?per_page=100',
+            headers: {
+              Accept: 'application/json'
+            },
+            dataType: 'json',
+            success: (reviews) => {
+              this.prLatestReview = reviews[reviews.length - 1];
+              this.isPRReviewLoading = 0;
+            },
+            error: (xhr, status, err) => {
+              this.isPRReviewLoading = false;
+              console.error('failed to fetch PR reviews', err);
+            }
+          });
+        },
+        error(xhr, status, err) {
+          console.error('failed to fetch PR info', err);
+        },
+        complete: () => {
+          this.isPRLoading = false;
+        }
+      });
+    },
+    loadPRDiff() {
+      if (this.isPRDiffLoading || this.isPRDiffLoading === 0) {
+        return;
+      }
+      this.isPRDiffLoading = true;
+      $.ajax({
+        url: `https://api.github.com/repos/apache/echarts/pulls/${store.prNumber}`,
+        headers: {
+          Accept: 'application/vnd.github.v3.diff'
+        },
+        dataType: 'text',
+        success: (diff) => {
+          const highlightjsDir = SCRIPT_URLS.highlightjsDir;
+          loadScriptsAsync([
+            highlightjsDir + '/styles/github.min.css',
+            highlightjsDir + '/highlight.min.js',
+            highlightjsDir + '/languages/diff.min.js'
+          ])
+            .then(() => {
+              return hljs.highlight(diff, {
+                language: 'diff'
+              }).value;
+            })
+            .catch((err) => {
+              console.error('failed to load PR diff', err);
+            })
+            .then((diff) => {
+              this.isPRDiffLoading = diff ? 0 : false;
+              diff && (this.$refs.prDiff.innerHTML = diff);
+            });
+        },
+        error: (xhr, status, err) => {
+          this.isPRDiffLoading = false;
+          console.error('failed to fetch PR diff', err);
+        }
+      });
     }
   },
 
@@ -628,6 +935,12 @@ $handler-width: 5px;
 }
 
 #editor-control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  overflow-x: auto;
+
   .setting-panel {
     display: inline-block;
 
@@ -683,8 +996,6 @@ $handler-width: 5px;
   }
 
   .editor-controls {
-    float: right;
-
     .el-switch__label {
       margin-top: -3px;
     }
@@ -729,6 +1040,42 @@ $handler-width: 5px;
         }
       }
     }
+  }
+}
+
+#pr-preview {
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  .pr-info {
+    width: 100%;
+  }
+
+  .pr-author-avatar {
+    display: flex;
+    align-items: center;
+
+    .el-avatar {
+      margin-right: 6px;
+    }
+  }
+
+  .pr-label {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: #fff;
+    border: none;
+    border-radius: 2em;
+  }
+
+  .pr-diff {
+    width: 100%;
+    margin-top: 5px;
+    overflow: auto;
+    box-sizing: border-box;
+    white-space: pre-wrap;
   }
 }
 

@@ -12,8 +12,16 @@ import { customAlphabet } from 'nanoid';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 
+const REG_PR_VERSION = /PR-(\d+)(?:@(\w+))?/i;
+const prMatches =
+  URL_PARAMS.version && URL_PARAMS.version.match(REG_PR_VERSION);
+
 export const store = {
   echartsVersion: URL_PARAMS.version || '5',
+
+  isPR: !!prMatches,
+  prNumber: prMatches && prMatches[1],
+  prLatestCommit: prMatches && prMatches[2],
 
   cdnRoot: '',
   version: '',
@@ -52,6 +60,10 @@ export const store = {
 
   randomSeed: URL_PARAMS.random || 'echarts'
 };
+
+export function isValidPRVersion(version) {
+  return REG_PR_VERSION.test(version);
+}
 
 function findExample(item) {
   return URL_PARAMS.c === item.id;
