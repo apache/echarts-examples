@@ -713,8 +713,39 @@ export default {
             },
             dataType: 'json',
             success: (reviews) => {
-              this.prLatestReview = reviews[reviews.length - 1];
-              this.isPRReviewLoading = 0;
+              const prLatestReview = (this.prLatestReview =
+                reviews[reviews.length - 1]);
+              if (
+                prLatestReview &&
+                prLatestReview.state === 'COMMENTED' &&
+                !prLatestReview.body
+              ) {
+                $.ajax({
+                  url:
+                    prURL +
+                    '/reviews/' +
+                    prLatestReview.id +
+                    '/comments?direction=desc&sort=created&per_page=100',
+                  headers: {
+                    Accept: 'application/json'
+                  },
+                  dataType: 'json',
+                  success: (comments) => {
+                    const comment = comments[0];
+                    prLatestReview.body = comment.body;
+                    prLatestReview.submitted_at = comment.created_at;
+                    prLatestReview.html_url = comment.html_url;
+                  },
+                  error: (xhr, status, err) => {
+                    console.error('failed to fetch PR review comment', err);
+                  },
+                  complete: () => {
+                    this.isPRReviewLoading = 0;
+                  }
+                });
+              } else {
+                this.isPRReviewLoading = 0;
+              }
             },
             error: (xhr, status, err) => {
               this.isPRReviewLoading = false;
