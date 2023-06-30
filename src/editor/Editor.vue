@@ -226,7 +226,7 @@
               <el-descriptions-item :label="$t('editor.prPreview.toBranch')">
                 <a
                   target="_blank"
-                  :href="pr.head.repo.html_url + '/tree/' + pr.head.ref"
+                  :href="pr.base.repo.html_url + '/tree/' + pr.base.ref"
                   :title="pr.base.label"
                 >
                   {{ pr.base.ref }}
