@@ -398,7 +398,11 @@ export default {
           store.isSharedCode && this.showShareHint();
           // show PR hint on first run if it's based on PR
           store.isPR &&
-            setTimeout(this.showPRHint, store.isSharedCode ? 1e3 : 0);
+            !this.prHintTimer &&
+            (this.prHintTimer = setTimeout(
+              this.showPRHint,
+              store.isSharedCode ? 1e3 : 0
+            ));
         } else {
           this.debouncedRun();
         }
