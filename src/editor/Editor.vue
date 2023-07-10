@@ -1,5 +1,5 @@
 <template>
-  <div id="main-container">
+  <div id="main-container" :class="{ 'is-dragging': draggingMouseDown }">
     <div
       id="editor-left-container"
       :style="{ width: leftContainerSize + '%' }"
@@ -392,7 +392,7 @@
     <div
       class="handler"
       id="h-handler"
-      @mousedown="onSplitterDragStart"
+      @mousedown="draggingMouseDown = true"
       :style="{ left: leftContainerSize + '%' }"
       v-if="!shared.isMobile"
     ></div>
@@ -463,7 +463,9 @@ export default {
       isPRLoading: false,
       prLatestReview: null,
       isPRReviewLoading: false,
-      isPRDiffLoading: false
+      isPRDiffLoading: false,
+
+      draggingMouseDown: false
     };
   },
 
@@ -490,7 +492,7 @@ export default {
       });
 
       window.addEventListener('mousemove', (e) => {
-        if (this.mousedown) {
+        if (this.draggingMouseDown) {
           let percentage = e.clientX / window.innerWidth;
           percentage = Math.min(0.9, Math.max(0.1, percentage));
           this.leftContainerSize = percentage * 100;
@@ -498,7 +500,7 @@ export default {
       });
 
       window.addEventListener('mouseup', () => {
-        this.mousedown = false;
+        this.draggingMouseDown = false;
       });
 
       // Save code as a sharable link when ctrl/cmd + s is pressed.
@@ -544,9 +546,6 @@ export default {
         assets.scripts,
         assets.css
       );
-    },
-    onSplitterDragStart() {
-      this.mousedown = true;
     },
     disposeAndRun() {
       this.$refs.preview.refreshAll();
@@ -822,7 +821,7 @@ export default {
 
 $control-panel-height: 30px;
 $pd-basic: 10px;
-$handler-width: 5px;
+$handler-width: 15px;
 
 #main-container {
   .handler {
@@ -838,6 +837,21 @@ $handler-width: 5px;
     background-color: transparent;
     border-left: 1px solid #ececec;
     // border-right: 1px solid $clr-border;
+  }
+
+  &.is-dragging {
+    user-select: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: col-resize;
+      z-index: 9999;
+    }
   }
 }
 
