@@ -503,7 +503,8 @@ export default {
         url: sharableURL,
         method: 'HEAD',
         complete(jqXHR) {
-          if (jqXHR.status === 431) {
+          const statusCode = jqXHR.status;
+          if (statusCode == 413 || statusCode == 414 || statusCode === 431) {
             ctx.isShareBusy = false;
             ctx.$message.closeAll();
             ctx.$message({
