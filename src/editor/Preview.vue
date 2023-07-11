@@ -504,7 +504,7 @@ export default {
         method: 'HEAD',
         complete(jqXHR) {
           const statusCode = jqXHR.status;
-          if (statusCode == 413 || statusCode == 414 || statusCode === 431) {
+          if (statusCode === 413 || statusCode === 414 || statusCode === 431) {
             ctx.isShareBusy = false;
             ctx.$message.closeAll();
             ctx.$message({
