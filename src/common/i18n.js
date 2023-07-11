@@ -75,7 +75,9 @@ export default {
         title: 'Share',
         success: 'Sharable URL has been copied to your clipboard',
         hint: 'Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.',
-        tooltip: 'Create a sharable link for your code ✨'
+        tooltip: 'Create a sharable link for your code ✨',
+        urlTooLong:
+          'The generated URL may be too long to be sharable. Please try to shorten the code.'
       },
 
       pr: {
@@ -202,7 +204,9 @@ export default {
         title: '分享',
         success: '分享链接已复制到剪贴板',
         hint: '请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。',
-        tooltip: '为当前代码创建一个可分享的链接 ✨'
+        tooltip: '为当前代码创建一个可分享的链接 ✨',
+        urlTooLong:
+          '当前代码生成的分享 URL 过长，可能导致他人无法打开，请尝试缩减非必要代码后再试。'
       },
 
       pr: {

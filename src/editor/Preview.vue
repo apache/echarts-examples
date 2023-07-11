@@ -489,22 +489,54 @@ export default {
       );
     },
     share() {
-      const sharableURL = this.getSharableURL();
-      navigator.clipboard
-        .writeText(sharableURL)
-        .then(() => {
-          this.$message.closeAll();
-          this.$message({
-            type: 'success',
-            message: this.$t('editor.share.success'),
-            customClass: 'toast-declaration'
+      const ctx = this;
+      if (ctx.isShareBusy) {
+        return;
+      }
+      ctx.isShareBusy = true;
+      const sharableURL = ctx.getSharableURL();
+      if (sharableURL.length < 1e4) {
+        return copyToClipboard(sharableURL);
+      }
+      // test whether the sharable URL is valid
+      $.ajax({
+        url: sharableURL,
+        method: 'HEAD',
+        complete(jqXHR) {
+          if (jqXHR.status === 431) {
+            ctx.isShareBusy = false;
+            ctx.$message.closeAll();
+            ctx.$message({
+              type: 'error',
+              message: ctx.$t('editor.share.urlTooLong'),
+              customClass: 'toast-declaration'
+            });
+          } else {
+            copyToClipboard(sharableURL);
+          }
+        }
+      });
+
+      function copyToClipboard(url) {
+        navigator.clipboard
+          .writeText(url)
+          .then(() => {
+            ctx.$message.closeAll();
+            ctx.$message({
+              type: 'success',
+              message: ctx.$t('editor.share.success'),
+              customClass: 'toast-declaration'
+            });
+          })
+          // PENDING
+          .catch((e) => {
+            console.error('failed to write share url to the clipboard', e);
+            window.open(url, '_blank');
+          })
+          .finally(() => {
+            ctx.isShareBusy = false;
           });
-        })
-        // PENDING
-        .catch((e) => {
-          console.error('failed to write share url to the clipboard', e);
-          window.open(sharableURL, '_blank');
-        });
+      }
     },
     getOption() {
       return this.sandbox && this.sandbox.getOption();
