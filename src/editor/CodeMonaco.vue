@@ -140,7 +140,8 @@ export default {
           enabled: false
         },
         wordWrap: 'off',
-        automaticLayout: true
+        automaticLayout: true,
+        fixedOverflowWidgets: true
       });
 
       this._editor = editor;

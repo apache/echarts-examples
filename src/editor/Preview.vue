@@ -711,6 +711,7 @@ export default {
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-width: thin;
 
   user-select: none;
 
@@ -775,6 +776,8 @@ export default {
   @include flex-center;
   white-space: nowrap;
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 
   .left-buttons {
     flex-shrink: 0;

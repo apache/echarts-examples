@@ -923,7 +923,9 @@ $handler-width: 15px;
     padding: 0;
   }
 
-  .el-tabs__item {
+  .el-tabs__item,
+  .el-tabs__nav-next,
+  .el-tabs__nav-prev {
     height: 34px;
     line-height: 34px;
   }
@@ -986,6 +988,7 @@ $handler-width: 15px;
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-width: thin;
 
   .setting-panel {
     display: inline-block;
