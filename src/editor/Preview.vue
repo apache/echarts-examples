@@ -710,6 +710,7 @@ export default {
 
   white-space: nowrap;
   overflow-x: auto;
+  overflow-y: hidden;
 
   user-select: none;
 

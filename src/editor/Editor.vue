@@ -985,6 +985,7 @@ $handler-width: 15px;
   justify-content: space-between;
   white-space: nowrap;
   overflow-x: auto;
+  overflow-y: hidden;
 
   .setting-panel {
     display: inline-block;
