@@ -221,7 +221,7 @@ $.get(
           type: 'custom',
           renderItem,
           encode: {
-            x: [0, 1],
+            x: [0, 1, 2],
             y: 0
           },
           data: recursionJson(stackTrace)
