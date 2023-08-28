@@ -87,8 +87,6 @@ option = {
     trigger: 'item'
   },
   grid: {
-    right: '12%',
-    left: '3%',
     containLabel: true
   },
   toolbox: {
@@ -113,7 +111,6 @@ option = {
     axisLabel: {
       margin: 30,
       fontSize: 16,
-      showMaxLabel: true,
       formatter: '#{value}'
     },
     inverse: true,
