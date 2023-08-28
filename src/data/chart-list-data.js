@@ -482,6 +482,17 @@ export default [
   },
   {
     "category": [
+      "line"
+    ],
+    "id": "bump-chart",
+    "ts": true,
+    "tags": [],
+    "title": "Bump Chart (Ranking)",
+    "titleCN": "凹凸图",
+    "difficulty": 2
+  },
+  {
+    "category": [
       "calendar"
     ],
     "id": "calendar-horizontal",
