@@ -113,7 +113,8 @@ option = {
     axisLabel: {
       margin: 30,
       fontSize: 16,
-      showMaxLabel: true
+      showMaxLabel: true,
+      formatter: '#{value}'
     },
     inverse: true,
     interval: 1,
