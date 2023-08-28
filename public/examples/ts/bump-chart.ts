@@ -2,7 +2,7 @@
 title: Bump Chart (Ranking)
 category: line
 titleCN: 凹凸图
-difficulty: 1
+difficulty: 2
 */
 
 import { SeriesOption } from 'echarts';
@@ -87,6 +87,9 @@ option = {
     trigger: 'item'
   },
   grid: {
+    left: 30,
+    right: 110,
+    bottom: 30,
     containLabel: true
   },
   toolbox: {
