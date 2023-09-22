@@ -98,7 +98,16 @@ function ensureMonacoAndTsTransformer() {
       // Prebuilt TS transformer with sucrase
       store.cdnRoot + '/js/example-transform-ts-bundle.js'
     ]).then(function () {
-      window.require.config({ paths: { vs: SCRIPT_URLS.monacoDir } });
+      window.require.config({
+        paths: {
+          vs: SCRIPT_URLS.monacoDir
+        },
+        'vs/nls': {
+          availableLanguages: {
+            '*': store.locale === 'zh' ? 'zh-cn' : undefined
+          }
+        }
+      });
       return new Promise((resolve) => {
         window.require(['vs/editor/editor.main'], function () {
           loadTypes().then(() => {
