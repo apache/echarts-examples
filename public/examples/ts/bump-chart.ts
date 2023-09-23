@@ -45,7 +45,7 @@ const generateRankingData = (): Map<string, number[]> => {
   for (const _ of years) {
     const shuffleArray = shuffle(defaultRanking);
     names.forEach((name, i) => {
-      map.set(name, [...(map.get(name) ?? []), shuffleArray[i]]);
+      map.set(name, (map.get(name) || []).concat(shuffleArray[i]));
     });
   }
   return map;
@@ -55,9 +55,9 @@ const generateSeriesList = (): SeriesOption[] => {
   const seriesList: SeriesOption[] = [];
   const rankingMap = generateRankingData();
 
-  for (const key of Array.from(rankingMap.keys())) {
+  rankingMap.forEach((data, name) => {
     const series: SeriesOption = {
-      name: key,
+      name,
       symbolSize: 20,
       type: 'line',
       smooth: true,
@@ -72,10 +72,10 @@ const generateSeriesList = (): SeriesOption[] => {
       lineStyle: {
         width: 4
       },
-      data: rankingMap.get(key)
+      data
     };
     seriesList.push(series);
-  }
+  });
   return seriesList;
 };
 
@@ -123,3 +123,5 @@ option = {
   },
   series: generateSeriesList()
 };
+
+export {};
