@@ -75,7 +75,9 @@ export default {
       const cdnRoot = store.cdnRoot;
       const acceleratorCDN =
         this.enableImgAcceleration &&
-        IMG_ACCELERATOR_CDN[~~(Math.random() * IMG_ACCELERATOR_CDN.length)];
+        IMG_ACCELERATOR_CDN[
+          ~~(window.ec_math_random() * IMG_ACCELERATOR_CDN.length)
+        ];
       return acceleratorCDN
         ? acceleratorCDN + '/' + cdnRoot.slice(cdnRoot.indexOf('//') + 2)
         : cdnRoot;

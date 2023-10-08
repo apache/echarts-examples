@@ -5,6 +5,7 @@ import handleLoop from './handleLoop?raw-minify';
 import showDebugDirtyRect from '../../dep/showDebugDirtyRect?raw-minify';
 import setup from './setup?raw-minify';
 import { store } from '../../common/store';
+import { SCRIPT_URLS } from '../../common/config';
 
 function prepareSetupScript(isShared) {
   const isProd = process.env.NODE_ENV === 'production';
@@ -31,9 +32,12 @@ export function createSandbox(
   onOptionUpdated,
   onCSSParsed
 ) {
-  scripts = ((scripts && scripts.slice()) || []).concat(
-    prepareSetupScript(isShared)
-  );
+  const commonLibs = [
+    SCRIPT_URLS.jQueryJS,
+    SCRIPT_URLS.seedrandomJS,
+    SCRIPT_URLS.acornJS
+  ].map((src) => ({ src }));
+  scripts = commonLibs.concat(scripts, prepareSetupScript(isShared));
 
   const sandbox = document.createElement('iframe');
   const allow = [

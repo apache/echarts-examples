@@ -1,4 +1,5 @@
 import { store } from '../../../common/store';
+import { SCRIPT_URLS } from '../../../common/config';
 
 /**
  * Get templates
@@ -16,7 +17,7 @@ export function getTemplates(title, scripts, css) {
   const hasJQuery = /\$[\.\(]+/g.test(store.sourceCode);
   hasJQuery &&
     scripts.unshift({
-      src: 'https://fastly.jsdelivr.net/npm/jquery'
+      src: SCRIPT_URLS.jQueryJS
     });
 
   const htmlTpl = `<!DOCTYPE html>

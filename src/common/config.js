@@ -132,6 +132,9 @@ export const SCRIPT_URLS = {
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
   prettierDir: `${CDN_ROOT}prettier@2.3.2`,
   highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
+  seedrandomJS: `${CDN_ROOT}seedrandom@3.0.5/seedrandom.min.js`,
+  jQueryJS: `${CDN_ROOT}jquery@3.7.1/dist/jquery.min.js`,
+  acornJS: `${CDN_ROOT}acorn@8.7.1/dist/acorn.min.js`,
 
   bmapLibJS:
     'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',

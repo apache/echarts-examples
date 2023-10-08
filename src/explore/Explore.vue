@@ -66,9 +66,12 @@
 <script>
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
+import { EXAMPLE_CATEGORIES, BLACK_MAP, SCRIPT_URLS } from '../common/config';
 import { store } from '../common/store';
-import { shouldEnableImgAcceleration } from '../common/helper';
+import {
+  loadScriptsAsync,
+  shouldEnableImgAcceleration
+} from '../common/helper';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
@@ -253,12 +256,18 @@ export default {
       return onDone();
     }
 
-    $.getJSON(`${store.cdnRoot}/thumb-hash.json?_v_=${store.version}`).always(
-      (data) => {
+    $.getJSON(`${store.cdnRoot}/thumb-hash.json?_v_=${store.version}`)
+      .done((data) => {
         window.ec_thumb_hash = data;
-        onDone();
-      }
-    );
+      })
+      .always(() => {
+        loadScriptsAsync([SCRIPT_URLS.seedrandomJS]).finally(() => {
+          window.ec_math_random = Math.seedrandom
+            ? new Math.seedrandom('echarts-examples')
+            : Math.random;
+          onDone();
+        });
+      });
   },
 
   methods: {
