@@ -246,7 +246,7 @@ export default {
         });
 
         setTimeout(() => {
-          this.onHashChange();
+          location.hash && this.onHashChange();
           window.addEventListener('hashchange', this.onHashChange);
         }, 0);
       });
