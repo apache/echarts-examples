@@ -28,7 +28,8 @@
 
 <script>
 import { store } from '../common/store';
-import { URL_PARAMS } from '../common/config';
+import { URL_PARAMS, IMG_ACCELERATOR_CDN } from '../common/config';
+import { shouldEnableImgAcceleration } from '../common/helper';
 
 export default {
   props: ['example'],
@@ -68,19 +69,57 @@ export default {
       return './editor.html?' + hash.join('&');
     },
 
-    screenshotURLWithoutExt() {
+    enableImgAcceleration: shouldEnableImgAcceleration,
+
+    imgCDN() {
+      const cdnRoot = store.cdnRoot;
+      const acceleratorCDN =
+        this.enableImgAcceleration &&
+        IMG_ACCELERATOR_CDN[~~(Math.random() * IMG_ACCELERATOR_CDN.length)];
+      return acceleratorCDN
+        ? acceleratorCDN + '/' + cdnRoot.slice(cdnRoot.indexOf('//') + 2)
+        : cdnRoot;
+    },
+
+    exampleThumbBasePath() {
       const example = this.example;
       const themePostfix = this.exampleTheme ? '-' + this.exampleTheme : '';
       const folder = example.isGL ? 'data-gl' : 'data';
-      return `${store.cdnRoot}/${folder}/thumb${themePostfix}/${example.id}`;
+      return `${folder}/thumb${themePostfix}/${example.id}`;
     },
 
     screenshotURLWebP() {
-      return this.screenshotURLWithoutExt + `.webp?_v_=${store.version}`;
+      return this.getExampleThumbPath(
+        this.exampleThumbBasePath,
+        'webp',
+        this.imgCDN,
+        this.enableImgAcceleration
+      );
     },
 
     screenshotURLPNG() {
-      return this.screenshotURLWithoutExt + `.png?_v_=${store.version}`;
+      return this.getExampleThumbPath(
+        this.exampleThumbBasePath,
+        'png',
+        this.imgCDN,
+        this.enableImgAcceleration
+      );
+    }
+  },
+
+  methods: {
+    getExampleThumbPath(
+      thumbPathSegment,
+      imgExt,
+      imgCDN,
+      enableImgAcceleration
+    ) {
+      const hash =
+        enableImgAcceleration &&
+        (window.ec_thumb_hash || {})[thumbPathSegment + '.' + imgExt];
+      return `${imgCDN}/${thumbPathSegment}${
+        hash ? '.' + hash : ''
+      }.${imgExt}?_v_=${store.version}`;
     }
   }
 };

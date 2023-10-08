@@ -109,6 +109,11 @@ export { URL_PARAMS };
 // https://npm.elemecdn.com/
 export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
 
+// NOTE: can't clear the cache with query string and must change the file name
+export const IMG_ACCELERATOR_CDN = [0, 1, 2, 3].map(
+  (subdomain) => `https://i${subdomain}.wp.com`
+);
+
 export const SCRIPT_URLS = {
   echartsDir: `${CDN_ROOT}echarts@{{version}}`,
   echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,

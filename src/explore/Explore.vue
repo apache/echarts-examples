@@ -68,6 +68,7 @@ import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
+import { shouldEnableImgAcceleration } from '../common/helper';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
@@ -133,6 +134,52 @@ export default {
   data() {
     const exampleListByCategory = {};
 
+    return {
+      shared: store,
+
+      icons,
+
+      EXAMPLE_CATEGORIES,
+      // [{
+      //  category: '',
+      //  isGL: false
+      //  examples: []
+      // }]
+      exampleListByCategory
+    };
+  },
+
+  watch: {
+    'shared.darkMode'() {
+      const imgs = this.$el.querySelectorAll('img.chart-area');
+      for (let i = 0; i < imgs.length; i++) {
+        // Force lazyload to update
+        LazyLoad.resetStatus(imgs[i]);
+      }
+      this._lazyload.update();
+    }
+  },
+
+  computed: {
+    exampleList() {
+      const list = [];
+      for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
+        const category = EXAMPLE_CATEGORIES[i];
+        const categoryObj = this.exampleListByCategory[category];
+        if (categoryObj && categoryObj.examples.length > 0) {
+          list.push({
+            category,
+            examples: categoryObj.examples
+          });
+        }
+      }
+      return list;
+    }
+  },
+
+  mounted() {
+    const exampleListByCategory = {};
+
     function addExamples(list, isGL) {
       let categoryOrder = 0;
       // Add by category order in each example.
@@ -170,72 +217,48 @@ export default {
       } while (++categoryOrder && categoryOrder < 4); // At most 4 category
     }
 
-    addExamples(CHART_LIST, false);
-    addExamples(CHART_LIST_GL, true);
+    const onDone = () => {
+      addExamples(CHART_LIST, false);
+      addExamples(CHART_LIST_GL, true);
 
-    return {
-      shared: store,
+      this.$set(this, 'exampleListByCategory', exampleListByCategory);
 
-      icons,
-
-      EXAMPLE_CATEGORIES,
-      // [{
-      //  category: '',
-      //  isGL: false
-      //  examples: []
-      // }]
-      exampleListByCategory
-    };
-  },
-
-  watch: {
-    'shared.darkMode'() {
-      const imgs = this.$el.querySelectorAll('img.chart-area');
-      for (let i = 0; i < imgs.length; i++) {
-        // Force lazyload to update
-        LazyLoad.resetStatus(imgs[i]);
-      }
-      this._lazyload.update();
-    }
-  },
-
-  computed: {
-    exampleList() {
-      const list = [];
-      for (let i = 0; i < EXAMPLE_CATEGORIES.length; i++) {
-        const category = EXAMPLE_CATEGORIES[i];
-        const categoryObj = this.exampleListByCategory[category];
-        if (categoryObj && categoryObj.examples.length > 0) {
-          list.push({
-            category,
-            examples: categoryObj.examples
-          });
-        }
-      }
-      return list;
-    }
-  },
-
-  mounted() {
-    window.addEventListener('hashchange', this.onHashChange);
-
-    this._lazyload = new LazyLoad({
-      // Container should be the scroll viewport.
-      // container: this.$el.querySelector('#explore-container .example-list-panel'),
-      elements_selector: '.chart-area',
-      load_delay: 400,
-      class_loaded: LAZY_LOADED_CLASS,
-      callback_error(img) {
-        const fallbackSrc = img.src;
-        const children = img.parentElement.children;
-        for (let i = 0, len = children.length; i < len; i++) {
-          const el = children[i];
-          if (el !== img) {
-            el.srcset = fallbackSrc;
+      this.$nextTick(() => {
+        this._lazyload = new LazyLoad({
+          // Container should be the scroll viewport.
+          // container: this.$el.querySelector('#explore-container .example-list-panel'),
+          elements_selector: '.chart-area',
+          load_delay: 400,
+          class_loaded: LAZY_LOADED_CLASS,
+          callback_error(img) {
+            const fallbackSrc = img.src;
+            const children = img.parentElement.children;
+            for (let i = 0, len = children.length; i < len; i++) {
+              const el = children[i];
+              if (el !== img) {
+                el.srcset = fallbackSrc;
+              }
+            }
           }
-        }
+        });
+
+        setTimeout(() => {
+          this.onHashChange();
+          window.addEventListener('hashchange', this.onHashChange);
+        }, 0);
+      });
+    };
+
+    if (!shouldEnableImgAcceleration()) {
+      return onDone();
+    }
+
+    $.getJSON(`${store.cdnRoot}/thumb-hash.json?_v_=${store.version}`).always(
+      (data) => {
+        window.ec_thumb_hash = data;
+        onDone();
       }
-    });
+    );
   },
 
   methods: {

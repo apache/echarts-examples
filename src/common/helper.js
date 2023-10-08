@@ -126,3 +126,7 @@ export function isTrustedOpener() {
 export function decodeBase64(str) {
   return decodeURIComponent(escape(window.atob(str)));
 }
+
+export function shouldEnableImgAcceleration() {
+  return store.locale === 'zh' && store.cdnRoot.includes('echarts.apache.org');
+}
