@@ -28,8 +28,7 @@
 
 <script>
 import { store } from '../common/store';
-import { URL_PARAMS, IMG_ACCELERATOR_CDN } from '../common/config';
-import { shouldEnableImgAcceleration } from '../common/helper';
+import { URL_PARAMS } from '../common/config';
 
 export default {
   props: ['example'],
@@ -69,21 +68,7 @@ export default {
       return './editor.html?' + hash.join('&');
     },
 
-    enableImgAcceleration: shouldEnableImgAcceleration,
-
-    imgCDN() {
-      const cdnRoot = store.cdnRoot;
-      const acceleratorCDN =
-        this.enableImgAcceleration &&
-        IMG_ACCELERATOR_CDN[
-          ~~(window.ec_math_random() * IMG_ACCELERATOR_CDN.length)
-        ];
-      return acceleratorCDN
-        ? acceleratorCDN + '/' + cdnRoot.slice(cdnRoot.indexOf('//') + 2)
-        : cdnRoot;
-    },
-
-    exampleThumbBasePath() {
+    exampleThumbFilePath() {
       const example = this.example;
       const themePostfix = this.exampleTheme ? '-' + this.exampleTheme : '';
       const folder = example.isGL ? 'data-gl' : 'data';
@@ -91,37 +76,11 @@ export default {
     },
 
     screenshotURLWebP() {
-      return this.getExampleThumbPath(
-        this.exampleThumbBasePath,
-        'webp',
-        this.imgCDN,
-        this.enableImgAcceleration
-      );
+      return `${store.cdnRoot}/${this.exampleThumbFilePath}.webp?_v_=${store.version}`;
     },
 
     screenshotURLPNG() {
-      return this.getExampleThumbPath(
-        this.exampleThumbBasePath,
-        'png',
-        this.imgCDN,
-        this.enableImgAcceleration
-      );
-    }
-  },
-
-  methods: {
-    getExampleThumbPath(
-      thumbPathSegment,
-      imgExt,
-      imgCDN,
-      enableImgAcceleration
-    ) {
-      const hash =
-        enableImgAcceleration &&
-        (window.ec_thumb_hash || {})[thumbPathSegment + '.' + imgExt];
-      return `${imgCDN}/${thumbPathSegment}${
-        hash ? '.' + hash : ''
-      }.${imgExt}?_v_=${store.version}`;
+      return `${store.cdnRoot}/${this.exampleThumbFilePath}.png?_v_=${store.version}`;
     }
   }
 };

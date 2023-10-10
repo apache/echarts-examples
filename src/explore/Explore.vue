@@ -8,6 +8,8 @@
           :offset="80"
           :duration="500"
           :scroll-container-selector="'#example-explore'"
+          :scroll-on-start="false"
+          :modify-url="false"
           bezier-easing-value=".5,0,.35,1"
           @itemchanged="onActiveNavChanged"
         >
@@ -66,12 +68,8 @@
 <script>
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP, SCRIPT_URLS } from '../common/config';
+import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
-import {
-  loadScriptsAsync,
-  shouldEnableImgAcceleration
-} from '../common/helper';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
@@ -137,6 +135,46 @@ export default {
   data() {
     const exampleListByCategory = {};
 
+    function addExamples(list, isGL) {
+      let categoryOrder = 0;
+      // Add by category order in each example.
+      do {
+        let added = false;
+        for (let i = 0; i < list.length; i++) {
+          const example = list[i];
+          if (BLACK_MAP.hasOwnProperty(example.id)) {
+            continue;
+          }
+          if (typeof example.category === 'string') {
+            example.category = [example.category];
+          }
+
+          const categoryStr = (example.category || [])[categoryOrder];
+          if (categoryStr) {
+            added = true;
+            let categoryObj = exampleListByCategory[categoryStr];
+            if (!categoryObj) {
+              categoryObj = {
+                category: categoryStr,
+                examples: []
+              };
+              exampleListByCategory[categoryStr] = categoryObj;
+            }
+            example.isGL = isGL;
+
+            categoryObj.examples.push(example);
+          }
+        }
+
+        if (!added) {
+          break;
+        }
+      } while (++categoryOrder && categoryOrder < 4); // At most 4 category
+    }
+
+    addExamples(CHART_LIST, false);
+    addExamples(CHART_LIST_GL, true);
+
     return {
       shared: store,
 
@@ -181,97 +219,35 @@ export default {
   },
 
   mounted() {
-    const exampleListByCategory = {};
-
-    function addExamples(list, isGL) {
-      let categoryOrder = 0;
-      // Add by category order in each example.
-      do {
-        let added = false;
-        for (let i = 0; i < list.length; i++) {
-          const example = list[i];
-          if (BLACK_MAP.hasOwnProperty(example.id)) {
-            continue;
-          }
-          if (typeof example.category === 'string') {
-            example.category = [example.category];
-          }
-
-          const categoryStr = (example.category || [])[categoryOrder];
-          if (categoryStr) {
-            added = true;
-            let categoryObj = exampleListByCategory[categoryStr];
-            if (!categoryObj) {
-              categoryObj = {
-                category: categoryStr,
-                examples: []
-              };
-              exampleListByCategory[categoryStr] = categoryObj;
-            }
-            example.isGL = isGL;
-
-            categoryObj.examples.push(example);
+    this._lazyload = new LazyLoad({
+      // Container should be the scroll viewport.
+      // container: this.$el.querySelector('#explore-container .example-list-panel'),
+      elements_selector: '.chart-area',
+      load_delay: 400,
+      class_loaded: LAZY_LOADED_CLASS,
+      callback_error(img) {
+        const fallbackSrc = img.src;
+        const children = img.parentElement.children;
+        for (let i = 0, len = children.length; i < len; i++) {
+          const el = children[i];
+          if (el !== img) {
+            el.srcset = fallbackSrc;
           }
         }
+      }
+    });
 
-        if (!added) {
-          break;
-        }
-      } while (++categoryOrder && categoryOrder < 4); // At most 4 category
-    }
-
-    const onDone = () => {
-      addExamples(CHART_LIST, false);
-      addExamples(CHART_LIST_GL, true);
-
-      this.$set(this, 'exampleListByCategory', exampleListByCategory);
-
-      this.$nextTick(() => {
-        this._lazyload = new LazyLoad({
-          // Container should be the scroll viewport.
-          // container: this.$el.querySelector('#explore-container .example-list-panel'),
-          elements_selector: '.chart-area',
-          load_delay: 400,
-          class_loaded: LAZY_LOADED_CLASS,
-          callback_error(img) {
-            const fallbackSrc = img.src;
-            const children = img.parentElement.children;
-            for (let i = 0, len = children.length; i < len; i++) {
-              const el = children[i];
-              if (el !== img) {
-                el.srcset = fallbackSrc;
-              }
-            }
-          }
-        });
-
-        setTimeout(() => {
-          location.hash && this.onHashChange();
-          window.addEventListener('hashchange', this.onHashChange);
-        }, 0);
-      });
-    };
-
-    if (!shouldEnableImgAcceleration()) {
-      return onDone();
-    }
-
-    $.getJSON(`${store.cdnRoot}/thumb-hash.json?_v_=${store.version}`)
-      .done((data) => {
-        window.ec_thumb_hash = data;
-      })
-      .always(() => {
-        loadScriptsAsync([SCRIPT_URLS.seedrandomJS]).finally(() => {
-          window.ec_math_random = Math.seedrandom
-            ? new Math.seedrandom('echarts-examples')
-            : Math.random;
-          onDone();
-        });
-      });
+    setTimeout(() => {
+      location.hash && this.onHashChange();
+      window.addEventListener('hashchange', this.onHashChange);
+    }, 0);
   },
 
   methods: {
-    onHashChange() {
+    onHashChange(e) {
+      console.log('onHashChange');
+      e && e.preventDefault();
+
       const hash = location.hash;
       const items = this.$refs.scrollactive.items;
       let activeItem;
@@ -282,15 +258,26 @@ export default {
           break;
         }
       }
-      (activeItem || items[0]).click();
-    },
-    onActiveNavChanged(event, currentItem, lastActiveItem) {
-      if (!event || !currentItem) {
+      if (!activeItem) {
         return;
       }
-      // change url
-      history.replaceState(null, null, currentItem.href);
+      activeItem.click();
+      this.scrollNav(activeItem);
+    },
+    onActiveNavChanged(event, currentItem) {
+      if (!currentItem) {
+        return;
+      }
 
+      const isByScroll = event && event.type === 'scroll';
+      isByScroll && this.scrollNav(currentItem);
+
+      // change url
+      if (location.href !== currentItem.href) {
+        history.pushState(null, null, currentItem.href);
+      }
+    },
+    scrollNav(currentItem) {
       // scroll nav
       const leftContainer = this.$refs.leftContainer;
       const containerOffsetHeight = leftContainer.offsetHeight;
@@ -403,6 +390,7 @@ $pd-lg: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   // scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 #toolbar {
