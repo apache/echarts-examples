@@ -32,11 +32,31 @@ export function createSandbox(
   onOptionUpdated,
   onCSSParsed
 ) {
-  const commonLibs = [
-    SCRIPT_URLS.jQueryJS,
-    SCRIPT_URLS.seedrandomJS,
-    SCRIPT_URLS.acornJS
-  ].map((src) => ({ src }));
+  const commonLibs = [SCRIPT_URLS.seedrandomJS, SCRIPT_URLS.acornJS].map(
+    (src) => ({ src })
+  );
+  commonLibs.unshift({
+    content: `
+      (() => {
+        let _win = window;
+        while (_win) {
+          if (_win.jQuery) {
+            if (_win !== window) {
+              window.jQuery = window.$ = _win.jQuery;
+            }
+            return;
+          }
+          if (_win === top) {
+            break;
+          }
+          _win = _win.parent;
+        }
+        const jqLib = document.createElement('script');
+        jqLib.src = '${SCRIPT_URLS.jQueryJS}';
+        document.head.appendChild(jqLib);
+      })();
+    `
+  });
   scripts = commonLibs.concat(scripts, prepareSetupScript(isShared));
 
   const sandbox = document.createElement('iframe');
@@ -133,7 +153,7 @@ export function createSandbox(
   sandbox.onerror = onerror;
   container.appendChild(sandbox);
 
-  function hanldeMessage(e) {
+  function handleMessage(e) {
     if (e.source !== sandbox.contentWindow) {
       return;
     }
@@ -162,12 +182,12 @@ export function createSandbox(
     sandbox.contentWindow.postMessage({ action, ...argumentMap }, '*');
   }
 
-  window.addEventListener('message', hanldeMessage, false);
+  window.addEventListener('message', handleMessage, false);
 
   return {
     dispose() {
       sendMessage('dispose');
-      window.removeEventListener('message', hanldeMessage);
+      window.removeEventListener('message', handleMessage);
       container.removeChild(sandbox);
     },
     run(store, recreateInstance) {
