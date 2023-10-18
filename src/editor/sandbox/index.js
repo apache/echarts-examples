@@ -32,31 +32,11 @@ export function createSandbox(
   onOptionUpdated,
   onCSSParsed
 ) {
-  const commonLibs = [SCRIPT_URLS.seedrandomJS, SCRIPT_URLS.acornJS].map(
-    (src) => ({ src })
-  );
-  commonLibs.unshift({
-    content: `
-      (() => {
-        let _win = window;
-        while (_win) {
-          if (_win.jQuery) {
-            if (_win !== window) {
-              window.jQuery = window.$ = _win.jQuery;
-            }
-            return;
-          }
-          if (_win === top) {
-            break;
-          }
-          _win = _win.parent;
-        }
-        const jqLib = document.createElement('script');
-        jqLib.src = '${SCRIPT_URLS.jQueryJS}';
-        document.head.appendChild(jqLib);
-      })();
-    `
-  });
+  const commonLibs = [
+    SCRIPT_URLS.jQueryJS,
+    SCRIPT_URLS.seedrandomJS,
+    SCRIPT_URLS.acornJS
+  ].map((src) => ({ src }));
   scripts = commonLibs.concat(scripts, prepareSetupScript(isShared));
 
   const sandbox = document.createElement('iframe');
