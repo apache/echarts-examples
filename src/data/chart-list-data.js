@@ -4,17 +4,6 @@
 export default [
   {
     "category": [
-      "bar"
-    ],
-    "id": "bar-background",
-    "ts": true,
-    "tags": [],
-    "title": "Bar with Background",
-    "titleCN": "带背景色的柱状图",
-    "difficulty": 0
-  },
-  {
-    "category": [
       "custom"
     ],
     "id": "bar-histogram",
@@ -167,6 +156,17 @@ export default [
     "tags": [],
     "title": "Basic area chart",
     "titleCN": "基础面积图",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-background",
+    "ts": true,
+    "tags": [],
+    "title": "Bar with Background",
+    "titleCN": "带背景色的柱状图",
     "difficulty": 1
   },
   {
@@ -788,6 +788,17 @@ export default [
     "tags": [],
     "title": "Stacked Column Chart",
     "titleCN": "堆叠柱状图",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-stack-borderRadius",
+    "ts": true,
+    "tags": [],
+    "title": "Stacked Bar with borderRadius",
+    "titleCN": "带圆角的堆积柱状图",
     "difficulty": 3
   },
   {
