@@ -2,7 +2,7 @@
 title: Bar with Background
 category: bar
 titleCN: 带背景色的柱状图
-difficulty: 0
+difficulty: 1
 */
 
 option = {
