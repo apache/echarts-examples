@@ -1,11 +1,13 @@
 import { store } from '../common/store';
-import { URL_PARAMS, SCRIPT_URLS } from '../common/config';
+import { URL_PARAMS, getScriptURLs } from '../common/config';
 import { downloadBlob } from '../common/helper';
 
 export function download(sourceHeader) {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+
   const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') > -1;
   const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}';` : '';
-  const lang = store.locale && store.locale.indexOf('zh') > -1 ? 'zh-CN' : 'en';
+  const lang = store.locale === 'zh' > -1 ? 'zh-CN' : 'en';
 
   const hasJQueryJS = /\$[\.\(]+/g.test(store.sourceCode);
   const jqueryScriptCode = hasJQueryJS

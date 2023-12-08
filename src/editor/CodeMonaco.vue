@@ -5,9 +5,11 @@
 <script>
 import { loadScriptsAsync } from '../common/helper';
 import { store } from '../common/store';
-import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { URL_PARAMS, getScriptURLs } from '../common/config';
 
 function loadTypes() {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+
   return fetch(
     ('local' in URL_PARAMS
       ? SCRIPT_URLS.localEChartsDir
@@ -93,6 +95,8 @@ declare global {
 
 function ensureMonacoAndTsTransformer() {
   if (typeof monaco === 'undefined') {
+    const SCRIPT_URLS = getScriptURLs(store.locale);
+
     return loadScriptsAsync([
       SCRIPT_URLS.monacoDir + '/loader.js',
       // Prebuilt TS transformer with sucrase

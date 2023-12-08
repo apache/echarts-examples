@@ -1,5 +1,5 @@
 import { store } from '../../../common/store';
-import { SCRIPT_URLS } from '../../../common/config';
+import { getScriptURLs } from '../../../common/config';
 
 /**
  * Get templates
@@ -8,6 +8,8 @@ import { SCRIPT_URLS } from '../../../common/config';
  * @param {string} css
  */
 export function getTemplates(title, scripts, css) {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+
   title = `${title ? title + ' - ' : ''}Apache ECharts Demo`;
   scripts = (scripts && scripts.slice()) || [];
   const lang = store.locale && store.locale.indexOf('zh') > -1 ? 'zh-CN' : 'en';

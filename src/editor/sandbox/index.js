@@ -5,7 +5,7 @@ import handleLoop from './handleLoop?raw-minify';
 import showDebugDirtyRect from '../../dep/showDebugDirtyRect?raw-minify';
 import setup from './setup?raw-minify';
 import { store } from '../../common/store';
-import { SCRIPT_URLS } from '../../common/config';
+import { getScriptURLs } from '../../common/config';
 
 function prepareSetupScript(isShared) {
   const isProd = process.env.NODE_ENV === 'production';
@@ -32,6 +32,7 @@ export function createSandbox(
   onOptionUpdated,
   onCSSParsed
 ) {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
   const commonLibs = [
     SCRIPT_URLS.jQueryJS,
     SCRIPT_URLS.seedrandomJS,
@@ -84,7 +85,9 @@ export function createSandbox(
             'cdn.bootcdn.net',
             'lib.baomitu.com',
             'unpkg.zhimg.com',
-            'npm.elemecdn.com'
+            'npm.elemecdn.com',
+            'registry.npmmirror.com',
+            'cdn.staticfile.org'
           ];
           store.isPR && domains.push(`echarts-pr-${store.prNumber}.surge.sh`);
           return domains;

@@ -426,7 +426,7 @@ import { gotoURL } from '../common/route';
 import { mount } from '@lang/object-visualizer';
 
 import './object-visualizer.css';
-import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { getScriptURLs, URL_PARAMS } from '../common/config';
 import { formatCode, loadScriptsAsync } from '../common/helper';
 import openWithCodePen from './sandbox/openwith/codepen';
 import openWithCodeSandbox from './sandbox/openwith/codesandbox';
@@ -772,6 +772,7 @@ export default {
         },
         dataType: 'text',
         success: (diff) => {
+          const SCRIPT_URLS = getScriptURLs(store.locale);
           const highlightjsDir = SCRIPT_URLS.highlightjsDir;
           loadScriptsAsync([
             highlightjsDir + '/styles/github.min.css',

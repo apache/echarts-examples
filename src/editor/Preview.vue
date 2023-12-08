@@ -154,7 +154,7 @@ import {
   updateRunHash,
   isValidPRVersion
 } from '../common/store';
-import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { getScriptURLs, URL_PARAMS } from '../common/config';
 import { compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
@@ -173,6 +173,8 @@ function getScriptURL(link) {
 }
 
 function getScripts(nightly) {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+
   const echartsDirTpl =
     SCRIPT_URLS[
       isLocal

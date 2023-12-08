@@ -1,5 +1,5 @@
 import { store } from './store';
-import { SCRIPT_URLS } from './config';
+import { getScriptURLs } from './config';
 import { compressToBase64, decompressFromBase64 } from 'lz-string';
 
 const promisesCache = {};
@@ -67,6 +67,8 @@ function ensurePrettier() {
     typeof prettier === 'undefined' ||
     typeof prettierPlugins === 'undefined'
   ) {
+    const SCRIPT_URLS = getScriptURLs(store.locale);
+
     return loadScriptsAsync([
       SCRIPT_URLS.prettierDir + '/standalone.js',
       SCRIPT_URLS.prettierDir +
