@@ -805,6 +805,28 @@ export default [
     "category": [
       "bar"
     ],
+    "id": "bar-stack-normalization",
+    "ts": true,
+    "tags": [],
+    "title": "Stacked Bar Normalization",
+    "titleCN": "堆叠柱状图的归一化",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-stack-normalization-and-variation",
+    "ts": true,
+    "tags": [],
+    "title": "Stacked Bar Normalization and Variation",
+    "titleCN": "堆叠柱状图的归一化和变化",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
     "id": "bar-waterfall2",
     "ts": true,
     "tags": [],
