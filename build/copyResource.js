@@ -1,9 +1,8 @@
-const fs = require('fs');
 const fse = require('fs-extra');
 const globby = require('globby');
 const chalk = require('chalk');
-const path = require('path');
-const assert = require('assert');
+const path = require('node:path');
+const assert = require('node:assert');
 
 const argv = require('yargs').argv;
 const projectDir = __dirname;
@@ -69,7 +68,7 @@ function initEnv() {
 }
 
 async function copyResourcesToDest(config) {
-  let basePath = path.resolve(projectDir, '../public');
+  const basePath = path.resolve(projectDir, '../public');
   const filePaths = await globby(
     [
       '**/*',
@@ -84,12 +83,12 @@ async function copyResourcesToDest(config) {
 
   console.log();
 
-  for (let filePath of filePaths) {
+  for (const filePath of filePaths) {
     fse.ensureDirSync(
       path.resolve(config.releaseDestDir, path.dirname(filePath))
     );
-    let destPath = path.resolve(config.releaseDestDir, filePath);
-    fs.copyFileSync(path.resolve(basePath, filePath), destPath);
+    const destPath = path.resolve(config.releaseDestDir, filePath);
+    fse.copyFileSync(path.resolve(basePath, filePath), destPath);
 
     if (process.stdout.clearLine) {
       process.stdout.clearLine();
@@ -104,7 +103,7 @@ async function copyResourcesToDest(config) {
 }
 
 async function run() {
-  let config = initEnv();
+  const config = initEnv();
   await copyResourcesToDest(config);
 
   console.log('All done.');

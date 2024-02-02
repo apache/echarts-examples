@@ -106,16 +106,26 @@ const URL_PARAMS = {};
 
 export { URL_PARAMS };
 
-// https://npm.elemecdn.com/
-export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
+/**
+ * @param {'en' | 'zh'} locale
+ */
+export function getScriptURLs(locale) {
+  return locale === 'zh' ? SCRIPT_URLS_CN : SCRIPT_URLS;
+}
 
-export const SCRIPT_URLS = {
+const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
+const CDN_ROOT_CN = 'https://lib.baomitu.com/';
+const CDN_ROOT_CN_NPM = 'https://registry.npmmirror.com/';
+
+const SCRIPT_URLS = {
   echartsDir: `${CDN_ROOT}echarts@{{version}}`,
   echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,
   echartsJS: '/dist/echarts.min.js',
 
   localEChartsDir: 'http://localhost/echarts',
-  localEChartsGLJS: 'http://localhost/echarts-gl/dist/echarts-gl.js',
+  localEChartsGLDir: 'http://localhost/echarts-gl',
+
+  prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
 
   echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
   echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
@@ -123,10 +133,39 @@ export const SCRIPT_URLS = {
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
-
   prettierDir: `${CDN_ROOT}prettier@2.3.2`,
+  highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
+  seedrandomJS: `${CDN_ROOT}seedrandom@3.0.5/seedrandom.min.js`,
+  jQueryJS: `${CDN_ROOT}jquery@3.7.1/dist/jquery.min.js`,
+  acornJS: `${CDN_ROOT}acorn@8.7.1/dist/acorn.min.js`,
 
   bmapLibJS:
     'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
   echartsBMapJS: '/dist/extension/bmap.min.js'
+};
+
+const SCRIPT_URLS_CN = {
+  echartsDir: `${CDN_ROOT_CN_NPM}echarts/{{version}}/files`,
+  echartsNightlyDir: `${CDN_ROOT_CN_NPM}echarts-nightly/{{version}}/files`,
+  echartsJS: SCRIPT_URLS.echartsJS,
+
+  localEChartsDir: SCRIPT_URLS.localEChartsDir,
+  localEChartsGLDir: SCRIPT_URLS.localEChartsGLDir,
+
+  prPreviewEChartsDir: SCRIPT_URLS.prPreviewEChartsDir,
+
+  echartsWorldMapJS: `${CDN_ROOT_CN_NPM}echarts/4.9.0/files/map/js/world.js`,
+  echartsStatJS: `${CDN_ROOT_CN_NPM}echarts-stat/latest/files/dist/ecStat.min.js`,
+  echartsGLJS: `${CDN_ROOT_CN_NPM}echarts-gl/2/files/dist/echarts-gl.min.js`,
+  datGUIMinJS: `${CDN_ROOT_CN}dat-gui/0.6.5/dat.gui.min.js`,
+  monacoDir: `https://cdn.staticfile.org/monaco-editor/0.27.0/min/vs`,
+  aceDir: `${CDN_ROOT_CN_NPM}ace-builds/1.4.12/files/src-min-noconflict`,
+  prettierDir: `${CDN_ROOT_CN}prettier/2.3.2`,
+  highlightjsDir: `${CDN_ROOT_CN_NPM}@highlightjs/cdn-assets/11.8.0/files`,
+  seedrandomJS: `${CDN_ROOT_CN}seedrandom/3.0.5/seedrandom.min.js`,
+  jQueryJS: `https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js`,
+  acornJS: `https://cdn.staticfile.org/acorn/8.7.1/acorn.min.js`,
+
+  bmapLibJS: SCRIPT_URLS.bmapLibJS,
+  echartsBMapJS: SCRIPT_URLS.echartsBMapJS
 };

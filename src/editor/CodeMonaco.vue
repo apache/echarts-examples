@@ -5,9 +5,11 @@
 <script>
 import { loadScriptsAsync } from '../common/helper';
 import { store } from '../common/store';
-import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { URL_PARAMS, getScriptURLs } from '../common/config';
 
 function loadTypes() {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+
   return fetch(
     ('local' in URL_PARAMS
       ? SCRIPT_URLS.localEChartsDir
@@ -93,12 +95,23 @@ declare global {
 
 function ensureMonacoAndTsTransformer() {
   if (typeof monaco === 'undefined') {
+    const SCRIPT_URLS = getScriptURLs(store.locale);
+
     return loadScriptsAsync([
       SCRIPT_URLS.monacoDir + '/loader.js',
       // Prebuilt TS transformer with sucrase
       store.cdnRoot + '/js/example-transform-ts-bundle.js'
     ]).then(function () {
-      window.require.config({ paths: { vs: SCRIPT_URLS.monacoDir } });
+      window.require.config({
+        paths: {
+          vs: SCRIPT_URLS.monacoDir
+        },
+        'vs/nls': {
+          availableLanguages: {
+            '*': store.locale === 'zh' ? 'zh-cn' : undefined
+          }
+        }
+      });
       return new Promise((resolve) => {
         window.require(['vs/editor/editor.main'], function () {
           loadTypes().then(() => {
@@ -140,7 +153,8 @@ export default {
           enabled: false
         },
         wordWrap: 'off',
-        automaticLayout: true
+        automaticLayout: true,
+        fixedOverflowWidgets: true
       });
 
       this._editor = editor;
@@ -216,5 +230,10 @@ export default {
   top: 0;
   bottom: 0;
   right: 0;
+}
+
+.overflowingContentWidgets {
+  position: relative;
+  z-index: 20000;
 }
 </style>

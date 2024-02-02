@@ -69,7 +69,7 @@ option = {
         fontSize: 60,
         fontWeight: 'bolder',
         formatter: '{value} °C',
-        color: 'auto'
+        color: 'inherit'
       },
       data: [
         {

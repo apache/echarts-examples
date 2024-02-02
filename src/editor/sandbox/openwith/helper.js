@@ -1,4 +1,5 @@
 import { store } from '../../../common/store';
+import { getScriptURLs } from '../../../common/config';
 
 /**
  * Get templates
@@ -7,6 +8,8 @@ import { store } from '../../../common/store';
  * @param {string} css
  */
 export function getTemplates(title, scripts, css) {
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+
   title = `${title ? title + ' - ' : ''}Apache ECharts Demo`;
   scripts = (scripts && scripts.slice()) || [];
   const lang = store.locale && store.locale.indexOf('zh') > -1 ? 'zh-CN' : 'en';
@@ -16,7 +19,7 @@ export function getTemplates(title, scripts, css) {
   const hasJQuery = /\$[\.\(]+/g.test(store.sourceCode);
   hasJQuery &&
     scripts.unshift({
-      src: 'https://fastly.jsdelivr.net/npm/jquery'
+      src: SCRIPT_URLS.jQueryJS
     });
 
   const htmlTpl = `<!DOCTYPE html>

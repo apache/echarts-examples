@@ -4,6 +4,8 @@ import loopController from './loopController?raw-minify';
 import handleLoop from './handleLoop?raw-minify';
 import showDebugDirtyRect from '../../dep/showDebugDirtyRect?raw-minify';
 import setup from './setup?raw-minify';
+import { store } from '../../common/store';
+import { getScriptURLs } from '../../common/config';
 
 function prepareSetupScript(isShared) {
   const isProd = process.env.NODE_ENV === 'production';
@@ -30,9 +32,13 @@ export function createSandbox(
   onOptionUpdated,
   onCSSParsed
 ) {
-  scripts = ((scripts && scripts.slice()) || []).concat(
-    prepareSetupScript(isShared)
-  );
+  const SCRIPT_URLS = getScriptURLs(store.locale);
+  const commonLibs = [
+    SCRIPT_URLS.jQueryJS,
+    SCRIPT_URLS.seedrandomJS,
+    SCRIPT_URLS.acornJS
+  ].map((src) => ({ src }));
+  scripts = commonLibs.concat(scripts, prepareSetupScript(isShared));
 
   const sandbox = document.createElement('iframe');
   const allow = [
@@ -58,28 +64,34 @@ export function createSandbox(
         'data:',
         'blob:'
       ].concat(
-        [
-          '*.apache.org',
-          '*.jsdelivr.net',
-          '*.jsdelivr.com',
-          '*.unpkg.com',
-          '*.baidu.com',
-          '*.bdimg.com',
-          '*.bdstatic.com',
-          'apache.org',
-          'apache.github.io',
-          'jsdelivr.net',
-          'jsdelivr.com',
-          'unpkg.com',
-          'baidu.com',
-          'bdimg.com',
-          'bdstatic.com',
-          'cdnjs.cloudflare.com',
-          'cdn.bootcdn.net',
-          'lib.baomitu.com',
-          'unpkg.zhimg.com',
-          'npm.elemecdn.com'
-        ].map((domain) => 'https://' + domain)
+        (() => {
+          const domains = [
+            '*.apache.org',
+            '*.jsdelivr.net',
+            '*.jsdelivr.com',
+            '*.unpkg.com',
+            '*.baidu.com',
+            '*.bdimg.com',
+            '*.bdstatic.com',
+            'apache.org',
+            'apache.github.io',
+            'jsdelivr.net',
+            'jsdelivr.com',
+            'unpkg.com',
+            'baidu.com',
+            'bdimg.com',
+            'bdstatic.com',
+            'cdnjs.cloudflare.com',
+            'cdn.bootcdn.net',
+            'lib.baomitu.com',
+            'unpkg.zhimg.com',
+            'npm.elemecdn.com',
+            'registry.npmmirror.com',
+            'cdn.staticfile.org'
+          ];
+          store.isPR && domains.push(`echarts-pr-${store.prNumber}.surge.sh`);
+          return domains;
+        })().map((domain) => 'https://' + domain)
       ),
       'frame-src': [`'none'`],
       'object-src': [`'none'`],
@@ -124,7 +136,7 @@ export function createSandbox(
   sandbox.onerror = onerror;
   container.appendChild(sandbox);
 
-  function hanldeMessage(e) {
+  function handleMessage(e) {
     if (e.source !== sandbox.contentWindow) {
       return;
     }
@@ -153,12 +165,12 @@ export function createSandbox(
     sandbox.contentWindow.postMessage({ action, ...argumentMap }, '*');
   }
 
-  window.addEventListener('message', hanldeMessage, false);
+  window.addEventListener('message', handleMessage, false);
 
   return {
     dispose() {
       sendMessage('dispose');
-      window.removeEventListener('message', hanldeMessage);
+      window.removeEventListener('message', handleMessage);
       container.removeChild(sandbox);
     },
     run(store, recreateInstance) {

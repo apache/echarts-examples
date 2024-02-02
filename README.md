@@ -6,7 +6,6 @@
 npm install
 ```
 
-
 ## Edit examples
 
 ### How
@@ -36,7 +35,7 @@ videoEnd: 6000
 */
 ```
 
-Most of examples are written in `TypeScript`. You need to comile it to `JavaScript` by using command:
+Most of examples are written in `TypeScript`. You need to compile it to `JavaScript` by using command:
 
 ```shell
 npm run compile:example
@@ -104,7 +103,6 @@ var width = myChart.getWidth();
 var height = myChart.getHeight();
 ```
 
-
 ## View and edit echarts-examples website
 
 ### Dev and view examples in website
@@ -115,10 +113,10 @@ npm run dev
 
 ### Use local echarts build
 
-1. Update the URL of `localEChartsDir` & `localEChartsGLJS` in `src/common/config.js`
+1. Update the URL of `localEChartsDir` & `localEChartsGLDir` in `src/common/config.js`
 2. Add `local=1` in URL. For example:
-  + `editor.html?c=area-basic&local=1`
 
+- `editor.html?c=area-basic&local=1`
 
 ## Run e2e tests.
 
@@ -131,11 +129,13 @@ npm run build:examplelist
 ```
 
 If puppeteer has not been installed:
+
 ```shell
 npm i puppeteer
 ```
 
 If you want to save the log:
+
 ```shell
 exe_something > 1.log 2>&1
 ```
@@ -167,9 +167,11 @@ npm run test:e2e:esbuild > result.log 2>&1
 ```
 
 ### Check the test result
+
 The test result is in:
-+ the `result.log`
-+ `echarts-examples/e2e/report.html`, the file should be opened in your own local http server.
+
+- the `result.log`
+- `echarts-examples/e2e/report.html`, the file should be opened in your own local http server.
 
 ### Run partial tests.
 
@@ -187,20 +189,22 @@ Specify matched tests.
 node e2e/main.js --skip npm --tests bar3D*
 ```
 
-
 ## Release
 
 1. Update example snapshots
-  ```shell
-  npm run build:example
 
-  # Node: If only build for default theme:
-  node tool/build-example.js -t default
-  ```
+```shell
+npm run build:example
+
+# Node: If only build for default theme:
+node tool/build-example.js -t default
+```
+
 2. Build and copy all the build resources to `echarts-website`
-  ```shell
-  npm run release
 
-  # Note: the config of the dir of echarts-website is in
-  # `echarts-examples/config/**`
-  ```
+```shell
+npm run release
+
+# Note: the config of the dir of echarts-website is in
+# `echarts-examples/config/**`
+```

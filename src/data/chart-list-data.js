@@ -4,17 +4,6 @@
 export default [
   {
     "category": [
-      "bar"
-    ],
-    "id": "bar-background",
-    "ts": true,
-    "tags": [],
-    "title": "Bar with Background",
-    "titleCN": "带背景色的柱状图",
-    "difficulty": 0
-  },
-  {
-    "category": [
       "custom"
     ],
     "id": "bar-histogram",
@@ -167,6 +156,17 @@ export default [
     "tags": [],
     "title": "Basic area chart",
     "titleCN": "基础面积图",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-background",
+    "ts": true,
+    "tags": [],
+    "title": "Bar with Background",
+    "titleCN": "带背景色的柱状图",
     "difficulty": 1
   },
   {
@@ -328,6 +328,17 @@ export default [
   },
   {
     "category": [
+      "pie"
+    ],
+    "id": "pie-half-donut",
+    "ts": true,
+    "tags": [],
+    "title": "Half Doughnut Chart",
+    "titleCN": "半环形图",
+    "difficulty": 1
+  },
+  {
+    "category": [
       "radar"
     ],
     "id": "radar-aqi",
@@ -467,6 +478,17 @@ export default [
     "tags": [],
     "title": "World Population",
     "titleCN": "世界人口总量 - 条形图",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "bump-chart",
+    "ts": true,
+    "tags": [],
+    "title": "Bump Chart (Ranking)",
+    "titleCN": "凹凸图",
     "difficulty": 2
   },
   {
@@ -766,6 +788,39 @@ export default [
     "tags": [],
     "title": "Stacked Column Chart",
     "titleCN": "堆叠柱状图",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-stack-borderRadius",
+    "ts": true,
+    "tags": [],
+    "title": "Stacked Bar with borderRadius",
+    "titleCN": "带圆角的堆积柱状图",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-stack-normalization",
+    "ts": true,
+    "tags": [],
+    "title": "Stacked Bar Normalization",
+    "titleCN": "堆叠柱状图的归一化",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-stack-normalization-and-variation",
+    "ts": true,
+    "tags": [],
+    "title": "Stacked Bar Normalization and Variation",
+    "titleCN": "堆叠柱状图的归一化和变化",
     "difficulty": 3
   },
   {
@@ -1225,6 +1280,17 @@ export default [
     "tags": [],
     "title": "Data Transform Simple Aggregate",
     "titleCN": "简单的数据聚合",
+    "difficulty": 4
+  },
+  {
+    "category": [
+      "custom"
+    ],
+    "id": "flame-graph",
+    "ts": true,
+    "tags": [],
+    "title": "Flame graph",
+    "titleCN": "火焰图",
     "difficulty": 4
   },
   {

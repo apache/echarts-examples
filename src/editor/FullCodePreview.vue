@@ -5,10 +5,12 @@
 <script>
 import { loadScriptsAsync } from '../common/helper';
 import { store } from '../common/store';
-import { SCRIPT_URLS } from '../common/config';
+import { getScriptURLs } from '../common/config';
 
 function ensureACE() {
   if (typeof ace === 'undefined') {
+    const SCRIPT_URLS = getScriptURLs(store.locale);
+
     return loadScriptsAsync([SCRIPT_URLS.aceDir + '/ace.js']);
   }
   return Promise.resolve();

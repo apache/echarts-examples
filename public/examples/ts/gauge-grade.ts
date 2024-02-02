@@ -80,7 +80,7 @@ option = {
         formatter: function (value: number) {
           return Math.round(value * 100) + '';
         },
-        color: 'auto'
+        color: 'inherit'
       },
       data: [
         {

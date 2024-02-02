@@ -3,10 +3,13 @@
     <div id="left-container" ref="leftContainer">
       <div id="left-chart-nav">
         <scrollactive
+          ref="scrollactive"
           active-class="active"
           :offset="80"
           :duration="500"
           :scroll-container-selector="'#example-explore'"
+          :scroll-on-start="false"
+          :modify-url="false"
           bezier-easing-value=".5,0,.35,1"
           @itemchanged="onActiveNavChanged"
         >
@@ -201,7 +204,7 @@ export default {
   computed: {
     exampleList() {
       const list = [];
-      for (let i = 0; i < EXAMPLE_CATEGORIES.length; i++) {
+      for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
         const category = EXAMPLE_CATEGORIES[i];
         const categoryObj = this.exampleListByCategory[category];
         if (categoryObj && categoryObj.examples.length > 0) {
@@ -233,16 +236,48 @@ export default {
         }
       }
     });
+
+    setTimeout(() => {
+      location.hash && this.onHashChange();
+      window.addEventListener('hashchange', this.onHashChange);
+    }, 0);
   },
 
   methods: {
-    onActiveNavChanged(event, currentItem, lastActiveItem) {
-      if (!event || !currentItem) {
+    onHashChange(e) {
+      console.log('onHashChange');
+      e && e.preventDefault();
+
+      const hash = location.hash;
+      const items = this.$refs.scrollactive.items;
+      let activeItem;
+      for (let i = 0, len = items.length, item; i < len; i++) {
+        item = items[i];
+        if (item.hash === hash) {
+          activeItem = item;
+          break;
+        }
+      }
+      if (!activeItem) {
         return;
       }
-      // change url
-      history.replaceState(null, null, currentItem.href);
+      activeItem.click();
+      this.scrollNav(activeItem);
+    },
+    onActiveNavChanged(event, currentItem) {
+      if (!currentItem) {
+        return;
+      }
 
+      const isByScroll = event && event.type === 'scroll';
+      isByScroll && this.scrollNav(currentItem);
+
+      // change url
+      if (location.href !== currentItem.href) {
+        history.pushState(null, null, currentItem.href);
+      }
+    },
+    scrollNav(currentItem) {
       // scroll nav
       const leftContainer = this.$refs.leftContainer;
       const containerOffsetHeight = leftContainer.offsetHeight;
@@ -355,6 +390,7 @@ $pd-lg: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   // scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 #toolbar {

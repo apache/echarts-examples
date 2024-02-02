@@ -68,19 +68,19 @@ export default {
       return './editor.html?' + hash.join('&');
     },
 
-    screenshotURLWithoutExt() {
+    exampleThumbFilePath() {
       const example = this.example;
       const themePostfix = this.exampleTheme ? '-' + this.exampleTheme : '';
       const folder = example.isGL ? 'data-gl' : 'data';
-      return `${store.cdnRoot}/${folder}/thumb${themePostfix}/${example.id}`;
+      return `${folder}/thumb${themePostfix}/${example.id}`;
     },
 
     screenshotURLWebP() {
-      return this.screenshotURLWithoutExt + `.webp?_v_=${store.version}`;
+      return `${store.cdnRoot}/${this.exampleThumbFilePath}.webp?_v_=${store.version}`;
     },
 
     screenshotURLPNG() {
-      return this.screenshotURLWithoutExt + `.png?_v_=${store.version}`;
+      return `${store.cdnRoot}/${this.exampleThumbFilePath}.png?_v_=${store.version}`;
     }
   }
 };
