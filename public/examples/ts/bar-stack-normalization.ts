@@ -28,7 +28,7 @@ const grid = {
     bottom: 50
 };
 
-const series = [
+const series: echarts.BarSeriesOption[] = [
     'Direct',
     'Mail Ad',
     'Affiliate Ad',
@@ -42,7 +42,7 @@ const series = [
         barWidth: '60%',
         label: {
             show: true,
-            formatter: (params) => Math.round(params.value * 1000) / 10 + '%'
+            formatter: (params: any) => Math.round(params.value * 1000) / 10 + '%'
         },
         data: rawData[sid].map((d, did) =>
         totalData[did] <= 0 ? 0 : d / totalData[did]

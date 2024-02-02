@@ -8,8 +8,11 @@ difficulty: 4
 import {
   CustomSeriesRenderItem,
   CustomSeriesRenderItemAPI,
-  CustomSeriesRenderItemParams
+  CustomSeriesRenderItemParams,
+  CustomSeriesRenderItemReturn
 } from 'echarts';
+
+declare function structuredClone(value: any, options?: any): any;
 
 interface StackTrace {
   id: string;
@@ -151,7 +154,7 @@ const renderItem: CustomSeriesRenderItem = (
         }
       }
     }
-  };
+  } as CustomSeriesRenderItemReturn;
 };
 
 myChart.showLoading();
