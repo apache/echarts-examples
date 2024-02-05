@@ -279,7 +279,7 @@ function setup(isShared) {
             'globalThis',
             'document',
             'location',
-            'histroy',
+            'history',
             'eval',
             'execScript',
             'Function',
