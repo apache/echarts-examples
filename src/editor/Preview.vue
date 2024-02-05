@@ -563,23 +563,30 @@ export default {
     },
     fetchVersionList() {
       const isZH = store.locale === 'zh';
-      const server = isZH
-        ? // speed up for China mainland. `data.jsdelivr.com` is very slow or unaccessible for some ISPs.
-          'https://registry.npmmirror.com'
-        : 'https://data.jsdelivr.com/v1/package/npm';
+      const getVersionListAPI = (pkgName) =>
+        isZH
+          ? // speed up for China mainland. `data.jsdelivr.com` is very slow or unaccessible for some ISPs.
+            // Another API is `https://registry.npmmirror.com/${pkgName}` with a request header `Accept: application/vnd.npm.install-v1+json`.
+            `https://registry.npmmirror.com/-/v1/search?text=${pkgName}&size=1`
+          : `https://data.jsdelivr.com/v1/package/npm/${pkgName}`;
 
-      const handleData = (data) => {
-        if (isZH) {
-          data.versions = Object.keys(data.versions).sort(rcompare);
-          data.tags = data['dist-tags'];
-        }
-      };
+      const handleData =
+        isZH &&
+        ((rawData) => {
+          rawData = rawData.objects[0].package;
+          const versions = rawData.versions.sort(rcompare);
+          const tags = rawData['dist-tags'];
+          return {
+            versions,
+            tags
+          };
+        });
 
       const prVersion = URL_PARAMS.pv;
       const hasPRVersion = (this.hasPRVersion = isValidPRVersion(prVersion));
 
-      $.getJSON(`${server}/echarts`).done((data) => {
-        handleData(data);
+      $.getJSON(getVersionListAPI('echarts')).done((data) => {
+        isZH && (data = handleData(data));
 
         if (isDebug) {
           console.log('echarts version data', data);
@@ -612,8 +619,9 @@ export default {
         hasPRVersion && versions.unshift(prVersion);
       });
 
-      $.getJSON(`${server}/echarts-nightly`).done((data) => {
-        handleData(data);
+      // TODO lazy load when needed
+      $.getJSON(getVersionListAPI('echarts-nightly')).done((data) => {
+        isZH && (data = handleData(data));
 
         if (isDebug) {
           console.log('echarts-nightly version data', data);
