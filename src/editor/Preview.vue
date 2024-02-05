@@ -191,9 +191,11 @@ function getScripts(nightly) {
   const code = store.runCode;
 
   return [
+    // echarts
     echartsDir +
       getScriptURL(SCRIPT_URLS.echartsJS) +
       (store.isPR ? '?_=' + (store.prLatestCommit || Date.now()) : ''),
+    // echarts-gl
     ...(isGL
       ? [
           isLocal
@@ -201,18 +203,26 @@ function getScripts(nightly) {
             : getScriptURL(SCRIPT_URLS.echartsGLJS)
         ]
       : []),
+    // echarts theme
+    ...(!store.darkMode && store.theme
+      ? [echartsDir + `/theme/${store.theme}.js`]
+      : []),
+    // echarts bmap extension
     ...(hasBMap || /coordinateSystem.*:.*['"]bmap['"]/g.test(code)
       ? [
           SCRIPT_URLS.bmapLibJS,
           echartsDir + getScriptURL(SCRIPT_URLS.echartsBMapJS)
         ]
       : []),
+    // echarts stat
     ...(code.indexOf('ecStat.') > -1
       ? [getScriptURL(SCRIPT_URLS.echartsStatJS)]
       : []),
+    // echarts map
     ...(/map.*:.*['"]world['"]/g.test(code)
       ? [SCRIPT_URLS.echartsWorldMapJS]
       : []),
+    // data gui
     ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : [])
   ].map((url) => ({ src: url }));
 }
@@ -385,7 +395,7 @@ export default {
         renderer: isCanvas ? null : store.renderer,
         useDirtyRect: store.useDirtyRect && isCanvas ? 1 : null,
         decal: store.enableDecal ? 1 : null,
-        theme: store.darkMode ? 'dark' : null
+        theme: store.darkMode ? 'dark' : store.theme || null
       };
     }
   },

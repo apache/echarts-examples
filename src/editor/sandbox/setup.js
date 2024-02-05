@@ -220,7 +220,7 @@ function setup(isShared) {
         this.dispose();
         chartInstance = echarts.init(
           document.getElementById('chart-container'),
-          store.darkMode ? 'dark' : '',
+          store.darkMode ? 'dark' : store.theme,
           {
             renderer: store.renderer,
             useDirtyRect: store.useDirtyRect

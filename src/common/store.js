@@ -27,6 +27,8 @@ export const store = {
   version: '',
   locale: '',
 
+  // 'light' and 'dark' are default built-in themes
+  theme: URL_PARAMS.theme === 'light' ? null : URL_PARAMS.theme,
   darkMode: URL_PARAMS.theme === 'dark',
   enableDecal: 'decal' in URL_PARAMS,
   renderer: (() => {

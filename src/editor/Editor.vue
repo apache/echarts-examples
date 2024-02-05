@@ -562,7 +562,7 @@ export default {
         ts: store.typeCheck,
         esm: this.fullCodeConfig.esm,
         // legacy: true,
-        theme: store.darkMode ? 'dark' : '',
+        theme: store.darkMode ? 'dark' : store.theme,
         renderer: store.renderer,
         useDirtyRect: store.useDirtyRect,
         ROOT_PATH: store.cdnRoot,
