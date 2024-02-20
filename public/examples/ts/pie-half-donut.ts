@@ -4,7 +4,7 @@ category: pie
 titleCN: 半环形图
 difficulty: 1
 */
-
+// This example requires ECharts v5.4.0 or later
 option = {
   tooltip: {
     trigger: 'item'
@@ -22,13 +22,6 @@ option = {
       // adjust the start and end angle
       startAngle: 180,
       endAngle: 360,
-      label: {
-        show: true,
-        formatter(param) {
-          // correct the percentage
-          return param.name + ' (' + param.percent! * 2 + '%)';
-        }
-      },
       data: [
         { value: 1048, name: 'Search Engine' },
         { value: 735, name: 'Direct' },
