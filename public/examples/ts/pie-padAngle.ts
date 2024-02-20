@@ -1,7 +1,7 @@
 /*
-title: Half Doughnut Chart
+title: Pie with padAngle
 category: pie
-titleCN: 半环形图
+titleCN: 饼图扇区间隙
 difficulty: 1
 */
 
@@ -18,16 +18,24 @@ option = {
       name: 'Access From',
       type: 'pie',
       radius: ['40%', '70%'],
-      center: ['50%', '70%'],
-      // adjust the start and end angle
-      startAngle: 180,
-      endAngle: 360,
+      avoidLabelOverlap: false,
+      padAngle: 5,
+      itemStyle: {
+        borderRadius: 10,
+      },
       label: {
-        show: true,
-        formatter(param) {
-          // correct the percentage
-          return param.name + ' (' + param.percent! * 2 + '%)';
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: 40,
+          fontWeight: 'bold'
         }
+      },
+      labelLine: {
+        show: false
       },
       data: [
         { value: 1048, name: 'Search Engine' },

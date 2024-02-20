@@ -339,6 +339,17 @@ export default [
   },
   {
     "category": [
+      "pie"
+    ],
+    "id": "pie-padAngle",
+    "ts": true,
+    "tags": [],
+    "title": "Pie with padAngle",
+    "titleCN": "饼图扇区间隙",
+    "difficulty": 1
+  },
+  {
+    "category": [
       "radar"
     ],
     "id": "radar-aqi",
@@ -655,6 +666,17 @@ export default [
     "tags": [],
     "title": "Nightingale Chart",
     "titleCN": "基础南丁格尔玫瑰图",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "polar-endAngle",
+    "ts": true,
+    "tags": [],
+    "title": "Polar endAngle",
+    "titleCN": "极坐标系 endAngle",
     "difficulty": 2
   },
   {
