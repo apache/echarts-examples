@@ -1,5 +1,5 @@
 /*
-title: Bar Chart Drilldown Animation.
+title: Bar Chart Drilldown Animation
 category: bar
 titleCN: 柱状图下钻动画
 difficulty: 5

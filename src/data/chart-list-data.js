@@ -339,6 +339,17 @@ export default [
   },
   {
     "category": [
+      "pie"
+    ],
+    "id": "pie-padAngle",
+    "ts": true,
+    "tags": [],
+    "title": "Pie with padAngle",
+    "titleCN": "饼图扇区间隙",
+    "difficulty": 1
+  },
+  {
+    "category": [
       "radar"
     ],
     "id": "radar-aqi",
@@ -655,6 +666,17 @@ export default [
     "tags": [],
     "title": "Nightingale Chart",
     "titleCN": "基础南丁格尔玫瑰图",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "polar-endAngle",
+    "ts": true,
+    "tags": [],
+    "title": "Polar endAngle",
+    "titleCN": "极坐标系 endAngle",
     "difficulty": 2
   },
   {
@@ -1556,7 +1578,7 @@ export default [
     "id": "bar-drilldown",
     "ts": true,
     "tags": [],
-    "title": "Bar Chart Drilldown Animation.",
+    "title": "Bar Chart Drilldown Animation",
     "titleCN": "柱状图下钻动画",
     "difficulty": 5
   },
@@ -1764,6 +1786,17 @@ export default [
     "title": "Wind Barb",
     "titleCN": "风向图",
     "difficulty": 5
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-multi-drilldown",
+    "ts": true,
+    "tags": [],
+    "title": "Bar Chart Multi-level Drilldown Animation",
+    "titleCN": "柱状图多层下钻动画",
+    "difficulty": 6
   },
   {
     "category": [

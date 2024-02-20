@@ -33,7 +33,7 @@
     "css-loader": "^3.5.3",
     "cwebp-bin": "^6.1.1",
     "download-git-repo": "^3.0.2",
-    "echarts": "^5.4.1",
+    "echarts": "^5.5.0",
     "echarts-stat": "^1.2.0",
     "esbuild": "^0.8.34",
     "file-loader": "^6.2.0",
