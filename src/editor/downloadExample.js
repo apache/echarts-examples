@@ -13,13 +13,18 @@ export function download(sourceHeader) {
   const jqueryScriptCode = hasJQueryJS
     ? `<script type="text/javascript" src="${SCRIPT_URLS.jQueryJS}"></script>`
     : '';
-
   const echartsDir = SCRIPT_URLS[
     store.echartsVersion.indexOf('dev') > -1
       ? 'echartsNightlyDir'
       : 'echartsDir'
   ].replace('{{version}}', store.echartsVersion);
   const echarts4Dir = SCRIPT_URLS.echartsDir.replace('{{version}}', '4.9.0');
+
+  const themeScriptCode =
+    !store.darkMode && store.theme
+      ? `<!-- theme -->\n  <script type="text/javascript" src="${echartsDir}/theme/${store.theme}.js"></script>`
+      : '';
+
   const code = `<!--
 ${sourceHeader}
 -->
@@ -35,6 +40,7 @@ ${sourceHeader}
   <script type="text/javascript" src="${echartsDir}${
     SCRIPT_URLS.echartsJS
   }"></script>
+  ${themeScriptCode}
   <!-- Uncomment this line if you want to dataTool extension
   <script type="text/javascript" src="${echartsDir}/dist/extension/dataTool.min.js"></script>
   -->
@@ -57,7 +63,9 @@ ${sourceHeader}
 
   <script type="text/javascript">
     var dom = document.getElementById('container');
-    var myChart = echarts.init(dom, ${store.darkMode ? "'dark'" : 'null'}, {
+    var myChart = echarts.init(dom, ${
+      store.darkMode ? "'dark'" : store.theme ? `'${store.theme}'` : 'null'
+    }, {
       renderer: '${store.renderer}',
       useDirtyRect: ${store.useDirtyRect}
     });

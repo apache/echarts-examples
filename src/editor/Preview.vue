@@ -191,9 +191,11 @@ function getScripts(nightly) {
   const code = store.runCode;
 
   return [
+    // echarts
     echartsDir +
       getScriptURL(SCRIPT_URLS.echartsJS) +
       (store.isPR ? '?_=' + (store.prLatestCommit || Date.now()) : ''),
+    // echarts-gl
     ...(isGL
       ? [
           isLocal
@@ -201,18 +203,26 @@ function getScripts(nightly) {
             : getScriptURL(SCRIPT_URLS.echartsGLJS)
         ]
       : []),
+    // echarts theme
+    ...(!store.darkMode && store.theme
+      ? [echartsDir + `/theme/${store.theme}.js`]
+      : []),
+    // echarts bmap extension
     ...(hasBMap || /coordinateSystem.*:.*['"]bmap['"]/g.test(code)
       ? [
           SCRIPT_URLS.bmapLibJS,
           echartsDir + getScriptURL(SCRIPT_URLS.echartsBMapJS)
         ]
       : []),
+    // echarts stat
     ...(code.indexOf('ecStat.') > -1
       ? [getScriptURL(SCRIPT_URLS.echartsStatJS)]
       : []),
+    // echarts map
     ...(/map.*:.*['"]world['"]/g.test(code)
       ? [SCRIPT_URLS.echartsWorldMapJS]
       : []),
+    // data gui
     ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : [])
   ].map((url) => ({ src: url }));
 }
@@ -385,7 +395,7 @@ export default {
         renderer: isCanvas ? null : store.renderer,
         useDirtyRect: store.useDirtyRect && isCanvas ? 1 : null,
         decal: store.enableDecal ? 1 : null,
-        theme: store.darkMode ? 'dark' : null
+        theme: store.darkMode ? 'dark' : store.theme || null
       };
     }
   },
@@ -563,23 +573,30 @@ export default {
     },
     fetchVersionList() {
       const isZH = store.locale === 'zh';
-      const server = isZH
-        ? // speed up for China mainland. `data.jsdelivr.com` is very slow or unaccessible for some ISPs.
-          'https://registry.npmmirror.com'
-        : 'https://data.jsdelivr.com/v1/package/npm';
+      const getVersionListAPI = (pkgName) =>
+        isZH
+          ? // speed up for China mainland. `data.jsdelivr.com` is very slow or unaccessible for some ISPs.
+            // Another API is `https://registry.npmmirror.com/${pkgName}` with a request header `Accept: application/vnd.npm.install-v1+json`.
+            `https://registry.npmmirror.com/-/v1/search?text=${pkgName}&size=1`
+          : `https://data.jsdelivr.com/v1/package/npm/${pkgName}`;
 
-      const handleData = (data) => {
-        if (isZH) {
-          data.versions = Object.keys(data.versions).sort(rcompare);
-          data.tags = data['dist-tags'];
-        }
-      };
+      const handleData =
+        isZH &&
+        ((rawData) => {
+          rawData = rawData.objects[0].package;
+          const versions = rawData.versions.sort(rcompare);
+          const tags = rawData['dist-tags'];
+          return {
+            versions,
+            tags
+          };
+        });
 
       const prVersion = URL_PARAMS.pv;
       const hasPRVersion = (this.hasPRVersion = isValidPRVersion(prVersion));
 
-      $.getJSON(`${server}/echarts`).done((data) => {
-        handleData(data);
+      $.getJSON(getVersionListAPI('echarts')).done((data) => {
+        isZH && (data = handleData(data));
 
         if (isDebug) {
           console.log('echarts version data', data);
@@ -612,8 +629,9 @@ export default {
         hasPRVersion && versions.unshift(prVersion);
       });
 
-      $.getJSON(`${server}/echarts-nightly`).done((data) => {
-        handleData(data);
+      // TODO lazy load when needed
+      $.getJSON(getVersionListAPI('echarts-nightly')).done((data) => {
+        isZH && (data = handleData(data));
 
         if (isDebug) {
           console.log('echarts-nightly version data', data);
