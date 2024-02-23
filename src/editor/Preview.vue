@@ -644,7 +644,7 @@ export default {
         const nextIdx = versions.indexOf(next);
         const latestIdx = versions.indexOf(latest);
         this.nightlyVersions = versions
-          .slice(nextIdx, nextIdx + 10)
+          .slice(nextIdx, Math.min(nextIdx + 10, latestIdx))
           .concat(versions.slice(latestIdx, latestIdx + 10));
 
         hasPRVersion && this.nightlyVersions.unshift(prVersion);
