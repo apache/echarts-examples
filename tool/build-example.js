@@ -247,7 +247,7 @@ async function takeScreenshot(
       // ffmpeg.FS("unlink", `${basename}.webm`)
       // ffmpeg.FS("unlink", `${basename}.webp`)
       shell.exec(
-        `ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`
+        `ffmpeg -y -i "${fileBase}.webm" -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp "${fileBase}.webp"`
       );
       try {
         fs.unlinkSync(webmFile);

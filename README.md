@@ -3,7 +3,7 @@
 ## Install
 
 ```shell
-npm install
+npm i --force
 ```
 
 ## Edit examples
@@ -51,7 +51,7 @@ For example:
 $.when(
   $.getScript(ROOT_PATH + '/data/asset/js/xxxx.js'),
   $.getScript(
-    'https://cdn.jsdelivr.net/npm/d3-contour@2.0.0/dist/d3-contour.jXs'
+    'https://cdn.jsdelivr.net/npm/d3-contour@2.0.0/dist/d3-contour.js'
   )
 ).done(function () {
   // ...
@@ -131,7 +131,7 @@ npm run build:examplelist
 If puppeteer has not been installed:
 
 ```shell
-npm i puppeteer
+npm i puppeteer -D
 ```
 
 If you want to save the log:
