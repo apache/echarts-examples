@@ -42,7 +42,7 @@ export default [
     "id": "bar3d-myth",
     "ts": false,
     "tags": [],
-    "title": "星云",
+    "title": "Bar3D - Myth",
     "titleCN": "星云",
     "difficulty": 10
   },
@@ -504,7 +504,7 @@ export default [
     "ts": false,
     "tags": [],
     "theme": "dark",
-    "title": "三维散点图正交投影",
+    "title": "Scatter3D - Orthographic",
     "titleCN": "三维散点图正交投影",
     "difficulty": 10
   },

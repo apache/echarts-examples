@@ -1,7 +1,6 @@
 const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
-const puppeteer = require('puppeteer');
 const matter = require('gray-matter');
 const argparse = require('argparse');
 const minimatch = require('minimatch');
@@ -387,6 +386,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
       });
     server && server.listen(PORT);
 
+    const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch({
       headless: false,
       args: [
