@@ -158,13 +158,13 @@ const SCRIPT_URLS_CN = {
   echartsStatJS: `${CDN_ROOT_CN_NPM}echarts-stat/latest/files/dist/ecStat.min.js`,
   echartsGLJS: `${CDN_ROOT_CN_NPM}echarts-gl/2/files/dist/echarts-gl.min.js`,
   datGUIMinJS: `${CDN_ROOT_CN}dat-gui/0.6.5/dat.gui.min.js`,
-  monacoDir: `https://cdn.staticfile.org/monaco-editor/0.27.0/min/vs`,
+  monacoDir: `https://cdn.staticfile.net/monaco-editor/0.27.0/min/vs`,
   aceDir: `${CDN_ROOT_CN_NPM}ace-builds/1.4.12/files/src-min-noconflict`,
   prettierDir: `${CDN_ROOT_CN}prettier/2.3.2`,
   highlightjsDir: `${CDN_ROOT_CN_NPM}@highlightjs/cdn-assets/11.8.0/files`,
   seedrandomJS: `${CDN_ROOT_CN}seedrandom/3.0.5/seedrandom.min.js`,
-  jQueryJS: `https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js`,
-  acornJS: `https://cdn.staticfile.org/acorn/8.7.1/acorn.min.js`,
+  jQueryJS: `https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js`,
+  acornJS: `https://cdn.staticfile.net/acorn/8.7.1/acorn.min.js`,
 
   bmapLibJS: SCRIPT_URLS.bmapLibJS,
   echartsBMapJS: SCRIPT_URLS.echartsBMapJS
