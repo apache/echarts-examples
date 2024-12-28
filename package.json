@@ -68,7 +68,7 @@
     "codesandbox": "^2.2.3",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
-    "nanoid": "^5.0.7",
+    "nanoid": "^5.0.9",
     "prettier": "^2.7.1",
     "resize-detector": "^0.3.0",
     "semver": "^7.6.2",
