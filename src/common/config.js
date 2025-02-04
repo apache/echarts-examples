@@ -110,16 +110,25 @@ export { URL_PARAMS };
  * @param {'en' | 'zh'} locale
  */
 export function getScriptURLs(locale) {
-  return locale === 'zh' ? SCRIPT_URLS_CN : SCRIPT_URLS;
+  return SCRIPT_URLS;
+  // return locale === 'zh' ? SCRIPT_URLS_CN : SCRIPT_URLS;
 }
 
-const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
-const CDN_ROOT_CN = 'https://lib.baomitu.com/';
-const CDN_ROOT_CN_NPM = 'https://registry.npmmirror.com/';
+// 优先使用官网的 window.EXAMPLES_CDN_ROOT 配置
+const JSDELIVR_ROOT = 'https://fastly.jsdelivr.net/npm/';
+const CDN_ROOT = window.ECHARTS_WWW_VENDORS_CDN_ROOT || JSDELIVR_ROOT;
+// const CDN_ROOT_CN = window.EXAMPLES_CDN_ROOT || 'https://lib.baomitu.com/';
+// const CDN_ROOT_CN_NPM =
+//   window.EXAMPLES_CDN_ROOT || 'https://registry.npmmirror.com/';
 
+// IMPORTANT:
+// DONT FORGET TO UPDATE THE JS/VENDORS IN THE ECHARTS-WWW
+// 不要忘记更新 ECHARTS-WWW 中的 js/vendors
 const SCRIPT_URLS = {
-  echartsDir: `${CDN_ROOT}echarts@{{version}}`,
-  echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,
+  echartsDir: `${JSDELIVR_ROOT}echarts@{{version}}`,
+  echartsNightlyDir: `${JSDELIVR_ROOT}echarts-nightly@{{version}}`,
+
+  latestEChartsDir: `${CDN_ROOT}echarts`,
   echartsJS: '/dist/echarts.min.js',
 
   localEChartsDir: 'http://localhost/echarts',
@@ -127,7 +136,7 @@ const SCRIPT_URLS = {
 
   prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
 
-  echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
+  echartsWorldMapJS: `${JSDELIVR_ROOT}echarts@4.9.0/map/js/world.js`,
   echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
   echartsGLJS: `${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js`,
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
@@ -143,33 +152,33 @@ const SCRIPT_URLS = {
     'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
   echartsBMapJS: '/dist/extension/bmap.min.js',
 
-  echartsGraphModularityJS: `${CDN_ROOT}echarts-graph-modularity@2/dist/echarts-graph-modularity.min.js`
+  echartsGraphModularityJS: `${CDN_ROOT}echarts-graph-modularity/dist/echarts-graph-modularity.min.js`
 };
 
-const SCRIPT_URLS_CN = {
-  echartsDir: `${CDN_ROOT_CN_NPM}echarts/{{version}}/files`,
-  echartsNightlyDir: `${CDN_ROOT_CN_NPM}echarts-nightly/{{version}}/files`,
-  echartsJS: SCRIPT_URLS.echartsJS,
+// const SCRIPT_URLS_CN = {
+//   echartsDir: `${CDN_ROOT_CN_NPM}echarts/{{version}}/files`,
+//   echartsNightlyDir: `${CDN_ROOT_CN_NPM}echarts-nightly/{{version}}/files`,
+//   echartsJS: SCRIPT_URLS.echartsJS,
 
-  localEChartsDir: SCRIPT_URLS.localEChartsDir,
-  localEChartsGLDir: SCRIPT_URLS.localEChartsGLDir,
+//   localEChartsDir: SCRIPT_URLS.localEChartsDir,
+//   localEChartsGLDir: SCRIPT_URLS.localEChartsGLDir,
 
-  prPreviewEChartsDir: SCRIPT_URLS.prPreviewEChartsDir,
+//   prPreviewEChartsDir: SCRIPT_URLS.prPreviewEChartsDir,
 
-  echartsWorldMapJS: `${CDN_ROOT_CN_NPM}echarts/4.9.0/files/map/js/world.js`,
-  echartsStatJS: `${CDN_ROOT_CN_NPM}echarts-stat/latest/files/dist/ecStat.min.js`,
-  echartsGLJS: `${CDN_ROOT_CN_NPM}echarts-gl/2/files/dist/echarts-gl.min.js`,
-  datGUIMinJS: `${CDN_ROOT_CN}dat-gui/0.6.5/dat.gui.min.js`,
-  monacoDir: `${CDN_ROOT_CN_NPM}monaco-editor/0.27.0/files/min/vs`,
-  aceDir: `${CDN_ROOT_CN_NPM}ace-builds/1.4.12/files/src-min-noconflict`,
-  prettierDir: `${CDN_ROOT_CN}prettier/2.3.2`,
-  highlightjsDir: `${CDN_ROOT_CN_NPM}@highlightjs/cdn-assets/11.8.0/files`,
-  seedrandomJS: `${CDN_ROOT_CN}seedrandom/3.0.5/seedrandom.min.js`,
-  jQueryJS: `${CDN_ROOT_CN_NPM}jquery/3.7.1/files/dist/jquery.min.js`,
-  acornJS: `${CDN_ROOT_CN_NPM}acorn/8.7.1/files/dist/acorn.js`,
+//   echartsWorldMapJS: `${CDN_ROOT_CN_NPM}echarts/4.9.0/files/map/js/world.js`,
+//   echartsStatJS: `${CDN_ROOT_CN_NPM}echarts-stat/latest/files/dist/ecStat.min.js`,
+//   echartsGLJS: `${CDN_ROOT_CN_NPM}echarts-gl/2/files/dist/echarts-gl.min.js`,
+//   datGUIMinJS: `${CDN_ROOT_CN}dat-gui/0.6.5/dat.gui.min.js`,
+//   monacoDir: `${CDN_ROOT_CN_NPM}monaco-editor/0.27.0/files/min/vs`,
+//   aceDir: `${CDN_ROOT_CN_NPM}ace-builds/1.4.12/files/src-min-noconflict`,
+//   prettierDir: `${CDN_ROOT_CN}prettier/2.3.2`,
+//   highlightjsDir: `${CDN_ROOT_CN_NPM}@highlightjs/cdn-assets/11.8.0/files`,
+//   seedrandomJS: `${CDN_ROOT_CN}seedrandom/3.0.5/seedrandom.min.js`,
+//   jQueryJS: `${CDN_ROOT_CN_NPM}jquery/3.7.1/files/dist/jquery.min.js`,
+//   acornJS: `${CDN_ROOT_CN_NPM}acorn/8.7.1/files/dist/acorn.js`,
 
-  bmapLibJS: SCRIPT_URLS.bmapLibJS,
-  echartsBMapJS: SCRIPT_URLS.echartsBMapJS,
+//   bmapLibJS: SCRIPT_URLS.bmapLibJS,
+//   echartsBMapJS: SCRIPT_URLS.echartsBMapJS,
 
-  echartsGraphModularityJS: `${CDN_ROOT_CN_NPM}echarts-graph-modularity/2/files/dist/echarts-graph-modularity.min.js`
-};
+//   echartsGraphModularityJS: `${CDN_ROOT_CN_NPM}echarts-graph-modularity/2/files/dist/echarts-graph-modularity.min.js`
+// };

@@ -64,7 +64,8 @@
           @click="changeRandomSeed"
           >{{ $t('editor.randomData') }}</el-button
         >
-        <el-select
+        <!-- TODO CSP 问题 -->
+        <!-- <el-select
           v-if="shared.echartsVersion && !shared.isMobile"
           class="version-select"
           :class="{
@@ -84,13 +85,13 @@
           >
             {{ version }}
           </el-option>
-        </el-select>
-        <el-checkbox
+        </el-select> -->
+        <!-- <el-checkbox
           v-if="inEditor && !shared.isMobile"
           v-model="nightly"
           class="use-nightly"
           >Nightly</el-checkbox
-        >
+        > -->
       </div>
 
       <a
@@ -185,9 +186,13 @@ function getScripts(nightly) {
         ? 'echartsNightlyDir'
         : 'echartsDir'
     ];
-  const echartsDir = store.isPR
-    ? echartsDirTpl.replace('{{PR_NUMBER}}', store.prNumber)
-    : echartsDirTpl.replace('{{version}}', store.echartsVersion);
+
+  // TODO CSP 问题
+  // const echartsDir = store.isPR
+  //   ? echartsDirTpl.replace('{{PR_NUMBER}}', store.prNumber)
+  //   : echartsDirTpl.replace('{{version}}', store.echartsVersion);
+  const echartsDir = SCRIPT_URLS.latestEChartsDir;
+
   const code = store.runCode;
 
   return [
@@ -373,8 +378,8 @@ export default {
 
   mounted() {
     this.run();
-
-    this.fetchVersionList();
+    // TODO CSP 问题
+    // this.fetchVersionList();
   },
 
   computed: {
