@@ -191,7 +191,9 @@ function getScripts(nightly) {
   // const echartsDir = store.isPR
   //   ? echartsDirTpl.replace('{{PR_NUMBER}}', store.prNumber)
   //   : echartsDirTpl.replace('{{version}}', store.echartsVersion);
-  const echartsDir = SCRIPT_URLS.latestEChartsDir;
+  const echartsDir = isLocal
+    ? SCRIPT_URLS.localEChartsDir
+    : SCRIPT_URLS.latestEChartsDir;
 
   const code = store.runCode;
 

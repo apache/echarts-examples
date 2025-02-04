@@ -9,15 +9,17 @@ import { URL_PARAMS, getScriptURLs } from '../common/config';
 
 function loadTypes() {
   const SCRIPT_URLS = getScriptURLs(store.locale);
+  const isLocal = 'local' in URL_PARAMS;
 
   return fetch(
-    ('local' in URL_PARAMS
-      ? SCRIPT_URLS.localEChartsDir
-      : SCRIPT_URLS[
-          store.echartsVersion.indexOf('dev') > -1
-            ? 'echartsNightlyDir'
-            : 'echartsDir'
-        ].replace('{{version}}', store.echartsVersion)) +
+    // ('local' in URL_PARAMS
+    //   ? SCRIPT_URLS.localEChartsDir
+    //   : SCRIPT_URLS[
+    //       store.echartsVersion.indexOf('dev') > -1
+    //         ? 'echartsNightlyDir'
+    //         : 'echartsDir'
+    //     ].replace('{{version}}', store.echartsVersion))
+    (isLocal ? SCRIPT_URLS.localEChartsDir : SCRIPT_URLS.latestEChartsDir) +
       '/types/dist/echarts.d.ts',
     {
       mode: 'cors'
