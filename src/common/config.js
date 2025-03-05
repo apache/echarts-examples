@@ -94,7 +94,17 @@ export const BLACK_MAP = (function (list) {
   'globe-with-echarts-surface',
   'map3d-alcohol-consumption',
   'map3d-wood-map',
-  'scattergl-weibo'
+  'scattergl-weibo',
+  // FIXME 由于 CSP 问题，暂时屏蔽 BMap 相关示例
+  'heatmap-bmap',
+  'effectScatter-bmap',
+  'lines-bmap',
+  'lines-bmap-bus',
+  'lines-bmap-effect',
+  'map-bin',
+  'map-polygon',
+  'global-wind-visualization',
+  'global-wind-visualization-2'
 ]);
 
 const URL_PARAMS = {};
