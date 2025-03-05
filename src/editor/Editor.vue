@@ -566,6 +566,7 @@ export default {
         renderer: store.renderer,
         useDirtyRect: store.useDirtyRect,
         ROOT_PATH: store.cdnRoot,
+        CDN_PATH: store.cdnPath,
         isZHLang: this.$i18n.locale === 'zh'
       });
       // Format

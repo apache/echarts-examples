@@ -116,7 +116,7 @@ export function getScriptURLs(locale) {
 
 // 优先使用官网的 window.EXAMPLES_CDN_ROOT 配置
 const JSDELIVR_ROOT = 'https://fastly.jsdelivr.net/npm/';
-const CDN_ROOT = window.ECHARTS_WWW_VENDORS_CDN_ROOT || JSDELIVR_ROOT;
+export const CDN_ROOT = window.ECHARTS_WWW_VENDORS_CDN_ROOT || JSDELIVR_ROOT;
 // const CDN_ROOT_CN = window.EXAMPLES_CDN_ROOT || 'https://lib.baomitu.com/';
 // const CDN_ROOT_CN_NPM =
 //   window.EXAMPLES_CDN_ROOT || 'https://registry.npmmirror.com/';
@@ -137,13 +137,14 @@ const SCRIPT_URLS = {
   prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
 
   echartsWorldMapJS: `${JSDELIVR_ROOT}echarts@4.9.0/map/js/world.js`,
-  echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
-  echartsGLJS: `${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js`,
+  echartsStatJS: `${CDN_ROOT}echarts-stat/dist/ecStat.min.js`,
+  echartsGLJS: `${CDN_ROOT}echarts-gl/dist/echarts-gl.min.js`,
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
   prettierDir: `${CDN_ROOT}prettier@2.3.2`,
-  highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
+  // highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
+  highlightjsDir: `${CDN_ROOT}highlightjs/cdn-release@11.8.0/build`,
   seedrandomJS: `${CDN_ROOT}seedrandom@3.0.5/seedrandom.min.js`,
   jQueryJS: `${CDN_ROOT}jquery@3.7.1/dist/jquery.min.js`,
   acornJS: `${CDN_ROOT}acorn@8.7.1/dist/acorn.min.js`,

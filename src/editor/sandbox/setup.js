@@ -274,6 +274,7 @@ function setup(isShared) {
             'setTimeout',
             'setInterval',
             'ROOT_PATH',
+            'CDN_PATH',
             '__ECHARTS_EXAMPLE_RANDOM__',
             'top',
             'parent',
@@ -295,6 +296,7 @@ function setup(isShared) {
             setTimeout,
             setInterval,
             store.cdnRoot,
+            store.cdnPath,
             echartsExampleRandom,
             // prevent someone from trying to close the parent window via top/parent.close()
             // or any other unexpected and dangerous behaviors
@@ -317,6 +319,7 @@ function setup(isShared) {
             'setTimeout',
             'setInterval',
             'ROOT_PATH',
+            'CDN_PATH',
             '__ECHARTS_EXAMPLE_RANDOM__',
             runCode
           );
@@ -327,6 +330,7 @@ function setup(isShared) {
             setTimeout,
             setInterval,
             store.cdnRoot,
+            store.cdnPath,
             echartsExampleRandom
           );
         }

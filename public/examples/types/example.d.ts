@@ -3,6 +3,7 @@ import * as jQuery from 'jquery';
 
 declare global {
   const ROOT_PATH: string;
+  const CDN_PATH: string;
   const app: {
     configParameters: {
       [key: string]:

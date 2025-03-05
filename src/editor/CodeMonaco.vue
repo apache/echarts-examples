@@ -63,6 +63,7 @@ export = echarts;`,
 // Declare to global namespace.
 declare global {
     const ROOT_PATH: string
+    const CDN_PATH: string
     const $: any
     const app: {
         configParameters: {

@@ -16,6 +16,8 @@ export function getTemplates(title, scripts, css) {
 
   const hasRootPath = store.sourceCode.indexOf('ROOT_PATH') > -1;
   const rootPathCode = hasRootPath ? `var ROOT_PATH = '${store.cdnRoot}';` : '';
+  const hasCDNPath = store.sourceCode.indexOf('CDN_PATH') > -1;
+  const cdnPathCode = hasCDNPath ? `var CDN_PATH = '${store.cdnPath}';` : '';
   const hasJQuery = /\$[\.\(]+/g.test(store.sourceCode);
   hasJQuery &&
     scripts.unshift({
@@ -54,6 +56,7 @@ var myChart = echarts.init(dom, ${
 });
 var app = {};
 ${rootPathCode}
+${cdnPathCode}
 var option;
 
 ${store.sourceCode}
