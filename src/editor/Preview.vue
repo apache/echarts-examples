@@ -1,12 +1,5 @@
 <template>
   <div :class="[inEditor && !shared.isMobile ? '' : 'full']">
-    <div
-      v-loading="loading"
-      class="right-panel"
-      id="chart-panel"
-      ref="chartPanel"
-      :style="{ background: backgroundColor }"
-    ></div>
     <div id="tool-panel">
       <div class="left-panel">
         <el-switch
@@ -102,7 +95,13 @@
         >{{ $t('editor.edit') }}</a
       >
     </div>
-
+    <div
+      v-loading="loading"
+      class="right-panel"
+      id="chart-panel"
+      ref="chartPanel"
+      :style="{ background: backgroundColor }"
+    ></div>
     <div id="preview-status">
       <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
@@ -690,12 +689,7 @@ export default {
 }
 
 #chart-panel {
-  position: absolute;
-  // top: $control-panel-height;
-  top: 42px;
-  right: 15px;
-  bottom: 50px;
-  left: 15px;
+  flex-grow: 1;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
   border-radius: 5px;
@@ -733,16 +727,9 @@ export default {
 }
 
 #tool-panel {
-  position: absolute;
-  top: 5px;
-  right: 15px;
-  left: 15px;
   @include flex-center;
-
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: thin;
+  flex-shrink: 0;
+  flex-wrap: wrap;
 
   user-select: none;
 
@@ -750,79 +737,79 @@ export default {
     font-size: 12px;
   }
 
+  .left-panel {
+    @include flex-center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    > * {
+      margin-left: 0 !important;
+    }
+  }
+
   .render-config-trigger {
     cursor: pointer;
     font-weight: 500;
-    margin-left: 10px;
   }
+
   .version-select {
     width: 80px;
-    margin-left: 10px;
 
     &.is-nightly,
     &.is-pr {
       width: 160px;
     }
   }
-  .random,
-  .use-nightly {
-    margin-left: 10px;
-  }
 
   label {
     margin-bottom: 0;
   }
 
-  .dark-mode {
-    margin-right: 5px;
-  }
-
   .edit {
-    margin-left: 5px;
     cursor: pointer;
   }
 }
 
 .full {
+  position: absolute;
+  inset: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
   #chart-panel {
-    top: 40px;
-    right: 5px;
-    bottom: 5px;
-    left: 5px;
     box-shadow: rgba(10, 9, 9, 0.1) 0px 0px 5px;
-  }
-  #tool-panel {
-    right: 5px;
-    left: 5px;
   }
 }
 
 #preview-status {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  padding: 0 15px;
+  flex-shrink: 0;
   font-size: 0.9rem;
   @include flex-center;
+  flex-wrap: wrap;
+  gap: 10px;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: thin;
 
   .left-buttons {
+    @include flex-center;
+    flex-wrap: wrap;
     flex-shrink: 0;
+    gap: 10px;
+
+    > * {
+      margin-left: 0 !important;
+    }
   }
 
   #run-log {
     @include flex-center;
     font-size: 12px;
-    margin-left: 10px;
     text-align: right;
+    gap: 10px;
 
     .run-log-time {
       color: $clr-text;
-      margin-right: 10px;
       white-space: nowrap;
     }
 

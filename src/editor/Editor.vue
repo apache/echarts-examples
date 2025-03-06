@@ -1133,12 +1133,14 @@ $handler-width: 15px;
 
 .right-container {
   position: absolute;
+  top: 0;
   right: 0;
-
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 50%;
   height: 100%;
-  padding: 0;
-  padding-left: $handler-width;
+  padding: 10px $handler-width;
   border: none;
   z-index: 30;
 
