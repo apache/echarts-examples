@@ -146,7 +146,8 @@ const SCRIPT_URLS = {
 
   prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
 
-  echartsWorldMapJS: `${JSDELIVR_ROOT}echarts@4.9.0/map/js/world.js`,
+  // echartsWorldMapJS: `${JSDELIVR_ROOT}echarts@4.9.0/map/js/world.js`,
+  echartsWorldMapJS: `https://echarts.apache.org/en/asset/map/js/world.js`,
   echartsStatJS: `${CDN_ROOT}echarts-stat/dist/ecStat.min.js`,
   echartsGLJS: `${CDN_ROOT}echarts-gl/dist/echarts-gl.min.js`,
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
