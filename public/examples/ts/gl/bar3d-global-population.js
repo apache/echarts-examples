@@ -29,7 +29,7 @@ $.getJSON(ROOT_PATH + '/data-gl/asset/data/population.json', function (data) {
           intensity: 0
         },
         ambientCubemap: {
-          texture: 'data-gl/asset/canyon.hdr',
+          texture: ROOT_PATH + '/data-gl/asset/canyon.hdr',
           exposure: 1,
           diffuseIntensity: 0.5
         }
