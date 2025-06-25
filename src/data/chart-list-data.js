@@ -1206,6 +1206,17 @@ export default [
     "category": [
       "scatter"
     ],
+    "id": "scatter-jitter",
+    "ts": true,
+    "tags": [],
+    "title": "Scatter with Jittering",
+    "titleCN": "带抖动的散点图",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "scatter"
+    ],
     "id": "scatter-punchCard",
     "ts": true,
     "tags": [],
