@@ -101,7 +101,9 @@ module.exports = [
       vue: 'Vue'
     },
     plugins: [
-      new webpack.IgnorePlugin(/^fs$/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^fs$/
+      }),
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         filename: '../css/example-bundle.css'

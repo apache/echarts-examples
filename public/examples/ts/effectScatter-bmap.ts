@@ -411,6 +411,7 @@ const convertData = function (data: DataItem[]) {
 };
 
 option = {
+  backgroundColor: 'transparent',
   title: {
     text: '全国主要城市空气质量 - 百度地图',
     subtext: 'data from PM25.in',

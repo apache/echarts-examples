@@ -1,5 +1,5 @@
 // import * as matter from 'gray-matter';
-import { URL_PARAMS } from '../common/config';
+import { CDN_ROOT, URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import {
@@ -23,6 +23,7 @@ export const store = {
   prNumber: prMatches && prMatches[1],
   prLatestCommit: prMatches && prMatches[2],
 
+  cdnPath: CDN_ROOT,
   cdnRoot: '',
   version: '',
   locale: '',

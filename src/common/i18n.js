@@ -8,7 +8,7 @@ export default {
       errorInEditor: 'Errors exist in code!',
       infiniteLoopInEditor: 'Potential infinite loops exist in code!',
       potentialRedirectionInEditor: 'Potential redirection exists in code!',
-      chartOK: 'Chart has been generated successfully, ',
+      chartOK: 'Chart has been generated in ',
 
       darkMode: 'Dark Mode',
       enableDecal: 'Decal Pattern',

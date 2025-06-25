@@ -50,8 +50,12 @@ ${sourceHeader}
   <!-- Uncomment this line if you want to echarts-stat extension
   <script type="text/javascript" src="${SCRIPT_URLS.echartsStatJS}"></script>
   -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="${
+    SCRIPT_URLS.echartsGraphModularityJS
+  }"></script>
+  -->
   <!-- Uncomment this line if you want to use map
-  <script type="text/javascript" src="${echarts4Dir}/map/js/china.js"></script>
   <script type="text/javascript" src="${echarts4Dir}/map/js/world.js"></script>
   -->
   <!-- Uncomment these two lines if you want to use bmap extension

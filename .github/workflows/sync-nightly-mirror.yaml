@@ -1,0 +1,32 @@
+name: Synchronize Nightly Mirror
+
+on:
+  schedule:
+    - cron: '30 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync-nightly-mirror:
+    runs-on: ubuntu-latest
+
+    env:
+      WORKFLOW_SCRIPTS_DIR: .github/workflows/.scripts
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{env.WORKFLOW_SCRIPTS_DIR}}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          registry-url: https://registry.npmjs.org/
+
+      - name: Sync zrender-nightly
+        working-directory: ${{env.WORKFLOW_SCRIPTS_DIR}}
+        run: node --unhandled-rejections=strict sync-nightly-mirror.js zrender-nightly
+        continue-on-error: true
+
+      - name: Sync echarts-nightly
+        working-directory: ${{env.WORKFLOW_SCRIPTS_DIR}}
+        run: node --unhandled-rejections=strict sync-nightly-mirror.js echarts-nightly

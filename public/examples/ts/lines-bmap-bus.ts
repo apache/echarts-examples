@@ -27,6 +27,7 @@ $.get(ROOT_PATH + '/data/asset/data/lines-bus.json', function (data) {
   );
   myChart.setOption(
     (option = {
+      backgroundColor: 'transparent',
       bmap: {
         center: [116.46, 39.92],
         zoom: 10,

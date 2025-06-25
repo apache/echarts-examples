@@ -566,6 +566,7 @@ export default {
         renderer: store.renderer,
         useDirtyRect: store.useDirtyRect,
         ROOT_PATH: store.cdnRoot,
+        CDN_PATH: store.cdnPath,
         isZHLang: this.$i18n.locale === 'zh'
       });
       // Format
@@ -935,6 +936,7 @@ $handler-width: 15px;
 #editor-control-panel,
 #full-code-generate-config {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  user-select: none;
 }
 
 #option-outline {
@@ -1131,12 +1133,14 @@ $handler-width: 15px;
 
 .right-container {
   position: absolute;
+  top: 0;
   right: 0;
-
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 50%;
   height: 100%;
-  padding: 0;
-  padding-left: $handler-width;
+  padding: 10px $handler-width;
   border: none;
   z-index: 30;
 

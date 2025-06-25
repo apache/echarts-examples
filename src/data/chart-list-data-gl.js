@@ -283,7 +283,7 @@ export default [
     "tags": [],
     "theme": "dark",
     "title": "NPM Dependencies with graphGL",
-    "titleCN": "1w 节点 2w7 边的NPM 依赖图",
+    "titleCN": "1w 节点 2w7 边的 NPM 依赖图",
     "difficulty": 10
   },
   {

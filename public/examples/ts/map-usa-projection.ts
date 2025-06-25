@@ -8,9 +8,8 @@ myChart.showLoading();
 
 $.when(
   $.get(ROOT_PATH + '/data/asset/geo/USA.json'),
-
-  $.getScript('https://fastly.jsdelivr.net/npm/d3-array'),
-  $.getScript('https://fastly.jsdelivr.net/npm/d3-geo')
+  $.getScript(CDN_PATH + 'd3-array@2.8.0/dist/d3-array.js'),
+  $.getScript(CDN_PATH + 'd3-geo@2.0.1/dist/d3-geo.js')
 ).done(function (res) {
   const usaJson = res[0];
 

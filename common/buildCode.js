@@ -391,6 +391,7 @@ module.exports.buildExampleCode = function (
     renderer,
     useDirtyRect,
     ROOT_PATH,
+    CDN_PATH,
     // Other imports code code string
     // For example
     // `import 'echarts-liquidfill'`
@@ -414,18 +415,26 @@ module.exports.buildExampleCode = function (
   }
 
   const hasECStat = jsCode.indexOf('ecStat') >= 0;
+  const hasGraphModularity =
+    jsCode.indexOf('graph') >= 0 && jsCode.indexOf('modularity') >= 0;
   const usedRootPath = jsCode.indexOf('ROOT_PATH') >= 0;
+  const usedCdnPath = jsCode.indexOf('CDN_PATH') >= 0;
   const usedApp = jsCode.indexOf('app') >= 0;
 
-  const DEP_CODE = `
-${
-  hasECStat
-    ? esm
-      ? `import ecStat from 'echarts-stat';`
-      : `var ecStat = require('echarts-stat');`
-    : ''
-}
-`;
+  const DEP_CODE = [
+    hasECStat
+      ? esm
+        ? `import ecStat from 'echarts-stat';`
+        : `var ecStat = require('echarts-stat');`
+      : '',
+    hasGraphModularity
+      ? esm
+        ? `import 'echarts-graph-modularity';`
+        : `require('echarts-graph-modularity');`
+      : ''
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   const IMPORT_CODE = [
     !minimal
@@ -463,6 +472,7 @@ ${
 
   const ENV_CODE = [
     usedRootPath ? `var ROOT_PATH = '${ROOT_PATH}';` : '',
+    usedCdnPath ? `var CDN_PATH = '${CDN_PATH}';` : '',
     usedApp ? `var app${ts ? ': any' : ''} = {};` : '',
     ts && !minimal ? 'type EChartsOption = echarts.EChartsOption' : ''
   ]
