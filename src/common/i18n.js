@@ -108,6 +108,7 @@ export default {
       pictorialBar: 'PictorialBar',
       themeRiver: 'ThemeRiver',
       calendar: 'Calendar',
+      matrix: 'Matrix',
       custom: 'Custom',
 
       dataset: 'Dataset',
@@ -237,6 +238,7 @@ export default {
       pictorialBar: '象形柱图',
       themeRiver: '主题河流图',
       calendar: '日历坐标系',
+      matrix: '矩阵坐标系',
       custom: '自定义系列',
 
       dataset: '数据集',

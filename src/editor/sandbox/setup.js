@@ -46,9 +46,12 @@ function setup(isShared) {
       const endTime = performance.now();
       sendMessage({
         evt: 'optionUpdated',
-        option: JSON.stringify(chart.getOption(), (key, val) =>
-          echarts.util.isFunction(val) ? val + '' : val
-        ),
+        option: JSON.stringify(chart.getOption(), (key, val) => {
+          if (echarts.util.isFunction(val) || typeof val === 'bigint') {
+            return val.toString();
+          }
+          return val;
+        }),
         updateTime: endTime - startTime
       });
       return res;

@@ -82,6 +82,7 @@ declare global {
     const ecStat: any;
     const d3: any;
     const myChart: echarts.ECharts
+    let css: string
     let option: echarts.EChartsOption
 
     const echarts: typeof echarts

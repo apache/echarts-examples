@@ -4,7 +4,7 @@ category: pie
 titleCN: 半环形图
 difficulty: 1
 */
-// This example requires ECharts v5.4.0 or later
+// This example requires ECharts v5.5.0 or later
 option = {
   tooltip: {
     trigger: 'item'

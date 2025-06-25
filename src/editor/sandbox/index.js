@@ -87,7 +87,8 @@ export function createSandbox(
             'unpkg.zhimg.com',
             'npm.elemecdn.com',
             'registry.npmmirror.com',
-            'cdn.staticfile.org'
+            'cdn.staticfile.org',
+            'cdn.staticfile.net'
           ];
           store.isPR && domains.push(`echarts-pr-${store.prNumber}.surge.sh`);
           return domains;

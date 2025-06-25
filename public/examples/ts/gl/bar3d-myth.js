@@ -1,5 +1,5 @@
 /*
-title: 星云
+title: Bar3D - Myth
 category: bar3D
 titleCN: 星云
 */

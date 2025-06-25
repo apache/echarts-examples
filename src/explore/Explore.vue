@@ -94,6 +94,7 @@ const icons = {};
   'pictorialBar',
   'themeRiver',
   'calendar',
+  'matrix',
   'custom',
   'sunburst',
   'tree',

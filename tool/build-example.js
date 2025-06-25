@@ -1,7 +1,6 @@
 const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
-const puppeteer = require('puppeteer');
 const matter = require('gray-matter');
 const argparse = require('argparse');
 const minimatch = require('minimatch');
@@ -247,7 +246,7 @@ async function takeScreenshot(
       // ffmpeg.FS("unlink", `${basename}.webm`)
       // ffmpeg.FS("unlink", `${basename}.webp`)
       shell.exec(
-        `ffmpeg -y -i ${fileBase}.webm -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp ${fileBase}.webp`
+        `ffmpeg -y -i "${fileBase}.webm" -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp "${fileBase}.webp"`
       );
       try {
         fs.unlinkSync(webmFile);
@@ -387,6 +386,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
       });
     server && server.listen(PORT);
 
+    const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch({
       headless: false,
       args: [

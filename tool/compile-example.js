@@ -7,9 +7,9 @@ const exampleDir = path.join(__dirname, '../public/examples');
 
 async function run() {
   const hasError =
-    shell.exec(`tsc --project ${path.join(exampleDir, 'tsconfig.json')}`)
+    shell.exec(`tsc --project "${path.join(exampleDir, 'tsconfig.json')}"`)
       .code !== 0;
-  shell.exec(`prettier --write ${path.join(exampleDir, 'js')}`);
+  shell.exec(`prettier --write "${path.join(exampleDir, 'js')}"`);
 
   const files = await globby('js/**/*.js', {
     cwd: exampleDir,

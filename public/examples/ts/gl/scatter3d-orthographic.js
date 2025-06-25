@@ -1,5 +1,5 @@
 /*
-title: 三维散点图正交投影
+title: Scatter3D - Orthographic
 category: scatter3D
 theme: dark
 titleCN: 三维散点图正交投影
