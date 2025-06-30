@@ -65,15 +65,14 @@ option = {
     renderItem: function (params, api) {
       const x = api.value(0);
       const y = api.value(1);
-      const center = api.coord([x, y]);
-      const size = api.size([x, y]);
+      const rect = api.layout([x, y]).rect;
       return {
         type: 'rect',
         shape: {
-          x: center[0] - size[0] / 2,
-          y: center[1] - size[1] / 2,
-          width: size[0],
-          height: size[1]
+          x: rect.x,
+          y: rect.y,
+          width: rect.width,
+          height: rect.height,
         },
         style: api.style({
           fill: x === y ? '#8f8' : '#f88'

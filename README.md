@@ -144,11 +144,13 @@ exe_something > 1.log 2>&1
 
 If you are testing a new version of echarts or zrender, which are not released in github yet, you need run e2e test with local dependent repos.
 
-Firstly, make sure the dependent repos listed in `dir` attributes in `echarts-examples/e2e/config.js` existing and having release built.
+1. Make sure the dependent repos listed in `dir` attributes in `echarts-examples/e2e/config.js` existing. (If using `npm run test:e2e:local` or `npm run test:e2e:esbuild:local`, the local repo will be fetched from the `dir` attributes. Otherwise, download the remote repo from the `git` attributes.)
+2. Make sure the local repos have release build, typically, `npm run release` has been performed.
 
-Note: the commands below will execute `npm install` in these local directories.
-
+3. Start e2e test:
 ```shell
+# Notice: the commands below will execute `npm install` in these local directories.
+
 # run e2e using local dependent repos and webpack.
 npm run test:e2e:local > result.log 2>&1
 # run e2e using local dependent repos and esbuild, which is much faster.
@@ -157,9 +159,9 @@ npm run test:e2e:esbuild:local > result.log 2>&1
 
 ### Run e2e test using remote dependent repos
 
-Note: the commands below will download the repos listed in `echarts-examples/e2e/config.js` to a temporary folder.
-
 ```shell
+# Notice: the commands below will download the repos listed in `echarts-examples/e2e/config.js` to a temporary folder.
+
 # run e2e using remote dependent repos and webpack.
 npm run test:e2e > result.log 2>&1
 # run e2e using remote dependent repos and esbuild, which is much faster.
