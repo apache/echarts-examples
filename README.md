@@ -64,17 +64,20 @@ Use this code to enable controller panel for a example:
 
 ```js
 app.config = {
-  aNameForTheSelectWidget: 'This is the initial value'
+  aNameForTheSelectionWidget: 'This is the initial value'
   aNameForTheRangeWidget: 45,
   aNameForTheButtonWidget: function () {
-    // Do something.
+    // Do something on button click.
   },
   onChange: function () {
-    // Do something.
+    // Do something on SelectionWidget or RangeWidget changed.
+    // Read the current value.
+    console.log(app.config.aNameForTheRangeWidget)
+    console.log(app.config.aNameForTheSelectionWidget)
   }
 };
 app.configParameters = {
-  aNameForTheSelectWidget: {
+  aNameForTheSelectionWidget: {
     options: [
       'This is the initial value',
       'This is another value',
