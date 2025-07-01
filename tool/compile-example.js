@@ -27,18 +27,24 @@ async function run() {
   let retCode;
 
   if (fileArg) {
-    singleSrcFilePath = path.join('ts', fileArg); // relative to exampleDir
+    singleSrcFilePath = path.join(exampleDir, 'ts', fileArg);
     console.log(`Compile single file "${singleSrcFilePath}" ...`);
-    intermediaJSFilePath = path
-      .join(exampleDir, singleSrcFilePath)
+    intermediaJSFilePath = singleSrcFilePath
       .replace(/\.ts$/, '.js')
       .replace(/\/ts\//, '/js/');
 
+    if (!fs.existsSync(singleSrcFilePath)) {
+      console.error(`${singleSrcFilePath} does not exist.`);
+      process.exit(1);
+    }
     // Create a temporary tsconfig.single.json
     const tempConfigPath = path.join(exampleDir, 'tsconfig.single.json');
     const tempConfig = {
       extends: './tsconfig.json',
-      include: [singleSrcFilePath]
+      include: [
+        path.join('ts', fileArg), // relative to exampleDir
+        './types/**/*.d.ts'
+      ]
     };
     fs.writeFileSync(
       tempConfigPath,
@@ -54,6 +60,8 @@ async function run() {
   } else {
     retCode = shell.exec(`tsc --project "${tsConfigPath}"`).code;
   }
+
+  console.log(`tsc return code: ${retCode}`);
 
   // There might be TS error, but probably no need to handle them immediately,
   // thus do not block the subsequent process.
