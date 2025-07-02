@@ -366,6 +366,8 @@ function setup(isShared) {
         });
         document.body.append(gui.domElement);
 
+        initDatGUITooltip(gui.domElement);
+
         const configParams = appEnv.configParameters || {};
         const config = appEnv.config;
         for (const name in config) {
@@ -405,6 +407,53 @@ function setup(isShared) {
       }
     }
   };
+
+  /**
+   * Add a tooltip for long label that truncated by dat.GUI.
+   */
+  function initDatGUITooltip(guiEl) {
+    // Add a tooltip for long label that truncated by dat.GUI
+    const tooltip = document.createElement('div');
+    tooltip.className = 'dat-gui-tooltip';
+    document.body.appendChild(tooltip);
+    $(tooltip).css({
+      display: 'none',
+      position: 'absolute',
+      zIndex: 9000,
+      padding: '5px 10px',
+      backgroundColor: '#333',
+      color: '#fff',
+      borderRadius: '4px',
+      fontSize: '12px',
+      pointerEvents: 'none',
+    });
+
+    guiEl.addEventListener('mouseover', function (ev) {
+      const target = ev.target;
+      if (!target) {
+        return;
+      }
+      const labelText = $(target).filter('.property-name').add($(target).find('.property-name')).first().text();
+      if (!labelText) {
+        return;
+      }
+      $(tooltip).text(labelText);
+      $(tooltip).css({
+        display: 'block',
+        left: ev.pageX + 10 + 'px',
+        top: ev.pageY + 10 + 'px',
+      });
+    });
+
+    guiEl.addEventListener('mouseout', function () {
+      $(tooltip).css({display: 'none'});
+    });
+
+    guiEl.addEventListener('mousemove', function (ev) {
+      tooltip.style.left = ev.pageX + 10 + 'px';
+      tooltip.style.top = ev.pageY + 10 + 'px';
+    });
+  }
 
   echarts.registerPreprocessor(function (option) {
     if (appStore.enableDecal) {
