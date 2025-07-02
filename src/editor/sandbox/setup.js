@@ -370,6 +370,38 @@ function setup(isShared) {
 
         const configParams = appEnv.configParameters || {};
         const config = appEnv.config;
+
+        // If using seletion/options, dat.GUI always convert value into string. e.g., convert
+        // `true`, `false` to `'true'`, `'false'`, or convert `10`, `20` to `'10'`, `'20'`.
+        // This probably bothers users. Therefore, we need to convert it back to the raw value type.
+        function revertToRawValueForOptions(datGUIController, datGUINewValue) {
+          var name = datGUIController.property;
+          var configVal = configParams[name];
+          if (!configVal || !configVal.options || !config.hasOwnProperty(name)) {
+            return;
+          }
+          // Considered `configVal.options` can be either
+          // `[value1, value2, ...]` or `{key1: value2, key2: value2, ...}`.
+          echarts.util.each(configVal.options, function (rawVal) {
+            if ('' + rawVal === datGUINewValue) {
+              config[name] = rawVal;
+            }
+          });
+        }
+
+        const onChange = config.onChange
+          ? function (newValue) {
+            revertToRawValueForOptions(this, newValue);
+            config.onChange();
+          }
+          : null;
+        const onFinishChange = config.onFinishChange
+          ? function (newValue) {
+            revertToRawValueForOptions(this, newValue);
+            config.onFinishChange();
+          }
+          : null;
+
         for (const name in config) {
           const value = config[name];
           if (name !== 'onChange' && name !== 'onFinishChange') {
@@ -399,11 +431,10 @@ function setup(isShared) {
             if (!controller) {
               controller = gui[isColor ? 'addColor' : 'add'](config, name);
             }
-            config.onChange && controller.onChange(config.onChange);
-            config.onFinishChange &&
-              controller.onFinishChange(config.onFinishChange);
+            onChange && controller.onChange(onChange);
+            onFinishChange && controller.onFinishChange(onFinishChange);
           }
-        }
+        } // End of `for (const name in config)`
       }
     }
   };
