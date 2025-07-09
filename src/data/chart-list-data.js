@@ -670,6 +670,17 @@ export default [
   },
   {
     "category": [
+      "matrix"
+    ],
+    "id": "matrix-mbti",
+    "ts": true,
+    "tags": [],
+    "title": "16 Type Model Partner Compatibility Matrix",
+    "titleCN": "MBTI伴侣相容性",
+    "difficulty": 20
+  },
+  {
+    "category": [
       "parallel"
     ],
     "id": "parallel-aqi",
