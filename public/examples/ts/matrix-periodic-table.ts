@@ -4,7 +4,6 @@ category: matrix
 titleCN: 元素周期表
 difficulty: 10
 */
-
 const colors = {
   red: '#f88',
   green: '#8f8',
@@ -21,6 +20,9 @@ option = {
       },
       itemStyle: {
         borderWidth: 0
+      },
+      dividerLineStyle: {
+        width: 0
       }
     },
     y: {
@@ -30,6 +32,9 @@ option = {
       },
       itemStyle: {
         borderWidth: 0
+      },
+      dividerLineStyle: {
+        width: 0
       }
     },
     left: 'center',
@@ -37,8 +42,10 @@ option = {
     backgroundStyle: {
       borderWidth: 0
     },
-    innerBackgroundStyle: {
-      borderWidth: 0
+    body: {
+      itemStyle: {
+        borderWidth: 0
+      }
     }
   },
   series: {
@@ -190,17 +197,16 @@ option = {
     renderItem: function (params, api) {
       const x = api.value(0);
       const y = api.value(1);
-      const center = api.coord([x, y]);
-      const size = api.size([x, y]);
+      const rect = api.layout([x, y]).rect;
       const isElement = !isNaN(api.value(2));
       const margin = 2;
       return {
         type: 'rect',
         shape: {
-          x: center[0] - size[0] / 2 + margin,
-          y: center[1] - size[1] / 2 + margin,
-          width: size[0] - margin * 2,
-          height: size[1] - margin * 2
+          x: rect.x + margin,
+          y: rect.y + margin,
+          width: rect.width - margin * 2,
+          height: rect.height - margin * 2
         },
         style: api.style({
           fill: api.value(4),

@@ -74,9 +74,6 @@ export const BLACK_MAP = (function (list) {
   return location.href.indexOf('github.io') >= 0 ? {} : map;
 })([
   'effectScatter-map',
-  'geo-lines',
-  'geo-map-scatter',
-  'heatmap-map',
   'lines-airline',
   'map-china',
   'map-china-dataRange',
@@ -87,7 +84,6 @@ export const BLACK_MAP = (function (list) {
   'map-world-dataRange',
   'scatter-map',
   'scatter-map-brush',
-  'scatter-weibo',
   'scatter-world-population',
   'geo3d',
   'geo3d-with-different-height',

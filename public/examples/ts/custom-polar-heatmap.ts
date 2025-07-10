@@ -54,9 +54,6 @@ option = {
       name: 'Punch Card',
       type: 'custom',
       coordinateSystem: 'polar',
-      itemStyle: {
-        color: '#d14a61'
-      },
       renderItem: function (params, api) {
         var values = [api.value(0), api.value(1)];
         var coord = api.coord(values);

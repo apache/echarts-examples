@@ -55,7 +55,13 @@ const series: echarts.BarSeriesOption[] = [
     };
 });
 
-const color = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de'];
+const color = [
+    '#5070dd',
+    '#b6d634',
+    '#505372',
+    '#ff994d',
+    '#0ca8df'
+];
 const elements = [];
 for (let j = 1, jlen = rawData[0].length; j < jlen; ++j) {
     const leftX = grid.left + categoryWidth * j - barPadding;

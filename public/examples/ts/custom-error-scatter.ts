@@ -121,7 +121,8 @@ function renderItem(
 option = {
   tooltip: {},
   legend: {
-    data: ['bar', 'error']
+    data: ['bar', 'error'],
+    top: 15
   },
   dataZoom: [
     {
@@ -132,7 +133,7 @@ option = {
     }
   ],
   grid: {
-    bottom: 80
+    top: 60
   },
   xAxis: {},
   yAxis: {},
