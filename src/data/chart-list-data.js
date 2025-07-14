@@ -302,7 +302,8 @@ export default [
     "tags": [],
     "title": "Simple Matrix",
     "titleCN": "简单的矩阵图",
-    "difficulty": 1
+    "difficulty": 1,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -622,7 +623,8 @@ export default [
     "tags": [],
     "title": "Correlation Matrix (Heatmap)",
     "titleCN": "相关矩阵（热力图）",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -633,7 +635,8 @@ export default [
     "tags": [],
     "title": "Correlation Matrix (Scatter)",
     "titleCN": "相关矩阵（散点图）",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -644,7 +647,8 @@ export default [
     "tags": [],
     "title": "Covariance Matrix",
     "titleCN": "协方差矩阵",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -655,7 +659,8 @@ export default [
     "tags": [],
     "title": "Graph Chart in Matrix",
     "titleCN": "矩阵布局下的关系图",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -666,7 +671,8 @@ export default [
     "tags": [],
     "title": "Tiny Charts in Matrix (Line Charts)",
     "titleCN": "矩阵坐标系中的微型折线图",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -677,7 +683,8 @@ export default [
     "tags": [],
     "title": "Pie Charts in Matrix",
     "titleCN": "矩阵布局下的饼图",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -1134,7 +1141,8 @@ export default [
     "tags": [],
     "title": "Confusion Matrix",
     "titleCN": "混淆矩阵",
-    "difficulty": 3
+    "difficulty": 3,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -1211,7 +1219,8 @@ export default [
     "tags": [],
     "title": "Scatter with Jittering",
     "titleCN": "带抖动的散点图",
-    "difficulty": 3
+    "difficulty": 3,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -2706,7 +2715,8 @@ export default [
     "tags": [],
     "title": "Periodic Table",
     "titleCN": "元素周期表",
-    "difficulty": 10
+    "difficulty": 10,
+    "since": "6.0.0"
   },
   {
     "category": [
