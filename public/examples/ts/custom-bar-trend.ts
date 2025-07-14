@@ -45,7 +45,8 @@ option = {
     trigger: 'axis'
   },
   legend: {
-    data: legendData
+    data: legendData,
+    top: 20
   },
   dataZoom: [
     {

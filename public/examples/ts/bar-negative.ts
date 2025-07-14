@@ -15,12 +15,6 @@ option = {
   legend: {
     data: ['Profit', 'Expenses', 'Income']
   },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-  },
   xAxis: [
     {
       type: 'value'

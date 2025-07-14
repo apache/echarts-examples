@@ -74,13 +74,15 @@ const data = [
 var CLUSTER_COUNT = 6;
 var DIENSIION_CLUSTER_INDEX = 2;
 var COLOR_ALL = [
-  '#37A2DA',
-  '#e06343',
-  '#37a354',
-  '#b55dba',
-  '#b5bd48',
-  '#8378EA',
-  '#96BFFF'
+  '#5070dd',
+  '#b6d634',
+  '#505372',
+  '#ff994d',
+  '#0ca8df',
+  '#ffd10a',
+  '#fb628b',
+  '#785db0',
+  '#3fbe95'
 ];
 var pieces = [];
 for (var i = 0; i < CLUSTER_COUNT; i++) {
