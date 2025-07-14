@@ -400,7 +400,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
     const browser = await puppeteer.launch({
       headless: false,
       args: [
-        // '--headless',
+        '--headless', // If network error always happens, try to comment this line to use headful mode
         '--hide-scrollbars',
         // https://github.com/puppeteer/puppeteer/issues/4913
         '--use-gl=egl',
