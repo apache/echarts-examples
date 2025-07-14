@@ -73,17 +73,7 @@ export const BLACK_MAP = (function (list) {
   }
   return location.href.indexOf('github.io') >= 0 ? {} : map;
 })([
-  'effectScatter-map',
   'lines-airline',
-  'map-china',
-  'map-china-dataRange',
-  'map-labels',
-  'map-locate',
-  'map-province',
-  'map-world',
-  'map-world-dataRange',
-  'scatter-map',
-  'scatter-map-brush',
   'scatter-world-population',
   'geo3d',
   'geo3d-with-different-height',
@@ -99,7 +89,6 @@ export const BLACK_MAP = (function (list) {
   'lines-bmap-bus',
   'lines-bmap-effect',
   'map-bin',
-  'map-polygon',
   'global-wind-visualization',
   'global-wind-visualization-2'
 ]);

@@ -549,17 +549,6 @@ export default [
   },
   {
     "category": [
-      "scatter"
-    ],
-    "id": "effectScatter-map",
-    "ts": true,
-    "tags": [],
-    "title": "Air Quality",
-    "titleCN": "全国主要城市空气质量",
-    "difficulty": 2
-  },
-  {
-    "category": [
       "gauge"
     ],
     "id": "gauge-speed",
@@ -2678,19 +2667,6 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-polygon",
-    "ts": false,
-    "tags": [
-      "bmap"
-    ],
-    "title": "Draw Polygon on Map",
-    "titleCN": "在地图上绘制多边形",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-usa",
     "ts": true,
     "tags": [],
@@ -2830,28 +2806,6 @@ export default [
     "tags": [],
     "title": "Multiple Radar",
     "titleCN": "多雷达图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "scatter-map",
-    "ts": false,
-    "tags": [],
-    "title": "Air Quality",
-    "titleCN": "全国主要城市空气质量",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "scatter-map-brush",
-    "ts": true,
-    "tags": [],
-    "title": "Scatter Map Brush",
-    "titleCN": "Scatter Map Brush",
     "difficulty": 10
   },
   {
