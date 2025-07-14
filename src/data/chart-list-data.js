@@ -650,6 +650,17 @@ export default [
     "category": [
       "matrix"
     ],
+    "id": "matrix-covariance",
+    "ts": true,
+    "tags": [],
+    "title": "Covariance Matrix",
+    "titleCN": "协方差矩阵",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
     "id": "matrix-graph",
     "ts": true,
     "tags": [],
@@ -678,17 +689,6 @@ export default [
     "title": "Pie Charts in Matrix",
     "titleCN": "矩阵布局下的饼图",
     "difficulty": 2
-  },
-  {
-    "category": [
-      "matrix"
-    ],
-    "id": "matrix-mbti",
-    "ts": true,
-    "tags": [],
-    "title": "16 Type Model Partner Compatibility Matrix",
-    "titleCN": "MBTI伴侣相容性",
-    "difficulty": 20
   },
   {
     "category": [
@@ -1806,17 +1806,6 @@ export default [
     "title": "Line Race",
     "titleCN": "动态排序折线图",
     "difficulty": 5
-  },
-  {
-    "category": [
-      "matrix"
-    ],
-    "id": "matrix-covariance",
-    "ts": true,
-    "tags": [],
-    "title": "Covariance Matrix",
-    "titleCN": "协方差矩阵",
-    "difficulty": 2
   },
   {
     "category": [

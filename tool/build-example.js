@@ -145,7 +145,8 @@ async function takeScreenshot(
 
   if (hasVideo) {
     url += `&start=${videoStart}&end=${videoEnd}`;
-    await page._client.send('Page.setDownloadBehavior', {
+    const client = await page.createCDPSession();
+    await client.send('Page.setDownloadBehavior', {
       behavior: 'allow',
       downloadPath: thumbDir
     });
@@ -157,6 +158,7 @@ async function takeScreenshot(
   // console.log(url);
   await page.evaluateOnNewDocument(function (resourceRootPath) {
     window.ROOT_PATH = resourceRootPath;
+    window.CDN_PATH = 'https://fastly.jsdelivr.net/npm/';
   }, resourceRootPath);
 
   page.on('pageerror', function (err) {
@@ -203,7 +205,7 @@ async function takeScreenshot(
         'utf-8'
       );
     } catch (e) {
-      console.error(chalk.red('Failed to generate option'));
+      console.error(chalk.red('Failed to generate option ' + fileBase));
       console.error(chalk.red(e));
     }
 
@@ -245,9 +247,15 @@ async function takeScreenshot(
       // fs.writeFileSync(webpFile, ffmpeg.FS('readFile', `${basename}.webp`));
       // ffmpeg.FS("unlink", `${basename}.webm`)
       // ffmpeg.FS("unlink", `${basename}.webp`)
-      shell.exec(
-        `ffmpeg -y -i "${fileBase}.webm" -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp "${fileBase}.webp"`
-      );
+      console.log('Running ffmpeg to convert webm to webp');
+      try {
+        shell.exec(
+          `ffmpeg -y -i "${fileBase}.webm" -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp "${fileBase}.webp"`
+        );
+      } catch (e) {
+        console.error(e);
+      }
+      console.log(`WebP file created: ${fileBase}.webp`);
       try {
         fs.unlinkSync(webmFile);
       } catch (e) {}
@@ -263,6 +271,8 @@ async function takeScreenshot(
   const rootDir = path.join(__dirname, '../');
   // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
   const screenshotBlackList = [];
+
+  let server; // Declare server at function scope
 
   const examplesRoot = `${rootDir}public/examples`;
   const files = await globby(`js/${isGL ? 'gl/' : ''}*.js`, {
@@ -375,7 +385,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
   // Do screenshot
   if (BUILD_THUMBS) {
     const fileServer = new nStatic.Server(rootDir);
-    const server =
+    server =
       BUILD_THUMBS &&
       require('http').createServer(function (request, response) {
         request
@@ -390,7 +400,7 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
     const browser = await puppeteer.launch({
       headless: false,
       args: [
-        '--headless',
+        // '--headless',
         '--hide-scrollbars',
         // https://github.com/puppeteer/puppeteer/issues/4913
         '--use-gl=egl',
@@ -465,11 +475,13 @@ export default ${JSON.stringify(exampleList, null, 2)}`;
     await browser.close();
     // ffmpeg.exit(0);
   }
-})();
 
-process.on('SIGINT', function () {
-  console.log('Closing');
-  server.close();
-  // Close through ctrl + c;
-  process.exit();
-});
+  process.on('SIGINT', function () {
+    console.log('Closing');
+    if (server) {
+      server.close();
+    }
+    // Close through ctrl + c;
+    process.exit();
+  });
+})();
