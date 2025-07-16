@@ -2720,6 +2720,18 @@ export default [
   },
   {
     "category": [
+      "matrix"
+    ],
+    "id": "matrix-mbti",
+    "ts": true,
+    "tags": [],
+    "title": "MBTI Partner Compatibility",
+    "titleCN": "MBTI 伴侣相容性",
+    "difficulty": 11,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
       "pictorialBar"
     ],
     "id": "pictorialBar-body-fill",
