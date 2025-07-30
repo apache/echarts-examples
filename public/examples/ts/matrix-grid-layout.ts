@@ -54,6 +54,7 @@ option = {
       data: [
         {
           coord: [null, _yBreakTimeIndex],
+          coordClamp: true,
           mergeCells: true,
           value: 'Break',
           label: {
