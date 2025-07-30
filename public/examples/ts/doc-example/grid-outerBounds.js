@@ -53,6 +53,7 @@ app.config.onChange = function () {
 
 
 function calcOuterBoundsIndicatorShape() {
+    // This implementation is an copy of echarts internal logic.
     var gridOuterBoundsParsed = {};
     var parsedOuterBoundsMode = app.config.outerBoundsMode;
     if (app.config.containLabel) {
