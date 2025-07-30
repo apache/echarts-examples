@@ -2,8 +2,15 @@ const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const fs = require('fs');
 
 const distPath = path.resolve(__dirname, '../public');
+
+let configLocal = {};
+const configLocalPath = path.resolve(__dirname, '../config/config.local.js');
+if (fs.existsSync(configLocalPath)) {
+  configLocal = require(configLocalPath);
+}
 
 module.exports = [
   {
@@ -101,6 +108,10 @@ module.exports = [
       vue: 'Vue'
     },
     plugins: [
+      new webpack.DefinePlugin({
+        // It can be used in the code directly.
+        CONFIG_LOCAL: JSON.stringify(configLocal),
+      }),
       new webpack.IgnorePlugin({
         resourceRegExp: /^fs$/
       }),

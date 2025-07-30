@@ -10,8 +10,16 @@ npm i --force
 
 ### How
 
-All test cases are in the `public/examples/ts` folder. The comment in the header
+Add or edit example files in the `public/examples/ts` folder.
+(Do NOT add or edit files in the `public/examples/js` folder!)
 
+An example file in `public/examples/ts` folder can be `xxx.ts` or `xxx.js`.
+After editing, you need to compile them to `JavaScript` using the following command:
+```shell
+npm run compile:example
+```
+
+Each example file should include the meta info at the top, formatted as a JS comment:
 ```js
 /*
 title: Area Pieces
@@ -20,10 +28,7 @@ category: 'line, visualMap'
 */
 ```
 
-describes the meta info of this example.
-
 If you want to record a video to show the animation when genering screenshot. Use `videoStart` and `videoEnd`:
-
 ```js
 /*
 title: Bar Race
@@ -35,11 +40,9 @@ videoEnd: 6000
 */
 ```
 
-Most of examples are written in `TypeScript`. You need to compile it to `JavaScript` by using command:
+Check the example in browser:
+See "View and edit echarts-examples website" below.
 
-```shell
-npm run compile:example
-```
 
 ### Some built-in features available in examples
 
@@ -77,12 +80,24 @@ app.config = {
   }
 };
 app.configParameters = {
+  // The keys below must exist in `app.config`.
   aNameForTheSelectionWidget: {
     options: [
       'This is the initial value',
       'This is another value',
       'This is the third value'
+      333,   // value other than string is supported.
+      false, // value other than string is supported.
     ]
+    // // options can also be:
+    // options: {
+    ///    // `text`: to display.
+    //     // `value`: write to `app.config` when option is switched.
+    //     text1: value1,
+    //     text2: value2,
+    //     text3: 333,   // value other than string is supported.
+    //     text3: false, // value other than string is supported.
+    // }
   },
   aNameForTheRangeWidget: {
     min: -90,
@@ -116,10 +131,20 @@ npm run dev
 
 ### Use local echarts build
 
-1. Update the URL of `localEChartsDir` & `localEChartsGLDir` in `src/common/config.js`
-2. Add `local=1` in URL. For example:
-
-- `editor.html?c=area-basic&local=1`
+1. Create a local config file in `echarts-examples/config/config.local.js`, including the content like:
+  ```js
+  exports.SCRIPT_URLS = {
+    // This is your own web server to visit the echarts dist files.
+    localEChartsDir: 'http://localhost:8001/echarts',
+    localEChartsGLDir: 'http://localhost:8001/echarts-gl',
+    // Then the echarts will be fetched by URL
+    //  http://localhost:8001/echarts/dist/echarts.js
+    // (if `local=1` exists in the entry URL)
+  };
+  ```
+  > Note: The local URL is internally defined in `localEChartsDir` & `localEChartsGLDir` in `src/common/config.js`
+2. Add `local=1` to the entry URL.
+  - For example: `http://127.0.0.1:3002/en/editor.html?c=line-simple&local=1`
 
 ## Run e2e tests.
 

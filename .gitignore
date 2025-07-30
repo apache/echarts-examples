@@ -19,6 +19,8 @@ public/vendors/echarts/map/raw
 /e2e/package.json
 /e2e/node_modules
 
+config/config.local.js
+
 tmp
 .webm
 result.log
