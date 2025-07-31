@@ -146,7 +146,7 @@ export default {
   }
 
   .example-new {
-    margin-top: 10px;
+    margin-top: 12px;
     float: right;
     padding: 1px 5px;
     margin-left: 5px;

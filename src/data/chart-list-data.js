@@ -302,7 +302,8 @@ export default [
     "tags": [],
     "title": "Simple Matrix",
     "titleCN": "简单的矩阵图",
-    "difficulty": 1
+    "difficulty": 1,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -549,17 +550,6 @@ export default [
   },
   {
     "category": [
-      "scatter"
-    ],
-    "id": "effectScatter-map",
-    "ts": true,
-    "tags": [],
-    "title": "Air Quality",
-    "titleCN": "全国主要城市空气质量",
-    "difficulty": 2
-  },
-  {
-    "category": [
       "gauge"
     ],
     "id": "gauge-speed",
@@ -633,7 +623,8 @@ export default [
     "tags": [],
     "title": "Correlation Matrix (Heatmap)",
     "titleCN": "相关矩阵（热力图）",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -644,7 +635,8 @@ export default [
     "tags": [],
     "title": "Correlation Matrix (Scatter)",
     "titleCN": "相关矩阵（散点图）",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -655,7 +647,8 @@ export default [
     "tags": [],
     "title": "Covariance Matrix",
     "titleCN": "协方差矩阵",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -666,7 +659,8 @@ export default [
     "tags": [],
     "title": "Graph Chart in Matrix",
     "titleCN": "矩阵布局下的关系图",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -677,7 +671,8 @@ export default [
     "tags": [],
     "title": "Tiny Charts in Matrix (Line Charts)",
     "titleCN": "矩阵坐标系中的微型折线图",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -688,7 +683,8 @@ export default [
     "tags": [],
     "title": "Pie Charts in Matrix",
     "titleCN": "矩阵布局下的饼图",
-    "difficulty": 2
+    "difficulty": 2,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -1116,17 +1112,6 @@ export default [
   },
   {
     "category": [
-      "heatmap"
-    ],
-    "id": "heatmap-map",
-    "ts": false,
-    "tags": [],
-    "title": "Air Qulity",
-    "titleCN": "全国主要城市空气质量",
-    "difficulty": 3
-  },
-  {
-    "category": [
       "line"
     ],
     "id": "line-gradient",
@@ -1156,7 +1141,8 @@ export default [
     "tags": [],
     "title": "Confusion Matrix",
     "titleCN": "混淆矩阵",
-    "difficulty": 3
+    "difficulty": 3,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -1233,7 +1219,8 @@ export default [
     "tags": [],
     "title": "Scatter with Jittering",
     "titleCN": "带抖动的散点图",
-    "difficulty": 3
+    "difficulty": 3,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -2465,28 +2452,6 @@ export default [
     "category": [
       "map"
     ],
-    "id": "geo-lines",
-    "ts": false,
-    "tags": [],
-    "title": "Migration",
-    "titleCN": "模拟迁徙",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
-    "id": "geo-map-scatter",
-    "ts": false,
-    "tags": [],
-    "title": "map and scatter share a geo",
-    "titleCN": "map and scatter share a geo",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "geo-organ",
     "ts": false,
     "tags": [],
@@ -2711,19 +2676,6 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-polygon",
-    "ts": false,
-    "tags": [
-      "bmap"
-    ],
-    "title": "Draw Polygon on Map",
-    "titleCN": "在地图上绘制多边形",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-usa",
     "ts": true,
     "tags": [],
@@ -2763,7 +2715,20 @@ export default [
     "tags": [],
     "title": "Periodic Table",
     "titleCN": "元素周期表",
-    "difficulty": 10
+    "difficulty": 10,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-mbti",
+    "ts": true,
+    "tags": [],
+    "title": "MBTI Partner Compatibility",
+    "titleCN": "MBTI 伴侣相容性",
+    "difficulty": 11,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -2867,28 +2832,6 @@ export default [
   },
   {
     "category": [
-      "scatter"
-    ],
-    "id": "scatter-map",
-    "ts": false,
-    "tags": [],
-    "title": "Air Quality",
-    "titleCN": "全国主要城市空气质量",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "scatter-map-brush",
-    "ts": true,
-    "tags": [],
-    "title": "Scatter Map Brush",
-    "titleCN": "Scatter Map Brush",
-    "difficulty": 10
-  },
-  {
-    "category": [
       "parallel",
       "scatter"
     ],
@@ -2897,17 +2840,6 @@ export default [
     "tags": [],
     "title": "Scatter Matrix",
     "titleCN": "散点矩阵和平行坐标",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "scatter"
-    ],
-    "id": "scatter-weibo",
-    "ts": true,
-    "tags": [],
-    "title": "Sign in of weibo",
-    "titleCN": "微博签到数据点亮中国",
     "difficulty": 10
   },
   {
@@ -3118,17 +3050,6 @@ export default [
     "tags": [],
     "title": "Custom Spiral Race",
     "titleCN": "自定义螺旋线竞速",
-    "difficulty": 11
-  },
-  {
-    "category": [
-      "matrix"
-    ],
-    "id": "matrix-mbti",
-    "ts": true,
-    "tags": [],
-    "title": "MBTI Partner Compatibility",
-    "titleCN": "MBTI 伴侣相容性",
     "difficulty": 11
   },
   {
