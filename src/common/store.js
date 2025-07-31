@@ -18,6 +18,8 @@ const prMatches =
 
 export const store = {
   echartsVersion: URL_PARAMS.version || '5',
+  // TODO: write a script to use the latest version from package.json
+  echartsFullVersion: '6.0.0',
 
   isPR: !!prMatches,
   prNumber: prMatches && prMatches[1],

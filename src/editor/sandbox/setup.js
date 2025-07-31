@@ -366,8 +366,42 @@ function setup(isShared) {
         });
         document.body.append(gui.domElement);
 
+        initDatGUITooltip(gui.domElement);
+
         const configParams = appEnv.configParameters || {};
         const config = appEnv.config;
+
+        // If using seletion/options, dat.GUI always convert value into string. e.g., convert
+        // `true`, `false` to `'true'`, `'false'`, or convert `10`, `20` to `'10'`, `'20'`.
+        // This probably bothers users. Therefore, we need to convert it back to the raw value type.
+        function revertToRawValueForOptions(datGUIController, datGUINewValue) {
+          var name = datGUIController.property;
+          var configVal = configParams[name];
+          if (!configVal || !configVal.options || !config.hasOwnProperty(name)) {
+            return;
+          }
+          // Considered `configVal.options` can be either
+          // `[value1, value2, ...]` or `{key1: value2, key2: value2, ...}`.
+          echarts.util.each(configVal.options, function (rawVal) {
+            if ('' + rawVal === datGUINewValue) {
+              config[name] = rawVal;
+            }
+          });
+        }
+
+        const onChange = config.onChange
+          ? function (newValue) {
+            revertToRawValueForOptions(this, newValue);
+            config.onChange();
+          }
+          : null;
+        const onFinishChange = config.onFinishChange
+          ? function (newValue) {
+            revertToRawValueForOptions(this, newValue);
+            config.onFinishChange();
+          }
+          : null;
+
         for (const name in config) {
           const value = config[name];
           if (name !== 'onChange' && name !== 'onFinishChange') {
@@ -397,14 +431,60 @@ function setup(isShared) {
             if (!controller) {
               controller = gui[isColor ? 'addColor' : 'add'](config, name);
             }
-            config.onChange && controller.onChange(config.onChange);
-            config.onFinishChange &&
-              controller.onFinishChange(config.onFinishChange);
+            onChange && controller.onChange(onChange);
+            onFinishChange && controller.onFinishChange(onFinishChange);
           }
-        }
+        } // End of `for (const name in config)`
       }
     }
   };
+
+  /**
+   * Add a tooltip for long label that truncated by dat.GUI.
+   */
+  function initDatGUITooltip(guiEl) {
+    // Add a tooltip for long label that truncated by dat.GUI
+    const tooltip = document.createElement('div');
+    tooltip.className = 'dat-gui-tooltip';
+    document.body.appendChild(tooltip);
+    $(tooltip).css({
+      display: 'none',
+      position: 'absolute',
+      zIndex: 9000,
+      padding: '5px 10px',
+      backgroundColor: '#333',
+      color: '#fff',
+      borderRadius: '4px',
+      fontSize: '12px',
+      pointerEvents: 'none',
+    });
+
+    guiEl.addEventListener('mouseover', function (ev) {
+      const target = ev.target;
+      if (!target) {
+        return;
+      }
+      const labelText = $(target).filter('.property-name').add($(target).find('.property-name')).first().text();
+      if (!labelText) {
+        return;
+      }
+      $(tooltip).text(labelText);
+      $(tooltip).css({
+        display: 'block',
+        left: ev.pageX + 10 + 'px',
+        top: ev.pageY + 10 + 'px',
+      });
+    });
+
+    guiEl.addEventListener('mouseout', function () {
+      $(tooltip).css({display: 'none'});
+    });
+
+    guiEl.addEventListener('mousemove', function (ev) {
+      tooltip.style.left = ev.pageX + 10 + 'px';
+      tooltip.style.top = ev.pageY + 10 + 'px';
+    });
+  }
 
   echarts.registerPreprocessor(function (option) {
     if (appStore.enableDecal) {

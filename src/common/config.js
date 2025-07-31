@@ -20,6 +20,7 @@ export const EXAMPLE_CATEGORIES = [
   'pictorialBar',
   'themeRiver',
   'calendar',
+  'matrix',
   'custom',
 
   'dataset',
@@ -72,21 +73,7 @@ export const BLACK_MAP = (function (list) {
   }
   return location.href.indexOf('github.io') >= 0 ? {} : map;
 })([
-  'effectScatter-map',
-  'geo-lines',
-  'geo-map-scatter',
-  'heatmap-map',
   'lines-airline',
-  'map-china',
-  'map-china-dataRange',
-  'map-labels',
-  'map-locate',
-  'map-province',
-  'map-world',
-  'map-world-dataRange',
-  'scatter-map',
-  'scatter-map-brush',
-  'scatter-weibo',
   'scatter-world-population',
   'geo3d',
   'geo3d-with-different-height',
@@ -102,7 +89,6 @@ export const BLACK_MAP = (function (list) {
   'lines-bmap-bus',
   'lines-bmap-effect',
   'map-bin',
-  'map-polygon',
   'global-wind-visualization',
   'global-wind-visualization-2'
 ]);
@@ -166,6 +152,18 @@ const SCRIPT_URLS = {
 
   echartsGraphModularityJS: `${CDN_ROOT}echarts-graph-modularity/dist/echarts-graph-modularity.min.js`
 };
+
+if (typeof CONFIG_LOCAL !== 'undefined') {
+  // CONFIG_LOCAL may be defined `echarts-examples/config/config.local.js`,
+  // and introduced by `echarts-examples/build/webpack.config.js`.
+  if (CONFIG_LOCAL.SCRIPT_URLS) {
+    Object.keys(CONFIG_LOCAL.SCRIPT_URLS).forEach(key => {
+      if (CONFIG_LOCAL.SCRIPT_URLS[key]) {
+        SCRIPT_URLS[key] = CONFIG_LOCAL.SCRIPT_URLS[key];
+      }
+    });
+  }
+}
 
 // const SCRIPT_URLS_CN = {
 //   echartsDir: `${CDN_ROOT_CN_NPM}echarts/{{version}}/files`,

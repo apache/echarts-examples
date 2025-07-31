@@ -46,7 +46,7 @@ option = {
   },
   calendar: [
     {
-      top: 100,
+      top: 120,
       left: 'center',
       range: ['2016-01-01', '2016-06-30'],
       splitLine: {
@@ -60,6 +60,12 @@ option = {
       yearLabel: {
         formatter: '{start}  1st',
         color: '#fff'
+      },
+      monthLabel: {
+        color: '#aaa'
+      },
+      dayLabel: {
+        color: '#aaa'
       },
       itemStyle: {
         color: '#323c48',
@@ -82,6 +88,12 @@ option = {
       yearLabel: {
         formatter: '{start}  2nd',
         color: '#fff'
+      },
+      monthLabel: {
+        color: '#aaa'
+      },
+      dayLabel: {
+        color: '#aaa'
       },
       itemStyle: {
         color: '#323c48',

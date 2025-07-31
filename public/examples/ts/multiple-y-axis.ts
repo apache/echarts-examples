@@ -5,7 +5,7 @@ titleCN: 多 Y 轴示例
 difficulty: 4
 */
 
-const colors = ['#5470C6', '#91CC75', '#EE6666'];
+const colors = ['#5070dd', '#b6d634', '#505372'];
 
 option = {
   color: colors,

@@ -31,7 +31,9 @@ option = {
     text: 'Error bar chart'
   },
   legend: {
-    data: ['bar', 'error']
+    data: ['bar', 'error'],
+    top: 20,
+    right: 30
   },
   dataZoom: [
     {

@@ -295,6 +295,17 @@ export default [
   },
   {
     "category": [
+      "matrix"
+    ],
+    "id": "matrix-simple",
+    "ts": true,
+    "tags": [],
+    "title": "Simple Matrix",
+    "titleCN": "简单的矩阵图",
+    "difficulty": 1
+  },
+  {
+    "category": [
       "parallel"
     ],
     "id": "parallel-simple",
@@ -611,6 +622,72 @@ export default [
     "tags": [],
     "title": "Temperature Change in the Coming Week",
     "titleCN": "未来一周气温变化",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-correlation-heatmap",
+    "ts": true,
+    "tags": [],
+    "title": "Correlation Matrix (Heatmap)",
+    "titleCN": "相关矩阵（热力图）",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-correlation-scatter",
+    "ts": true,
+    "tags": [],
+    "title": "Correlation Matrix (Scatter)",
+    "titleCN": "相关矩阵（散点图）",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-covariance",
+    "ts": true,
+    "tags": [],
+    "title": "Covariance Matrix",
+    "titleCN": "协方差矩阵",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-graph",
+    "ts": true,
+    "tags": [],
+    "title": "Graph Chart in Matrix",
+    "titleCN": "矩阵布局下的关系图",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-grid-layout",
+    "ts": true,
+    "tags": [],
+    "title": "Tiny Charts in Matrix (Line Charts)",
+    "titleCN": "矩阵坐标系中的微型折线图",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-pie",
+    "ts": true,
+    "tags": [],
+    "title": "Pie Charts in Matrix",
+    "titleCN": "矩阵布局下的饼图",
     "difficulty": 2
   },
   {
@@ -1072,6 +1149,17 @@ export default [
   },
   {
     "category": [
+      "matrix"
+    ],
+    "id": "matrix-confusion",
+    "ts": true,
+    "tags": [],
+    "title": "Confusion Matrix",
+    "titleCN": "混淆矩阵",
+    "difficulty": 3
+  },
+  {
+    "category": [
       "pie"
     ],
     "id": "pie-alignTo",
@@ -1134,6 +1222,17 @@ export default [
     "tags": [],
     "title": "Node Align Right in Sankey",
     "titleCN": "桑基图右对齐布局",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-jitter",
+    "ts": true,
+    "tags": [],
+    "title": "Scatter with Jittering",
+    "titleCN": "带抖动的散点图",
     "difficulty": 3
   },
   {
@@ -2594,7 +2693,7 @@ export default [
       "bmap"
     ],
     "title": "Binning on Map",
-    "titleCN": "Binning on Map",
+    "titleCN": "在地图上显示分箱图",
     "difficulty": 10
   },
   {
@@ -2653,6 +2752,17 @@ export default [
     "tags": [],
     "title": "USA Choropleth Map with Projection",
     "titleCN": "自定义地图投影",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-periodic-table",
+    "ts": true,
+    "tags": [],
+    "title": "Periodic Table",
+    "titleCN": "元素周期表",
     "difficulty": 10
   },
   {
@@ -3008,6 +3118,17 @@ export default [
     "tags": [],
     "title": "Custom Spiral Race",
     "titleCN": "自定义螺旋线竞速",
+    "difficulty": 11
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-mbti",
+    "ts": true,
+    "tags": [],
+    "title": "MBTI Partner Compatibility",
+    "titleCN": "MBTI 伴侣相容性",
     "difficulty": 11
   },
   {
