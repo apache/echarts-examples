@@ -8,24 +8,8 @@ titleCN: 在地图上显示饼图
 
 myChart.showLoading();
 
-$.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
-  echarts.registerMap('USA', usaJson, {
-    Alaska: {
-      left: -131,
-      top: 25,
-      width: 15
-    },
-    Hawaii: {
-      left: -110,
-      top: 28,
-      width: 5
-    },
-    'Puerto Rico': {
-      left: -76,
-      top: 26,
-      width: 2
-    }
-  });
+$.get(ROOT_PATH + '/data/asset/geo/iceland.geo.json', function (geoJSON) {
+  echarts.registerMap('iceland', geoJSON);
 
   function randomPieSeries(
     center: string | number[],
@@ -58,25 +42,30 @@ $.get(ROOT_PATH + '/data/asset/geo/USA.json', function (usaJson) {
 
   option = {
     geo: {
-      map: 'USA',
+      map: 'iceland',
       roam: true,
+      aspectScale: Math.cos(65 * Math.PI / 180),
+      // nameProperty: 'name_en', // If using en name.
       itemStyle: {
         areaColor: '#e7e8ea'
+      },
+      emphasis: {
+        label: {show: false}
       }
     },
     tooltip: {},
     legend: {},
     series: [
-      randomPieSeries([-86.753504, 33.01077], 15),
-      randomPieSeries([-116.853504, 39.8], 25),
-      randomPieSeries([-99, 31.5], 30),
+      randomPieSeries([-19.007740346534653, 64.1780281585128], 45),
+      randomPieSeries([-17.204666089108912, 65.44804833928391], 25),
+      randomPieSeries([-15.264995297029705, 64.8592208009264], 30),
       randomPieSeries(
         // it's also supported to use geo region name as center since v5.4.1
         +echarts.version.split('.').slice(0, 3).join('') > 540
-          ? 'Maine'
+          ? 'Vestfirðir'
           : // or you can only use the LngLat array
-            [-69, 45.5],
-        12
+            [-13, 66],
+        30
       )
     ]
   };
