@@ -16,7 +16,10 @@ Add or edit example files in the `public/examples/ts` folder.
 An example file in `public/examples/ts` folder can be `xxx.ts` or `xxx.js`.
 After editing, you need to compile them to `JavaScript` using the following command:
 ```shell
+# Compile all examples
 npm run compile:example
+# Compile a single example
+npm run compile:example -- area-basic.ts
 ```
 
 Each example file should include the meta info at the top, formatted as a JS comment:
