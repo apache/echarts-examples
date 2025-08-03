@@ -73,7 +73,7 @@ function createChart() {
         itemStyle: {
           color: '#66c2a5',
           borderWidth: 1,
-          borderColor: '#fff',
+          borderColor: '#3c7865',
         }
       },
       {
@@ -82,6 +82,7 @@ function createChart() {
         // Specify geoIndex to share the geo component with the scatter series above,
         // instead of creating an internal geo coord sys.
         geoIndex: 0,
+        map: '',
         data: [
           { name: 'Austurland', value: 423 },
           { name: 'Suðurland', value: 256 },
