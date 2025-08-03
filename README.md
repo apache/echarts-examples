@@ -22,6 +22,12 @@ npm run compile:example
 npm run compile:example -- area-basic.ts
 ```
 
+> Notice: if TypeScript errors thrown during this compilation and it is cuased by your local modification of echarts TypeScript interface, you need to change to depends on your local echarts to pass the compilation. For example:
+> ```sh
+> cd your/echarts-examples
+> npm i --force ../your/local/echarts
+> ```
+
 Each example file should include the meta info at the top, formatted as a JS comment:
 ```js
 /*
