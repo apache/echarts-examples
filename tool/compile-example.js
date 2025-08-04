@@ -2,6 +2,9 @@ const globby = require('globby');
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
+const rimraf = require('rimraf');
+const { isSubPathSafe } = require('./helper/util');
+const assert = require('assert');
 
 /**
  * @usage
@@ -26,7 +29,7 @@ async function run() {
   let intermediaJSFilePath;
   let retCode;
 
-  if (fileArg) {
+  if (fileArg) { // Compile a single file
     singleSrcFilePath = path.join(exampleDir, 'ts', fileArg);
     console.log(`Compile single file "${singleSrcFilePath}" ...`);
     intermediaJSFilePath = singleSrcFilePath
@@ -57,7 +60,17 @@ async function run() {
 
     // Remove the temp config
     fs.unlinkSync(tempConfigPath);
-  } else {
+  }
+  else { // Compile all files
+    // The output folder need to be cleaned first,
+    // otherwise the removed files (if any) may be included when `build-examples.js` is executing.
+    const tsOutputDir = path.join(exampleDir, 'js');
+    if (fs.existsSync(tsOutputDir)) {
+      console.log(`Clean the output dir "${tsOutputDir}" ...`);
+      assert(isSubPathSafe(path.join(__dirname, '..'), tsOutputDir)); // Safety check before rm.
+      rimraf.sync(tsOutputDir);
+      console.log(`Clean the output dir successfully.`);
+    }
     retCode = shell.exec(`tsc --project "${tsConfigPath}"`).code;
   }
 
