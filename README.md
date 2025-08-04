@@ -47,7 +47,7 @@ Metadata properties can be:
 + `title`: Mandatory. String.
 + `titleCN`: Optional. String.
 + `category`: Mandatory. String list. That is the main categories in [example gallery page](https://echarts.apache.org/examples/en/index.html). If multiple categories need to be specified, use quotation marks and commas like `/* category: 'line, visualMap' */`
-+ `since`: Optional, but recommended to add it to hint users the available echarts versions.
++ `since`: Optional. Semver version string. Recommended to add it to hint users the available echarts versions. For example, `/* since: 6.0.0 */`.
 + `difficulty`: Optional. Number.
 + `theme`: Optional. String.
 + `ignore`: Optional. Boolean. Indicate that exclude this example from [example gallery page](https://echarts.apache.org/examples/en/index.html).
