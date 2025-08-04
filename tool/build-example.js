@@ -316,6 +316,11 @@ async function takeScreenshot(
         };
       }
 
+      if (fmResult.data.ignore) {
+        // `fmResult.data.ignore` is boolean if writing `/* ignore: true */` in code.
+        continue;
+      }
+
       try {
         const difficulty =
           fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
@@ -323,6 +328,7 @@ async function takeScreenshot(
           .split(/,/g)
           .map((a) => a.trim())
           .filter((a) => !!a);
+
         if (!exampleList.find((item) => item.id === basename)) {
           // Avoid add multiple times when has multiple themes.
           exampleList.push({
@@ -336,7 +342,8 @@ async function takeScreenshot(
             theme: fmResult.data.theme,
             title: fmResult.data.title,
             titleCN: fmResult.data.titleCN,
-            difficulty: +difficulty
+            difficulty: +difficulty,
+            since: fmResult.data.since,
           });
         }
       } catch (e) {
@@ -368,8 +375,13 @@ async function takeScreenshot(
 
   const code = `
 /* eslint-disable */
-// THIS FILE IS GENERATED, DON'T MODIFY */
-export default ${JSON.stringify(exampleList, null, 2)}`;
+
+// -------------------------------------------------
+// ! THIS FILE IS AUTO-GENERATED. DO NOT MODIFY IT !
+// -------------------------------------------------
+
+export default ${JSON.stringify(exampleList, null, 2)}
+`;
 
   if (!matchPattern) {
     fs.writeFileSync(
