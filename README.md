@@ -8,7 +8,7 @@ npm i --force
 
 ## Edit examples
 
-### How
+### How to create an example
 
 Add or edit example files in the `public/examples/ts` folder.
 (Do NOT add or edit files in the `public/examples/js` folder!)
@@ -16,31 +16,55 @@ Add or edit example files in the `public/examples/ts` folder.
 An example file in `public/examples/ts` folder can be `xxx.ts` or `xxx.js`.
 After editing, you need to compile them to `JavaScript` using the following command:
 ```shell
+# Compile all examples
 npm run compile:example
+# Compile a single example
+npm run compile:example -- area-basic.ts
 ```
 
-Each example file should include the meta info at the top, formatted as a JS comment:
+> Notice: if TypeScript errors thrown during this compilation and it is cuased by your local modification of echarts TypeScript interface, you need to change to depends on your local echarts to pass the compilation. For example:
+> ```sh
+> cd your/echarts-examples
+> npm i --force your/local/echarts
+> ```
+
+If you want the example to be included in the [example gallery page](https://echarts.apache.org/examples/en/index.html), metadata must be provided in each example source code file, formatted as a JavaScript comment. For example:
 ```js
 /*
 title: Area Pieces
 titleCN: 折线图区域高亮
 category: 'line, visualMap'
+since: 6.0.0
 */
 ```
 
-If you want to record a video to show the animation when genering screenshot. Use `videoStart` and `videoEnd`:
-```js
-/*
-title: Bar Race
-titleCN: 动态排序柱状图
-category: bar
-difficulty: 5
-videoStart: 1000
-videoEnd: 6000
-*/
-```
+Note: if you want an example to be excluded from the [example gallery page](https://echarts.apache.org/examples/en/index.html), you can either:
+- Add `/* ignore: true */` in its metadata (recommanded).
+- Move the example file to `public/examples/ts/doc-example/` folder (not recommanded, as its links in echarts-doc have to be modified accordingly).
+- Remove the metadata from the source code (not recommanded).
 
-Check the example in browser:
+Metadata properties can be:
++ `title`: Mandatory. String.
++ `titleCN`: Optional. String.
++ `category`: Mandatory. String list. That is the main categories in [example gallery page](https://echarts.apache.org/examples/en/index.html). If multiple categories need to be specified, use quotation marks and commas like `/* category: 'line, visualMap' */`
++ `since`: Optional. Semver version string. Recommended to add it to hint users the available echarts versions. For example, `/* since: 6.0.0 */`.
++ `difficulty`: Optional. Number.
++ `theme`: Optional. String.
++ `ignore`: Optional. Boolean. Indicate that exclude this example from [example gallery page](https://echarts.apache.org/examples/en/index.html).
++ `videoStart` and `videoEnd`: Optional. Number. Record a video to show the animation when genering screenshot. For example,
+  ```js
+  /*
+  title: Bar Race
+  titleCN: 动态排序柱状图
+  category: bar
+  difficulty: 5
+  videoStart: 1000
+  videoEnd: 6000
+  */
+  ```
+
+
+**Check the example in browser:**
 See "View and edit echarts-examples website" below.
 
 

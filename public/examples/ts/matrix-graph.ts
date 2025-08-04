@@ -3,6 +3,7 @@ title: Graph Chart in Matrix
 category: matrix
 titleCN: 矩阵布局下的关系图
 difficulty: 2
+since: 6.0.0
 */
 
 const margin = [150, 80];

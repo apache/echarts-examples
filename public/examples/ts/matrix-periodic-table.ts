@@ -3,7 +3,9 @@ title: Periodic Table
 category: matrix
 titleCN: 元素周期表
 difficulty: 10
+since: 6.0.0
 */
+
 const colors = {
   red: '#f88',
   green: '#8f8',

@@ -3,7 +3,9 @@ title: MBTI Partner Compatibility
 category: matrix
 titleCN: MBTI 伴侣相容性
 difficulty: 11
+since: 6.0.0
 */
+
 // Click on the data to toggle grouping
 
 const mbti = [

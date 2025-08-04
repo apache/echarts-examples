@@ -3,6 +3,7 @@ title: Pie Charts in Matrix
 category: matrix
 titleCN: 矩阵布局下的饼图
 difficulty: 2
+since: 6.0.0
 */
 
 const xCnt = 9;

@@ -3,6 +3,7 @@ title: Confusion Matrix
 category: matrix
 titleCN: 混淆矩阵
 difficulty: 3
+since: 6.0.0
 */
 
 const label = {
