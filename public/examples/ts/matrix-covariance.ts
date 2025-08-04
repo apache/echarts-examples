@@ -3,6 +3,7 @@ title: Covariance Matrix
 category: matrix
 titleCN: 协方差矩阵
 difficulty: 2
+since: 6.0.0
 */
 
 const xData = [];

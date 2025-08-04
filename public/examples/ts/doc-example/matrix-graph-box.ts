@@ -1,8 +1,6 @@
 /*
-title: Graph Chart in Matrix
-category: matrix
-titleCN: 矩阵布局下的关系图
-difficulty: 2
+ignore: true
+since: 6.0.0
 */
 
 option = {

@@ -3,6 +3,7 @@ title: Correlation Matrix (Scatter)
 category: matrix
 titleCN: 相关矩阵（散点图）
 difficulty: 2
+since: 6.0.0
 */
 
 const xCnt = 10;

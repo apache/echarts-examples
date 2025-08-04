@@ -3,6 +3,7 @@ title: Correlation Matrix (Heatmap)
 category: matrix
 titleCN: 相关矩阵（热力图）
 difficulty: 2
+since: 6.0.0
 */
 
 const xCnt = 8;

@@ -3,6 +3,7 @@ title: Simple Matrix
 category: matrix
 titleCN: 简单的矩阵图
 difficulty: 1
+since: 6.0.0
 */
 
 option = {
