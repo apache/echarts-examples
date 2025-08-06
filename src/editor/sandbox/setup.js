@@ -252,6 +252,8 @@ function setup(isShared) {
       appEnv = {};
       appStore = store;
 
+      initInternalAPI(appEnv);
+
       try {
         // run the code
         const compiledCode = store.runCode
@@ -484,6 +486,68 @@ function setup(isShared) {
       tooltip.style.left = ev.pageX + 10 + 'px';
       tooltip.style.top = ev.pageY + 10 + 'px';
     });
+  }
+
+  /**
+   * This is some features that requires echarts internal API.
+   * Inappropriate to public to users for production usage, but useful in demo.
+   * Usage in examples code:
+   * ```js
+   * app.__internalAPI.xxx(myChart, otherArgs);
+   * ```
+   */
+  function initInternalAPI(appEnv) {
+    const internalAPI = appEnv.__internalAPI = {};
+
+    /**
+     * @param {{
+     *  mainType: ComponentMainType;
+     *  subType?: ComponentSubType;
+     *  index?: number | number[];
+     *  id?: OptionId | OptionId[];
+     *  name?: OptionName | OptionName[];
+     * }} queryParam For example:
+     *    {mainType: 'series', subType: 'map', id: 'xxx'}
+     *    {mainType: 'geo', id: 'xxx'}
+     */
+    internalAPI.retrieveViewCoordSysRects = function (myChart, queryParam) {
+      if (!queryParam
+        || (
+          queryParam.index == null
+          && queryParam.id == null
+          && queryParam.name == null
+        )
+      ) {
+        throw new Error('queryParam must have either index, id or name.');
+      }
+      const component = myChart.getModel().queryComponents(queryParam)[0];
+      if (!component) {
+        throw new Error('No component found for the given queryParam.');
+      }
+      const viewCoordSys = component.coordinateSystem;
+      if (!viewCoordSys) {
+        throw new Error('The component does not have a view coordinate system.');
+      }
+      ecInternalAPIExistingCheck(viewCoordSys, 'getViewRect');
+      ecInternalAPIExistingCheck(viewCoordSys, 'getBoundingRect');
+
+      const viewRect = viewCoordSys.getViewRect().clone();
+      const contentBoundingRect = viewCoordSys.getBoundingRect().clone();
+      const trans = viewCoordSys.getComputedTransform();
+      if (trans) {
+        contentBoundingRect.applyTransform(trans);
+      }
+      return {
+        viewRect,
+        contentBoundingRect
+      };
+    };
+
+    function ecInternalAPIExistingCheck(host, apiName) {
+      if (!host[apiName]) {
+        throw new Error(`The internal API \`${apiName}\` probably have breaking changes.`);
+      }
+    }
   }
 
   echarts.registerPreprocessor(function (option) {
