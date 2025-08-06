@@ -6,6 +6,7 @@
     "allowJs": true,
     "checkJs": false,
     "pretty": true,
+    "removeComments": false,
     "rootDir": "./ts",
     "outDir": "./js",
     "baseUrl": "./"

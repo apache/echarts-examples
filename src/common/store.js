@@ -174,8 +174,9 @@ export function loadExampleCode() {
 export function parseSourceCode(code) {
   return (
     code
-      // remove front matter
-      .replace(/\/\*[\w\W]*?\*\//, '')
+      .trim()
+      // remove the metadata: the first block of comments is treated as metadata
+      .replace(/^\/\*[\w\W]*?\*\//, '')
       .trim()
       // ts code needs add `export {}` to be a module. remove it.
       // FIXME
