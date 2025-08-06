@@ -3,6 +3,7 @@ title: Scatter with Jittering
 category: scatter
 titleCN: 带抖动的散点图
 difficulty: 3
+since: 6.0.0
 */
 const grid = {
   left: 80,

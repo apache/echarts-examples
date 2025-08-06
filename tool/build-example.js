@@ -280,25 +280,27 @@ async function takeScreenshot(
     cwd: examplesRoot,
     absolute: true
   });
+  const filesPrimaryBasePath = path.join(examplesRoot, `js${isGL ? '/gl' : ''}`);
   const filesInDocExampleFolder = isGL ? [] : await globby(`js/doc-example/*.js`, {
     cwd: examplesRoot,
     absolute: true
   });
+  const filesInDocExampleFolderBasePath = path.join(examplesRoot, 'js');
 
   const exampleList = [];
   const thumbTasks = [];
 
   for (const theme of themeList) {
     for (const fileAbsPath of filesPrimary) {
-      handleSingleFile(fileAbsPath, theme, false);
+      handleSingleFile(fileAbsPath, filesPrimaryBasePath, theme, false);
     }
   }
   for (const fileAbsPath of filesInDocExampleFolder) {
-    handleSingleFile(fileAbsPath, null, true);
+    handleSingleFile(fileAbsPath, filesInDocExampleFolderBasePath, null, true);
   }
 
-  function handleSingleFile(fileAbsPath, thumbTheme, noThumb) {
-    const relativePath = path.relative(path.join(examplesRoot, 'js'), fileAbsPath);
+  function handleSingleFile(fileAbsPath, fileAbsBasePath, thumbTheme, forceNoExplore) {
+    const relativePath = path.relative(fileAbsBasePath, fileAbsPath);
     assert(relativePath !== '' && relativePath.indexOf('.') !== 0 && !path.isAbsolute(relativePath));
     const exampleId = relativePath.replace(/\.js$/, '');
 
@@ -331,7 +333,7 @@ async function takeScreenshot(
     }
 
     // `fmResult.data.noExplore` is boolean if writing `/* noExplore: true */` in code.
-    const noExplore = fmResult.data.noExplore;
+    const noExplore = forceNoExplore || fmResult.data.noExplore;
 
     try {
       const difficulty =
@@ -364,8 +366,7 @@ async function takeScreenshot(
     }
 
     if (
-      !noThumb
-      && !noExplore
+      !noExplore
       && (
         !matchPattern
         || (
@@ -385,6 +386,11 @@ async function takeScreenshot(
   } // End of handleSingleFile
 
   exampleList.sort(function (a, b) {
+    const aNoExplore = a.noExplore ? 1 : 0;
+    const bNoExplore = b.noExplore ? 1 : 0;
+    if (aNoExplore !== bNoExplore) {
+      return aNoExplore - bNoExplore;
+    }
     if (a.difficulty === b.difficulty) {
       return a.id.localeCompare(b.id);
     }

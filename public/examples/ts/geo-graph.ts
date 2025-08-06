@@ -2,6 +2,7 @@
 title: Geo Graph
 category: map, graph
 titleCN: 地理坐标系上的关系图
+difficulty: 3
 */
 
 function createChart() {

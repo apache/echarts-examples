@@ -2,6 +2,7 @@
 title: Geo Choropleth and Scatter
 category: map, scatter
 titleCN: 地理坐标系上的等值区划图和散点图
+difficulty: 5
 */
 
 function createChart() {
