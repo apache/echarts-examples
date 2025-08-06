@@ -1,6 +1,10 @@
 
 /* eslint-disable */
-// THIS FILE IS GENERATED, DON'T MODIFY */
+
+// -------------------------------------------------
+// ! THIS FILE IS AUTO-GENERATED. DO NOT MODIFY IT !
+// -------------------------------------------------
+
 export default [
   {
     "category": [
