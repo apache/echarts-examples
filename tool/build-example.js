@@ -14,6 +14,7 @@ const { compareImage } = require('../common/compareImage');
 const { runTasks } = require('../common/task');
 const nStatic = require('node-static');
 const shell = require('shelljs');
+const assert = require('assert');
 
 function optionToJson(obj, prop) {
   let json = JSON.stringify(
@@ -275,96 +276,113 @@ async function takeScreenshot(
   let server; // Declare server at function scope
 
   const examplesRoot = `${rootDir}public/examples`;
-  const files = await globby(`js/${isGL ? 'gl/' : ''}*.js`, {
+  const filesPrimary = await globby(`js/${isGL ? 'gl/' : ''}*.js`, {
+    cwd: examplesRoot,
+    absolute: true
+  });
+  const filesInDocExampleFolder = isGL ? [] : await globby(`js/doc-example/*.js`, {
     cwd: examplesRoot,
     absolute: true
   });
 
   const exampleList = [];
+  const thumbTasks = [];
 
-  let thumbTasks = [];
-
-  for (let theme of themeList) {
-    for (let fileName of files) {
-      const basename = path.basename(fileName, '.js');
-
-      // Remove mapbox temporary
-      if (
-        basename.indexOf('mapbox') >= 0 ||
-        basename.indexOf('shanghai') >= 0 ||
-        basename === 'lines3d-taxi-routes-of-cape-town' ||
-        basename === 'lines3d-taxi-chengdu' ||
-        basename === 'map3d-colorful-cities' ||
-        // TODO Examples that can't work temporary.
-        basename === 'bar3d-music-visualization'
-      ) {
-        continue;
-      }
-
-      const tsFile = `${examplesRoot}/ts/${isGL ? 'gl/' : ''}${basename}.ts`;
-      const hasTs = fs.existsSync(tsFile);
-
-      let fmResult;
-      try {
-        const code = fs.readFileSync(fileName, 'utf-8');
-        fmResult = matter(code, {
-          delimiters: ['/*', '*/']
-        });
-      } catch (e) {
-        fmResult = {
-          data: {}
-        };
-      }
-
-      if (fmResult.data.excludeFromGallery) {
-        // `fmResult.data.excludeFromGallery` is boolean if writing `/* excludeFromGallery: true */` in code.
-        continue;
-      }
-
-      try {
-        const difficulty =
-          fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
-        const category = (fmResult.data.category || '')
-          .split(/,/g)
-          .map((a) => a.trim())
-          .filter((a) => !!a);
-
-        if (!exampleList.find((item) => item.id === basename)) {
-          // Avoid add multiple times when has multiple themes.
-          exampleList.push({
-            category: category,
-            id: basename,
-            ts: hasTs,
-            tags: (fmResult.data.tags || '')
-              .split(/,/g)
-              .map((a) => a.trim())
-              .filter((a) => !!a),
-            theme: fmResult.data.theme,
-            title: fmResult.data.title,
-            titleCN: fmResult.data.titleCN,
-            difficulty: +difficulty,
-            since: fmResult.data.since,
-          });
-        }
-      } catch (e) {
-        throw new Error(e.toString());
-      }
-
-      if (
-        !matchPattern ||
-        (matchPattern.some(function (pattern) {
-          return minimatch(basename, pattern);
-        }) &&
-          screenshotBlackList.indexOf(basename) < 0)
-      ) {
-        thumbTasks.push({
-          theme,
-          fmResult,
-          basename
-        });
-      }
+  for (const theme of themeList) {
+    for (const fileAbsPath of filesPrimary) {
+      handleSingleFile(fileAbsPath, theme, false);
     }
   }
+  for (const fileAbsPath of filesInDocExampleFolder) {
+    handleSingleFile(fileAbsPath, null, true);
+  }
+
+  function handleSingleFile(fileAbsPath, thumbTheme, noThumb) {
+    const relativePath = path.relative(path.join(examplesRoot, 'js'), fileAbsPath);
+    assert(relativePath !== '' && relativePath.indexOf('.') !== 0 && !path.isAbsolute(relativePath));
+    const exampleId = relativePath.replace(/\.js$/, '');
+
+    // Remove mapbox temporary
+    if (
+      exampleId.indexOf('mapbox') >= 0 ||
+      exampleId.indexOf('shanghai') >= 0 ||
+      exampleId === 'lines3d-taxi-routes-of-cape-town' ||
+      exampleId === 'lines3d-taxi-chengdu' ||
+      exampleId === 'map3d-colorful-cities' ||
+      // TODO Examples that can't work temporary.
+      exampleId === 'bar3d-music-visualization'
+    ) {
+      return;
+    }
+
+    const tsFile = path.normalize(`${examplesRoot}/ts/${isGL ? 'gl/' : ''}${exampleId}.ts`);
+    const hasTs = fs.existsSync(tsFile);
+
+    let fmResult;
+    try {
+      const code = fs.readFileSync(fileAbsPath, 'utf-8');
+      fmResult = matter(code, {
+        delimiters: ['/*', '*/']
+      });
+    } catch (e) {
+      fmResult = {
+        data: {}
+      };
+    }
+
+    // `fmResult.data.noExplore` is boolean if writing `/* noExplore: true */` in code.
+    const noExplore = fmResult.data.noExplore;
+
+    try {
+      const difficulty =
+        fmResult.data.difficulty != null ? fmResult.data.difficulty : 10;
+      const category = (fmResult.data.category || '')
+        .split(/,/g)
+        .map((a) => a.trim())
+        .filter((a) => !!a);
+
+      if (!exampleList.find((item) => item.id === exampleId)) {
+        // Avoid add multiple times when has multiple themes.
+        exampleList.push({
+          category: category,
+          id: exampleId,
+          ts: hasTs,
+          tags: (fmResult.data.tags || '')
+            .split(/,/g)
+            .map((a) => a.trim())
+            .filter((a) => !!a),
+          noExplore: noExplore,
+          theme: fmResult.data.theme,
+          title: fmResult.data.title,
+          titleCN: fmResult.data.titleCN,
+          difficulty: +difficulty,
+          since: fmResult.data.since,
+        });
+      }
+    } catch (e) {
+      throw new Error(e.toString());
+    }
+
+    if (
+      !noThumb
+      && !noExplore
+      && (
+        !matchPattern
+        || (
+          matchPattern.some(function (pattern) {
+            return minimatch(exampleId, pattern);
+          })
+          && screenshotBlackList.indexOf(exampleId) < 0
+        )
+      )
+    ) {
+      thumbTasks.push({
+        thumbTheme,
+        fmResult,
+        exampleId
+      });
+    }
+  } // End of handleSingleFile
 
   exampleList.sort(function (a, b) {
     if (a.difficulty === b.difficulty) {

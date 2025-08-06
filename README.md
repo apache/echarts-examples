@@ -40,20 +40,20 @@ since: 6.0.0
 
 Note:
 - The metadata, i.e., the first JavaScript comment block, will be removed when displaying the source code in editor page.
-- If you want the example to be included in the [example gallery page](https://echarts.apache.org/examples/en/index.html)
+- If you want the example to be included in the [example exploration page](https://echarts.apache.org/examples/en/index.html)
   - metadata properies `title` and `category` must be provided.
-  - must no `excludeFromGallery: true`.
+  - must no `noExplore: true`.
   - The example should under `public/examples/ts/` folder directly, rather than in folder `public/examples/ts/doc-example/`.
 - **Do not modify the file path of existing examples**, unless you search and update all the links in `echarts-doc` correspondingly.
 
 Metadata properties can be:
 + `title`: Optional. String.
 + `titleCN`: Optional. String.
-+ `category`: Optional. String list. That is the main categories in [example gallery page](https://echarts.apache.org/examples/en/index.html). If multiple categories need to be specified, use quotation marks and commas like `/* category: 'line, visualMap' */`
++ `category`: Optional. String list. That is the main categories in [example exploration page](https://echarts.apache.org/examples/en/index.html). If multiple categories need to be specified, use quotation marks and commas like `/* category: 'line, visualMap' */`
 + `since`: Optional. Semver version string. Recommended to add it to hint users the available echarts versions. For example, `/* since: 6.0.0 */`. Do not use `v6.0.0`, must follow Semver format.
 + `difficulty`: Optional. Number.
 + `theme`: Optional. String.
-+ `excludeFromGallery`: Optional. Boolean. Indicate that exclude this example from [example gallery page](https://echarts.apache.org/examples/en/index.html).
++ `noExplore`: Optional. Boolean. Indicate that exclude this example from [example exploration page](https://echarts.apache.org/examples/en/index.html).
 + `videoStart` and `videoEnd`: Optional. Number. Record a video to show the animation when genering screenshot. For example,
   ```js
   /*
