@@ -316,8 +316,8 @@ async function takeScreenshot(
         };
       }
 
-      if (fmResult.data.ignore) {
-        // `fmResult.data.ignore` is boolean if writing `/* ignore: true */` in code.
+      if (fmResult.data.excludeFromGallery) {
+        // `fmResult.data.excludeFromGallery` is boolean if writing `/* excludeFromGallery: true */` in code.
         continue;
       }
 
