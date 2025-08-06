@@ -8,8 +8,8 @@
       </picture>
     </a>
     <div class="example-info">
-      <div class="example-new" v-if="isNew">
-        {{ newBanner }}
+      <div class="example-version-since" v-if="hasVersionSince">
+        {{ versionSinceBanner }}
       </div>
       <div>
         <div class="example-title" :title="title">{{ title }}</div>
@@ -44,15 +44,13 @@ export default {
       return this.example.title || '';
     },
 
-    isNew() {
+    hasVersionSince() {
       return this.example.since
         && compareVersions(store.echartsFullVersion, this.example.since) >= 0;
     },
 
-    newBanner() {
-      return store.locale === 'zh'
-        ? (this.example.since + ' ' + this.$t('editor.bannerNew'))
-        : (this.$t('editor.bannerNew') + ' ' + this.example.since);
+    versionSinceBanner() {
+      return 'v' + this.example.since + '+';
     },
 
     exampleTheme() {
@@ -145,13 +143,12 @@ export default {
     padding-left: 10px;
   }
 
-  .example-new {
+  .example-version-since {
     margin-top: 12px;
     float: right;
     padding: 1px 5px;
     margin-left: 5px;
     vertical-align: middle;
-    border-radius: 3px;
     font-size: 10px;
     background: #fb628b;
     color: #fff;

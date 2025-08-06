@@ -9,7 +9,7 @@ export default {
       infiniteLoopInEditor: 'Potential infinite loops exist in code!',
       potentialRedirectionInEditor: 'Potential redirection exists in code!',
       chartOK: 'Chart has been generated in ',
-      bannerNew: 'Since',
+      bannerVersionRequire: 'Require ECharts',
 
       darkMode: 'Dark Mode',
       enableDecal: 'Decal Pattern',
@@ -140,7 +140,7 @@ export default {
       infiniteLoopInEditor: '编辑器内容可能存在无限循环！',
       potentialRedirectionInEditor: '编辑器内容可能存在重定向代码！',
       chartOK: '图表已生成, ',
-      bannerNew: '新增',
+      bannerVersionRequire: '依赖 ECharts',
 
       darkMode: '深色模式',
       enableDecal: '无障碍花纹',
