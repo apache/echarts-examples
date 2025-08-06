@@ -378,9 +378,9 @@ async function takeScreenshot(
       )
     ) {
       thumbTasks.push({
-        thumbTheme,
+        theme: thumbTheme,
         fmResult,
-        exampleId
+        basename: exampleId
       });
     }
   } // End of handleSingleFile
