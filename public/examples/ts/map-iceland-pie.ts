@@ -2,9 +2,9 @@
 title: Pie Charts on GEO Map
 category: map, pie
 titleCN: 在地图上显示饼图
+since: 5.4.0
+difficulty: 5
 */
-
-// This example requires ECharts v5.4.0 or later
 
 myChart.showLoading();
 

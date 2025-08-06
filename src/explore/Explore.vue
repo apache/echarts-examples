@@ -146,6 +146,9 @@ export default {
           if (BLACK_MAP.hasOwnProperty(example.id)) {
             continue;
           }
+          if (example.noExplore) {
+            continue;
+          }
           if (typeof example.category === 'string') {
             example.category = [example.category];
           }

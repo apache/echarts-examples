@@ -3,6 +3,7 @@ title: Binning on Map
 category: map
 tags: bmap
 titleCN: 在地图上显示分箱图
+noExplore: true
 */
 
 var COLORS = ['#070093', '#1c3fbf', '#1482e5', '#70b4eb', '#b4e0f3', '#ffffff'];

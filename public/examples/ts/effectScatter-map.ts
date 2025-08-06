@@ -3,6 +3,7 @@ title: Air Quality
 category: scatter
 titleCN: 全国主要城市空气质量
 difficulty: 2
+noExplore: true
 */
 
 interface DataItem {

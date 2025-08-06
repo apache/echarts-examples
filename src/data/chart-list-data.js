@@ -1,6 +1,10 @@
 
 /* eslint-disable */
-// THIS FILE IS GENERATED, DON'T MODIFY */
+
+// -------------------------------------------------
+// ! THIS FILE IS AUTO-GENERATED. DO NOT MODIFY IT !
+// -------------------------------------------------
+
 export default [
   {
     "category": [
@@ -1077,6 +1081,18 @@ export default [
   },
   {
     "category": [
+      "map",
+      "graph"
+    ],
+    "id": "geo-graph",
+    "ts": true,
+    "tags": [],
+    "title": "Geo Graph",
+    "titleCN": "地理坐标系上的关系图",
+    "difficulty": 3
+  },
+  {
+    "category": [
       "graph"
     ],
     "id": "graph-force",
@@ -1763,6 +1779,18 @@ export default [
   },
   {
     "category": [
+      "map",
+      "scatter"
+    ],
+    "id": "geo-choropleth-scatter",
+    "ts": true,
+    "tags": [],
+    "title": "Geo Choropleth and Scatter",
+    "titleCN": "地理坐标系上的等值区划图和散点图",
+    "difficulty": 5
+  },
+  {
+    "category": [
       "graph"
     ],
     "id": "graph-circular-layout",
@@ -1804,6 +1832,31 @@ export default [
     "title": "Line Race",
     "titleCN": "动态排序折线图",
     "difficulty": 5
+  },
+  {
+    "category": [
+      "map",
+      "pie"
+    ],
+    "id": "map-iceland-pie",
+    "ts": true,
+    "tags": [],
+    "title": "Pie Charts on GEO Map",
+    "titleCN": "在地图上显示饼图",
+    "difficulty": 5,
+    "since": "5.4.0"
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-cartesian-tiny",
+    "ts": false,
+    "tags": [],
+    "title": "Tiny Charts in Matrix (Line Charts)",
+    "titleCN": "矩阵坐标系中的微型折线图",
+    "difficulty": 5,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -2652,19 +2705,6 @@ export default [
     "category": [
       "map"
     ],
-    "id": "map-bin",
-    "ts": false,
-    "tags": [
-      "bmap"
-    ],
-    "title": "Binning on Map",
-    "titleCN": "在地图上显示分箱图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map"
-    ],
     "id": "map-HK",
     "ts": true,
     "tags": [],
@@ -2681,18 +2721,6 @@ export default [
     "tags": [],
     "title": "USA Population Estimates (2012)",
     "titleCN": "2012 年美国人口统计",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map",
-      "pie"
-    ],
-    "id": "map-usa-pie",
-    "ts": true,
-    "tags": [],
-    "title": "Pie Charts on GEO Map",
-    "titleCN": "在地图上显示饼图",
     "difficulty": 10
   },
   {
@@ -2716,18 +2744,6 @@ export default [
     "title": "Periodic Table",
     "titleCN": "元素周期表",
     "difficulty": 10,
-    "since": "6.0.0"
-  },
-  {
-    "category": [
-      "matrix"
-    ],
-    "id": "matrix-mbti",
-    "ts": true,
-    "tags": [],
-    "title": "MBTI Partner Compatibility",
-    "titleCN": "MBTI 伴侣相容性",
-    "difficulty": 11,
     "since": "6.0.0"
   },
   {
@@ -3054,6 +3070,18 @@ export default [
   },
   {
     "category": [
+      "matrix"
+    ],
+    "id": "matrix-mbti",
+    "ts": true,
+    "tags": [],
+    "title": "MBTI Partner Compatibility",
+    "titleCN": "MBTI 伴侣相容性",
+    "difficulty": 11,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
       "line",
       "graphic"
     ],
@@ -3074,5 +3102,754 @@ export default [
     "title": "Logarithmic Regression",
     "titleCN": "对数回归（使用统计插件）",
     "difficulty": 16
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "effectScatter-map",
+    "ts": true,
+    "tags": [],
+    "noExplore": true,
+    "title": "Air Quality",
+    "titleCN": "全国主要城市空气质量",
+    "difficulty": 2
+  },
+  {
+    "category": [
+      "heatmap"
+    ],
+    "id": "heatmap-map",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "Air Qulity",
+    "titleCN": "全国主要城市空气质量",
+    "difficulty": 3
+  },
+  {
+    "category": [],
+    "id": "doc-example/aria-decal",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/aria-decal-newspaper",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/aria-decal-simple",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/aria-pie",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/axis-label-align-min-max",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/axisPointer-handle-image",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/bar-dataZoom-filterMode",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/bar-large",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/bar-media-timeline",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/barGrid-barGap",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/candlestick-axisPointer",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/canvas-vs-svg",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/canvas-vs-svg-en",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/custom-transition-simple",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/data-transform-multiple-sort-bar",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/dataset-encode-simple0",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/geo-roam-indicator",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "geo roam indicator demo",
+    "difficulty": 10,
+    "since": "6.0.0"
+  },
+  {
+    "category": [],
+    "id": "doc-example/geo-svg-label-basic",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/geo-svg-layout-basic",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/geo-svg-named-basic",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/getting-started",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/graphic-bounding",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/grid-outerBounds",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "grid outerBounds example",
+    "difficulty": 10,
+    "since": "6.0.0"
+  },
+  {
+    "category": [],
+    "id": "doc-example/label-position",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/line-stack-tiled",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/map-example",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/map-visualMap-continuous",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/map-visualMap-continuous-text",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/map-visualMap-pieces",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/map-visualMap-piecewise-text",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/matrix-graph-box",
+    "ts": true,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10,
+    "since": "6.0.0"
+  },
+  {
+    "category": [],
+    "id": "doc-example/mix-timeline-all",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/parallel-all",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-clip",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-graphicType",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-patternSize",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-position",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-repeat",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-repeatDirection",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-repeatLayout",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-symbolBoundingDataArray",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pictorialBar-symbolSize",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pie-highlight",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pie-label-bleedMargin",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pie-label-distanceToLabelLine",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pie-label-margin",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/pie-media",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/polar-anticlockwise",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/polar-end-angle",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/polar-start-angle",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/radar",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-dataZoom-all",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-jitter-avoidOverlap",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-tutorial-dataZoom-1",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-tutorial-dataZoom-2",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-tutorial-dataZoom-3",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-visualMap-categories",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/scatter-visualMap-piecewise",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/sunburst-color",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/sunburst-highlight-ancestor",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/sunburst-highlight-descendant",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/sunburst-label-align",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/sunburst-simple",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/text-block-fragment",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/text-fregment-align",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/text-options",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/timeline-dynamic-series",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/title-block",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/treemap-borderColor",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-async",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-dynamic-data",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-loading",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-styling-step0",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-styling-step1",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-styling-step2",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-styling-step3",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-styling-step4",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/tutorial-styling-step5",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/value-animation-simple",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-lines",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "Migration",
+    "titleCN": "模拟迁徙",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "geo-map-scatter",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "map and scatter share a geo",
+    "titleCN": "map and scatter share a geo",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "map-bin",
+    "ts": false,
+    "tags": [
+      "bmap"
+    ],
+    "noExplore": true,
+    "title": "Binning on Map",
+    "titleCN": "在地图上显示分箱图",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map"
+    ],
+    "id": "map-polygon",
+    "ts": false,
+    "tags": [
+      "bmap"
+    ],
+    "noExplore": true,
+    "title": "Draw Polygon on Map",
+    "titleCN": "在地图上绘制多边形",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-map",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "Air Quality",
+    "titleCN": "全国主要城市空气质量",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-map-brush",
+    "ts": true,
+    "tags": [],
+    "noExplore": true,
+    "title": "Scatter Map Brush",
+    "titleCN": "Scatter Map Brush",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "scatter"
+    ],
+    "id": "scatter-weibo",
+    "ts": true,
+    "tags": [],
+    "noExplore": true,
+    "title": "Sign in of weibo",
+    "titleCN": "微博签到数据点亮中国",
+    "difficulty": 10
   }
 ]

@@ -28,7 +28,7 @@ npm run compile:example -- area-basic.ts
 > npm i --force your/local/echarts
 > ```
 
-If you want the example to be included in the [example gallery page](https://echarts.apache.org/examples/en/index.html), metadata must be provided in each example source code file, formatted as a JavaScript comment. For example:
+Metadata must be provided in each example source code file. The first JavaScript comment block is treated as metadata. For example:
 ```js
 /*
 title: Area Pieces
@@ -38,19 +38,22 @@ since: 6.0.0
 */
 ```
 
-Note: if you want an example to be excluded from the [example gallery page](https://echarts.apache.org/examples/en/index.html), you can either:
-- Add `/* ignore: true */` in its metadata (recommanded).
-- Move the example file to `public/examples/ts/doc-example/` folder (not recommanded, as its links in echarts-doc have to be modified accordingly).
-- Remove the metadata from the source code (not recommanded).
+Note:
+- The metadata, i.e., the first JavaScript comment block, will be removed when displaying the source code in editor page.
+- If you want the example to be included in the [example exploration page](https://echarts.apache.org/examples/en/index.html)
+  - metadata properies `title` and `category` must be provided.
+  - must no `noExplore: true`.
+  - The example should under `public/examples/ts/` folder directly, rather than in folder `public/examples/ts/doc-example/`.
+- **Do not modify the file path of existing examples**, unless you search and update all the links in `echarts-doc` correspondingly.
 
 Metadata properties can be:
-+ `title`: Mandatory. String.
++ `title`: Optional. String.
 + `titleCN`: Optional. String.
-+ `category`: Mandatory. String list. That is the main categories in [example gallery page](https://echarts.apache.org/examples/en/index.html). If multiple categories need to be specified, use quotation marks and commas like `/* category: 'line, visualMap' */`
-+ `since`: Optional. Semver version string. Recommended to add it to hint users the available echarts versions. For example, `/* since: 6.0.0 */`.
++ `category`: Optional. String list. That is the main categories in [example exploration page](https://echarts.apache.org/examples/en/index.html). If multiple categories need to be specified, use quotation marks and commas like `/* category: 'line, visualMap' */`
++ `since`: Optional. Semver version string. Recommended to add it to hint users the available echarts versions. For example, `/* since: 6.0.0 */`. Do not use `v6.0.0`, must follow Semver format.
 + `difficulty`: Optional. Number.
 + `theme`: Optional. String.
-+ `ignore`: Optional. Boolean. Indicate that exclude this example from [example gallery page](https://echarts.apache.org/examples/en/index.html).
++ `noExplore`: Optional. Boolean. Indicate that exclude this example from [example exploration page](https://echarts.apache.org/examples/en/index.html).
 + `videoStart` and `videoEnd`: Optional. Number. Record a video to show the animation when genering screenshot. For example,
   ```js
   /*
@@ -70,7 +73,7 @@ See "View and edit echarts-examples website" below.
 
 ### Some built-in features available in examples
 
-#### Import third-party library
+#### Import third-party library or data
 
 For example:
 
@@ -82,6 +85,19 @@ $.when(
   )
 ).done(function () {
   // ...
+  // Set echarts option to the global variable `option`.
+  option = {/*...*/};
+  // The global variable `myChart` can be used there.
+  myChart.setOption(option);
+});
+
+$.get(ROOT_PATH + '/data/asset/geo/iceland.geo.json', function (geoJSON) {
+  echarts.registerMap('iceland', geoJSON);
+  // ...
+  // Set echarts option to the global variable `option`.
+  option = {/*...*/};
+  // The global variable `myChart` can be used there.
+  myChart.setOption(option);
 });
 ```
 

@@ -10,31 +10,36 @@
           <span slot="label">{{ $t('editor.tabEditor') }}</span>
           <el-container>
             <el-header id="editor-control-panel">
-              <div class="languages">
-                <el-tooltip
-                  :content="$t('editor.tooltip.jsMode')"
-                  placement="bottom"
-                >
-                  <a
-                    :class="{ js: true, active: !shared.typeCheck }"
-                    @click="changeLang('js')"
-                    >JS</a
+              <div>
+                <div class="languages">
+                  <el-tooltip
+                    :content="$t('editor.tooltip.jsMode')"
+                    placement="bottom"
                   >
-                </el-tooltip>
-                <el-tooltip
-                  :content="$t(`editor.tooltip.${hasTs ? 'tsMode' : 'noTs'}`)"
-                  placement="bottom"
-                >
-                  <a
-                    @click="hasTs && changeLang('ts')"
-                    :class="{
-                      ts: true,
-                      active: shared.typeCheck,
-                      disabled: !hasTs
-                    }"
-                    >TS</a
+                    <a
+                      :class="{ js: true, active: !shared.typeCheck }"
+                      @click="changeLang('js')"
+                      >JS</a
+                    >
+                  </el-tooltip>
+                  <el-tooltip
+                    :content="$t(`editor.tooltip.${hasTs ? 'tsMode' : 'noTs'}`)"
+                    placement="bottom"
                   >
-                </el-tooltip>
+                    <a
+                      @click="hasTs && changeLang('ts')"
+                      :class="{
+                        ts: true,
+                        active: shared.typeCheck,
+                        disabled: !hasTs
+                      }"
+                      >TS</a
+                    >
+                  </el-tooltip>
+                </div>
+                <div class="example-version-since" v-if="hasVersionSince">
+                  {{ versionSinceBanner }}
+                </div>
               </div>
               <div class="editor-controls">
                 <a
@@ -424,6 +429,7 @@ import {
 import { collectDeps, buildExampleCode } from '../../common/buildCode';
 import { gotoURL } from '../common/route';
 import { mount } from '@lang/object-visualizer';
+import { compareVersions } from 'compare-versions';
 
 import './object-visualizer.css';
 import { getScriptURLs, URL_PARAMS } from '../common/config';
@@ -472,7 +478,16 @@ export default {
   computed: {
     hasTs() {
       return this.exampleConfig && this.exampleConfig.ts;
-    }
+    },
+
+    hasVersionSince() {
+      return this.exampleConfig && this.exampleConfig.since
+        && compareVersions(this.shared.echartsFullVersion, this.exampleConfig.since) >= 0;
+    },
+
+    versionSinceBanner() {
+      return this.$t('editor.bannerVersionRequire') + ' v' + this.exampleConfig.since + '+';
+    },
   },
 
   mounted() {
@@ -1045,6 +1060,18 @@ $handler-width: 15px;
         }
       }
     }
+  }
+
+  .example-version-since {
+    display: inline-block;
+    padding: 1px 5px;
+    vertical-align: middle;
+    font-size: 10px;
+    // background: #fb628b;
+    background: #409eff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 2px;
   }
 
   .editor-controls {

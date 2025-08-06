@@ -2,7 +2,7 @@
 title: Tiny Charts in Matrix (Line Charts)
 category: matrix
 titleCN: 矩阵坐标系中的微型折线图
-difficulty: 2
+difficulty: 5
 since: 6.0.0
 */
 

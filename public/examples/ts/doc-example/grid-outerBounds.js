@@ -1,92 +1,18 @@
-app.config = {};
-app.configParameters = {};
-
-app.config.showRectIndicators = true;
-app.configParameters.showRectIndicators = {options: [false, true]};
-app.config.xAxisType = 'value';
-app.configParameters.xAxisType = {options: ['value', 'category', 'time', 'log']},
-app.config.yAxisType = 'value';
-app.configParameters.yAxisType = {options: ['value', 'category', 'time', 'log']};
-app.config.containLabel = false;
-app.configParameters.containLabel = {options: [false, true]};
-app.config.outerBoundsMode = 'auto';
-app.configParameters.outerBoundsMode = {options: ['auto', 'same', 'none']};
-app.config.chartDataLength = 'medium_data';
-app.configParameters.chartDataLength = {options: ['small_data', 'medium_data', 'big_data']};
-app.config.xAxisNameLocation = 'center';
-app.configParameters.xAxisNameLocation = {options: ['center', 'start', 'end']};
-app.config.yAxisNameLocation = 'center';
-app.configParameters.yAxisNameLocation = {options: ['end', 'center', 'start']};
-app.config.xAxisLabelRotate = 0;
-app.configParameters.xAxisLabelRotate = {options: [0, 30, 45, 60, 90]};
-app.config.yAxisLabelRotate = 0;
-app.configParameters.yAxisLabelRotate = {options: [0, 30, 45, 60, 90]};
-app.config.hideOverlap = false;
-app.configParameters.hideOverlap = {options: [true, false]};
-app.config.yAxisCount = 1;
-app.configParameters.yAxisCount = {options: [1, 2]};
-app.config['grid.left'] = 70;
-app.config['grid.right'] = 260;
-app.config['grid.top'] = 50;
-app.config['grid.bottom'] = 45;
-app.configParameters['grid.left'] = {min: 0, max: 500};
-app.configParameters['grid.right'] = {min: 0, max: 500};
-app.configParameters['grid.top'] = {min: 0, max: 500};
-app.configParameters['grid.bottom'] = {min: 0, max: 500};
-app.config['grid.outerBounds.left'] = 0;
-app.config['grid.outerBounds.right'] = 0;
-app.config['grid.outerBounds.top'] = 0;
-app.config['grid.outerBounds.bottom'] = 0;
-app.configParameters['grid.outerBounds.left'] = {min: 0, max: 500};
-app.configParameters['grid.outerBounds.right'] = {min: 0, max: 500};
-app.configParameters['grid.outerBounds.top'] = {min: 0, max: 500};
-app.configParameters['grid.outerBounds.bottom'] = {min: 0, max: 500};
-
-/**
- * Initail echarts option.
- */
-option = createOption();
-
-app.config.onChange = function () {
-    chartSetOptionUpdate();
-};
-
-
-function calcOuterBoundsIndicatorShape() {
-    // This implementation is an copy of echarts internal logic.
-    var gridOuterBoundsParsed = {};
-    var parsedOuterBoundsMode = app.config.outerBoundsMode;
-    if (app.config.containLabel) {
-        parsedOuterBoundsMode = 'same';
-    }
-    if (parsedOuterBoundsMode === 'none') {
-        // 'none' effectively indicates outerBounds infinity.
-        gridOuterBoundsParsed.left = -1000;
-        gridOuterBoundsParsed.top = -1000;
-        gridOuterBoundsParsed.right = -1000;
-        gridOuterBoundsParsed.bottom = -1000;
-    }
-    else if (parsedOuterBoundsMode == 'same') {
-        gridOuterBoundsParsed.left = app.config['grid.left'];
-        gridOuterBoundsParsed.top = app.config['grid.top'];
-        gridOuterBoundsParsed.right = app.config['grid.right'];
-        gridOuterBoundsParsed.bottom = app.config['grid.bottom'];
-    }
-    else {
-        gridOuterBoundsParsed = {
-            left: app.config['grid.outerBounds.left'],
-            top: app.config['grid.outerBounds.top'],
-            right: app.config['grid.outerBounds.right'],
-            bottom: app.config['grid.outerBounds.bottom']
-        };
-    }
-    return gridOuterBoundsParsed;
-}
+/*
+title: grid outerBounds example
+noExplore: true
+since: 6.0.0
+*/
 
 function makeAxisName({xy, idx}) {
     return xy + 'Axis_' + idx + 'name';
 }
 
+/**
+ * The rectangular indicators for tutorial purposes:
+ *  - grid axis aligned rect (determined by `grid.left`/`.right`/`.top`/`.bottom`/`.width`/`.height`)
+ *  - grid outer bounds rect (determined by `grid.outerBoundsMode` and `grid.outerBounds`).
+ */
 function makeIndicatorOption() {
     var gridOuterBoundsParsed = calcOuterBoundsIndicatorShape();
     var ignore = !app.config.showRectIndicators;
@@ -104,7 +30,7 @@ function makeIndicatorOption() {
     return [
         {
             type: 'rect',
-            id: 'grid_box_indicator',
+            id: 'grid_axis_aligned_rect_indicator',
             ignore,
             shape: {
                 x: app.config['grid.left'],
@@ -335,10 +261,100 @@ function createOption() {
     };
 }
 
-function chartSetOptionUpdate(chartIdx) {
+function updateChart(chartIdx) {
     var option = createOption();
     myChart.setOption(
         option,
         {replaceMerge: ['series', 'xAxis', 'yAxis']}
     );
 }
+
+function calcOuterBoundsIndicatorShape() {
+    // This implementation is an copy of echarts internal logic.
+    var gridOuterBoundsParsed = {};
+    var parsedOuterBoundsMode = app.config.outerBoundsMode;
+    if (app.config.containLabel) {
+        parsedOuterBoundsMode = 'same';
+    }
+    if (parsedOuterBoundsMode === 'none') {
+        // 'none' effectively indicates outerBounds infinity.
+        gridOuterBoundsParsed.left = -1000;
+        gridOuterBoundsParsed.top = -1000;
+        gridOuterBoundsParsed.right = -1000;
+        gridOuterBoundsParsed.bottom = -1000;
+    }
+    else if (parsedOuterBoundsMode == 'same') {
+        gridOuterBoundsParsed.left = app.config['grid.left'];
+        gridOuterBoundsParsed.top = app.config['grid.top'];
+        gridOuterBoundsParsed.right = app.config['grid.right'];
+        gridOuterBoundsParsed.bottom = app.config['grid.bottom'];
+    }
+    else {
+        gridOuterBoundsParsed = {
+            left: app.config['grid.outerBounds.left'],
+            top: app.config['grid.outerBounds.top'],
+            right: app.config['grid.outerBounds.right'],
+            bottom: app.config['grid.outerBounds.bottom']
+        };
+    }
+    return gridOuterBoundsParsed;
+}
+
+/**
+ * Note: The floating control panel are not relevant to echarts API,
+ *  just for illustration purposes.
+ */
+function initFloatingControlPanelAndContext() {
+    app.config = {};
+    app.configParameters = {};
+
+    app.config.showRectIndicators = true;
+    app.configParameters.showRectIndicators = {options: [false, true]};
+    app.config.xAxisType = 'value';
+    app.configParameters.xAxisType = {options: ['value', 'category', 'time', 'log']},
+    app.config.yAxisType = 'value';
+    app.configParameters.yAxisType = {options: ['value', 'category', 'time', 'log']};
+    app.config.containLabel = false;
+    app.configParameters.containLabel = {options: [false, true]};
+    app.config.outerBoundsMode = 'auto';
+    app.configParameters.outerBoundsMode = {options: ['auto', 'same', 'none']};
+    app.config.chartDataLength = 'medium_data';
+    app.configParameters.chartDataLength = {options: ['small_data', 'medium_data', 'big_data']};
+    app.config.xAxisNameLocation = 'center';
+    app.configParameters.xAxisNameLocation = {options: ['center', 'start', 'end']};
+    app.config.yAxisNameLocation = 'center';
+    app.configParameters.yAxisNameLocation = {options: ['end', 'center', 'start']};
+    app.config.xAxisLabelRotate = 0;
+    app.configParameters.xAxisLabelRotate = {options: [0, 30, 45, 60, 90]};
+    app.config.yAxisLabelRotate = 0;
+    app.configParameters.yAxisLabelRotate = {options: [0, 30, 45, 60, 90]};
+    app.config.hideOverlap = false;
+    app.configParameters.hideOverlap = {options: [true, false]};
+    app.config.yAxisCount = 1;
+    app.configParameters.yAxisCount = {options: [1, 2]};
+    app.config['grid.left'] = 70;
+    app.config['grid.right'] = 260;
+    app.config['grid.top'] = 50;
+    app.config['grid.bottom'] = 45;
+    app.configParameters['grid.left'] = {min: 0, max: 500};
+    app.configParameters['grid.right'] = {min: 0, max: 500};
+    app.configParameters['grid.top'] = {min: 0, max: 500};
+    app.configParameters['grid.bottom'] = {min: 0, max: 500};
+    app.config['grid.outerBounds.left'] = 0;
+    app.config['grid.outerBounds.right'] = 0;
+    app.config['grid.outerBounds.top'] = 0;
+    app.config['grid.outerBounds.bottom'] = 0;
+    app.configParameters['grid.outerBounds.left'] = {min: 0, max: 500};
+    app.configParameters['grid.outerBounds.right'] = {min: 0, max: 500};
+    app.configParameters['grid.outerBounds.top'] = {min: 0, max: 500};
+    app.configParameters['grid.outerBounds.bottom'] = {min: 0, max: 500};
+
+    app.config.onChange = function () {
+        updateChart();
+    };
+}
+
+
+initFloatingControlPanelAndContext();
+// Initialize echarts option.
+option = createOption();
