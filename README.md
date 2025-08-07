@@ -261,20 +261,39 @@ node e2e/main.js --skip npm --tests bar3D*
 
 ## Release
 
-1. Update example snapshots
+1. Update example exporation page and snapshots
 
+If any metadata is added/deleted/changed, we need to call the command below to sync that change to `echarts-examples/src/data/chart-list-data.js` and `echarts-examples/src/data/chart-list-data-gl.js`
 ```shell
-npm run build:example
-
-# Node: If only build for default theme:
-node tool/build-example.js -t default
+npm run build:examplelist
 ```
+Then, commit the results to git.
 
-2. Build and copy all the build resources to `echarts-website`
+**[[ CAVEAT ]]** DO NOT edit `echarts-examples/src/data/chart-list-data.js` and `echarts-examples/src/data/chart-list-data-gl.js` manually.
 
+If any thumbnail in [example exporation page](https://echarts.apache.org/examples/en/index.html) needs to be updated, we need to call:
+```shell
+# This process is time consuming.
+npm run build:example > result.log 2>&1
+# Note: it also calls build:examplelist internally.
+# Note: if encoutering problems, make sure your local installed puppeteer is in correct #   verion, and there is no local puppeteer installed in folder `echarts-examples/tool`.
+
+# Note: If only build for default theme:
+node tool/build-example.js -t default
+# Note: If do not update echarts-gl thumbnails:
+npm run build:example:nogl
+# Note: only build one specific example:
+node tool/build-example.js --pattern my-example-basename
+node tool/build-example.js --pattern my-gl-example-basename --gl
+node tool/build-example.js --pattern doc-example/my-example-basename
+```
+Then, commit the results to git. You may only commit the thumbnail changes caused by your recent modification and leave the rest unchanged, since the process above likely generates a large number of thumbnail changes, most of which are visually indistinguishable.
+
+Note: Build and copy all the build resources to `echarts-website` can be performed by:
 ```shell
 npm run release
 
 # Note: the config of the dir of echarts-website is in
 # `echarts-examples/config/**`
 ```
+But, currently, **we do not need to run it manually**. Instead, just call [this workflow](https://github.com/apache/echarts-website/actions/workflows/deploy.yml)

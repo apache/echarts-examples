@@ -1115,19 +1115,6 @@ export default [
   },
   {
     "category": [
-      "heatmap"
-    ],
-    "id": "heatmap-bmap",
-    "ts": false,
-    "tags": [
-      "bmap"
-    ],
-    "title": "Heatmap on Baidu Map Extension",
-    "titleCN": "热力图与百度地图扩展",
-    "difficulty": 3
-  },
-  {
-    "category": [
       "line"
     ],
     "id": "line-gradient",
@@ -2640,48 +2627,6 @@ export default [
       "map",
       "lines"
     ],
-    "id": "lines-bmap",
-    "ts": true,
-    "tags": [
-      "bmap"
-    ],
-    "title": "A Hiking Trail in Hangzhou - Baidu Map",
-    "titleCN": "杭州热门步行路线 - 百度地图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map",
-      "lines"
-    ],
-    "id": "lines-bmap-bus",
-    "ts": true,
-    "tags": [
-      "bmap"
-    ],
-    "title": "Bus Lines of Beijing - Baidu Map",
-    "titleCN": "北京公交路线 - 百度地图",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map",
-      "lines"
-    ],
-    "id": "lines-bmap-effect",
-    "ts": true,
-    "tags": [
-      "bmap"
-    ],
-    "title": "Bus Lines of Beijing - Line Effect",
-    "titleCN": "北京公交路线 - 线特效",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "map",
-      "lines"
-    ],
     "id": "lines-ny",
     "ts": true,
     "tags": [],
@@ -3114,6 +3059,20 @@ export default [
     "title": "Air Quality",
     "titleCN": "全国主要城市空气质量",
     "difficulty": 2
+  },
+  {
+    "category": [
+      "heatmap"
+    ],
+    "id": "heatmap-bmap",
+    "ts": false,
+    "tags": [
+      "bmap"
+    ],
+    "noExplore": true,
+    "title": "Heatmap on Baidu Map Extension",
+    "titleCN": "热力图与百度地图扩展",
+    "difficulty": 3
   },
   {
     "category": [
@@ -3786,6 +3745,51 @@ export default [
     "noExplore": true,
     "title": "map and scatter share a geo",
     "titleCN": "map and scatter share a geo",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map",
+      "lines"
+    ],
+    "id": "lines-bmap",
+    "ts": true,
+    "tags": [
+      "bmap"
+    ],
+    "noExplore": true,
+    "title": "A Hiking Trail in Hangzhou - Baidu Map",
+    "titleCN": "杭州热门步行路线 - 百度地图",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map",
+      "lines"
+    ],
+    "id": "lines-bmap-bus",
+    "ts": true,
+    "tags": [
+      "bmap"
+    ],
+    "noExplore": true,
+    "title": "Bus Lines of Beijing - Baidu Map",
+    "titleCN": "北京公交路线 - 百度地图",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "map",
+      "lines"
+    ],
+    "id": "lines-bmap-effect",
+    "ts": true,
+    "tags": [
+      "bmap"
+    ],
+    "noExplore": true,
+    "title": "Bus Lines of Beijing - Line Effect",
+    "titleCN": "北京公交路线 - 线特效",
     "difficulty": 10
   },
   {
