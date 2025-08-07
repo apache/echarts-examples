@@ -261,8 +261,6 @@ node e2e/main.js --skip npm --tests bar3D*
 
 ## Release
 
-1. Update example exporation page and snapshots
-
 If any metadata is added/deleted/changed, we need to call the command below to sync that change to `echarts-examples/src/data/chart-list-data.js` and `echarts-examples/src/data/chart-list-data-gl.js`
 ```shell
 npm run build:examplelist
