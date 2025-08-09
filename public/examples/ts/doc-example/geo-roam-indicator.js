@@ -13,7 +13,7 @@ function updateChart() {
     geo: {
       id: 'my_geo',
       map: 'iceland',
-      aspectScale: Math.cos((65 * Math.PI) / 180),
+      aspectScale: Math.cos((65 * Math.PI) / 180), // 65 is Iceland's approximate latitude.
       animation: false,
 
       preserveAspect: app.config.preserveAspect,
