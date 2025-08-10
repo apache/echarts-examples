@@ -21,6 +21,12 @@ $.get(ROOT_PATH + '/data/asset/data/webkit-dep.json', function (webkitDep) {
         type: 'graph',
         layout: 'force',
         animation: false,
+        roam: true,
+        roamTrigger: 'global',
+        scaleLimit: {
+          max: 8,
+          min: 0.5
+        },
         label: {
           position: 'right',
           formatter: '{b}'
@@ -38,7 +44,16 @@ $.get(ROOT_PATH + '/data/asset/data/webkit-dep.json', function (webkitDep) {
         },
         edges: webkitDep.links
       }
-    ]
+    ],
+    thumbnail: {
+      width: '15%',
+      height: '15%',
+      windowStyle: {
+        color: 'rgba(140, 212, 250, 0.5)',
+        borderColor: 'rgba(30, 64, 175, 0.7)',
+        opacity: 1,
+      }
+    }
   };
 
   myChart.setOption(option);
