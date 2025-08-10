@@ -1,26 +1,24 @@
 /*
-title: Tiny Charts in Matrix (Line Charts)
-category: matrix
+title: Mini Line Charts (Sparkline) in Matrix
+category: matrix, line
 titleCN: 矩阵坐标系中的微型折线图
-difficulty: 2
+difficulty: 5
 since: 6.0.0
 */
 
 const _matrixDimensionData = {
   x: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
   y: [
-    {value: '8:00\n~\n10:00'},
-    {value: '10:00\n~\n12:00'},
-    {value: '12:00\n~\n14:00', size: 55},
-    {value: '14:00\n~\n16:00'},
-    {value: '16:00\n~\n18:00'},
-    {value: '18:00\n~\n20:00'},
+    { value: '8:00\n~\n10:00' },
+    { value: '10:00\n~\n12:00' },
+    { value: '12:00\n~\n14:00', size: 55 },
+    { value: '14:00\n~\n16:00' },
+    { value: '16:00\n~\n18:00' },
+    { value: '18:00\n~\n20:00' }
   ]
 };
 const _yBreakTimeIndex = 2; // '12:00 - 14:00',
 const _seriesFakeDataLength = 365;
-
-
 option = {
   matrix: {
     x: {
@@ -82,12 +80,11 @@ option = {
     height: 30,
     throttle: 120
   },
-  grid: [], // Fill it for each matrix cell below
-  xAxis: [], // Fill it for each matrix cell below
-  yAxis: [], // Fill it for each matrix cell below
-  series: [], // Fill it for each matrix cell below
+  grid: [],
+  xAxis: [],
+  yAxis: [],
+  series: []
 };
-
 eachMatrixCell((xval, yval, xidx, yidx) => {
   const id = makeId(xidx, yidx);
   option.grid.push({
@@ -100,7 +97,6 @@ eachMatrixCell((xval, yval, xidx, yidx) => {
     width: '90%',
     containLabel: true
   });
-
   option.xAxis.push({
     type: 'category',
     id: id,
@@ -111,7 +107,6 @@ eachMatrixCell((xval, yval, xidx, yidx) => {
     axisLine: { show: false },
     splitLine: { show: false }
   });
-
   option.yAxis.push({
     id: id,
     gridId: id,
@@ -124,7 +119,6 @@ eachMatrixCell((xval, yval, xidx, yidx) => {
     axisLine: { show: false },
     axisTick: { show: false }
   });
-
   option.series.push({
     xAxisId: id,
     yAxisId: id,
@@ -133,19 +127,14 @@ eachMatrixCell((xval, yval, xidx, yidx) => {
     lineStyle: {
       lineWidth: 1
     },
-    data: generateFakeSeriesData(_seriesFakeDataLength, xidx, yidx),
+    data: generateFakeSeriesData(_seriesFakeDataLength, xidx, yidx)
   });
 });
-
-
 // ------ Helpers Start ------
-function makeId(xidx: number, yidx: number): string {
+function makeId(xidx, yidx) {
   return `${xidx}|${yidx}`;
 }
-
-function eachMatrixCell(
-  cb: (xval: string, yval: string, xidx: number, yidx: number) => void
-): void {
+function eachMatrixCell(cb) {
   _matrixDimensionData.y.forEach((yvalItem, yidx) => {
     const yval = yvalItem.value;
     if (yidx === _yBreakTimeIndex) {
@@ -156,15 +145,13 @@ function eachMatrixCell(
     });
   });
 }
-
-function generateFakeSeriesData(dayCount: number, xidx: number, yidx: number) {
+function generateFakeSeriesData(dayCount, xidx, yidx) {
   const dayStart = new Date('2025-05-05T00:00:00.000Z'); // Monday
   dayStart.setDate(xidx + 5);
   const timeStart = dayStart.getTime();
   const sevenDay = 7 * 1000 * 3600 * 24;
   const cellData = [];
   let lastVal = +(Math.random() * 300).toFixed(0);
-
   let turnCount = null;
   let sign = -1;
   for (let idx = 0; idx < dayCount; idx++) {
@@ -184,9 +171,5 @@ function generateFakeSeriesData(dayCount: number, xidx: number, yidx: number) {
     const dataXVal = echarts.time.format(xTime, '{yyyy}-{MM}-{dd}');
     cellData.push([dataXVal, val]);
   }
-
   return cellData;
 }
-// ------ Helpers End ------
-
-export {};

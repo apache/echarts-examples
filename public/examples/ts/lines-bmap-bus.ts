@@ -1,6 +1,7 @@
 /*
 title: Bus Lines of Beijing - Baidu Map
 category: 'map, lines'
+noExplore: true
 tags: bmap
 titleCN: 北京公交路线 - 百度地图
 */

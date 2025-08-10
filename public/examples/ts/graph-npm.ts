@@ -62,13 +62,23 @@ $.getJSON(
               }
             },
             roam: true,
+            roamTrigger: 'global',
             lineStyle: {
               width: 0.5,
               curveness: 0.3,
               opacity: 0.7
             }
           }
-        ]
+        ],
+        thumbnail: {
+          width: '20%',
+          height: '20%',
+          windowStyle: {
+            color: 'rgba(140, 212, 250, 0.5)',
+            borderColor: 'rgba(30, 64, 175, 0.7)',
+            opacity: 1,
+          }
+        }
       }),
       true
     );

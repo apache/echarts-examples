@@ -2,6 +2,7 @@
 title: Heatmap on Baidu Map Extension
 category: heatmap
 tags: bmap
+noExplore: true
 titleCN: 热力图与百度地图扩展
 difficulty: 3
 */

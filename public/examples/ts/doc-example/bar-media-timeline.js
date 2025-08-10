@@ -44,7 +44,8 @@ $.when(
                 }
             },
             title: {
-                subtext: 'Media Query 示例'
+                subtext: 'Media Query 示例',
+                left: 10,
             },
             tooltip: {
                 trigger:'axis',
@@ -65,6 +66,7 @@ $.when(
                 splitLine: {show: false}
             },
             legend: {
+                top: 10,
                 data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],
                 selected: {
                     'GDP': false, '金融': false, '房地产': false
@@ -128,7 +130,7 @@ $.when(
                         left: '10%',
                         top: 80,
                         right: 90,
-                        bottom: 100
+                        bottom: 100,
                     },
                     xAxis: {
                         nameLocation: 'end',
