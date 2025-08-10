@@ -146,11 +146,12 @@ option = {
             }
         },
         title: {
-            subtext: '数据来自国家统计局'
+            subtext: '数据来自国家统计局',
         },
         tooltip: {},
         legend: {
             left: 'right',
+            top: 10,
             data: ['第一产业', '第二产业', '第三产业'],
             selected: {
                 'GDP': false, '金融': false, '房地产': false
