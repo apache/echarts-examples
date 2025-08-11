@@ -1,6 +1,6 @@
 /*
-title: Intraday Stock Chart with Breaks (II)
-titleCN: 盘中股票走势图 (II)
+title: Intraday Chart with Breaks (II)
+titleCN: 日内走势图 (II)
 category: candlestick, line
 difficulty: 4
 noExplore: true
@@ -12,8 +12,10 @@ var formatTime = echarts.time.format;
 var _data = generateData1();
 
 option = {
+  // Choose axis ticks based on UTC time.
+  useUTC: true,
   title: {
-    text: 'Intraday Stock Chart with Breaks (II)',
+    text: 'Intraday Chart with Breaks',
     left: 'center'
   },
   tooltip: {
@@ -29,6 +31,7 @@ option = {
         showMaxLabel: true,
         formatter: (value, index, extra) => {
           if (!extra || !extra.break) {
+            // The third parameter is `useUTC: true`.
             return formatTime(value, '{HH}:{mm}', true);
           }
           // Only render the label on break start, but not on break end.

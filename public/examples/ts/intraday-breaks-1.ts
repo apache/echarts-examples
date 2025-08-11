@@ -1,6 +1,6 @@
 /*
-title: Intraday Stock Chart with Breaks
-titleCN: 盘中股票走势图
+title: Intraday Chart with Breaks
+titleCN: 日内走势图
 category: candlestick, line
 difficulty: 4
 since: 6.0.0
@@ -14,14 +14,18 @@ var DATA_ZOOM_MIN_VALUE_SPAN = 3600 * 1000;
 var _data = generateData();
 
 option = {
+  // Choose axis ticks based on UTC time.
   useUTC: true,
   title: {
-    text: 'Intraday Stock Chart with Breaks',
+    text: 'Intraday Chart with Breaks',
     left: 'center'
   },
   tooltip: {
     show: true,
-    trigger: 'axis'
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+    }
   },
   grid: {
     top: '25%',
@@ -36,9 +40,15 @@ option = {
         showMaxLabel: true,
         formatter(timestamp, _, opt) {
           if (opt.break) {
-            return formatTime(timestamp, '{HH}:{mm}\n{dd}d', true);
+            // The third parameter is `useUTC: true`.
+            return formatTime(timestamp, '{HH}:{mm}\n{weak|{dd}d}', true);
           }
           return formatTime(timestamp, '{HH}:{mm}', true);
+        },
+        rich: {
+          weak: {
+            color: '#999'
+          }
         }
       },
       breaks: _data.breaks,
@@ -47,14 +57,15 @@ option = {
         zigzagAmplitude: 0,
         zigzagZ: 200,
         itemStyle: {
-          opacity: 1,
+          borderColor: 'none',
+          opacity: 0
         }
       }
     }
   ],
   yAxis: {
     type: 'value',
-    min: 'dataMin'
+    min: 'dataMin',
   },
   dataZoom: [
     {
@@ -93,7 +104,7 @@ function generateData() {
     roundTime(time, 'day', true);
     todayCloseTime.setTime(time.getTime());
     time.setUTCHours(9, 30); // Open time
-    todayCloseTime.setUTCHours(15, 0); // Close time
+    todayCloseTime.setUTCHours(16, 0); // Close time
   }
 
   var valBreak = false;
@@ -101,8 +112,8 @@ function generateData() {
     var delta;
     if (valBreak) {
       delta =
-        Math.floor((Math.random() - 0.5 * Math.sin(val / 1000)) * 20 * 5000) /
-        100;
+        Math.floor((Math.random() - 0.5 * Math.sin(val / 1000)) * 20 * 100) /
+        10;
       valBreak = false;
     } else {
       delta =
@@ -116,6 +127,10 @@ function generateData() {
     time.setMinutes(time.getMinutes() + 1);
 
     if (time.getTime() > todayCloseTime.getTime()) {
+
+      // Use `NaN` to break the line.
+      seriesData.push([time.getTime(), NaN]);
+
       var breakStart = todayCloseTime.getTime();
       time.setUTCDate(time.getUTCDate() + 1);
       updateDayTime(time, todayCloseTime);

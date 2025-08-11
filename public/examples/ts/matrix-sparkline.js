@@ -71,7 +71,7 @@ option = {
   tooltip: {
     trigger: 'axis'
   },
-  dataZoom: {
+  dataZoom: [{
     type: 'slider',
     xAxisIndex: 'all',
     left: '10%',
@@ -79,7 +79,11 @@ option = {
     bottom: 30,
     height: 30,
     throttle: 120
-  },
+  }, {
+    type: 'inside',
+    xAxisIndex: 'all',
+    throttle: 120
+  }],
   grid: [],
   xAxis: [],
   yAxis: [],

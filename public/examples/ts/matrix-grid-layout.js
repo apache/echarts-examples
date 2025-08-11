@@ -58,7 +58,7 @@ const _sectionDefinitionMap = {
     option: {
       title: [{
         coordinateSystem: 'matrix',
-        text: 'Resize the Canvas to Check the Responsiveness.',
+        text: 'Resize the Canvas to Check the Responsiveness',
         left: 'center',
         top: 10,
       }],
