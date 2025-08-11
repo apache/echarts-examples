@@ -3,6 +3,7 @@ title: Bar Chart with Axis Breaks (Brush-enabled)
 titleCN: 断轴上的柱状图（可刷选）
 category: bar
 difficulty: 8
+since: 6.0.0
 */
 
 var GRID_TOP = 120;

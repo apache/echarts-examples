@@ -1,6 +1,6 @@
 /*
 title: Intraday Chart with Breaks (II)
-titleCN: 日内走势图 (II)
+titleCN: 断轴上的日内走势图 (II)
 category: candlestick, line
 difficulty: 4
 noExplore: true

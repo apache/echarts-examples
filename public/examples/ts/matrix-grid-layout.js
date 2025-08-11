@@ -1,7 +1,7 @@
 /*
 title: Responsive grid layout based on matrix
 category: matrix
-titleCN: 使用矩阵坐标系做网格布局
+titleCN: 矩阵中响应式网格布局
 difficulty: 3
 since: 6.0.0
 */

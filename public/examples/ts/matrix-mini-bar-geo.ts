@@ -1,5 +1,5 @@
 /*
-title: Mini Bars and GEO in Matrix
+title: Mini Bars and Geo in Matrix
 category: matrix, bar, geo
 titleCN: 矩阵坐标系下的微型条形图和地图
 difficulty: 6

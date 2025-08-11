@@ -3,6 +3,7 @@ title: Fisheye Lens on Line Chart
 titleCN: 折线图鱼眼放大
 category: line
 difficulty: 8
+since: 6.0.0
 */
 
 var GRID_TOP = 120;

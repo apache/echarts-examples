@@ -3,6 +3,7 @@ title: Bar Chart with Axis Breaks
 titleCN: 断轴上的柱状图
 category: bar
 difficulty: 3
+since: 6.0.0
 */
 
 var _currentAxisBreaks = [{

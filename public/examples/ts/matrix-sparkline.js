@@ -1,7 +1,7 @@
 /*
 title: Mini Line Charts (Sparkline) in Matrix
 category: matrix, line
-titleCN: 矩阵坐标系中的微型折线图
+titleCN: 矩阵中的微型折线图
 difficulty: 5
 since: 6.0.0
 */

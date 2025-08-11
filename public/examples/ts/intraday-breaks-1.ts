@@ -1,6 +1,6 @@
 /*
 title: Intraday Chart with Breaks
-titleCN: 日内走势图
+titleCN: 断轴上的日内走势图
 category: candlestick, line
 difficulty: 4
 since: 6.0.0

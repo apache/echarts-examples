@@ -670,18 +670,6 @@ export default [
     "category": [
       "matrix"
     ],
-    "id": "matrix-grid-layout",
-    "ts": true,
-    "tags": [],
-    "title": "Tiny Charts in Matrix (Line Charts)",
-    "titleCN": "矩阵坐标系中的微型折线图",
-    "difficulty": 2,
-    "since": "6.0.0"
-  },
-  {
-    "category": [
-      "matrix"
-    ],
     "id": "matrix-pie",
     "ts": true,
     "tags": [],
@@ -855,6 +843,18 @@ export default [
     "title": "Area Pieces",
     "titleCN": "折线图区域高亮",
     "difficulty": 3
+  },
+  {
+    "category": [
+      "bar"
+    ],
+    "id": "bar-breaks-simple",
+    "ts": true,
+    "tags": [],
+    "title": "Bar Chart with Axis Breaks",
+    "titleCN": "断轴上的柱状图",
+    "difficulty": 3,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -1144,6 +1144,18 @@ export default [
     "tags": [],
     "title": "Confusion Matrix",
     "titleCN": "混淆矩阵",
+    "difficulty": 3,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-grid-layout",
+    "ts": false,
+    "tags": [],
+    "title": "Responsive grid layout based on matrix",
+    "titleCN": "矩阵中响应式网格布局",
     "difficulty": 3,
     "since": "6.0.0"
   },
@@ -1458,6 +1470,19 @@ export default [
     "title": "Rainfall vs Evaporation",
     "titleCN": "雨量Evaporation关系图",
     "difficulty": 4
+  },
+  {
+    "category": [
+      "candlestick",
+      "line"
+    ],
+    "id": "intraday-breaks-1",
+    "ts": true,
+    "tags": [],
+    "title": "Intraday Chart with Breaks",
+    "titleCN": "断轴上的日内走势图",
+    "difficulty": 4,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -1835,13 +1860,14 @@ export default [
   },
   {
     "category": [
-      "matrix"
+      "matrix",
+      "line"
     ],
-    "id": "matrix-cartesian-tiny",
+    "id": "matrix-sparkline",
     "ts": false,
     "tags": [],
-    "title": "Tiny Charts in Matrix (Line Charts)",
-    "titleCN": "矩阵坐标系中的微型折线图",
+    "title": "Mini Line Charts (Sparkline) in Matrix",
+    "titleCN": "矩阵中的微型折线图",
     "difficulty": 5,
     "since": "6.0.0"
   },
@@ -2050,6 +2076,20 @@ export default [
   },
   {
     "category": [
+      "matrix",
+      "bar",
+      "geo"
+    ],
+    "id": "matrix-mini-bar-geo",
+    "ts": true,
+    "tags": [],
+    "title": "Mini Bars and Geo in Matrix",
+    "titleCN": "矩阵坐标系下的微型条形图和地图",
+    "difficulty": 6,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
       "bar"
     ],
     "id": "mix-timeline-finance",
@@ -2237,6 +2277,18 @@ export default [
   },
   {
     "category": [
+      "bar"
+    ],
+    "id": "bar-breaks-brush",
+    "ts": true,
+    "tags": [],
+    "title": "Bar Chart with Axis Breaks (Brush-enabled)",
+    "titleCN": "断轴上的柱状图（可刷选）",
+    "difficulty": 8,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
       "gauge"
     ],
     "id": "gauge-car",
@@ -2267,6 +2319,18 @@ export default [
     "title": "Line Easing Visualizing",
     "titleCN": "缓动函数可视化",
     "difficulty": 8
+  },
+  {
+    "category": [
+      "line"
+    ],
+    "id": "line-fisheye-lens",
+    "ts": true,
+    "tags": [],
+    "title": "Fisheye Lens on Line Chart",
+    "titleCN": "折线图鱼眼放大",
+    "difficulty": 8,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -3087,6 +3151,33 @@ export default [
     "difficulty": 3
   },
   {
+    "category": [
+      "matrix"
+    ],
+    "id": "matrix-mini-bar-data-collection",
+    "ts": true,
+    "tags": [],
+    "noExplore": true,
+    "title": "Matrix Header Data Collection (Mini Bar)",
+    "titleCN": "矩阵坐标系表头数据自动收集（以微型条形图为例）",
+    "difficulty": 3,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
+      "candlestick",
+      "line"
+    ],
+    "id": "intraday-breaks-2",
+    "ts": true,
+    "tags": [],
+    "noExplore": true,
+    "title": "Intraday Chart with Breaks (II)",
+    "titleCN": "断轴上的日内走势图 (II)",
+    "difficulty": 4,
+    "since": "6.0.0"
+  },
+  {
     "category": [],
     "id": "doc-example/aria-decal",
     "ts": false,
@@ -3255,6 +3346,16 @@ export default [
     "tags": [],
     "noExplore": true,
     "difficulty": 10
+  },
+  {
+    "category": [],
+    "id": "doc-example/graph-roam-indicator",
+    "ts": false,
+    "tags": [],
+    "noExplore": true,
+    "title": "graph roam indicator demo",
+    "difficulty": 10,
+    "since": "6.0.0"
   },
   {
     "category": [],
