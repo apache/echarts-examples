@@ -1486,6 +1486,19 @@ export default [
   },
   {
     "category": [
+      "candlestick",
+      "line"
+    ],
+    "id": "intraday-breaks-2",
+    "ts": true,
+    "tags": [],
+    "title": "Intraday Chart with Breaks (II)",
+    "titleCN": "断轴上的日内走势图 (II)",
+    "difficulty": 4,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
       "line"
     ],
     "id": "line-aqi",
@@ -3161,20 +3174,6 @@ export default [
     "title": "Matrix Header Data Collection (Mini Bar)",
     "titleCN": "矩阵坐标系表头数据自动收集（以微型条形图为例）",
     "difficulty": 3,
-    "since": "6.0.0"
-  },
-  {
-    "category": [
-      "candlestick",
-      "line"
-    ],
-    "id": "intraday-breaks-2",
-    "ts": true,
-    "tags": [],
-    "noExplore": true,
-    "title": "Intraday Chart with Breaks (II)",
-    "titleCN": "断轴上的日内走势图 (II)",
-    "difficulty": 4,
     "since": "6.0.0"
   },
   {

@@ -22,10 +22,7 @@ option = {
   },
   tooltip: {
     show: true,
-    trigger: 'axis',
-    axisPointer: {
-      type: 'cross'
-    }
+    trigger: 'axis'
   },
   grid: {
     top: '25%',
