@@ -17,7 +17,7 @@ option = {
   // Choose axis ticks based on UTC time.
   useUTC: true,
   title: {
-    text: 'Intraday Chart with Breaks',
+    text: 'Intraday Chart with Breaks (Multiple Days)',
     left: 'center'
   },
   tooltip: {
@@ -25,8 +25,10 @@ option = {
     trigger: 'axis'
   },
   grid: {
-    top: '25%',
-    bottom: '40%'
+    outerBounds: {
+      top: '20%',
+      bottom: '30%'
+    }
   },
   xAxis: [
     {
@@ -71,7 +73,7 @@ option = {
     },
     {
       type: 'slider',
-      bottom: '30%',
+      top: '73%',
       minValueSpan: DATA_ZOOM_MIN_VALUE_SPAN
     }
   ],

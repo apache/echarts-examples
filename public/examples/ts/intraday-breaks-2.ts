@@ -14,7 +14,7 @@ option = {
   // Choose axis ticks based on UTC time.
   useUTC: true,
   title: {
-    text: 'Intraday Chart with Breaks',
+    text: 'Intraday Chart with Breaks (Single Day)',
     left: 'center'
   },
   tooltip: {

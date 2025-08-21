@@ -21,7 +21,7 @@ var _currentAxisBreaks: AxisBreakItem[] = [{
 option = {
   title: {
     text: 'Bar Chart with Axis Break (Brush-enabled)',
-    subtext: 'Brush to create a new axis break\n(Click on the break area to reset)',
+    subtext: 'Brush to create a new axis break.\nClick on the break area to reset.',
     left: 'center',
     textStyle: {
       fontSize: 20
