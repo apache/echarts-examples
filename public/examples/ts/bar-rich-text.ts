@@ -1,5 +1,5 @@
 /*
-title: Wheater Statistics
+title: Weather Statistics
 category: 'bar, rich'
 titleCN: 天气统计（富文本）
 difficulty: 6
