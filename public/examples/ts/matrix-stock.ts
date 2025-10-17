@@ -1,7 +1,7 @@
 /*
 title: Matrix Stock Application
 category: matrix-stock
-titleCN: 简单的矩阵图
+titleCN: 股市矩阵图
 difficulty: 3
 since: 6.0.0
 */
@@ -30,7 +30,7 @@ const priceFormatter = (value: number) => {
   return result;
 };
 
-const priceData = [];
+const priceData: [number, number][] = [];
 const volumeData = [];
 const averageData = []; // Average of volume * price
 let sumPrice = 0;
@@ -40,8 +40,8 @@ const eTime = new Date('2025-10-16 15:00:00').getTime();
 const breakStartTime = new Date('2025-10-16 11:30:00').getTime();
 const breakEndTime = new Date('2025-10-16 13:00:00').getTime();
 
-let time = startTime;
-let price = lastClose;
+let time = sTime;
+let price = 0;
 let direction = 1; // 1 for up, -1 for down
 let maxAbs = 0;
 while (time < eTime) {
@@ -49,7 +49,7 @@ while (time < eTime) {
   volumeData.push([time, volume]);
   sumVolume += volume;
 
-  if (time === startTime) {
+  if (time === sTime) {
     // Today open price
     direction = Math.random() < 0.5 ? 1 : -1;
     price = lastClose * (1 + (Math.random() - 0.5) * 0.02);
@@ -72,10 +72,46 @@ while (time < eTime) {
   }
 }
 
+const getTitle = (text: string, subtext: string, coord: [number, number]) => {
+  return {
+    text: text,
+    subtext: subtext,
+    left: 2,
+    top: 2,
+    padding: 0,
+    textStyle: {
+      fontSize: 12,
+      fontWeight: 'bold' as const,
+      color: '#444'
+    },
+    subtextStyle: {
+      fontSize: 10,
+      color: '#666'
+    },
+    itemGap: 0,
+    coordinateSystem: 'matrix',
+    coord: coord
+  };
+};
+const titles = [getTitle('Volume', Math.round(sumVolume / 1000) + 'B', [0, 5])];
+
 option = {
+  title: titles,
   xAxis: [
     {
       type: 'time',
+      show: false,
+      breaks: [
+        {
+          start: breakStartTime,
+          end: breakEndTime,
+          gap: 0
+        }
+      ]
+    },
+    {
+      type: 'time',
+      gridIndex: 1,
       show: false,
       breaks: [
         {
@@ -93,6 +129,11 @@ option = {
       // Value should be symmetric around zero
       min: lastClose - maxAbs,
       max: lastClose + maxAbs
+    },
+    {
+      type: 'value',
+      gridIndex: 1,
+      show: false
     }
   ],
   grid: [
@@ -100,6 +141,14 @@ option = {
       coordinateSystem: 'matrix',
       coord: [0, 0],
       top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0
+    },
+    {
+      coordinateSystem: 'matrix',
+      coord: [0, 5],
+      top: 20,
       bottom: 0,
       left: 0,
       right: 0
@@ -149,7 +198,7 @@ option = {
               align: 'right',
               verticalAlign: 'top',
               color: colorRed,
-              formatter: (params) => params.name
+              formatter: '{b}'
             }
           },
           {
@@ -161,7 +210,7 @@ option = {
               align: 'right',
               verticalAlign: 'bottom',
               color: colorGreen,
-              formatter: (params) => params.name
+              formatter: '{b}'
             }
           }
         ]
@@ -173,6 +222,27 @@ option = {
       data: averageData,
       xAxisIndex: 0,
       yAxisIndex: 0
+    },
+    {
+      name: 'Volume',
+      type: 'bar',
+      xAxisIndex: 1,
+      yAxisIndex: 1,
+      data: volumeData.map((item, index) => {
+        // Compare current price with previous price to determine color
+        let color = colorGray;
+        if (index > 0) {
+          const currentPrice = priceData[index][1];
+          const prevPrice = priceData[index - 1][1];
+          color = currentPrice > prevPrice ? colorRed : colorGreen;
+        }
+        return {
+          value: [item[0], item[1]],
+          itemStyle: {
+            color: color
+          }
+        };
+      })
     }
   ],
   matrix: {
@@ -186,8 +256,16 @@ option = {
             [0, 3]
           ],
           mergeCells: true
+        },
+        {
+          coord: [
+            [0, 3],
+            [5, 5]
+          ],
+          mergeCells: true
         }
       ]
     }
   }
 };
+
