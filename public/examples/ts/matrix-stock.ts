@@ -5,7 +5,6 @@ titleCN: 股市矩阵图
 difficulty: 3
 since: 6.0.0
 */
-
 const lastClose = 50; // Close value of yesterday
 const colorGreen = '#14b143';
 const colorRed = '#ef232a';
@@ -32,13 +31,21 @@ const priceFormatter = (value: number) => {
 
 const priceData: [number, number][] = [];
 const volumeData = [];
-const averageData = []; // Average of volume * price
+const averageData = []; // Volume weighted average price
+const macdData = []; // MACD histogram data
+const macdLineData = []; // MACD line (DIF) data
+const signalLineData = []; // Signal line (DEA) data
 let sumPrice = 0;
 let sumVolume = 0;
 const sTime = new Date('2025-10-16 09:30:00').getTime();
 const eTime = new Date('2025-10-16 15:00:00').getTime();
 const breakStartTime = new Date('2025-10-16 11:30:00').getTime();
 const breakEndTime = new Date('2025-10-16 13:00:00').getTime();
+
+// MACD algorithm parameters
+const shortPeriod = 12; // Short-term EMA period, typically 12
+const longPeriod = 26; // Long-term EMA period, typically 26
+const signalPeriod = 9; // Signal line EMA period, typically 9
 
 let time = sTime;
 let price = 0;
@@ -72,6 +79,125 @@ while (time < eTime) {
   }
 }
 
+// Calculate MACD
+// 1. Calculate Exponential Moving Average (EMA)
+function calculateEMA(prices: number[][], period: number) {
+  let ema = [];
+  const k = 2 / (period + 1);
+
+  // No special handling for small datasets
+  // Just calculate EMA from the period point onwards
+
+  // If we have enough data points
+  if (prices.length >= period) {
+    // Calculate first EMA using Simple Moving Average (SMA)
+    let sum = 0;
+    for (let i = 0; i < period; i++) {
+      sum += prices[i][1];
+    }
+    const firstEMA = sum / period;
+
+    // First EMA at the period point
+    ema.push([prices[period - 1][0], firstEMA]);
+
+    // Calculate subsequent EMAs
+    for (let i = period; i < prices.length; i++) {
+      const newEMA: number = prices[i][1] * k + ema[ema.length - 1][1] * (1 - k);
+      ema.push([prices[i][0], newEMA]);
+    }
+  }
+
+  return ema;
+}
+
+// Calculate MACD indicators
+if (priceData.length >= longPeriod) {
+  // Need at least longPeriod data points
+  // Calculate short and long-term EMA
+  const shortEMA = calculateEMA(priceData, shortPeriod);
+  const longEMA = calculateEMA(priceData, longPeriod);
+
+  // Calculate MACD line (DIF: Difference) for points where both EMAs are available
+  const macdLine = [];
+
+  // Find the earliest point where both EMAs are available
+  // This should be at longPeriod-1
+  let startIndex = longPeriod - 1;
+
+  // Map EMA data to timestamps for easier lookup
+  const shortEMAMap = new Map(shortEMA.map((item) => [item[0], item[1]]));
+  const longEMAMap = new Map(longEMA.map((item) => [item[0], item[1]]));
+
+  // Process data points starting from where both EMAs are available
+  for (let i = startIndex; i < priceData.length; i++) {
+    const time = priceData[i][0];
+
+    // If we have both EMA values for this timestamp
+    if (shortEMAMap.has(time) && longEMAMap.has(time)) {
+      const diff = (shortEMAMap.get(time) || 0) - (longEMAMap.get(time) || 0);
+      macdLine.push([time, diff]);
+    }
+  }
+
+  // Calculate signal line (DEA: Signal Line) using standard EMA
+  const signalLine = calculateEMA(macdLine, signalPeriod);
+
+  // Clear existing data arrays
+  macdLineData.length = 0;
+  signalLineData.length = 0;
+  macdData.length = 0;
+
+  // Find common time range where both MACD and signal are available
+  const startTimestamp = signalLine.length > 0 ? signalLine[0][0] : null;
+
+  if (startTimestamp !== null) {
+    // Create a map of MACD values by timestamp
+    const macdMap = new Map();
+    for (const item of macdLine) {
+      macdMap.set(item[0], item[1]);
+    }
+
+    // Create a map of signal values by timestamp
+    const signalMap = new Map();
+    for (const item of signalLine) {
+      signalMap.set(item[0], item[1]);
+    }
+
+    // Find all common timestamps between MACD and signal lines
+    const commonTimestamps = [];
+    for (const time of macdMap.keys()) {
+      if (signalMap.has(time)) {
+        commonTimestamps.push(time);
+      }
+    }
+
+    // Sort timestamps to ensure correct order
+    commonTimestamps.sort((a, b) => a - b);
+
+    // Use only common timestamps for all three data series
+    for (const time of commonTimestamps) {
+      const macdValue = macdMap.get(time);
+      const signalValue = signalMap.get(time);
+
+      macdLineData.push([time, macdValue]);
+      signalLineData.push([time, signalValue]);
+
+      // Calculate histogram
+      const histogram = macdValue - signalValue;
+
+      // Determine color based on histogram value
+      const color = histogram > 0 ? colorRed : colorGreen;
+
+      macdData.push({
+        value: [time, histogram],
+        itemStyle: {
+          color: color
+        }
+      });
+    }
+  }
+}
+
 const getTitle = (text: string, subtext: string, coord: [number, number]) => {
   return {
     text: text,
@@ -93,7 +219,10 @@ const getTitle = (text: string, subtext: string, coord: [number, number]) => {
     coord: coord
   };
 };
-const titles = [getTitle('Volume', Math.round(sumVolume / 1000) + 'B', [0, 5])];
+const titles = [
+  getTitle('Volume', Math.round(sumVolume / 1000) + 'B', [0, 5]),
+  getTitle('MACD', '', [0, 4])
+];
 
 option = {
   title: titles,
@@ -120,6 +249,18 @@ option = {
           gap: 0
         }
       ]
+    },
+    {
+      type: 'time',
+      gridIndex: 2,
+      show: false,
+      breaks: [
+        {
+          start: breakStartTime,
+          end: breakEndTime,
+          gap: 0
+        }
+      ]
     }
   ],
   yAxis: [
@@ -133,6 +274,11 @@ option = {
     {
       type: 'value',
       gridIndex: 1,
+      show: false
+    },
+    {
+      type: 'value',
+      gridIndex: 2,
       show: false
     }
   ],
@@ -148,6 +294,14 @@ option = {
     {
       coordinateSystem: 'matrix',
       coord: [0, 5],
+      top: 20,
+      bottom: 0,
+      left: 0,
+      right: 0
+    },
+    {
+      coordinateSystem: 'matrix',
+      coord: [0, 4],
       top: 20,
       bottom: 0,
       left: 0,
@@ -179,6 +333,18 @@ option = {
           {
             relativeTo: 'coordinate',
             x: 0,
+            y: '50%',
+            name: lastClose + '',
+            label: {
+              align: 'left',
+              verticalAlign: 'middle',
+              formatter: priceFormatter(lastClose),
+              color: getPriceColor(lastClose)
+            }
+          },
+          {
+            relativeTo: 'coordinate',
+            x: 0,
             y: '100%',
             name: 'min',
             type: 'min',
@@ -198,6 +364,18 @@ option = {
               align: 'right',
               verticalAlign: 'top',
               color: colorRed,
+              formatter: '{b}'
+            }
+          },
+          {
+            relativeTo: 'coordinate',
+            x: '100%',
+            y: '50%',
+            name: '0%',
+            label: {
+              align: 'right',
+              verticalAlign: 'middle',
+              color: colorGray,
               formatter: '{b}'
             }
           },
@@ -243,11 +421,49 @@ option = {
           }
         };
       })
+    },
+    {
+      name: 'MACD',
+      type: 'bar',
+      xAxisIndex: 2,
+      yAxisIndex: 2,
+      data: macdData,
+      barWidth: '70%' // Set bar width to 70% of coordinate area
+    },
+    {
+      name: 'DIF',
+      type: 'line',
+      xAxisIndex: 2,
+      yAxisIndex: 2,
+      data: macdLineData,
+      lineStyle: {
+        color: '#FF9933',
+        width: 1
+      },
+      symbol: 'none'
+    },
+    {
+      name: 'DEA',
+      type: 'line',
+      xAxisIndex: 2,
+      yAxisIndex: 2,
+      data: signalLineData,
+      lineStyle: {
+        color: '#0099CC',
+        width: 1
+      },
+      symbol: 'none'
     }
   ],
   matrix: {
-    x: { data: Array(5).fill(null) },
-    y: { data: Array(6).fill(null) },
+    x: {
+      show: false,
+      data: Array(5).fill(null)
+    },
+    y: {
+      show: false,
+      data: Array(6).fill(null)
+    },
     body: {
       data: [
         {
@@ -263,9 +479,15 @@ option = {
             [5, 5]
           ],
           mergeCells: true
+        },
+        {
+          coord: [
+            [0, 3],
+            [4, 4]
+          ],
+          mergeCells: true
         }
       ]
     }
   }
 };
-
