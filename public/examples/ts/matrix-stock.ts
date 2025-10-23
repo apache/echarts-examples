@@ -6,9 +6,11 @@ difficulty: 3
 since: 6.0.0
 */
 const lastClose = 50; // Close value of yesterday
-const colorGreen = '#14b143';
-const colorRed = '#ef232a';
+const colorGreen = '#47b262';
+const colorRed = '#eb5454';
 const colorGray = '#888';
+const colorGreenOpacity = 'rgba(71, 178, 98, 0.2)';
+const colorRedOpacity = 'rgba(235, 84, 84, 0.2)';
 
 const getPriceColor = (price: number) => {
   return price === lastClose
@@ -35,6 +37,7 @@ const averageData = []; // Volume weighted average price
 const macdData = []; // MACD histogram data
 const macdLineData = []; // MACD line (DIF) data
 const signalLineData = []; // Signal line (DEA) data
+
 let sumPrice = 0;
 let sumVolume = 0;
 const sTime = new Date('2025-10-16 09:30:00').getTime();
@@ -198,6 +201,47 @@ if (priceData.length >= longPeriod) {
   }
 }
 
+const orderData = [];
+const orderCat = [];
+const orderCount = 10;
+let orderPrice = price - (0.01 * orderCount) / 2;
+for (let i = 0; i < orderCount; ++i) {
+  if (price === orderPrice) {
+    continue;
+  }
+  orderPrice += 0.01;
+  orderCat.push(orderPrice);
+  const amount = Math.round(Math.random() * 200) + 10;
+  const isLower = orderPrice < price;
+  orderData.push({
+    value: amount,
+    itemStyle: {
+      color: isLower ? colorGreenOpacity : colorRedOpacity
+    },
+    label: {
+      formatter:
+        `{name|${isLower ? 'Bid' : 'Ask'}} ` +
+        `{${isLower ? 'green' : 'red'}|${priceFormatter(orderPrice)}} ` +
+        `{amount|(${amount})}`,
+      rich: {
+        red: {
+          color: colorRed
+        },
+        green: {
+          color: colorGreen
+        },
+        amount: {
+          color: '#666'
+        },
+        name: {
+          fontWeight: 'bold',
+          color: '#444'
+        }
+      } as const
+    }
+  });
+}
+
 const getTitle = (text: string, subtext: string, coord: [number, number]) => {
   return {
     text: text,
@@ -221,7 +265,8 @@ const getTitle = (text: string, subtext: string, coord: [number, number]) => {
 };
 const titles = [
   getTitle('Volume', Math.round(sumVolume / 1000) + 'B', [0, 5]),
-  getTitle('MACD', '', [0, 4])
+  getTitle('MACD', '', [0, 4]),
+  getTitle('Order Book', '', [4, 0])
 ];
 
 option = {
@@ -261,6 +306,12 @@ option = {
           gap: 0
         }
       ]
+    },
+    {
+      type: 'value',
+      gridIndex: 3,
+      show: false,
+      max: 'dataMax'
     }
   ],
   yAxis: [
@@ -279,6 +330,11 @@ option = {
     {
       type: 'value',
       gridIndex: 2,
+      show: false
+    },
+    {
+      type: 'category',
+      gridIndex: 3,
       show: false
     }
   ],
@@ -306,6 +362,14 @@ option = {
       bottom: 0,
       left: 0,
       right: 0
+    },
+    {
+      coordinateSystem: 'matrix',
+      coord: [4, 0],
+      top: 15,
+      bottom: 2,
+      left: 2,
+      right: 2
     }
   ],
   series: [
@@ -402,6 +466,17 @@ option = {
       yAxisIndex: 0
     },
     {
+      type: 'line',
+      symbolSize: 0,
+      data: averageData,
+      xAxisIndex: 0,
+      yAxisIndex: 0,
+      lineStyle: {
+        color: '#FFC458',
+        width: 1
+      }
+    },
+    {
       name: 'Volume',
       type: 'bar',
       xAxisIndex: 1,
@@ -437,7 +512,7 @@ option = {
       yAxisIndex: 2,
       data: macdLineData,
       lineStyle: {
-        color: '#FF9933',
+        color: '#FFC458',
         width: 1
       },
       symbol: 'none'
@@ -449,10 +524,22 @@ option = {
       yAxisIndex: 2,
       data: signalLineData,
       lineStyle: {
-        color: '#0099CC',
+        color: '#333',
         width: 1
       },
       symbol: 'none'
+    },
+    {
+      name: 'Order Book',
+      type: 'bar',
+      xAxisIndex: 3,
+      yAxisIndex: 3,
+      data: orderData,
+      barWidth: '90%',
+      label: {
+        show: true,
+        position: 'insideLeft'
+      }
     }
   ],
   matrix: {
@@ -484,6 +571,13 @@ option = {
           coord: [
             [0, 3],
             [4, 4]
+          ],
+          mergeCells: true
+        },
+        {
+          coord: [
+            [4, 4],
+            [0, 3]
           ],
           mergeCells: true
         }
