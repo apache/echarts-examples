@@ -12,6 +12,12 @@ const colorGray = '#888';
 const colorGreenOpacity = 'rgba(71, 178, 98, 0.2)';
 const colorRedOpacity = 'rgba(235, 84, 84, 0.2)';
 
+const matrixMargin = 10;
+const chartWidth = myChart.getWidth();
+const chartHeight = myChart.getHeight();
+const matrixWidth = chartWidth - matrixMargin * 2;
+const matrixHeight = chartHeight - matrixMargin * 2;
+
 const getPriceColor = (price: number) => {
   return price === lastClose
     ? colorGray
@@ -242,6 +248,19 @@ for (let i = 0; i < orderCount; ++i) {
   });
 }
 
+const depthCount = 20;
+const depthHighData = [];
+const depthLowData = [];
+let cumulativeHighVolume = 0;
+let cumulativeLowVolume = 0;
+for (let i = 0; i < depthCount; ++i) {
+  depthHighData[depthCount + i] = cumulativeHighVolume;
+  cumulativeHighVolume += Math.round(Math.random() * 1000);
+
+  depthLowData[depthCount - i - 1] = cumulativeLowVolume;
+  cumulativeLowVolume += Math.round(Math.random() * 1000);
+}
+
 const getTitle = (text: string, subtext: string, coord: [number, number]) => {
   return {
     text: text,
@@ -266,7 +285,8 @@ const getTitle = (text: string, subtext: string, coord: [number, number]) => {
 const titles = [
   getTitle('Volume', Math.round(sumVolume / 1000) + 'B', [0, 5]),
   getTitle('MACD', '', [0, 4]),
-  getTitle('Order Book', '', [4, 0])
+  getTitle('Order Book', '', [4, 0]),
+  getTitle('Depth', '', [4, 5])
 ];
 
 option = {
@@ -312,6 +332,13 @@ option = {
       gridIndex: 3,
       show: false,
       max: 'dataMax'
+    },
+    {
+      type: 'category',
+      gridIndex: 4,
+      show: false,
+      boundaryGap: false,
+      data: Array.from({length: depthCount * 2}, (_, i) => i + '')
     }
   ],
   yAxis: [
@@ -336,6 +363,13 @@ option = {
       type: 'category',
       gridIndex: 3,
       show: false
+    },
+    {
+      type: 'value',
+      gridIndex: 4,
+      show: false,
+      max: 'dataMax',
+      min: 'dataMin'
     }
   ],
   grid: [
@@ -370,6 +404,14 @@ option = {
       bottom: 2,
       left: 2,
       right: 2
+    },
+    {
+      coordinateSystem: 'matrix',
+      coord: [4, 4],
+      top: 15,
+      bottom: 0,
+      left: 0,
+      right: 0
     }
   ],
   series: [
@@ -540,9 +582,46 @@ option = {
         show: true,
         position: 'insideLeft'
       }
+    },
+    {
+      name: 'Depth High',
+      type: 'line',
+      xAxisIndex: 4,
+      yAxisIndex: 4,
+      data: depthHighData,
+      step: 'end',
+      lineStyle: {
+        color: colorRed,
+        width: 2
+      },
+      areaStyle: {
+        color: colorRedOpacity,
+        opacity: 1
+      },
+      symbol: 'none'
+    }, {
+      name: 'Depth Low',
+      type: 'line',
+      xAxisIndex: 4,
+      yAxisIndex: 4,
+      data: depthLowData,
+      step: 'end',
+      lineStyle: {
+        color: colorGreen,
+        width: 2
+      },
+      areaStyle: {
+        color: colorGreenOpacity,
+        opacity: 1
+      },
+      symbol: 'none'
     }
   ],
   matrix: {
+    left: matrixMargin,
+    right: matrixMargin,
+    top: matrixMargin,
+    bottom: matrixMargin,
     x: {
       show: false,
       data: Array(5).fill(null)
@@ -583,5 +662,43 @@ option = {
         }
       ]
     }
+  },
+  graphic: {
+    elements: (Array.from({length: 3}, (_, i) => {
+      const lineWidth = 1;
+      return {
+        type: 'line',
+        shape: {
+          x1: matrixMargin + lineWidth,
+          y1: matrixHeight / 6 * (i + 1),
+          x2: matrixWidth / 5 * 4 + matrixMargin,
+          y2: matrixHeight / 6 * (i + 1),
+        },
+        style: {
+          stroke: i === 1 ? '#bbb' : '#eee',
+          lineWidth,
+          lineDash: (i == 1 ? 'dashed' : false) as 'dashed' | false
+        }
+      };
+    })).concat(
+      Array.from({length: 3}, (_, i) => {
+        const lineWidth = 1;
+        const matrixWidth = chartWidth - matrixMargin * 2;
+        return {
+          type: 'line',
+          shape: {
+            x1: matrixWidth / 5 * (i + 1) + matrixMargin,
+            y1: matrixMargin + lineWidth,
+            x2: matrixWidth / 5 * (i + 1) + matrixMargin,
+            y2: chartHeight - matrixMargin,
+          },
+          style: {
+            stroke: '#eee',
+            lineDash: false,
+            lineWidth
+          }
+        };
+      })
+    )
   }
 };
