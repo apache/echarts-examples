@@ -661,6 +661,13 @@ option = {
             [0, 3]
           ],
           mergeCells: true
+        },
+        {
+          coord: [
+            [4, 4],
+            [4, 5]
+          ],
+          mergeCells: true
         }
       ]
     }
