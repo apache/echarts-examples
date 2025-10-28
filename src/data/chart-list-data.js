@@ -1161,6 +1161,19 @@ export default [
   },
   {
     "category": [
+      "matrix",
+      "candlestick"
+    ],
+    "id": "matrix-stock",
+    "ts": true,
+    "tags": [],
+    "title": "Matrix Stock Application",
+    "titleCN": "股市矩阵图",
+    "difficulty": 3,
+    "since": "6.0.0"
+  },
+  {
+    "category": [
       "pie"
     ],
     "id": "pie-alignTo",

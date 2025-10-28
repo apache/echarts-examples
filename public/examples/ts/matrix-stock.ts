@@ -1,6 +1,6 @@
 /*
 title: Matrix Stock Application
-category: matrix-stock
+category: 'matrix, candlestick'
 titleCN: 股市矩阵图
 difficulty: 3
 since: 6.0.0
@@ -111,7 +111,8 @@ function calculateEMA(prices: number[][], period: number) {
 
     // Calculate subsequent EMAs
     for (let i = period; i < prices.length; i++) {
-      const newEMA: number = prices[i][1] * k + ema[ema.length - 1][1] * (1 - k);
+      const newEMA: number =
+        prices[i][1] * k + ema[ema.length - 1][1] * (1 - k);
       ema.push([prices[i][0], newEMA]);
     }
   }
@@ -338,7 +339,7 @@ option = {
       gridIndex: 4,
       show: false,
       boundaryGap: false,
-      data: Array.from({length: depthCount * 2}, (_, i) => i + '')
+      data: Array.from({ length: depthCount * 2 }, (_, i) => i + '')
     }
   ],
   yAxis: [
@@ -599,7 +600,8 @@ option = {
         opacity: 1
       },
       symbol: 'none'
-    }, {
+    },
+    {
       name: 'Depth Low',
       type: 'line',
       xAxisIndex: 4,
@@ -664,15 +666,15 @@ option = {
     }
   },
   graphic: {
-    elements: (Array.from({length: 3}, (_, i) => {
+    elements: Array.from({ length: 3 }, (_, i) => {
       const lineWidth = 1;
       return {
         type: 'line',
         shape: {
           x1: matrixMargin + lineWidth,
-          y1: matrixHeight / 6 * (i + 1),
-          x2: matrixWidth / 5 * 4 + matrixMargin,
-          y2: matrixHeight / 6 * (i + 1),
+          y1: (matrixHeight / 6) * (i + 1),
+          x2: (matrixWidth / 5) * 4 + matrixMargin,
+          y2: (matrixHeight / 6) * (i + 1)
         },
         style: {
           stroke: i === 1 ? '#bbb' : '#eee',
@@ -680,17 +682,17 @@ option = {
           lineDash: (i == 1 ? 'dashed' : false) as 'dashed' | false
         }
       };
-    })).concat(
-      Array.from({length: 3}, (_, i) => {
+    }).concat(
+      Array.from({ length: 3 }, (_, i) => {
         const lineWidth = 1;
         const matrixWidth = chartWidth - matrixMargin * 2;
         return {
           type: 'line',
           shape: {
-            x1: matrixWidth / 5 * (i + 1) + matrixMargin,
+            x1: (matrixWidth / 5) * (i + 1) + matrixMargin,
             y1: matrixMargin + lineWidth,
-            x2: matrixWidth / 5 * (i + 1) + matrixMargin,
-            y2: chartHeight - matrixMargin,
+            x2: (matrixWidth / 5) * (i + 1) + matrixMargin,
+            y2: chartHeight - matrixMargin
           },
           style: {
             stroke: '#eee',
