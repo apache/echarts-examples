@@ -19,76 +19,77 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { compareVersions } from 'compare-versions';
-import { store } from '../common/store';
+import { computed, reactive } from 'vue';
 import { URL_PARAMS } from '../common/config';
+import { store } from '../common/store';
 
-export default {
-  props: ['example'],
+const shared = reactive(store);
 
-  computed: {
-    title() {
-      return (
-        (store.locale === 'zh' ? this.example.titleCN : this.example.title) ||
-        this.example.title ||
-        ''
-      );
-    },
-
-    showSubtitle() {
-      return store.locale === 'zh';
-    },
-
-    subtitle() {
-      return this.example.title || '';
-    },
-
-    hasVersionSince() {
-      return (
-        this.example.since &&
-        compareVersions(store.echartsFullVersion, this.example.since) >= 0
-      );
-    },
-
-    versionSinceBanner() {
-      return 'v' + this.example.since + '+';
-    },
-
-    exampleTheme() {
-      const example = this.example;
-      return example.theme || (store.darkMode ? 'dark' : '');
-    },
-
-    exampleLink() {
-      const example = this.example;
-      const hash = ['c=' + example.id];
-      const exampleTheme = this.exampleTheme;
-      example.isGL && hash.push('gl=1');
-      exampleTheme && hash.push('theme=' + exampleTheme);
-      'local' in URL_PARAMS && hash.push('local=1');
-      'debug' in URL_PARAMS && hash.push('debug=1');
-      'useDirtyRect' in URL_PARAMS && hash.push('useDirtyRect=1');
-      URL_PARAMS.renderer && hash.push('renderer=' + URL_PARAMS.renderer);
-      return './editor.html?' + hash.join('&');
-    },
-
-    exampleThumbFilePath() {
-      const example = this.example;
-      const themePostfix = this.exampleTheme ? '-' + this.exampleTheme : '';
-      const folder = example.isGL ? 'data-gl' : 'data';
-      return `${folder}/thumb${themePostfix}/${example.id}`;
-    },
-
-    screenshotURLWebP() {
-      return `${store.cdnRoot}/${this.exampleThumbFilePath}.webp?_v_=${store.version}`;
-    },
-
-    screenshotURLPNG() {
-      return `${store.cdnRoot}/${this.exampleThumbFilePath}.png?_v_=${store.version}`;
-    }
+const { example } = defineProps({
+  example: {
+    type: Object,
+    required: true
   }
-};
+});
+
+const title = computed(() => {
+  return (
+    (shared.locale === 'zh' ? example.titleCN : example.title) ||
+    example.title ||
+    ''
+  );
+});
+
+const showSubtitle = computed(() => {
+  return shared.locale === 'zh';
+});
+
+const subtitle = computed(() => {
+  return example.title || '';
+});
+
+const hasVersionSince = computed(() => {
+  return (
+    example.since &&
+    compareVersions(shared.echartsFullVersion, example.since) >= 0
+  );
+});
+
+const versionSinceBanner = computed(() => {
+  return 'v' + example.since + '+';
+});
+
+const exampleTheme = computed(() => {
+  return example.theme || (shared.darkMode ? 'dark' : '');
+});
+
+const exampleLink = computed(() => {
+  const hash = ['c=' + example.id];
+  const theme = exampleTheme.value;
+  example.isGL && hash.push('gl=1');
+  theme && hash.push('theme=' + theme);
+  'local' in URL_PARAMS && hash.push('local=1');
+  'debug' in URL_PARAMS && hash.push('debug=1');
+  'useDirtyRect' in URL_PARAMS && hash.push('useDirtyRect=1');
+  URL_PARAMS.renderer && hash.push('renderer=' + URL_PARAMS.renderer);
+  return './editor.html?' + hash.join('&');
+});
+
+const exampleThumbFilePath = computed(() => {
+  const themePostfix = exampleTheme.value ? '-' + exampleTheme.value : '';
+  const folder = example.isGL ? 'data-gl' : 'data';
+  return `${folder}/thumb${themePostfix}/${example.id}`;
+});
+
+const screenshotURLWebP = computed(() => {
+  return `${shared.cdnRoot}/${exampleThumbFilePath.value}.webp?_v_=${shared.version}`;
+});
+
+const screenshotURLPNG = computed(() => {
+  return `${shared.cdnRoot}/${exampleThumbFilePath.value}.png?_v_=${shared.version}`;
+});
 </script>
 
 <style lang="scss">
