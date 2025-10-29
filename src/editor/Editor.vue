@@ -481,13 +481,24 @@ export default {
     },
 
     hasVersionSince() {
-      return this.exampleConfig && this.exampleConfig.since
-        && compareVersions(this.shared.echartsFullVersion, this.exampleConfig.since) >= 0;
+      return (
+        this.exampleConfig &&
+        this.exampleConfig.since &&
+        compareVersions(
+          this.shared.echartsFullVersion,
+          this.exampleConfig.since
+        ) >= 0
+      );
     },
 
     versionSinceBanner() {
-      return this.$t('editor.bannerVersionRequire') + ' v' + this.exampleConfig.since + '+';
-    },
+      return (
+        this.$t('editor.bannerVersionRequire') +
+        ' v' +
+        this.exampleConfig.since +
+        '+'
+      );
+    }
   },
 
   mounted() {

@@ -1,22 +1,17 @@
 <template>
   <div id="example-explore">
     <div id="left-container" ref="leftContainer">
-      <div id="left-chart-nav">
-        <scrollactive
-          ref="scrollactive"
+      <nav id="left-chart-nav">
+        <ScrollSpy
+          ref="scrollspy"
           active-class="active"
-          :offset="80"
-          :duration="500"
           :scroll-container-selector="'#example-explore'"
-          :scroll-on-start="false"
-          :modify-url="false"
-          bezier-easing-value=".5,0,.35,1"
           @itemchanged="onActiveNavChanged"
         >
           <ul>
             <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
               <a
-                class="left-chart-nav-link scrollactive-item"
+                class="left-chart-nav-link scrollspy-item"
                 :id="'left-chart-nav-' + category"
                 :href="'#chart-type-' + category"
               >
@@ -27,8 +22,8 @@
               </a>
             </li>
           </ul>
-        </scrollactive>
-      </div>
+        </ScrollSpy>
+      </nav>
     </div>
     <div id="explore-container">
       <div class="example-list-panel">
@@ -71,6 +66,7 @@ import CHART_LIST_GL from '../data/chart-list-data-gl';
 import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
+import ScrollSpy from './ScrollSpy.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
 const icons = {};
@@ -130,7 +126,8 @@ const LAZY_LOADED_CLASS = 'ec-shot-loaded';
 
 export default {
   components: {
-    ExampleCard
+    ExampleCard,
+    ScrollSpy
   },
 
   data() {
@@ -240,46 +237,17 @@ export default {
         }
       }
     });
-
-    setTimeout(() => {
-      location.hash && this.onHashChange();
-      window.addEventListener('hashchange', this.onHashChange);
-    }, 0);
   },
 
   methods: {
-    onHashChange(e) {
-      console.log('onHashChange');
-      e && e.preventDefault();
-
-      const hash = location.hash;
-      const items = this.$refs.scrollactive.items;
-      let activeItem;
-      for (let i = 0, len = items.length, item; i < len; i++) {
-        item = items[i];
-        if (item.hash === hash) {
-          activeItem = item;
-          break;
-        }
-      }
-      if (!activeItem) {
-        return;
-      }
-      activeItem.click();
-      this.scrollNav(activeItem);
-    },
-    onActiveNavChanged(event, currentItem) {
+    onActiveNavChanged(data) {
+      const { type, currentItem } = data;
       if (!currentItem) {
         return;
       }
 
-      const isByScroll = event && event.type === 'scroll';
+      const isByScroll = type === 'scroll';
       isByScroll && this.scrollNav(currentItem);
-
-      // change url
-      if (location.href !== currentItem.href) {
-        history.pushState(null, null, currentItem.href);
-      }
     },
     scrollNav(currentItem) {
       // scroll nav

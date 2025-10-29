@@ -1,13 +1,10 @@
-import Vue from 'vue';
-import VueI18n from 'vue-i18n';
+import { createApp } from 'vue';
+import { createI18n } from 'vue-i18n';
 import messages from './common/i18n';
 import EditorPage from './editor/Editor.vue';
 import ExplorePage from './explore/Explore.vue';
 import ViewPage from './editor/View.vue';
 import { store } from './common/store';
-import VueScrollactive from 'vue-scrollactive';
-
-Vue.use(VueScrollactive);
 
 /**
  *
@@ -19,7 +16,8 @@ Vue.use(VueScrollactive);
  * @param {string} [option.version]
  */
 export function init(el, option) {
-  const i18n = new VueI18n({
+  const i18n = createI18n({
+    legacy: false,
     locale: option.locale,
     fallbackLocale: 'en',
     messages
@@ -44,17 +42,15 @@ export function init(el, option) {
     v4Link && v4Link.remove();
   }
 
-  new Vue({
-    i18n,
-    el: container,
-    render: (h) => {
-      return h(
-        {
-          editor: EditorPage,
-          explore: ExplorePage,
-          view: ViewPage
-        }[page] || ExplorePage
-      );
-    }
-  });
+  const RootComponent =
+    {
+      editor: EditorPage,
+      explore: ExplorePage,
+      view: ViewPage
+    }[page] || ExplorePage;
+
+  const app = createApp(RootComponent);
+  app.use(i18n);
+  app.use(ElementPlus);
+  app.mount(container);
 }

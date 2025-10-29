@@ -45,8 +45,10 @@ export default {
     },
 
     hasVersionSince() {
-      return this.example.since
-        && compareVersions(store.echartsFullVersion, this.example.since) >= 0;
+      return (
+        this.example.since &&
+        compareVersions(store.echartsFullVersion, this.example.since) >= 0
+      );
     },
 
     versionSinceBanner() {

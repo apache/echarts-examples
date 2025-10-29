@@ -827,6 +827,10 @@ export default {
   }
 }
 
+.el-switch {
+  height: 20px;
+}
+
 .el-message {
   &.toast-declaration {
     min-width: auto;
