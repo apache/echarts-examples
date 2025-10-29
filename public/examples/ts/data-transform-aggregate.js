@@ -81,7 +81,7 @@ function run(_rawData) {
       type: 'category'
     },
     grid: {
-      bottom: 100
+      bottom: 140
     },
     legend: {
       selected: { detail: false }
@@ -92,7 +92,8 @@ function run(_rawData) {
       },
       {
         type: 'slider',
-        height: 20
+        height: 20,
+        bottom: 60
       }
     ],
     series: [
