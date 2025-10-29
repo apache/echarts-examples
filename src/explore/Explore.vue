@@ -60,14 +60,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
+import { computed, onMounted, reactive, ref, watch, useTemplateRef } from 'vue';
+import { BLACK_MAP, EXAMPLE_CATEGORIES } from '../common/config';
+import { store } from '../common/store';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
-import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import ScrollSpy from './ScrollSpy.vue';
-import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
 const icons = {};
 
@@ -124,146 +125,131 @@ const glIcon = require('../asset/icon/gl.svg');
 
 const LAZY_LOADED_CLASS = 'ec-shot-loaded';
 
-export default {
-  components: {
-    ExampleCard,
-    ScrollSpy
-  },
-
-  data() {
-    const exampleListByCategory = {};
-
-    function addExamples(list, isGL) {
-      let categoryOrder = 0;
-      // Add by category order in each example.
-      do {
-        let added = false;
-        for (let i = 0; i < list.length; i++) {
-          const example = list[i];
-          if (BLACK_MAP.hasOwnProperty(example.id)) {
-            continue;
-          }
-          if (example.noExplore) {
-            continue;
-          }
-          if (typeof example.category === 'string') {
-            example.category = [example.category];
-          }
-
-          const categoryStr = (example.category || [])[categoryOrder];
-          if (categoryStr) {
-            added = true;
-            let categoryObj = exampleListByCategory[categoryStr];
-            if (!categoryObj) {
-              categoryObj = {
-                category: categoryStr,
-                examples: []
-              };
-              exampleListByCategory[categoryStr] = categoryObj;
-            }
-            example.isGL = isGL;
-
-            categoryObj.examples.push(example);
-          }
+// Reactive data
+const shared = reactive(store);
+// Refs
+const leftContainer = useTemplateRef('leftContainer');
+const exampleListByCategory = ref({});
+const _lazyload = ref(
+  new LazyLoad({
+    // Container should be the scroll viewport.
+    // container: this.$el.querySelector('#explore-container .example-list-panel'),
+    elements_selector: '.chart-area',
+    load_delay: 400,
+    class_loaded: LAZY_LOADED_CLASS,
+    callback_error(img) {
+      const fallbackSrc = img.src;
+      const children = img.parentElement.children;
+      for (let i = 0, len = children.length; i < len; i++) {
+        const el = children[i];
+        if (el !== img) {
+          el.srcset = fallbackSrc;
         }
+      }
+    }
+  })
+);
 
-        if (!added) {
-          break;
+function addExamples(list, isGL) {
+  let categoryOrder = 0;
+  // Add by category order in each example.
+  do {
+    let added = false;
+    for (let i = 0; i < list.length; i++) {
+      const example = list[i];
+      if (BLACK_MAP.hasOwnProperty(example.id)) {
+        continue;
+      }
+      if (example.noExplore) {
+        continue;
+      }
+      if (typeof example.category === 'string') {
+        example.category = [example.category];
+      }
+
+      const categoryStr = (example.category || [])[categoryOrder];
+      if (categoryStr) {
+        added = true;
+        let categoryObj = exampleListByCategory.value[categoryStr];
+        if (!categoryObj) {
+          categoryObj = {
+            category: categoryStr,
+            examples: []
+          };
+          exampleListByCategory.value[categoryStr] = categoryObj;
         }
-      } while (++categoryOrder && categoryOrder < 4); // At most 4 category
+        example.isGL = isGL;
+
+        categoryObj.examples.push(example);
+      }
     }
 
-    addExamples(CHART_LIST, false);
-    addExamples(CHART_LIST_GL, true);
+    if (!added) {
+      break;
+    }
+  } while (++categoryOrder && categoryOrder < 4); // At most 4 category
+}
 
-    return {
-      shared: store,
+addExamples(CHART_LIST, false);
+addExamples(CHART_LIST_GL, true);
 
-      icons,
-
-      EXAMPLE_CATEGORIES,
-      // [{
-      //  category: '',
-      //  isGL: false
-      //  examples: []
-      // }]
-      exampleListByCategory
-    };
-  },
-
-  watch: {
-    'shared.darkMode'() {
-      const imgs = this.$el.querySelectorAll('img.chart-area');
+// Watch for dark mode changes
+watch(
+  () => shared.darkMode,
+  () => {
+    const el = document.getElementById('explore-container');
+    if (el) {
+      const imgs = el.querySelectorAll('img.chart-area');
       for (let i = 0; i < imgs.length; i++) {
         // Force lazyload to update
         LazyLoad.resetStatus(imgs[i]);
       }
-      this._lazyload.update();
+      _lazyload.value.update();
     }
-  },
+  }
+);
 
-  computed: {
-    exampleList() {
-      const list = [];
-      for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
-        const category = EXAMPLE_CATEGORIES[i];
-        const categoryObj = this.exampleListByCategory[category];
-        if (categoryObj && categoryObj.examples.length > 0) {
-          list.push({
-            category,
-            examples: categoryObj.examples
-          });
-        }
-      }
-      return list;
+const exampleList = computed(() => {
+  const list = [];
+  for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
+    const category = EXAMPLE_CATEGORIES[i];
+    const categoryObj = exampleListByCategory.value[category];
+    if (categoryObj && categoryObj.examples.length > 0) {
+      list.push({
+        category,
+        examples: categoryObj.examples
+      });
     }
-  },
+  }
+  return list;
+});
 
-  mounted() {
-    this._lazyload = new LazyLoad({
-      // Container should be the scroll viewport.
-      // container: this.$el.querySelector('#explore-container .example-list-panel'),
-      elements_selector: '.chart-area',
-      load_delay: 400,
-      class_loaded: LAZY_LOADED_CLASS,
-      callback_error(img) {
-        const fallbackSrc = img.src;
-        const children = img.parentElement.children;
-        for (let i = 0, len = children.length; i < len; i++) {
-          const el = children[i];
-          if (el !== img) {
-            el.srcset = fallbackSrc;
-          }
-        }
-      }
-    });
-  },
+onMounted(() => {
+  _lazyload.value.update();
+});
 
-  methods: {
-    onActiveNavChanged(data) {
-      const { type, currentItem } = data;
-      if (!currentItem) {
-        return;
-      }
+// Methods
+const onActiveNavChanged = (data) => {
+  const { type, currentItem } = data;
+  if (!currentItem) {
+    return;
+  }
 
-      const isByScroll = type === 'scroll';
-      isByScroll && this.scrollNav(currentItem);
-    },
-    scrollNav(currentItem) {
-      // scroll nav
-      const leftContainer = this.$refs.leftContainer;
-      const containerOffsetHeight = leftContainer.offsetHeight;
-      const rect = currentItem.parentElement.getBoundingClientRect();
-      if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
-        const scrollTop =
-          currentItem.offsetTop -
-          containerOffsetHeight +
-          currentItem.offsetHeight;
-        leftContainer.scrollTo
-          ? leftContainer.scrollTo(0, scrollTop)
-          : (leftContainer.scrollTop = scrollTop);
-      }
-    }
+  const isByScroll = type === 'scroll';
+  isByScroll && scrollNav(currentItem);
+};
+
+const scrollNav = (currentItem) => {
+  // scroll nav
+  if (!leftContainer.value) return;
+  const containerOffsetHeight = leftContainer.value.offsetHeight;
+  const rect = currentItem.parentElement.getBoundingClientRect();
+  if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
+    const scrollTop =
+      currentItem.offsetTop - containerOffsetHeight + currentItem.offsetHeight;
+    leftContainer.value.scrollTo
+      ? leftContainer.value.scrollTo(0, scrollTop)
+      : (leftContainer.value.scrollTop = scrollTop);
   }
 };
 </script>
