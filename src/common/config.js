@@ -127,7 +127,7 @@ const SCRIPT_URLS = {
   latestEChartsDir: `${CDN_ROOT}echarts`,
   echartsJS: '/dist/echarts.min.js',
 
-  localEChartsDir: 'http://localhost/echarts',
+  localEChartsDir: 'http://localhost:8080',
   localEChartsGLDir: 'http://localhost/echarts-gl',
 
   prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
@@ -152,18 +152,6 @@ const SCRIPT_URLS = {
 
   echartsGraphModularityJS: `${CDN_ROOT}echarts-graph-modularity/dist/echarts-graph-modularity.min.js`
 };
-
-if (typeof CONFIG_LOCAL !== 'undefined') {
-  // CONFIG_LOCAL may be defined `echarts-examples/config/config.local.js`,
-  // and introduced by `echarts-examples/build/webpack.config.js`.
-  if (CONFIG_LOCAL.SCRIPT_URLS) {
-    Object.keys(CONFIG_LOCAL.SCRIPT_URLS).forEach(key => {
-      if (CONFIG_LOCAL.SCRIPT_URLS[key]) {
-        SCRIPT_URLS[key] = CONFIG_LOCAL.SCRIPT_URLS[key];
-      }
-    });
-  }
-}
 
 // const SCRIPT_URLS_CN = {
 //   echartsDir: `${CDN_ROOT_CN_NPM}echarts/{{version}}/files`,
