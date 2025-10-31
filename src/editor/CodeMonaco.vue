@@ -1,14 +1,35 @@
 <template>
-  <div class="monaco-editor-main" v-loading="loading"></div>
+  <div ref="monaco-editor" class="monaco-editor-main" v-loading="loading"></div>
 </template>
 
-<script>
+<script setup>
+import {
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  ref,
+  useTemplateRef,
+  watch
+} from 'vue';
+import { URL_PARAMS, getScriptURLs } from '../common/config';
 import { loadScriptsAsync } from '../common/helper';
 import { store } from '../common/store';
-import { URL_PARAMS, getScriptURLs } from '../common/config';
+
+const { initialCode } = defineProps({
+  initialCode: String
+});
+
+const shared = reactive(store);
+
+const monacoEditorRef = useTemplateRef('monaco-editor');
+
+const loading = ref(false);
+const editor = ref(null);
+
+const emit = defineEmits(['ready']);
 
 function loadTypes() {
-  const SCRIPT_URLS = getScriptURLs(store.locale);
+  const SCRIPT_URLS = getScriptURLs(shared.locale);
   const isLocal = 'local' in URL_PARAMS;
 
   return fetch(
@@ -99,12 +120,12 @@ declare global {
 
 function ensureMonacoAndTsTransformer() {
   if (typeof monaco === 'undefined') {
-    const SCRIPT_URLS = getScriptURLs(store.locale);
+    const SCRIPT_URLS = getScriptURLs(shared.locale);
 
     return loadScriptsAsync([
       SCRIPT_URLS.monacoDir + '/loader.js',
       // Prebuilt TS transformer with sucrase
-      store.cdnRoot + '/js/example-transform-ts-bundle.js'
+      shared.cdnRoot + '/js/example-transform-ts-bundle.js'
     ]).then(function () {
       window.require.config({
         paths: {
@@ -112,7 +133,7 @@ function ensureMonacoAndTsTransformer() {
         },
         'vs/nls': {
           availableLanguages: {
-            '*': store.locale === 'zh' ? 'zh-cn' : undefined
+            '*': shared.locale === 'zh' ? 'zh-cn' : undefined
           }
         }
       });
@@ -131,93 +152,81 @@ function ensureMonacoAndTsTransformer() {
   return Promise.resolve();
 }
 
-export default {
-  props: ['initialCode'],
-
-  data() {
-    return {
-      shared: store,
-      loading: false
-    };
-  },
-
-  mounted() {
-    this.loading = true;
-    ensureMonacoAndTsTransformer().then(() => {
-      const model = monaco.editor.createModel(
-        this.initialCode || '',
-        'typescript',
-        // Should also be a file path so it can resolve the lib.
-        monaco.Uri.parse('file:///main.ts')
-      );
-      const editor = monaco.editor.create(this.$el, {
-        model,
-        fontFamily: `'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace`,
-        minimap: {
-          enabled: false
-        },
-        wordWrap: 'off',
-        automaticLayout: true,
-        fixedOverflowWidgets: true
-      });
-
-      this._editor = editor;
-
-      if (this.initialCode) {
-        store.sourceCode = this.initialCode;
-        store.runCode = echartsExampleTransformTs(store.sourceCode);
-      }
-      editor.onDidChangeModelContent(() => {
-        store.sourceCode = editor.getValue();
-        store.runCode = echartsExampleTransformTs(store.sourceCode);
-      });
-
-      this.loading = false;
-      this.$emit('ready');
+onMounted(() => {
+  loading.value = true;
+  ensureMonacoAndTsTransformer().then(() => {
+    const model = monaco.editor.createModel(
+      initialCode || '',
+      'typescript',
+      // Should also be a file path so it can resolve the lib.
+      monaco.Uri.parse('file:///main.ts')
+    );
+    const monacoEditor = monaco.editor.create(monacoEditorRef.value, {
+      model,
+      fontFamily: `'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace`,
+      minimap: {
+        enabled: false
+      },
+      wordWrap: 'off',
+      automaticLayout: true,
+      fixedOverflowWidgets: true
     });
-  },
 
-  destroyed() {
-    if (this._editor) {
-      this._editor.getModel().dispose();
-      this._editor.dispose();
+    editor.value = monacoEditor;
+
+    if (initialCode) {
+      shared.sourceCode = initialCode;
+      shared.runCode = echartsExampleTransformTs(shared.sourceCode);
     }
-  },
+    monacoEditor.onDidChangeModelContent(() => {
+      shared.sourceCode = monacoEditor.getValue();
+      shared.runCode = echartsExampleTransformTs(shared.sourceCode);
+    });
 
-  methods: {
-    setInitialCode(code) {
-      if (this._editor && code) {
-        // this._editor.setValue(code || '');
+    loading.value = false;
+    emit('ready');
+  });
+});
 
-        // https://github.com/microsoft/monaco-editor/issues/299#issuecomment-268423927
-        this._editor.executeEdits('replace', [
-          {
-            identifier: 'delete',
-            range: new monaco.Range(1, 1, 10000, 1),
-            text: '',
-            forceMoveMarkers: true
-          }
-        ]);
-        this._editor.executeEdits('replace', [
-          {
-            identifier: 'insert',
-            range: new monaco.Range(1, 1, 1, 1),
-            text: code,
-            forceMoveMarkers: true
-          }
-        ]);
-        this._editor.setSelection(new monaco.Range(0, 0, 0, 0));
-        // this._editor.setPosition(currentPosition);
+onBeforeUnmount(() => {
+  if (editor.value) {
+    editor.value.getModel().dispose();
+    editor.value.dispose();
+  }
+});
+
+const setInitialCode = (code) => {
+  if (editor.value && code) {
+    // this._editor.setValue(code || '');
+
+    // https://github.com/microsoft/monaco-editor/issues/299#issuecomment-268423927
+    editor.value.executeEdits('replace', [
+      {
+        identifier: 'delete',
+        range: new monaco.Range(1, 1, 10000, 1),
+        text: '',
+        forceMoveMarkers: true
       }
-    }
-  },
-
-  watch: {
-    initialCode(newVal) {
-      this.setInitialCode(newVal);
-    }
+    ]);
+    editor.value.executeEdits('replace', [
+      {
+        identifier: 'insert',
+        range: new monaco.Range(1, 1, 1, 1),
+        text: code,
+        forceMoveMarkers: true
+      }
+    ]);
+    editor.value.setSelection(new monaco.Range(0, 0, 0, 0));
+    // this._editor.setPosition(currentPosition);
   }
 };
+
+watch(
+  () => initialCode,
+  (newVal) => {
+    setInitialCode(newVal);
+  }
+);
 </script>
 
 <style lang="scss">
