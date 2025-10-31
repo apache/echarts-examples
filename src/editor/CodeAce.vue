@@ -1,16 +1,26 @@
 <template>
-  <div class="ace-editor-main" v-loading="loading"></div>
+  <div ref="ace-editor" class="ace-editor-main" v-loading="loading"></div>
 </template>
 
-<script>
-import { keywords } from '../data/option-keywords';
+<script setup>
+import { onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
+import { getScriptURLs } from '../common/config';
 import { loadScriptsAsync } from '../common/helper';
 import { store } from '../common/store';
-import { getScriptURLs } from '../common/config';
+import { keywords } from '../data/option-keywords';
+
+const { initialCode } = defineProps({
+  initialCode: String
+});
+
+const shared = reactive(store);
+const aceEditorRef = useTemplateRef('ace-editor');
+const loading = ref(false);
+const editor = ref(null);
 
 function ensureACE() {
   if (typeof ace === 'undefined') {
-    const SCRIPT_URLS = getScriptURLs(store.locale);
+    const SCRIPT_URLS = getScriptURLs(shared.locale);
 
     return loadScriptsAsync([
       SCRIPT_URLS.aceDir + '/ace.js',
@@ -38,66 +48,54 @@ function ensureACE() {
   return Promise.resolve();
 }
 
-export default {
-  props: ['initialCode'],
-
-  data() {
-    return {
-      shared: store,
-      loading: false
-    };
-  },
-
-  mounted() {
-    this.loading = true;
-    ensureACE().then(() => {
-      const editor = ace.edit(this.$el);
-      editor.getSession().setMode('ace/mode/javascript');
-      editor.setOptions({
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        tabSize: 2,
-        enableLiveAutocompletion: true
-      });
-
-      this._editor = editor;
-
-      editor.on('change', () => {
-        store.sourceCode = store.runCode = editor.getValue();
-      });
-
-      if (this.initialCode) {
-        this.setInitialCode(this.initialCode);
-      }
-
-      this.loading = false;
+onMounted(() => {
+  loading.value = true;
+  ensureACE().then(() => {
+    const aceEditor = ace.edit(aceEditorRef.value);
+    aceEditor.getSession().setMode('ace/mode/javascript');
+    aceEditor.setOptions({
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      tabSize: 2,
+      enableLiveAutocompletion: true
     });
-  },
 
-  methods: {
-    setInitialCode(code) {
-      if (this._editor && code) {
-        this._editor.setValue(code || '');
-        this._editor.selection.setSelectionRange({
-          start: {
-            row: 1,
-            column: 4
-          },
-          end: {
-            row: 1,
-            column: 4
-          }
-        });
-      }
-    }
-  },
+    editor.value = aceEditor;
 
-  watch: {
-    initialCode(newVal) {
-      this.setInitialCode(newVal);
+    aceEditor.on('change', () => {
+      shared.sourceCode = shared.runCode = aceEditor.getValue();
+    });
+
+    if (initialCode) setInitialCode(initialCode);
+
+    loading.value = false;
+  });
+});
+
+function setInitialCode(code) {
+  if (editor.value && code) {
+    editor.value.setValue(code || '');
+    if (editor.value.selection && editor.value.selection.setSelectionRange) {
+      editor.value.selection.setSelectionRange({
+        start: {
+          row: 1,
+          column: 4
+        },
+        end: {
+          row: 1,
+          column: 4
+        }
+      });
     }
   }
-};
+}
+
+watch(
+  () => initialCode,
+  (newVal) => {
+    setInitialCode(newVal);
+  }
+);
 </script>
 
 <style lang="scss">
