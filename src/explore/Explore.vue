@@ -17,7 +17,7 @@
               >
                 <span class="chart-icon" v-html="icons[category]"></span>
                 <span class="chart-name">{{
-                  $t('chartTypes.' + category)
+                  t('chartTypes.' + category)
                 }}</span>
               </a>
             </li>
@@ -32,7 +32,7 @@
             class="chart-type-head"
             :id="'chart-type-' + categoryObj.category"
           >
-            {{ $t('chartTypes.' + categoryObj.category) }}
+            {{ t('chartTypes.' + categoryObj.category) }}
             <span>{{ categoryObj.category }}</span>
           </h3>
 
@@ -52,7 +52,7 @@
       <el-switch
         v-model="shared.darkMode"
         active-color="#181432"
-        :active-text="$t('editor.darkMode')"
+        :active-text="t('editor.darkMode')"
         :inactive-text="''"
       >
       </el-switch>
@@ -62,13 +62,16 @@
 
 <script setup>
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
-import { computed, onMounted, reactive, ref, watch, useTemplateRef } from 'vue';
+import { computed, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { BLACK_MAP, EXAMPLE_CATEGORIES } from '../common/config';
 import { store } from '../common/store';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import ExampleCard from './ExampleCard.vue';
 import ScrollSpy from './ScrollSpy.vue';
+
+const { t } = useI18n();
 
 const icons = {};
 
