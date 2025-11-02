@@ -147,6 +147,7 @@
 </template>
 
 <script setup>
+import { ElMessage } from 'element-plus';
 import debounce from 'lodash/debounce';
 import { gt, rcompare } from 'semver';
 import {
@@ -503,7 +504,7 @@ function screenshot() {
 }
 
 function showPRHint() {
-  $message({
+  ElMessage({
     type: 'warning',
     message: t('editor.pr.hint').replace('{{PR}}', shared.prNumber),
     customClass: 'toast-declaration',
@@ -513,8 +514,8 @@ function showPRHint() {
 }
 
 function showShareHint() {
-  $message.closeAll();
-  $message({
+  ElMessage.closeAll();
+  ElMessage({
     type: 'warning',
     message: t('editor.share.hint'),
     customClass: 'toast-declaration',
@@ -555,8 +556,8 @@ function share() {
       const statusCode = jqXHR.status;
       if (statusCode === 413 || statusCode === 414 || statusCode === 431) {
         isShareBusy.value = false;
-        $message.closeAll();
-        $message({
+        ElMessage.closeAll();
+        ElMessage({
           type: 'error',
           message: t('editor.share.urlTooLong'),
           customClass: 'toast-declaration'
@@ -571,8 +572,8 @@ function share() {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        $message.closeAll();
-        $message({
+        ElMessage.closeAll();
+        ElMessage({
           type: 'success',
           message: t('editor.share.success'),
           customClass: 'toast-declaration'

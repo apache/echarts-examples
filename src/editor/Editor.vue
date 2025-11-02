@@ -446,6 +446,7 @@ import CodeMonaco from './CodeMonaco.vue';
 import FullCodePreview from './FullCodePreview.vue';
 import Preview from './Preview.vue';
 
+import { ElMessageBox } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { getScriptURLs, URL_PARAMS } from '../common/config';
 import { formatCode, loadScriptsAsync } from '../common/helper';
@@ -672,7 +673,7 @@ function changeLang(lang) {
     if (!initialCode.value || shared.sourceCode === initialCode.value) {
       gotoURL({ lang });
     } else {
-      $confirm(t('editor.codeChangedConfirm'), '', {
+      ElMessageBox.confirm(t('editor.codeChangedConfirm'), '', {
         confirmButtonText: t('editor.confirmButtonText'),
         cancelButtonText: t('editor.cancelButtonText'),
         type: 'warning'
