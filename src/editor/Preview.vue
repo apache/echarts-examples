@@ -46,8 +46,10 @@
           <template #reference>
             <span class="render-config-trigger">
               <el-button size="small">
-                {{ t('editor.renderCfgTitle')
-                }}<i class="el-icon-setting el-icon--right"></i>
+                {{ t('editor.renderCfgTitle') }}
+                <svg role="img" class="icon ml-4">
+                  <use href="/asset/sprite.svg#setting"></use>
+                </svg>
               </el-button>
             </span>
           </template>
@@ -108,27 +110,30 @@
       <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
           <el-button
-            icon="el-icon-download"
             size="small"
             @click="downloadExample"
             :title="t('editor.download') + ' (HTML)'"
           >
-            {{ t('editor.download') }}
+            <svg role="img" class="icon mr-4">
+              <use href="/asset/sprite.svg#download"></use>
+            </svg>
+            <span>{{ t('editor.download') }}</span>
           </el-button>
-          <el-button
-            @click="screenshot"
-            icon="el-icon-camera-solid"
-            size="small"
-          >
-            {{ t('editor.screenshot') }}
+          <el-button @click="screenshot" size="small">
+            <svg role="img" class="icon mr-4">
+              <use href="/asset/sprite.svg#camera"></use>
+            </svg>
+            <span>{{ t('editor.screenshot') }}</span>
           </el-button>
           <el-button
             @click="share"
-            icon="el-icon-share"
             size="small"
             :title="t('editor.share.tooltip')"
           >
-            {{ t('editor.share.title') }}
+            <svg role="img" class="icon mr-4">
+              <use href="/asset/sprite.svg#share"></use>
+            </svg>
+            <span>{{ t('editor.share.title') }}</span>
           </el-button>
         </template>
       </div>
@@ -886,5 +891,18 @@ defineExpose({
       line-height: 1.25;
     }
   }
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+}
+
+.ml-4 {
+  margin-left: 4px;
+}
+
+.mr-4 {
+  margin-right: 4px;
 }
 </style>

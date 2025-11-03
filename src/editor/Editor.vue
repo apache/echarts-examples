@@ -317,11 +317,14 @@
                 <template #label>
                   <span>
                     {{ t('editor.prPreview.review') }}
-                    <i
+                    <svg
+                      role="img"
                       v-if="isPRReviewLoading"
-                      class="el-icon-loading"
+                      class="icon"
                       style="margin-left: 5px"
-                    ></i>
+                    >
+                      <use href="/asset/sprite.svg#loading"></use>
+                    </svg>
                   </span>
                 </template>
                 <span v-if="isPRReviewLoading">{{
@@ -384,11 +387,14 @@
                 <details @toggle="$event.target.open && loadPRDiff()">
                   <summary style="display: revert; cursor: pointer">
                     {{ t('editor.prPreview.viewDiff') }}
-                    <i
+                    <svg
+                      role="img"
                       v-if="isPRDiffLoading"
-                      class="el-icon-loading"
+                      class="icon"
                       style="margin-left: 5px"
-                    ></i>
+                    >
+                      <use href="/asset/sprite.svg#loading"></use>
+                    </svg>
                   </summary>
                   <pre
                     class="pr-diff"
@@ -650,7 +656,7 @@ function updateOptionOutline() {
         : `https://echarts.apache.org/${lang}/option.html#${hash.join('.')}`;
       return !isObjOrArray
         ? `<a href="${link}" target="_blank" title="${tipTitle}">${name}</a>`
-        : `${name}<a href="${link}" target="_blank" title="${tipTitle}"><i class="el-icon-document"></i></a>`;
+        : `${name}<a href="${link}" target="_blank" title="${tipTitle}"><i><svg role="img" class="icon icon-document"><use href="/asset/sprite.svg#document"></use></svg></i></a>`;
     },
     expandOnCreatedAndUpdated(path) {
       return path.length === 0 || (path[0] === 'series' && path.length <= 1);
@@ -980,7 +986,7 @@ $handler-width: 15px;
   font-family: 'Source Code Pro', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas',
     monospace;
 
-  .el-icon-document {
+  .icon-document {
     margin-left: 5px;
     font-size: 1rem;
 

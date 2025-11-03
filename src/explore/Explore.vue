@@ -105,10 +105,10 @@ const icons = {};
   'rich',
   'graphic'
 ].forEach(function (category) {
-  icons[category] = require('../asset/icon/' + category + '.svg');
+  icons[category] = require('../asset/icon/' + category + '.svg?inline');
 });
 
-const glIcon = require('../asset/icon/gl.svg');
+const glIcon = require('../asset/icon/gl.svg?inline');
 [
   'globe',
   'bar3D',

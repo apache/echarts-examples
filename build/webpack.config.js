@@ -3,8 +3,10 @@ const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const fs = require('fs');
+const SvgSpritePlugin = require('../tool/plugin-svg-sprite');
 
 const distPath = path.resolve(__dirname, '../public');
+const iconDir = path.resolve(__dirname, '../src/asset/icon');
 
 module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
@@ -78,8 +80,28 @@ module.exports = (env, argv) => {
               }
             ]
           },
+          // SVG for Sprite Generation
           {
-            test: /\.(svg|html)$/,
+            test: /\.svg$/,
+            include: iconDir,
+            resourceQuery: { not: [/inline/] }, // DOES NOT match '?inline'
+            type: 'asset/source'
+          },
+          // SVG for Raw Inline Use (Using ?inline suffix)
+          {
+            test: /\.svg$/,
+            include: iconDir,
+            resourceQuery: /inline/, // Matches imports like '...share.svg?inline'
+            type: 'asset/source'
+          },
+          // Catch-all for other SVGs (logos, etc.) outside the icon directory
+          {
+            test: /\.svg$/,
+            exclude: iconDir,
+            type: 'asset/resource'
+          },
+          {
+            test: /\.html$/,
             use: [
               {
                 loader: 'html-loader',
@@ -116,6 +138,10 @@ module.exports = (env, argv) => {
         vue: 'Vue'
       },
       plugins: [
+        new SvgSpritePlugin({
+          spriteFilename: '../asset/sprite.svg',
+          iconDir: iconDir
+        }),
         new webpack.DefinePlugin({
           // It can be used in the code directly.
           CONFIG_LOCAL: JSON.stringify(configLocal)
