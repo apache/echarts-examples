@@ -1,10 +1,11 @@
+import ElementPlus from 'element-plus';
 import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
 import messages from './common/i18n';
-import EditorPage from './editor/Editor.vue';
-import ExplorePage from './explore/Explore.vue';
-import ViewPage from './editor/View.vue';
 import { store } from './common/store';
+import EditorPage from './editor/Editor.vue';
+import ViewPage from './editor/View.vue';
+import ExplorePage from './explore/Explore.vue';
 
 /**
  *

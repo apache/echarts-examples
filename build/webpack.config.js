@@ -146,6 +146,9 @@ module.exports = (env, argv) => {
           // It can be used in the code directly.
           CONFIG_LOCAL: JSON.stringify(configLocal)
         }),
+        new webpack.DefinePlugin({
+          __VUE_PROD_DEVTOOLS__: JSON.stringify(!isDev)
+        }),
         new webpack.IgnorePlugin({
           resourceRegExp: /^fs$/
         }),
