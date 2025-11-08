@@ -5,7 +5,7 @@ const fs = require('fs');
 class SvgSpritePlugin {
   constructor(options = {}) {
     this.spriteFilename = options.spriteFilename || 'sprite.svg';
-    this.iconDir = options.iconDir;
+    this.svgPath = options.svgPath;
   }
 
   // Helper to process raw SVG string into a <symbol>
@@ -63,11 +63,11 @@ class SvgSpritePlugin {
           stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS
         },
         (assets) => {
-          if (!this.iconDir || !fs.existsSync(this.iconDir)) {
+          if (!this.svgPath || !fs.existsSync(this.svgPath)) {
             return;
           }
 
-          const svgFiles = this.getSvgFiles(this.iconDir);
+          const svgFiles = this.getSvgFiles(this.svgPath);
           let symbols = [];
 
           for (const filePath of svgFiles) {

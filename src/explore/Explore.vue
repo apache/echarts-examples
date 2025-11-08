@@ -15,7 +15,11 @@
                 :id="'left-chart-nav-' + category"
                 :href="'#chart-type-' + category"
               >
-                <span class="chart-icon" v-html="icons[category]"></span>
+                <span class="chart-icon">
+                  <svg role="img">
+                    <use :href="'/asset/sprite.svg#' + icons[category]"></use>
+                  </svg>
+                </span>
                 <span class="chart-name">{{
                   t('chartTypes.' + category)
                 }}</span>
@@ -73,7 +77,7 @@ import ScrollSpy from './ScrollSpy.vue';
 
 const { t } = useI18n();
 
-const icons = {};
+const icons = ref({});
 
 [
   'line',
@@ -105,10 +109,9 @@ const icons = {};
   'rich',
   'graphic'
 ].forEach(function (category) {
-  icons[category] = require('../asset/icon/' + category + '.svg?inline');
+  icons.value[category] = category;
 });
 
-const glIcon = require('../asset/icon/gl.svg?inline');
 [
   'globe',
   'bar3D',
@@ -123,7 +126,7 @@ const glIcon = require('../asset/icon/gl.svg?inline');
   'graphGL',
   'geo3D'
 ].forEach(function (category) {
-  icons[category] = glIcon;
+  icons.value[category] = 'gl';
 });
 
 const LAZY_LOADED_CLASS = 'ec-shot-loaded';
@@ -262,7 +265,7 @@ const scrollNav = (currentItem) => {
 @import '../style/config.xl.scss';
 
 $chart-nav-width: 200px;
-$chart-icon-width: 25px;
+$chart-icon-size: 20px;
 $chart-icon-border: 1px;
 
 $toolbar-height: 30px;
@@ -408,15 +411,15 @@ $pd-lg: 20px;
       }
 
       .chart-icon {
-        content: '';
-        width: 20px;
+        width: $chart-icon-size;
+        height: $chart-icon-size;
         display: inline-block;
         border-radius: 50%;
         vertical-align: middle;
 
         svg {
-          width: 100% !important;
-          height: auto !important;
+          width: 100%;
+          height: 100%;
         }
       }
 
