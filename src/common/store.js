@@ -164,7 +164,7 @@ export function loadExampleCode() {
           resolve(data);
         },
         error() {
-          reject('failed to load example', c);
+          reject(`failed to load example: ${c}`);
         }
       }
     );

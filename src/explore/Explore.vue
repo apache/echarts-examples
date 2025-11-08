@@ -1,34 +1,33 @@
 <template>
   <div id="example-explore">
     <div id="left-container" ref="leftContainer">
-      <div id="left-chart-nav">
-        <scrollactive
-          ref="scrollactive"
+      <nav id="left-chart-nav">
+        <ScrollSpy
+          ref="scrollspy"
           active-class="active"
-          :offset="80"
-          :duration="500"
           :scroll-container-selector="'#example-explore'"
-          :scroll-on-start="false"
-          :modify-url="false"
-          bezier-easing-value=".5,0,.35,1"
           @itemchanged="onActiveNavChanged"
         >
           <ul>
             <li v-for="category in EXAMPLE_CATEGORIES" :key="category">
               <a
-                class="left-chart-nav-link scrollactive-item"
+                class="left-chart-nav-link scrollspy-item"
                 :id="'left-chart-nav-' + category"
                 :href="'#chart-type-' + category"
               >
-                <span class="chart-icon" v-html="icons[category]"></span>
+                <span class="chart-icon">
+                  <svg role="img">
+                    <use :href="'/asset/sprite.svg#' + icons[category]"></use>
+                  </svg>
+                </span>
                 <span class="chart-name">{{
-                  $t('chartTypes.' + category)
+                  t('chartTypes.' + category)
                 }}</span>
               </a>
             </li>
           </ul>
-        </scrollactive>
-      </div>
+        </ScrollSpy>
+      </nav>
     </div>
     <div id="explore-container">
       <div class="example-list-panel">
@@ -37,7 +36,7 @@
             class="chart-type-head"
             :id="'chart-type-' + categoryObj.category"
           >
-            {{ $t('chartTypes.' + categoryObj.category) }}
+            {{ t('chartTypes.' + categoryObj.category) }}
             <span>{{ categoryObj.category }}</span>
           </h3>
 
@@ -57,7 +56,7 @@
       <el-switch
         v-model="shared.darkMode"
         active-color="#181432"
-        :active-text="$t('editor.darkMode')"
+        :active-text="t('editor.darkMode')"
         :inactive-text="''"
       >
       </el-switch>
@@ -65,15 +64,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
+import { computed, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { BLACK_MAP, EXAMPLE_CATEGORIES } from '../common/config';
+import { store } from '../common/store';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
-import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
-import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
+import ScrollSpy from './ScrollSpy.vue';
 
-const icons = {};
+const { t } = useI18n();
+
+const icons = ref({});
 
 [
   'line',
@@ -105,10 +109,9 @@ const icons = {};
   'rich',
   'graphic'
 ].forEach(function (category) {
-  icons[category] = require('../asset/icon/' + category + '.svg');
+  icons.value[category] = category;
 });
 
-const glIcon = require('../asset/icon/gl.svg');
 [
   'globe',
   'bar3D',
@@ -123,179 +126,136 @@ const glIcon = require('../asset/icon/gl.svg');
   'graphGL',
   'geo3D'
 ].forEach(function (category) {
-  icons[category] = glIcon;
+  icons.value[category] = 'gl';
 });
 
 const LAZY_LOADED_CLASS = 'ec-shot-loaded';
 
-export default {
-  components: {
-    ExampleCard
-  },
-
-  data() {
-    const exampleListByCategory = {};
-
-    function addExamples(list, isGL) {
-      let categoryOrder = 0;
-      // Add by category order in each example.
-      do {
-        let added = false;
-        for (let i = 0; i < list.length; i++) {
-          const example = list[i];
-          if (BLACK_MAP.hasOwnProperty(example.id)) {
-            continue;
-          }
-          if (example.noExplore) {
-            continue;
-          }
-          if (typeof example.category === 'string') {
-            example.category = [example.category];
-          }
-
-          const categoryStr = (example.category || [])[categoryOrder];
-          if (categoryStr) {
-            added = true;
-            let categoryObj = exampleListByCategory[categoryStr];
-            if (!categoryObj) {
-              categoryObj = {
-                category: categoryStr,
-                examples: []
-              };
-              exampleListByCategory[categoryStr] = categoryObj;
-            }
-            example.isGL = isGL;
-
-            categoryObj.examples.push(example);
-          }
+// Reactive data
+const shared = reactive(store);
+// Refs
+const leftContainer = useTemplateRef('leftContainer');
+const exampleListByCategory = ref({});
+const _lazyload = ref(
+  new LazyLoad({
+    // Container should be the scroll viewport.
+    // container: this.$el.querySelector('#explore-container .example-list-panel'),
+    elements_selector: '.chart-area',
+    load_delay: 400,
+    class_loaded: LAZY_LOADED_CLASS,
+    callback_error(img) {
+      const fallbackSrc = img.src;
+      const children = img.parentElement.children;
+      for (let i = 0, len = children.length; i < len; i++) {
+        const el = children[i];
+        if (el !== img) {
+          el.srcset = fallbackSrc;
         }
+      }
+    }
+  })
+);
 
-        if (!added) {
-          break;
+function addExamples(list, isGL) {
+  let categoryOrder = 0;
+  // Add by category order in each example.
+  do {
+    let added = false;
+    for (let i = 0; i < list.length; i++) {
+      const example = list[i];
+      if (BLACK_MAP.hasOwnProperty(example.id)) {
+        continue;
+      }
+      if (example.noExplore) {
+        continue;
+      }
+      if (typeof example.category === 'string') {
+        example.category = [example.category];
+      }
+
+      const categoryStr = (example.category || [])[categoryOrder];
+      if (categoryStr) {
+        added = true;
+        let categoryObj = exampleListByCategory.value[categoryStr];
+        if (!categoryObj) {
+          categoryObj = {
+            category: categoryStr,
+            examples: []
+          };
+          exampleListByCategory.value[categoryStr] = categoryObj;
         }
-      } while (++categoryOrder && categoryOrder < 4); // At most 4 category
+        example.isGL = isGL;
+
+        categoryObj.examples.push(example);
+      }
     }
 
-    addExamples(CHART_LIST, false);
-    addExamples(CHART_LIST_GL, true);
+    if (!added) {
+      break;
+    }
+  } while (++categoryOrder && categoryOrder < 4); // At most 4 category
+}
 
-    return {
-      shared: store,
+addExamples(CHART_LIST, false);
+addExamples(CHART_LIST_GL, true);
 
-      icons,
-
-      EXAMPLE_CATEGORIES,
-      // [{
-      //  category: '',
-      //  isGL: false
-      //  examples: []
-      // }]
-      exampleListByCategory
-    };
-  },
-
-  watch: {
-    'shared.darkMode'() {
-      const imgs = this.$el.querySelectorAll('img.chart-area');
+// Watch for dark mode changes
+watch(
+  () => shared.darkMode,
+  () => {
+    const el = document.getElementById('explore-container');
+    if (el) {
+      const imgs = el.querySelectorAll('img.chart-area');
       for (let i = 0; i < imgs.length; i++) {
         // Force lazyload to update
         LazyLoad.resetStatus(imgs[i]);
       }
-      this._lazyload.update();
+      _lazyload.value.update();
     }
-  },
+  }
+);
 
-  computed: {
-    exampleList() {
-      const list = [];
-      for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
-        const category = EXAMPLE_CATEGORIES[i];
-        const categoryObj = this.exampleListByCategory[category];
-        if (categoryObj && categoryObj.examples.length > 0) {
-          list.push({
-            category,
-            examples: categoryObj.examples
-          });
-        }
-      }
-      return list;
+const exampleList = computed(() => {
+  const list = [];
+  for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
+    const category = EXAMPLE_CATEGORIES[i];
+    const categoryObj = exampleListByCategory.value[category];
+    if (categoryObj && categoryObj.examples.length > 0) {
+      list.push({
+        category,
+        examples: categoryObj.examples
+      });
     }
-  },
+  }
+  return list;
+});
 
-  mounted() {
-    this._lazyload = new LazyLoad({
-      // Container should be the scroll viewport.
-      // container: this.$el.querySelector('#explore-container .example-list-panel'),
-      elements_selector: '.chart-area',
-      load_delay: 400,
-      class_loaded: LAZY_LOADED_CLASS,
-      callback_error(img) {
-        const fallbackSrc = img.src;
-        const children = img.parentElement.children;
-        for (let i = 0, len = children.length; i < len; i++) {
-          const el = children[i];
-          if (el !== img) {
-            el.srcset = fallbackSrc;
-          }
-        }
-      }
-    });
+onMounted(() => {
+  _lazyload.value.update();
+});
 
-    setTimeout(() => {
-      location.hash && this.onHashChange();
-      window.addEventListener('hashchange', this.onHashChange);
-    }, 0);
-  },
+// Methods
+const onActiveNavChanged = (data) => {
+  const { type, currentItem } = data;
+  if (!currentItem) {
+    return;
+  }
 
-  methods: {
-    onHashChange(e) {
-      console.log('onHashChange');
-      e && e.preventDefault();
+  const isByScroll = type === 'scroll';
+  isByScroll && scrollNav(currentItem);
+};
 
-      const hash = location.hash;
-      const items = this.$refs.scrollactive.items;
-      let activeItem;
-      for (let i = 0, len = items.length, item; i < len; i++) {
-        item = items[i];
-        if (item.hash === hash) {
-          activeItem = item;
-          break;
-        }
-      }
-      if (!activeItem) {
-        return;
-      }
-      activeItem.click();
-      this.scrollNav(activeItem);
-    },
-    onActiveNavChanged(event, currentItem) {
-      if (!currentItem) {
-        return;
-      }
-
-      const isByScroll = event && event.type === 'scroll';
-      isByScroll && this.scrollNav(currentItem);
-
-      // change url
-      if (location.href !== currentItem.href) {
-        history.pushState(null, null, currentItem.href);
-      }
-    },
-    scrollNav(currentItem) {
-      // scroll nav
-      const leftContainer = this.$refs.leftContainer;
-      const containerOffsetHeight = leftContainer.offsetHeight;
-      const rect = currentItem.parentElement.getBoundingClientRect();
-      if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
-        const scrollTop =
-          currentItem.offsetTop -
-          containerOffsetHeight +
-          currentItem.offsetHeight;
-        leftContainer.scrollTo
-          ? leftContainer.scrollTo(0, scrollTop)
-          : (leftContainer.scrollTop = scrollTop);
-      }
-    }
+const scrollNav = (currentItem) => {
+  // scroll nav
+  if (!leftContainer.value) return;
+  const containerOffsetHeight = leftContainer.value.offsetHeight;
+  const rect = currentItem.parentElement.getBoundingClientRect();
+  if (rect.top < 0 || rect.bottom > containerOffsetHeight) {
+    const scrollTop =
+      currentItem.offsetTop - containerOffsetHeight + currentItem.offsetHeight;
+    leftContainer.value.scrollTo
+      ? leftContainer.value.scrollTo(0, scrollTop)
+      : (leftContainer.value.scrollTop = scrollTop);
   }
 };
 </script>
@@ -305,7 +265,7 @@ export default {
 @import '../style/config.xl.scss';
 
 $chart-nav-width: 200px;
-$chart-icon-width: 25px;
+$chart-icon-size: 20px;
 $chart-icon-border: 1px;
 
 $toolbar-height: 30px;
@@ -451,15 +411,15 @@ $pd-lg: 20px;
       }
 
       .chart-icon {
-        content: '';
-        width: 20px;
+        width: $chart-icon-size;
+        height: $chart-icon-size;
         display: inline-block;
         border-radius: 50%;
         vertical-align: middle;
 
         svg {
-          width: 100% !important;
-          height: auto !important;
+          width: 100%;
+          height: 100%;
         }
       }
 

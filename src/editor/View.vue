@@ -2,23 +2,20 @@
   <preview></preview>
 </template>
 
-<script>
+<script setup>
+import { onMounted, reactive } from 'vue';
+import { loadExampleCode, parseSourceCode, store } from '../common/store';
 import Preview from './Preview.vue';
-import { store, loadExampleCode, parseSourceCode } from '../common/store';
 
-export default {
-  components: {
-    Preview
-  },
+const shared = reactive(store);
 
-  mounted() {
-    loadExampleCode().then((code) => {
-      // set sourceCode here as there is no editor in view mode
-      store.sourceCode =
-        store.initialCode =
-        store.runCode =
-          parseSourceCode(code);
-    });
-  }
-};
+onMounted(() => {
+  loadExampleCode().then((code) => {
+    // set sourceCode here as there is no editor in view mode
+    shared.sourceCode =
+      shared.initialCode =
+      shared.runCode =
+        parseSourceCode(code);
+  });
+});
 </script>
