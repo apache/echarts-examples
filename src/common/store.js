@@ -140,8 +140,8 @@ export function loadExampleCode() {
         code =
           URL_PARAMS.enc === 'deflate'
             ? decompressStrDeflate(code)
-              ? URL_PARAMS.enc === 'base64'
-              : decodeBase64(code)
+            : URL_PARAMS.enc === 'base64'
+            ? decodeBase64(code)
             : // for backward compatibility
               decompressStrLZString(code);
         // not considered as shared code if it's opened by echarts website like echarts-doc

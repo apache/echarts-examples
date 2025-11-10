@@ -123,7 +123,7 @@ export function decompressStrLZString(str) {
 
 export function compressStrDeflate(str) {
   if (!str || !(str = str.trim())) {
-    return Promise.resolve();
+    return;
   }
   const uint8Array = fflate.deflateSync(fflate.strToU8(str), {
     level: 9,
@@ -142,7 +142,7 @@ export function compressStrDeflate(str) {
 
 export function decompressStrDeflate(str) {
   if (!str || !(str = str.trim())) {
-    return Promise.resolve();
+    return;
   }
   const uint8Array = Uint8Array.fromBase64
     ? Uint8Array.fromBase64(str, { alphabet: 'base64url' })
