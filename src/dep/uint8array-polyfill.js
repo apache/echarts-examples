@@ -129,7 +129,6 @@ function skipAsciiWhitespace(string, index) {
 }
 
 function fromBase64(string, alphabet, lastChunkHandling, maxLength) {
-  debugger;
   if (maxLength === 0) {
     return { read: 0, bytes: [], error: null };
   }
