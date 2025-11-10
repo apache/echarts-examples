@@ -1,6 +1,11 @@
 import { store } from './store';
 import { getScriptURLs } from './config';
-import { compressToBase64, decompressFromBase64 } from 'lz-string';
+import * as lz from 'lz-string';
+import * as fflate from 'fflate';
+import {
+  uint8ArrayToBase64,
+  base64ToUint8Array
+} from '../dep/uint8array-polyfill';
 
 const promisesCache = {};
 
@@ -94,25 +99,55 @@ export function formatCode(code) {
   });
 }
 
-export function compressStr(str) {
+export function compressStrLZString(str) {
   if (!str || !(str = str.trim())) {
     return;
   }
-  return compressToBase64(str)
+  return lz
+    .compressToBase64(str)
     .replace(/\+/g, '-') // Convert '+' to '-'
     .replace(/\//g, '_') // Convert '/' to '_'
     .replace(/=+$/, ''); // Remove ending '='
 }
 
-export function decompressStr(str) {
+export function decompressStrLZString(str) {
   if (!str || !(str = str.trim())) {
     return;
   }
-  return decompressFromBase64(
+  return lz.decompressFromBase64(
     str
       .replace(/\-/g, '+') // Convert '-' to '+'
       .replace(/_/g, '/') // Convert '_' to '/'
   );
+}
+
+export function compressStrDeflate(str) {
+  if (!str || !(str = str.trim())) {
+    return Promise.resolve();
+  }
+  const uint8Array = fflate.deflateSync(fflate.strToU8(str), {
+    level: 9,
+    mem: 12
+  });
+  return uint8Array.toBase64
+    ? uint8Array.toBase64({
+        alphabet: 'base64url',
+        omitPadding: true
+      })
+    : uint8ArrayToBase64(uint8Array, {
+        alphabet: 'base64url',
+        omitPadding: true
+      });
+}
+
+export function decompressStrDeflate(str) {
+  if (!str || !(str = str.trim())) {
+    return Promise.resolve();
+  }
+  const uint8Array = Uint8Array.fromBase64
+    ? Uint8Array.fromBase64(str, { alphabet: 'base64url' })
+    : base64ToUint8Array(str, { alphabet: 'base64url' }).bytes;
+  return fflate.strFromU8(fflate.inflateSync(uint8Array));
 }
 
 export function isTrustedOpener() {

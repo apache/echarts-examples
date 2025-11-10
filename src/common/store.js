@@ -3,8 +3,9 @@ import { CDN_ROOT, URL_PARAMS } from '../common/config';
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import {
-  compressStr,
-  decompressStr,
+  compressStrDeflate,
+  decompressStrDeflate,
+  decompressStrLZString,
   decodeBase64,
   isTrustedOpener
 } from './helper';
@@ -95,7 +96,7 @@ export const CODE_CHANGED_FLAG = '__CODE_CHANGED__';
 export function saveExampleCodeToLocal() {
   localStorage.setItem(
     LOCAL_EXAMPLE_CODE_STORE_KEY,
-    compressStr(
+    compressStrDeflate(
       JSON.stringify({
         code: store.sourceCode,
         codeModified: store.initialCode !== store.sourceCode,
@@ -108,7 +109,7 @@ export function saveExampleCodeToLocal() {
 export function loadExampleCodeFromLocal() {
   try {
     return JSON.parse(
-      decompressStr(localStorage.getItem(LOCAL_EXAMPLE_CODE_STORE_KEY))
+      decompressStrDeflate(localStorage.getItem(LOCAL_EXAMPLE_CODE_STORE_KEY))
     );
   } catch (e) {
     return null;
@@ -137,9 +138,12 @@ export function loadExampleCode() {
         // PENDING fallback to `c` if the decompressed code is not available?
         // TODO: auto-detect the encoder type?
         code =
-          URL_PARAMS.enc === 'base64'
-            ? decodeBase64(code)
-            : decompressStr(code);
+          URL_PARAMS.enc === 'deflate'
+            ? decompressStrDeflate(code)
+              ? URL_PARAMS.enc === 'base64'
+              : decodeBase64(code)
+            : // for backward compatibility
+              decompressStrLZString(code);
         // not considered as shared code if it's opened by echarts website like echarts-doc
         store.isSharedCode = !isTrustedOpener() && !!code;
         // clear the opener

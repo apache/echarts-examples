@@ -155,7 +155,7 @@ import {
   isValidPRVersion
 } from '../common/store';
 import { getScriptURLs, URL_PARAMS } from '../common/config';
-import { compressStr } from '../common/helper';
+import { compressStrDeflate } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
 import { download } from './downloadExample';
@@ -499,8 +499,9 @@ export default {
     getSharableURL(raw) {
       const params = {};
       if (store.initialCode !== store.sourceCode) {
-        params.code = compressStr(store.sourceCode);
-        params.enc = null;
+        params.code = compressStrDeflate(store.sourceCode);
+        // explicitly mark as deflate encoded for backward compatibility
+        params.enc = 'deflate';
       }
       return getURL(
         {
