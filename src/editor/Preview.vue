@@ -518,7 +518,8 @@ export default {
       }
       ctx.isShareBusy = true;
       const sharableURL = ctx.getSharableURL();
-      if (sharableURL.length < 1e4) {
+      // currently ASF server has a limit of approx 8204 characters
+      if (sharableURL.length < 8000) {
         return copyToClipboard(sharableURL);
       }
       // test whether the sharable URL is valid
@@ -536,6 +537,7 @@ export default {
               customClass: 'toast-declaration'
             });
           } else {
+            // might be another error but we can still try to copy the URL
             copyToClipboard(sharableURL);
           }
         }
