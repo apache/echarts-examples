@@ -63,6 +63,17 @@ export default [
   },
   {
     "category": [
+      "chord"
+    ],
+    "id": "chord-simple",
+    "ts": true,
+    "tags": [],
+    "title": "Basic Chord",
+    "titleCN": "基础和弦图",
+    "difficulty": 0
+  },
+  {
+    "category": [
       "dataset",
       "bar",
       "transform"
@@ -217,6 +228,17 @@ export default [
     "tags": [],
     "title": "Calendar Heatmap Vertical",
     "titleCN": "纵向日历图",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "chord"
+    ],
+    "id": "chord-minAngle",
+    "ts": true,
+    "tags": [],
+    "title": "Chord minAngle",
+    "titleCN": "和弦图 minAngle",
     "difficulty": 1
   },
   {
@@ -953,6 +975,17 @@ export default [
     "tags": [],
     "title": "Large Scale Candlestick",
     "titleCN": "大数据量K线图",
+    "difficulty": 3
+  },
+  {
+    "category": [
+      "chord"
+    ],
+    "id": "chord-lineStyle-color",
+    "ts": true,
+    "tags": [],
+    "title": "Chord lineStyle.color",
+    "titleCN": "和弦图边的颜色",
     "difficulty": 3
   },
   {
@@ -2507,6 +2540,17 @@ export default [
     "tags": [],
     "title": "ShangHai Index, 2015",
     "titleCN": "2015 年上证指数",
+    "difficulty": 10
+  },
+  {
+    "category": [
+      "chord"
+    ],
+    "id": "chord-style",
+    "ts": true,
+    "tags": [],
+    "title": "Chord Style",
+    "titleCN": "和弦图样式",
     "difficulty": 10
   },
   {

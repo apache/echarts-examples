@@ -110,6 +110,7 @@ export default {
       themeRiver: 'ThemeRiver',
       calendar: 'Calendar',
       matrix: 'Matrix',
+      chord: 'Chord',
       custom: 'Custom',
 
       dataset: 'Dataset',
@@ -241,6 +242,7 @@ export default {
       themeRiver: '主题河流图',
       calendar: '日历坐标系',
       matrix: '矩阵坐标系',
+      chord: '和弦图',
       custom: '自定义系列',
 
       dataset: '数据集',
