@@ -21,6 +21,7 @@ export const EXAMPLE_CATEGORIES = [
   'themeRiver',
   'calendar',
   'matrix',
+  'chord',
   'custom',
 
   'dataset',
@@ -40,31 +41,6 @@ export const EXAMPLE_CATEGORIES = [
   'flowGL',
   'graphGL'
 ];
-
-export const THEMES = {
-  default: [
-    '#5470c6',
-    '#91cc75',
-    '#fac858',
-    '#ee6666',
-    '#73c0de',
-    '#3ba272',
-    '#fc8452',
-    '#9a60b4',
-    '#ea7ccc'
-  ],
-  dark: [
-    '#4992ff',
-    '#7cffb2',
-    '#fddd60',
-    '#ff6e76',
-    '#58d9f9',
-    '#05c091',
-    '#ff8a45',
-    '#8d48e3',
-    '#dd79ff'
-  ]
-};
 
 export const BLACK_MAP = (function (list) {
   const map = {};

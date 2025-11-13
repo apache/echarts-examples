@@ -3,6 +3,7 @@ title: Chord minAngle
 category: chord
 titleCN: 和弦图 minAngle
 difficulty: 1
+since: 6.0.0
 */
 
 option = {

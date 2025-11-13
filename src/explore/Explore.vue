@@ -95,6 +95,7 @@ const icons = {};
   'themeRiver',
   'calendar',
   'matrix',
+  'chord',
   'custom',
   'sunburst',
   'tree',

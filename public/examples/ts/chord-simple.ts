@@ -3,6 +3,7 @@ title: Basic Chord
 category: chord
 titleCN: 基础和弦图
 difficulty: 0
+since: 6.0.0
 */
 
 option = {

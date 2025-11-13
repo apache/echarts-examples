@@ -3,6 +3,7 @@ title: Chord Style
 category: chord
 titleCN: 和弦图样式
 difficulty: 10
+since: 6.0.0
 */
 
 option = {
