@@ -70,7 +70,8 @@ export default [
     "tags": [],
     "title": "Basic Chord",
     "titleCN": "基础和弦图",
-    "difficulty": 0
+    "difficulty": 0,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -239,7 +240,8 @@ export default [
     "tags": [],
     "title": "Chord minAngle",
     "titleCN": "和弦图 minAngle",
-    "difficulty": 1
+    "difficulty": 1,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -986,7 +988,8 @@ export default [
     "tags": [],
     "title": "Chord lineStyle.color",
     "titleCN": "和弦图边的颜色",
-    "difficulty": 3
+    "difficulty": 3,
+    "since": "6.0.0"
   },
   {
     "category": [
@@ -2551,7 +2554,8 @@ export default [
     "tags": [],
     "title": "Chord Style",
     "titleCN": "和弦图样式",
-    "difficulty": 10
+    "difficulty": 10,
+    "since": "6.0.0"
   },
   {
     "category": [
