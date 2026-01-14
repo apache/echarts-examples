@@ -3239,7 +3239,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/aria-decal",
+    "id": "doc-example\\aria-decal",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3247,7 +3247,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/aria-decal-newspaper",
+    "id": "doc-example\\aria-decal-newspaper",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3255,7 +3255,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/aria-decal-simple",
+    "id": "doc-example\\aria-decal-simple",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3263,7 +3263,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/aria-pie",
+    "id": "doc-example\\aria-pie",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3271,7 +3271,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/axis-label-align-min-max",
+    "id": "doc-example\\axis-label-align-min-max",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3279,7 +3279,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/axisPointer-handle-image",
+    "id": "doc-example\\axisPointer-handle-image",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3287,7 +3287,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/bar-dataZoom-filterMode",
+    "id": "doc-example\\bar-dataZoom-filterMode",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3295,7 +3295,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/bar-large",
+    "id": "doc-example\\bar-large",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3303,7 +3303,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/bar-media-timeline",
+    "id": "doc-example\\bar-media-timeline",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3311,7 +3311,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/barGrid-barGap",
+    "id": "doc-example\\barGrid-barGap",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3319,7 +3319,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/candlestick-axisPointer",
+    "id": "doc-example\\candlestick-axisPointer",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3327,7 +3327,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/canvas-vs-svg",
+    "id": "doc-example\\canvas-vs-svg",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3335,7 +3335,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/canvas-vs-svg-en",
+    "id": "doc-example\\canvas-vs-svg-en",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3343,7 +3343,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/custom-transition-simple",
+    "id": "doc-example\\custom-transition-simple",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3351,7 +3351,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/data-transform-multiple-sort-bar",
+    "id": "doc-example\\data-transform-multiple-sort-bar",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3359,7 +3359,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/dataset-encode-simple0",
+    "id": "doc-example\\dataset-encode-simple0",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3367,7 +3367,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/geo-roam-indicator",
+    "id": "doc-example\\geo-roam-indicator",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3377,7 +3377,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/geo-svg-label-basic",
+    "id": "doc-example\\geo-svg-label-basic",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3385,7 +3385,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/geo-svg-layout-basic",
+    "id": "doc-example\\geo-svg-layout-basic",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3393,7 +3393,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/geo-svg-named-basic",
+    "id": "doc-example\\geo-svg-named-basic",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3401,7 +3401,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/getting-started",
+    "id": "doc-example\\getting-started",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3409,7 +3409,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/graph-roam-indicator",
+    "id": "doc-example\\graph-roam-indicator",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3419,7 +3419,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/graphic-bounding",
+    "id": "doc-example\\graphic-bounding",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3427,7 +3427,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/grid-outerBounds",
+    "id": "doc-example\\grid-outerBounds",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3437,7 +3437,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/label-position",
+    "id": "doc-example\\label-position",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3445,7 +3445,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/line-stack-tiled",
+    "id": "doc-example\\line-stack-tiled",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3453,7 +3453,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/map-example",
+    "id": "doc-example\\map-example",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3461,7 +3461,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/map-visualMap-continuous",
+    "id": "doc-example\\map-visualMap-continuous",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3469,7 +3469,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/map-visualMap-continuous-text",
+    "id": "doc-example\\map-visualMap-continuous-text",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3477,7 +3477,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/map-visualMap-pieces",
+    "id": "doc-example\\map-visualMap-pieces",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3485,7 +3485,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/map-visualMap-piecewise-text",
+    "id": "doc-example\\map-visualMap-piecewise-text",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3493,7 +3493,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/matrix-graph-box",
+    "id": "doc-example\\matrix-graph-box",
     "ts": true,
     "tags": [],
     "noExplore": true,
@@ -3502,7 +3502,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/mix-timeline-all",
+    "id": "doc-example\\mix-timeline-all",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3510,7 +3510,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/parallel-all",
+    "id": "doc-example\\parallel-all",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3518,7 +3518,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-clip",
+    "id": "doc-example\\pictorialBar-clip",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3526,7 +3526,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-graphicType",
+    "id": "doc-example\\pictorialBar-graphicType",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3534,7 +3534,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-patternSize",
+    "id": "doc-example\\pictorialBar-patternSize",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3542,7 +3542,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-position",
+    "id": "doc-example\\pictorialBar-position",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3550,7 +3550,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-repeat",
+    "id": "doc-example\\pictorialBar-repeat",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3558,7 +3558,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-repeatDirection",
+    "id": "doc-example\\pictorialBar-repeatDirection",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3566,7 +3566,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-repeatLayout",
+    "id": "doc-example\\pictorialBar-repeatLayout",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3574,7 +3574,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-symbolBoundingDataArray",
+    "id": "doc-example\\pictorialBar-symbolBoundingDataArray",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3582,7 +3582,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pictorialBar-symbolSize",
+    "id": "doc-example\\pictorialBar-symbolSize",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3590,7 +3590,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pie-highlight",
+    "id": "doc-example\\pie-highlight",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3598,7 +3598,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pie-label-bleedMargin",
+    "id": "doc-example\\pie-label-bleedMargin",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3606,7 +3606,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pie-label-distanceToLabelLine",
+    "id": "doc-example\\pie-label-distanceToLabelLine",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3614,7 +3614,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pie-label-margin",
+    "id": "doc-example\\pie-label-margin",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3622,7 +3622,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/pie-media",
+    "id": "doc-example\\pie-media",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3630,7 +3630,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/polar-anticlockwise",
+    "id": "doc-example\\polar-anticlockwise",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3638,7 +3638,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/polar-end-angle",
+    "id": "doc-example\\polar-end-angle",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3646,7 +3646,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/polar-start-angle",
+    "id": "doc-example\\polar-start-angle",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3654,7 +3654,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/radar",
+    "id": "doc-example\\radar",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3662,7 +3662,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-dataZoom-all",
+    "id": "doc-example\\scatter-dataZoom-all",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3670,7 +3670,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-jitter-avoidOverlap",
+    "id": "doc-example\\scatter-jitter-avoidOverlap",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3678,7 +3678,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-tutorial-dataZoom-1",
+    "id": "doc-example\\scatter-tutorial-dataZoom-1",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3686,7 +3686,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-tutorial-dataZoom-2",
+    "id": "doc-example\\scatter-tutorial-dataZoom-2",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3694,7 +3694,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-tutorial-dataZoom-3",
+    "id": "doc-example\\scatter-tutorial-dataZoom-3",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3702,7 +3702,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-visualMap-categories",
+    "id": "doc-example\\scatter-visualMap-categories",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3710,7 +3710,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/scatter-visualMap-piecewise",
+    "id": "doc-example\\scatter-visualMap-piecewise",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3718,7 +3718,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/sunburst-color",
+    "id": "doc-example\\sunburst-color",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3726,7 +3726,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/sunburst-highlight-ancestor",
+    "id": "doc-example\\sunburst-highlight-ancestor",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3734,7 +3734,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/sunburst-highlight-descendant",
+    "id": "doc-example\\sunburst-highlight-descendant",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3742,7 +3742,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/sunburst-label-align",
+    "id": "doc-example\\sunburst-label-align",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3750,7 +3750,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/sunburst-simple",
+    "id": "doc-example\\sunburst-simple",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3758,7 +3758,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/text-block-fragment",
+    "id": "doc-example\\text-block-fragment",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3766,7 +3766,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/text-fregment-align",
+    "id": "doc-example\\text-fregment-align",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3774,7 +3774,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/text-options",
+    "id": "doc-example\\text-options",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3782,7 +3782,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/timeline-dynamic-series",
+    "id": "doc-example\\timeline-dynamic-series",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3790,7 +3790,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/title-block",
+    "id": "doc-example\\title-block",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3798,7 +3798,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/treemap-borderColor",
+    "id": "doc-example\\treemap-borderColor",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3806,7 +3806,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-async",
+    "id": "doc-example\\tutorial-async",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3814,7 +3814,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-dynamic-data",
+    "id": "doc-example\\tutorial-dynamic-data",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3822,7 +3822,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-loading",
+    "id": "doc-example\\tutorial-loading",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3830,7 +3830,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-styling-step0",
+    "id": "doc-example\\tutorial-styling-step0",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3838,7 +3838,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-styling-step1",
+    "id": "doc-example\\tutorial-styling-step1",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3846,7 +3846,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-styling-step2",
+    "id": "doc-example\\tutorial-styling-step2",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3854,7 +3854,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-styling-step3",
+    "id": "doc-example\\tutorial-styling-step3",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3862,7 +3862,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-styling-step4",
+    "id": "doc-example\\tutorial-styling-step4",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3870,7 +3870,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/tutorial-styling-step5",
+    "id": "doc-example\\tutorial-styling-step5",
     "ts": false,
     "tags": [],
     "noExplore": true,
@@ -3878,7 +3878,7 @@ export default [
   },
   {
     "category": [],
-    "id": "doc-example/value-animation-simple",
+    "id": "doc-example\\value-animation-simple",
     "ts": false,
     "tags": [],
     "noExplore": true,
