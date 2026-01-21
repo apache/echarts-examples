@@ -12,7 +12,7 @@ $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
   myChart.setOption(
     (option = {
       title: {
-        text: 'Node Align Right'
+        text: 'Node Align Left'
       },
       tooltip: {
         trigger: 'item',

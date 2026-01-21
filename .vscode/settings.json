@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": null,
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "typescript.tsdk": "node_modules/typescript/lib"
