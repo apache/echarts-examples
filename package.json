@@ -70,7 +70,7 @@
     "codesandbox": "^2.2.3",
     "compare-versions": "^6.1.1",
     "fflate": "^0.8.2",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "lz-string": "^1.5.0",
     "nanoid": "^5.1.6",
     "prettier": "^2.7.1",
