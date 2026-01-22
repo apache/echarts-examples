@@ -1,7 +1,7 @@
 /*
 title: Buildings
 category: map3D
-titleCN: Buildings
+titleCN: 三维建筑
 */
 
 $.getJSON(

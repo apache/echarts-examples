@@ -127,7 +127,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Referer of a Website",
-    "titleCN": "某站点用户Access From",
+    "titleCN": "某站点用户访问来源",
     "difficulty": 0
   },
   {
@@ -318,7 +318,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Stacked Line Chart",
-    "titleCN": "折线图堆叠",
+    "titleCN": "堆叠折线图",
     "difficulty": 1
   },
   {
@@ -418,7 +418,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Anscomb's quartet",
-    "titleCN": "Anscomb's quartet",
+    "titleCN": "安斯库姆四重奏",
     "difficulty": 1
   },
   {
@@ -1043,7 +1043,7 @@ export default [
     "ts": false,
     "tags": [],
     "title": "Cycle Plot",
-    "titleCN": "Cycle Plot",
+    "titleCN": "周期图",
     "difficulty": 3
   },
   {
@@ -1327,7 +1327,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Monochrome Sunburst",
-    "titleCN": "Monochrome Sunburst",
+    "titleCN": "单色旭日图",
     "difficulty": 3
   },
   {
@@ -1517,7 +1517,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Rainfall vs Evaporation",
-    "titleCN": "雨量Evaporation关系图",
+    "titleCN": "雨量-蒸发量关系图",
     "difficulty": 4
   },
   {
@@ -1986,7 +1986,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Drink Flavors",
-    "titleCN": "Drink Flavors",
+    "titleCN": "饮品风味分类",
     "difficulty": 5
   },
   {
@@ -2191,6 +2191,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Bar Chart on Polar",
+    "titleCN": "极坐标系下的柱状图",
     "difficulty": 7
   },
   {
@@ -2257,7 +2258,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Graph Life Expectancy",
-    "titleCN": "Graph Life Expectancy",
+    "titleCN": "预期寿命",
     "difficulty": 7
   },
   {
@@ -2357,7 +2358,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Gauge Car",
-    "titleCN": "Gauge Car",
+    "titleCN": "汽车仪表盘",
     "difficulty": 8
   },
   {
@@ -2480,7 +2481,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Master Painter Color Choices Throughout History",
-    "titleCN": "Master Painter Color Choices Throughout History",
+    "titleCN": "历代绘画大师的色彩运用",
     "difficulty": 9
   },
   {
@@ -2612,7 +2613,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Multiple Funnels",
-    "titleCN": "Funnel",
+    "titleCN": "多漏斗图",
     "difficulty": 10
   },
   {
@@ -2711,7 +2712,7 @@ export default [
     "ts": false,
     "tags": [],
     "title": "Wave Animation",
-    "titleCN": null,
+    "titleCN": "波浪动画",
     "difficulty": 10
   },
   {
@@ -2768,8 +2769,8 @@ export default [
     "id": "lines-ny",
     "ts": true,
     "tags": [],
-    "title": "Use lines to draw 1 million ny streets.",
-    "titleCN": "使用线图绘制近 100 万的纽约街道数据",
+    "title": "Use lines to draw 1 million New York streets",
+    "titleCN": "使用线图绘制近100万纽约街道数据",
     "difficulty": 10
   },
   {
@@ -2971,7 +2972,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "ThemeRiver Lastfm",
-    "titleCN": "ThemeRiver Lastfm",
+    "titleCN": "Lastfm 主题河流图",
     "difficulty": 10
   },
   {
@@ -3081,7 +3082,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "How $3.7 Trillion is Spent",
-    "titleCN": "How $3.7 Trillion is Spent",
+    "titleCN": "3.7 万亿美元支出构成",
     "difficulty": 10
   },
   {
@@ -3137,7 +3138,7 @@ export default [
     "ts": false,
     "tags": [],
     "title": "Circle Packing with d3",
-    "titleCN": "Circle Packing with d3",
+    "titleCN": "基于 d3 的圆形包络图",
     "difficulty": 11
   },
   {

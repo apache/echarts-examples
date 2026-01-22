@@ -1,7 +1,7 @@
 /*
 title: Referer of a Website
 category: pie
-titleCN: 某站点用户Access From
+titleCN: 某站点用户访问来源
 difficulty: 0
 */
 

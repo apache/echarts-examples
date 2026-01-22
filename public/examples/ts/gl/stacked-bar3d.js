@@ -1,7 +1,7 @@
 /*
 title: Stacked Bar3D
 category: bar3D
-titleCN: Stacked Bar3D
+titleCN: 三维堆叠柱状图
 */
 
 $.getScript(CDN_PATH + 'simplex-noise@2.4.0/simplex-noise.js').done(

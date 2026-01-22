@@ -1,7 +1,7 @@
 /*
 title: Contour Paint
 category: globe
-titleCN: Contour Paint
+titleCN: 等值线渲染
 */
 
 var config = {

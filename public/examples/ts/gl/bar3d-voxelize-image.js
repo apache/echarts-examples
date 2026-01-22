@@ -1,7 +1,7 @@
 /*
 title: Voxelize image
 category: bar3D
-titleCN: Voxelize image
+titleCN: 图像体素化
 */
 
 var canvas = document.createElement('canvas');

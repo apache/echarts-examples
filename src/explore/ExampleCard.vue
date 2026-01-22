@@ -13,7 +13,9 @@
       </div>
       <div>
         <div class="example-title" :title="title">{{ title }}</div>
-        <div class="example-subtitle" v-if="showSubtitle">{{ subtitle }}</div>
+        <div v-if="showSubtitle" class="example-subtitle" :title="subtitle">
+          {{ subtitle }}
+        </div>
       </div>
     </div>
   </div>
@@ -45,8 +47,10 @@ export default {
     },
 
     hasVersionSince() {
-      return this.example.since
-        && compareVersions(store.echartsFullVersion, this.example.since) >= 0;
+      return (
+        this.example.since &&
+        compareVersions(store.echartsFullVersion, this.example.since) >= 0
+      );
     },
 
     versionSinceBanner() {

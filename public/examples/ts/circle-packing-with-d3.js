@@ -1,7 +1,7 @@
 /*
 title: Circle Packing with d3
 category: custom
-titleCN: Circle Packing with d3
+titleCN: 基于 d3 的圆形包络图
 difficulty: 11
 */
 

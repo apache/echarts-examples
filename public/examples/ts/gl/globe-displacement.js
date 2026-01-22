@@ -1,7 +1,7 @@
 /*
 title: Globe Displacement
 category: globe
-titleCN: Globe Displacement
+titleCN: 地形位移
 */
 
 option = {

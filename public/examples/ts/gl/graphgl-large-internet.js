@@ -2,7 +2,7 @@
 title: GraphGL - Large Internet
 category: graphGL
 theme: dark
-titleCN: GraphGL - Large Internet
+titleCN: GraphGL - 大规模互联网图谱
 shotDelay: 10000
 shotWidth: 1920
 */

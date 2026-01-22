@@ -1,7 +1,7 @@
 /*
 title: ThemeRiver Lastfm
 category: themeRiver
-titleCN: ThemeRiver Lastfm
+titleCN: Lastfm 主题河流图
 */
 
 // From https://github.com/jsundram/streamgraph.js/blob/master/examples/data/lastfm.js

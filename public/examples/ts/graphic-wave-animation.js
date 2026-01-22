@@ -1,7 +1,7 @@
 /*
 title: Wave Animation
 category: graphic
-titleCN:
+titleCN: 波浪动画
 difficulty: 10
 videoStart: 1000
 videoEnd: 5000

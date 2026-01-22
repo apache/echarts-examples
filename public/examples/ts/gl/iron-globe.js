@@ -1,7 +1,7 @@
 /*
 title: Iron globe
 category: globe
-titleCN: Iron globe
+titleCN: 铁质感地球
 */
 
 option = {

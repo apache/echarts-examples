@@ -1,7 +1,7 @@
 /*
 title: Bar3D - Myth
 category: bar3D
-titleCN: 星云
+titleCN: Bar3D - 星云
 */
 
 var img = new Image();

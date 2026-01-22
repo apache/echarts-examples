@@ -2,7 +2,7 @@
 title: Scatter3D - Orthographic
 category: scatter3D
 theme: dark
-titleCN: 三维散点图正交投影
+titleCN: 三维散点图 - 正交投影
 */
 
 $.getScript(CDN_PATH + 'simplex-noise@2.4.0/simplex-noise.js').done(

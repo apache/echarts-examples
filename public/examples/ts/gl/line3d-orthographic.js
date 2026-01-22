@@ -1,7 +1,7 @@
 /*
-title: Orthographic Projection
+title: Line3D - Orthographic Projection
 category: line3D
-titleCN: 三维折线图正交投影
+titleCN: 三维折线图 - 正交投影
 */
 
 var data = [];

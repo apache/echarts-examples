@@ -1,7 +1,7 @@
 /*
 title: Noise modified from marpi's demo
 category: bar3D
-titleCN: Noise modified from marpi's demo
+titleCN: 基于 marpi 示例修改的噪声效果
 */
 
 $.getScript(CDN_PATH + 'simplex-noise@2.4.0/simplex-noise.js').done(

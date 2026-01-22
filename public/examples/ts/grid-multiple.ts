@@ -1,7 +1,7 @@
 /*
 title: Rainfall vs Evaporation
 category: line
-titleCN: 雨量Evaporation关系图
+titleCN: 雨量-蒸发量关系图
 difficulty: 4
 */
 

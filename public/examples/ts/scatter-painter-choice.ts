@@ -1,7 +1,7 @@
 /*
 title: Master Painter Color Choices Throughout History
 category: scatter
-titleCN: Master Painter Color Choices Throughout History
+titleCN: 历代绘画大师的色彩运用
 difficulty: 9
 */
 

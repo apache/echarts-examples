@@ -1,7 +1,7 @@
 /*
-title: Scatter3D - Globe Population
+title: Scatter3D - Global Population
 category: scatter3D
-titleCN: Scatter3D - Globe Population
+titleCN: 三维散点图 - 全球人口分布
 */
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/population.json', function (data) {

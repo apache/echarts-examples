@@ -1,7 +1,7 @@
 /*
 title: Drink Flavors
 category: sunburst
-titleCN: Drink Flavors
+titleCN: 饮品风味分类
 shotWidth: 1000
 difficulty: 5
 */

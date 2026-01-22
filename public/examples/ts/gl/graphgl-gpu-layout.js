@@ -1,8 +1,8 @@
 /*
-title: GraphGL GPU Layout
+title: GraphGL - GPU Layout
 category: graphGL
 theme: dark
-titleCN: GraphGL GPU Layout
+titleCN: GraphGL - GPU 布局
 videoStart: 0
 videoEnd: 10000
 shotWidth: 1280

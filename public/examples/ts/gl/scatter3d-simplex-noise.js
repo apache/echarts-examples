@@ -2,7 +2,7 @@
 title: Scatter3D - Simplex Noise
 category: scatter3D
 theme: dark
-titleCN: Scatter3D - Simplex Noise
+titleCN: 三维散点图 - 单纯形噪声
 */
 
 $.getScript(CDN_PATH + 'simplex-noise@2.4.0/simplex-noise.js').done(

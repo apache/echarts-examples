@@ -2,7 +2,7 @@
 title: Scatter3D
 category: scatter3D
 theme: dark
-titleCN: Scatter3D
+titleCN: 三维散点图
 */
 
 var indices = {

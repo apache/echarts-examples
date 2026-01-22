@@ -1,7 +1,7 @@
 /*
 title: Multiple Funnels
 category: funnel
-titleCN: Funnel
+titleCN: 多漏斗图
 */
 
 option = {

@@ -1,7 +1,7 @@
 /*
 title: Monochrome Sunburst
 category: sunburst
-titleCN: Monochrome Sunburst
+titleCN: 单色旭日图
 difficulty: 3
 */
 

@@ -1,7 +1,7 @@
 /*
 title: Metal Bar3D
 category: bar3D
-titleCN: Metal Bar3D
+titleCN: 三维柱状图 - 金属质感
 */
 
 $.getScript(CDN_PATH + 'simplex-noise@2.4.0/simplex-noise.js').done(

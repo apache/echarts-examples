@@ -1,7 +1,7 @@
 /*
 title: Stacked Line Chart
 category: line
-titleCN: 折线图堆叠
+titleCN: 堆叠折线图
 difficulty: 1
 */
 

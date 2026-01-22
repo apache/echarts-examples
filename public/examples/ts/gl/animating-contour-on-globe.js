@@ -1,7 +1,7 @@
 /*
 title: Animating Contour on Globe
 category: globe
-titleCN: Animating Contour on Globe
+titleCN: 地球等值线动画
 videoStart: 2000
 videoEnd: 6000
 */

@@ -1,7 +1,7 @@
 /*
 title: Image to Bar3D
 category: bar3D
-titleCN: Image to Bar3D
+titleCN: 图像转三维柱状图
 */
 
 var img = new Image();

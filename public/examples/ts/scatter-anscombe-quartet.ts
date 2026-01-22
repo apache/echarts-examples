@@ -1,7 +1,7 @@
 /*
 title: Anscomb's quartet
 category: scatter
-titleCN: Anscomb's quartet
+titleCN: 安斯库姆四重奏
 difficulty: 1
 */
 

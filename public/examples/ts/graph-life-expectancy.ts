@@ -1,7 +1,7 @@
 /*
 title: Graph Life Expectancy
 category: graph
-titleCN: Graph Life Expectancy
+titleCN: 预期寿命
 difficulty: 7
 */
 

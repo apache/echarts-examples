@@ -1,7 +1,8 @@
 /*
 title: Globe Layers
 category: globe
-titleCN: Globe Layers
+titleCN: 地球图层
+difficulty: 1
 videoStart: 2000
 videoEnd: 6000
 */

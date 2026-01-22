@@ -1,7 +1,7 @@
 /*
 title: Cycle Plot
 category: custom
-titleCN: Cycle Plot
+titleCN: 周期图
 difficulty: 3
 */
 

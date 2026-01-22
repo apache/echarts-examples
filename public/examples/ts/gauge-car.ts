@@ -1,7 +1,7 @@
 /*
 title: Gauge Car
 category: gauge
-titleCN: Gauge Car
+titleCN: 汽车仪表盘
 difficulty: 8
 */
 

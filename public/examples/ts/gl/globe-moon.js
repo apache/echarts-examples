@@ -1,7 +1,7 @@
 /*
 title: Moon
 category: globe
-titleCN: Moon
+titleCN: 月球
 */
 
 option = {

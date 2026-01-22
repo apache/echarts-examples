@@ -1,7 +1,7 @@
 /*
 title: Transparent Bar3D
 category: bar3D
-titleCN: Transparent Bar3D
+titleCN: 三维柱状图 - 透明效果
 */
 
 // prettier-ignore

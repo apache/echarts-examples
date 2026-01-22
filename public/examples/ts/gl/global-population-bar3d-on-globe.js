@@ -1,7 +1,7 @@
 /*
 title: Global Population - Bar3D on Globe
 category: bar3D
-titleCN: Global Population - Bar3D on Globe
+titleCN: 全球人口分布 - 地球上的 Bar3D
 */
 
 $.getJSON(ROOT_PATH + '/data-gl/asset/data/population.json', function (data) {
