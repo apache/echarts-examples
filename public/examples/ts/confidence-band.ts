@@ -1,7 +1,7 @@
 /*
 title: Confidence Band
 category: line
-titleCN: Confidence Band
+titleCN: 置信带
 difficulty: 4
 */
 

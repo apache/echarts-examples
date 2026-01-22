@@ -1417,7 +1417,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Confidence Band",
-    "titleCN": "Confidence Band",
+    "titleCN": "置信带",
     "difficulty": 4
   },
   {
@@ -1517,7 +1517,7 @@ export default [
     "ts": true,
     "tags": [],
     "title": "Rainfall vs Evaporation",
-    "titleCN": "雨量-蒸发量关系图",
+    "titleCN": "雨量蒸发量关系图",
     "difficulty": 4
   },
   {
