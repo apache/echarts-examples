@@ -2,6 +2,7 @@
 title: Globe with Atmosphere
 category: globe
 titleCN: 大气层显示
+difficulty: 1
 */
 
 option = {

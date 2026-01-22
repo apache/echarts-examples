@@ -21,6 +21,17 @@ export default [
     "category": [
       "globe"
     ],
+    "id": "globe-atmosphere",
+    "ts": false,
+    "tags": [],
+    "title": "Globe with Atmosphere",
+    "titleCN": "大气层显示",
+    "difficulty": 1
+  },
+  {
+    "category": [
+      "globe"
+    ],
     "id": "globe-layers",
     "ts": false,
     "tags": [],
@@ -186,17 +197,6 @@ export default [
     ],
     "title": "Global Wind Visualization 2",
     "titleCN": "Global Wind Visualization 2",
-    "difficulty": 10
-  },
-  {
-    "category": [
-      "globe"
-    ],
-    "id": "globe-atmosphere",
-    "ts": false,
-    "tags": [],
-    "title": "Globe with Atmosphere",
-    "titleCN": "大气层显示",
     "difficulty": 10
   },
   {
