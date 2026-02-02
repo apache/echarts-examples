@@ -80,7 +80,7 @@ option = {
             color: '#777'
           },
           unit: {
-            fontSize: 14,
+            fontSize: 20,
             color: '#999',
             padding: [0, 0, 0, 3]
           }
