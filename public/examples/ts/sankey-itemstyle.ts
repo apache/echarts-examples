@@ -15,7 +15,7 @@ option = {
     {
       type: 'sankey',
       left: 50.0,
-      top: 20.0,
+      top: -140.0,
       right: 150.0,
       bottom: 25.0,
       data: [
@@ -1271,7 +1271,7 @@ option = {
       label: {
         color: 'rgba(0,0,0,0.7)',
         fontFamily: 'Arial',
-        fontSize: 10
+        fontSize: 7
       }
     }
   ],
