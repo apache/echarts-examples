@@ -159,14 +159,14 @@ async function installPackages(config) {
     const dir = pkg.dir;
     if (!fs.existsSync(dir)) {
       console.warn(
-        chalk.yellow(`${dir} not exists. Please update it in e2e/config.js.`)
+        chalk.yellow(`${dir} not exists. Please ensure the path is correct in e2e/config.js.`)
       );
       return false;
     }
     if (!nodePath.isAbsolute(dir)) {
       console.warn(
         chalk.yellow(
-          `${dir} is not an absolute path. Please update it in e2e/config.js.`
+          `${dir} is not an absolute path. Please ensure the path is correct in e2e/config.js.`
         )
       );
       return false;
@@ -265,7 +265,8 @@ async function installPackages(config) {
         `Installing ${pkg.name} from "${publishedPackages[pkg.name].targetTgzFilePath}" ...`
       )
     );
-    if (shell.exec(`npm install ${publishedPackages[pkg.name].targetTgzFilePath}`).code !== 0) {
+    // Use `--force` because some pkg have echarts dependency confliction.
+    if (shell.exec(`npm install ${publishedPackages[pkg.name].targetTgzFilePath} --force`).code !== 0) {
       console.log(`shell fail: npm install ${publishedPackages[pkg.name].targetTgzFilePath}`);
       process.exit(1);
     }
@@ -697,9 +698,10 @@ async function runExamples(jsFiles, result) {
     const browser = await puppeteer.launch({
       headless: false,
       args: [
-        '--headless',
+        '--headless', // If network error always happens, try to comment this line to use headful mode
         '--hide-scrollbars',
         // https://github.com/puppeteer/puppeteer/issues/4913
+        // But if encounter 'creating WebGL Context Error'", comment the following arg.
         '--use-gl=egl',
         '--mute-audio'
       ]
@@ -716,9 +718,12 @@ async function runExamples(jsFiles, result) {
           // TODO Record pageerror
           console.error(chalk.red(`[PAGE ERROR] [${basename}]`));
           console.error(chalk.red(err.toString()));
+          // Too verbose to print err.stack, but we can uncomment the following sentence to debug.
+          // console.error(chalk.red(err.toString() + ' ' + err.stack));
         });
-        page.on('console', (msg) => {
-          const text = msg.text();
+        page.on('console', async (msg) => {
+          let text = msg.text();
+          // text += '  ' + JSON.stringify(arguments[1]);
           if (!IGNORE_LOG.find((a) => text.indexOf(a) >= 0)) {
             console.log(chalk.gray(`[PAGE LOG] [${basename}]: ${text}`));
           }
@@ -726,12 +731,12 @@ async function runExamples(jsFiles, result) {
 
         await page.goto(`${baseUrl}/e2e/template.html`, {
           waitUntil: 'networkidle0',
-          timeout: 10000
+          timeout: 20000
         });
         await page.addScriptTag({
           url: `${baseUrl}/e2e/tmp/bundles/${basename}.js`
         });
-        await waitTime(200);
+        await waitTime(2000);
 
         await page.screenshot({
           type: 'png',

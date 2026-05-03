@@ -3,14 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js"
-    ></script>
+    <!-- CDN is unstable -- use local assets instead -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui@0.6.5/build/dat.gui.min.js"></script> -->
+    <script type="text/javascript" src="/e2e/e2e-asset/jquery.min.js"></script>
+    <script type="text/javascript" src="/e2e/e2e-asset/dat.gui.min.js"></script>
     <title>Test Container</title>
   </head>
   <body>
@@ -29,6 +26,6 @@
       }
     </style>
     <div id="main"></div>
-    <script src="tmp/bundles/graph-grid.js"></script>
+    <script src="tmp/bundles/graph-label-overlap.js"></script>
   </body>
 </html>

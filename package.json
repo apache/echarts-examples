@@ -15,8 +15,10 @@
     "compile:example": "node tool/compile-example.js",
     "test:e2e": "node e2e/main.js --bundler webpack -m",
     "test:e2e:local": "node e2e/main.js --bundler webpack -m --local",
+    "test:e2e:local:nomin": "node e2e/main.js --bundler webpack --local",
     "test:e2e:esbuild": "node e2e/main.js --bundler esbuild -m",
     "test:e2e:esbuild:local": "node e2e/main.js --bundler esbuild -m --local",
+    "test:e2e:esbuild:local:nomin": "node e2e/main.js --bundler esbuild --local",
     "server": "node build/server.js"
   },
   "devDependencies": {

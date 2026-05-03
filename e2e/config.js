@@ -27,6 +27,11 @@ module.exports = {
       name: 'echarts-liquidfill',
       dir: nodePath.resolve(__dirname, '../../echarts-liquidfill'),
       git: 'ecomfe/echarts-liquidfill#master'
-    }
+    },
+    {
+      name: 'echarts-graph-modularity',
+      dir: nodePath.resolve(__dirname, '../../echarts-graph-modularity'),
+      git: 'ecomfe/echarts-graph-modularity#master'
+    },
   ]
 };
