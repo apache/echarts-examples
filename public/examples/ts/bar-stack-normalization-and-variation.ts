@@ -25,7 +25,7 @@ const grid = {
     left: 100,
     right: 100,
     top: 50,
-    bottom: 50
+    bottom: 90
 };
 const gridWidth = myChart.getWidth() - grid.left - grid.right;
 const gridHeight = myChart.getHeight() - grid.top - grid.bottom;

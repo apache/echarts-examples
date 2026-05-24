@@ -8,6 +8,7 @@ $.get(ROOT_PATH + '/data/asset/data/obama_budget_proposal_2012.list.json', funct
             trigger: 'item'
         },
         legend: {
+            top: 5,
             data: ['Growth', 'Budget 2011', 'Budget 2012'],
             itemGap: 5
         },
