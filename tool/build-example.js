@@ -96,6 +96,15 @@ async function convertToWebP(filePath) {
   ]);
 }
 
+function unlink(filePath) {
+  try {
+    fs.unlinkSync(filePath);
+  } catch (e) {
+    console.error('[ERROR] fs.unlinkSync("' + filePath + '");');
+    console.error(chalk.red(e));
+  }
+}
+
 async function takeScreenshot(
   browser,
   ffmpeg,
@@ -173,13 +182,13 @@ async function takeScreenshot(
     }
   });
 
-  console.log(`Generating ${theme} thumbs.....${basename}`);
+  console.log(`[--- Generating ${theme} thumbs: ${basename} ---]`);
   // https://stackoverflow.com/questions/46160929/puppeteer-wait-for-all-images-to-load-then-take-screenshot
   try {
     try {
       await page.goto(url, {
         waitUntil: 'networkidle0',
-        timeout: 20000
+        timeout: 30000
       });
     } catch (e) {
       console.error(chalk.red(e));
@@ -232,12 +241,8 @@ async function takeScreenshot(
       }
     }
 
-    try {
-      fs.unlinkSync(filePathOld);
-    } catch (e) {}
-
-    fs.unlinkSync(filePathTmpRaw);
-    fs.unlinkSync(filePathTmp);
+    unlink(filePathTmpRaw);
+    unlink(filePathTmp);
 
     if (hasVideo) {
       await checkingDownload;
@@ -254,26 +259,35 @@ async function takeScreenshot(
           `ffmpeg -y -i "${fileBase}.webm" -s ${OUTPUT_IMAGE_WIDTH}x${OUTPUT_IMAGE_HEIGHT} -f webp "${fileBase}.webp"`
         );
       } catch (e) {
-        console.error(e);
+        console.error(chalk.red(e));
       }
       console.log(`WebP file created: ${fileBase}.webp`);
-      try {
-        fs.unlinkSync(webmFile);
-      } catch (e) {}
+
+      unlink(webmFile);
     }
   } catch (e) {
-    console.error(url);
-    console.error(e.toString());
+    console.error('[ERROR] on URL: ' + url);
+    console.error(e);
   }
   await page.close();
 }
 
 (async () => {
+
   const rootDir = path.join(__dirname, '../');
   // TODO puppeteer will have Navigation Timeout Exceeded: 30000ms exceeded error in these examples.
   const screenshotBlackList = [];
 
   let server; // Declare server at function scope
+
+  process.on('SIGINT', function () {
+    console.log('SIGINT Close.');
+    if (server) {
+      server.close();
+    }
+    // Close through ctrl + c;
+    process.exit();
+  });
 
   const examplesRoot = `${rootDir}public/examples`;
   const filesPrimary = await globby(`js/${isGL ? 'gl/' : ''}*.js`, {
@@ -512,12 +526,4 @@ export default ${JSON.stringify(exampleList, null, 2)}
     // ffmpeg.exit(0);
   }
 
-  process.on('SIGINT', function () {
-    console.log('Closing');
-    if (server) {
-      server.close();
-    }
-    // Close through ctrl + c;
-    process.exit();
-  });
 })();

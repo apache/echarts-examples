@@ -261,6 +261,11 @@ node e2e/main.js --skip npm --tests bar3D*
 
 ## Release
 
+Update echarts version in `package.json` to the latest version, and then
+```
+npm i --force
+```
+
 If any metadata is added/deleted/changed, we need to call the command below to sync that change to `echarts-examples/src/data/chart-list-data.js` and `echarts-examples/src/data/chart-list-data-gl.js`
 ```shell
 npm run build:examplelist
@@ -274,7 +279,8 @@ If any thumbnail in [example exporation page](https://echarts.apache.org/example
 # This process is time consuming.
 npm run build:example > result.log 2>&1
 # Note: it also calls build:examplelist internally.
-# Note: if encoutering problems, make sure your local installed puppeteer is in correct #   verion, and there is no local puppeteer installed in folder `echarts-examples/tool`.
+# Note: if encoutering problems, make sure your local installed puppeteer is in a correct
+#       version, and there is no local puppeteer installed in folder `echarts-examples/tool`.
 
 # Note: If only build for default theme:
 node tool/build-example.js -t default
