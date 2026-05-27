@@ -299,12 +299,16 @@ async function buildRunCode() {
   ) {
     const ROOT_PATH = `${baseUrl}/public`;
 
+    // Global variables used in test cases.
+    const CDN_PATH = 'https://echarts.apache.org/en/js/vendors/';
+
     const fullCode = buildExampleCode(buildPrepareCode(true) + testCode, deps, {
       minimal: false,
       ts: checkTs,
       // Check if theme will break the minimal imports.
       theme: TEST_THEME,
       ROOT_PATH,
+      CDN_PATH,
       extraImports
     });
     const minimalCode = buildExampleCode(
@@ -315,6 +319,7 @@ async function buildRunCode() {
         ts: checkTs,
         theme: TEST_THEME,
         ROOT_PATH,
+        CDN_PATH,
         extraImports
       }
     );
@@ -327,6 +332,7 @@ async function buildRunCode() {
         ts: false,
         theme: TEST_THEME,
         ROOT_PATH,
+        CDN_PATH,
         extraImports: extraRequire
       }
     );

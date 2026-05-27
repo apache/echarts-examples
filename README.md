@@ -186,7 +186,7 @@ npm run dev
 2. Add `local=1` to the entry URL.
   - For example: `http://127.0.0.1:3002/en/editor.html?c=line-simple&local=1`
 
-## Run e2e tests.
+## Run e2e tests
 
 Run all the examples to test package publishing and install, module importing, minimal bundling and DTS correctness.
 
@@ -238,26 +238,42 @@ npm run test:e2e:esbuild > result.log 2>&1
 
 ### Check the test result
 
-The test result is in:
-
+**Check the overall test result**:
 - the `result.log`
 - `echarts-examples/e2e/report.html`, the file should be opened in your own local http server.
 
-### Run partial tests.
+**Check a single test case in browser**:
+Modify the bundle js file in `echarts-examples/e2e/preview.html`, for example:
+```html
+<script src="tmp/bundles/bar3D.js"></script>
+```
+Then open it:
+```shell
+cd /path/to/your/echarts-examples
+python3 -m http.server 3322
+open "http://127.0.0.1:3322/e2e/preview.html"
+```
+
+### Run partial tests
 
 > Note: This can only be used when you run the whole e2e test at least once.
 
-Skip specific stages.
-
+Skip specific stages:
 ```shell
-node e2e/main.js --skip bundle
+# Skip updating dependencies (echarts, zrender, echarts-gl, etc.)
+node e2e/main.js --skip npm --local
+# Skip rendering and comparing (via puppeteer)
+node e2e/main.js --skip render,compare --local
+# Skip bundling (by webpack/esbuild)
+node e2e/main.js --skip bundle --local
 ```
 
-Specify matched tests.
-
+Run a single test:
 ```shell
-node e2e/main.js --skip npm --tests bar3D*
+node e2e/main.js --skip npm --local --tests bar3D*
+node e2e/main.js --skip npm --local --tests line3d-orthographic
 ```
+
 
 ## Release
 
