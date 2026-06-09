@@ -50,7 +50,6 @@
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
     "puppeteer": "^24.10.2",
-    "raw-loader": "^4.0.2",
     "sass.js": "^0.11.1",
     "sassjs-loader": "^2.0.0",
     "seedrandom": "^3.0.5",
