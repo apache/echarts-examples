@@ -88,16 +88,12 @@ module.exports = (env, argv) => {
             ]
           },
           {
-            test: /\.(svg|html)$/,
-            use: [
-              {
-                loader: 'html-loader',
-                options: {
-                  // will be `true` in production
-                  // minimize: true
-                }
-              }
-            ]
+            test: /\.svg$/,
+            type: 'asset/source'
+          },
+          {
+            test: /\.html$/,
+            use: ['html-loader']
           },
           {
             resourceQuery: /raw-pure/,
