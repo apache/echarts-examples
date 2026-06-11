@@ -64,15 +64,12 @@ module.exports = (env, argv) => {
           },
           {
             test: /\.(png|jpg|jpeg|gif|webp)(\?.+)?$/,
-            use: [
-              {
-                loader: 'url-loader',
-                options: {
-                  limit: 5120,
-                  esModule: false
-                }
+            type: 'asset',
+            parser: {
+              dataUrlCondition: {
+                maxSize: 5120
               }
-            ]
+            }
           },
           {
             test: /\.svg$/,
