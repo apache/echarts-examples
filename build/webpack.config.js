@@ -27,7 +27,6 @@ module.exports = (env, argv) => {
         publicPath: './',
         filename: 'example-bundle.js',
         path: path.resolve(distPath, 'js'),
-        clean: true,
         library: {
           name: 'echartsExample',
           type: 'var'
