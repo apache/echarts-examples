@@ -6,29 +6,40 @@ const fs = require('fs');
 
 const distPath = path.resolve(__dirname, '../public');
 
-
 module.exports = (env, argv) => {
-
   const isDev = argv.mode === 'development';
-
   let configLocal = {};
   if (isDev) {
-    const configLocalPath = path.resolve(__dirname, '../config/config.local.js');
+    const configLocalPath = path.resolve(
+      __dirname,
+      '../config/config.local.js'
+    );
     if (fs.existsSync(configLocalPath)) {
       configLocal = require(configLocalPath);
     }
   }
 
-  return [{
+  return [
+    {
       entry: path.resolve(__dirname, '../src/main.js'),
+      mode: argv.mode || 'production',
       output: {
         publicPath: './',
         filename: 'example-bundle.js',
-        path: path.join(distPath, 'js'),
-        library: 'echartsExample',
-        libraryTarget: 'var'
+        path: path.resolve(distPath, 'js'),
+        clean: true,
+        library: {
+          name: 'echartsExample',
+          type: 'var'
+        }
       },
       stats: 'minimal',
+      resolve: {
+        fallback: {
+          fs: false
+        }
+      },
+
       module: {
         rules: [
           {
@@ -115,11 +126,9 @@ module.exports = (env, argv) => {
       },
       plugins: [
         new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify(argv.mode || 'production'),
           // It can be used in the code directly.
-          CONFIG_LOCAL: JSON.stringify(configLocal),
-        }),
-        new webpack.IgnorePlugin({
-          resourceRegExp: /^fs$/
+          CONFIG_LOCAL: JSON.stringify(configLocal)
         }),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
@@ -129,6 +138,7 @@ module.exports = (env, argv) => {
     },
     {
       // Separate built ts transformer to be loaded async
+      mode: argv.mode || 'production',
       entry: path.resolve(__dirname, '../src/editor/transformTs.js'),
       stats: 'minimal',
       module: {
@@ -145,10 +155,12 @@ module.exports = (env, argv) => {
       },
       output: {
         filename: 'example-transform-ts-bundle.js',
-        path: path.join(distPath, 'js'),
-        library: 'echartsExampleTransformTs',
-        libraryExport: 'default',
-        libraryTarget: 'var'
+        path: path.resolve(distPath, 'js'),
+        library: {
+          name: 'echartsExampleTransformTs',
+          export: 'default',
+          type: 'var'
+        }
       }
     }
   ];
