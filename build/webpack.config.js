@@ -75,19 +75,6 @@ module.exports = (env, argv) => {
             ]
           },
           {
-            test: /\.(eot|ttf|woff|woff2)(\?.+)?$/,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  outputPath: '../asset',
-                  name: '[name].[ext]',
-                  esModule: false
-                }
-              }
-            ]
-          },
-          {
             test: /\.svg$/,
             type: 'asset/source'
           },
