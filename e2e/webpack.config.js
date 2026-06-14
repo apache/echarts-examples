@@ -4,7 +4,6 @@ const config = require('./config');
 
 module.exports = (env, argv) => {
   return {
-    mode: argv.mode || 'production',
     entry: path.resolve(__dirname, './tmp/tests/area-basic.minimal.js'),
     plugins: [
       new BundleAnalyzerPlugin({

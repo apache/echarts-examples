@@ -22,7 +22,6 @@ module.exports = (env, argv) => {
   return [
     {
       entry: path.resolve(__dirname, '../src/main.js'),
-      mode: argv.mode || 'production',
       output: {
         publicPath: './',
         filename: 'example-bundle.js',
@@ -47,17 +46,11 @@ module.exports = (env, argv) => {
           },
           {
             test: /\.js$/,
-            exclude: /node_modules/,
             resourceQuery: {
               not: [/raw-pure/]
             },
-            use: {
-              loader: 'babel-loader',
-              options: {
-                targets: 'defaults',
-                presets: [['@babel/preset-env']]
-              }
-            }
+            use: ['babel-loader'],
+            exclude: /node_modules/
           },
           {
             test: /\.css$/,
@@ -111,7 +104,6 @@ module.exports = (env, argv) => {
       },
       plugins: [
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify(argv.mode || 'production'),
           // It can be used in the code directly.
           CONFIG_LOCAL: JSON.stringify(configLocal)
         }),
@@ -123,7 +115,6 @@ module.exports = (env, argv) => {
     },
     {
       // Separate built ts transformer to be loaded async
-      mode: argv.mode || 'production',
       entry: path.resolve(__dirname, '../src/editor/transformTs.js'),
       stats: 'minimal',
       module: {
