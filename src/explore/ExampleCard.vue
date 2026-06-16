@@ -1,23 +1,27 @@
 <template>
   <div class="example-list-item">
-    <a target="_blank" class="example-link" :href="exampleLink">
-      <picture>
+    <a
+      class="example-link"
+      :target="embedded ? '_self' : '_blank'"
+      :href="exampleLink"
+    >
+      <picture class="example-link-image">
         <source :data-srcset="screenshotURLWebP" type="image/webp" />
         <source :data-srcset="screenshotURLPNG" type="image/png" />
         <img class="chart-area" src="../asset/placeholder.jpg" />
       </picture>
-    </a>
-    <div class="example-info">
-      <div class="example-version-since" v-if="hasVersionSince">
-        {{ versionSinceBanner }}
-      </div>
-      <div>
-        <div class="example-title" :title="title">{{ title }}</div>
-        <div v-if="showSubtitle" class="example-subtitle" :title="subtitle">
-          {{ subtitle }}
+      <div class="example-info">
+        <div class="example-version-since" v-if="hasVersionSince">
+          {{ versionSinceBanner }}
+        </div>
+        <div>
+          <div class="example-title" :title="title">{{ title }}</div>
+          <div v-if="showSubtitle" class="example-subtitle" :title="subtitle">
+            {{ subtitle }}
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -27,7 +31,13 @@ import { store } from '../common/store';
 import { URL_PARAMS } from '../common/config';
 
 export default {
-  props: ['example'],
+  props: {
+    example: Object,
+    embedded: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   computed: {
     title() {
@@ -103,21 +113,27 @@ export default {
   position: relative;
 
   .example-link {
-    margin-top: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    display: block;
-  }
+    text-decoration: none;
 
-  .chart-area {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
+    &-image {
+      margin-top: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: block;
+
+      .chart-area {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+    }
 
     &:hover {
-      transform: scale(1.2);
+      .chart-area {
+        transform: scale(1.2);
+      }
     }
   }
 
