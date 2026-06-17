@@ -1,27 +1,31 @@
 <template>
-  <nav class="editor-nav container-fluid">
+  <nav class="editor-nav container-fluid navbar">
     <div
-      class="navbar"
+      class="nav"
       v-for="categoryObj in exampleList"
       :key="categoryObj.category"
     >
-      <ul class="nav">
-        <h3 class="chart-type-head" :id="'chart-type-' + categoryObj.category">
-          {{ $t('chartTypes.' + categoryObj.category) }}
-        </h3>
-        <li class="row" :id="'chart-row-' + categoryObj.category">
-          <div
-            class="col-1"
-            v-for="exampleItem in categoryObj.examples"
-            :key="exampleItem.id"
-          >
-            <ExampleCard :example="exampleItem" :embedded="true"></ExampleCard>
-          </div>
+      <h3 class="chart-type-head" :id="'chart-type-' + categoryObj.category">
+        {{ $t('chartTypes.' + categoryObj.category) }}
+      </h3>
+
+      <ul class="row" :id="'chart-row-' + categoryObj.category">
+        <li
+          class="col-xs-12"
+          v-for="exampleItem in categoryObj.examples"
+          :key="exampleItem.id"
+        >
+          <ExampleCard
+            :example="exampleItem"
+            :embedded="true"
+            @select-example="onSelectExample"
+          ></ExampleCard>
         </li>
       </ul>
     </div>
   </nav>
 </template>
+
 <script>
 import {
   buildExampleListByCategory,
@@ -41,7 +45,6 @@ export default {
 
   data() {
     return {
-      EXAMPLE_CATEGORIES: [],
       exampleListByCategory: buildExampleListByCategory(
         CHART_LIST,
         CHART_LIST_GL
@@ -57,6 +60,16 @@ export default {
 
   mounted() {
     this._lazyload = createLazyLoader();
+  },
+
+  beforeDestroy() {
+    this._lazyload.destroy();
+  },
+
+  methods: {
+    onSelectExample(example) {
+      this.$emit('select-example', example);
+    }
   }
 };
 </script>
@@ -71,13 +84,17 @@ export default {
 
     .example-link-image {
       margin-top: 0;
-      width: 72px;
-      flex: 0 0 72px;
+      width: 48px;
+      flex: 0 0 48px;
     }
 
     .example-info {
       flex: 1;
       min-width: 0;
+
+      .example-version-since {
+        display: none;
+      }
     }
   }
 }

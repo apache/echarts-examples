@@ -4,6 +4,7 @@
       class="example-link"
       :target="embedded ? '_self' : '_blank'"
       :href="exampleLink"
+      @click="onLinkClick"
     >
       <picture class="example-link-image">
         <source :data-srcset="screenshotURLWebP" type="image/webp" />
@@ -98,6 +99,16 @@ export default {
 
     screenshotURLPNG() {
       return `${store.cdnRoot}/${this.exampleThumbFilePath}.png?_v_=${store.version}`;
+    }
+  },
+
+  methods: {
+    onLinkClick(event) {
+      if (!this.embedded) {
+        return;
+      }
+      event.preventDefault();
+      this.$emit('select-example', this.example);
     }
   }
 };

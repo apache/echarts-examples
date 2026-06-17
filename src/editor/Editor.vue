@@ -1,8 +1,6 @@
 <template>
   <section class="editor-workspace">
-    <nav class="editor-nav">
-      <Navigation />
-    </nav>
+    <Navigation @select-example="onSelectExample" :embedded="true" />
     <div id="main-container" :class="{ 'is-dragging': draggingMouseDown }">
       <div
         id="editor-left-container"
@@ -579,6 +577,68 @@ export default {
   },
 
   methods: {
+    syncURLParams(params) {
+      const url = new URL(location.href);
+      Object.entries(params).forEach(([key, val]) => {
+        if (val == null || val === false || val === '') {
+          delete URL_PARAMS[key];
+          url.searchParams.delete(key);
+        } else {
+          URL_PARAMS[key] = String(val);
+          url.searchParams.set(key, String(val));
+        }
+      });
+      history.pushState({}, '', url.toString());
+    },
+
+    loadCurrentExampleToEditor() {
+      loadExampleCode().then((code) => {
+        const parsedCode = parseSourceCode(code);
+        this.exampleConfig = getExampleConfig();
+
+        if (store.isMobile) {
+          store.runCode = parsedCode;
+          return;
+        }
+
+        this.initialCode = parsedCode;
+        store.initialCode = parsedCode;
+        this.$nextTick(() => this.disposeAndRun());
+      });
+    },
+
+    onSelectExample(example) {
+      if (!example || !example.id) return;
+
+      const hasCodeChanged =
+        this.initialCode &&
+        store.sourceCode &&
+        store.sourceCode !== this.initialCode;
+
+      const proceed = () => {
+        this.syncURLParams({
+          c: example.id,
+          gl: example.isGL ? 1 : null,
+          code: null,
+          enc: null
+        });
+        this.loadCurrentExampleToEditor();
+      };
+
+      if (!hasCodeChanged) {
+        proceed();
+        return;
+      }
+
+      this.$confirm(this.$t('editor.codeChangedConfirm'), '', {
+        confirmButtonText: this.$t('editor.confirmButtonText'),
+        cancelButtonText: this.$t('editor.cancelButtonText'),
+        type: 'warning'
+      })
+        .then(proceed)
+        .catch(() => {});
+    },
+
     toExternalEditor(vendor) {
       const previewRef = this.$refs.preview;
       if (!previewRef) {
@@ -880,11 +940,12 @@ $handler-width: 15px;
   > * {
     min-height: 0;
   }
-}
 
-.editor-nav {
-  overflow: auto;
-  height: 100%;
+  .editor-nav {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 #main-container {
