@@ -1,6 +1,9 @@
 <template>
   <section class="editor-workspace">
-    <Navigation @select-example="onSelectExample" :embedded="true" />
+    <Navigation
+      @select-example="onSelectExample"
+      :currentExample="exampleConfig"
+    />
     <div id="main-container" :class="{ 'is-dragging': draggingMouseDown }">
       <div
         id="editor-left-container"

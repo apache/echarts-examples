@@ -16,9 +16,10 @@
       <ul class="row" :id="'chart-row-' + categoryObj.category">
         <li
           class="col-xs-12"
+          :id="exampleItem.id"
           v-for="exampleItem in categoryObj.examples"
           :key="exampleItem.id"
-          :class="{ 'is-active': currentExampleId === exampleItem.id }"
+          :class="{ 'is-active': currentExample.id === exampleItem.id }"
         >
           <ExampleCard
             :example="exampleItem"
@@ -46,12 +47,16 @@ export default {
     ExampleCard
   },
 
-  props: {},
+  props: {
+    currentExample: {
+      type: String,
+      required: true
+    }
+  },
 
   data() {
     return {
-      rawCategoryData: null,
-      currentExampleId: ''
+      rawCategoryData: null
     };
   },
 
@@ -73,6 +78,7 @@ export default {
 
   mounted() {
     this._lazyload = createLazyLoader();
+    this.markExampleActive();
   },
 
   beforeDestroy() {
@@ -83,8 +89,25 @@ export default {
 
   methods: {
     onSelectExample(example) {
-      this.currentExampleId = example.id;
       this.$emit('select-example', example);
+    },
+    markExampleActive() {
+      if (!this.currentExample || !this.currentExample.id) return;
+      this.$nextTick(() => {
+        const id = String(this.currentExample.id);
+        const exampleItems = this.$refs.exampleItems || [];
+        const exampleNode = exampleItems.find(
+          (el) => el && String(el.dataset && el.dataset.exampleId) === id
+        );
+        if (!exampleNode) return;
+        const detailsElement = exampleNode.closest
+          ? exampleNode.closest('details')
+          : null;
+        if (detailsElement) detailsElement.open = true;
+        if (exampleNode.scrollIntoView)
+          exampleNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (exampleNode.focus) exampleNode.focus();
+      });
     }
   }
 };
