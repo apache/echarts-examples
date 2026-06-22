@@ -1,35 +1,40 @@
 <template>
-  <nav class="editor-nav navbar">
-    <details
-      class="nav"
-      v-for="categoryObj in exampleList"
-      :key="categoryObj.category"
-    >
-      <summary
-        class="chart-type-head"
-        :id="'chart-type-' + categoryObj.category"
+  <section class="editor-navigation">
+    <div class="menu-button" @click="toggleNav" role="button">
+      <span :class="isNavOpen ? 'close-icon' : 'hamburger-icon'"></span>
+    </div>
+    <nav class="navbar" :class="{ 'nav-closed': !isNavOpen }">
+      <details
+        class="nav"
+        v-for="categoryObj in exampleList"
+        :key="categoryObj.category"
       >
-        {{ $t('chartTypes.' + categoryObj.category) }}
-        <span class="arrow"></span>
-      </summary>
-
-      <ul class="row" :id="'chart-row-' + categoryObj.category">
-        <li
-          class="col-xs-12"
-          :id="exampleItem.id"
-          v-for="exampleItem in categoryObj.examples"
-          :key="exampleItem.id"
-          :class="{ 'is-active': currentExample.id === exampleItem.id }"
+        <summary
+          class="chart-type-head"
+          :id="'chart-type-' + categoryObj.category"
         >
-          <ExampleCard
-            :example="exampleItem"
-            :embedded="true"
-            @select-example="onSelectExample"
-          ></ExampleCard>
-        </li>
-      </ul>
-    </details>
-  </nav>
+          {{ $t('chartTypes.' + categoryObj.category) }}
+          <span class="arrow"></span>
+        </summary>
+
+        <ul class="row" :id="'chart-row-' + categoryObj.category">
+          <li
+            class="col-xs-12"
+            :id="exampleItem.id"
+            v-for="exampleItem in categoryObj.examples"
+            :key="exampleItem.id"
+            :class="{ 'is-active': currentExample.id === exampleItem.id }"
+          >
+            <ExampleCard
+              :example="exampleItem"
+              :embedded="true"
+              @select-example="onSelectExample"
+            ></ExampleCard>
+          </li>
+        </ul>
+      </details>
+    </nav>
+  </section>
 </template>
 
 <script>
@@ -49,14 +54,15 @@ export default {
 
   props: {
     currentExample: {
-      type: String,
+      type: Object,
       required: true
     }
   },
 
   data() {
     return {
-      rawCategoryData: null
+      rawCategoryData: null,
+      isNavOpen: false
     };
   },
 
@@ -90,15 +96,17 @@ export default {
   methods: {
     onSelectExample(example) {
       this.$emit('select-example', example);
+      this.isNavOpen = false;
+    },
+    toggleNav() {
+      this.isNavOpen = !this.isNavOpen;
     },
     markExampleActive() {
       if (!this.currentExample || !this.currentExample.id) return;
       this.$nextTick(() => {
         const id = String(this.currentExample.id);
-        const exampleItems = this.$refs.exampleItems || [];
-        const exampleNode = exampleItems.find(
-          (el) => el && String(el.dataset && el.dataset.exampleId) === id
-        );
+        const exampleNode = document.getElementById(id);
+
         if (!exampleNode) return;
         const detailsElement = exampleNode.closest
           ? exampleNode.closest('details')
@@ -114,7 +122,43 @@ export default {
 </script>
 
 <style lang="scss">
-.editor-nav {
+$breakpoint-sm: 768px;
+$primary-color: #fb628b;
+$light-gray: #f0f0f0;
+$dark-gray: #666;
+$transition-speed: 0.3s;
+
+@mixin icon-bar {
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  transition: all $transition-speed ease-in-out;
+}
+
+.editor-navigation {
+  nav.navbar {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: $breakpoint-sm) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background-color: #fff;
+      overflow-y: auto;
+      transform: translateX(0);
+      transition: transform $transition-speed ease-in-out;
+      padding-bottom: 20px;
+
+      &.nav-closed {
+        transform: translateX(-100%);
+      }
+    }
+  }
+
   details.nav {
     summary.chart-type-head {
       display: flex;
@@ -132,11 +176,11 @@ export default {
       }
 
       &:hover {
-        background-color: #f0f0f0;
+        background-color: $light-gray;
       }
 
       .arrow {
-        border: solid #666;
+        border: solid $dark-gray;
         border-width: 0 2px 2px 0;
         display: inline-block;
         padding: 3px;
@@ -147,7 +191,7 @@ export default {
 
     &[open] {
       summary.chart-type-head {
-        background-color: #f0f0f0;
+        background-color: $light-gray;
 
         .arrow {
           transform: rotate(-135deg) translate(-2px, -2px);
@@ -174,7 +218,7 @@ export default {
       padding: 4px;
 
       &.is-active {
-        background-color: #f0f0f0;
+        background-color: $light-gray;
       }
     }
   }
@@ -203,6 +247,65 @@ export default {
         display: none;
       }
     }
+  }
+}
+
+.menu-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: $breakpoint-sm) {
+    display: none;
+  }
+}
+
+.hamburger-icon,
+.close-icon {
+  position: relative;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  transition: all $transition-speed ease-in-out;
+
+  &::before,
+  &::after {
+    content: '';
+    @include icon-bar;
+  }
+}
+
+.hamburger-icon::before {
+  top: -8px;
+}
+
+.hamburger-icon::after {
+  top: 8px;
+}
+
+.close-icon {
+  transform: rotate(45deg);
+
+  &::before {
+    transform: rotate(90deg);
+    top: 0;
+  }
+
+  &::after {
+    transform: rotate(0deg);
+    top: 0;
+    opacity: 0;
   }
 }
 </style>

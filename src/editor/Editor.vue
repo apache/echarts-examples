@@ -1,5 +1,5 @@
 <template>
-  <section class="editor-workspace">
+  <article class="editor-workspace">
     <Navigation
       @select-example="onSelectExample"
       :currentExample="exampleConfig"
@@ -429,7 +429,7 @@
         }"
       ></Preview>
     </div>
-  </section>
+  </article>
 </template>
 
 <script>
@@ -937,17 +937,14 @@ $pd-basic: 10px;
 $handler-width: 15px;
 
 .editor-workspace {
-  display: grid;
-  grid-template-columns: 200px 1fr;
   height: 100vh;
   > * {
     min-height: 0;
   }
 
-  .editor-nav {
-    overflow: auto;
-    height: 100%;
-    width: 100%;
+  @media (min-width: 600px) {
+    display: grid;
+    grid-template-columns: 200px 1fr;
   }
 }
 
