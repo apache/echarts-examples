@@ -22,14 +22,14 @@
     "server": "node build/server.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "@ffmpeg/core": "^0.10.0",
     "@ffmpeg/ffmpeg": "^0.10.1",
     "@types/jquery": "^3.5.6",
     "@typescript-eslint/typescript-estree": "^4.10.0",
     "argparse": "^1.0.9",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^10.1.1",
     "chalk": "^3.0.0",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
