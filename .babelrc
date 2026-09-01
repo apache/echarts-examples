@@ -1,4 +1,5 @@
 {
+  "targets": "defaults",
   "presets": [
     [
       "@babel/preset-env",

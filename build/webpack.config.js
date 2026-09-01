@@ -6,29 +6,38 @@ const fs = require('fs');
 
 const distPath = path.resolve(__dirname, '../public');
 
-
 module.exports = (env, argv) => {
-
   const isDev = argv.mode === 'development';
-
   let configLocal = {};
   if (isDev) {
-    const configLocalPath = path.resolve(__dirname, '../config/config.local.js');
+    const configLocalPath = path.resolve(
+      __dirname,
+      '../config/config.local.js'
+    );
     if (fs.existsSync(configLocalPath)) {
       configLocal = require(configLocalPath);
     }
   }
 
-  return [{
+  return [
+    {
       entry: path.resolve(__dirname, '../src/main.js'),
       output: {
         publicPath: './',
         filename: 'example-bundle.js',
-        path: path.join(distPath, 'js'),
-        library: 'echartsExample',
-        libraryTarget: 'var'
+        path: path.resolve(distPath, 'js'),
+        library: {
+          name: 'echartsExample',
+          type: 'var'
+        }
       },
       stats: 'minimal',
+      resolve: {
+        fallback: {
+          fs: false
+        }
+      },
+
       module: {
         rules: [
           {
@@ -53,40 +62,20 @@ module.exports = (env, argv) => {
           },
           {
             test: /\.(png|jpg|jpeg|gif|webp)(\?.+)?$/,
-            use: [
-              {
-                loader: 'url-loader',
-                options: {
-                  limit: 5120,
-                  esModule: false
-                }
+            type: 'asset',
+            parser: {
+              dataUrlCondition: {
+                maxSize: 5120
               }
-            ]
+            }
           },
           {
-            test: /\.(eot|ttf|woff|woff2)(\?.+)?$/,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  outputPath: '../asset',
-                  name: '[name].[ext]',
-                  esModule: false
-                }
-              }
-            ]
+            test: /\.svg$/,
+            type: 'asset/source'
           },
           {
-            test: /\.(svg|html)$/,
-            use: [
-              {
-                loader: 'html-loader',
-                options: {
-                  // will be `true` in production
-                  // minimize: true
-                }
-              }
-            ]
+            test: /\.html$/,
+            use: ['html-loader']
           },
           {
             resourceQuery: /raw-pure/,
@@ -116,10 +105,7 @@ module.exports = (env, argv) => {
       plugins: [
         new webpack.DefinePlugin({
           // It can be used in the code directly.
-          CONFIG_LOCAL: JSON.stringify(configLocal),
-        }),
-        new webpack.IgnorePlugin({
-          resourceRegExp: /^fs$/
+          CONFIG_LOCAL: JSON.stringify(configLocal)
         }),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
@@ -145,10 +131,12 @@ module.exports = (env, argv) => {
       },
       output: {
         filename: 'example-transform-ts-bundle.js',
-        path: path.join(distPath, 'js'),
-        library: 'echartsExampleTransformTs',
-        libraryExport: 'default',
-        libraryTarget: 'var'
+        path: path.resolve(distPath, 'js'),
+        library: {
+          name: 'echartsExampleTransformTs',
+          export: 'default',
+          type: 'var'
+        }
       }
     }
   ];
