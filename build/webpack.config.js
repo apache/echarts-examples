@@ -3,8 +3,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const fs = require('fs');
+const SvgSpritePlugin = require('../tool/plugin-svg-sprite');
 
 const distPath = path.resolve(__dirname, '../public');
+const svgPath = path.resolve(__dirname, '../src/asset/icon');
 
 
 module.exports = (env, argv) => {
@@ -77,7 +79,11 @@ module.exports = (env, argv) => {
             ]
           },
           {
-            test: /\.(svg|html)$/,
+            test: /\.svg$/,
+            type: 'asset/source'
+          },
+          {
+            test: /\.html$/,
             use: [
               {
                 loader: 'html-loader',
@@ -114,6 +120,10 @@ module.exports = (env, argv) => {
         vue: 'Vue'
       },
       plugins: [
+        new SvgSpritePlugin({
+          spriteFilename: '../asset/sprite.svg',
+          svgPath: svgPath
+        }),
         new webpack.DefinePlugin({
           // It can be used in the code directly.
           CONFIG_LOCAL: JSON.stringify(configLocal),
