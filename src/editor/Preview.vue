@@ -43,12 +43,14 @@
               :inactive-text="''"
             />
           </div>
-          <span class="render-config-trigger" slot="reference">
-            <el-button size="mini">
-              {{ $t('editor.renderCfgTitle')
-              }}<i class="el-icon-setting el-icon--right"></i>
-            </el-button>
-          </span>
+          <template #reference>
+            <span class="render-config-trigger">
+              <el-button size="small">
+                {{ $t('editor.renderCfgTitle') }}
+                <SVGIcon name="setting" class="icon ml-4" />
+              </el-button>
+            </span>
+          </template>
         </el-popover>
         <el-button
           class="random"
@@ -106,26 +108,23 @@
       <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
           <el-button
-            icon="el-icon-download"
             size="mini"
             @click="download"
             :title="$t('editor.download') + ' (HTML)'"
           >
+            <SVGIcon name="download" class="icon mr-4" />
             {{ $t('editor.download') }}
           </el-button>
-          <el-button
-            @click="screenshot"
-            icon="el-icon-camera-solid"
-            size="mini"
-          >
+          <el-button @click="screenshot" size="mini">
+            <SVGIcon name="camera" class="icon mr-4" />
             {{ $t('editor.screenshot') }}
           </el-button>
           <el-button
             @click="share"
-            icon="el-icon-share"
             size="mini"
             :title="$t('editor.share.tooltip')"
           >
+            <SVGIcon name="share" class="icon mr-4" />
             {{ $t('editor.share.title') }}
           </el-button>
         </template>
@@ -161,6 +160,7 @@ import debounce from 'lodash/debounce';
 import { download } from './downloadExample';
 import { gotoURL, getURL } from '../common/route';
 import { gt, rcompare } from 'semver';
+import SVGIcon from '../common/SVGIcon.vue';
 
 const example = getExampleConfig();
 const isGL = 'gl' in URL_PARAMS || isGLExample();
@@ -353,6 +353,9 @@ function run(recreateInstance) {
 }
 
 export default {
+  components: {
+    SVGIcon
+  },
   props: {
     inEditor: {
       type: Boolean
@@ -844,5 +847,18 @@ export default {
       line-height: 1.25;
     }
   }
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+}
+
+.ml-4 {
+  margin-left: 4px;
+}
+
+.mr-4 {
+  margin-right: 4px;
 }
 </style>

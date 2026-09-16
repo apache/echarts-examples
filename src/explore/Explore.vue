@@ -20,7 +20,9 @@
                 :id="'left-chart-nav-' + category"
                 :href="'#chart-type-' + category"
               >
-                <span class="chart-icon" v-html="icons[category]"></span>
+                <span class="chart-icon">
+                  <SVGIcon :name="icons[category]" :size="20" />
+                </span>
                 <span class="chart-name">{{
                   $t('chartTypes.' + category)
                 }}</span>
@@ -71,6 +73,7 @@ import CHART_LIST_GL from '../data/chart-list-data-gl';
 import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
 import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
+import SVGIcon from '../common/SVGIcon.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
 const icons = {};
@@ -106,10 +109,9 @@ const icons = {};
   'rich',
   'graphic'
 ].forEach(function (category) {
-  icons[category] = require('../asset/icon/' + category + '.svg');
+  icons[category] = category;
 });
 
-const glIcon = require('../asset/icon/gl.svg');
 [
   'globe',
   'bar3D',
@@ -124,14 +126,15 @@ const glIcon = require('../asset/icon/gl.svg');
   'graphGL',
   'geo3D'
 ].forEach(function (category) {
-  icons[category] = glIcon;
+  icons[category] = 'gl';
 });
 
 const LAZY_LOADED_CLASS = 'ec-shot-loaded';
 
 export default {
   components: {
-    ExampleCard
+    ExampleCard,
+    SVGIcon
   },
 
   data() {
@@ -305,7 +308,7 @@ export default {
 @import '../style/config.xl.scss';
 
 $chart-nav-width: 200px;
-$chart-icon-width: 25px;
+$chart-icon-size: 20px;
 $chart-icon-border: 1px;
 
 $toolbar-height: 30px;
@@ -454,15 +457,15 @@ $pd-lg: 20px;
       }
 
       .chart-icon {
-        content: '';
-        width: 20px;
+        width: $chart-icon-size;
+        height: $chart-icon-size;
         display: inline-block;
         border-radius: 50%;
         vertical-align: middle;
 
         svg {
-          width: 100% !important;
-          height: auto !important;
+          width: 100%;
+          height: 100%;
         }
       }
 
@@ -470,8 +473,8 @@ $pd-lg: 20px;
         background-color: $nav-active-bg;
         color: #fff;
 
-        .chart-icon * {
-          fill: #fff;
+        .chart-icon use {
+          filter: invert(1) grayscale(1) brightness(200%);
         }
       }
 
