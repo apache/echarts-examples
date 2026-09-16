@@ -68,66 +68,15 @@
 <script>
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
-import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
+import { EXAMPLE_CATEGORIES } from '../common/config';
 import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
-import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
-
-const icons = {};
-
-[
-  'line',
-  'bar',
-  'scatter',
-  'pie',
-  'radar',
-  'funnel',
-  'gauge',
-  'map',
-  'graph',
-  'treemap',
-  'parallel',
-  'sankey',
-  'candlestick',
-  'boxplot',
-  'heatmap',
-  'pictorialBar',
-  'themeRiver',
-  'calendar',
-  'matrix',
-  'chord',
-  'custom',
-  'sunburst',
-  'tree',
-  'dataset',
-  'geo',
-  'lines',
-  'dataZoom',
-  'rich',
-  'graphic'
-].forEach(function (category) {
-  icons[category] = require('../asset/icon/' + category + '.svg');
-});
-
-const glIcon = require('../asset/icon/gl.svg');
-[
-  'globe',
-  'bar3D',
-  'scatter3D',
-  'surface',
-  'map3D',
-  'lines3D',
-  'line3D',
-  'scatterGL',
-  'linesGL',
-  'flowGL',
-  'graphGL',
-  'geo3D'
-].forEach(function (category) {
-  icons[category] = glIcon;
-});
-
-const LAZY_LOADED_CLASS = 'ec-shot-loaded';
+import {
+  icons,
+  createLazyLoader,
+  buildExampleListByCategory,
+  createExampleList
+} from '../common/exampleCatalogUtils.js';
 
 export default {
   components: {
@@ -135,62 +84,15 @@ export default {
   },
 
   data() {
-    const exampleListByCategory = {};
-
-    function addExamples(list, isGL) {
-      let categoryOrder = 0;
-      // Add by category order in each example.
-      do {
-        let added = false;
-        for (let i = 0; i < list.length; i++) {
-          const example = list[i];
-          if (BLACK_MAP.hasOwnProperty(example.id)) {
-            continue;
-          }
-          if (example.noExplore) {
-            continue;
-          }
-          if (typeof example.category === 'string') {
-            example.category = [example.category];
-          }
-
-          const categoryStr = (example.category || [])[categoryOrder];
-          if (categoryStr) {
-            added = true;
-            let categoryObj = exampleListByCategory[categoryStr];
-            if (!categoryObj) {
-              categoryObj = {
-                category: categoryStr,
-                examples: []
-              };
-              exampleListByCategory[categoryStr] = categoryObj;
-            }
-            example.isGL = isGL;
-
-            categoryObj.examples.push(example);
-          }
-        }
-
-        if (!added) {
-          break;
-        }
-      } while (++categoryOrder && categoryOrder < 4); // At most 4 category
-    }
-
-    addExamples(CHART_LIST, false);
-    addExamples(CHART_LIST_GL, true);
+    const exampleListByCategory = buildExampleListByCategory(
+      CHART_LIST,
+      CHART_LIST_GL
+    );
 
     return {
       shared: store,
-
       icons,
-
       EXAMPLE_CATEGORIES,
-      // [{
-      //  category: '',
-      //  isGL: false
-      //  examples: []
-      // }]
       exampleListByCategory
     };
   },
@@ -200,7 +102,7 @@ export default {
       const imgs = this.$el.querySelectorAll('img.chart-area');
       for (let i = 0; i < imgs.length; i++) {
         // Force lazyload to update
-        LazyLoad.resetStatus(imgs[i]);
+        createLazyLoader().load(imgs[i]);
       }
       this._lazyload.update();
     }
@@ -208,39 +110,12 @@ export default {
 
   computed: {
     exampleList() {
-      const list = [];
-      for (let i = 0, len = EXAMPLE_CATEGORIES.length; i < len; i++) {
-        const category = EXAMPLE_CATEGORIES[i];
-        const categoryObj = this.exampleListByCategory[category];
-        if (categoryObj && categoryObj.examples.length > 0) {
-          list.push({
-            category,
-            examples: categoryObj.examples
-          });
-        }
-      }
-      return list;
+      return createExampleList(this.exampleListByCategory);
     }
   },
 
   mounted() {
-    this._lazyload = new LazyLoad({
-      // Container should be the scroll viewport.
-      // container: this.$el.querySelector('#explore-container .example-list-panel'),
-      elements_selector: '.chart-area',
-      load_delay: 400,
-      class_loaded: LAZY_LOADED_CLASS,
-      callback_error(img) {
-        const fallbackSrc = img.src;
-        const children = img.parentElement.children;
-        for (let i = 0, len = children.length; i < len; i++) {
-          const el = children[i];
-          if (el !== img) {
-            el.srcset = fallbackSrc;
-          }
-        }
-      }
-    });
+    this._lazyload = createLazyLoader({});
 
     setTimeout(() => {
       location.hash && this.onHashChange();
