@@ -12,7 +12,7 @@ const gaugeData = [
     value: 20,
     name: 'Perfect',
     title: {
-      offsetCenter: ['0%', '-30%']
+      offsetCenter: ['0%', '-32%']
     },
     detail: {
       valueAnimation: true,
@@ -23,7 +23,7 @@ const gaugeData = [
     value: 40,
     name: 'Good',
     title: {
-      offsetCenter: ['0%', '0%']
+      offsetCenter: ['0%', '-2%']
     },
     detail: {
       valueAnimation: true,
@@ -34,7 +34,7 @@ const gaugeData = [
     value: 60,
     name: 'Commonly',
     title: {
-      offsetCenter: ['0%', '30%']
+      offsetCenter: ['0%', '28%']
     },
     detail: {
       valueAnimation: true,
