@@ -148,6 +148,9 @@ function onPointDragging(dataIndex: number, pos: number[]) {
       }
     ]
   });
+
+  // Axis bounds may change, so move the drag handles to the updated points.
+  updatePosition();
 }
 
 export {};
