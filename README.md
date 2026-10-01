@@ -193,7 +193,7 @@ Run all the examples to test package publishing and install, module importing, m
 Before run the tests. you need to update the examples list.
 
 ```shell
-npm run build:examplelist
+npm run build:example
 ```
 
 If puppeteer has not been installed:
